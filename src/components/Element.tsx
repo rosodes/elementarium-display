@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Element as ElementType, getCategoryColor } from '../data/elements';
+import { Element as ElementType, getCategoryColor, getSeriesColor } from '../data/elements';
 
 interface ElementProps {
   element: ElementType;
@@ -9,7 +9,10 @@ interface ElementProps {
 
 const Element = ({ element, onClick }: ElementProps) => {
   const [isHovering, setIsHovering] = useState(false);
-  const categoryColor = getCategoryColor(element.category);
+  // Use either category or series for color determination
+  const categoryColor = element.category 
+    ? getCategoryColor(element.category) 
+    : getSeriesColor(element.series);
   
   return (
     <div 
@@ -20,14 +23,14 @@ const Element = ({ element, onClick }: ElementProps) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <div className="absolute top-1 left-1 text-xs opacity-70">{element.number}</div>
+      <div className="absolute top-1 left-1 text-xs opacity-70">{element.atomic}</div>
       <div className="absolute top-1 right-1 text-xs opacity-70">
-        {element.electronConfiguration ? element.electronConfiguration.slice(-2) : ''}
+        {element.electronstring ? element.electronstring.slice(-2) : ''}
       </div>
       <div className="text-center">
         <div className="text-2xl font-bold mt-4 mb-1">{element.symbol}</div>
         <div className="text-xs truncate max-w-full font-medium">{element.name}</div>
-        <div className="text-xs opacity-70 mt-1">{element.atomicMass}</div>
+        <div className="text-xs opacity-70 mt-1">{element.weight}</div>
       </div>
     </div>
   );
