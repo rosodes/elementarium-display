@@ -36,6 +36,9 @@ export interface ElementIonize {
   5?: string;
   6?: string;
   7?: string;
+  8?: string;
+  9?: string;
+  10?: string;
 }
 
 export interface ElementQuantum {
@@ -99,7 +102,6 @@ export const categories = {
   "Unknown": "Unknown"
 };
 
-// Create a type for the elements array that allows for the first empty placeholder
 export type ElementsArray = [null | undefined | Partial<Element>, ...Element[]];
 
 export const elements: ElementsArray = [
@@ -704,7 +706,6 @@ export const elements: ElementsArray = [
   // Additional elements could be added here
 ];
 
-// Helper functions to maintain compatibility with existing components
 export const getElementByNumber = (number: number): Element | undefined => {
   if (number >= 1 && number < elements.length) {
     return elements[number] as Element;
@@ -743,7 +744,6 @@ export const getCategoryColor = (category: string): string => {
   return categoryMap[category] || "bg-unknown";
 };
 
-// Helper function to get a color based on the series
 export const getSeriesColor = (series: string): string => {
   const seriesMap: Record<string, string> = {
     "Alkali": "bg-alkali",
