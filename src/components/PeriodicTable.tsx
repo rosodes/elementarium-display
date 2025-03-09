@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { elements, Element as ElementType, categories, getCategoryColor, getSeriesColor } from '../data/elements';
+import { elements, ElementsArray, Element as ElementType, categories, getCategoryColor, getSeriesColor } from '../data/elements';
 import Element from './Element';
 import ElementDetails from './ElementDetails';
 
@@ -52,7 +52,7 @@ const PeriodicTable = () => {
   };
 
   // Filter out the first empty array element
-  const filteredElements = elements.filter(element => element && element.atomic);
+  const filteredElements = elements.filter((element, index) => index > 0 && element && element.atomic) as ElementType[];
 
   return (
     <div className="container mx-auto px-4 pt-4 pb-16 overflow-x-auto">

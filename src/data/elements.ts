@@ -100,8 +100,11 @@ export const categories = {
   "Unknown": "Unknown"
 };
 
-export const elements: Element[] = [
-  [],
+// Create a type for the elements array that allows for the first empty placeholder
+export type ElementsArray = [null | undefined | Partial<Element>, ...Element[]];
+
+export const elements: ElementsArray = [
+  null, // Empty placeholder for index 0
   {
     atomic: "1",
     symbol: "H",
@@ -226,13 +229,13 @@ export const elements: Element[] = [
 // Helper functions to maintain compatibility with existing components
 export const getElementByNumber = (number: number): Element | undefined => {
   if (number >= 1 && number < elements.length) {
-    return elements[number];
+    return elements[number] as Element;
   }
   return undefined;
 };
 
 export const getElementBySymbol = (symbol: string): Element | undefined => {
-  return elements.find(element => element && element.symbol === symbol);
+  return elements.find((element, index) => index > 0 && element && element.symbol === symbol) as Element | undefined;
 };
 
 export const getCategoryColor = (category: string): string => {
