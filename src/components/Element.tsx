@@ -20,10 +20,15 @@ const Element = ({ element, onClick }: ElementProps) => {
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
     >
-      <div className="text-xs opacity-70">{element.number}</div>
-      <div className="text-xl font-medium my-1">{element.symbol}</div>
-      <div className="text-xs truncate max-w-full">{element.name}</div>
-      <div className="text-xs opacity-70">{element.atomicMass}</div>
+      <div className="absolute top-1 left-1 text-xs opacity-70">{element.number}</div>
+      <div className="absolute top-1 right-1 text-xs opacity-70">
+        {element.electronConfiguration ? element.electronConfiguration.slice(-2) : ''}
+      </div>
+      <div className="text-center">
+        <div className="text-2xl font-bold mt-4 mb-1">{element.symbol}</div>
+        <div className="text-xs truncate max-w-full font-medium">{element.name}</div>
+        <div className="text-xs opacity-70 mt-1">{element.atomicMass}</div>
+      </div>
     </div>
   );
 };

@@ -103,40 +103,50 @@
 }
 
 /* The periodic table grid layout */
+.periodic-table-container {
+  overflow-x: auto;
+  padding: 1rem;
+}
+
 .periodic-table {
   display: grid;
   grid-template-columns: repeat(18, minmax(60px, 1fr));
   grid-template-rows: repeat(10, minmax(60px, auto));
   gap: 4px;
-  max-width: 100%;
+  width: 100%;
   margin: 0 auto;
 }
 
-/* Create the gaps in the table */
-.element:nth-child(1) {
-  grid-column: 1;
-  grid-row: 1;
+/* Group and period labels */
+.group-label, .period-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #666;
 }
 
-.element:nth-child(2) {
-  grid-column: 18;
-  grid-row: 1;
-}
-
-.lanthanide-block {
-  grid-column: 3 / span 15;
-  grid-row: 6 / span 1;
-}
-
-.actinide-block {
-  grid-column: 3 / span 15;
-  grid-row: 7 / span 1;
+/* Lanthanide and actinide blocks */
+.lanthanide-block, .actinide-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #666;
 }
 
 /* Element card styling */
 .element-card {
-  @apply bg-white rounded-lg p-2 shadow-sm border border-gray-100 text-center transition-all duration-300 ease-out;
-  aspect-ratio: 1/1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 80px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -144,7 +154,50 @@
 }
 
 .element-card:hover {
-  @apply shadow-md transform scale-105 z-10;
+  transform: scale(1.05);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Element category colors (based on the image) */
+.bg-alkali {
+  background-color: #ff6e6c;
+}
+
+.bg-alkaline {
+  background-color: #ffc15e;
+}
+
+.bg-transition {
+  background-color: #88d9e6;
+}
+
+.bg-post_transition {
+  background-color: #b0a3f5;
+}
+
+.bg-metalloid {
+  background-color: #8adbbc;
+}
+
+.bg-nonmetal {
+  background-color: #7dace4;
+}
+
+.bg-noble {
+  background-color: #f2b5d4;
+}
+
+.bg-lanthanide {
+  background-color: #ffa69e;
+}
+
+.bg-actinide {
+  background-color: #ff7e5f;
+}
+
+.bg-unknown {
+  background-color: #c7c7c7;
 }
 
 /* Media queries for responsiveness */
@@ -160,15 +213,14 @@
     gap: 2px;
   }
   .element-card {
-    @apply p-1;
+    padding: 0.25rem;
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 640px) {
-  .periodic-table {
-    grid-template-columns: repeat(18, minmax(30px, 1fr));
-    gap: 1px;
+  .periodic-table-container {
+    overflow-x: scroll;
   }
   .element-card {
     font-size: 0.7rem;
