@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { elements, Element as ElementType, categories } from '../data/elements';
+import { elements, Element as ElementType, categories, getCategoryColor } from '../data/elements';
 import Element from './Element';
 import ElementDetails from './ElementDetails';
 
