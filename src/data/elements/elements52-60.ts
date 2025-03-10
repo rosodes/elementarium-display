@@ -1,7 +1,6 @@
+import { Element } from '../elementTypes';
 
-import { Element } from './elementTypes';
-
-export const elements52to60: Element[] = [
+export const telluriumToNeodymium: Element[] = [
   // Tellurium (52)
   {
     atomic: "52",
@@ -36,7 +35,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 33,
     group: 16,
-    period: 5
+    period: 5,
+    description: "Tellurium is a rare metalloid that is used in solar panels and as an alloying agent. It is toxic to humans in high doses."
   },
 
   // Iodine (53)
@@ -73,7 +73,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 24,
     group: 17,
-    period: 5
+    period: 5,
+    description: "Iodine is a nonmetal essential for thyroid function. It is used as a disinfectant and antiseptic."
   },
 
   // Xenon (54)
@@ -109,7 +110,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 24,
     group: 18,
-    period: 5
+    period: 5,
+    description: "Xenon is a noble gas used in lighting, particularly in strobe flashes and arc lamps. It has few chemical compounds."
   },
 
   // Cesium (55)
@@ -146,7 +148,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 22,
     group: 1,
-    period: 6
+    period: 6,
+    description: "Cesium is a soft, silvery-gold alkali metal with a low melting point. It is used in atomic clocks and photoelectric cells."
   },
 
   // Barium (56)
@@ -183,7 +186,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 25,
     group: 2,
-    period: 6
+    period: 6,
+    description: "Barium is a soft, silvery alkaline earth metal. It is used in spark-plug alloys and as a contrast agent for X-rays."
   },
 
   // Lanthanum (57)
@@ -220,7 +224,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 19,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Lanthanum is a silvery-white rare earth metal. It is used in carbon lighting applications and some rechargeable batteries."
   },
 
   // Cerium (58)
@@ -257,7 +262,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 19,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Cerium is a soft, silvery rare earth metal. It is used in catalytic converters, lighter flints, and some types of glass."
   },
 
   // Praseodymium (59)
@@ -294,7 +300,8 @@ export const elements52to60: Element[] = [
     },
     isotopes: 15,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Praseodymium is a soft, silvery rare earth metal. It is used in magnets, lasers, and to give glass a yellow color."
   },
 
   // Neodymium (60)
@@ -331,6 +338,7 @@ export const elements52to60: Element[] = [
     },
     isotopes: 16,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Neodymium is a soft, silvery rare earth metal. It is used in powerful magnets, lasers, and to color glass and ceramics."
   }
 ];

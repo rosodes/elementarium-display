@@ -1,7 +1,6 @@
+import { Element } from '../elementTypes';
 
-import { Element } from './elementTypes';
-
-export const elements41to51: Element[] = [
+export const niobiumToAntimony: Element[] = [
   // Niobium (41)
   {
     atomic: "41",
@@ -36,7 +35,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 24,
     group: 5,
-    period: 5
+    period: 5,
+    description: "Niobium is a ductile, soft, gray, crystalline transition metal. It is used in alloys, especially in high-strength steel."
   },
 
   // Molybdenum (42)
@@ -73,7 +73,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 20,
     group: 6,
-    period: 5
+    period: 5,
+    description: "Molybdenum is a silvery-white, hard transition metal. It has a high melting point and is used in steel alloys for strength."
   },
 
   // Technetium (43)
@@ -110,7 +111,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 22,
     group: 7,
-    period: 5
+    period: 5,
+    description: "Technetium is a radioactive, silvery-gray transition metal. It is primarily used for medical purposes, such as diagnostic imaging."
   },
 
   // Ruthenium (44)
@@ -147,7 +149,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 16,
     group: 8,
-    period: 5
+    period: 5,
+    description: "Ruthenium is a hard, silvery-white transition metal. It is used as a catalyst and in wear-resistant electrical contacts."
   },
 
   // Rhodium (45)
@@ -184,7 +187,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 20,
     group: 9,
-    period: 5
+    period: 5,
+    description: "Rhodium is a hard, corrosion-resistant, silvery-white transition metal. It is primarily used in catalytic converters in cars."
   },
 
   // Palladium (46)
@@ -221,7 +225,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 21,
     group: 10,
-    period: 5
+    period: 5,
+    description: "Palladium is a soft, silvery-white transition metal. It is used in catalytic converters, electronics, and jewelry."
   },
 
   // Silver (47)
@@ -258,7 +263,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 27,
     group: 11,
-    period: 5
+    period: 5,
+    description: "Silver is a soft, white, lustrous transition metal. It has the highest electrical conductivity of any element and is used in jewelry, electronics, and photography."
   },
 
   // Cadmium (48)
@@ -295,7 +301,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 22,
     group: 12,
-    period: 5
+    period: 5,
+    description: "Cadmium is a soft, bluish-white transition metal. It is used in batteries, pigments, and electroplating, but is toxic in high concentrations."
   },
 
   // Indium (49)
@@ -332,7 +339,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 34,
     group: 13,
-    period: 5
+    period: 5,
+    description: "Indium is a soft, silvery-white post-transition metal. It is used in alloys, semiconductors, and LCD screens."
   },
 
   // Tin (50)
@@ -369,7 +377,8 @@ export const elements41to51: Element[] = [
     },
     isotopes: 28,
     group: 14,
-    period: 5
+    period: 5,
+    description: "Tin is a soft, silvery-white post-transition metal. It is used in alloys, coatings, and solder."
   },
 
   // Antimony (51)
@@ -406,6 +415,7 @@ export const elements41to51: Element[] = [
     },
     isotopes: 29,
     group: 15,
-    period: 5
+    period: 5,
+    description: "Antimony is a silvery, lustrous metalloid. It is used in flame retardants, batteries, and alloys."
   }
 ];

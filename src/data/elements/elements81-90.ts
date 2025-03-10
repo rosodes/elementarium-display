@@ -1,7 +1,6 @@
+import { Element } from '../elementTypes';
 
-import { Element } from './elementTypes';
-
-export const elements81to90: Element[] = [
+export const thalliumToThorium: Element[] = [
   // Thallium (81)
   {
     atomic: "81",
@@ -36,7 +35,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 28,
     group: 13,
-    period: 6
+    period: 6,
+    description: "Thallium is a soft, silvery-white post-transition metal. It is highly toxic and was historically used in rat poisons and insecticides. It has no known biological role."
   },
 
   // Lead (82)
@@ -73,7 +73,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 29,
     group: 14,
-    period: 6
+    period: 6,
+    description: "Lead is a soft, malleable, and heavy post-transition metal. It is toxic and has been phased out in many applications, but was historically used in plumbing, paints, and ammunition."
   },
 
   // Bismuth (83)
@@ -110,7 +111,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 15,
     group: 15,
-    period: 6
+    period: 6,
+    description: "Bismuth is a brittle, silvery-white post-transition metal. It is one of the most diamagnetic elements and has a variety of uses, including in pharmaceuticals and as a replacement for lead."
   },
 
   // Polonium (84)
@@ -147,7 +149,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 33,
     group: 16,
-    period: 6
+    period: 6,
+    description: "Polonium is a rare and highly radioactive post-transition metal. It was discovered by Marie and Pierre Curie and is used in some industrial applications, but its radioactivity poses significant health risks."
   },
 
   // Astatine (85)
@@ -180,7 +183,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 24,
     group: 17,
-    period: 6
+    period: 6,
+    description: "Astatine is an extremely rare and radioactive metalloid. It is the heaviest halogen and its properties are not well-known due to its scarcity and short half-life."
   },
 
   // Radon (86)
@@ -216,7 +220,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 20,
     group: 18,
-    period: 6
+    period: 6,
+    description: "Radon is a colorless, odorless, and radioactive noble gas. It is formed from the decay of radium and can accumulate in buildings, posing a health risk due to its radioactivity."
   },
 
   // Francium (87)
@@ -250,7 +255,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 23,
     group: 1,
-    period: 7
+    period: 7,
+    description: "Francium is an extremely rare and highly radioactive alkali metal. It is one of the least stable naturally occurring elements and has very limited applications due to its scarcity and radioactivity."
   },
 
   // Radium (88)
@@ -284,7 +290,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 15,
     group: 2,
-    period: 7
+    period: 7,
+    description: "Radium is a radioactive alkaline earth metal. It was formerly used in medical treatments and luminous paints, but these applications have been largely discontinued due to health concerns."
   },
 
   // Actinium (89)
@@ -318,7 +325,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 12,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Actinium is a radioactive actinide metal. It is used in some scientific research and has limited industrial applications due to its radioactivity."
   },
 
   // Thorium (90)
@@ -355,6 +363,7 @@ export const elements81to90: Element[] = [
     },
     isotopes: 12,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Thorium is a weakly radioactive actinide metal. It is more abundant than uranium and has potential applications in nuclear energy, although it is not widely used."
   }
 ];

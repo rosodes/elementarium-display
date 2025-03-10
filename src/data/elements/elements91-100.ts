@@ -1,7 +1,6 @@
+import { Element } from '../elementTypes';
 
-import { Element } from './elementTypes';
-
-export const elements91to100: Element[] = [
+export const protactiniumToFermium: Element[] = [
   // Protactinium (91)
   {
     atomic: "91",
@@ -36,7 +35,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 14,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Protactinium is a radioactive actinide element with a bright, metallic luster. It is toxic and exists in several chemical forms, primarily used in scientific research."
   },
 
   // Uranium (92)
@@ -73,7 +73,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 15,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Uranium is a silvery-white, weakly radioactive metal. It is primarily used as fuel in nuclear reactors and in the production of nuclear weapons."
   },
 
   // Neptunium (93)
@@ -110,7 +111,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 20,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Neptunium is a synthetic radioactive element. It is primarily produced as a byproduct in nuclear reactors and is used in neutron detection equipment."
   },
 
   // Plutonium (94)
@@ -147,7 +149,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 16,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Plutonium is a radioactive metallic element. It is primarily used in nuclear weapons and as a fuel in nuclear reactors."
   },
 
   // Americium (95)
@@ -184,7 +187,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 13,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Americium is a synthetic radioactive element. It is used in smoke detectors and as a portable source of gamma rays for diagnostic purposes."
   },
 
   // Curium (96)
@@ -218,7 +222,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 13,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Curium is a synthetic radioactive element. It is used in radioisotope thermoelectric generators and as a research tool for synthesizing heavier elements."
   },
 
   // Berkelium (97)
@@ -251,7 +256,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 9,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Berkelium is a synthetic radioactive element. It is primarily used in the synthesis of heavier elements and in materials science research."
   },
 
   // Californium (98)
@@ -284,7 +290,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 12,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Californium is a synthetic radioactive element. It is used as a neutron source for detecting other elements and in cancer therapy."
   },
 
   // Einsteinium (99)
@@ -317,7 +324,8 @@ export const elements91to100: Element[] = [
     },
     isotopes: 9,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Einsteinium is a synthetic radioactive element. It is primarily used in research to create other transuranic elements."
   },
 
   // Fermium (100)
@@ -349,6 +357,7 @@ export const elements91to100: Element[] = [
     },
     isotopes: 10,
     group: 3,
-    period: 7
+    period: 7,
+    description: "Fermium is a synthetic radioactive element. It is mainly used in scientific research, particularly in the synthesis of heavier elements."
   }
 ];

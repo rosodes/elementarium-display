@@ -1,124 +1,7 @@
+import { Element } from '../elementTypes';
 
-import { Element } from './elementTypes';
-
-export const elements1to10: Element[] = [
-  {
-    atomic: "1",
-    symbol: "H",
-    name: "Hydrogen",
-    weight: "1.008",
-    electronstring: "1s1",
-    series: "Nonmetal",
-    melt: "14.01",
-    boil: "20.28",
-    electroneg: "2.20",
-    valence: "1",
-    oxidation: "-1c,1c",
-    radius: {
-      calculated: "53",
-      empirical: "25",
-      covalent: "37",
-      vanderwaals: "120"
-    },
-    discover: "1766",
-    density: {
-      stp: "0.0899"
-    },
-    affinity: "72.8",
-    conductivity: {
-      thermal: "0.1805"
-    },
-    abundance: {
-      universe: "75",
-      solar: "75",
-      meteor: "2.4",
-      crust: "0.15",
-      ocean: "11",
-      human: "10"
-    },
-    heat: {
-      specific: "14300",
-      vaporization: "0.452",
-      fusion: "0.558"
-    },
-    ionize: {
-      1: "1312.0"
-    },
-    expandedconfig: "1s1",
-    electrons: [1],
-    quantum: {
-      l: 0,
-      m: 0,
-      n: 1
-    },
-    isotopes: 7,
-    
-    // For compatibility
-    number: 1,
-    atomicMass: "1.008",
-    category: "nonmetal",
-    group: 1,
-    period: 1,
-    block: "s",
-    electronConfiguration: "1s¹",
-    description: "Hydrogen is the lightest element and the most abundant chemical substance in the universe."
-  },
-  {
-    atomic: "2",
-    symbol: "He",
-    name: "Helium",
-    weight: "4.002602",
-    electronstring: "1s2",
-    series: "Noble",
-    boil: "4.22",
-    valence: "0",
-    radius: {
-      calculated: "31",
-      covalent: "32",
-      vanderwaals: "140"
-    },
-    discover: "1895",
-    density: {
-      stp: "0.1785"
-    },
-    affinity: "0",
-    conductivity: {
-      thermal: "0.1513"
-    },
-    abundance: {
-      universe: "23",
-      solar: "23",
-      crust: "5.5e-7",
-      ocean: "7.2e-10"
-    },
-    heat: {
-      specific: "5193.1",
-      vaporization: "0.083",
-      fusion: "0.02"
-    },
-    ionize: {
-      1: "2372.3",
-      2: "5250.5"
-    },
-    expandedconfig: "1s2",
-    electrons: [2],
-    quantum: {
-      l: 0,
-      m: 0,
-      n: 1
-    },
-    isotopes: 9,
-    
-    // For compatibility
-    number: 2,
-    atomicMass: "4.0026",
-    category: "noble",
-    group: 18,
-    period: 1,
-    block: "s",
-    electronConfiguration: "1s²",
-    description: "Helium is a colorless, odorless, tasteless, non-toxic, inert, monatomic gas. It has the lowest boiling point of all elements."
-  },
+export const lithiumToNeon: Element[] = [
+  // Lithium (3)
   {
     atomic: "3",
     symbol: "Li",
@@ -173,8 +56,10 @@ export const elements1to10: Element[] = [
     isotopes: 9,
     group: 1,
     period: 2,
-    category: "alkali"
+    category: "alkali",
+    description: "Lithium is a soft, silvery-white alkali metal. Under standard conditions, it is the lightest metal and the lightest solid element, primarily used in batteries and mood-stabilizing medications."
   },
+  // Beryllium (4)
   {
     atomic: "4",
     symbol: "Be",
@@ -230,8 +115,10 @@ export const elements1to10: Element[] = [
     isotopes: 12,
     group: 2,
     period: 2,
-    category: "alkaline"
+    category: "alkaline",
+    description: "Beryllium is a relatively rare alkaline earth metal. It is a steel-gray, strong, lightweight, and brittle alkaline earth metal. Beryllium is used in aerospace, defense, and as a neutron reflector in nuclear reactors."
   },
+  // Boron (5)
   {
     atomic: "5",
     symbol: "B",
@@ -288,8 +175,10 @@ export const elements1to10: Element[] = [
     isotopes: 14,
     group: 13,
     period: 2,
-    category: "metalloid"
+    category: "metalloid",
+    description: "Boron is a metalloid that is neither distinctly metallic nor nonmetallic. It is used in the production of borosilicate glass, which is heat-resistant. Boron is also an essential micronutrient for plants."
   },
+  // Carbon (6)
   {
     atomic: "6",
     symbol: "C",
@@ -347,8 +236,10 @@ export const elements1to10: Element[] = [
     isotopes: 15,
     group: 14,
     period: 2,
-    category: "nonmetal"
+    category: "nonmetal",
+    description: "Carbon is a nonmetal and is unique due to its capacity to form a vast number of compounds. It exists in many forms (allotropes) such as diamond, graphite, and fullerenes. It is essential for all known life."
   },
+  // Nitrogen (7)
   {
     atomic: "7",
     symbol: "N",
@@ -407,8 +298,10 @@ export const elements1to10: Element[] = [
     isotopes: 16,
     group: 15,
     period: 2,
-    category: "nonmetal"
+    category: "nonmetal",
+    description: "Nitrogen is a nonmetal and is a colorless, odorless, and mostly inert diatomic gas at standard conditions. It is a common element in the universe and is essential for life, forming part of amino acids and nucleic acids."
   },
+  // Oxygen (8)
   {
     atomic: "8",
     symbol: "O",
@@ -468,8 +361,10 @@ export const elements1to10: Element[] = [
     isotopes: 16,
     group: 16,
     period: 2,
-    category: "nonmetal"
+    category: "nonmetal",
+    description: "Oxygen is a nonmetal and is a highly reactive element and chemical oxidizer that readily forms oxides with most elements. It is essential for respiration in most living organisms and is the most abundant element by mass in the Earth's crust."
   },
+  // Fluorine (9)
   {
     atomic: "9",
     symbol: "F",
@@ -530,8 +425,10 @@ export const elements1to10: Element[] = [
     isotopes: 18,
     group: 17,
     period: 2,
-    category: "nonmetal"
+    category: "nonmetal",
+    description: "Fluorine is a nonmetal and is the lightest halogen and exists as a highly toxic, pale yellow diatomic gas under standard conditions. It is the most electronegative element and is extremely reactive."
   },
+  // Neon (10)
   {
     atomic: "10",
     symbol: "Ne",
@@ -588,6 +485,7 @@ export const elements1to10: Element[] = [
     isotopes: 22,
     group: 18,
     period: 2,
-    category: "noble"
+    category: "noble",
+    description: "Neon is a noble gas and is a colorless, odorless, inert monatomic gas under standard conditions. It is used in neon lighting and signs, giving off a distinct reddish-orange glow."
   }
 ];

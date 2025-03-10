@@ -1,7 +1,6 @@
+import { Element } from '../elementTypes';
 
-import { Element } from './elementTypes';
-
-export const elements21to30: Element[] = [
+export const scandiumToZinc: Element[] = [
   // Scandium (21)
   {
     atomic: "21",
@@ -38,6 +37,9 @@ export const elements21to30: Element[] = [
       vaporization: "332.7",
       fusion: "14.1"
     },
+    ionize: {
+      1: "633.1"
+    },
     expandedconfig: "1s2 2s2 2p6 3s2 3p6 4s2 3d1",
     electrons: [2, 8, 9, 2],
     quantum: {
@@ -47,7 +49,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 15,
     group: 3,
-    period: 4
+    period: 4,
+    description: "Scandium is a silvery-white metallic transition metal. It is used in some alloys and electronic devices."
   },
 
   // Titanium (22)
@@ -90,7 +93,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 17,
     group: 4,
-    period: 4
+    period: 4,
+    description: "Titanium is a strong, lightweight, corrosion-resistant transition metal. It is used in aerospace, medical implants, and sporting goods."
   },
 
   // Vanadium (23)
@@ -127,7 +131,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 16,
     group: 5,
-    period: 4
+    period: 4,
+    description: "Vanadium is a hard, silvery-gray, ductile transition metal. It is used as a strengthening agent in steel."
   },
 
   // Chromium (24)
@@ -164,7 +169,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 19,
     group: 6,
-    period: 4
+    period: 4,
+    description: "Chromium is a hard, brittle, lustrous transition metal. It is added to alloys to increase corrosion resistance, such as in stainless steel."
   },
 
   // Manganese (25)
@@ -201,7 +207,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 16,
     group: 7,
-    period: 4
+    period: 4,
+    description: "Manganese is a hard, brittle, silvery transition metal. It is used in steel production to improve strength, toughness, and wear resistance."
   },
 
   // Iron (26)
@@ -238,7 +245,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 24,
     group: 8,
-    period: 4
+    period: 4,
+    description: "Iron is a strong, gray, metallic transition metal. It is the most used metal, making up the majority of steel, and is essential for life."
   },
 
   // Cobalt (27)
@@ -275,7 +283,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 22,
     group: 9,
-    period: 4
+    period: 4,
+    description: "Cobalt is a hard, lustrous, silvery-blue transition metal. It is used in alloys for jet engines, gas turbines, and magnetic storage media."
   },
 
   // Nickel (28)
@@ -312,7 +321,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 21,
     group: 10,
-    period: 4
+    period: 4,
+    description: "Nickel is a hard, ductile, silvery-white transition metal. It is used in many alloys, batteries, and as a plating on other metals for corrosion protection."
   },
 
   // Copper (29)
@@ -349,7 +359,8 @@ export const elements21to30: Element[] = [
     },
     isotopes: 19,
     group: 11,
-    period: 4
+    period: 4,
+    description: "Copper is a ductile, malleable, reddish-orange transition metal. It is an excellent conductor of electricity and heat, used in electrical wiring, plumbing, and coinage."
   },
 
   // Zinc (30)
@@ -386,6 +397,7 @@ export const elements21to30: Element[] = [
     },
     isotopes: 21,
     group: 12,
-    period: 4
+    period: 4,
+    description: "Zinc is a bluish-white, lustrous transition metal. It is used to galvanize other metals to protect them from corrosion, and in batteries."
   }
 ];

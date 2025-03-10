@@ -1,7 +1,6 @@
+import { Element } from '../elementTypes';
 
-import { Element } from './elementTypes';
-
-export const elements61to70: Element[] = [
+export const promethiumToYtterbium: Element[] = [
   // Promethium (61)
   {
     atomic: "61",
@@ -36,7 +35,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 14,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Promethium is a radioactive lanthanide element. It is used in luminous paint, nuclear batteries, and as a radiation source for gauges."
   },
 
   // Samarium (62)
@@ -73,7 +73,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 17,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Samarium is a lanthanide element used in magnets, nuclear reactors, and as a catalyst. It is also used in carbon-arc lighting for studio lighting and projection."
   },
 
   // Europium (63)
@@ -110,7 +111,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 15,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Europium is a lanthanide element used in control rods for nuclear reactors, as a phosphor activator, and in some types of magnets. It is the most reactive of the rare-earth metals."
   },
 
   // Gadolinium (64)
@@ -147,7 +149,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 17,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Gadolinium is a lanthanide element used in MRI contrast agents, neutron capture therapy, and magneto-optical discs. It has high magnetic moment and is used in alloys and electronics."
   },
 
   // Terbium (65)
@@ -184,7 +187,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 15,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Terbium is a lanthanide element used in green phosphors, magneto-optical recording, and some fuel cells. It is added to alloys and is used in sonar devices."
   },
 
   // Dysprosium (66)
@@ -221,7 +225,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 21,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Dysprosium is a lanthanide element used in data storage, nuclear control rods, and high-intensity lighting. It is added to magnets and is used in some types of lasers."
   },
 
   // Holmium (67)
@@ -258,7 +263,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 12,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Holmium is a lanthanide element used in nuclear control rods and lasers. It has strong magnetic properties and is used in calibrating optical equipment."
   },
 
   // Erbium (68)
@@ -295,7 +301,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 16,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Erbium is a lanthanide element used in fiber optics, lasers, and nuclear technology. It is used as a doping agent in optical amplifiers and is added to alloys."
   },
 
   // Thulium (69)
@@ -332,7 +339,8 @@ export const elements61to70: Element[] = [
     },
     isotopes: 18,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Thulium is a lanthanide element used in portable X-ray machines and solid-state lasers. It is used as a radiation source and is added to alloys."
   },
 
   // Ytterbium (70)
@@ -369,6 +377,7 @@ export const elements61to70: Element[] = [
     },
     isotopes: 16,
     group: 3,
-    period: 6
+    period: 6,
+    description: "Ytterbium is a lanthanide element used in infrared lasers, stress gauges, and portable X-ray machines. It is used in chemical research and is added to stainless steel."
   }
 ];
