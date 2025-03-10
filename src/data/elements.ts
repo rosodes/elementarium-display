@@ -701,61 +701,290 @@ export const elements: ElementsArray = [
     isotopes: 22,
     group: 18,
     period: 2
-  }
+  },
   
-  // Additional elements could be added here
-];
-
-export const getElementByNumber = (number: number): Element | undefined => {
-  if (number >= 1 && number < elements.length) {
-    return elements[number] as Element;
-  }
-  return undefined;
-};
-
-export const getElementBySymbol = (symbol: string): Element | undefined => {
-  return elements.find((element, index) => index > 0 && element && element.symbol === symbol) as Element | undefined;
-};
-
-export const getCategoryColor = (category: string): string => {
-  const categoryMap: Record<string, string> = {
-    "alkali": "bg-alkali",
-    "alkaline": "bg-alkaline",
-    "transition": "bg-transition",
-    "post_transition": "bg-post_transition",
-    "metalloid": "bg-metalloid",
-    "nonmetal": "bg-nonmetal",
-    "noble": "bg-noble",
-    "lanthanide": "bg-lanthanide",
-    "actinide": "bg-actinide",
-    
-    // Map for the new series names
-    "Alkali": "bg-alkali",
-    "Alkaline": "bg-alkaline",
-    "Transition": "bg-transition",
-    "Post-transition": "bg-post_transition",
-    "Metalloid": "bg-metalloid",
-    "Nonmetal": "bg-nonmetal",
-    "Noble": "bg-noble",
-    "Lanthanide": "bg-lanthanide",
-    "Actinide": "bg-actinide"
-  };
+  // Sodium (11)
+  {
+    atomic: "11",
+    symbol: "Na",
+    name: "Sodium",
+    weight: "22.990",
+    electronstring: "1s2 2s2 2p6 3s1",
+    series: "Alkali",
+    melt: "370.87",
+    boil: "1156",
+    electroneg: "0.93",
+    valence: "1",
+    oxidation: "1c",
+    radius: {
+      calculated: "190",
+      empirical: "180",
+      covalent: "154",
+      vanderwaals: "227"
+    },
+    discover: "1807",
+    density: {
+      stp: "0.968"
+    },
+    affinity: "52.8",
+    conductivity: {
+      thermal: "140"
+    },
+    abundance: {
+      universe: "0.002",
+      solar: "0.004",
+      meteor: "0.55",
+      crust: "2.3",
+      ocean: "1.1",
+      human: "0.14"
+    },
+    heat: {
+      specific: "1230",
+      vaporization: "97.7",
+      fusion: "2.6"
+    },
+    ionize: {
+      "1": "495.8",
+      "2": "4562.0",
+      "3": "6910.0",
+      "4": "9543.0",
+      "5": "13353.0",
+      "6": "16613.0",
+      "7": "20117.0",
+      "8": "25496.0",
+      "9": "28932.0",
+      "10": "141362.0"
+    },
+    expandedconfig: "1s2 2s2 2p6 3s1",
+    electrons: [2, 8, 1],
+    quantum: {
+      l: 0,
+      m: 0,
+      n: 3
+    },
+    isotopes: 16,
+    group: 1,
+    period: 3
+  },
   
-  return categoryMap[category] || "bg-unknown";
-};
-
-export const getSeriesColor = (series: string): string => {
-  const seriesMap: Record<string, string> = {
-    "Alkali": "bg-alkali",
-    "Alkaline": "bg-alkaline",
-    "Transition": "bg-transition",
-    "Post-transition": "bg-post_transition",
-    "Metalloid": "bg-metalloid",
-    "Nonmetal": "bg-nonmetal",
-    "Noble": "bg-noble",
-    "Lanthanide": "bg-lanthanide",
-    "Actinide": "bg-actinide"
-  };
+  // Magnesium (12)
+  {
+    atomic: "12",
+    symbol: "Mg",
+    name: "Magnesium",
+    weight: "24.305",
+    electronstring: "1s2 2s2 2p6 3s2",
+    series: "Alkaline",
+    melt: "923",
+    boil: "1363",
+    electroneg: "1.31",
+    valence: "2",
+    oxidation: "1,2c",
+    radius: {
+      calculated: "145",
+      empirical: "150",
+      covalent: "130",
+      vanderwaals: "173"
+    },
+    discover: "1755",
+    density: {
+      stp: "1.738"
+    },
+    affinity: "0",
+    conductivity: {
+      thermal: "160"
+    },
+    abundance: {
+      universe: "0.06",
+      solar: "0.07",
+      meteor: "9.7",
+      crust: "2.9",
+      ocean: "0.13",
+      human: "0.027"
+    },
+    heat: {
+      specific: "1020",
+      vaporization: "128",
+      fusion: "8.7"
+    },
+    ionize: {
+      "1": "737.7",
+      "2": "1450.7",
+      "3": "7732.7",
+      "4": "10542.5",
+      "5": "13630.0",
+      "6": "17995.0",
+      "7": "21703.0",
+      "8": "25661.0",
+      "9": "31653.0",
+      "10": "35458.0"
+    },
+    expandedconfig: "1s2 2s2 2p6 3s2",
+    electrons: [2, 8, 2],
+    quantum: {
+      l: 0,
+      m: 0,
+      n: 3
+    },
+    isotopes: 19,
+    group: 2,
+    period: 3
+  },
   
-  return seriesMap[series] || "bg-unknown";
-};
+  // Aluminum (13)
+  {
+    atomic: "13",
+    symbol: "Al",
+    name: "Aluminum",
+    weight: "26.982",
+    electronstring: "1s2 2s2 2p6 3s2 3p1",
+    series: "Post-transition",
+    melt: "933.47",
+    boil: "2792",
+    electroneg: "1.61",
+    valence: "3",
+    oxidation: "1,2,3c",
+    radius: {
+      calculated: "118",
+      empirical: "125",
+      covalent: "118",
+      vanderwaals: "184"
+    },
+    discover: "Ancient",
+    density: {
+      stp: "2.7"
+    },
+    affinity: "42.5",
+    conductivity: {
+      thermal: "235"
+    },
+    abundance: {
+      universe: "0.005",
+      solar: "0.006",
+      meteor: "0.91",
+      crust: "8.1",
+      ocean: "5e-7",
+      human: "9e-5"
+    },
+    heat: {
+      specific: "904",
+      vaporization: "293",
+      fusion: "10.7"
+    },
+    ionize: {
+      "1": "577.5",
+      "2": "1816.7",
+      "3": "2744.8",
+      "4": "11577.0",
+      "5": "14842.0",
+      "6": "18379.0",
+      "7": "23326.0",
+      "8": "27465.0",
+      "9": "31853.0",
+      "10": "38473.0"
+    },
+    expandedconfig: "1s2 2s2 2p6 3s2 3p1",
+    electrons: [2, 8, 3],
+    quantum: {
+      l: 1,
+      m: -1,
+      n: 3
+    },
+    isotopes: 22,
+    group: 13,
+    period: 3
+  },
+  
+  // Silicon (14)
+  {
+    atomic: "14",
+    symbol: "Si",
+    name: "Silicon",
+    weight: "28.085",
+    electronstring: "1s2 2s2 2p6 3s2 3p2",
+    series: "Metalloid",
+    melt: "1687",
+    boil: "3538",
+    electroneg: "1.90",
+    valence: "4",
+    oxidation: "-4,4c",
+    radius: {
+      calculated: "111",
+      empirical: "110",
+      covalent: "111",
+      vanderwaals: "210"
+    },
+    discover: "1824",
+    density: {
+      stp: "2.33"
+    },
+    affinity: "133.6",
+    conductivity: {
+      thermal: "150"
+    },
+    abundance: {
+      universe: "0.07",
+      solar: "0.09",
+      meteor: "10.7",
+      crust: "27",
+      ocean: "0.0001",
+      human: "0.026"
+    },
+    heat: {
+      specific: "705",
+      vaporization: "359",
+      fusion: "50.2"
+    },
+    ionize: {
+      "1": "786.5",
+      "2": "1577.1",
+      "3": "3231.6",
+      "4": "4355.5",
+      "5": "16091.0",
+      "6": "19805.0",
+      "7": "23780.0",
+      "8": "29287.0",
+      "9": "33878.0",
+      "10": "38726.0"
+    },
+    expandedconfig: "1s2 2s2 2p6 3s2 3p2",
+    electrons: [2, 8, 4],
+    quantum: {
+      l: 1,
+      m: 0,
+      n: 3
+    },
+    isotopes: 17,
+    group: 14,
+    period: 3
+  },
+  
+  // Phosphorus (15)
+  {
+    atomic: "15",
+    symbol: "P",
+    name: "Phosphorus",
+    weight: "30.974",
+    electronstring: "1s2 2s2 2p6 3s2 3p3",
+    series: "Nonmetal",
+    melt: "317.3",
+    boil: "553.6",
+    electroneg: "2.19",
+    valence: "5",
+    oxidation: "-3,3c,5c",
+    radius: {
+      calculated: "98",
+      empirical: "100",
+      covalent: "106",
+      vanderwaals: "180"
+    },
+    discover: "1669",
+    density: {
+      stp: "1.82"
+    },
+    affinity: "72.0",
+    conductivity: {
+      thermal: "0.236"
+    },
+    abundance: {
+      universe
