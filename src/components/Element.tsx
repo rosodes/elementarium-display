@@ -9,6 +9,7 @@ interface ElementProps {
 
 const Element = ({ element, onClick }: ElementProps) => {
   const [isHovering, setIsHovering] = useState(false);
+  
   // Use either category or series for color determination
   const categoryColor = element.category 
     ? getCategoryColor(element.category) 
