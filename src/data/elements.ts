@@ -6,6 +6,12 @@ import { elements11to20 } from './elements11-20';
 import { elements21to30 } from './elements21-30';
 import { elements31to40 } from './elements31-40';
 import { elements41to51 } from './elements41-51';
+import { elements52to60 } from './elements52-60';
+import { elements61to70 } from './elements61-70';
+import { elements71to80 } from './elements71-80';
+import { elements81to90 } from './elements81-90';
+import { elements91to100 } from './elements91-100';
+import { elements101to114 } from './elements101-114';
 
 // Combining all elements into one array
 const elementsList: Element[] = [
@@ -13,7 +19,13 @@ const elementsList: Element[] = [
   ...elements11to20,
   ...elements21to30,
   ...elements31to40,
-  ...elements41to51
+  ...elements41to51,
+  ...elements52to60,
+  ...elements61to70,
+  ...elements71to80,
+  ...elements81to90,
+  ...elements91to100,
+  ...elements101to114
 ];
 
 // Creating array with empty first element for compatibility
