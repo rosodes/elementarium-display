@@ -1,4 +1,3 @@
-
 import { Element } from './elementTypes';
 
 export const elements101to114: Element[] = [
@@ -237,6 +236,7 @@ export const elements101to114: Element[] = [
     weight: "[276]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d7",
     series: "Transition",
+    valence: "7",
     oxidation: "3,6",
     radius: {
       covalent: "129"
@@ -262,6 +262,7 @@ export const elements101to114: Element[] = [
     weight: "[281]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d8",
     series: "Transition",
+    valence: "8",
     oxidation: "6",
     radius: {
       covalent: "128"
@@ -287,6 +288,7 @@ export const elements101to114: Element[] = [
     weight: "[280]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d9",
     series: "Transition",
+    valence: "3",
     oxidation: "1,3,5",
     radius: {
       covalent: "121"
@@ -312,6 +314,7 @@ export const elements101to114: Element[] = [
     weight: "[285]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d10",
     series: "Transition",
+    valence: "2",
     melt: "283",
     boil: "340",
     oxidation: "2,4",
@@ -339,6 +342,7 @@ export const elements101to114: Element[] = [
     weight: "[286]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d10 7p1",
     series: "Post-transition",
+    valence: "3",
     melt: "700",
     boil: "1400",
     oxidation: "1,3,5",
@@ -366,6 +370,7 @@ export const elements101to114: Element[] = [
     weight: "[289]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 6d10 7p2",
     series: "Post-transition",
+    valence: "4",
     melt: "340",
     boil: "420",
     oxidation: "2,4",
