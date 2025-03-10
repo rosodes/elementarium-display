@@ -1,6 +1,7 @@
-import { Element } from '../elementTypes';
 
-export const galliumToZirconium: Element[] = [
+import { Element } from './elementTypes';
+
+export const elements31to40: Element[] = [
   // Gallium (31)
   {
     atomic: "31",
@@ -35,8 +36,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 24,
     group: 13,
-    period: 4,
-    description: "Gallium is a soft, silvery-blue metal that is solid at room temperature but melts slightly above. It is used in semiconductors and high-intensity LEDs."
+    period: 4
   },
 
   // Germanium (32)
@@ -73,8 +73,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 26,
     group: 14,
-    period: 4,
-    description: "Germanium is a lustrous, hard, grayish-white metalloid. It is an important semiconductor material used in transistors and integrated circuits."
+    period: 4
   },
 
   // Arsenic (33)
@@ -111,8 +110,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 22,
     group: 15,
-    period: 4,
-    description: "Arsenic is a gray metalloid that can also appear in yellow and black forms. It is highly toxic and is used in pesticides, herbicides, and alloys."
+    period: 4
   },
 
   // Selenium (34)
@@ -149,8 +147,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 24,
     group: 16,
-    period: 4,
-    description: "Selenium is a nonmetal with both amorphous and crystalline forms. It is essential in trace amounts for animal health and is used in photocells and semiconductors."
+    period: 4
   },
 
   // Bromine (35)
@@ -187,8 +184,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 23,
     group: 17,
-    period: 4,
-    description: "Bromine is a reddish-brown liquid at room temperature with an irritating odor. It is used in flame retardants, drilling fluids, and as a disinfectant."
+    period: 4
   },
 
   // Krypton (36)
@@ -224,8 +220,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 23,
     group: 18,
-    period: 4,
-    description: "Krypton is a colorless, odorless, inert noble gas. It is used in some types of lighting and in lasers."
+    period: 4
   },
 
   // Rubidium (37)
@@ -262,8 +257,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 20,
     group: 1,
-    period: 5,
-    description: "Rubidium is a soft, silvery-white alkali metal. It is highly reactive and is used in atomic clocks and specialized electronic devices."
+    period: 5
   },
 
   // Strontium (38)
@@ -300,8 +294,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 18,
     group: 2,
-    period: 5,
-    description: "Strontium is a soft, silvery-white alkaline earth metal. It is used in fireworks and some luminous paints."
+    period: 5
   },
 
   // Yttrium (39)
@@ -338,8 +331,7 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 21,
     group: 3,
-    period: 5,
-    description: "Yttrium is a silvery-metallic transition metal. It is used in lasers, superconductors, and as an additive to strengthen alloys."
+    period: 5
   },
 
   // Zirconium (40)
@@ -376,7 +368,6 @@ export const galliumToZirconium: Element[] = [
     },
     isotopes: 20,
     group: 4,
-    period: 5,
-    description: "Zirconium is a lustrous, grayish-white transition metal. It is highly corrosion-resistant and is used in nuclear reactors, surgical implants, and ceramics."
+    period: 5
   }
 ];

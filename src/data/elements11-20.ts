@@ -1,6 +1,7 @@
-import { Element } from '../elementTypes';
 
-export const sodiumToCalcium: Element[] = [
+import { Element } from './elementTypes';
+
+export const elements11to20: Element[] = [
   // Sodium (11)
   {
     atomic: "11",
@@ -63,8 +64,7 @@ export const sodiumToCalcium: Element[] = [
     isotopes: 16,
     group: 1,
     period: 3,
-    category: "alkali",
-    description: "Sodium is a soft, silvery-white alkali metal. It is highly reactive and is never found as a free element in nature. Sodium is an essential element for animal life and for some plant species."
+    category: "alkali"
   },
   
   // Magnesium (12)
@@ -129,8 +129,7 @@ export const sodiumToCalcium: Element[] = [
     isotopes: 19,
     group: 2,
     period: 3,
-    category: "alkaline",
-    description: "Magnesium is a shiny gray solid which bears a close physical resemblance to the other five elements in the second column (group 2, or alkaline earth metals) of the periodic table: they each have the same electron configuration in the outer electron shell and a similar crystal structure."
+    category: "alkaline"
   },
   
   // Aluminum (13)
@@ -195,8 +194,7 @@ export const sodiumToCalcium: Element[] = [
     isotopes: 22,
     group: 13,
     period: 3,
-    category: "post-transition",
-    description: "Aluminum is a silvery-white, lightweight metal. Aluminum is used in a wide variety of products including packaging, transportation, and building materials."
+    category: "post-transition"
   },
   
   // Silicon (14)
@@ -261,8 +259,7 @@ export const sodiumToCalcium: Element[] = [
     isotopes: 17,
     group: 14,
     period: 3,
-    category: "metalloid",
-    description: "Silicon is a hard, brittle crystalline solid with a blue-grey metallic lustre, and is a tetravalent metalloid and semiconductor. It is a member of group 14 in the periodic table: carbon is above it; and germanium, tin, and lead are below it."
+    category: "metalloid"
   },
   
   // Phosphorus (15)

@@ -1,97 +1,100 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Element } from "@/data/elements";
-import { getSeriesColor } from "@/data/elements";
+import { Element as ElementType, getCategoryColor, getSeriesColor, categories } from '../data/elements';
 
 interface ElementDetailsProps {
-  element: Element | null;
+  element: ElementType | null;
   isOpen: boolean;
   onClose: () => void;
 }
 
 const ElementDetails = ({ element, isOpen, onClose }: ElementDetailsProps) => {
   if (!element) return null;
-
-  const seriesColor = getSeriesColor(element.series);
   
+  // Use either category or series for color and category text
+  const categoryColor = element.category 
+    ? getCategoryColor(element.category) 
+    : getSeriesColor(element.series);
+    
+  const categoryText = element.category
+    ? categories[element.category as keyof typeof categories]
+    : element.series;
+
+  const renderProperty = (label: string, value: any) => {
+    if (value === null || value === undefined || value === "") return null;
+    
+    return (
+      <div className="flex justify-between border-b border-gray-100 py-2">
+        <div className="font-medium text-gray-600">{label}</div>
+        <div className="text-right">{value}</div>
+      </div>
+    );
+  };
+
   return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl">
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="sm:max-w-[600px] animate-scale-in overflow-auto max-h-[90vh]">
         <DialogHeader>
           <div className="flex items-center gap-4">
-            <div className={`${seriesColor} w-16 h-16 flex items-center justify-center rounded-lg shadow-md`}>
+            <div className={`${categoryColor} h-16 w-16 flex items-center justify-center rounded-lg`}>
               <span className="text-3xl font-bold">{element.symbol}</span>
             </div>
             <div>
               <DialogTitle className="text-2xl">{element.name}</DialogTitle>
               <DialogDescription>
-                Atomic Number: {element.atomic} | Atomic Weight: {element.weight}
+                Element {element.atomic} · {categoryText}
               </DialogDescription>
             </div>
           </div>
         </DialogHeader>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
-          <div className="space-y-3">
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Series</h3>
-              <p className="text-base">{element.series}</p>
+        <div className="mt-4 space-y-6">
+          {element.description && (
+            <div className="prose text-sm text-gray-700">
+              {element.description}
+            </div>
+          )}
+          
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <h3 className="text-lg font-medium">Basic Properties</h3>
+              {renderProperty("Atomic Number", element.atomic)}
+              {renderProperty("Symbol", element.symbol)}
+              {renderProperty("Atomic Mass", element.weight)}
+              {renderProperty("Series", element.series)}
+              {renderProperty("Electron Configuration", element.electronstring)}
+              {renderProperty("Valence", element.valence)}
+              {renderProperty("Oxidation States", element.oxidation)}
             </div>
             
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Electron Configuration</h3>
-              <p className="text-base">{element.electronstring}</p>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Melting Point</h3>
-              <p className="text-base">{element.melt ? `${element.melt} K` : 'Unknown'}</p>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Boiling Point</h3>
-              <p className="text-base">{element.boil ? `${element.boil} K` : 'Unknown'}</p>
+            <div className="space-y-2">
+              <h3 className="text-lg font-medium">Physical Properties</h3>
+              {renderProperty("Electronegativity", element.electroneg)}
+              {renderProperty("Atomic Radius (pm)", element.radius?.calculated)}
+              {renderProperty("Covalent Radius (pm)", element.radius?.covalent)}
+              {renderProperty("Van der Waals Radius (pm)", element.radius?.vanderwaals)}
+              {renderProperty("Electron Affinity (kJ/mol)", element.affinity)}
+              {renderProperty("Ionization Energy (kJ/mol)", element.ionize?.["1"])}
+              {renderProperty("Density (g/cm³)", element.density?.stp)}
+              {renderProperty("Melting Point (K)", element.melt)}
+              {renderProperty("Boiling Point (K)", element.boil)}
             </div>
           </div>
           
-          <div className="space-y-3">
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Valence</h3>
-              <p className="text-base">{element.valence}</p>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Oxidation States</h3>
-              <p className="text-base">{element.oxidation}</p>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Electronegativity</h3>
-              <p className="text-base">{element.electroneg || 'Unknown'}</p>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-medium text-gray-500">Discovered</h3>
-              <p className="text-base">{element.discover}</p>
-            </div>
-          </div>
-        </div>
-        
-        {element.description && (
-          <div className="mt-4">
-            <h3 className="text-sm font-medium text-gray-500">Description</h3>
-            <p className="text-base mt-1">{element.description}</p>
-          </div>
-        )}
-        
-        <div className="mt-4">
-          <h3 className="text-sm font-medium text-gray-500">Electron Distribution</h3>
-          <div className="flex flex-wrap gap-2 mt-1">
-            {element.electrons.map((count, index) => (
-              <div key={index} className="bg-gray-100 px-2 py-1 rounded text-sm">
-                {`Shell ${index + 1}: ${count}e⁻`}
-              </div>
-            ))}
+          <div className="space-y-2">
+            <h3 className="text-lg font-medium">Additional Information</h3>
+            {renderProperty("Discovered", element.discover)}
+            {renderProperty("Number of Isotopes", element.isotopes)}
+            {element.abundance && (
+              <>
+                <h3 className="text-lg font-medium mt-4">Abundance</h3>
+                {renderProperty("Universe (%)", element.abundance.universe)}
+                {renderProperty("Solar (%)", element.abundance.solar)}
+                {renderProperty("Earth's Crust (%)", element.abundance.crust)}
+                {renderProperty("Oceans (%)", element.abundance.ocean)}
+                {renderProperty("Human Body (%)", element.abundance.human)}
+              </>
+            )}
           </div>
         </div>
       </DialogContent>

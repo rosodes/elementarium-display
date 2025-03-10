@@ -1,6 +1,7 @@
-import { Element } from '../elementTypes';
 
-export const lutetiumToMercury: Element[] = [
+import { Element } from './elementTypes';
+
+export const elements71to80: Element[] = [
   // Lutetium (71)
   {
     atomic: "71",
@@ -35,8 +36,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 22,
     group: 3,
-    period: 6,
-    description: "Lutetium is a silvery-white rare earth metal. It is the last element in the lanthanide series and is used in some specialized applications, such as catalysts and in PET scanners."
+    period: 6
   },
 
   // Hafnium (72)
@@ -73,8 +73,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 17,
     group: 4,
-    period: 6,
-    description: "Hafnium is a silvery-gray transition metal. It is often found in zirconium minerals and is used in nuclear control rods due to its neutron-absorbing abilities."
+    period: 6
   },
 
   // Tantalum (73)
@@ -111,8 +110,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 19,
     group: 5,
-    period: 6,
-    description: "Tantalum is a hard, blue-gray transition metal. It is highly corrosion-resistant and is used in surgical implants and electronic components."
+    period: 6
   },
 
   // Tungsten (74)
@@ -149,8 +147,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 22,
     group: 6,
-    period: 6,
-    description: "Tungsten, also known as wolfram, is a hard, steel-gray transition metal. It has the highest melting point of all elements and is used in light bulb filaments and high-speed tools."
+    period: 6
   },
 
   // Rhenium (75)
@@ -187,8 +184,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 16,
     group: 7,
-    period: 6,
-    description: "Rhenium is a silvery-white, heavy transition metal. It has one of the highest melting points and boiling points of all elements and is used in high-temperature alloys and as a catalyst."
+    period: 6
   },
 
   // Osmium (76)
@@ -225,8 +221,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 19,
     group: 8,
-    period: 6,
-    description: "Osmium is a hard, brittle, bluish-white transition metal. It has the highest density of all naturally occurring elements and is used in electrical contacts and fountain pen tips."
+    period: 6
   },
 
   // Iridium (77)
@@ -263,8 +258,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 17,
     group: 9,
-    period: 6,
-    description: "Iridium is a hard, brittle, silvery-white transition metal. It is one of the most corrosion-resistant metals and is used in spark plug contacts and as a hardening agent for platinum alloys."
+    period: 6
   },
 
   // Platinum (78)
@@ -301,8 +295,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 32,
     group: 10,
-    period: 6,
-    description: "Platinum is a dense, malleable, ductile, highly unreactive, precious, gray-white transition metal. It is used in jewelry, laboratory equipment, electrical contacts, and catalytic converters."
+    period: 6
   },
 
   // Gold (79)
@@ -339,8 +332,7 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 21,
     group: 11,
-    period: 6,
-    description: "Gold is a bright, slightly orange-yellow, soft, malleable, and ductile metal. It is one of the least reactive chemical elements and is used in jewelry, electronics, and as a store of value."
+    period: 6
   },
 
   // Mercury (80)
@@ -377,7 +369,6 @@ export const lutetiumToMercury: Element[] = [
     },
     isotopes: 26,
     group: 12,
-    period: 6,
-    description: "Mercury, also known as quicksilver, is a silvery, liquid transition metal. It is the only metal that is liquid at standard conditions and is used in thermometers, barometers, and some electrical switches."
+    period: 6
   }
 ];
