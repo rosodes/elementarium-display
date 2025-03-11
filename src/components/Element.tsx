@@ -18,6 +18,7 @@ const Element = ({ element, onClick }: ElementProps) => {
   // Handle text sizing for long element names
   const getNameFontSize = () => {
     if (!element.name) return 'text-xs';
+    if (element.name.length > 15) return 'text-[6px]';
     if (element.name.length > 12) return 'text-[7px]';
     if (element.name.length > 10) return 'text-[8px]';
     if (element.name.length > 8) return 'text-[10px]';

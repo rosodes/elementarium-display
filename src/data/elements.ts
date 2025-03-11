@@ -36,7 +36,15 @@ const elements: ElementsArray = [null, ...elementsList];
 // Export a helper function to safely get elements
 export const getElement = (index: number): Element | null => {
   if (index < 1 || index >= elements.length) return null;
-  return elements[index] as Element; // Safe cast since indexes 1+ are guaranteed to be Elements
+  
+  const element = elements[index];
+  // Ensure we only return complete Element objects
+  if (element && 'atomic' in element && 'symbol' in element && 'weight' in element && 
+      'electronstring' in element && 'series' in element && 'valence' in element) {
+    return element as Element;
+  }
+  
+  return null;
 };
 
 export { elements };
