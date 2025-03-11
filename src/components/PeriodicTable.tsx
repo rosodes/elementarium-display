@@ -26,27 +26,21 @@ const PeriodicTable = () => {
     setSelectedElement(null);
   };
   
-  // Render the complete periodic table
-  const renderPeriodicTable = () => {
-    return [
-      renderPeriod1(handleElementClick),
-      renderPeriod2(handleElementClick),
-      renderPeriod3(handleElementClick),
-      renderPeriod4(handleElementClick),
-      renderPeriod5(handleElementClick),
-      renderPeriod6(handleElementClick),
-      renderPeriod7(handleElementClick),
-      renderLanthanides(handleElementClick),
-      renderActinides(handleElementClick)
-    ];
-  };
-  
   return (
-    <div className="periodic-table-container">
+    <div className="periodic-table-container overflow-x-auto py-4">
       <Legend />
       
-      <div className="periodic-table">
-        {renderPeriodicTable()}
+      <div className="periodic-table w-full">
+        {renderPeriod1(handleElementClick)}
+        {renderPeriod2(handleElementClick)}
+        {renderPeriod3(handleElementClick)}
+        {renderPeriod4(handleElementClick)}
+        {renderPeriod5(handleElementClick)}
+        {renderPeriod6(handleElementClick)}
+        {renderPeriod7(handleElementClick)}
+        <div className="my-4"></div>
+        {renderLanthanides(handleElementClick)}
+        {renderActinides(handleElementClick)}
       </div>
       
       {selectedElement && (

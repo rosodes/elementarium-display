@@ -9,7 +9,7 @@ interface PeriodRowProps {
 
 const PeriodRow = ({ children, periodKey, className = '' }: PeriodRowProps) => {
   return (
-    <div key={periodKey} className={`period-row ${className}`}>
+    <div key={periodKey} className={`period-row flex w-full ${className}`}>
       {children}
     </div>
   );

@@ -10,7 +10,7 @@ const ElementPlaceholder = ({ type, range }: ElementPlaceholderProps) => {
   const bgClass = type === 'lanthanide' ? 'bg-lanthanide' : 'bg-actinide';
   
   return (
-    <div className={`element-card ${bgClass} flex items-center justify-center`}>
+    <div className={`element-card ${bgClass} flex items-center justify-center flex-shrink-0`}>
       <span className="text-xs font-bold">{range}</span>
     </div>
   );

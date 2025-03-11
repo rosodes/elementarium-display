@@ -9,6 +9,7 @@
   transition: all 0.2s ease-in-out;
   color: rgba(255, 255, 255, 0.9);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
 }
 
 /* Category Colors */
@@ -71,33 +72,36 @@
 
 /* Periodic table layout */
 .periodic-table {
-  display: grid;
-  grid-template-columns: repeat(18, minmax(70px, 1fr));
-  grid-gap: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   max-width: 1400px;
   margin: 0 auto;
-  overflow-x: auto;
-  padding: 20px;
+}
+
+.period-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+/* Element placeholder for empty spots */
+.element-placeholder {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
 }
 
 /* Responsive layout */
 @media (max-width: 1200px) {
-  .periodic-table {
-    grid-template-columns: repeat(18, minmax(60px, 1fr));
-  }
-  
-  .element-card {
+  .element-card, .element-placeholder {
     width: 60px;
     height: 60px;
   }
 }
 
 @media (max-width: 768px) {
-  .periodic-table {
-    grid-template-columns: repeat(18, minmax(50px, 1fr));
-  }
-  
-  .element-card {
+  .element-card, .element-placeholder {
     width: 50px;
     height: 50px;
   }

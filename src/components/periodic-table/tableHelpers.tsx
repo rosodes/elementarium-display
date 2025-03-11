@@ -17,7 +17,7 @@ export const createElementsForRange = (start: number, end: number, onElementClic
   for (let i = start; i <= end; i++) {
     const element = getElement(i);
     if (element) {
-      elements.push(<Element key={i.toString()} element={element} onClick={onElementClick} />);
+      elements.push(<Element key={`element-${i}`} element={element} onClick={onElementClick} />);
     }
   }
   
@@ -38,12 +38,12 @@ export const renderPeriod1 = (onElementClick: ElementClickHandler) => {
   const row: React.ReactNode[] = [];
   
   const hydrogen = getElement(1);
-  if (hydrogen) row.push(<Element key="1" element={hydrogen} onClick={onElementClick} />);
+  if (hydrogen) row.push(<Element key="element-1" element={hydrogen} onClick={onElementClick} />);
   
   row.push(...createEmptyCells(16, "empty-1"));
   
   const helium = getElement(2);
-  if (helium) row.push(<Element key="2" element={helium} onClick={onElementClick} />);
+  if (helium) row.push(<Element key="element-2" element={helium} onClick={onElementClick} />);
   
   return <PeriodRow periodKey="period-1">{row}</PeriodRow>;
 };
@@ -55,8 +55,8 @@ export const renderPeriod2 = (onElementClick: ElementClickHandler) => {
   const lithium = getElement(3);
   const beryllium = getElement(4);
   
-  if (lithium) row.push(<Element key="3" element={lithium} onClick={onElementClick} />);
-  if (beryllium) row.push(<Element key="4" element={beryllium} onClick={onElementClick} />);
+  if (lithium) row.push(<Element key="element-3" element={lithium} onClick={onElementClick} />);
+  if (beryllium) row.push(<Element key="element-4" element={beryllium} onClick={onElementClick} />);
   
   row.push(...createEmptyCells(10, "empty-2"));
   
@@ -72,8 +72,8 @@ export const renderPeriod3 = (onElementClick: ElementClickHandler) => {
   const sodium = getElement(11);
   const magnesium = getElement(12);
   
-  if (sodium) row.push(<Element key="11" element={sodium} onClick={onElementClick} />);
-  if (magnesium) row.push(<Element key="12" element={magnesium} onClick={onElementClick} />);
+  if (sodium) row.push(<Element key="element-11" element={sodium} onClick={onElementClick} />);
+  if (magnesium) row.push(<Element key="element-12" element={magnesium} onClick={onElementClick} />);
   
   row.push(...createEmptyCells(10, "empty-3"));
   
@@ -102,9 +102,9 @@ export const renderPeriod6 = (onElementClick: ElementClickHandler) => {
   const barium = getElement(56);
   const lanthanum = getElement(57);
   
-  if (cesium) row.push(<Element key="55" element={cesium} onClick={onElementClick} />);
-  if (barium) row.push(<Element key="56" element={barium} onClick={onElementClick} />);
-  if (lanthanum) row.push(<Element key="57" element={lanthanum} onClick={onElementClick} />);
+  if (cesium) row.push(<Element key="element-55" element={cesium} onClick={onElementClick} />);
+  if (barium) row.push(<Element key="element-56" element={barium} onClick={onElementClick} />);
+  if (lanthanum) row.push(<Element key="element-57" element={lanthanum} onClick={onElementClick} />);
   
   // Placeholder for lanthanides
   row.push(<ElementPlaceholder key="lanthanide-placeholder" type="lanthanide" range="57-71" />);
@@ -122,9 +122,9 @@ export const renderPeriod7 = (onElementClick: ElementClickHandler) => {
   const radium = getElement(88);
   const actinium = getElement(89);
   
-  if (francium) row.push(<Element key="87" element={francium} onClick={onElementClick} />);
-  if (radium) row.push(<Element key="88" element={radium} onClick={onElementClick} />);
-  if (actinium) row.push(<Element key="89" element={actinium} onClick={onElementClick} />);
+  if (francium) row.push(<Element key="element-87" element={francium} onClick={onElementClick} />);
+  if (radium) row.push(<Element key="element-88" element={radium} onClick={onElementClick} />);
+  if (actinium) row.push(<Element key="element-89" element={actinium} onClick={onElementClick} />);
   
   // Placeholder for actinides
   row.push(<ElementPlaceholder key="actinide-placeholder" type="actinide" range="89-103" />);
