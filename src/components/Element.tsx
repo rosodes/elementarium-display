@@ -15,6 +15,13 @@ const Element = ({ element, onClick }: ElementProps) => {
     ? getCategoryColor(element.category) 
     : getSeriesColor(element.series);
   
+  // Handle text sizing for long element names
+  const getNameFontSize = () => {
+    if (element.name.length > 12) return 'text-[8px]';
+    if (element.name.length > 8) return 'text-[10px]';
+    return 'text-xs';
+  };
+  
   return (
     <div 
       className={`element-card ${categoryColor} transition-all duration-300 ease-out 
@@ -30,7 +37,9 @@ const Element = ({ element, onClick }: ElementProps) => {
       </div>
       <div className="text-center">
         <div className="text-2xl font-bold mt-4 mb-1">{element.symbol}</div>
-        <div className="text-xs truncate max-w-full font-medium">{element.name}</div>
+        <div className={`${getNameFontSize()} truncate px-1 max-w-full font-medium`}>
+          {element.name}
+        </div>
         <div className="text-xs opacity-70 mt-1">{element.weight}</div>
       </div>
     </div>

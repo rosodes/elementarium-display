@@ -12,6 +12,7 @@ import { elements71to80 } from './elements71-80';
 import { elements81to90 } from './elements81-90';
 import { elements91to100 } from './elements91-100';
 import { elements101to114 } from './elements101-114';
+import { group1Elements } from './elements/group1';
 
 // Combining all elements into one array
 const elementsList: Element[] = [

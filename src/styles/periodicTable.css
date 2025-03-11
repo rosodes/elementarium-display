@@ -1,0 +1,112 @@
+
+/* Periodic Table Styles */
+.element-card {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all 0.2s ease-in-out;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Category Colors */
+.bg-alkali {
+  background-color: #ff8a65;
+  border: 1px solid #ff5722;
+}
+
+.bg-alkaline {
+  background-color: #ffb74d;
+  border: 1px solid #ff9800;
+}
+
+.bg-transition {
+  background-color: #90caf9;
+  border: 1px solid #2196f3;
+}
+
+.bg-post_transition {
+  background-color: #a5d6a7;
+  border: 1px solid #4caf50;
+}
+
+.bg-metalloid {
+  background-color: #ce93d8;
+  border: 1px solid #9c27b0;
+}
+
+.bg-nonmetal {
+  background-color: #80deea;
+  border: 1px solid #00bcd4;
+}
+
+.bg-noble {
+  background-color: #ef9a9a;
+  border: 1px solid #f44336;
+}
+
+.bg-lanthanide {
+  background-color: #b39ddb;
+  border: 1px solid #673ab7;
+}
+
+.bg-actinide {
+  background-color: #f48fb1;
+  border: 1px solid #e91e63;
+}
+
+.bg-unknown {
+  background-color: #bcaaa4;
+  border: 1px solid #795548;
+}
+
+/* Hover states */
+.element-card:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* Periodic table layout */
+.periodic-table {
+  display: grid;
+  grid-template-columns: repeat(18, minmax(70px, 1fr));
+  grid-gap: 4px;
+  max-width: 1400px;
+  margin: 0 auto;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+/* Responsive layout */
+@media (max-width: 1200px) {
+  .periodic-table {
+    grid-template-columns: repeat(18, minmax(60px, 1fr));
+  }
+  
+  .element-card {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .periodic-table {
+    grid-template-columns: repeat(18, minmax(50px, 1fr));
+  }
+  
+  .element-card {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .element-card .text-2xl {
+    font-size: 1rem;
+  }
+  
+  .element-card .text-xs {
+    font-size: 0.65rem;
+  }
+}

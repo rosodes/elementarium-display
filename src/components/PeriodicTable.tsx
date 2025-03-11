@@ -1,110 +1,200 @@
 
 import { useState } from 'react';
-import { elements, ElementsArray, Element as ElementType, categories, getCategoryColor, getSeriesColor } from '../data/elements';
+import { elements } from '../data/elements';
 import Element from './Element';
 import ElementDetails from './ElementDetails';
+import { Element as ElementType } from '../data/elementTypes';
 
 const PeriodicTable = () => {
   const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-
+  
   const handleElementClick = (element: ElementType) => {
     setSelectedElement(element);
-    setIsDetailsOpen(true);
   };
-
+  
   const closeDetails = () => {
-    setIsDetailsOpen(false);
+    setSelectedElement(null);
   };
-
-  // Determine position in grid based on group and period
-  const getGridPosition = (element: ElementType) => {
-    // Skip the first empty array element
-    if (!element || !element.atomic) return { gridColumn: 1, gridRow: 1 };
+  
+  // We need to create empty cells to position elements correctly
+  const createEmptyCell = (key: string) => (
+    <div key={key} className="element-placeholder"></div>
+  );
+  
+  // Create a grid with empty cells and actual elements
+  const renderPeriodicTable = () => {
+    // Skip the first null element
+    const elementArray = elements.slice(1);
+    const rows = [];
     
-    const atomicNumber = parseInt(element.atomic);
-    
-    // Handle lanthanides and actinides
-    if (element.series === "Lanthanide") {
-      return { gridColumn: (atomicNumber - 56) + 2, gridRow: 9 };
+    // Period 1
+    let row = [];
+    row.push(<Element key="1" element={elementArray[0]} onClick={handleElementClick} />);
+    for (let i = 0; i < 16; i++) {
+      row.push(createEmptyCell(`empty-1-${i}`));
     }
-    if (element.series === "Actinide") {
-      return { gridColumn: (atomicNumber - 88) + 2, gridRow: 10 };
-    }
+    row.push(<Element key="2" element={elementArray[1]} onClick={handleElementClick} />);
+    rows.push(<div key="period-1" className="period-row">{row}</div>);
     
-    // For main table elements, use the provided group and period if available
-    // or calculate an approximation
-    if (element.group && element.period) {
-      return { gridColumn: element.group, gridRow: element.period };
+    // Period 2
+    row = [];
+    row.push(<Element key="3" element={elementArray[2]} onClick={handleElementClick} />);
+    row.push(<Element key="4" element={elementArray[3]} onClick={handleElementClick} />);
+    for (let i = 0; i < 10; i++) {
+      row.push(createEmptyCell(`empty-2-${i}`));
     }
-    
-    // Fallback logic for positioning elements without explicit group/period
-    // This is a simplified estimation and may need refinement
-    const atomicNum = parseInt(element.atomic);
-    if (atomicNum <= 2) {
-      return { gridColumn: atomicNum === 1 ? 1 : 18, gridRow: 1 };
-    } else if (atomicNum <= 10) {
-      return { gridColumn: atomicNum === 2 ? 18 : atomicNum, gridRow: 2 };
+    for (let i = 5; i <= 10; i++) {
+      row.push(<Element key={i.toString()} element={elementArray[i-1]} onClick={handleElementClick} />);
     }
-    // More positioning logic would be needed for a complete table
+    rows.push(<div key="period-2" className="period-row">{row}</div>);
     
-    return { gridColumn: 1, gridRow: 1 }; // Default fallback
+    // Period 3
+    row = [];
+    row.push(<Element key="11" element={elementArray[10]} onClick={handleElementClick} />);
+    row.push(<Element key="12" element={elementArray[11]} onClick={handleElementClick} />);
+    for (let i = 0; i < 10; i++) {
+      row.push(createEmptyCell(`empty-3-${i}`));
+    }
+    for (let i = 13; i <= 18; i++) {
+      row.push(<Element key={i.toString()} element={elementArray[i-1]} onClick={handleElementClick} />);
+    }
+    rows.push(<div key="period-3" className="period-row">{row}</div>);
+    
+    // Period 4
+    row = [];
+    for (let i = 19; i <= 36; i++) {
+      row.push(<Element key={i.toString()} element={elementArray[i-1]} onClick={handleElementClick} />);
+    }
+    rows.push(<div key="period-4" className="period-row">{row}</div>);
+    
+    // Period 5
+    row = [];
+    for (let i = 37; i <= 54; i++) {
+      row.push(<Element key={i.toString()} element={elementArray[i-1]} onClick={handleElementClick} />);
+    }
+    rows.push(<div key="period-5" className="period-row">{row}</div>);
+    
+    // Period 6
+    row = [];
+    row.push(<Element key="55" element={elementArray[54]} onClick={handleElementClick} />);
+    row.push(<Element key="56" element={elementArray[55]} onClick={handleElementClick} />);
+    row.push(<Element key="57" element={elementArray[56]} onClick={handleElementClick} />);
+    
+    // Placeholder for lanthanides
+    row.push(
+      <div key="lanthanide-placeholder" className="element-card bg-lanthanide flex items-center justify-center">
+        <span className="text-xs font-bold">57-71</span>
+      </div>
+    );
+    
+    for (let i = 72; i <= 86; i++) {
+      const index = i - 1;
+      if (index < elementArray.length) {
+        row.push(<Element key={i.toString()} element={elementArray[index]} onClick={handleElementClick} />);
+      }
+    }
+    rows.push(<div key="period-6" className="period-row">{row}</div>);
+    
+    // Period 7
+    row = [];
+    row.push(<Element key="87" element={elementArray[86]} onClick={handleElementClick} />);
+    row.push(<Element key="88" element={elementArray[87]} onClick={handleElementClick} />);
+    row.push(<Element key="89" element={elementArray[88]} onClick={handleElementClick} />);
+    
+    // Placeholder for actinides
+    row.push(
+      <div key="actinide-placeholder" className="element-card bg-actinide flex items-center justify-center">
+        <span className="text-xs font-bold">89-103</span>
+      </div>
+    );
+    
+    for (let i = 104; i <= 118; i++) {
+      const index = i - 1;
+      if (index < elementArray.length) {
+        row.push(<Element key={i.toString()} element={elementArray[index]} onClick={handleElementClick} />);
+      } else {
+        row.push(createEmptyCell(`empty-7-${i}`));
+      }
+    }
+    rows.push(<div key="period-7" className="period-row">{row}</div>);
+    
+    // Lanthanides (Period 6, elements 57-71)
+    row = [];
+    row.push(createEmptyCell("empty-la-1"));
+    row.push(createEmptyCell("empty-la-2"));
+    row.push(createEmptyCell("empty-la-3"));
+    for (let i = 57; i <= 71; i++) {
+      const index = i - 1;
+      if (index < elementArray.length) {
+        row.push(<Element key={i.toString()} element={elementArray[index]} onClick={handleElementClick} />);
+      }
+    }
+    rows.push(<div key="lanthanides" className="period-row mt-4">{row}</div>);
+    
+    // Actinides (Period 7, elements 89-103)
+    row = [];
+    row.push(createEmptyCell("empty-ac-1"));
+    row.push(createEmptyCell("empty-ac-2"));
+    row.push(createEmptyCell("empty-ac-3"));
+    for (let i = 89; i <= 103; i++) {
+      const index = i - 1;
+      if (index < elementArray.length) {
+        row.push(<Element key={i.toString()} element={elementArray[index]} onClick={handleElementClick} />);
+      }
+    }
+    rows.push(<div key="actinides" className="period-row">{row}</div>);
+    
+    return rows;
   };
-
-  // Filter out the first empty array element
-  const filteredElements = elements.filter((element, index) => index > 0 && element && element.atomic) as ElementType[];
-
+  
   return (
-    <div className="container mx-auto px-4 pt-4 pb-16 overflow-x-auto">
-      <div className="periodic-table-container min-w-[1200px]">
-        <div className="periodic-table">
-          {filteredElements.map((element) => {
-            if (!element || !element.atomic) return null;
-            const { gridColumn, gridRow } = getGridPosition(element);
-            return (
-              <div 
-                key={element.atomic}
-                className="element"
-                style={{ 
-                  gridColumn,
-                  gridRow
-                }}
-              >
-                <Element element={element} onClick={handleElementClick} />
-              </div>
-            );
-          })}
-          
-          {/* Labels for groups */}
-          <div className="group-label" style={{ gridColumn: 1, gridRow: 1 }}>1</div>
-          <div className="group-label" style={{ gridColumn: 18, gridRow: 1 }}>18</div>
-          
-          {/* Placeholders for lanthanides and actinides */}
-          <div className="lanthanide-block" style={{ gridColumn: '3 / span 15', gridRow: 6 }}>
-            <div className="text-sm text-center text-gray-600">Lanthanides (57-71)</div>
-          </div>
-          <div className="actinide-block" style={{ gridColumn: '3 / span 15', gridRow: 7 }}>
-            <div className="text-sm text-center text-gray-600">Actinides (89-103)</div>
-          </div>
+    <div className="periodic-table-container">
+      <div className="legend flex flex-wrap justify-center gap-4 mb-4 p-2">
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-alkali mr-2"></div>
+          <span className="text-sm">Alkali Metals</span>
         </div>
-        
-        {/* Element legend */}
-        <div className="mt-8 flex flex-wrap gap-4 justify-center animate-slide-up">
-          {Object.entries(categories).map(([key, value]) => (
-            <div key={key} className="flex items-center gap-2">
-              <div className={`w-4 h-4 rounded ${getCategoryColor(key)}`}></div>
-              <span className="text-sm">{value}</span>
-            </div>
-          ))}
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-alkaline mr-2"></div>
+          <span className="text-sm">Alkaline Earth Metals</span>
+        </div>
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-transition mr-2"></div>
+          <span className="text-sm">Transition Metals</span>
+        </div>
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-post_transition mr-2"></div>
+          <span className="text-sm">Post-Transition Metals</span>
+        </div>
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-metalloid mr-2"></div>
+          <span className="text-sm">Metalloids</span>
+        </div>
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-nonmetal mr-2"></div>
+          <span className="text-sm">Nonmetals</span>
+        </div>
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-noble mr-2"></div>
+          <span className="text-sm">Noble Gases</span>
+        </div>
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-lanthanide mr-2"></div>
+          <span className="text-sm">Lanthanides</span>
+        </div>
+        <div className="legend-item flex items-center">
+          <div className="w-4 h-4 bg-actinide mr-2"></div>
+          <span className="text-sm">Actinides</span>
         </div>
       </div>
       
-      {/* Element details dialog */}
-      <ElementDetails 
-        element={selectedElement} 
-        isOpen={isDetailsOpen}
-        onClose={closeDetails}
-      />
+      <div className="periodic-table">
+        {renderPeriodicTable()}
+      </div>
+      
+      {selectedElement && (
+        <ElementDetails element={selectedElement} onClose={closeDetails} />
+      )}
     </div>
   );
 };
