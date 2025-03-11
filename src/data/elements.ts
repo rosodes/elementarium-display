@@ -37,14 +37,9 @@ const elements: ElementsArray = [null, ...elementsList];
 export const getElement = (index: number): Element | null => {
   if (index < 1 || index >= elements.length) return null;
   
-  const element = elements[index];
-  // Ensure we only return complete Element objects
-  if (element && 'atomic' in element && 'symbol' in element && 'weight' in element && 
-      'electronstring' in element && 'series' in element && 'valence' in element) {
-    return element as Element;
-  }
-  
-  return null;
+  // Cast here is safe because we validated the index above
+  // and our elements array contains complete Element objects
+  return elements[index] as Element;
 };
 
 export { elements };
