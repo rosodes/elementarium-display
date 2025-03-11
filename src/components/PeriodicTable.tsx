@@ -27,10 +27,10 @@ const PeriodicTable = () => {
   };
   
   return (
-    <div className="periodic-table-container overflow-x-auto py-4">
+    <div className="periodic-table-container py-4">
       <Legend />
       
-      <div className="periodic-table w-full">
+      <div className="periodic-table flex flex-col gap-1 w-full max-w-[1400px] mx-auto">
         {renderPeriod1(handleElementClick)}
         {renderPeriod2(handleElementClick)}
         {renderPeriod3(handleElementClick)}
@@ -38,7 +38,9 @@ const PeriodicTable = () => {
         {renderPeriod5(handleElementClick)}
         {renderPeriod6(handleElementClick)}
         {renderPeriod7(handleElementClick)}
+        
         <div className="my-4"></div>
+        
         {renderLanthanides(handleElementClick)}
         {renderActinides(handleElementClick)}
       </div>

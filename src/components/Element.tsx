@@ -27,8 +27,8 @@ const Element = ({ element, onClick }: ElementProps) => {
   
   return (
     <div 
-      className={`element-card ${categoryColor} transition-all duration-300 ease-out 
-                 hover:shadow-lg hover:scale-105 cursor-pointer
+      className={`element-card w-[70px] h-[70px] ${categoryColor} transition-all duration-300 ease-out 
+                 hover:shadow-lg hover:scale-105 cursor-pointer flex-shrink-0
                  ${isHovering ? 'z-10 shadow-xl' : ''}`}
       onClick={() => onClick(element)}
       onMouseEnter={() => setIsHovering(true)}
