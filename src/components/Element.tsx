@@ -10,14 +10,16 @@ interface ElementProps {
 const Element = ({ element, onClick }: ElementProps) => {
   const [isHovering, setIsHovering] = useState(false);
   
-  // Используем либо категорию, либо серию для определения цвета
+  // Use either category or series for determining color
   const categoryColor = element.category 
     ? getCategoryColor(element.category) 
     : getSeriesColor(element.series);
   
   // Handle text sizing for long element names
   const getNameFontSize = () => {
-    if (element.name.length > 12) return 'text-[8px]';
+    if (!element.name) return 'text-xs';
+    if (element.name.length > 12) return 'text-[7px]';
+    if (element.name.length > 10) return 'text-[8px]';
     if (element.name.length > 8) return 'text-[10px]';
     return 'text-xs';
   };
@@ -37,7 +39,7 @@ const Element = ({ element, onClick }: ElementProps) => {
       </div>
       <div className="text-center">
         <div className="text-2xl font-bold mt-4 mb-1">{element.symbol}</div>
-        <div className={`${getNameFontSize()} truncate px-1 max-w-full font-medium`}>
+        <div className={`${getNameFontSize()} truncate px-1 max-w-full font-medium leading-tight`}>
           {element.name}
         </div>
         <div className="text-xs opacity-70 mt-1">{element.weight}</div>

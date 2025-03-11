@@ -30,7 +30,14 @@ const elementsList: Element[] = [
 ];
 
 // Creating array with empty first element for compatibility
+// But ensure it's properly typed
 const elements: ElementsArray = [null, ...elementsList];
+
+// Export a helper function to safely get elements
+export const getElement = (index: number): Element | null => {
+  if (index < 1 || index >= elements.length) return null;
+  return elements[index] as Element; // Safe cast since indexes 1+ are guaranteed to be Elements
+};
 
 export { elements };
 export type { Element, ElementsArray };
