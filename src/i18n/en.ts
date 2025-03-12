@@ -6,6 +6,11 @@ export const en = {
   search: "Search elements",
   toggleTheme: "Toggle theme",
   
+  ui: {
+    close: "Close",
+    themeToggle: "Toggle theme"
+  },
+  
   legend: {
     metals: "Metals",
     nonmetals: "Nonmetals",
@@ -22,6 +27,31 @@ export const en = {
     pBlock: "p-block elements",
     dBlock: "d-block elements",
     fBlock: "f-block elements"
+  },
+  
+  elementDetails: {
+    basicInfo: "Basic Information",
+    series: "Series",
+    atomicWeight: "Atomic Weight",
+    electronConfig: "Electron Configuration",
+    discovered: "Discovered",
+    group: "Group",
+    period: "Period",
+    physicalProperties: "Physical Properties",
+    meltingPoint: "Melting Point",
+    boilingPoint: "Boiling Point",
+    density: "Density",
+    electronegativity: "Electronegativity",
+    valence: "Valence",
+    oxidationStates: "Oxidation States",
+    atomicStructure: "Atomic Structure",
+    electronDistribution: "Electron Distribution",
+    shell: "Shell",
+    atomicRadius: "Atomic Radius",
+    calculated: "Calculated",
+    empirical: "Empirical",
+    covalent: "Covalent",
+    additionalInfo: "Additional Information"
   },
   
   details: {

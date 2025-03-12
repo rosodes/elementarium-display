@@ -6,6 +6,11 @@ export const ru = {
   search: "Поиск элементов",
   toggleTheme: "Сменить тему",
   
+  ui: {
+    close: "Закрыть",
+    themeToggle: "Сменить тему"
+  },
+  
   legend: {
     metals: "Металлы",
     nonmetals: "Неметаллы",
@@ -22,6 +27,31 @@ export const ru = {
     pBlock: "p-элементы",
     dBlock: "d-элементы",
     fBlock: "f-элементы"
+  },
+  
+  elementDetails: {
+    basicInfo: "Основная информация",
+    series: "Серия",
+    atomicWeight: "Атомный вес",
+    electronConfig: "Электронная конфигурация",
+    discovered: "Открыт",
+    group: "Группа",
+    period: "Период",
+    physicalProperties: "Физические свойства",
+    meltingPoint: "Температура плавления",
+    boilingPoint: "Температура кипения",
+    density: "Плотность",
+    electronegativity: "Электроотрицательность",
+    valence: "Валентность",
+    oxidationStates: "Степени окисления",
+    atomicStructure: "Атомная структура",
+    electronDistribution: "Распределение электронов",
+    shell: "Оболочка",
+    atomicRadius: "Атомный радиус",
+    calculated: "Расчетный",
+    empirical: "Эмпирический",
+    covalent: "Ковалентный",
+    additionalInfo: "Дополнительная информация"
   },
   
   details: {
