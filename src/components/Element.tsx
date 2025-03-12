@@ -10,7 +10,7 @@ interface ElementProps {
 
 const Element = ({ element, onClick }: ElementProps) => {
   const [isHovering, setIsHovering] = useState(false);
-  const { language } = useLanguage();
+  const { language, t } = useLanguage();
   
   // Определение цвета элемента на основе блока электронов или категории
   const getElementColor = () => {
@@ -42,6 +42,12 @@ const Element = ({ element, onClick }: ElementProps) => {
     return 'text-xs';
   };
   
+  // Get translated element name if available
+  const getElementName = () => {
+    const elementKey = element.symbol.toLowerCase();
+    return t.ui?.elements?.[elementKey] || element.name;
+  };
+  
   return (
     <div 
       className={`element-card w-[70px] h-[70px] ${getElementColor()} transition-all duration-300 ease-out 
@@ -63,7 +69,7 @@ const Element = ({ element, onClick }: ElementProps) => {
       <div className="text-center flex-grow flex flex-col justify-center">
         <div className="text-2xl font-bold">{element.symbol}</div>
         <div className={`${getNameFontSize()} truncate px-1 max-w-full font-medium leading-tight`}>
-          {element.name}
+          {getElementName()}
         </div>
       </div>
       
@@ -71,7 +77,7 @@ const Element = ({ element, onClick }: ElementProps) => {
         <div className="text-[10px] opacity-70">{element.weight}</div>
         {isRadioactive() && (
           <div className="w-2 h-2 rounded-full bg-red-500 mb-0.5 mr-0.5" 
-               title="Radioactive" aria-label="Radioactive element"></div>
+               title={t.ui?.radioactive || "Radioactive"} aria-label={t.ui?.radioactive || "Radioactive element"}></div>
         )}
       </div>
     </div>

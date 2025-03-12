@@ -55,7 +55,7 @@ const PeriodicTable = () => {
   
   return (
     <div 
-      className="periodic-table-container py-4 overflow-x-auto"
+      className="periodic-table-container w-full max-w-full overflow-auto py-4"
       onKeyDown={handleKeyDown}
       role="region"
       aria-label={t.title}
