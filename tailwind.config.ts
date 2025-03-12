@@ -53,7 +53,7 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Element category colors
+				// Element category colors - light mode
 				alkali: '#ff6e6c',
 				alkaline: '#ffc15e',
 				transition: '#88d9e6',
@@ -64,6 +64,18 @@ export default {
 				lanthanide: '#ffa69e',
 				actinide: '#ff7e5f',
 				unknown: '#c7c7c7',
+				
+				// Dark mode element colors (slightly brighter for contrast)
+				'dark-alkali': '#ff8a88',
+				'dark-alkaline': '#ffd17e',
+				'dark-transition': '#a8e9f6',
+				'dark-post_transition': '#d0c3ff',
+				'dark-metalloid': '#aaebdc',
+				'dark-nonmetal': '#9dbcf4',
+				'dark-noble': '#f2c5e4',
+				'dark-lanthanide': '#ffb6ae',
+				'dark-actinide': '#ff9e7f',
+				'dark-unknown': '#e7e7e7',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

@@ -29,10 +29,12 @@ const Element = ({ element, onClick }: ElementProps) => {
     <div 
       className={`element-card w-[70px] h-[70px] ${categoryColor} transition-all duration-300 ease-out 
                  hover:shadow-lg hover:scale-105 cursor-pointer flex-shrink-0
+                 dark:text-gray-100 dark:shadow-black/30
                  ${isHovering ? 'z-10 shadow-xl' : ''}`}
       onClick={() => onClick(element)}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
+      aria-label={`Element ${element.name}, atomic number ${element.atomic}`}
     >
       <div className="absolute top-1 left-1 text-xs opacity-70">{element.atomic}</div>
       <div className="absolute top-1 right-1 text-xs opacity-70">

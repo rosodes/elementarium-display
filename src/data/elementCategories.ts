@@ -1,5 +1,6 @@
 
 import { Element } from './elementTypes';
+import { useTheme } from '../context/ThemeContext';
 
 export const categories = {
   "Alkali": "Alkali Metal",
@@ -47,4 +48,12 @@ export const getSeriesColor = (series: string): string => {
   };
   
   return seriesMap[series] || "bg-unknown";
+};
+
+// This function helps determine if text should be dark or light based on the background
+export const getTextColorForCategory = (category: string): string => {
+  const darkTextCategories = ["alkaline", "nonmetal", "noble", "unknown"];
+  const key = category.toLowerCase();
+  
+  return darkTextCategories.includes(key) ? "text-gray-800" : "text-gray-100";
 };
