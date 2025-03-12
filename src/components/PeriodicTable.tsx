@@ -55,7 +55,7 @@ const PeriodicTable = () => {
   
   return (
     <div 
-      className="periodic-table-container py-4 px-2"
+      className="periodic-table-container py-4 overflow-x-auto"
       onKeyDown={handleKeyDown}
       role="region"
       aria-label={t.title}
@@ -63,7 +63,7 @@ const PeriodicTable = () => {
       <Legend />
       
       <div 
-        className="periodic-table flex flex-col gap-1 w-full max-w-[1400px] mx-auto overflow-x-auto"
+        className="periodic-table flex flex-col gap-1 mx-auto"
         role="grid"
       >
         {renderGroupNumbers()}

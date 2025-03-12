@@ -193,8 +193,11 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  max-width: 1400px;
+  max-width: 98vw;
   margin: 0 auto;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 10px;
 }
 
 .period-row {
@@ -211,6 +214,13 @@
 }
 
 /* Responsive layout */
+@media (max-width: 1400px) {
+  .element-card, .element-placeholder {
+    width: 65px;
+    height: 65px;
+  }
+}
+
 @media (max-width: 1200px) {
   .element-card, .element-placeholder {
     width: 60px;
@@ -220,19 +230,24 @@
 
 @media (max-width: 992px) {
   .element-card, .element-placeholder {
-    width: 55px;
-    height: 55px;
+    width: 50px;
+    height: 50px;
   }
   
   .element-card .text-2xl {
     font-size: 1.1rem;
   }
+  
+  .element-card .text-xs {
+    font-size: 0.7rem;
+  }
 }
 
 @media (max-width: 768px) {
   .element-card, .element-placeholder {
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
+    padding: 3px;
   }
   
   .element-card .text-2xl {

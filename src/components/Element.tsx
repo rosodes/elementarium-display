@@ -12,26 +12,27 @@ const Element = ({ element, onClick }: ElementProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const { language } = useLanguage();
   
-  // Use either category or series for determining color based on electron block
-  const getBlockColor = () => {
-    if (!element.expandedconfig) return '';
+  // Определение цвета элемента на основе блока электронов или категории
+  const getElementColor = () => {
+    // Определить блок (s, p, d, f) на основе электронной конфигурации
+    if (element.expandedconfig) {
+      if (element.expandedconfig.includes(' s')) return 'bg-s-block';
+      if (element.expandedconfig.includes(' p')) return 'bg-p-block';
+      if (element.expandedconfig.includes(' d')) return 'bg-d-block';
+      if (element.expandedconfig.includes(' f')) return 'bg-f-block';
+    }
     
-    // Determine block (s, p, d, f) based on electron configuration
-    if (element.expandedconfig.includes('s')) return 'bg-s-block';
-    if (element.expandedconfig.includes('p')) return 'bg-p-block';
-    if (element.expandedconfig.includes('d')) return 'bg-d-block';
-    if (element.expandedconfig.includes('f')) return 'bg-f-block';
-    
+    // Если электронная конфигурация не определена, используем категорию или серию
     return getCategoryColor(element.category || element.series);
   };
   
-  // Calculate if element is radioactive
+  // Определяем, является ли элемент радиоактивным
   const isRadioactive = () => {
     const radioactiveElements = [43, 61, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118];
     return radioactiveElements.includes(Number(element.atomic));
   };
   
-  // Handle text sizing for long element names
+  // Корректируем размер шрифта для длинных названий элементов
   const getNameFontSize = () => {
     if (!element.name) return 'text-xs';
     if (element.name.length > 15) return 'text-[6px]';
@@ -43,7 +44,7 @@ const Element = ({ element, onClick }: ElementProps) => {
   
   return (
     <div 
-      className={`element-card w-[70px] h-[70px] ${getBlockColor()} transition-all duration-300 ease-out 
+      className={`element-card w-[70px] h-[70px] ${getElementColor()} transition-all duration-300 ease-out 
                  hover:shadow-lg hover:scale-105 cursor-pointer flex-shrink-0 relative
                  dark:shadow-black/30 flex flex-col justify-between p-1.5
                  ${isHovering ? 'z-10 shadow-xl' : ''}`}
