@@ -34,10 +34,28 @@ const PeriodicTable = () => {
       closeDetails();
     }
   };
+
+  // Group numbers for the header
+  const renderGroupNumbers = () => {
+    return (
+      <div className="flex flex-row flex-nowrap items-center gap-1 mb-1" role="row" aria-label="Group numbers">
+        <div className="w-6 mr-1" aria-hidden="true"></div>
+        {Array.from({ length: 18 }, (_, i) => i + 1).map(num => (
+          <div 
+            key={`group-${num}`}
+            className="w-[70px] text-center text-xs font-semibold opacity-60 flex-shrink-0"
+            aria-hidden="true"
+          >
+            {num}
+          </div>
+        ))}
+      </div>
+    );
+  };
   
   return (
     <div 
-      className="periodic-table-container py-4"
+      className="periodic-table-container py-4 px-2"
       onKeyDown={handleKeyDown}
       role="region"
       aria-label={t.title}
@@ -45,9 +63,10 @@ const PeriodicTable = () => {
       <Legend />
       
       <div 
-        className="periodic-table flex flex-col gap-1 w-full max-w-[1400px] mx-auto"
+        className="periodic-table flex flex-col gap-1 w-full max-w-[1400px] mx-auto overflow-x-auto"
         role="grid"
       >
+        {renderGroupNumbers()}
         {renderPeriod1(handleElementClick)}
         {renderPeriod2(handleElementClick)}
         {renderPeriod3(handleElementClick)}
@@ -58,8 +77,10 @@ const PeriodicTable = () => {
         
         <div className="my-4" aria-hidden="true"></div>
         
-        {renderLanthanides(handleElementClick)}
-        {renderActinides(handleElementClick)}
+        <div className="ml-20">
+          {renderLanthanides(handleElementClick)}
+          {renderActinides(handleElementClick)}
+        </div>
       </div>
       
       {selectedElement && (

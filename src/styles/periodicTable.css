@@ -7,12 +7,58 @@
   border-radius: 4px;
   padding: 4px;
   transition: all 0.2s ease-in-out;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
 }
 
-/* Category Colors - Light Mode */
+/* Block Colors - Light Mode */
+.bg-s-block {
+  background-color: #f4cccc; /* Light pink */
+  border: 1px solid #ee9f9f;
+}
+
+.bg-p-block {
+  background-color: #ffe599; /* Light orange */
+  border: 1px solid #ffd966;
+}
+
+.bg-d-block {
+  background-color: #cfe2f3; /* Light blue */
+  border: 1px solid #9fc5e8;
+}
+
+.bg-f-block {
+  background-color: #d9ead3; /* Light green */
+  border: 1px solid #b6d7a8;
+}
+
+/* Dark Mode Block Colors */
+.dark .bg-s-block {
+  background-color: #7c2929;
+  border: 1px solid #a73d3d;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .bg-p-block {
+  background-color: #7f6000;
+  border: 1px solid #b8860b;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .bg-d-block {
+  background-color: #1a5786;
+  border: 1px solid #2c7cb8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.dark .bg-f-block {
+  background-color: #2d632a;
+  border: 1px solid #3e8e37;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Legacy Category Colors - keeping for compatibility */
 .bg-alkali {
   background-color: #ff8a65;
   border: 1px solid #ff5722;
@@ -67,51 +113,61 @@
 .dark .bg-alkali {
   background-color: #ff5722;
   border: 1px solid #ff8a65;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-alkaline {
   background-color: #ff9800;
   border: 1px solid #ffb74d;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-transition {
   background-color: #2196f3;
   border: 1px solid #90caf9;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-post_transition {
   background-color: #4caf50;
   border: 1px solid #a5d6a7;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-metalloid {
   background-color: #9c27b0;
   border: 1px solid #ce93d8;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-nonmetal {
   background-color: #00bcd4;
   border: 1px solid #80deea;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-noble {
   background-color: #f44336;
   border: 1px solid #ef9a9a;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-lanthanide {
   background-color: #673ab7;
   border: 1px solid #b39ddb;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-actinide {
   background-color: #e91e63;
   border: 1px solid #f48fb1;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .dark .bg-unknown {
   background-color: #795548;
   border: 1px solid #bcaaa4;
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Hover states */

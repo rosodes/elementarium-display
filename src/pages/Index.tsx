@@ -10,7 +10,12 @@ const Index = () => {
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <Header />
       
-      <main>
+      <main className="container mx-auto px-4">
+        <div className="text-center my-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
+        </div>
+        
         <PeriodicTable />
       </main>
       

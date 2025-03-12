@@ -1,48 +1,66 @@
 
 export const en = {
   title: "Periodic Table of Elements",
-  footer: {
-    dataNote: "Data is current as of 09/01/2023. Element names are in accordance with IUPAC nomenclature.",
-    credits: "Developed based on design element from the \"Chemistry Made Simple\" project."
+  subtitle: "Interactive Mendeleev's Periodic Table",
+  selectLanguage: "Select language",
+  search: "Search elements",
+  toggleTheme: "Toggle theme",
+  
+  legend: {
+    metals: "Metals",
+    nonmetals: "Nonmetals",
+    metalloids: "Metalloids",
+    alkali: "Alkali metals",
+    alkaline: "Alkaline earth metals",
+    transition: "Transition metals",
+    postTransition: "Post-transition metals",
+    lanthanides: "Lanthanides",
+    actinides: "Actinides",
+    noble: "Noble gases",
+    radioactive: "Radioactive",
+    sBlock: "s-block elements",
+    pBlock: "p-block elements",
+    dBlock: "d-block elements",
+    fBlock: "f-block elements"
   },
-  elementDetails: {
-    basicInfo: "Basic Information",
-    physicalProperties: "Physical Properties",
-    atomicStructure: "Atomic Structure",
-    additionalInfo: "Additional Information",
-    series: "Series",
-    atomicWeight: "Atomic Weight",
-    electronConfig: "Electron Configuration",
-    discovered: "Discovered",
+  
+  details: {
+    atomicNumber: "Atomic number",
+    symbol: "Symbol",
+    name: "Name",
+    atomicMass: "Atomic mass",
+    category: "Category",
     group: "Group",
     period: "Period",
-    meltingPoint: "Melting Point",
-    boilingPoint: "Boiling Point",
-    density: "Density",
+    block: "Block",
+    electronConfiguration: "Electron configuration",
+    oxidationStates: "Oxidation states",
     electronegativity: "Electronegativity",
-    valence: "Valence",
-    oxidationStates: "Oxidation States",
-    electronDistribution: "Electron Distribution",
-    atomicRadius: "Atomic Radius",
-    calculated: "Calculated",
-    empirical: "Empirical",
-    covalent: "Covalent",
-    shell: "Shell"
+    atomicRadius: "Atomic radius",
+    ionizationEnergy: "Ionization energy",
+    density: "Density",
+    meltingPoint: "Melting point",
+    boilingPoint: "Boiling point",
+    discoveredBy: "Discovered by",
+    namedAfter: "Named after",
+    close: "Close"
   },
+  
   categories: {
     alkali: "Alkali Metal",
     alkaline: "Alkaline Earth Metal",
+    lanthanide: "Lanthanide",
+    actinide: "Actinide",
     transition: "Transition Metal",
-    postTransition: "Post-Transition Metal",
+    post_transition: "Post-Transition Metal",
     metalloid: "Metalloid",
     nonmetal: "Nonmetal",
     noble: "Noble Gas",
-    lanthanide: "Lanthanide",
-    actinide: "Actinide",
-    unknown: "Unknown"
+    unknown: "Unknown Properties"
   },
-  ui: {
-    close: "Close",
-    themeToggle: "Toggle theme"
+  
+  footer: {
+    dataNote: "Data is based on standard atomic weights and properties.",
+    credits: "Created with React for educational purposes."
   }
 };
