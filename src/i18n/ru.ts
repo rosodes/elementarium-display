@@ -22,7 +22,8 @@ export const ru: TranslationData = {
     sBlock: "s-Блок",
     pBlock: "p-Блок",
     dBlock: "d-Блок", 
-    fBlock: "f-Блок"
+    fBlock: "f-Блок",
+    radioactive: "Радиоактивный"
   },
   
   details: {
@@ -63,7 +64,9 @@ export const ru: TranslationData = {
   
   footer: {
     madeWith: "Сделано с",
-    by: "от"
+    by: "от",
+    dataNote: "Данные основаны на последних научных исследованиях",
+    credits: "© Интерактивная Периодическая Таблица"
   },
   
   ui: {
@@ -73,6 +76,7 @@ export const ru: TranslationData = {
     view: "Просмотр",
     loading: "Загрузка...",
     radioactive: "Радиоактивный",
+    themeToggle: "Переключить тему",
     elements: {
       h: "Водород",
       he: "Гелий",
@@ -205,6 +209,27 @@ export const ru: TranslationData = {
     moreDetails: "Дополнительные сведения",
     overview: "Обзор",
     history: "История",
-    applications: "Применения"
+    applications: "Применения",
+    basicInfo: "Основная информация",
+    series: "Серия",
+    atomicWeight: "Атомный вес",
+    electronConfig: "Электронная конфигурация",
+    discovered: "Открыт",
+    group: "Группа",
+    period: "Период",
+    meltingPoint: "Температура плавления",
+    boilingPoint: "Температура кипения",
+    density: "Плотность",
+    electronegativity: "Электроотрицательность",
+    valence: "Валентные электроны",
+    oxidationStates: "Степени окисления",
+    atomicStructure: "Атомная структура",
+    electronDistribution: "Распределение электронов",
+    shell: "Оболочка",
+    atomicRadius: "Атомный радиус",
+    calculated: "Расчетный",
+    empirical: "Эмпирический",
+    covalent: "Ковалентный",
+    additionalInfo: "Дополнительная информация"
   }
 };

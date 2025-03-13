@@ -51,14 +51,14 @@ const Header = () => {
           variant="outline"
           size="icon"
           onClick={toggleTheme}
-          aria-label={t.ui.themeToggle}
+          aria-label={t.toggleTheme}
         >
           {theme === 'light' ? (
             <Moon className="h-[1.2rem] w-[1.2rem]" />
           ) : (
             <Sun className="h-[1.2rem] w-[1.2rem]" />
           )}
-          <span className="sr-only">{t.ui.themeToggle}</span>
+          <span className="sr-only">{t.toggleTheme}</span>
         </Button>
         
         <img 

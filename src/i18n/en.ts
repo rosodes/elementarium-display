@@ -22,7 +22,8 @@ export const en: TranslationData = {
     sBlock: "s-Block",
     pBlock: "p-Block",
     dBlock: "d-Block", 
-    fBlock: "f-Block"
+    fBlock: "f-Block",
+    radioactive: "Radioactive"
   },
   
   details: {
@@ -63,7 +64,9 @@ export const en: TranslationData = {
   
   footer: {
     madeWith: "Made with",
-    by: "by"
+    by: "by",
+    dataNote: "Data based on recent scientific measurements",
+    credits: "© Periodic Table Interactive"
   },
   
   ui: {
@@ -73,6 +76,7 @@ export const en: TranslationData = {
     view: "View",
     loading: "Loading...",
     radioactive: "Radioactive",
+    themeToggle: "Toggle Theme",
     elements: {
       h: "Hydrogen",
       he: "Helium",
@@ -205,6 +209,27 @@ export const en: TranslationData = {
     moreDetails: "More Details",
     overview: "Overview",
     history: "History",
-    applications: "Applications"
+    applications: "Applications",
+    basicInfo: "Basic Information",
+    series: "Series",
+    atomicWeight: "Atomic Weight",
+    electronConfig: "Electron Configuration",
+    discovered: "Discovered",
+    group: "Group",
+    period: "Period",
+    meltingPoint: "Melting Point",
+    boilingPoint: "Boiling Point",
+    density: "Density",
+    electronegativity: "Electronegativity",
+    valence: "Valence Electrons",
+    oxidationStates: "Oxidation States",
+    atomicStructure: "Atomic Structure",
+    electronDistribution: "Electron Distribution",
+    shell: "Shell",
+    atomicRadius: "Atomic Radius",
+    calculated: "Calculated",
+    empirical: "Empirical",
+    covalent: "Covalent",
+    additionalInfo: "Additional Information"
   }
 };

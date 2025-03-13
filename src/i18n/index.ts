@@ -24,6 +24,7 @@ export interface TranslationData {
     pBlock: string;
     dBlock: string;
     fBlock: string;
+    radioactive: string;
   };
   
   details: {
@@ -65,21 +66,24 @@ export interface TranslationData {
   footer: {
     madeWith: string;
     by: string;
+    dataNote?: string;
+    credits?: string;
   };
   
-  ui?: {
+  ui: {
     close?: string;
     back?: string;
     more?: string;
     view?: string;
     loading?: string;
     radioactive?: string;
+    themeToggle?: string;
     elements?: {
       [key: string]: string;
     };
   };
   
-  elementDetails?: {
+  elementDetails: {
     showMoreInfo?: string;
     viewOnWikipedia?: string;
     closeDetails?: string;
@@ -90,6 +94,27 @@ export interface TranslationData {
     overview?: string;
     history?: string;
     applications?: string;
+    basicInfo?: string;
+    series?: string;
+    atomicWeight?: string;
+    electronConfig?: string;
+    discovered?: string;
+    group?: string;
+    period?: string;
+    meltingPoint?: string;
+    boilingPoint?: string;
+    density?: string;
+    electronegativity?: string;
+    valence?: string;
+    oxidationStates?: string;
+    atomicStructure?: string;
+    electronDistribution?: string;
+    atomicRadius?: string;
+    shell?: string;
+    calculated?: string;
+    empirical?: string;
+    covalent?: string;
+    additionalInfo?: string;
   };
 }
 
