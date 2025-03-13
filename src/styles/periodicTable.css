@@ -1,4 +1,4 @@
-/* Periodic Table Styles */
+/* Periodic Table Styles with improved accessibility */
 .element-card {
   width: 70px;
   height: 70px;
@@ -11,162 +11,188 @@
   flex-shrink: 0;
 }
 
-/* Block Colors - Light Mode */
+/* Block Colors - Light Mode with improved contrast */
 .bg-s-block {
-  background-color: #f4cccc; /* Light pink */
-  border: 1px solid #ee9f9f;
+  background-color: #ffb3b3; /* Improved pink */
+  border: 1px solid #e06666;
+  color: #1a1a1a;
 }
 
 .bg-p-block {
-  background-color: #ffe599; /* Light orange */
-  border: 1px solid #ffd966;
+  background-color: #ffd966; /* Improved yellow */
+  border: 1px solid #e6b800;
+  color: #1a1a1a;
 }
 
 .bg-d-block {
-  background-color: #cfe2f3; /* Light blue */
-  border: 1px solid #9fc5e8;
+  background-color: #9fc5e8; /* Improved blue */
+  border: 1px solid #6fa8dc;
+  color: #1a1a1a;
 }
 
 .bg-f-block {
-  background-color: #d9ead3; /* Light green */
-  border: 1px solid #b6d7a8;
+  background-color: #b6d7a8; /* Improved green */
+  border: 1px solid #93c47d;
+  color: #1a1a1a;
 }
 
-/* Dark Mode Block Colors */
+/* Dark Mode Block Colors with improved contrast */
 .dark .bg-s-block {
-  background-color: #7c2929;
-  border: 1px solid #a73d3d;
-  color: rgba(255, 255, 255, 0.9);
+  background-color: #a73d3d; /* Darker pink */
+  border: 1px solid #c66;
+  color: #ffffff;
 }
 
 .dark .bg-p-block {
-  background-color: #7f6000;
-  border: 1px solid #b8860b;
-  color: rgba(255, 255, 255, 0.9);
+  background-color: #b8860b; /* Darker yellow */
+  border: 1px solid #e6b800;
+  color: #ffffff;
 }
 
 .dark .bg-d-block {
-  background-color: #1a5786;
-  border: 1px solid #2c7cb8;
-  color: rgba(255, 255, 255, 0.9);
+  background-color: #2c7cb8; /* Darker blue */
+  border: 1px solid #6fa8dc;
+  color: #ffffff;
 }
 
 .dark .bg-f-block {
-  background-color: #2d632a;
-  border: 1px solid #3e8e37;
-  color: rgba(255, 255, 255, 0.9);
+  background-color: #3e8e37; /* Darker green */
+  border: 1px solid #93c47d;
+  color: #ffffff;
 }
 
-/* Legacy Category Colors - keeping for compatibility */
+/* Legacy Category Colors - keeping for compatibility with improved contrast */
 .bg-alkali {
   background-color: #ff8a65;
   border: 1px solid #ff5722;
+  color: #1a1a1a;
 }
 
 .bg-alkaline {
   background-color: #ffb74d;
   border: 1px solid #ff9800;
+  color: #1a1a1a;
 }
 
 .bg-transition {
   background-color: #90caf9;
   border: 1px solid #2196f3;
+  color: #1a1a1a;
 }
 
 .bg-post_transition {
   background-color: #a5d6a7;
   border: 1px solid #4caf50;
+  color: #1a1a1a;
 }
 
 .bg-metalloid {
   background-color: #ce93d8;
   border: 1px solid #9c27b0;
+  color: #1a1a1a;
 }
 
 .bg-nonmetal {
   background-color: #80deea;
   border: 1px solid #00bcd4;
+  color: #1a1a1a;
 }
 
 .bg-noble {
   background-color: #ef9a9a;
   border: 1px solid #f44336;
+  color: #1a1a1a;
 }
 
 .bg-lanthanide {
   background-color: #b39ddb;
   border: 1px solid #673ab7;
+  color: #1a1a1a;
 }
 
 .bg-actinide {
   background-color: #f48fb1;
   border: 1px solid #e91e63;
+  color: #1a1a1a;
 }
 
 .bg-unknown {
   background-color: #bcaaa4;
   border: 1px solid #795548;
+  color: #1a1a1a;
 }
 
-/* Dark Mode Color Adjustments */
+/* Dark Mode Color Adjustments with better contrast */
 .dark .bg-alkali {
   background-color: #ff5722;
   border: 1px solid #ff8a65;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
 }
 
 .dark .bg-alkaline {
   background-color: #ff9800;
   border: 1px solid #ffb74d;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a; /* Dark text for better contrast */
 }
 
 .dark .bg-transition {
   background-color: #2196f3;
   border: 1px solid #90caf9;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a; /* Dark text for better contrast */
 }
 
 .dark .bg-post_transition {
   background-color: #4caf50;
   border: 1px solid #a5d6a7;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a; /* Dark text for better contrast */
 }
 
 .dark .bg-metalloid {
   background-color: #9c27b0;
   border: 1px solid #ce93d8;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
 }
 
 .dark .bg-nonmetal {
   background-color: #00bcd4;
   border: 1px solid #80deea;
-  color: rgba(255, 255, 255, 0.9);
+  color: #1a1a1a; /* Dark text for better contrast */
 }
 
 .dark .bg-noble {
   background-color: #f44336;
   border: 1px solid #ef9a9a;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
 }
 
 .dark .bg-lanthanide {
   background-color: #673ab7;
   border: 1px solid #b39ddb;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
 }
 
 .dark .bg-actinide {
   background-color: #e91e63;
   border: 1px solid #f48fb1;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
 }
 
 .dark .bg-unknown {
   background-color: #795548;
   border: 1px solid #bcaaa4;
-  color: rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+}
+
+/* Focus states for accessibility */
+.element-card:focus-visible {
+  outline: 3px solid #2196f3;
+  outline-offset: 2px;
+  z-index: 10;
+}
+
+/* dark mode focus state */
+.dark .element-card:focus-visible {
+  outline: 3px solid #90caf9;
 }
 
 /* Hover states */
@@ -180,14 +206,23 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Focus states for accessibility */
-.element-card:focus-visible {
-  outline: 2px solid white;
+/* Keyboard navigation indicator */
+.element-card:focus {
+  outline: 2px solid #2196f3;
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.5);
 }
 
-/* Periodic table layout */
+/* Animation for table load */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.periodic-table {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Remaining styles - keeping unchanged */
 .periodic-table {
   display: flex;
   flex-direction: column;
@@ -210,14 +245,12 @@
   flex-wrap: nowrap;
 }
 
-/* Element placeholder for empty spots */
 .element-placeholder {
   width: 70px;
   height: 70px;
   flex-shrink: 0;
 }
 
-/* Responsive layout */
 @media (max-width: 1400px) {
   .element-card, .element-placeholder {
     width: 65px;
@@ -286,13 +319,6 @@
   }
 }
 
-/* Keyboard navigation indicator */
-.element-card:focus {
-  outline: 2px solid #2196f3;
-  outline-offset: 2px;
-}
-
-/* Screen reader only text */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -303,14 +329,4 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
-}
-
-/* Animation for table load */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.periodic-table {
-  animation: fadeIn 0.5s ease-in-out;
 }

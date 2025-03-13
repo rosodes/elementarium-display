@@ -21,6 +21,10 @@ export interface UITranslations {
   searchResults?: string;
   searchNoResults?: string;
   clearSearch?: string;
+  searchShortcut?: string;
+  accessibilityLabel?: string;
+  elementTable?: string;
+  focusMode?: string;
 }
 
 export const uiEn: UITranslations = {
@@ -43,7 +47,11 @@ export const uiEn: UITranslations = {
   searchPlaceholder: "Search by name, symbol or atomic number...",
   searchResults: "Search results",
   searchNoResults: "No elements found matching your search",
-  clearSearch: "Clear search"
+  clearSearch: "Clear search",
+  searchShortcut: "Keyboard shortcut",
+  accessibilityLabel: "Periodic Table of Elements",
+  elementTable: "Periodic Table of Elements",
+  focusMode: "Focus mode"
 };
 
 export const uiRu: UITranslations = {
@@ -66,5 +74,9 @@ export const uiRu: UITranslations = {
   searchPlaceholder: "Поиск по названию, символу или атомному номеру...",
   searchResults: "Результаты поиска",
   searchNoResults: "Не найдено элементов, соответствующих вашему запросу",
-  clearSearch: "Очистить поиск"
+  clearSearch: "Очистить поиск",
+  searchShortcut: "Сочетание клавиш",
+  accessibilityLabel: "Периодическая таблица элементов",
+  elementTable: "Периодическая таблица элементов",
+  focusMode: "Режим фокусировки"
 };
