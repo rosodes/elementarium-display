@@ -60,12 +60,6 @@ const Header = () => {
           )}
           <span className="sr-only">{t.toggleTheme}</span>
         </Button>
-        
-        <img 
-          src="/lovable-uploads/d15e32a0-0ffc-4e60-81ef-18f90f76878a.png" 
-          alt="Chemistry Made Simple" 
-          className="h-24 object-contain"
-        />
       </div>
     </header>
   );

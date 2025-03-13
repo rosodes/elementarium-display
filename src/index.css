@@ -106,14 +106,30 @@
 .periodic-table-container {
   overflow-x: auto;
   padding: 1rem;
+  -webkit-overflow-scrolling: touch; /* Improved scrolling on iOS */
+  max-width: 100%;
+  scrollbar-width: thin; /* Firefox */
+}
+
+.periodic-table-container::-webkit-scrollbar {
+  height: 6px; /* Height for horizontal scrollbar */
+}
+
+.periodic-table-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.periodic-table-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .periodic-table {
   display: grid;
-  grid-template-columns: repeat(18, minmax(60px, 1fr));
-  grid-template-rows: repeat(10, minmax(60px, auto));
+  grid-template-columns: repeat(18, minmax(50px, 1fr));
+  grid-template-rows: repeat(10, minmax(50px, auto));
   gap: 4px;
-  width: 100%;
+  width: max-content; /* Ensure it takes the space it needs */
   margin: 0 auto;
 }
 
@@ -140,11 +156,11 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 80px;
+  min-height: 70px;
   background: white;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 4px;
-  padding: 0.5rem;
+  padding: 0.4rem;
   transition: all 0.2s ease;
   cursor: pointer;
   display: flex;
@@ -159,70 +175,52 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Element category colors (based on the image) */
-.bg-alkali {
-  background-color: #ff6e6c;
-}
-
-.bg-alkaline {
-  background-color: #ffc15e;
-}
-
-.bg-transition {
-  background-color: #88d9e6;
-}
-
-.bg-post_transition {
-  background-color: #b0a3f5;
-}
-
-.bg-metalloid {
-  background-color: #8adbbc;
-}
-
-.bg-nonmetal {
-  background-color: #7dace4;
-}
-
-.bg-noble {
-  background-color: #f2b5d4;
-}
-
-.bg-lanthanide {
-  background-color: #ffa69e;
-}
-
-.bg-actinide {
-  background-color: #ff7e5f;
-}
-
-.bg-unknown {
-  background-color: #c7c7c7;
-}
-
 /* Media queries for responsiveness */
 @media (max-width: 1200px) {
   .periodic-table {
-    grid-template-columns: repeat(18, minmax(50px, 1fr));
+    grid-template-columns: repeat(18, minmax(45px, 1fr));
+  }
+  
+  .element-card {
+    min-height: 65px;
+    padding: 0.35rem;
   }
 }
 
 @media (max-width: 900px) {
   .periodic-table {
     grid-template-columns: repeat(18, minmax(40px, 1fr));
-    gap: 2px;
+    gap: 3px;
   }
+  
   .element-card {
-    padding: 0.25rem;
+    min-height: 60px;
+    padding: 0.3rem;
     font-size: 0.8rem;
   }
 }
 
 @media (max-width: 640px) {
-  .periodic-table-container {
-    overflow-x: scroll;
+  .periodic-table {
+    grid-template-columns: repeat(18, minmax(35px, 1fr));
+    gap: 2px;
   }
+  
   .element-card {
+    min-height: 55px;
+    padding: 0.25rem;
     font-size: 0.7rem;
+  }
+  
+  .atomic-number {
+    font-size: 0.6rem;
+  }
+  
+  .element-symbol {
+    font-size: 0.9rem;
+  }
+  
+  .element-name {
+    font-size: 0.6rem;
   }
 }
