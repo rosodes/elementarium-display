@@ -3,7 +3,7 @@ import { CommonTranslations, commonEn, commonRu } from './modules/common';
 import { LegendTranslations, legendEn, legendRu } from './modules/legend';
 import { DetailsTranslations, detailsEn, detailsRu } from './modules/details';
 import { CategoriesTranslations, categoriesEn, categoriesRu } from './modules/categories';
-import { UiTranslations, uiEn, uiRu } from './modules/ui';
+import { UITranslations, uiEn, uiRu } from './modules/ui';
 import { ElementDetailsTranslations, elementDetailsEn, elementDetailsRu } from './modules/elementDetails';
 import { FooterTranslations, footerEn, footerRu } from './modules/footer';
 
@@ -15,7 +15,7 @@ export interface TranslationData extends CommonTranslations {
   legend: LegendTranslations;
   details: DetailsTranslations;
   categories: CategoriesTranslations;
-  ui: UiTranslations;
+  ui: UITranslations;
   elementDetails: ElementDetailsTranslations;
   footer: FooterTranslations;
 }
