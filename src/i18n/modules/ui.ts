@@ -1,5 +1,5 @@
 
-export interface UiTranslations {
+export interface UITranslations {
   close?: string;
   back?: string;
   more?: string;
@@ -7,30 +7,52 @@ export interface UiTranslations {
   loading?: string;
   radioactive?: string;
   themeToggle?: string;
-  elements?: {
-    [key: string]: string;
-  };
+  language?: string;
+  elements?: { [key: string]: string };
+  search?: string;
+  filter?: string;
+  reset?: string;
+  noResults?: string;
+  period?: string;
+  group?: string;
+  periodNumbersLabel?: string;
+  groupNumbersLabel?: string;
 }
 
-// Just creating the structure, will be filled in the main files
-export const uiEn: UiTranslations = {
+export const uiEn: UITranslations = {
   close: "Close",
   back: "Back",
-  more: "More Details",
-  view: "View",
+  more: "Show more",
+  view: "View details",
   loading: "Loading...",
   radioactive: "Radioactive",
-  themeToggle: "Toggle Theme",
-  elements: {}
+  themeToggle: "Toggle theme",
+  language: "Change language",
+  search: "Search elements",
+  filter: "Filter elements",
+  reset: "Reset filters",
+  noResults: "No results found",
+  period: "Period",
+  group: "Group",
+  periodNumbersLabel: "Period numbers",
+  groupNumbersLabel: "Group numbers"
 };
 
-export const uiRu: UiTranslations = {
+export const uiRu: UITranslations = {
   close: "Закрыть",
   back: "Назад",
-  more: "Подробнее",
-  view: "Просмотр",
+  more: "Показать больше",
+  view: "Подробнее",
   loading: "Загрузка...",
   radioactive: "Радиоактивный",
-  themeToggle: "Переключить тему",
-  elements: {}
+  themeToggle: "Сменить тему",
+  language: "Изменить язык",
+  search: "Поиск элементов",
+  filter: "Фильтр элементов",
+  reset: "Сбросить фильтры",
+  noResults: "Результаты не найдены",
+  period: "Период",
+  group: "Группа",
+  periodNumbersLabel: "Номера периодов",
+  groupNumbersLabel: "Номера групп"
 };

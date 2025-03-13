@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface PeriodRowProps {
   children: React.ReactNode;
@@ -9,15 +10,20 @@ interface PeriodRowProps {
 }
 
 const PeriodRow = ({ children, periodKey, periodNumber, className = '' }: PeriodRowProps) => {
+  const { t } = useLanguage();
+  
   return (
     <div 
       key={periodKey} 
-      className={`period-row flex flex-row flex-nowrap items-center gap-1 mb-1 ${className}`}
+      className={`period-row flex flex-row flex-nowrap items-center gap-0.5 sm:gap-1 mb-1 ${className}`}
       role="row"
-      aria-label={periodNumber ? `Period ${periodNumber}` : undefined}
+      aria-label={periodNumber ? `${t.ui?.period || "Period"} ${periodNumber}` : undefined}
     >
       {periodNumber && (
-        <div className="w-6 text-center text-xs font-semibold opacity-60 mr-1" aria-hidden="true">
+        <div 
+          className="w-5 sm:w-6 text-center text-[8px] sm:text-xs font-semibold opacity-70 mr-0.5 sm:mr-1" 
+          aria-label={`${t.ui?.period || "Period"} ${periodNumber}`}
+        >
           {periodNumber}
         </div>
       )}

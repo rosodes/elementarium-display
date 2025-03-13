@@ -34,13 +34,13 @@ const Element = ({ element, onClick }: ElementProps) => {
   
   // Adjust font size for long element names
   const getNameFontSize = () => {
-    if (!element.name) return 'text-xs';
-    if (element.name.length > 18) return 'text-[5px]';
-    if (element.name.length > 15) return 'text-[6px]';
-    if (element.name.length > 12) return 'text-[7px]';
-    if (element.name.length > 9) return 'text-[8px]';
-    if (element.name.length > 7) return 'text-[9px]';
-    return 'text-[10px]';
+    if (!element.name) return 'text-[8px]';
+    if (element.name.length > 18) return 'text-[5px] sm:text-[6px]';
+    if (element.name.length > 15) return 'text-[6px] sm:text-[7px]';
+    if (element.name.length > 12) return 'text-[7px] sm:text-[8px]';
+    if (element.name.length > 9) return 'text-[8px] sm:text-[9px]';
+    if (element.name.length > 7) return 'text-[9px] sm:text-[10px]';
+    return 'text-[10px] sm:text-[11px]';
   };
   
   // Get translated element name if available
@@ -51,34 +51,35 @@ const Element = ({ element, onClick }: ElementProps) => {
   
   return (
     <div 
-      className={`element-card w-[70px] h-[70px] ${getElementColor()} transition-all duration-300 ease-out 
+      className={`element-card w-[54px] h-[54px] sm:w-[70px] sm:h-[70px] ${getElementColor()} transition-all duration-300 ease-out 
                  hover:shadow-lg hover:scale-105 cursor-pointer flex-shrink-0 relative
-                 dark:shadow-black/30 flex flex-col justify-between p-1.5
+                 dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5
                  ${isHovering ? 'z-10 shadow-xl' : ''}`}
       onClick={() => onClick(element)}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
-      aria-label={`Element ${element.name}, atomic number ${element.atomic}`}
+      aria-label={`${t.elementDetails.element} ${element.name}, ${t.elementDetails.atomicNumber} ${element.atomic}`}
     >
       <div className="flex justify-between items-start w-full">
-        <div className="text-[9px] opacity-70">{element.atomic}</div>
-        <div className="text-[9px] opacity-70">
+        <div className="text-[7px] sm:text-[9px] opacity-70">{element.atomic}</div>
+        <div className="text-[7px] sm:text-[9px] opacity-70">
           {element.oxidation?.split(',')[0]?.replace('c', '') || ''}
         </div>
       </div>
       
       <div className="text-center flex-grow flex flex-col justify-center items-center">
-        <div className="text-lg md:text-xl font-bold">{element.symbol}</div>
+        <div className="text-sm sm:text-lg md:text-xl font-bold">{element.symbol}</div>
         <div className={`${getNameFontSize()} truncate max-w-full font-medium leading-tight`}>
           {getElementName()}
         </div>
       </div>
       
       <div className="flex justify-between items-end w-full">
-        <div className="text-[8px] opacity-70">{element.weight}</div>
+        <div className="text-[6px] sm:text-[8px] opacity-70">{element.weight}</div>
         {isRadioactive() && (
-          <div className="w-2 h-2 rounded-full bg-red-500 mb-0.5 mr-0.5" 
-               title={t.ui?.radioactive || "Radioactive"} aria-label={t.ui?.radioactive || "Radioactive element"}></div>
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 mb-0.5 mr-0.5" 
+               title={t.ui?.radioactive || "Radioactive"} 
+               aria-label={t.ui?.radioactive || "Radioactive element"}></div>
         )}
       </div>
     </div>

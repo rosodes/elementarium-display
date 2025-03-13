@@ -31,6 +31,17 @@ export interface ElementDetailsTranslations {
   empirical?: string;
   covalent?: string;
   additionalInfo?: string;
+  atomicNumber?: string;
+  symbol?: string;
+  element?: string;
+  is?: string;
+  inPeriodGroup?: string;
+  discoveredIn?: string;
+  knownSinceAncient?: string;
+  meltingBoilingPoints?: string;
+  densityIs?: string;
+  usedIn?: string;
+  commonProperties?: string;
 }
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -64,7 +75,18 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   calculated: "Calculated",
   empirical: "Empirical",
   covalent: "Covalent",
-  additionalInfo: "Additional Information"
+  additionalInfo: "Additional Information",
+  atomicNumber: "Atomic number",
+  symbol: "Symbol",
+  element: "Element",
+  is: "is a",
+  inPeriodGroup: " in period {period} and group {group} of the periodic table.",
+  discoveredIn: "It was discovered in {year}.",
+  knownSinceAncient: "It has been known since ancient times.",
+  meltingBoilingPoints: "It melts at {melt} K and boils at {boil} K.",
+  densityIs: "It has a density of {density} g/cm³.",
+  usedIn: "It is commonly used in {applications}.",
+  commonProperties: "It is known for its {properties}."
 };
 
 export const elementDetailsRu: ElementDetailsTranslations = {
@@ -98,5 +120,16 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   calculated: "Расчетный",
   empirical: "Эмпирический",
   covalent: "Ковалентный",
-  additionalInfo: "Дополнительная информация"
+  additionalInfo: "Дополнительная информация",
+  atomicNumber: "Атомный номер",
+  symbol: "Символ",
+  element: "Элемент",
+  is: "является",
+  inPeriodGroup: " в периоде {period} и группе {group} периодической таблицы.",
+  discoveredIn: "Он был открыт в {year} году.",
+  knownSinceAncient: "Известен с древних времен.",
+  meltingBoilingPoints: "Температура плавления {melt} K и кипения {boil} K.",
+  densityIs: "Плотность составляет {density} г/см³.",
+  usedIn: "Обычно используется в {applications}.",
+  commonProperties: "Известен своими {properties}."
 };

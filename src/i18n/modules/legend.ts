@@ -15,6 +15,10 @@ export interface LegendTranslations {
   dBlock: string;
   fBlock: string;
   radioactive: string;
+  title: string;
+  categoriesTitle: string;
+  blocksTitle: string;
+  otherTitle: string;
 }
 
 export const legendEn: LegendTranslations = {
@@ -24,15 +28,19 @@ export const legendEn: LegendTranslations = {
   alkali: "Alkali Metals",
   alkaline: "Alkaline Earth Metals",
   transition: "Transition Metals",
-  postTransition: "Post-Transition Metals",
+  postTransition: "Post-transition Metals",
   lanthanides: "Lanthanides",
   actinides: "Actinides",
   noble: "Noble Gases",
-  sBlock: "s-Block",
-  pBlock: "p-Block",
-  dBlock: "d-Block", 
-  fBlock: "f-Block",
-  radioactive: "Radioactive"
+  sBlock: "s-block Elements",
+  pBlock: "p-block Elements",
+  dBlock: "d-block Elements",
+  fBlock: "f-block Elements",
+  radioactive: "Radioactive Elements",
+  title: "Legend",
+  categoriesTitle: "Element Categories",
+  blocksTitle: "Electron Blocks",
+  otherTitle: "Other Properties"
 };
 
 export const legendRu: LegendTranslations = {
@@ -46,9 +54,13 @@ export const legendRu: LegendTranslations = {
   lanthanides: "Лантаноиды",
   actinides: "Актиноиды",
   noble: "Благородные газы",
-  sBlock: "s-Блок",
-  pBlock: "p-Блок",
-  dBlock: "d-Блок", 
-  fBlock: "f-Блок",
-  radioactive: "Радиоактивный"
+  sBlock: "s-блок элементы",
+  pBlock: "p-блок элементы",
+  dBlock: "d-блок элементы",
+  fBlock: "f-блок элементы",
+  radioactive: "Радиоактивные элементы",
+  title: "Легенда",
+  categoriesTitle: "Категории элементов",
+  blocksTitle: "Электронные блоки",
+  otherTitle: "Другие свойства"
 };
