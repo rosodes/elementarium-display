@@ -1,4 +1,3 @@
-
 /* Periodic Table Styles */
 .element-card {
   width: 70px;
@@ -237,14 +236,19 @@
   .element-card, .element-placeholder {
     width: 50px;
     height: 50px;
+    padding: 2px;
   }
   
-  .element-card .text-2xl {
-    font-size: 1.1rem;
+  .element-card .text-lg {
+    font-size: 0.9rem;
   }
   
-  .element-card .text-xs {
-    font-size: 0.7rem;
+  .element-card .text-[9px] {
+    font-size: 0.6rem;
+  }
+  
+  .element-card .text-[8px] {
+    font-size: 0.55rem;
   }
 }
 
@@ -252,15 +256,11 @@
   .element-card, .element-placeholder {
     width: 45px;
     height: 45px;
-    padding: 3px;
+    padding: 2px;
   }
   
-  .element-card .text-2xl {
-    font-size: 1rem;
-  }
-  
-  .element-card .text-xs {
-    font-size: 0.65rem;
+  .element-card .text-lg {
+    font-size: 0.85rem;
   }
 }
 
@@ -271,17 +271,17 @@
     padding: 2px;
   }
   
-  .element-card .text-2xl {
-    font-size: 0.85rem;
-    margin-top: 2px;
+  .element-card .text-lg {
+    font-size: 0.75rem;
+    margin-top: 1px;
     margin-bottom: 0;
   }
   
-  .element-card .text-xs {
-    font-size: 0.55rem;
-  }
-  
-  .element-card .absolute {
+  .element-card .text-[9px], 
+  .element-card .text-[8px], 
+  .element-card .text-[7px], 
+  .element-card .text-[6px], 
+  .element-card .text-[5px] {
     font-size: 0.5rem;
   }
 }

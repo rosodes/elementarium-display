@@ -17,7 +17,7 @@ const PeriodRow = ({ children, periodKey, periodNumber, className = '' }: Period
       aria-label={periodNumber ? `Period ${periodNumber}` : undefined}
     >
       {periodNumber && (
-        <div className="period-number w-6 text-center text-xs font-semibold opacity-60 mr-1" aria-hidden="true">
+        <div className="w-6 text-center text-xs font-semibold opacity-60 mr-1" aria-hidden="true">
           {periodNumber}
         </div>
       )}

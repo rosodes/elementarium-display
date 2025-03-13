@@ -12,9 +12,9 @@ const Element = ({ element, onClick }: ElementProps) => {
   const [isHovering, setIsHovering] = useState(false);
   const { language, t } = useLanguage();
   
-  // Определение цвета элемента на основе блока электронов или категории
+  // Determine the element color based on electron block or category
   const getElementColor = () => {
-    // Определить блок (s, p, d, f) на основе электронной конфигурации
+    // Determine block (s, p, d, f) based on electronic configuration
     if (element.expandedconfig) {
       if (element.expandedconfig.includes(' s')) return 'bg-s-block';
       if (element.expandedconfig.includes(' p')) return 'bg-p-block';
@@ -22,24 +22,25 @@ const Element = ({ element, onClick }: ElementProps) => {
       if (element.expandedconfig.includes(' f')) return 'bg-f-block';
     }
     
-    // Если электронная конфигурация не определена, используем категорию или серию
+    // If electronic configuration isn't defined, use category or series
     return getCategoryColor(element.category || element.series);
   };
   
-  // Определяем, является ли элемент радиоактивным
+  // Check if element is radioactive
   const isRadioactive = () => {
     const radioactiveElements = [43, 61, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118];
     return radioactiveElements.includes(Number(element.atomic));
   };
   
-  // Корректируем размер шрифта для длинных названий элементов
+  // Adjust font size for long element names
   const getNameFontSize = () => {
     if (!element.name) return 'text-xs';
+    if (element.name.length > 18) return 'text-[5px]';
     if (element.name.length > 15) return 'text-[6px]';
     if (element.name.length > 12) return 'text-[7px]';
-    if (element.name.length > 10) return 'text-[8px]';
-    if (element.name.length > 8) return 'text-[10px]';
-    return 'text-xs';
+    if (element.name.length > 9) return 'text-[8px]';
+    if (element.name.length > 7) return 'text-[9px]';
+    return 'text-[10px]';
   };
   
   // Get translated element name if available
@@ -60,21 +61,21 @@ const Element = ({ element, onClick }: ElementProps) => {
       aria-label={`Element ${element.name}, atomic number ${element.atomic}`}
     >
       <div className="flex justify-between items-start w-full">
-        <div className="text-xs opacity-70">{element.atomic}</div>
-        <div className="text-xs opacity-70">
+        <div className="text-[9px] opacity-70">{element.atomic}</div>
+        <div className="text-[9px] opacity-70">
           {element.oxidation?.split(',')[0]?.replace('c', '') || ''}
         </div>
       </div>
       
-      <div className="text-center flex-grow flex flex-col justify-center">
-        <div className="text-2xl font-bold">{element.symbol}</div>
-        <div className={`${getNameFontSize()} truncate px-1 max-w-full font-medium leading-tight`}>
+      <div className="text-center flex-grow flex flex-col justify-center items-center">
+        <div className="text-lg md:text-xl font-bold">{element.symbol}</div>
+        <div className={`${getNameFontSize()} truncate max-w-full font-medium leading-tight`}>
           {getElementName()}
         </div>
       </div>
       
       <div className="flex justify-between items-end w-full">
-        <div className="text-[10px] opacity-70">{element.weight}</div>
+        <div className="text-[8px] opacity-70">{element.weight}</div>
         {isRadioactive() && (
           <div className="w-2 h-2 rounded-full bg-red-500 mb-0.5 mr-0.5" 
                title={t.ui?.radioactive || "Radioactive"} aria-label={t.ui?.radioactive || "Radioactive element"}></div>

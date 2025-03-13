@@ -45,7 +45,7 @@ export const renderPeriod1 = (onElementClick: ElementClickHandler) => {
   const helium = getElement(2);
   if (helium) row.push(<Element key="element-2" element={helium} onClick={onElementClick} />);
   
-  return <PeriodRow periodKey="period-1">{row}</PeriodRow>;
+  return <PeriodRow periodKey="period-1" periodNumber={1}>{row}</PeriodRow>;
 };
 
 // Render Period 2 (Li to Ne)
@@ -62,7 +62,7 @@ export const renderPeriod2 = (onElementClick: ElementClickHandler) => {
   
   row.push(...createElementsForRange(5, 10, onElementClick));
   
-  return <PeriodRow periodKey="period-2">{row}</PeriodRow>;
+  return <PeriodRow periodKey="period-2" periodNumber={2}>{row}</PeriodRow>;
 };
 
 // Render Period 3 (Na to Ar)
@@ -79,19 +79,19 @@ export const renderPeriod3 = (onElementClick: ElementClickHandler) => {
   
   row.push(...createElementsForRange(13, 18, onElementClick));
   
-  return <PeriodRow periodKey="period-3">{row}</PeriodRow>;
+  return <PeriodRow periodKey="period-3" periodNumber={3}>{row}</PeriodRow>;
 };
 
 // Render Period 4 (K to Kr)
 export const renderPeriod4 = (onElementClick: ElementClickHandler) => {
   const row = createElementsForRange(19, 36, onElementClick);
-  return <PeriodRow periodKey="period-4">{row}</PeriodRow>;
+  return <PeriodRow periodKey="period-4" periodNumber={4}>{row}</PeriodRow>;
 };
 
 // Render Period 5 (Rb to Xe)
 export const renderPeriod5 = (onElementClick: ElementClickHandler) => {
   const row = createElementsForRange(37, 54, onElementClick);
-  return <PeriodRow periodKey="period-5">{row}</PeriodRow>;
+  return <PeriodRow periodKey="period-5" periodNumber={5}>{row}</PeriodRow>;
 };
 
 // Render Period 6 (Cs to Rn)
@@ -111,7 +111,7 @@ export const renderPeriod6 = (onElementClick: ElementClickHandler) => {
   
   row.push(...createElementsForRange(72, 86, onElementClick));
   
-  return <PeriodRow periodKey="period-6">{row}</PeriodRow>;
+  return <PeriodRow periodKey="period-6" periodNumber={6}>{row}</PeriodRow>;
 };
 
 // Render Period 7 (Fr to Og)
@@ -131,7 +131,7 @@ export const renderPeriod7 = (onElementClick: ElementClickHandler) => {
   
   row.push(...createElementsForRange(104, 118, onElementClick));
   
-  return <PeriodRow periodKey="period-7">{row}</PeriodRow>;
+  return <PeriodRow periodKey="period-7" periodNumber={7}>{row}</PeriodRow>;
 };
 
 // Render Lanthanides row

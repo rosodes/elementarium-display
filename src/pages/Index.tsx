@@ -20,10 +20,8 @@ const Index = () => {
       </main>
       
       <footer className="py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center">
-        <p>
-          {t.footer.dataNote}
-          {t.footer.credits && <span className="ml-1">{t.footer.credits}</span>}
-        </p>
+        <p>{t.footer.dataNote}</p>
+        <p>{t.footer.credits}</p>
       </footer>
     </div>
   );
