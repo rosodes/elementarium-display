@@ -17,6 +17,10 @@ export interface UITranslations {
   group?: string;
   periodNumbersLabel?: string;
   groupNumbersLabel?: string;
+  searchPlaceholder?: string;
+  searchResults?: string;
+  searchNoResults?: string;
+  clearSearch?: string;
 }
 
 export const uiEn: UITranslations = {
@@ -35,7 +39,11 @@ export const uiEn: UITranslations = {
   period: "Period",
   group: "Group",
   periodNumbersLabel: "Period numbers",
-  groupNumbersLabel: "Group numbers"
+  groupNumbersLabel: "Group numbers",
+  searchPlaceholder: "Search by name, symbol or atomic number...",
+  searchResults: "Search results",
+  searchNoResults: "No elements found matching your search",
+  clearSearch: "Clear search"
 };
 
 export const uiRu: UITranslations = {
@@ -54,5 +62,9 @@ export const uiRu: UITranslations = {
   period: "Период",
   group: "Группа",
   periodNumbersLabel: "Номера периодов",
-  groupNumbersLabel: "Номера групп"
+  groupNumbersLabel: "Номера групп",
+  searchPlaceholder: "Поиск по названию, символу или атомному номеру...",
+  searchResults: "Результаты поиска",
+  searchNoResults: "Не найдено элементов, соответствующих вашему запросу",
+  clearSearch: "Очистить поиск"
 };
