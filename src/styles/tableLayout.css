@@ -15,6 +15,8 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  padding: 0;
+  margin: 0;
 }
 
 .period-row {

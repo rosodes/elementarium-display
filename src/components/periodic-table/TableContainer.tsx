@@ -29,24 +29,30 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
 
   return (
     <div 
-      className="periodic-table flex flex-col gap-1 mx-auto"
-      role="grid"
-      onKeyDown={handleKeyDown}
+      className="periodic-table-container"
+      role="region"
+      aria-label="Periodic Table of Elements"
     >
-      <GroupNumbers />
-      {renderPeriod1(onElementClick)}
-      {renderPeriod2(onElementClick)}
-      {renderPeriod3(onElementClick)}
-      {renderPeriod4(onElementClick)}
-      {renderPeriod5(onElementClick)}
-      {renderPeriod6(onElementClick)}
-      {renderPeriod7(onElementClick)}
-      
-      <div className="my-4" aria-hidden="true"></div>
-      
-      <div className="ml-20">
-        {renderLanthanides(onElementClick)}
-        {renderActinides(onElementClick)}
+      <div 
+        className="periodic-table"
+        role="grid"
+        onKeyDown={handleKeyDown}
+      >
+        <GroupNumbers />
+        {renderPeriod1(onElementClick)}
+        {renderPeriod2(onElementClick)}
+        {renderPeriod3(onElementClick)}
+        {renderPeriod4(onElementClick)}
+        {renderPeriod5(onElementClick)}
+        {renderPeriod6(onElementClick)}
+        {renderPeriod7(onElementClick)}
+        
+        <div className="my-4" aria-hidden="true"></div>
+        
+        <div className="ml-20">
+          {renderLanthanides(onElementClick)}
+          {renderActinides(onElementClick)}
+        </div>
       </div>
     </div>
   );
