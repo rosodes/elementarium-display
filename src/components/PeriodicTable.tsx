@@ -26,7 +26,7 @@ const PeriodicTable = () => {
       .filter((element): element is ElementType => {
         if (!element) return false;
         
-        // Search across all available translations
+        // Get translated element name if available
         const translatedName = t.ui?.elements?.[element.symbol.toLowerCase()] || element.name;
         
         const matchesName = translatedName.toLowerCase().includes(query) || 
@@ -53,7 +53,11 @@ const PeriodicTable = () => {
   }, []);
   
   return (
-    <div className="w-full max-w-full py-4">
+    <div 
+      className="periodic-table-container w-full max-w-full overflow-auto py-4"
+      role="region"
+      aria-label={t.title}
+    >
       <SearchBar onSearch={handleSearch} />
       
       {searchQuery && filteredElements.length > 0 && (
