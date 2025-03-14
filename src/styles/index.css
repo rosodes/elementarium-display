@@ -1,7 +1,0 @@
-
-/* Import all periodic table styles */
-@import './elementBlocks.css';
-@import './categoryColors.css';
-@import './elementCard.css';
-@import './tableLayout.css';
-@import './responsiveTable.css';
