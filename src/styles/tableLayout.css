@@ -17,6 +17,7 @@
   scrollbar-width: thin;
   padding: 0;
   margin: 0;
+  display: block; /* Ensure it's displayed */
 }
 
 .period-row {

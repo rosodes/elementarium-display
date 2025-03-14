@@ -37,6 +37,7 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
         className="periodic-table"
         role="grid"
         onKeyDown={handleKeyDown}
+        tabIndex={0}
       >
         <GroupNumbers />
         {renderPeriod1(onElementClick)}

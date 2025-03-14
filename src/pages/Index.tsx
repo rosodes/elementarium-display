@@ -16,7 +16,9 @@ const Index = () => {
           <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
         </div>
         
-        <PeriodicTable />
+        <div className="w-full">
+          <PeriodicTable />
+        </div>
       </main>
       
       <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center">
