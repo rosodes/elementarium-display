@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
+import { getCategoryColor } from '../data/elementCategories';
 
 interface ElementProps {
   element: ElementType;
@@ -107,9 +108,9 @@ const Element = ({ element, onClick }: ElementProps) => {
       
       {/* Hidden detailed information for screen readers */}
       <span className="sr-only">
-        {t.elementDetails.category}: {element.category}. 
-        {element.discoveryYear ? `${t.elementDetails.discoveryYear}: ${element.discoveryYear}.` : ''} 
-        {element.electron ? `${t.elementDetails.electronConfig}: ${element.electron}.` : ''}
+        {t.elementDetails.series}: {element.series}. 
+        {element.discover ? `${t.elementDetails.discovered}: ${element.discover}.` : ''} 
+        {element.electronstring ? `${t.elementDetails.electronConfig}: ${element.electronstring}.` : ''}
       </span>
     </button>
   );
