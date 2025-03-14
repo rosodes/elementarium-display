@@ -1,0 +1,69 @@
+
+/* Responsive design for the periodic table */
+@media (max-width: 1400px) {
+  .element-card, .element-placeholder {
+    width: 65px;
+    height: 65px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .element-card, .element-placeholder {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 992px) {
+  .element-card, .element-placeholder {
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+  }
+  
+  .element-card .text-lg {
+    font-size: 0.9rem;
+  }
+  
+  .element-card .text-[9px] {
+    font-size: 0.6rem;
+  }
+  
+  .element-card .text-[8px] {
+    font-size: 0.55rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .element-card, .element-placeholder {
+    width: 45px;
+    height: 45px;
+    padding: 2px;
+  }
+  
+  .element-card .text-lg {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .element-card, .element-placeholder {
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+  }
+  
+  .element-card .text-lg {
+    font-size: 0.75rem;
+    margin-top: 1px;
+    margin-bottom: 0;
+  }
+  
+  .element-card .text-[9px], 
+  .element-card .text-[8px], 
+  .element-card .text-[7px], 
+  .element-card .text-[6px], 
+  .element-card .text-[5px] {
+    font-size: 0.5rem;
+  }
+}

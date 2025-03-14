@@ -1,0 +1,123 @@
+
+/* Legacy Category Colors with improved contrast */
+
+.bg-alkali {
+  background-color: #ff8a65;
+  border: 1px solid #ff5722;
+  color: #1a1a1a;
+}
+
+.bg-alkaline {
+  background-color: #ffb74d;
+  border: 1px solid #ff9800;
+  color: #1a1a1a;
+}
+
+.bg-transition {
+  background-color: #90caf9;
+  border: 1px solid #2196f3;
+  color: #1a1a1a;
+}
+
+.bg-post_transition {
+  background-color: #a5d6a7;
+  border: 1px solid #4caf50;
+  color: #1a1a1a;
+}
+
+.bg-metalloid {
+  background-color: #ce93d8;
+  border: 1px solid #9c27b0;
+  color: #1a1a1a;
+}
+
+.bg-nonmetal {
+  background-color: #80deea;
+  border: 1px solid #00bcd4;
+  color: #1a1a1a;
+}
+
+.bg-noble {
+  background-color: #ef9a9a;
+  border: 1px solid #f44336;
+  color: #1a1a1a;
+}
+
+.bg-lanthanide {
+  background-color: #b39ddb;
+  border: 1px solid #673ab7;
+  color: #1a1a1a;
+}
+
+.bg-actinide {
+  background-color: #f48fb1;
+  border: 1px solid #e91e63;
+  color: #1a1a1a;
+}
+
+.bg-unknown {
+  background-color: #bcaaa4;
+  border: 1px solid #795548;
+  color: #1a1a1a;
+}
+
+/* Dark Mode Category Color Adjustments */
+.dark .bg-alkali {
+  background-color: #ff5722;
+  border: 1px solid #ff8a65;
+  color: #ffffff;
+}
+
+.dark .bg-alkaline {
+  background-color: #ff9800;
+  border: 1px solid #ffb74d;
+  color: #1a1a1a; /* Dark text for better contrast */
+}
+
+.dark .bg-transition {
+  background-color: #2196f3;
+  border: 1px solid #90caf9;
+  color: #1a1a1a; /* Dark text for better contrast */
+}
+
+.dark .bg-post_transition {
+  background-color: #4caf50;
+  border: 1px solid #a5d6a7;
+  color: #1a1a1a; /* Dark text for better contrast */
+}
+
+.dark .bg-metalloid {
+  background-color: #9c27b0;
+  border: 1px solid #ce93d8;
+  color: #ffffff;
+}
+
+.dark .bg-nonmetal {
+  background-color: #00bcd4;
+  border: 1px solid #80deea;
+  color: #1a1a1a; /* Dark text for better contrast */
+}
+
+.dark .bg-noble {
+  background-color: #f44336;
+  border: 1px solid #ef9a9a;
+  color: #ffffff;
+}
+
+.dark .bg-lanthanide {
+  background-color: #673ab7;
+  border: 1px solid #b39ddb;
+  color: #ffffff;
+}
+
+.dark .bg-actinide {
+  background-color: #e91e63;
+  border: 1px solid #f48fb1;
+  color: #ffffff;
+}
+
+.dark .bg-unknown {
+  background-color: #795548;
+  border: 1px solid #bcaaa4;
+  color: #ffffff;
+}
