@@ -92,7 +92,7 @@ const PeriodicTable = () => {
       
       <Legend />
       
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto pb-4">
         <TableContainer 
           onElementClick={handleElementClick} 
           selectedElement={selectedElement}

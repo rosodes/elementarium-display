@@ -1,4 +1,3 @@
-
 /* Periodic Table Styles with improved accessibility */
 .element-card {
   width: 70px;
@@ -186,11 +185,18 @@
 
 /* Special styles for placeholder elements */
 .placeholder-lanthanide, .placeholder-actinide {
-  width: 20px !important; /* Force the width to be 20px */
+  width: 20px !important;
+  height: 70px;
   border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.lanthanide-actinide-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 /* Focus states for accessibility */
