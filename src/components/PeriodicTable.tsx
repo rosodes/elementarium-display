@@ -54,7 +54,7 @@ const PeriodicTable = () => {
   
   return (
     <div 
-      className="periodic-table-container w-full max-w-full overflow-auto py-4"
+      className="periodic-table-container w-full max-w-7xl mx-auto overflow-auto py-4"
       role="region"
       aria-label={t.title}
     >
@@ -92,10 +92,12 @@ const PeriodicTable = () => {
       
       <Legend />
       
-      <TableContainer 
-        onElementClick={handleElementClick} 
-        selectedElement={selectedElement}
-      />
+      <div className="overflow-x-auto">
+        <TableContainer 
+          onElementClick={handleElementClick} 
+          selectedElement={selectedElement}
+        />
+      </div>
       
       {selectedElement && (
         <ElementDetails element={selectedElement} onClose={closeDetails} />

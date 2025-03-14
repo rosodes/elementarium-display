@@ -1,3 +1,4 @@
+
 /* Periodic Table Styles with improved accessibility */
 .element-card {
   width: 70px;
@@ -105,8 +106,8 @@
 }
 
 .bg-lanthanide {
-  background-color: #b39ddb;
-  border: 1px solid #673ab7;
+  background-color: #b6d7a8;
+  border: 1px solid #93c47d;
   color: #1a1a1a;
 }
 
@@ -166,8 +167,8 @@
 }
 
 .dark .bg-lanthanide {
-  background-color: #673ab7;
-  border: 1px solid #b39ddb;
+  background-color: #3e8e37; /* Darker green */
+  border: 1px solid #93c47d;
   color: #ffffff;
 }
 
@@ -181,6 +182,15 @@
   background-color: #795548;
   border: 1px solid #bcaaa4;
   color: #ffffff;
+}
+
+/* Special styles for placeholder elements */
+.placeholder-lanthanide, .placeholder-actinide {
+  width: 20px !important; /* Force the width to be 20px */
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Focus states for accessibility */
@@ -256,11 +266,21 @@
     width: 65px;
     height: 65px;
   }
+  
+  .placeholder-lanthanide, .placeholder-actinide {
+    width: 20px !important;
+    height: 65px;
+  }
 }
 
 @media (max-width: 1200px) {
   .element-card, .element-placeholder {
     width: 60px;
+    height: 60px;
+  }
+  
+  .placeholder-lanthanide, .placeholder-actinide {
+    width: 18px !important;
     height: 60px;
   }
 }
@@ -270,6 +290,11 @@
     width: 50px;
     height: 50px;
     padding: 2px;
+  }
+  
+  .placeholder-lanthanide, .placeholder-actinide {
+    width: 15px !important;
+    height: 50px;
   }
   
   .element-card .text-lg {
@@ -292,6 +317,11 @@
     padding: 2px;
   }
   
+  .placeholder-lanthanide, .placeholder-actinide {
+    width: 12px !important;
+    height: 45px;
+  }
+  
   .element-card .text-lg {
     font-size: 0.85rem;
   }
@@ -302,6 +332,11 @@
     width: 40px;
     height: 40px;
     padding: 2px;
+  }
+  
+  .placeholder-lanthanide, .placeholder-actinide {
+    width: 10px !important;
+    height: 40px;
   }
   
   .element-card .text-lg {

@@ -44,7 +44,7 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
       
       <div className="my-4" aria-hidden="true"></div>
       
-      <div className="ml-20">
+      <div className="lanthanide-actinide-container ml-[90px]">
         {renderLanthanides(onElementClick)}
         {renderActinides(onElementClick)}
       </div>

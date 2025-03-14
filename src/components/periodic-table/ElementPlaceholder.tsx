@@ -12,10 +12,10 @@ const ElementPlaceholder = ({ type, range }: ElementPlaceholderProps) => {
   
   return (
     <div 
-      className={`element-card ${bgClass} flex items-center justify-center w-[70px] h-[70px] flex-shrink-0 dark:text-gray-100`}
+      className={`element-card ${bgClass} flex items-center justify-center w-[20px] h-[70px] flex-shrink-0 dark:text-gray-100 placeholder-${type}`}
       aria-label={`${ariaLabel}: ${range}`}
     >
-      <span className="text-xs font-bold">{range}</span>
+      <span className="text-[8px] font-bold rotate-90">{range}</span>
     </div>
   );
 };
