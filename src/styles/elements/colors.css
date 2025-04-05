@@ -1,0 +1,172 @@
+
+/* Element block colors - Light mode */
+.bg-s-block {
+  background-color: #ffb3b3; /* s-block pink/red */
+  border: 1px solid #e06666;
+  color: #1a1a1a;
+}
+
+.bg-p-block {
+  background-color: #ffce6f; /* p-block yellow/orange */
+  border: 1px solid #e6b800;
+  color: #1a1a1a;
+}
+
+.bg-d-block {
+  background-color: #90c1e4; /* d-block blue */
+  border: 1px solid #6fa8dc;
+  color: #1a1a1a;
+}
+
+.bg-f-block {
+  background-color: #a6ce9c; /* f-block green */
+  border: 1px solid #93c47d;
+  color: #1a1a1a;
+}
+
+/* Dark Mode Block Colors */
+.dark .bg-s-block {
+  background-color: #a73d3d;
+  border: 1px solid #c66;
+  color: #ffffff;
+}
+
+.dark .bg-p-block {
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
+  color: #ffffff;
+}
+
+.dark .bg-d-block {
+  background-color: #2c7cb8;
+  border: 1px solid #6fa8dc;
+  color: #ffffff;
+}
+
+.dark .bg-f-block {
+  background-color: #3e8e37;
+  border: 1px solid #93c47d;
+  color: #ffffff;
+}
+
+/* Legacy Category Colors - keeping for compatibility */
+.bg-alkali {
+  background-color: #ffb3b3; /* Same as s-block */
+  border: 1px solid #e06666;
+  color: #1a1a1a;
+}
+
+.bg-alkaline {
+  background-color: #ffb3b3; /* Same as s-block */
+  border: 1px solid #e06666;
+  color: #1a1a1a;
+}
+
+.bg-transition {
+  background-color: #90c1e4; /* Same as d-block */
+  border: 1px solid #6fa8dc;
+  color: #1a1a1a;
+}
+
+.bg-post_transition {
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
+  color: #1a1a1a;
+}
+
+.bg-metalloid {
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
+  color: #1a1a1a;
+}
+
+.bg-nonmetal {
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
+  color: #1a1a1a;
+}
+
+.bg-noble {
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
+  color: #1a1a1a;
+}
+
+.bg-lanthanide {
+  background-color: #a6ce9c; /* Same as f-block */
+  border: 1px solid #93c47d;
+  color: #1a1a1a;
+}
+
+.bg-actinide {
+  background-color: #a6ce9c; /* Same as f-block */
+  border: 1px solid #93c47d;
+  color: #1a1a1a;
+}
+
+.bg-unknown {
+  background-color: #bcaaa4;
+  border: 1px solid #795548;
+  color: #1a1a1a;
+}
+
+/* Dark Mode Color Adjustments */
+.dark .bg-alkali {
+  background-color: #a73d3d;
+  border: 1px solid #c66;
+  color: #ffffff;
+}
+
+.dark .bg-alkaline {
+  background-color: #a73d3d;
+  border: 1px solid #c66;
+  color: #ffffff;
+}
+
+.dark .bg-transition {
+  background-color: #2c7cb8;
+  border: 1px solid #6fa8dc;
+  color: #ffffff;
+}
+
+.dark .bg-post_transition {
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
+  color: #ffffff;
+}
+
+.dark .bg-metalloid {
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
+  color: #ffffff;
+}
+
+.dark .bg-nonmetal {
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
+  color: #ffffff;
+}
+
+.dark .bg-noble {
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
+  color: #ffffff;
+}
+
+.dark .bg-lanthanide {
+  background-color: #3e8e37;
+  border: 1px solid #93c47d;
+  color: #ffffff;
+}
+
+.dark .bg-actinide {
+  background-color: #3e8e37;
+  border: 1px solid #93c47d;
+  color: #ffffff;
+}
+
+.dark .bg-unknown {
+  background-color: #795548;
+  border: 1px solid #bcaaa4;
+  color: #ffffff;
+}

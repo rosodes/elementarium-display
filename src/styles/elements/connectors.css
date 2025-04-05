@@ -1,0 +1,23 @@
+
+/* Connector styles for lanthanides and actinides */
+.dashed-connector {
+  width: 15px;
+  height: 70px;
+  position: relative;
+  overflow: visible;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.connector-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 300%;
+  border-left: 2px dashed rgba(0, 0, 0, 0.3);
+}
+
+.dark .connector-line {
+  border-left: 2px dashed rgba(255, 255, 255, 0.3);
+}

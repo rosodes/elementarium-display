@@ -1,0 +1,14 @@
+
+/* Animation for table load */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.periodic-table-wrapper {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-in-animation {
+  animation: fadeIn 0.7s ease-in-out;
+}

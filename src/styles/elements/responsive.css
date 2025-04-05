@@ -1,0 +1,92 @@
+
+/* Responsive styles */
+@media (max-width: 1400px) {
+  .element-card {
+    width: 65px;
+    height: 65px;
+  }
+  
+  .dashed-connector {
+    width: 15px;
+    height: 65px;
+  }
+  
+  .f-block-container {
+    margin-left: 3.25rem;
+  }
+}
+
+@media (max-width: 1200px) {
+  .element-card {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .dashed-connector {
+    width: 12px;
+    height: 60px;
+  }
+  
+  .f-block-container {
+    margin-left: 3rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .element-card {
+    width: 50px;
+    height: 50px;
+    padding: 2px;
+  }
+  
+  .dashed-connector {
+    width: 10px;
+    height: 50px;
+  }
+  
+  .element-card .text-lg {
+    font-size: 0.9rem;
+  }
+  
+  .f-block-container {
+    margin-left: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .element-card {
+    width: 45px;
+    height: 45px;
+    padding: 2px;
+  }
+  
+  .dashed-connector {
+    width: 8px;
+    height: 45px;
+  }
+  
+  .f-block-container {
+    margin-left: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .element-card {
+    width: 40px;
+    height: 40px;
+    padding: 2px;
+  }
+  
+  .dashed-connector {
+    width: 8px;
+    height: 40px;
+  }
+  
+  .element-card .text-lg {
+    font-size: 0.75rem;
+  }
+  
+  .f-block-container {
+    margin-left: 1.5rem;
+  }
+}

@@ -1,0 +1,49 @@
+
+/* Basic element card styling */
+.element-card {
+  width: 70px;
+  height: 70px;
+  position: relative;
+  border-radius: 4px;
+  padding: 4px;
+  transition: all 0.2s ease-in-out;
+  color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* Focus states for accessibility */
+.element-card:focus-visible {
+  outline: 3px solid #2196f3;
+  outline-offset: 2px;
+  z-index: 10;
+}
+
+/* dark mode focus state */
+.dark .element-card:focus-visible {
+  outline: 3px solid #90caf9;
+}
+
+/* Hover states */
+.element-card:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.dark .element-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Screen reader only class */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

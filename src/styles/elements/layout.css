@@ -1,0 +1,72 @@
+
+/* Layout styles for the periodic table */
+.periodic-table {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: max-content;
+  padding: 10px;
+}
+
+.periodic-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding: 1rem;
+}
+
+.periodic-table-container::-webkit-scrollbar {
+  height: 6px; /* Height for horizontal scrollbar */
+}
+
+.periodic-table-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.periodic-table-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.period-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+/* Group and period labels */
+.group-label, .period-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #666;
+}
+
+/* Lanthanide and actinide blocks */
+.lanthanide-block, .actinide-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #666;
+}
+
+/* Improve alignment of block elements */
+.period-row:nth-child(6) .element-card:nth-child(3),
+.period-row:nth-child(7) .element-card:nth-child(3) {
+  margin-right: 0.5rem;
+}
+
+/* Lanthanide/Actinide section layout */
+.lanthanide-actinide-section {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.f-block-container {
+  margin-left: 3.5rem; /* Adjust to align with the main table */
+}

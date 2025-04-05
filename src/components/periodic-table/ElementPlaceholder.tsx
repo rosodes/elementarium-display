@@ -7,7 +7,7 @@ interface ElementPlaceholderProps {
 }
 
 const ElementPlaceholder = ({ type, range }: ElementPlaceholderProps) => {
-  const bgClass = type === 'lanthanide' ? 'bg-f-block' : 'bg-f-block';
+  const bgClass = 'bg-f-block';
   const ariaLabel = type === 'lanthanide' ? 'Lanthanide series elements' : 'Actinide series elements';
   
   return (
