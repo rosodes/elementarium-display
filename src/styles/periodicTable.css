@@ -1,3 +1,4 @@
+
 /* Periodic Table Styles with improved accessibility */
 .element-card {
   width: 70px;
@@ -11,108 +12,108 @@
   flex-shrink: 0;
 }
 
-/* Block Colors - Light Mode with improved contrast */
+/* Block Colors - based on the provided image */
 .bg-s-block {
-  background-color: #ffb3b3; /* Improved pink */
+  background-color: #ffb3b3; /* s-block pink/red */
   border: 1px solid #e06666;
   color: #1a1a1a;
 }
 
 .bg-p-block {
-  background-color: #ffd966; /* Improved yellow */
+  background-color: #ffce6f; /* p-block yellow/orange */
   border: 1px solid #e6b800;
   color: #1a1a1a;
 }
 
 .bg-d-block {
-  background-color: #9fc5e8; /* Improved blue */
+  background-color: #90c1e4; /* d-block blue */
   border: 1px solid #6fa8dc;
   color: #1a1a1a;
 }
 
 .bg-f-block {
-  background-color: #b6d7a8; /* Improved green */
+  background-color: #a6ce9c; /* f-block green */
   border: 1px solid #93c47d;
   color: #1a1a1a;
 }
 
-/* Dark Mode Block Colors with improved contrast */
+/* Dark Mode Block Colors */
 .dark .bg-s-block {
-  background-color: #a73d3d; /* Darker pink */
+  background-color: #a73d3d;
   border: 1px solid #c66;
   color: #ffffff;
 }
 
 .dark .bg-p-block {
-  background-color: #b8860b; /* Darker yellow */
+  background-color: #b8860b;
   border: 1px solid #e6b800;
   color: #ffffff;
 }
 
 .dark .bg-d-block {
-  background-color: #2c7cb8; /* Darker blue */
+  background-color: #2c7cb8;
   border: 1px solid #6fa8dc;
   color: #ffffff;
 }
 
 .dark .bg-f-block {
-  background-color: #3e8e37; /* Darker green */
+  background-color: #3e8e37;
   border: 1px solid #93c47d;
   color: #ffffff;
 }
 
-/* Legacy Category Colors - keeping for compatibility with improved contrast */
+/* Legacy Category Colors - keeping for compatibility */
 .bg-alkali {
-  background-color: #ff8a65;
-  border: 1px solid #ff5722;
+  background-color: #ffb3b3; /* Same as s-block */
+  border: 1px solid #e06666;
   color: #1a1a1a;
 }
 
 .bg-alkaline {
-  background-color: #ffb74d;
-  border: 1px solid #ff9800;
+  background-color: #ffb3b3; /* Same as s-block */
+  border: 1px solid #e06666;
   color: #1a1a1a;
 }
 
 .bg-transition {
-  background-color: #90caf9;
-  border: 1px solid #2196f3;
+  background-color: #90c1e4; /* Same as d-block */
+  border: 1px solid #6fa8dc;
   color: #1a1a1a;
 }
 
 .bg-post_transition {
-  background-color: #a5d6a7;
-  border: 1px solid #4caf50;
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
   color: #1a1a1a;
 }
 
 .bg-metalloid {
-  background-color: #ce93d8;
-  border: 1px solid #9c27b0;
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
   color: #1a1a1a;
 }
 
 .bg-nonmetal {
-  background-color: #80deea;
-  border: 1px solid #00bcd4;
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
   color: #1a1a1a;
 }
 
 .bg-noble {
-  background-color: #ef9a9a;
-  border: 1px solid #f44336;
+  background-color: #ffce6f; /* Same as p-block */
+  border: 1px solid #e6b800;
   color: #1a1a1a;
 }
 
 .bg-lanthanide {
-  background-color: #b6d7a8;
+  background-color: #a6ce9c; /* Same as f-block */
   border: 1px solid #93c47d;
   color: #1a1a1a;
 }
 
 .bg-actinide {
-  background-color: #f48fb1;
-  border: 1px solid #e91e63;
+  background-color: #a6ce9c; /* Same as f-block */
+  border: 1px solid #93c47d;
   color: #1a1a1a;
 }
 
@@ -122,58 +123,58 @@
   color: #1a1a1a;
 }
 
-/* Dark Mode Color Adjustments with better contrast */
+/* Dark Mode Color Adjustments */
 .dark .bg-alkali {
-  background-color: #ff5722;
-  border: 1px solid #ff8a65;
+  background-color: #a73d3d;
+  border: 1px solid #c66;
   color: #ffffff;
 }
 
 .dark .bg-alkaline {
-  background-color: #ff9800;
-  border: 1px solid #ffb74d;
-  color: #1a1a1a; /* Dark text for better contrast */
+  background-color: #a73d3d;
+  border: 1px solid #c66;
+  color: #ffffff;
 }
 
 .dark .bg-transition {
-  background-color: #2196f3;
-  border: 1px solid #90caf9;
-  color: #1a1a1a; /* Dark text for better contrast */
+  background-color: #2c7cb8;
+  border: 1px solid #6fa8dc;
+  color: #ffffff;
 }
 
 .dark .bg-post_transition {
-  background-color: #4caf50;
-  border: 1px solid #a5d6a7;
-  color: #1a1a1a; /* Dark text for better contrast */
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
+  color: #ffffff;
 }
 
 .dark .bg-metalloid {
-  background-color: #9c27b0;
-  border: 1px solid #ce93d8;
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
   color: #ffffff;
 }
 
 .dark .bg-nonmetal {
-  background-color: #00bcd4;
-  border: 1px solid #80deea;
-  color: #1a1a1a; /* Dark text for better contrast */
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
+  color: #ffffff;
 }
 
 .dark .bg-noble {
-  background-color: #f44336;
-  border: 1px solid #ef9a9a;
+  background-color: #b8860b;
+  border: 1px solid #e6b800;
   color: #ffffff;
 }
 
 .dark .bg-lanthanide {
-  background-color: #3e8e37; /* Darker green */
+  background-color: #3e8e37;
   border: 1px solid #93c47d;
   color: #ffffff;
 }
 
 .dark .bg-actinide {
-  background-color: #e91e63;
-  border: 1px solid #f48fb1;
+  background-color: #3e8e37;
+  border: 1px solid #93c47d;
   color: #ffffff;
 }
 
@@ -183,22 +184,39 @@
   color: #ffffff;
 }
 
-/* Special styles for placeholder elements */
-.placeholder-lanthanide, .placeholder-actinide {
-  width: 20px !important;
+/* Connector styles for lanthanides and actinides */
+.dashed-connector {
+  width: 15px;
   height: 70px;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  overflow: visible;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 
-.lanthanide-actinide-container {
+.connector-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 300%;
+  border-left: 2px dashed rgba(0, 0, 0, 0.3);
+}
+
+.dark .connector-line {
+  border-left: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+/* Lanthanide/Actinide section layout */
+.lanthanide-actinide-section {
+  margin-top: 2.5rem;
   display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-top: 6px;
-  width: fit-content;
+  justify-content: center;
+  position: relative;
+}
+
+.f-block-container {
+  margin-left: 3.5rem; /* Adjust to align with the main table */
 }
 
 /* Focus states for accessibility */
@@ -224,19 +242,13 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-/* Keyboard navigation indicator */
-.element-card:focus {
-  outline: 2px solid #2196f3;
-  outline-offset: 2px;
-}
-
 /* Animation for table load */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-.periodic-table {
+.periodic-table-wrapper {
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -244,13 +256,12 @@
   animation: fadeIn 0.7s ease-in-out;
 }
 
-/* Remaining styles - keeping unchanged */
+/* Layout styles for the periodic table */
 .periodic-table {
   display: flex;
   flex-direction: column;
   gap: 4px;
   width: max-content;
-  min-width: 100%;
   padding: 10px;
 }
 
@@ -259,6 +270,7 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
+  padding: 1rem;
 }
 
 .period-row {
@@ -267,45 +279,48 @@
   flex-wrap: nowrap;
 }
 
-.element-placeholder {
-  width: 70px;
-  height: 70px;
-  flex-shrink: 0;
-}
-
+/* Responsive styles */
 @media (max-width: 1400px) {
-  .element-card, .element-placeholder {
+  .element-card {
     width: 65px;
     height: 65px;
   }
   
-  .placeholder-lanthanide, .placeholder-actinide {
-    width: 20px !important;
+  .dashed-connector {
+    width: 15px;
     height: 65px;
+  }
+  
+  .f-block-container {
+    margin-left: 3.25rem;
   }
 }
 
 @media (max-width: 1200px) {
-  .element-card, .element-placeholder {
+  .element-card {
     width: 60px;
     height: 60px;
   }
   
-  .placeholder-lanthanide, .placeholder-actinide {
-    width: 18px !important;
+  .dashed-connector {
+    width: 12px;
     height: 60px;
+  }
+  
+  .f-block-container {
+    margin-left: 3rem;
   }
 }
 
 @media (max-width: 992px) {
-  .element-card, .element-placeholder {
+  .element-card {
     width: 50px;
     height: 50px;
     padding: 2px;
   }
   
-  .placeholder-lanthanide, .placeholder-actinide {
-    width: 15px !important;
+  .dashed-connector {
+    width: 10px;
     height: 50px;
   }
   
@@ -313,59 +328,50 @@
     font-size: 0.9rem;
   }
   
-  .element-card .text-[9px] {
-    font-size: 0.6rem;
-  }
-  
-  .element-card .text-[8px] {
-    font-size: 0.55rem;
+  .f-block-container {
+    margin-left: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
-  .element-card, .element-placeholder {
+  .element-card {
     width: 45px;
     height: 45px;
     padding: 2px;
   }
   
-  .placeholder-lanthanide, .placeholder-actinide {
-    width: 12px !important;
+  .dashed-connector {
+    width: 8px;
     height: 45px;
   }
   
-  .element-card .text-lg {
-    font-size: 0.85rem;
+  .f-block-container {
+    margin-left: 2rem;
   }
 }
 
 @media (max-width: 640px) {
-  .element-card, .element-placeholder {
+  .element-card {
     width: 40px;
     height: 40px;
     padding: 2px;
   }
   
-  .placeholder-lanthanide, .placeholder-actinide {
-    width: 10px !important;
+  .dashed-connector {
+    width: 8px;
     height: 40px;
   }
   
   .element-card .text-lg {
     font-size: 0.75rem;
-    margin-top: 1px;
-    margin-bottom: 0;
   }
   
-  .element-card .text-[9px], 
-  .element-card .text-[8px], 
-  .element-card .text-[7px], 
-  .element-card .text-[6px], 
-  .element-card .text-[5px] {
-    font-size: 0.5rem;
+  .f-block-container {
+    margin-left: 1.5rem;
   }
 }
 
+/* Screen reader only class */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -376,4 +382,10 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Improve alignment of block elements */
+.period-row:nth-child(6) .element-card:nth-child(3),
+.period-row:nth-child(7) .element-card:nth-child(3) {
+  margin-right: 0.5rem;
 }

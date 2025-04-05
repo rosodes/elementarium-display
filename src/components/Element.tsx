@@ -27,24 +27,6 @@ const Element = ({ element, onClick }: ElementProps) => {
     return getCategoryColor(element.category || element.series);
   };
 
-  // Get the right contrast text color for accessibility
-  const getTextColorClass = () => {
-    const blockType = element.expandedconfig ? 
-      (element.expandedconfig.includes(' s') ? 's' : 
-       element.expandedconfig.includes(' p') ? 'p' : 
-       element.expandedconfig.includes(' d') ? 'd' : 
-       element.expandedconfig.includes(' f') ? 'f' : '') : '';
-    
-    // Higher contrast text colors based on block type
-    switch (blockType) {
-      case 's': return 'text-gray-900 dark:text-white';
-      case 'p': return 'text-gray-900 dark:text-white';
-      case 'd': return 'text-gray-900 dark:text-white';
-      case 'f': return 'text-gray-900 dark:text-white';
-      default: return 'text-gray-900 dark:text-white';
-    }
-  };
-  
   // Check if element is radioactive
   const isRadioactive = () => {
     const radioactiveElements = [43, 61, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118];
@@ -70,7 +52,7 @@ const Element = ({ element, onClick }: ElementProps) => {
   
   return (
     <button 
-      className={`element-card w-[54px] h-[54px] sm:w-[70px] sm:h-[70px] ${getElementColor()} ${getTextColorClass()} 
+      className={`element-card w-[54px] h-[54px] sm:w-[70px] sm:h-[70px] ${getElementColor()}
                 transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
                 hover:shadow-lg hover:scale-105 flex-shrink-0 relative
                 dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5
@@ -84,10 +66,12 @@ const Element = ({ element, onClick }: ElementProps) => {
       tabIndex={0}
     >
       <div className="flex justify-between items-start w-full">
-        <div className="text-[7px] sm:text-[9px] opacity-70">{element.atomic}</div>
-        <div className="text-[7px] sm:text-[9px] opacity-70">
-          {element.oxidation?.split(',')[0]?.replace('c', '') || ''}
-        </div>
+        <div className="text-[7px] sm:text-[9px] font-semibold">{element.atomic}</div>
+        {element.oxidation && (
+          <div className="text-[7px] sm:text-[9px]">
+            {element.oxidation.split(',')[0]?.replace('c', '') || ''}
+          </div>
+        )}
       </div>
       
       <div className="text-center flex-grow flex flex-col justify-center items-center">
@@ -98,9 +82,9 @@ const Element = ({ element, onClick }: ElementProps) => {
       </div>
       
       <div className="flex justify-between items-end w-full">
-        <div className="text-[6px] sm:text-[8px] opacity-70">{element.weight}</div>
+        <div className="text-[6px] sm:text-[8px] opacity-80">{element.weight}</div>
         {isRadioactive() && (
-          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 mb-0.5 mr-0.5" 
+          <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 animate-pulse-subtle" 
                title={t.ui?.radioactive || "Radioactive"} 
                aria-label={t.ui?.radioactive || "Radioactive element"}></div>
         )}

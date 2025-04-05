@@ -38,26 +38,28 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
 
   return (
     <div 
-      className="periodic-table flex flex-col gap-1 mx-auto"
+      className="periodic-table-wrapper relative overflow-hidden"
       role="grid"
       onKeyDown={handleKeyDown}
       ref={tableRef}
       aria-label="Periodic Table of Elements"
     >
-      <GroupNumbers />
-      {renderPeriod1(onElementClick)}
-      {renderPeriod2(onElementClick)}
-      {renderPeriod3(onElementClick)}
-      {renderPeriod4(onElementClick)}
-      {renderPeriod5(onElementClick)}
-      {renderPeriod6(onElementClick)}
-      {renderPeriod7(onElementClick)}
+      <div className="periodic-table flex flex-col gap-1 mx-auto">
+        <GroupNumbers />
+        {renderPeriod1(onElementClick)}
+        {renderPeriod2(onElementClick)}
+        {renderPeriod3(onElementClick)}
+        {renderPeriod4(onElementClick)}
+        {renderPeriod5(onElementClick)}
+        {renderPeriod6(onElementClick)}
+        {renderPeriod7(onElementClick)}
+      </div>
       
-      <div className="my-4" aria-hidden="true"></div>
-      
-      <div className="lanthanide-actinide-container ml-[45px]">
-        {renderLanthanides(onElementClick)}
-        {renderActinides(onElementClick)}
+      <div className="lanthanide-actinide-section mt-8">
+        <div className="f-block-container flex flex-col gap-4">
+          {renderLanthanides(onElementClick)}
+          {renderActinides(onElementClick)}
+        </div>
       </div>
     </div>
   );

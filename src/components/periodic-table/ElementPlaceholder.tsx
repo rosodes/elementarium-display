@@ -7,15 +7,15 @@ interface ElementPlaceholderProps {
 }
 
 const ElementPlaceholder = ({ type, range }: ElementPlaceholderProps) => {
-  const bgClass = type === 'lanthanide' ? 'bg-lanthanide' : 'bg-actinide';
+  const bgClass = type === 'lanthanide' ? 'bg-f-block' : 'bg-f-block';
   const ariaLabel = type === 'lanthanide' ? 'Lanthanide series elements' : 'Actinide series elements';
   
   return (
     <div 
-      className={`element-card ${bgClass} flex items-center justify-center w-[20px] h-[70px] flex-shrink-0 dark:text-gray-100 placeholder-${type}`}
+      className={`element-card ${bgClass} flex items-center justify-center dashed-connector placeholder-${type}`}
       aria-label={`${ariaLabel}: ${range}`}
     >
-      <span className="text-[8px] font-bold rotate-90">{range}</span>
+      <div className="connector-line"></div>
     </div>
   );
 };
