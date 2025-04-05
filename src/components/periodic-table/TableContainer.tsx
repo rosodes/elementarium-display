@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
 import GroupNumbers from './GroupNumbers';
 import {
@@ -20,6 +20,8 @@ interface TableContainerProps {
 }
 
 const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps) => {
+  const tableRef = useRef<HTMLDivElement>(null);
+  
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape' && selectedElement) {
@@ -27,11 +29,20 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
     }
   };
 
+  // Add smooth animation when table is first rendered
+  useEffect(() => {
+    if (tableRef.current) {
+      tableRef.current.classList.add('fade-in-animation');
+    }
+  }, []);
+
   return (
     <div 
       className="periodic-table flex flex-col gap-1 mx-auto"
       role="grid"
       onKeyDown={handleKeyDown}
+      ref={tableRef}
+      aria-label="Periodic Table of Elements"
     >
       <GroupNumbers />
       {renderPeriod1(onElementClick)}
