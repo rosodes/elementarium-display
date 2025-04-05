@@ -69,4 +69,13 @@
 
 .f-block-container {
   margin-left: 3.5rem; /* Align with the main table */
+  position: relative;
+  z-index: 1; /* Ensure f-block is above connector lines */
+}
+
+/* Make sure the placeholder connectors align properly */
+.placeholder-lanthanide,
+.placeholder-actinide {
+  position: relative;
+  z-index: 0;
 }

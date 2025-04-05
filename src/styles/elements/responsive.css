@@ -72,6 +72,11 @@
   .periodic-table-container {
     padding: 0.25rem;
   }
+  
+  .connector-line::before,
+  .connector-line::after {
+    border-left-width: 1.5px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -96,5 +101,10 @@
   
   .periodic-table-container {
     padding: 0;
+  }
+  
+  .connector-line::before,
+  .connector-line::after {
+    border-left-width: 1px;
   }
 }

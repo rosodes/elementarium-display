@@ -12,15 +12,54 @@
   padding: 0;
 }
 
+/* Two-color connector line implementation */
 .connector-line {
   position: absolute;
   left: 50%;
   top: 0;
   height: 300%;
-  border-left: 2px dashed rgba(0, 0, 0, 0.3);
   transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
 }
 
-.dark .connector-line {
-  border-left: 2px dashed rgba(255, 255, 255, 0.3);
+.connector-line::before,
+.connector-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 0;
+  border-left: 2px dashed;
+}
+
+/* Top section of connector line (matches main table color) */
+.connector-line::before {
+  top: 0;
+  height: 50%;
+  border-left-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Bottom section of connector line (matches f-block color) */
+.connector-line::after {
+  top: 50%;
+  height: 50%;
+  border-left-color: #8bc34a; /* Green color for f-block connection */
+}
+
+/* Dark mode adjustments */
+.dark .connector-line::before {
+  border-left-color: rgba(255, 255, 255, 0.3);
+}
+
+.dark .connector-line::after {
+  border-left-color: #689f38; /* Darker green for dark mode */
+}
+
+/* Specific connector placement */
+.placeholder-lanthanide .connector-line {
+  height: 250%;
+}
+
+.placeholder-actinide .connector-line {
+  height: 350%;
 }
