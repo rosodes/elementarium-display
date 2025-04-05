@@ -54,7 +54,7 @@ const PeriodicTable = () => {
   
   return (
     <div 
-      className="periodic-table-container w-full max-w-7xl mx-auto overflow-auto py-4"
+      className="periodic-table-container w-full mx-auto py-2"
       role="region"
       aria-label={t.title}
     >

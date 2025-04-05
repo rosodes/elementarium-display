@@ -13,7 +13,7 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .periodic-table-container::-webkit-scrollbar {
@@ -56,7 +56,7 @@
 /* Improve alignment of block elements */
 .period-row:nth-child(6) .element-card:nth-child(3),
 .period-row:nth-child(7) .element-card:nth-child(3) {
-  margin-right: 0.5rem;
+  margin-right: 0;
 }
 
 /* Lanthanide/Actinide section layout */
@@ -68,5 +68,5 @@
 }
 
 .f-block-container {
-  margin-left: 3.5rem; /* Adjust to align with the main table */
+  margin-left: 3.5rem; /* Align with the main table */
 }

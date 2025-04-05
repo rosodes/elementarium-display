@@ -8,6 +8,8 @@
   border: none;
   background: transparent;
   box-shadow: none;
+  margin: 0;
+  padding: 0;
 }
 
 .connector-line {
@@ -16,6 +18,7 @@
   top: 0;
   height: 300%;
   border-left: 2px dashed rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%);
 }
 
 .dark .connector-line {

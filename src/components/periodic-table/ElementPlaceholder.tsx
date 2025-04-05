@@ -12,7 +12,7 @@ const ElementPlaceholder = ({ type, range }: ElementPlaceholderProps) => {
   
   return (
     <div 
-      className={`element-card ${bgClass} flex items-center justify-center dashed-connector placeholder-${type}`}
+      className={`dashed-connector flex items-center justify-center placeholder-${type}`}
       aria-label={`${ariaLabel}: ${range}`}
     >
       <div className="connector-line"></div>

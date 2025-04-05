@@ -68,6 +68,10 @@
   .f-block-container {
     margin-left: 2rem;
   }
+  
+  .periodic-table-container {
+    padding: 0.25rem;
+  }
 }
 
 @media (max-width: 640px) {
@@ -88,5 +92,9 @@
   
   .f-block-container {
     margin-left: 1.5rem;
+  }
+  
+  .periodic-table-container {
+    padding: 0;
   }
 }
