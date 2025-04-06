@@ -1,41 +1,55 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { languages, LanguageKey, TranslationData } from '../i18n';
+import { languages, LanguageKey, TranslationData, addLanguage } from '../i18n';
 
 interface LanguageContextType {
-  language: LanguageKey;
+  language: string;
   t: TranslationData;
-  setLanguage: (lang: LanguageKey) => void;
+  setLanguage: (lang: string) => void;
+  supportedLanguages: string[];
+  addLanguage: (key: string, translations: TranslationData) => void;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<LanguageKey>('en');
+  const [language, setLanguage] = useState<string>('en');
+  const [supportedLanguages, setSupportedLanguages] = useState<string[]>(Object.keys(languages));
   
   // Get initial language from localStorage or browser language
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('preferredLanguage') as LanguageKey | null;
-    if (savedLanguage && languages[savedLanguage]) {
+    const savedLanguage = localStorage.getItem('preferredLanguage');
+    if (savedLanguage && languages[savedLanguage as keyof typeof languages]) {
       setLanguage(savedLanguage);
     } else {
       // Use browser language if available and supported
-      const browserLang = navigator.language.split('-')[0] as LanguageKey;
-      if (languages[browserLang]) {
+      const browserLang = navigator.language.split('-')[0];
+      if (languages[browserLang as keyof typeof languages]) {
         setLanguage(browserLang);
       }
     }
   }, []);
   
-  const changeLanguage = (lang: LanguageKey) => {
-    setLanguage(lang);
-    localStorage.setItem('preferredLanguage', lang);
+  const changeLanguage = (lang: string) => {
+    if (languages[lang as keyof typeof languages]) {
+      setLanguage(lang);
+      localStorage.setItem('preferredLanguage', lang);
+    } else {
+      console.error(`Language "${lang}" is not supported`);
+    }
+  };
+
+  const handleAddLanguage = (key: string, translations: TranslationData) => {
+    addLanguage(key, translations);
+    setSupportedLanguages((prev) => [...prev, key]);
   };
   
   const value = {
     language,
-    t: languages[language],
-    setLanguage: changeLanguage
+    t: languages[language as keyof typeof languages] || languages.en,
+    setLanguage: changeLanguage,
+    supportedLanguages,
+    addLanguage: handleAddLanguage
   };
   
   return (

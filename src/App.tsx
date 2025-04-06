@@ -8,7 +8,13 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
+import { addLanguage } from "./i18n";
+import { uk } from "./i18n/languages/uk";
 
+// Add Ukrainian language
+addLanguage('uk', uk);
+
+// Update language names in Header.tsx when adding new languages
 const queryClient = new QueryClient();
 
 const App = () => (

@@ -9,16 +9,18 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { LanguageKey } from '@/i18n';
+
+// Map of language codes to display names
+const languageNames: Record<string, string> = {
+  en: 'English',
+  ru: 'Русский',
+  uk: 'Українська',
+  // Add more languages here as they are supported
+};
 
 const Header = () => {
-  const { t, language, setLanguage } = useLanguage();
+  const { t, language, setLanguage, supportedLanguages } = useLanguage();
   const { theme, toggleTheme } = useTheme();
-  
-  const languages: { key: LanguageKey; label: string }[] = [
-    { key: 'en', label: 'English' },
-    { key: 'ru', label: 'Русский' }
-  ];
 
   return (
     <header className="pt-8 pb-4 px-4 flex justify-between items-center">
@@ -31,17 +33,17 @@ const Header = () => {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon">
               <Globe className="h-[1.2rem] w-[1.2rem]" />
-              <span className="sr-only">Toggle language</span>
+              <span className="sr-only">{t.selectLanguage}</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {languages.map((lang) => (
+            {supportedLanguages.map((lang) => (
               <DropdownMenuItem 
-                key={lang.key}
-                onClick={() => setLanguage(lang.key)}
-                className={language === lang.key ? "bg-accent" : ""}
+                key={lang}
+                onClick={() => setLanguage(lang)}
+                className={language === lang ? "bg-accent" : ""}
               >
-                {lang.label}
+                {languageNames[lang] || lang}
               </DropdownMenuItem>
             ))}
           </DropdownMenuContent>
