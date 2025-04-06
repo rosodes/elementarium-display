@@ -59,7 +59,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
           value={query}
           onChange={handleChange}
           placeholder={t.ui?.searchPlaceholder || "Search by name, symbol, or atomic number..."}
-          className="pl-10 pr-10 focus:ring-2 focus:ring-primary"
+          className="pl-10 pr-10 focus:ring-2 focus:ring-primary dark:text-gray-200 dark:placeholder:text-gray-400"
           aria-label={t.ui?.search || "Search elements"}
         />
         {query && (

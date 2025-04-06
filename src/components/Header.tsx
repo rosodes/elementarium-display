@@ -27,7 +27,7 @@ const Header = () => {
       <div className="flex items-center gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon">
+            <Button variant="outline" size="icon" className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700">
               <Globe className="h-[1.2rem] w-[1.2rem]" />
               <span className="sr-only">{t.selectLanguage}</span>
             </Button>
@@ -50,6 +50,7 @@ const Header = () => {
           size="icon"
           onClick={toggleTheme}
           aria-label={t.toggleTheme}
+          className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700"
         >
           {theme === 'light' ? (
             <Moon className="h-[1.2rem] w-[1.2rem]" />

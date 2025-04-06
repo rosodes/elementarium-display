@@ -53,20 +53,24 @@ const PeriodicTable = () => {
   }, []);
   
   return (
-    <div 
-      className="w-full mx-auto py-2 pl-4 md:pl-16"
+    <section 
+      className="w-full mx-auto pt-8"
       role="region"
       aria-label={t.title}
     >
-      <div className="max-w-md mb-6">
-        <SearchBar onSearch={handleSearch} />
-        
-        <Legend />
+      <div className="pl-4 md:pl-16 text-left mb-6">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
+        <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
+      
+        <div className="max-w-md mt-6">
+          <SearchBar onSearch={handleSearch} />
+          <Legend />
+        </div>
       </div>
       
       {searchQuery && filteredElements.length > 0 && (
-        <div className="mb-4 text-left" aria-live="polite">
-          <h2 className="text-lg font-semibold mb-2">
+        <div className="pl-4 md:pl-16 mb-4 text-left" aria-live="polite">
+          <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">
             {t.ui?.searchResults || "Search results"}
           </h2>
           <div className="flex flex-wrap gap-2">
@@ -74,7 +78,7 @@ const PeriodicTable = () => {
               <button
                 key={`search-${element.atomic}`}
                 onClick={() => handleElementClick(element)}
-                className="p-2 bg-gray-100 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                className="p-2 bg-gray-100 dark:bg-gray-800 rounded border border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-800 dark:text-gray-200"
                 aria-label={`${t.ui?.elements?.[element.symbol.toLowerCase()] || element.name} (${element.symbol}), ${t.elementDetails.atomicNumber} ${element.atomic}`}
               >
                 <div className="flex items-center gap-2">
@@ -89,7 +93,7 @@ const PeriodicTable = () => {
       )}
       
       {searchQuery && filteredElements.length === 0 && (
-        <div className="my-4 text-left text-gray-500 dark:text-gray-400" aria-live="polite">
+        <div className="pl-4 md:pl-16 my-4 text-left text-gray-500 dark:text-gray-400" aria-live="polite">
           {t.ui?.searchNoResults || "No elements found matching your search"}
         </div>
       )}
@@ -104,7 +108,7 @@ const PeriodicTable = () => {
       {selectedElement && (
         <ElementDetails element={selectedElement} onClose={closeDetails} />
       )}
-    </div>
+    </section>
   );
 };
 

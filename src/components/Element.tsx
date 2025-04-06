@@ -52,7 +52,7 @@ const Element = ({ element, onClick }: ElementProps) => {
   
   return (
     <button 
-      className={`element-card w-[54px] h-[54px] sm:w-[70px] sm:h-[70px] ${getElementColor()}
+      className={`element-card w-[70px] h-[70px] ${getElementColor()}
                 transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
                 hover:shadow-lg hover:scale-105 flex-shrink-0 relative
                 dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5

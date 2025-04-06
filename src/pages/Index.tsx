@@ -11,11 +11,6 @@ const Index = () => {
       <Header />
       
       <main className="container mx-auto px-0 sm:px-2">
-        <div className="pt-8 pl-4 md:pl-16 text-left mb-6">
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
-          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
-        </div>
-        
         <PeriodicTable />
       </main>
       

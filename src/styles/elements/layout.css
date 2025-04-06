@@ -55,7 +55,7 @@
 
 .dark .group-label, 
 .dark .period-label {
-  color: #aaa;
+  color: #fff;
 }
 
 /* Lanthanide and actinide blocks */
@@ -69,7 +69,7 @@
 
 .dark .lanthanide-block, 
 .dark .actinide-block {
-  color: #aaa;
+  color: #fff;
 }
 
 /* Improve alignment of block elements */
