@@ -23,11 +23,7 @@ const Header = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="pt-8 pb-4 px-4 flex justify-between items-center">
-      <h1 className="text-3xl font-bold text-gray-700 dark:text-gray-200">
-        {t.title}
-      </h1>
-      
+    <header className="py-4 px-4 flex justify-end items-center">
       <div className="flex items-center gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

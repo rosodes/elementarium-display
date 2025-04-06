@@ -54,18 +54,22 @@ const PeriodicTable = () => {
   
   return (
     <div 
-      className="periodic-table-container w-full mx-auto py-2"
+      className="w-full mx-auto py-2 pl-4 md:pl-16"
       role="region"
       aria-label={t.title}
     >
-      <SearchBar onSearch={handleSearch} />
+      <div className="max-w-md mb-6">
+        <SearchBar onSearch={handleSearch} />
+        
+        <Legend />
+      </div>
       
       {searchQuery && filteredElements.length > 0 && (
-        <div className="mb-4" aria-live="polite">
-          <h2 className="text-lg font-semibold mb-2 text-center">
+        <div className="mb-4 text-left" aria-live="polite">
+          <h2 className="text-lg font-semibold mb-2">
             {t.ui?.searchResults || "Search results"}
           </h2>
-          <div className="flex flex-wrap justify-center gap-2">
+          <div className="flex flex-wrap gap-2">
             {filteredElements.map((element) => (
               <button
                 key={`search-${element.atomic}`}
@@ -85,14 +89,12 @@ const PeriodicTable = () => {
       )}
       
       {searchQuery && filteredElements.length === 0 && (
-        <div className="my-4 text-center text-gray-500 dark:text-gray-400" aria-live="polite">
+        <div className="my-4 text-left text-gray-500 dark:text-gray-400" aria-live="polite">
           {t.ui?.searchNoResults || "No elements found matching your search"}
         </div>
       )}
       
-      <Legend />
-      
-      <div className="overflow-x-auto pb-4">
+      <div className="periodic-table-container px-6 sm:px-12 md:px-48">
         <TableContainer 
           onElementClick={handleElementClick} 
           selectedElement={selectedElement}

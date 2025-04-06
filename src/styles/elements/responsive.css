@@ -51,6 +51,11 @@
   .f-block-container {
     margin-left: 2.5rem;
   }
+  
+  .periodic-table-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -70,7 +75,8 @@
   }
   
   .periodic-table-container {
-    padding: 0.25rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
   }
   
   .connector-line::before,
@@ -100,7 +106,8 @@
   }
   
   .periodic-table-container {
-    padding: 0;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
   
   .connector-line::before,

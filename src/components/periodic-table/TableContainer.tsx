@@ -44,7 +44,7 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
       ref={tableRef}
       aria-label="Periodic Table of Elements"
     >
-      <div className="periodic-table flex flex-col gap-1 mx-auto">
+      <div className="periodic-table mx-auto">
         <GroupNumbers />
         {renderPeriod1(onElementClick)}
         {renderPeriod2(onElementClick)}

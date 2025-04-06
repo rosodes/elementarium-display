@@ -6,6 +6,7 @@
   gap: 4px;
   width: max-content;
   padding: 10px;
+  margin: 0 auto;
 }
 
 .periodic-table-container {
@@ -13,7 +14,7 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  padding: 0.5rem;
+  padding: 0;
 }
 
 .periodic-table-container::-webkit-scrollbar {
@@ -25,8 +26,16 @@
   border-radius: 3px;
 }
 
+.dark .periodic-table-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .periodic-table-container::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .periodic-table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .period-row {
@@ -44,6 +53,11 @@
   color: #666;
 }
 
+.dark .group-label, 
+.dark .period-label {
+  color: #aaa;
+}
+
 /* Lanthanide and actinide blocks */
 .lanthanide-block, .actinide-block {
   display: flex;
@@ -51,6 +65,11 @@
   justify-content: center;
   padding: 0.5rem;
   color: #666;
+}
+
+.dark .lanthanide-block, 
+.dark .actinide-block {
+  color: #aaa;
 }
 
 /* Improve alignment of block elements */
