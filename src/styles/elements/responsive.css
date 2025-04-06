@@ -35,11 +35,6 @@
   .f-block-container {
     margin-left: 3rem;
   }
-  
-  .periodic-table-container {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
 }
 
 @media (max-width: 992px) {
@@ -61,32 +56,22 @@
   .f-block-container {
     margin-left: 2.5rem;
   }
-  
-  .periodic-table-container {
-    padding-left: 32px;
-    padding-right: 32px;
-  }
 }
 
 @media (max-width: 768px) {
   .element-card {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     padding: 2px;
   }
   
   .dashed-connector {
     width: 10px;
-    height: 50px;
+    height: 55px;
   }
   
   .f-block-container {
     margin-left: 2.25rem;
-  }
-  
-  .periodic-table-container {
-    padding-left: 24px;
-    padding-right: 24px;
   }
   
   .connector-line::before,
@@ -97,14 +82,14 @@
 
 @media (max-width: 640px) {
   .element-card {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     padding: 2px;
   }
   
   .dashed-connector {
     width: 8px;
-    height: 45px;
+    height: 50px;
   }
   
   .element-card .text-lg {
@@ -115,13 +100,29 @@
     margin-left: 1.75rem;
   }
   
-  .periodic-table-container {
-    padding-left: 12px;
-    padding-right: 12px;
-  }
-  
   .connector-line::before,
   .connector-line::after {
     border-left-width: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .element-card {
+    width: 45px;
+    height: 45px;
+    padding: 1px;
+  }
+  
+  .dashed-connector {
+    width: 7px;
+    height: 45px;
+  }
+  
+  .element-card .text-lg {
+    font-size: 0.7rem;
+  }
+  
+  .element-card .text-xs {
+    font-size: 0.65rem;
   }
 }

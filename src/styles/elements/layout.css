@@ -74,6 +74,12 @@
   color: #fff;
 }
 
+/* Element cards base size */
+.element-card {
+  width: 70px;
+  height: 70px;
+}
+
 /* Improve alignment of block elements */
 .period-row:nth-child(6) .element-card:nth-child(3),
 .period-row:nth-child(7) .element-card:nth-child(3) {
@@ -99,4 +105,10 @@
 .placeholder-actinide {
   position: relative;
   z-index: 0;
+}
+
+/* Update dashed connector size to match element cards */
+.dashed-connector {
+  width: 15px;
+  height: 70px;
 }

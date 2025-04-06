@@ -2,15 +2,21 @@
 import PeriodicTable from '../components/PeriodicTable';
 import Header from '../components/Header';
 import { useLanguage } from '../context/LanguageContext';
+import { useState, useCallback } from 'react';
 
 const Index = () => {
   const { t } = useLanguage();
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  const handleSearch = useCallback((query: string) => {
+    setSearchQuery(query);
+  }, []);
   
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-      <Header />
+      <Header onSearch={handleSearch} />
       
-      <main className="container mx-auto px-12">
+      <main className="container mx-auto">
         <PeriodicTable />
       </main>
       
