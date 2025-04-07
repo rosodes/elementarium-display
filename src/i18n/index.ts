@@ -1,6 +1,7 @@
 
 import { en } from './languages/en';
 import { ru } from './languages/ru';
+import { uk } from './languages/uk';
 
 export type ElementTranslations = Record<string, string>;
 
@@ -171,11 +172,12 @@ export interface TranslationData {
   footer: FooterTranslations;
 }
 
-export type LanguageKey = 'en' | 'ru';
+export type LanguageKey = 'en' | 'ru' | 'uk';
 
 export const languages: Record<LanguageKey, TranslationData> = {
   en,
-  ru
+  ru,
+  uk
 };
 
 // Helper function to add new languages to the system

@@ -1,8 +1,10 @@
 
+import { useState } from 'react';
 import { Element } from '../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
-import { X } from 'lucide-react';
+import { X, Maximize2, Image } from 'lucide-react';
+import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 
 interface ElementDetailsProps {
   element: Element;
@@ -11,17 +13,60 @@ interface ElementDetailsProps {
 
 const ElementDetails = ({ element, onClose }: ElementDetailsProps) => {
   const { t } = useLanguage();
+  const [imageLoaded, setImageLoaded] = useState(false);
   const categoryColor = element.category 
     ? getCategoryColor(element.category) 
     : getSeriesColor(element.series);
+  
+  // This would be replaced with actual element images in a real implementation
+  const getElementImageUrl = (element: Element) => {
+    // For now return a placeholder
+    return `https://placehold.co/48x48/668ad8/FFFFFF/svg?text=${element.symbol}`;
+  };
     
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4">
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-3xl w-full mx-auto overflow-hidden">
         <div className={`${categoryColor} p-3 sm:p-4 flex justify-between items-center`}>
           <div className="flex items-center">
-            <div className="text-3xl sm:text-5xl font-bold mr-3 sm:mr-4">{element.symbol}</div>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button 
+                  className="w-12 h-12 rounded-md overflow-hidden mr-3 sm:mr-4 flex items-center justify-center bg-white bg-opacity-20 hover:bg-opacity-30 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-60"
+                  aria-label={`${element.name} image`}
+                >
+                  {imageLoaded ? (
+                    <img 
+                      src={getElementImageUrl(element)} 
+                      alt={element.name} 
+                      className="w-full h-full object-cover"
+                      onLoad={() => setImageLoaded(true)}
+                      onError={() => setImageLoaded(false)}
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+                      <Image size={24} className="text-gray-400 dark:text-gray-500" />
+                    </div>
+                  )}
+                  <span className="sr-only">{t.elementDetails.showMoreInfo}</span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="sm:max-w-md flex flex-col items-center p-1">
+                <div className="w-full max-h-[80vh] overflow-hidden flex items-center justify-center bg-black">
+                  <img 
+                    src={getElementImageUrl(element)} 
+                    alt={element.name} 
+                    className="max-w-full max-h-[80vh] object-contain"
+                  />
+                </div>
+                <div className="p-4 text-center">
+                  <h3 className="text-lg font-semibold">{element.name} ({element.symbol})</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{t.elementDetails.atomicNumber}: {element.atomic}</p>
+                </div>
+              </DialogContent>
+            </Dialog>
             <div>
+              <div className="text-3xl sm:text-5xl font-bold">{element.symbol}</div>
               <h2 className="text-xl sm:text-2xl font-bold">{element.name}</h2>
               <p className="text-xs sm:text-sm opacity-80">{t.elementDetails.atomicNumber}: {element.atomic}</p>
             </div>

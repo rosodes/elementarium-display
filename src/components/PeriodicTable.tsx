@@ -13,7 +13,7 @@ const PeriodicTable = () => {
   const { t, language } = useLanguage();
   
   useEffect(() => {
-    // Filter elements when search query changes
+    // Filter elements when search query changes or language changes
     if (!searchQuery.trim()) {
       setFilteredElements([]);
       return;

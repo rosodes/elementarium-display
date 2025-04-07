@@ -74,10 +74,8 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
         )}
       </div>
       <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-        <span className="sr-only">{t.ui?.searchShortcut || "Keyboard shortcut"}:</span>
-        <kbd className="inline-flex items-center px-1.5 py-0.5 rounded border border-gray-300 dark:border-gray-600 ml-1 font-mono text-xs">
-          <span className="sr-only md:not-sr-only mr-1">Ctrl</span>
-          <span aria-hidden="true" className="md:hidden">⌃</span> + /
+        <kbd className="inline-flex items-center px-1.5 py-0.5 rounded border border-gray-300 dark:border-gray-600 font-mono text-xs">
+          Ctrl + /
         </kbd>
       </div>
     </div>

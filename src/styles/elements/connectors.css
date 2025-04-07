@@ -1,7 +1,7 @@
 
 /* Connector styles for lanthanides and actinides */
 .dashed-connector {
-  width: 15px;
+  width: 4px; /* Reduced to match the gap between elements */
   height: 70px;
   position: relative;
   overflow: visible;
