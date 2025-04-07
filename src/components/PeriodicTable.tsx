@@ -56,7 +56,7 @@ const PeriodicTable = () => {
       role="region"
       aria-label={t.title}
     >
-      <div className="container mx-auto px-12">
+      <div className="px-12">
         {searchQuery && filteredElements.length > 0 && (
           <div className="mb-4 text-left" aria-live="polite">
             <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">
@@ -88,7 +88,7 @@ const PeriodicTable = () => {
         )}
       </div>
       
-      <div className="periodic-table-container">
+      <div className="periodic-table-container w-full">
         <TableContainer 
           onElementClick={handleElementClick} 
           selectedElement={selectedElement}

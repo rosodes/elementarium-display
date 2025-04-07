@@ -29,8 +29,8 @@ const Header = ({ onSearch }: HeaderProps) => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="py-6">
-      <div className="container mx-auto px-12">
+    <header className="py-6 w-full">
+      <div className="px-12">
         <div className="flex flex-col">
           {/* Top bar with title and controls */}
           <div className="flex justify-between items-start mb-4">

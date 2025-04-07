@@ -16,7 +16,7 @@ const Index = () => {
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <Header onSearch={handleSearch} />
       
-      <main className="container mx-auto">
+      <main className="w-full">
         <PeriodicTable />
       </main>
       

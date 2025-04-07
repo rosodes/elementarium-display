@@ -38,7 +38,7 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
 
   return (
     <div 
-      className="periodic-table-wrapper relative overflow-hidden"
+      className="periodic-table-wrapper relative overflow-hidden w-full"
       role="grid"
       onKeyDown={handleKeyDown}
       ref={tableRef}
