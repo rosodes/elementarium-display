@@ -5,6 +5,7 @@ import { elements } from '../data/elements';
 import ElementDetails from './ElementDetails';
 import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
+import SearchBar from './periodic-table/SearchBar';
 
 const PeriodicTable = () => {
   const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
@@ -57,6 +58,8 @@ const PeriodicTable = () => {
       aria-label={t.title}
     >
       <div className="px-12">
+        <SearchBar onSearch={handleSearch} />
+        
         {searchQuery && filteredElements.length > 0 && (
           <div className="mb-4 text-left" aria-live="polite">
             <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">

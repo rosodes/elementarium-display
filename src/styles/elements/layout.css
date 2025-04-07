@@ -52,6 +52,7 @@
   align-items: center;
   font-weight: bold;
   color: #666;
+  text-align: center;
 }
 
 .dark .group-label, 
@@ -108,6 +109,16 @@
 
 /* Update dashed connector size to match element cards */
 .dashed-connector {
-  width: 15px;
+  width: 4px;
   height: 70px;
+}
+
+/* Tooltip text color fix for dark mode */
+.dark .gpt-selector-tooltip {
+  color: #fff;
+}
+
+/* Fix for all text tooltips in dark mode */
+.dark [role="tooltip"] {
+  color: #fff;
 }

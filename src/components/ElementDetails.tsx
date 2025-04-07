@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Element } from '../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
-import { X, Maximize2, Image } from 'lucide-react';
+import { X, Image } from 'lucide-react';
 import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 
 interface ElementDetailsProps {
@@ -39,20 +39,20 @@ const ElementDetails = ({ element, onClose }: ElementDetailsProps) => {
                     <img 
                       src={getElementImageUrl(element)} 
                       alt={element.name} 
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-sm"
                       onLoad={() => setImageLoaded(true)}
                       onError={() => setImageLoaded(false)}
                     />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700">
+                    <div className="w-full h-full flex items-center justify-center bg-gray-200 dark:bg-gray-700 rounded-sm">
                       <Image size={24} className="text-gray-400 dark:text-gray-500" />
                     </div>
                   )}
                   <span className="sr-only">{t.elementDetails.showMoreInfo}</span>
                 </button>
               </DialogTrigger>
-              <DialogContent className="sm:max-w-md flex flex-col items-center p-1">
-                <div className="w-full max-h-[80vh] overflow-hidden flex items-center justify-center bg-black">
+              <DialogContent className="sm:max-w-md flex flex-col items-center p-1 rounded-lg">
+                <div className="w-full max-h-[80vh] overflow-hidden flex items-center justify-center bg-black rounded-t-lg">
                   <img 
                     src={getElementImageUrl(element)} 
                     alt={element.name} 

@@ -15,7 +15,7 @@ const GroupNumbers = () => {
       {Array.from({ length: 18 }, (_, i) => i + 1).map(num => (
         <div 
           key={`group-${num}`}
-          className="w-[54px] sm:w-[70px] text-center text-[8px] sm:text-xs font-semibold opacity-70 flex-shrink-0"
+          className="w-[54px] sm:w-[70px] text-center text-[8px] sm:text-xs font-semibold opacity-70 flex-shrink-0 text-gray-800 dark:text-gray-200"
           aria-label={`${t.ui?.group || "Group"} ${num}`}
         >
           {num}
