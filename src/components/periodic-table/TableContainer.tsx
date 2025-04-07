@@ -55,8 +55,8 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
         {renderPeriod7(onElementClick)}
       </div>
       
-      <div className="lanthanide-actinide-section mt-8">
-        <div className="f-block-container flex flex-col gap-4">
+      <div className="lanthanide-actinide-section mt-6">
+        <div className="f-block-container flex flex-col gap-0">
           {renderLanthanides(onElementClick)}
           {renderActinides(onElementClick)}
         </div>

@@ -7,12 +7,9 @@ import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
 import SearchBar from './periodic-table/SearchBar';
 
-const PeriodicTable = () => {
-  const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
+const useElementSearch = (searchQuery: string, language: string, t: any) => {
   const [filteredElements, setFilteredElements] = useState<ElementType[]>([]);
-  const { t, language } = useLanguage();
-  
+
   useEffect(() => {
     // Filter elements when search query changes or language changes
     if (!searchQuery.trim()) {
@@ -38,6 +35,17 @@ const PeriodicTable = () => {
     
     setFilteredElements(filtered);
   }, [searchQuery, t.ui?.elements, language]);
+
+  return filteredElements;
+}
+
+const PeriodicTable = () => {
+  const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const { t, language } = useLanguage();
+  
+  // Use custom hook for element filtering
+  const filteredElements = useElementSearch(searchQuery, language, t);
   
   const handleElementClick = (element: ElementType) => {
     setSelectedElement(element);

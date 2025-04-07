@@ -28,7 +28,7 @@
 }
 
 .dark .periodic-table-container::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .periodic-table-container::-webkit-scrollbar-track {
@@ -88,14 +88,14 @@
 
 /* Lanthanide/Actinide section layout */
 .lanthanide-actinide-section {
-  margin-top: 2.5rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   position: relative;
 }
 
 .f-block-container {
-  margin-left: 3.5rem; /* Align with the main table */
+  margin-left: 3rem; /* Align with the main table */
   position: relative;
   z-index: 1; /* Ensure f-block is above connector lines */
 }
@@ -107,9 +107,9 @@
   z-index: 0;
 }
 
-/* Update dashed connector size to match element cards */
+/* Update connector size to match element cards */
 .dashed-connector {
-  width: 4px;
+  width: 2px;
   height: 70px;
 }
 
@@ -122,3 +122,4 @@
 .dark [role="tooltip"] {
   color: #fff;
 }
+

@@ -6,12 +6,20 @@ import { useLanguage } from '../../context/LanguageContext';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
+  value?: string;
 }
 
-const SearchBar = ({ onSearch }: SearchBarProps) => {
+const SearchBar = ({ onSearch, value }: SearchBarProps) => {
   const { t } = useLanguage();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(value || '');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // Update internal state when value prop changes
+  useEffect(() => {
+    if (value !== undefined) {
+      setQuery(value);
+    }
+  }, [value]);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const newQuery = e.target.value;
@@ -46,12 +54,12 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
   }, [clearSearch, query]);
 
   return (
-    <div className="w-full mb-4" role="search">
+    <div className="w-full max-w-[448px] mb-4" role="search">
       <label htmlFor="element-search" className="sr-only">
         {t.ui?.search || "Search elements"}
       </label>
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" aria-hidden="true" />
+        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-300 h-4 w-4" aria-hidden="true" />
         <Input
           id="element-search"
           ref={inputRef}
@@ -65,7 +73,7 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
         {query && (
           <button 
             onClick={clearSearch}
-            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary rounded-full p-1"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:text-gray-300 dark:hover:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary rounded-full p-1"
             aria-label={t.ui?.clearSearch || "Clear search"}
             title={t.ui?.clearSearch || "Clear search"}
           >

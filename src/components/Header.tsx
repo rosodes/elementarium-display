@@ -9,7 +9,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import SearchBar from './periodic-table/SearchBar';
 import Legend from './periodic-table/Legend';
 
 // Map of language codes to display names
@@ -21,7 +20,7 @@ const languageNames: Record<string, string> = {
 };
 
 interface HeaderProps {
-  onSearch: (query: string) => void;
+  onSearch?: (query: string) => void;
 }
 
 const Header = ({ onSearch }: HeaderProps) => {
@@ -77,9 +76,8 @@ const Header = ({ onSearch }: HeaderProps) => {
             </div>
           </div>
 
-          {/* Search and legend */}
+          {/* Legend only */}
           <div className="max-w-md">
-            <SearchBar onSearch={onSearch} />
             <Legend />
           </div>
         </div>
