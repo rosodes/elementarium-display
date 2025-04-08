@@ -17,7 +17,7 @@ const Index = () => {
       <Header onSearch={handleSearch} />
       
       <main className="w-full">
-        <PeriodicTable />
+        <PeriodicTable searchQuery={searchQuery} />
       </main>
       
       <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center">

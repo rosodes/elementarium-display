@@ -54,7 +54,7 @@ const SearchBar = ({ onSearch, value }: SearchBarProps) => {
   }, [clearSearch, query]);
 
   return (
-    <div className="w-full max-w-[448px] mb-4" role="search">
+    <div className="w-full max-w-[300px]" role="search">
       <label htmlFor="element-search" className="sr-only">
         {t.ui?.search || "Search elements"}
       </label>
@@ -81,7 +81,7 @@ const SearchBar = ({ onSearch, value }: SearchBarProps) => {
           </button>
         )}
       </div>
-      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+      <div className="text-xs text-gray-500 dark:text-gray-400 mt-1 hidden sm:block">
         <kbd className="inline-flex items-center px-1.5 py-0.5 rounded border border-gray-300 dark:border-gray-600 font-mono text-xs">
           Ctrl + /
         </kbd>

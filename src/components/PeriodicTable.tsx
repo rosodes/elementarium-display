@@ -5,7 +5,10 @@ import { elements } from '../data/elements';
 import ElementDetails from './ElementDetails';
 import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
-import SearchBar from './periodic-table/SearchBar';
+
+interface PeriodicTableProps {
+  searchQuery?: string;
+}
 
 const useElementSearch = (searchQuery: string, language: string, t: any) => {
   const [filteredElements, setFilteredElements] = useState<ElementType[]>([]);
@@ -39,9 +42,8 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
   return filteredElements;
 }
 
-const PeriodicTable = () => {
+const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
   const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
-  const [searchQuery, setSearchQuery] = useState('');
   const { t, language } = useLanguage();
   
   // Use custom hook for element filtering
@@ -55,10 +57,6 @@ const PeriodicTable = () => {
     setSelectedElement(null);
   };
   
-  const handleSearch = useCallback((query: string) => {
-    setSearchQuery(query);
-  }, []);
-  
   return (
     <section 
       className="w-full mx-auto"
@@ -66,8 +64,7 @@ const PeriodicTable = () => {
       aria-label={t.title}
     >
       <div className="px-12">
-        <SearchBar onSearch={handleSearch} />
-        
+        {/* Search results section */}
         {searchQuery && filteredElements.length > 0 && (
           <div className="mb-4 text-left" aria-live="polite">
             <h2 className="text-lg font-semibold mb-2 text-gray-800 dark:text-gray-200">

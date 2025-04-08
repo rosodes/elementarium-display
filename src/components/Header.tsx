@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Legend from './periodic-table/Legend';
+import SearchBar from './periodic-table/SearchBar';
 
 // Map of language codes to display names
 const languageNames: Record<string, string> = {
@@ -39,6 +40,13 @@ const Header = ({ onSearch }: HeaderProps) => {
             </div>
 
             <div className="flex items-center gap-4">
+              {/* Add SearchBar component here, aligned to the right */}
+              {onSearch && (
+                <div className="mr-auto">
+                  <SearchBar onSearch={onSearch} />
+                </div>
+              )}
+              
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" size="icon" className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700">
