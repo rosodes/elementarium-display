@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Legend from './periodic-table/Legend';
 import SearchBar from './periodic-table/SearchBar';
+import { Separator } from './ui/separator';
 
 // Map of language codes to display names
 const languageNames: Record<string, string> = {
@@ -33,58 +34,58 @@ const Header = ({ onSearch }: HeaderProps) => {
       <div className="px-12">
         <div className="flex flex-col">
           {/* Top bar with title and controls */}
-          <div className="flex justify-between items-start mb-4">
+          <div className="flex justify-between items-center mb-4">
             <div className="flex-1">
               <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
             </div>
 
-            <div className="flex items-center gap-4">
-              {/* Add SearchBar component here, aligned to the right */}
-              {onSearch && (
-                <div className="mr-auto">
-                  <SearchBar onSearch={onSearch} />
-                </div>
-              )}
+            <div className="flex items-center space-x-6">
+              {/* Search bar positioned right */}
+              {onSearch && <SearchBar onSearch={onSearch} />}
               
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" size="icon" className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700">
-                    <Globe className="h-[1.2rem] w-[1.2rem]" />
-                    <span className="sr-only">{t.selectLanguage}</span>
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  {supportedLanguages.map((lang) => (
-                    <DropdownMenuItem 
-                      key={lang}
-                      onClick={() => setLanguage(lang)}
-                      className={language === lang ? "bg-accent" : ""}
-                    >
-                      {languageNames[lang] || lang}
-                    </DropdownMenuItem>
-                  ))}
-                </DropdownMenuContent>
-              </DropdownMenu>
-              
-              <Button
-                variant="outline"
-                size="icon"
-                onClick={toggleTheme}
-                aria-label={t.toggleTheme}
-                className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700"
-              >
-                {theme === 'light' ? (
-                  <Moon className="h-[1.2rem] w-[1.2rem]" />
-                ) : (
-                  <Sun className="h-[1.2rem] w-[1.2rem]" />
-                )}
-                <span className="sr-only">{t.toggleTheme}</span>
-              </Button>
+              <div className="flex items-center space-x-3">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon" className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700">
+                      <Globe className="h-[1.2rem] w-[1.2rem]" />
+                      <span className="sr-only">{t.selectLanguage}</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    {supportedLanguages.map((lang) => (
+                      <DropdownMenuItem 
+                        key={lang}
+                        onClick={() => setLanguage(lang)}
+                        className={language === lang ? "bg-accent" : ""}
+                      >
+                        {languageNames[lang] || lang}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+                
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={toggleTheme}
+                  aria-label={t.toggleTheme}
+                  className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700"
+                >
+                  {theme === 'light' ? (
+                    <Moon className="h-[1.2rem] w-[1.2rem]" />
+                  ) : (
+                    <Sun className="h-[1.2rem] w-[1.2rem]" />
+                  )}
+                  <span className="sr-only">{t.toggleTheme}</span>
+                </Button>
+              </div>
             </div>
           </div>
 
-          {/* Legend only */}
+          <Separator className="my-4" />
+
+          {/* Legend component */}
           <div className="max-w-md">
             <Legend />
           </div>

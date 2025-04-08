@@ -16,6 +16,7 @@
   scrollbar-width: thin;
   padding-left: 48px;
   padding-right: 48px;
+  margin-top: 1rem;
 }
 
 .periodic-table-container::-webkit-scrollbar {
@@ -122,4 +123,3 @@
 .dark [role="tooltip"] {
   color: #fff;
 }
-
