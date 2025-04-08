@@ -1,4 +1,3 @@
-
 export interface ElementDetailsTranslations {
   showMoreInfo?: string;
   viewOnWikipedia?: string;
@@ -42,6 +41,7 @@ export interface ElementDetailsTranslations {
   densityIs?: string;
   usedIn?: string;
   commonProperties?: string;
+  elementTable?: string;
 }
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -86,7 +86,8 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   meltingBoilingPoints: "It melts at {melt} K and boils at {boil} K.",
   densityIs: "It has a density of {density} g/cm³.",
   usedIn: "It is commonly used in {applications}.",
-  commonProperties: "It is known for its {properties}."
+  commonProperties: "It is known for its {properties}.",
+  elementTable: "Periodic Table of Elements"
 };
 
 export const elementDetailsRu: ElementDetailsTranslations = {
@@ -131,5 +132,6 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   meltingBoilingPoints: "Температура плавления {melt} K и кипения {boil} K.",
   densityIs: "Плотность составляет {density} г/см³.",
   usedIn: "Обычно используется в {applications}.",
-  commonProperties: "Известен своими {properties}."
+  commonProperties: "Известен своими {properties}.",
+  elementTable: "Периодическая таблица элементов"
 };

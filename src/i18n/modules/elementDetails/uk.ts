@@ -43,5 +43,6 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   meltingBoilingPoints: "Температура плавлення {melt} K та кипіння {boil} K.",
   densityIs: "Густина становить {density} г/см³.",
   usedIn: "Зазвичай використовується в {applications}.",
-  commonProperties: "Відомий своїми {properties}."
+  commonProperties: "Відомий своїми {properties}.",
+  elementTable: "Періодична таблиця елементів"
 };
