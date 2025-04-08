@@ -11,7 +11,11 @@ import { ruElements } from "./modules/elements/ru";
 
 // Create a complete Russian translation by combining all modules
 export const ru: TranslationData = {
-  ...commonRu,
+  title: commonRu.title,
+  subtitle: commonRu.subtitle,
+  selectLanguage: commonRu.selectLanguage,
+  search: commonRu.search,
+  toggleTheme: commonRu.toggleTheme,
   legend: legendRu,
   details: detailsRu,
   categories: categoriesRu,

@@ -11,7 +11,11 @@ import { enElements } from "./modules/elements/en";
 
 // Create a complete English translation by combining all modules
 export const en: TranslationData = {
-  ...commonEn,
+  title: commonEn.title,
+  subtitle: commonEn.subtitle,
+  selectLanguage: commonEn.selectLanguage,
+  search: commonEn.search,
+  toggleTheme: commonEn.toggleTheme,
   legend: legendEn,
   details: detailsEn,
   categories: categoriesEn,

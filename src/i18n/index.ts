@@ -1,7 +1,7 @@
 
-import { en } from './languages/en';
-import { ru } from './languages/ru';
-import { uk } from './languages/uk';
+import { en } from './en';
+import { ru } from './ru';
+import { uk } from './uk';
 
 export type ElementTranslations = Record<string, string>;
 
@@ -155,15 +155,7 @@ export interface CommonTranslations {
   toggleTheme: string;
 }
 
-export interface TranslationData {
-  // Common translations
-  title: string;
-  subtitle: string;
-  selectLanguage: string;
-  search: string;
-  toggleTheme: string;
-  
-  // Section translations
+export interface TranslationData extends CommonTranslations {
   legend: LegendTranslations;
   details: DetailsTranslations;
   categories: CategoriesTranslations;

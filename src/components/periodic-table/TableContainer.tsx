@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
 import GroupNumbers from './GroupNumbers';
+import { useLanguage } from '../../context/LanguageContext';
 import {
   renderPeriod1,
   renderPeriod2,
@@ -21,6 +22,7 @@ interface TableContainerProps {
 
 const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps) => {
   const tableRef = useRef<HTMLDivElement>(null);
+  const { t } = useLanguage();
   
   // Handle keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -42,7 +44,7 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
       role="grid"
       onKeyDown={handleKeyDown}
       ref={tableRef}
-      aria-label="Periodic Table of Elements"
+      aria-label={t.elementDetails.elementTable || "Periodic Table of Elements"}
     >
       <div className="periodic-table mx-auto">
         <GroupNumbers />
@@ -55,7 +57,7 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
         {renderPeriod7(onElementClick)}
       </div>
       
-      <div className="lanthanide-actinide-section mt-6">
+      <div className="lanthanide-actinide-section mt-6 ml-12">
         <div className="f-block-container flex flex-col gap-0">
           {renderLanthanides(onElementClick)}
           {renderActinides(onElementClick)}

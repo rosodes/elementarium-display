@@ -1,10 +1,6 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { languages, LanguageKey, TranslationData, addLanguage } from '../i18n';
-import { uk } from '../i18n/languages/uk';
-
-// Add Ukrainian language
-addLanguage('uk', uk);
 
 interface LanguageContextType {
   language: string;
