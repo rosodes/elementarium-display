@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface EmptyCellProps {
-  key: string;
+  key?: string; // Make key optional to avoid TypeScript errors
 }
 
 const EmptyCell = ({ key }: EmptyCellProps) => {
