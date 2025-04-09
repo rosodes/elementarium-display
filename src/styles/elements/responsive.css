@@ -12,7 +12,7 @@
   }
   
   .f-block-container {
-    margin-left: 3.5rem;
+    margin-left: 2px;
   }
   
   .periodic-table-container {
@@ -33,7 +33,7 @@
   }
   
   .f-block-container {
-    margin-left: 3rem;
+    margin-left: 2px;
   }
 }
 
@@ -54,7 +54,7 @@
   }
   
   .f-block-container {
-    margin-left: 2.5rem;
+    margin-left: 2px;
   }
 }
 
@@ -71,7 +71,7 @@
   }
   
   .f-block-container {
-    margin-left: 2.25rem;
+    margin-left: 2px;
   }
   
   .connector-line::before,
@@ -97,7 +97,7 @@
   }
   
   .f-block-container {
-    margin-left: 1.75rem;
+    margin-left: 2px;
   }
   
   .connector-line::before,

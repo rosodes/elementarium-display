@@ -96,7 +96,7 @@
 }
 
 .f-block-container {
-  margin-left: 3rem; /* Align with the main table */
+  margin-left: 2px; /* Align with the main table with 2px from divider */
   position: relative;
   z-index: 1; /* Ensure f-block is above connector lines */
 }
