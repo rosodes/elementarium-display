@@ -4,6 +4,7 @@ import Element from '../../Element';
 import { Element as ElementType } from '../../../data/elementTypes';
 import PeriodRow from '../PeriodRow';
 import { elements } from '../../../data/elements';
+import { Separator } from '../../ui/separator';
 
 // Helper function to safely find element
 const findElement = (atomicNumber: number | string): ElementType | null => {
@@ -42,6 +43,13 @@ export const renderPeriod6 = (onElementClick: (element: ElementType) => void) =>
       />
     );
   }
+  
+  // Add vertical divider after La (57)
+  period6Elements.push(
+    <div key="divider-after-57" className="flex items-center h-[70px]">
+      <Separator orientation="vertical" className="h-full opacity-70" />
+    </div>
+  );
   
   // Add Hf (72) through Rn (86)
   for (let i = 72; i <= 86; i++) {
@@ -91,6 +99,13 @@ export const renderPeriod7 = (onElementClick: (element: ElementType) => void) =>
       />
     );
   }
+  
+  // Add vertical divider after Ac (89)
+  period7Elements.push(
+    <div key="divider-after-89" className="flex items-center h-[70px]">
+      <Separator orientation="vertical" className="h-full opacity-70" />
+    </div>
+  );
   
   // Add Rf (104) through Og (118)
   for (let i = 104; i <= 118; i++) {

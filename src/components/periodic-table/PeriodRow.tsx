@@ -18,7 +18,7 @@ const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
       aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
     >
       <div 
-        className="w-5 sm:w-6 text-center text-[8px] sm:text-xs font-semibold opacity-70 mr-0.5 sm:mr-1 text-foreground" 
+        className="w-5 sm:w-6 text-center text-[8px] sm:text-xs font-semibold opacity-70 mr-0.5 sm:mr-1 text-foreground dark:text-white" 
         aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
       >
         {periodLabel}

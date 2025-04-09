@@ -11,9 +11,8 @@ import {
   renderPeriod5,
   renderPeriod6,
   renderPeriod7,
-  renderLanthanides,
-  renderActinides
 } from './tableHelpers';
+import { renderLanthanides, renderActinides } from './fBlockRows';
 
 interface TableContainerProps {
   onElementClick: (element: ElementType) => void;

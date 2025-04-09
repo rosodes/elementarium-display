@@ -63,3 +63,13 @@
 .placeholder-actinide .connector-line {
   height: 350%;
 }
+
+/* Vertical divider styling */
+.period-row .separator {
+  height: 100%;
+  opacity: 0.7;
+}
+
+.dark .period-row .separator {
+  background-color: rgba(255, 255, 255, 0.4);
+}
