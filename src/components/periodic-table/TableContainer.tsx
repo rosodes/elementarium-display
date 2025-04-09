@@ -44,7 +44,7 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
       role="grid"
       onKeyDown={handleKeyDown}
       ref={tableRef}
-      aria-label={t.title}
+      aria-label={t.elementDetails.elementTable}
     >
       <div className="periodic-table mx-auto">
         <GroupNumbers />

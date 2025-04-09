@@ -58,11 +58,15 @@ const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
     setSelectedElement(null);
   };
   
+  const handleNavigateElement = (element: ElementType) => {
+    setSelectedElement(element);
+  };
+  
   return (
     <section 
       className="w-full mx-auto"
       role="region"
-      aria-label={t.title}
+      aria-label={t.elementDetails.elementTable}
     >
       <div className="px-12">
         {/* Search results section */}
@@ -81,7 +85,11 @@ const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
       </div>
       
       {selectedElement && (
-        <ElementDetails element={selectedElement} onClose={closeDetails} />
+        <ElementDetails 
+          element={selectedElement} 
+          onClose={closeDetails} 
+          onNavigate={handleNavigateElement}
+        />
       )}
     </section>
   );

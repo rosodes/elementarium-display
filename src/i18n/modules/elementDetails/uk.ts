@@ -44,5 +44,9 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   densityIs: "Густина становить {density} г/см³.",
   usedIn: "Зазвичай використовується в {applications}.",
   commonProperties: "Відомий своїми {properties}.",
-  elementTable: "Періодична таблиця елементів"
+  elementTable: "Періодична таблиця елементів",
+  electronShellVisualization: "Візуалізація електронних оболонок",
+  previousElement: "Попередній елемент",
+  nextElement: "Наступний елемент",
+  isotopes: "Ізотопи"
 };
