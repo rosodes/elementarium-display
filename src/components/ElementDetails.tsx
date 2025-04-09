@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Element } from '../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
@@ -271,7 +270,7 @@ const ElectronShellVisualization = ({ element, categoryColor }: { element: Eleme
         </div>
       </div>
       <div className="text-xs text-center mt-2 text-gray-500 dark:text-gray-400">
-        {t.elementDetails.electronConfiguration}: {element.electronstring}
+        {t.elementDetails.electronConfig}: {element.electronstring}
       </div>
     </div>
   );
