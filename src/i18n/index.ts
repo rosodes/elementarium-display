@@ -1,4 +1,3 @@
-
 import { en } from './en';
 import { ru } from './ru';
 import { uk } from './uk';
@@ -134,6 +133,11 @@ export interface ElementDetailsTranslations {
   densityIs?: string;
   usedIn?: string;
   commonProperties?: string;
+  elementTable?: string;
+  electronShellVisualization?: string;
+  previousElement?: string;
+  nextElement?: string;
+  isotopes?: string;
 }
 
 export interface FooterTranslations {
@@ -172,7 +176,6 @@ export const languages: Record<LanguageKey, TranslationData> = {
   uk
 };
 
-// Helper function to add new languages to the system
 export function addLanguage(key: string, translations: TranslationData): void {
   (languages as Record<string, TranslationData>)[key] = translations;
 }
