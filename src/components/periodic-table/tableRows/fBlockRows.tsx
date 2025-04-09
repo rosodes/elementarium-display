@@ -5,10 +5,10 @@ import { Element as ElementType } from '../../../data/elementTypes';
 import PeriodRow from '../PeriodRow';
 import ElementPlaceholder from '../ElementPlaceholder';
 import { Separator } from '../../ui/separator';
+import { elements } from '../../../data/elements';
 
 // Helper function to safely find element
 const findElement = (atomicNumber: number | string): ElementType | null => {
-  const elements = require('../../../data/elements').elements;
   const element = elements.find(e => e && e.atomic === atomicNumber.toString());
   if (!element || typeof element !== 'object') return null;
   if (!('atomic' in element)) return null;
