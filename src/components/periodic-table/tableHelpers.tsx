@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Element from '../Element';
 import { elements } from '../../data/elements';
@@ -5,9 +6,15 @@ import EmptyCell from './EmptyCell';
 import PeriodRow from './PeriodRow';
 import { Element as ElementType } from '../../data/elementTypes';
 
+// Helper function to safely find element
+const findElement = (atomicNumber: number | string): ElementType | null => {
+  const element = elements.find(e => e && e.atomic === atomicNumber.toString());
+  return element || null;
+};
+
 // Updated the lanthanides and actinides functions to accept a skipFirstElement parameter
 export const renderLanthanides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
-  const periodNumber = "6*";
+  const periodLabel = "6*";
   
   // Start with element 58 if skipFirstElement is true, otherwise start with 57
   const startIndex = skipFirstElement ? 58 : 57;
@@ -16,7 +23,7 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
   const lanthanideElements = [];
   
   for (let i = startIndex; i <= endIndex; i++) {
-    const element = elements.find(e => parseInt(e.atomic) === i);
+    const element = findElement(i);
     if (element) {
       lanthanideElements.push(
         <Element 
@@ -29,12 +36,12 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={lanthanideElements} />
+    <PeriodRow periodLabel={periodLabel} elements={lanthanideElements} />
   );
 };
 
 export const renderActinides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
-  const periodNumber = "7*";
+  const periodLabel = "7*";
   
   // Start with element 90 if skipFirstElement is true, otherwise start with 89
   const startIndex = skipFirstElement ? 90 : 89;
@@ -43,7 +50,7 @@ export const renderActinides = (onElementClick: (element: ElementType) => void, 
   const actinideElements = [];
   
   for (let i = startIndex; i <= endIndex; i++) {
-    const element = elements.find(e => parseInt(e.atomic) === i);
+    const element = findElement(i);
     if (element) {
       actinideElements.push(
         <Element 
@@ -56,16 +63,16 @@ export const renderActinides = (onElementClick: (element: ElementType) => void, 
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={actinideElements} />
+    <PeriodRow periodLabel={periodLabel} elements={actinideElements} />
   );
 };
 
 export const renderPeriod1 = (onElementClick: (element: ElementType) => void) => {
-  const periodNumber = "1";
+  const periodLabel = "1";
   const period1Elements = [];
   
   // Add H (1)
-  const hydrogen = elements.find(e => e.atomic === "1");
+  const hydrogen = findElement(1);
   if (hydrogen) {
     period1Elements.push(
       <Element 
@@ -82,7 +89,7 @@ export const renderPeriod1 = (onElementClick: (element: ElementType) => void) =>
   }
   
   // Add He (2)
-  const helium = elements.find(e => e.atomic === "2");
+  const helium = findElement(2);
   if (helium) {
     period1Elements.push(
       <Element 
@@ -94,17 +101,17 @@ export const renderPeriod1 = (onElementClick: (element: ElementType) => void) =>
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={period1Elements} />
+    <PeriodRow periodLabel={periodLabel} elements={period1Elements} />
   );
 };
 
 export const renderPeriod2 = (onElementClick: (element: ElementType) => void) => {
-  const periodNumber = "2";
+  const periodLabel = "2";
   const period2Elements = [];
   
   // Add Li (3) and Be (4)
   for (let i = 3; i <= 4; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period2Elements.push(
         <Element 
@@ -123,7 +130,7 @@ export const renderPeriod2 = (onElementClick: (element: ElementType) => void) =>
   
   // Add B (5) through Ne (10)
   for (let i = 5; i <= 10; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period2Elements.push(
         <Element 
@@ -136,17 +143,17 @@ export const renderPeriod2 = (onElementClick: (element: ElementType) => void) =>
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={period2Elements} />
+    <PeriodRow periodLabel={periodLabel} elements={period2Elements} />
   );
 };
 
 export const renderPeriod3 = (onElementClick: (element: ElementType) => void) => {
-  const periodNumber = "3";
+  const periodLabel = "3";
   const period3Elements = [];
   
   // Add Na (11) and Mg (12)
   for (let i = 11; i <= 12; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period3Elements.push(
         <Element 
@@ -165,7 +172,7 @@ export const renderPeriod3 = (onElementClick: (element: ElementType) => void) =>
   
   // Add Al (13) through Ar (18)
   for (let i = 13; i <= 18; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period3Elements.push(
         <Element 
@@ -178,17 +185,17 @@ export const renderPeriod3 = (onElementClick: (element: ElementType) => void) =>
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={period3Elements} />
+    <PeriodRow periodLabel={periodLabel} elements={period3Elements} />
   );
 };
 
 export const renderPeriod4 = (onElementClick: (element: ElementType) => void) => {
-  const periodNumber = "4";
+  const periodLabel = "4";
   const period4Elements = [];
   
   // Add K (19) through Kr (36)
   for (let i = 19; i <= 36; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period4Elements.push(
         <Element 
@@ -201,17 +208,17 @@ export const renderPeriod4 = (onElementClick: (element: ElementType) => void) =>
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={period4Elements} />
+    <PeriodRow periodLabel={periodLabel} elements={period4Elements} />
   );
 };
 
 export const renderPeriod5 = (onElementClick: (element: ElementType) => void) => {
-  const periodNumber = "5";
+  const periodLabel = "5";
   const period5Elements = [];
   
   // Add Rb (37) through Xe (54)
   for (let i = 37; i <= 54; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period5Elements.push(
         <Element 
@@ -224,17 +231,17 @@ export const renderPeriod5 = (onElementClick: (element: ElementType) => void) =>
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={period5Elements} />
+    <PeriodRow periodLabel={periodLabel} elements={period5Elements} />
   );
 };
 
 export const renderPeriod6 = (onElementClick: (element: ElementType) => void) => {
-  const periodNumber = "6";
+  const periodLabel = "6";
   const period6Elements = [];
   
   // Add Cs (55) and Ba (56)
   for (let i = 55; i <= 56; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period6Elements.push(
         <Element 
@@ -247,7 +254,7 @@ export const renderPeriod6 = (onElementClick: (element: ElementType) => void) =>
   }
   
   // Add La (57) placeholder
-  const lanthanum = elements.find(e => e.atomic === "57");
+  const lanthanum = findElement(57);
   if (lanthanum) {
     period6Elements.push(
       <Element 
@@ -260,7 +267,7 @@ export const renderPeriod6 = (onElementClick: (element: ElementType) => void) =>
   
   // Add Hf (72) through Rn (86)
   for (let i = 72; i <= 86; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period6Elements.push(
         <Element 
@@ -273,17 +280,17 @@ export const renderPeriod6 = (onElementClick: (element: ElementType) => void) =>
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={period6Elements} />
+    <PeriodRow periodLabel={periodLabel} elements={period6Elements} />
   );
 };
 
 export const renderPeriod7 = (onElementClick: (element: ElementType) => void) => {
-  const periodNumber = "7";
+  const periodLabel = "7";
   const period7Elements = [];
   
   // Add Fr (87) and Ra (88)
   for (let i = 87; i <= 88; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period7Elements.push(
         <Element 
@@ -296,7 +303,7 @@ export const renderPeriod7 = (onElementClick: (element: ElementType) => void) =>
   }
   
   // Add Ac (89) placeholder
-  const actinium = elements.find(e => e.atomic === "89");
+  const actinium = findElement(89);
   if (actinium) {
     period7Elements.push(
       <Element 
@@ -309,7 +316,7 @@ export const renderPeriod7 = (onElementClick: (element: ElementType) => void) =>
   
   // Add Rf (104) through Og (118)
   for (let i = 104; i <= 118; i++) {
-    const element = elements.find(e => e.atomic === i.toString());
+    const element = findElement(i);
     if (element) {
       period7Elements.push(
         <Element 
@@ -322,6 +329,6 @@ export const renderPeriod7 = (onElementClick: (element: ElementType) => void) =>
   }
   
   return (
-    <PeriodRow periodLabel={periodNumber} elements={period7Elements} />
+    <PeriodRow periodLabel={periodLabel} elements={period7Elements} />
   );
 };
