@@ -59,8 +59,9 @@ const TableContainer = ({ onElementClick, selectedElement }: TableContainerProps
       
       <div className="lanthanide-actinide-section mt-6 ml-2">
         <div className="f-block-container flex flex-col gap-0">
-          {renderLanthanides(onElementClick)}
-          {renderActinides(onElementClick)}
+          {/* Removed elements 57 and 89 from the lanthanides and actinides rows */}
+          {renderLanthanides(onElementClick, true)} {/* Pass true to skip element 57 */}
+          {renderActinides(onElementClick, true)} {/* Pass true to skip element 89 */}
         </div>
       </div>
     </div>

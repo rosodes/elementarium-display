@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Element } from '../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
@@ -9,8 +10,10 @@ import PhysicalProperties from './element-details/PhysicalProperties';
 import AtomicStructure from './element-details/AtomicStructure';
 import AdditionalInfo from './element-details/AdditionalInfo';
 import { HoverCard, HoverCardTrigger, HoverCardContent } from './ui/hover-card';
-import { Popover, PopoverTrigger, PopoverContent } from './ui/popover';
+import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from './ui/tooltip';
 import { getElement } from '../data/elements';
+import ElectronShellVisualization from './element-details/ElectronShellVisualization';
+import ElementProperties from './element-details/ElementProperties';
 
 interface ElementDetailsProps {
   element: Element;
@@ -60,6 +63,15 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
             </button>
           )}
           
+          {/* Close button - moved to the top right corner away from the navigation arrow */}
+          <button 
+            onClick={onClose}
+            className="absolute right-3 top-3 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-gray-800 dark:text-white transition-colors"
+            aria-label={t.ui?.close}
+          >
+            <X className="h-5 w-5 sm:h-6 sm:w-6" />
+          </button>
+          
           <div className="flex items-center mx-auto">
             <ElementImage element={element} categoryColor={categoryColor} />
             <div className="text-center">
@@ -79,14 +91,6 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
               <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           )}
-          
-          <button 
-            onClick={onClose}
-            className="absolute right-3 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-gray-800 dark:text-white transition-colors"
-            aria-label={t.ui?.close}
-          >
-            <X className="h-5 w-5 sm:h-6 sm:w-6" />
-          </button>
         </div>
         
         <div className="p-4 sm:p-6 max-h-[70vh] overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-850">
@@ -151,126 +155,6 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
             )}
           </div>
         </div>
-      </div>
-    </div>
-  );
-};
-
-// New component for Element Properties with hover card for definitions
-const ElementProperties = ({ element }: { element: Element }) => {
-  const { t } = useLanguage();
-  
-  return (
-    <div className="bg-white dark:bg-gray-800 rounded-md p-4 shadow-sm border border-gray-200 dark:border-gray-700">
-      <h3 className="text-base sm:text-lg font-bold mb-2">{t.elementDetails.properties}</h3>
-      <div className="grid grid-cols-2 gap-x-3 gap-y-1 text-xs sm:text-sm">
-        {element.electroneg && (
-          <PropertyWithTooltip
-            label={t.elementDetails.electronegativity}
-            value={element.electroneg}
-            tooltip="Measure of an atom's ability to attract electrons in a chemical bond"
-          />
-        )}
-        
-        {element.valence && (
-          <PropertyWithTooltip
-            label={t.elementDetails.valence}
-            value={element.valence}
-            tooltip="Number of electrons in the outermost shell"
-          />
-        )}
-        
-        {element.oxidation && (
-          <PropertyWithTooltip
-            label={t.elementDetails.oxidationStates}
-            value={element.oxidation}
-            tooltip="The charge an atom can have due to loss or gain of electrons"
-          />
-        )}
-        
-        {element.isotopes && (
-          <PropertyWithTooltip
-            label={t.elementDetails.isotopes}
-            value={element.isotopes.toString()}
-            tooltip="Variants of the element with different numbers of neutrons"
-          />
-        )}
-      </div>
-    </div>
-  );
-};
-
-// Reusable component for properties with tooltip explanations
-const PropertyWithTooltip = ({ label, value, tooltip }: { label: string, value: string, tooltip: string }) => {
-  return (
-    <>
-      <div className="font-medium flex items-center">
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <span className="cursor-help border-b border-dotted border-gray-400">{label}:</span>
-          </HoverCardTrigger>
-          <HoverCardContent className="text-xs p-2">
-            {tooltip}
-          </HoverCardContent>
-        </HoverCard>
-      </div>
-      <div>{value}</div>
-    </>
-  );
-};
-
-// New component for electron shell visualization
-const ElectronShellVisualization = ({ element, categoryColor }: { element: Element, categoryColor: string }) => {
-  const { t } = useLanguage();
-  
-  if (!element.electrons || element.electrons.length === 0) return null;
-  
-  return (
-    <div className="mt-6 bg-white dark:bg-gray-800 rounded-md p-4 shadow-sm border border-gray-200 dark:border-gray-700">
-      <h3 className="text-base sm:text-lg font-bold mb-3">{t.elementDetails.electronShellVisualization}</h3>
-      <div className="flex justify-center py-4">
-        <div className="relative">
-          {/* Electron shells visualization */}
-          {element.electrons.map((count, index) => {
-            const diameter = (index + 1) * 40;
-            return (
-              <div 
-                key={index}
-                className="rounded-full absolute border border-gray-300 dark:border-gray-600"
-                style={{
-                  width: `${diameter}px`,
-                  height: `${diameter}px`,
-                  left: `calc(50% - ${diameter / 2}px)`,
-                  top: `calc(50% - ${diameter / 2}px)`,
-                }}
-              >
-                {/* Electrons in the shell */}
-                {Array.from({ length: Math.min(count, 8) }).map((_, i) => {
-                  const angle = (i / Math.min(count, 8)) * Math.PI * 2;
-                  const x = Math.cos(angle) * (diameter / 2);
-                  const y = Math.sin(angle) * (diameter / 2);
-                  return (
-                    <div
-                      key={i}
-                      className={`absolute w-3 h-3 rounded-full ${categoryColor}`}
-                      style={{
-                        left: `calc(50% + ${x}px - 6px)`,
-                        top: `calc(50% + ${y}px - 6px)`,
-                      }}
-                    />
-                  );
-                })}
-              </div>
-            );
-          })}
-          {/* Nucleus */}
-          <div className={`${categoryColor} w-8 h-8 rounded-full absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center text-xs font-bold`}>
-            {element.symbol}
-          </div>
-        </div>
-      </div>
-      <div className="text-xs text-center mt-2 text-gray-500 dark:text-gray-400">
-        {t.elementDetails.electronConfig}: {element.electronstring}
       </div>
     </div>
   );

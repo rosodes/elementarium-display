@@ -1,168 +1,327 @@
 import React from 'react';
-import { Element as ElementType } from '../../data/elementTypes';
 import Element from '../Element';
+import { elements } from '../../data/elements';
 import EmptyCell from './EmptyCell';
-import ElementPlaceholder from './ElementPlaceholder';
 import PeriodRow from './PeriodRow';
-import { getElement } from '../../data/elements';
+import { Element as ElementType } from '../../data/elementTypes';
 
-// Type for the element click handler
-type ElementClickHandler = (element: ElementType) => void;
-
-// Helper to create elements for a range
-export const createElementsForRange = (start: number, end: number, onElementClick: ElementClickHandler) => {
-  const elements: React.ReactNode[] = [];
+// Updated the lanthanides and actinides functions to accept a skipFirstElement parameter
+export const renderLanthanides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
+  const periodNumber = "6*";
   
-  for (let i = start; i <= end; i++) {
-    const element = getElement(i);
+  // Start with element 58 if skipFirstElement is true, otherwise start with 57
+  const startIndex = skipFirstElement ? 58 : 57;
+  const endIndex = 71;
+  
+  const lanthanideElements = [];
+  
+  for (let i = startIndex; i <= endIndex; i++) {
+    const element = elements.find(e => parseInt(e.atomic) === i);
     if (element) {
-      elements.push(<Element key={`element-${i}`} element={element} onClick={onElementClick} />);
+      lanthanideElements.push(
+        <Element 
+          key={`lanthanide-${i}`}
+          element={element}
+          onClick={() => onElementClick(element)}
+        />
+      );
     }
   }
   
-  return elements;
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={lanthanideElements} />
+  );
 };
 
-// Create a row of empty cells
-export const createEmptyCells = (count: number, prefix: string) => {
-  const cells: React.ReactNode[] = [];
-  for (let i = 0; i < count; i++) {
-    cells.push(<EmptyCell key={`${prefix}-${i}`} keyId={`${prefix}-${i}`} />);
+export const renderActinides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
+  const periodNumber = "7*";
+  
+  // Start with element 90 if skipFirstElement is true, otherwise start with 89
+  const startIndex = skipFirstElement ? 90 : 89;
+  const endIndex = 103;
+  
+  const actinideElements = [];
+  
+  for (let i = startIndex; i <= endIndex; i++) {
+    const element = elements.find(e => parseInt(e.atomic) === i);
+    if (element) {
+      actinideElements.push(
+        <Element 
+          key={`actinide-${i}`}
+          element={element}
+          onClick={() => onElementClick(element)}
+        />
+      );
+    }
   }
-  return cells;
+  
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={actinideElements} />
+  );
 };
 
-// Render Period 1 (H and He)
-export const renderPeriod1 = (onElementClick: ElementClickHandler) => {
-  const row: React.ReactNode[] = [];
+export const renderPeriod1 = (onElementClick: (element: ElementType) => void) => {
+  const periodNumber = "1";
+  const period1Elements = [];
   
-  const hydrogen = getElement(1);
-  if (hydrogen) row.push(<Element key="element-1" element={hydrogen} onClick={onElementClick} />);
+  // Add H (1)
+  const hydrogen = elements.find(e => e.atomic === "1");
+  if (hydrogen) {
+    period1Elements.push(
+      <Element 
+        key="hydrogen" 
+        element={hydrogen} 
+        onClick={() => onElementClick(hydrogen)} 
+      />
+    );
+  }
   
-  row.push(...createEmptyCells(16, "empty-1"));
+  // Add empty cells for groups 2-17
+  for (let i = 0; i < 16; i++) {
+    period1Elements.push(<EmptyCell key={`empty-p1-${i}`} />);
+  }
   
-  const helium = getElement(2);
-  if (helium) row.push(<Element key="element-2" element={helium} onClick={onElementClick} />);
+  // Add He (2)
+  const helium = elements.find(e => e.atomic === "2");
+  if (helium) {
+    period1Elements.push(
+      <Element 
+        key="helium" 
+        element={helium} 
+        onClick={() => onElementClick(helium)} 
+      />
+    );
+  }
   
-  return <PeriodRow periodKey="period-1" periodNumber={1}>{row}</PeriodRow>;
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={period1Elements} />
+  );
 };
 
-// Render Period 2 (Li to Ne)
-export const renderPeriod2 = (onElementClick: ElementClickHandler) => {
-  const row: React.ReactNode[] = [];
+export const renderPeriod2 = (onElementClick: (element: ElementType) => void) => {
+  const periodNumber = "2";
+  const period2Elements = [];
   
-  const lithium = getElement(3);
-  const beryllium = getElement(4);
+  // Add Li (3) and Be (4)
+  for (let i = 3; i <= 4; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period2Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  if (lithium) row.push(<Element key="element-3" element={lithium} onClick={onElementClick} />);
-  if (beryllium) row.push(<Element key="element-4" element={beryllium} onClick={onElementClick} />);
+  // Add empty cells for groups 3-12
+  for (let i = 0; i < 10; i++) {
+    period2Elements.push(<EmptyCell key={`empty-p2-${i}`} />);
+  }
   
-  row.push(...createEmptyCells(10, "empty-2"));
+  // Add B (5) through Ne (10)
+  for (let i = 5; i <= 10; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period2Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  row.push(...createElementsForRange(5, 10, onElementClick));
-  
-  return <PeriodRow periodKey="period-2" periodNumber={2}>{row}</PeriodRow>;
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={period2Elements} />
+  );
 };
 
-// Render Period 3 (Na to Ar)
-export const renderPeriod3 = (onElementClick: ElementClickHandler) => {
-  const row: React.ReactNode[] = [];
+export const renderPeriod3 = (onElementClick: (element: ElementType) => void) => {
+  const periodNumber = "3";
+  const period3Elements = [];
   
-  const sodium = getElement(11);
-  const magnesium = getElement(12);
+  // Add Na (11) and Mg (12)
+  for (let i = 11; i <= 12; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period3Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  if (sodium) row.push(<Element key="element-11" element={sodium} onClick={onElementClick} />);
-  if (magnesium) row.push(<Element key="element-12" element={magnesium} onClick={onElementClick} />);
+  // Add empty cells for groups 3-12
+  for (let i = 0; i < 10; i++) {
+    period3Elements.push(<EmptyCell key={`empty-p3-${i}`} />);
+  }
   
-  row.push(...createEmptyCells(10, "empty-3"));
+  // Add Al (13) through Ar (18)
+  for (let i = 13; i <= 18; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period3Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  row.push(...createElementsForRange(13, 18, onElementClick));
-  
-  return <PeriodRow periodKey="period-3" periodNumber={3}>{row}</PeriodRow>;
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={period3Elements} />
+  );
 };
 
-// Render Period 4 (K to Kr)
-export const renderPeriod4 = (onElementClick: ElementClickHandler) => {
-  const row = createElementsForRange(19, 36, onElementClick);
-  return <PeriodRow periodKey="period-4" periodNumber={4}>{row}</PeriodRow>;
+export const renderPeriod4 = (onElementClick: (element: ElementType) => void) => {
+  const periodNumber = "4";
+  const period4Elements = [];
+  
+  // Add K (19) through Kr (36)
+  for (let i = 19; i <= 36; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period4Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
+  
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={period4Elements} />
+  );
 };
 
-// Render Period 5 (Rb to Xe)
-export const renderPeriod5 = (onElementClick: ElementClickHandler) => {
-  const row = createElementsForRange(37, 54, onElementClick);
-  return <PeriodRow periodKey="period-5" periodNumber={5}>{row}</PeriodRow>;
+export const renderPeriod5 = (onElementClick: (element: ElementType) => void) => {
+  const periodNumber = "5";
+  const period5Elements = [];
+  
+  // Add Rb (37) through Xe (54)
+  for (let i = 37; i <= 54; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period5Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
+  
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={period5Elements} />
+  );
 };
 
-// Render Period 6 (Cs to Rn)
-export const renderPeriod6 = (onElementClick: ElementClickHandler) => {
-  const row: React.ReactNode[] = [];
+export const renderPeriod6 = (onElementClick: (element: ElementType) => void) => {
+  const periodNumber = "6";
+  const period6Elements = [];
   
-  // First add elements 55-56 (Cs, Ba)
-  row.push(...createElementsForRange(55, 56, onElementClick));
+  // Add Cs (55) and Ba (56)
+  for (let i = 55; i <= 56; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period6Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  // Add La (57) directly without the placeholder
-  const lanthanum = getElement(57);
-  if (lanthanum) row.push(<Element key="element-57" element={lanthanum} onClick={onElementClick} />);
+  // Add La (57) placeholder
+  const lanthanum = elements.find(e => e.atomic === "57");
+  if (lanthanum) {
+    period6Elements.push(
+      <Element 
+        key="lanthanum" 
+        element={lanthanum} 
+        onClick={() => onElementClick(lanthanum)} 
+      />
+    );
+  }
   
-  // Add dashed connector placeholder
-  row.push(<ElementPlaceholder key="lanthanide-placeholder" type="lanthanide" range="57-71" />);
+  // Add Hf (72) through Rn (86)
+  for (let i = 72; i <= 86; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period6Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  // Add elements 72-86 (Hf to Rn)
-  row.push(...createElementsForRange(72, 86, onElementClick));
-  
-  return <PeriodRow periodKey="period-6" periodNumber={6}>{row}</PeriodRow>;
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={period6Elements} />
+  );
 };
 
-// Render Period 7 (Fr to Og)
-export const renderPeriod7 = (onElementClick: ElementClickHandler) => {
-  const row: React.ReactNode[] = [];
+export const renderPeriod7 = (onElementClick: (element: ElementType) => void) => {
+  const periodNumber = "7";
+  const period7Elements = [];
   
-  // First add elements 87-88 (Fr, Ra)
-  row.push(...createElementsForRange(87, 88, onElementClick));
+  // Add Fr (87) and Ra (88)
+  for (let i = 87; i <= 88; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period7Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  // Add Ac (89) directly without the placeholder
-  const actinium = getElement(89);
-  if (actinium) row.push(<Element key="element-89" element={actinium} onClick={onElementClick} />);
+  // Add Ac (89) placeholder
+  const actinium = elements.find(e => e.atomic === "89");
+  if (actinium) {
+    period7Elements.push(
+      <Element 
+        key="actinium" 
+        element={actinium} 
+        onClick={() => onElementClick(actinium)} 
+      />
+    );
+  }
   
-  // Add dashed connector placeholder
-  row.push(<ElementPlaceholder key="actinide-placeholder" type="actinide" range="89-103" />);
+  // Add Rf (104) through Og (118)
+  for (let i = 104; i <= 118; i++) {
+    const element = elements.find(e => e.atomic === i.toString());
+    if (element) {
+      period7Elements.push(
+        <Element 
+          key={`element-${i}`} 
+          element={element} 
+          onClick={() => onElementClick(element)} 
+        />
+      );
+    }
+  }
   
-  // Add elements 104-118
-  row.push(...createElementsForRange(104, 118, onElementClick));
-  
-  return <PeriodRow periodKey="period-7" periodNumber={7}>{row}</PeriodRow>;
-};
-
-// Render Lanthanides row (57-71)
-export const renderLanthanides = (onElementClick: ElementClickHandler) => {
-  const row: React.ReactNode[] = [];
-  
-  // Create elements 58-71 (Ce to Lu)
-  row.push(...createEmptyCells(3, "empty-la"));
-  
-  // Start with La (57) which is already in row 6
-  const lanthanum = getElement(57);
-  if (lanthanum) row.push(<Element key="element-57-copy" element={lanthanum} onClick={onElementClick} />);
-  
-  // Add remaining lanthanides 58-71
-  row.push(...createElementsForRange(58, 71, onElementClick));
-  
-  return <PeriodRow periodKey="lanthanides" className="mt-4">{row}</PeriodRow>;
-};
-
-// Render Actinides row (89-103)
-export const renderActinides = (onElementClick: ElementClickHandler) => {
-  const row: React.ReactNode[] = [];
-  
-  // Create elements 90-103 (Th to Lr)
-  row.push(...createEmptyCells(3, "empty-ac"));
-  
-  // Start with Ac (89) which is already in row 7
-  const actinium = getElement(89);
-  if (actinium) row.push(<Element key="element-89-copy" element={actinium} onClick={onElementClick} />);
-  
-  // Add remaining actinides 90-103
-  row.push(...createElementsForRange(90, 103, onElementClick));
-  
-  return <PeriodRow periodKey="actinides">{row}</PeriodRow>;
+  return (
+    <PeriodRow periodLabel={periodNumber} elements={period7Elements} />
+  );
 };
