@@ -44,9 +44,9 @@ export const renderPeriod6 = (onElementClick: (element: ElementType) => void) =>
     );
   }
   
-  // Add vertical divider after La (57)
+  // Add vertical divider after La (57) with id for alignment reference
   period6Elements.push(
-    <div key="divider-after-57" className="flex items-center h-[70px]">
+    <div key="divider-after-57" className="flex items-center h-[70px]" id="period6-divider">
       <Separator orientation="vertical" className="h-full opacity-70" />
     </div>
   );
@@ -100,9 +100,9 @@ export const renderPeriod7 = (onElementClick: (element: ElementType) => void) =>
     );
   }
   
-  // Add vertical divider after Ac (89)
+  // Add vertical divider after Ac (89) with id for alignment reference
   period7Elements.push(
-    <div key="divider-after-89" className="flex items-center h-[70px]">
+    <div key="divider-after-89" className="flex items-center h-[70px]" id="period7-divider">
       <Separator orientation="vertical" className="h-full opacity-70" />
     </div>
   );
