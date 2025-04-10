@@ -1,3 +1,4 @@
+
 import { en } from './en';
 import { ru } from './ru';
 import { uk } from './uk';
@@ -138,6 +139,29 @@ export interface ElementDetailsTranslations {
   previousElement?: string;
   nextElement?: string;
   isotopes?: string;
+  // Add the missing properties
+  industry?: string;
+  discovery?: string;
+  structure?: string;
+  shells?: string;
+  meltingBoilingPoint?: string;
+  electronProperties?: string;
+  electronAffinity?: string;
+  abundance?: string;
+  universe?: string;
+  solar?: string;
+  crust?: string;
+  atomicRadii?: string;
+  vanDerWaals?: string;
+  quantumNumbers?: string;
+  principal?: string;
+  azimuthal?: string;
+  magnetic?: string;
+  orbitalDiagram?: string;
+  keyApplications?: string;
+  industrialUses?: string;
+  everydayUses?: string;
+  funFacts?: string;
 }
 
 export interface FooterTranslations {
