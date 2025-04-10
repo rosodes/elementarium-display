@@ -68,6 +68,11 @@
 .period-row .separator {
   height: 100%;
   opacity: 0.9;
+  background-color: #8bc34a; /* Green color for separator */
+}
+
+.dark .period-row .separator {
+  background-color: #689f38; /* Darker green for dark mode */
 }
 
 .period-row .f-block-divider {
