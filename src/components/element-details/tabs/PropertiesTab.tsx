@@ -1,11 +1,12 @@
 
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
+import { Separator } from '@/components/ui/separator';
+import { ComparisonChart } from '../../../i18n/modules/elementDetails/ComparisonChart';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Scale, Zap } from 'lucide-react';
-import ElementProperties from '../ElementProperties';
-import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
+import { getElement } from '../../../data/elements';
+import ElementPropertyRadar from '../visualizations/ElementPropertyRadar';
+import { Card, CardContent } from '@/components/ui/card';
 
 interface PropertiesTabProps {
   element: Element;
@@ -15,180 +16,173 @@ interface PropertiesTabProps {
 const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
   const { t } = useLanguage();
   
-  // Generate data for melting and boiling points comparison chart
-  const getMeltingPointData = () => {
-    const meltingPoint = element.melt ? parseFloat(element.melt) : 0;
-    const boilingPoint = element.boil ? parseFloat(element.boil) : 0;
-    
-    // Find some neighboring elements for comparison
+  // Get neighboring elements for comparison
+  const getNeighborElements = () => {
     const atomicNum = parseInt(element.atomic);
-    const neighborElements = [
-      { name: atomicNum - 2 > 0 ? `Element ${atomicNum - 2}` : '', meltingPoint: Math.random() * 1000 + 200 },
-      { name: atomicNum - 1 > 0 ? `Element ${atomicNum - 1}` : '', meltingPoint: Math.random() * 1000 + 200 },
-      { name: element.symbol, meltingPoint, boilingPoint },
-      { name: atomicNum + 1 <= 118 ? `Element ${atomicNum + 1}` : '', meltingPoint: Math.random() * 1000 + 200 },
-      { name: atomicNum + 2 <= 118 ? `Element ${atomicNum + 2}` : '', meltingPoint: Math.random() * 1000 + 200 },
-    ].filter(item => item.name !== '');
+    const neighbors: Element[] = [];
     
-    return neighborElements;
+    // Try to get 2 elements before and after
+    for (let i = atomicNum - 2; i <= atomicNum + 2; i++) {
+      if (i !== atomicNum) {
+        const neighbor = getElement(i);
+        if (neighbor) neighbors.push(neighbor);
+      }
+    }
+    
+    return neighbors;
   };
   
+  const neighborElements = getNeighborElements();
+  
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center">
-              <Scale className="w-5 h-5 mr-2" />
-              {t.elementDetails.physicalProperties}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <ElementProperties element={element} />
-              
-              <div className="mt-4">
-                <h4 className="font-bold text-sm mb-2">
-                  {t.elementDetails.meltingBoilingPoint || "Melting & Boiling Points"}
-                </h4>
-                <div className="h-40 w-full">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart
-                      data={getMeltingPointData()}
-                      margin={{ top: 10, right: 10, left: 0, bottom: 20 }}
-                    >
-                      <XAxis dataKey="name" angle={-45} textAnchor="end" height={50} />
-                      <YAxis label={{ value: 'Temperature (K)', angle: -90, position: 'insideLeft' }} />
-                      <Tooltip formatter={(value) => [`${value} K`, 'Temperature']} />
-                      <Bar dataKey="meltingPoint" fill={categoryColor.split(' ')[0]} name="Melting Point" />
-                      {element.boil && <Bar dataKey="boilingPoint" fill="#ff7043" name="Boiling Point" />}
-                    </BarChart>
-                  </ResponsiveContainer>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+    <div className="space-y-6">
+      {/* Physical Properties Section */}
+      <div>
+        <h2 className="text-xl font-bold mb-3">{t.elementDetails.physicalProperties}</h2>
         
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-lg flex items-center">
-              <Zap className="w-5 h-5 mr-2" />
-              {t.elementDetails.electronProperties || "Electronic Properties"}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 gap-2 text-xs sm:text-sm mb-2">
-              <div className="font-medium">{t.elementDetails.electronConfig}:</div>
-              <div className="break-words">{element.electronstring}</div>
-              
-              {element.electroneg && (
-                <>
-                  <div className="font-medium">{t.elementDetails.electronegativity}:</div>
-                  <div>{element.electroneg}</div>
-                </>
-              )}
-              
-              {element.valence && (
-                <>
-                  <div className="font-medium">{t.elementDetails.valence}:</div>
-                  <div>{element.valence}</div>
-                </>
-              )}
-              
-              {element.oxidation && (
-                <>
-                  <div className="font-medium">{t.elementDetails.oxidationStates}:</div>
-                  <div>{element.oxidation}</div>
-                </>
-              )}
-            </div>
-            
-            {/* Electron affinity visualizer */}
-            {element.affinity && (
-              <div className="mt-4">
-                <h4 className="font-bold text-xs mb-1">{t.elementDetails.electronAffinity || "Electron Affinity"}:</h4>
-                <div className="w-full bg-gray-200 dark:bg-gray-700 h-4 rounded-full">
-                  <div 
-                    className={`h-full rounded-full ${categoryColor}`}
-                    style={{ width: `${Math.min(parseInt(element.affinity) / 4, 100)}%` }}
-                  />
-                </div>
-                <div className="text-right text-xs mt-1">{element.affinity} kJ/mol</div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {/* Melting & Boiling Points */}
+          <Card>
+            <CardContent className="pt-4">
+              <h3 className="text-base font-semibold mb-2">{t.elementDetails.meltingBoilingPoint}</h3>
+              <div className="space-y-2 text-sm">
+                {element.melt && (
+                  <div className="flex justify-between">
+                    <span>{t.elementDetails.meltingPoint}:</span>
+                    <span className="font-medium">{element.melt} K</span>
+                  </div>
+                )}
+                {element.boil && (
+                  <div className="flex justify-between">
+                    <span>{t.elementDetails.boilingPoint}:</span>
+                    <span className="font-medium">{element.boil} K</span>
+                  </div>
+                )}
               </div>
-            )}
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+          
+          {/* Density */}
+          {element.density?.stp && (
+            <Card>
+              <CardContent className="pt-4">
+                <h3 className="text-base font-semibold mb-2">{t.elementDetails.density}</h3>
+                <div className="flex justify-between text-sm">
+                  <span>STP:</span>
+                  <span className="font-medium">{element.density.stp} g/cm³</span>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+          
+          {/* Electron Properties */}
+          <Card>
+            <CardContent className="pt-4">
+              <h3 className="text-base font-semibold mb-2">{t.elementDetails.electronProperties}</h3>
+              <div className="space-y-2 text-sm">
+                {element.electroneg && (
+                  <div className="flex justify-between">
+                    <span>{t.elementDetails.electronegativity}:</span>
+                    <span className="font-medium">{element.electroneg}</span>
+                  </div>
+                )}
+                {element.affinity && (
+                  <div className="flex justify-between">
+                    <span>{t.elementDetails.electronAffinity}:</span>
+                    <span className="font-medium">{element.affinity} kJ/mol</span>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
       
-      {/* Abundance data if available */}
+      <Separator />
+      
+      {/* Abundance Information */}
       {element.abundance && (
-        <Card className="mt-4">
-          <CardHeader>
-            <CardTitle className="text-lg">{t.elementDetails.abundance || "Abundance"}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-              {element.abundance.universe && (
-                <div className="text-center p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
-                  <div className="text-xs text-blue-600 dark:text-blue-300 font-medium">
-                    {t.elementDetails.universe || "Universe"}
+        <div>
+          <h2 className="text-xl font-bold mb-3">{t.elementDetails.abundance}</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {element.abundance.universe && (
+              <Card>
+                <CardContent className="pt-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold">{element.abundance.universe}</div>
+                    <div className="text-sm text-gray-500">ppm</div>
+                    <div className="mt-2 text-sm font-medium">{t.elementDetails.universe}</div>
                   </div>
-                  <div className="text-sm mt-1">{element.abundance.universe}</div>
-                </div>
-              )}
-              
-              {element.abundance.solar && (
-                <div className="text-center p-2 bg-yellow-50 dark:bg-yellow-900/30 rounded-lg">
-                  <div className="text-xs text-yellow-600 dark:text-yellow-300 font-medium">
-                    {t.elementDetails.solar || "Solar System"}
-                  </div>
-                  <div className="text-sm mt-1">{element.abundance.solar}</div>
-                </div>
-              )}
-              
-              {element.abundance.crust && (
-                <div className="text-center p-2 bg-green-50 dark:bg-green-900/30 rounded-lg">
-                  <div className="text-xs text-green-600 dark:text-green-300 font-medium">
-                    {t.elementDetails.crust || "Earth's Crust"}
-                  </div>
-                  <div className="text-sm mt-1">{element.abundance.crust}</div>
-                </div>
-              )}
-            </div>
+                </CardContent>
+              </Card>
+            )}
             
-            {/* Add abundance comparison chart */}
-            <div className="mt-4 h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart
-                  layout="vertical"
-                  data={[
-                    { 
-                      name: t.elementDetails.universe || "Universe", 
-                      value: element.abundance.universe ? parseFloat(element.abundance.universe.replace(/[^\d.]/g, '')) || 0.1 : 0.1 
-                    },
-                    { 
-                      name: t.elementDetails.solar || "Solar System", 
-                      value: element.abundance.solar ? parseFloat(element.abundance.solar.replace(/[^\d.]/g, '')) || 0.1 : 0.1 
-                    },
-                    { 
-                      name: t.elementDetails.crust || "Earth's Crust", 
-                      value: element.abundance.crust ? parseFloat(element.abundance.crust.replace(/[^\d.]/g, '')) || 0.1 : 0.1 
-                    }
-                  ].filter(item => item.value > 0)}
-                  margin={{ top: 5, right: 30, left: 100, bottom: 5 }}
-                >
-                  <XAxis type="number" />
-                  <YAxis dataKey="name" type="category" />
-                  <Tooltip formatter={(value) => [`${value}%`, 'Abundance']} />
-                  <Bar dataKey="value" fill={categoryColor.split(' ')[0]} barSize={20} />
-                </BarChart>
-              </ResponsiveContainer>
-            </div>
-          </CardContent>
-        </Card>
+            {element.abundance.solar && (
+              <Card>
+                <CardContent className="pt-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold">{element.abundance.solar}</div>
+                    <div className="text-sm text-gray-500">ppm</div>
+                    <div className="mt-2 text-sm font-medium">{t.elementDetails.solar}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+            
+            {element.abundance.crust && (
+              <Card>
+                <CardContent className="pt-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-bold">{element.abundance.crust}</div>
+                    <div className="text-sm text-gray-500">ppm</div>
+                    <div className="mt-2 text-sm font-medium">{t.elementDetails.crust}</div>
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+          </div>
+        </div>
       )}
-    </>
+      
+      {/* Comparison Charts */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <ElementPropertyRadar
+          element={element}
+          categoryColor={categoryColor}
+        />
+        
+        {/* Melting Point Comparison */}
+        {element.melt && (
+          <ComparisonChart
+            element={element}
+            neighborElements={neighborElements}
+            property="melt"
+            categoryColor={categoryColor}
+          />
+        )}
+        
+        {/* Electronegativity Comparison */}
+        {element.electroneg && (
+          <ComparisonChart
+            element={element}
+            neighborElements={neighborElements}
+            property="electroneg"
+            categoryColor={categoryColor}
+          />
+        )}
+        
+        {/* Density Comparison */}
+        {element.density?.stp && (
+          <ComparisonChart
+            element={element}
+            neighborElements={neighborElements}
+            property="density"
+            categoryColor={categoryColor}
+          />
+        )}
+      </div>
+    </div>
   );
 };
 

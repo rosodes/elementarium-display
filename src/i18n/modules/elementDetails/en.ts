@@ -52,7 +52,7 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   industry: "Industry",
   discovery: "Discovery",
   structure: "Structure",
-  shells: "shells",
+  shells: "Shells",
   meltingBoilingPoint: "Melting & Boiling Points",
   electronProperties: "Electronic Properties",
   electronAffinity: "Electron Affinity",

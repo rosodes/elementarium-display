@@ -75,3 +75,8 @@ export interface ElementDetailsTranslations {
 // Import from individual language files
 export { elementDetailsEn } from './elementDetails/en';
 export { elementDetailsRu } from './elementDetails/ru';
+export { elementDetailsUk } from './elementDetails/uk';
+
+// Export chart components
+export { default as ComparisonChart } from './elementDetails/ComparisonChart';
+export { default as IsotopeChart } from './elementDetails/IsotopeChart';

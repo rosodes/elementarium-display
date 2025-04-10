@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
-import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useLanguage } from '../../../context/LanguageContext';
 
