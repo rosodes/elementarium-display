@@ -64,12 +64,16 @@
   height: 350%;
 }
 
-/* Vertical divider styling */
+/* Vertical divider styling - updated to green */
 .period-row .separator {
   height: 100%;
-  opacity: 0.7;
+  opacity: 0.9;
 }
 
-.dark .period-row .separator {
-  background-color: rgba(255, 255, 255, 0.4);
+.period-row .f-block-divider {
+  background-color: #8bc34a; /* Green color for f-block divider */
+}
+
+.dark .period-row .f-block-divider {
+  background-color: #689f38; /* Darker green for dark mode */
 }

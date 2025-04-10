@@ -3,7 +3,6 @@ import React from 'react';
 import Element from '../Element';
 import { Element as ElementType } from '../../data/elementTypes';
 import PeriodRow from './PeriodRow';
-import ElementPlaceholder from './ElementPlaceholder';
 import { Separator } from '../ui/separator';
 import { elements } from '../../data/elements';
 
@@ -27,8 +26,8 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
   // Add vertical divider at the beginning if we're starting from element 58
   if (skipFirstElement) {
     lanthanideElements.push(
-      <div key="lanthanide-divider" className="flex items-center h-[70px] mr-1">
-        <Separator orientation="vertical" className="h-full opacity-70" />
+      <div key="lanthanide-divider" className="flex items-center h-[70px] mr-2">
+        <Separator orientation="vertical" className="h-full f-block-divider" />
       </div>
     );
   }
@@ -63,8 +62,8 @@ export const renderActinides = (onElementClick: (element: ElementType) => void, 
   // Add vertical divider at the beginning if we're starting from element 90
   if (skipFirstElement) {
     actinideElements.push(
-      <div key="actinide-divider" className="flex items-center h-[70px] mr-1">
-        <Separator orientation="vertical" className="h-full opacity-70" />
+      <div key="actinide-divider" className="flex items-center h-[70px] mr-2">
+        <Separator orientation="vertical" className="h-full f-block-divider" />
       </div>
     );
   }
