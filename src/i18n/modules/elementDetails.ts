@@ -47,6 +47,29 @@ export interface ElementDetailsTranslations {
   previousElement?: string;
   nextElement?: string;
   isotopes?: string;
+  // Add missing properties
+  industry?: string;
+  discovery?: string;
+  structure?: string;
+  shells?: string;
+  meltingBoilingPoint?: string;
+  electronProperties?: string;
+  electronAffinity?: string;
+  abundance?: string;
+  universe?: string;
+  solar?: string;
+  crust?: string;
+  atomicRadii?: string;
+  vanDerWaals?: string;
+  quantumNumbers?: string;
+  principal?: string;
+  azimuthal?: string;
+  magnetic?: string;
+  orbitalDiagram?: string;
+  keyApplications?: string;
+  industrialUses?: string;
+  everydayUses?: string;
+  funFacts?: string;
 }
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -96,7 +119,30 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   electronShellVisualization: "Electron Shell Visualization",
   previousElement: "Previous element",
   nextElement: "Next element",
-  isotopes: "Isotopes"
+  isotopes: "Isotopes",
+  // Add values for the missing properties
+  industry: "Industry",
+  discovery: "Discovery",
+  structure: "Structure",
+  shells: "shells",
+  meltingBoilingPoint: "Melting & Boiling Points",
+  electronProperties: "Electronic Properties",
+  electronAffinity: "Electron Affinity",
+  abundance: "Abundance",
+  universe: "Universe",
+  solar: "Solar System",
+  crust: "Earth's Crust",
+  atomicRadii: "Atomic Radii",
+  vanDerWaals: "Van der Waals",
+  quantumNumbers: "Quantum Numbers",
+  principal: "Principal",
+  azimuthal: "Azimuthal",
+  magnetic: "Magnetic",
+  orbitalDiagram: "Orbital Diagram",
+  keyApplications: "Key applications and uses of",
+  industrialUses: "Industrial Uses",
+  everydayUses: "Everyday Applications",
+  funFacts: "Interesting Facts"
 };
 
 export const elementDetailsRu: ElementDetailsTranslations = {
@@ -146,5 +192,28 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   electronShellVisualization: "Визуализация электронных оболочек",
   previousElement: "Предыдущий элемент",
   nextElement: "Следующий элемент",
-  isotopes: "Изотопы"
+  isotopes: "Изотопы",
+  // Add values for the missing properties
+  industry: "Промышленность",
+  discovery: "Открытие",
+  structure: "Структура",
+  shells: "оболочки",
+  meltingBoilingPoint: "Точки плавления и кипения",
+  electronProperties: "Электронные свойства",
+  electronAffinity: "Сродство к электрону",
+  abundance: "Распространенность",
+  universe: "Вселенная",
+  solar: "Солнечная система",
+  crust: "Земная кора",
+  atomicRadii: "Атомные радиусы",
+  vanDerWaals: "Ван-дер-Ваальса",
+  quantumNumbers: "Квантовые числа",
+  principal: "Главное",
+  azimuthal: "Азимутальное",
+  magnetic: "Магнитное",
+  orbitalDiagram: "Орбитальная диаграмма",
+  keyApplications: "Основные применения и использование",
+  industrialUses: "Промышленное использование",
+  everydayUses: "Повседневное применение",
+  funFacts: "Интересные факты"
 };
