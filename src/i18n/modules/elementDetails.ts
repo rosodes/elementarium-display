@@ -77,6 +77,4 @@ export { elementDetailsEn } from './elementDetails/en';
 export { elementDetailsRu } from './elementDetails/ru';
 export { elementDetailsUk } from './elementDetails/uk';
 
-// Export chart components
-export { default as ComparisonChart } from './elementDetails/ComparisonChart';
-export { default as IsotopeChart } from './elementDetails/IsotopeChart';
+// Note: We're not exporting the chart components from here anymore

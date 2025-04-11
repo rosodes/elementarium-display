@@ -25,5 +25,8 @@ export const uiUk: UITranslations = {
   searchShortcut: "Комбінація клавіш",
   accessibilityLabel: "Періодична таблиця елементів",
   elementTable: "Періодична таблиця елементів",
-  focusMode: "Режим фокусування"
+  focusMode: "Режим фокусування",
+  usageDistribution: "Розподіл використання",
+  simulatedData: "Це симульовані дані для демонстраційних цілей",
+  note: "Примітка"
 };

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
@@ -6,7 +5,7 @@ import ElectronShellVisualization from '../ElectronShellVisualization';
 import { useLanguage } from '../../../context/LanguageContext';
 import { Card, CardContent } from '@/components/ui/card';
 import ElectronOrbitalsVisualization from '../visualizations/ElectronOrbitalsVisualization';
-import { IsotopeChart } from '../../../i18n/modules/elementDetails/IsotopeChart';
+import IsotopeChart from '../../../i18n/modules/elementDetails/IsotopeChart';
 
 interface StructureTabProps {
   element: Element;

@@ -1,4 +1,3 @@
-
 export interface UITranslations {
   close?: string;
   back?: string;
@@ -25,6 +24,9 @@ export interface UITranslations {
   accessibilityLabel?: string;
   elementTable?: string;
   focusMode?: string;
+  usageDistribution?: string;
+  simulatedData?: string;
+  note?: string;
 }
 
 export const uiEn: UITranslations = {
@@ -51,7 +53,10 @@ export const uiEn: UITranslations = {
   searchShortcut: "Keyboard shortcut",
   accessibilityLabel: "Periodic Table of Elements",
   elementTable: "Periodic Table of Elements",
-  focusMode: "Focus mode"
+  focusMode: "Focus mode",
+  usageDistribution: "Usage Distribution",
+  simulatedData: "This is simulated data for demonstration purposes",
+  note: "Note"
 };
 
 export const uiRu: UITranslations = {

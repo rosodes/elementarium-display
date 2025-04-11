@@ -2,7 +2,7 @@
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
-import { ComparisonChart } from '../../../i18n/modules/elementDetails/ComparisonChart';
+import ComparisonChart from '../../../i18n/modules/elementDetails/ComparisonChart';
 import { useLanguage } from '../../../context/LanguageContext';
 import { getElement } from '../../../data/elements';
 import ElementPropertyRadar from '../visualizations/ElementPropertyRadar';
