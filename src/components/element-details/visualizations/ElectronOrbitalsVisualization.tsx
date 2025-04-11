@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { useLanguage } from '../../../context/LanguageContext';
+import { useTheme } from '../../../context/ThemeContext';
 
 interface ElectronOrbitalsVisualizationProps {
   element: Element;
@@ -10,110 +11,137 @@ interface ElectronOrbitalsVisualizationProps {
 }
 
 const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbitalsVisualizationProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const { t } = useLanguage();
+  const { theme } = useTheme();
   
-  useEffect(() => {
-    if (!canvasRef.current) return;
+  // Parse color from tailwind class
+  const extractColor = () => {
+    // Default colors based on theme
+    const defaultColors = {
+      light: '#3b82f6', // blue-500
+      dark: '#60a5fa'  // blue-400
+    };
     
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-    
-    // Set canvas dimensions
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-    
-    // Clear canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Draw orbital visualization
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
-    const maxRadius = Math.min(centerX, centerY) * 0.9;
-    
-    // Parse primary color from Tailwind class
-    const colorMatch = categoryColor.match(/(bg|text|border)-([a-z]+)-(\d+)/);
-    let primaryColor = '#3b82f6'; // Default blue if no match
-    
-    if (colorMatch) {
-      // This is a simplified conversion - in real app we'd have a proper color map
-      const colorName = colorMatch[2];
-      const intensity = parseInt(colorMatch[3]);
-      
-      const colorMap: Record<string, Record<number, string>> = {
-        blue: { 500: '#3b82f6', 600: '#2563eb' },
-        red: { 500: '#ef4444', 600: '#dc2626' },
-        green: { 500: '#22c55e', 600: '#16a34a' },
-        purple: { 500: '#a855f7', 600: '#9333ea' },
-        yellow: { 500: '#eab308', 600: '#ca8a04' },
-        gray: { 500: '#6b7280', 600: '#4b5563' },
-      };
-      
-      primaryColor = colorMap[colorName]?.[intensity] || primaryColor;
+    // Try to extract color from class name
+    if (categoryColor) {
+      const colorMatch = categoryColor.match(/bg-([a-z]+)-(\d+)/);
+      if (colorMatch) {
+        const colorName = colorMatch[1];
+        const shade = parseInt(colorMatch[2]);
+        
+        // Simple color mapping (expanded as needed)
+        const colorMap: Record<string, Record<number, Record<string, string>>> = {
+          blue: {
+            500: { light: '#3b82f6', dark: '#60a5fa' },
+            600: { light: '#2563eb', dark: '#3b82f6' },
+          },
+          red: {
+            500: { light: '#ef4444', dark: '#f87171' },
+            600: { light: '#dc2626', dark: '#ef4444' },
+          },
+          green: {
+            500: { light: '#22c55e', dark: '#4ade80' },
+            600: { light: '#16a34a', dark: '#22c55e' },
+          },
+          purple: {
+            500: { light: '#a855f7', dark: '#c084fc' },
+            600: { light: '#9333ea', dark: '#a855f7' },
+          },
+          yellow: {
+            500: { light: '#eab308', dark: '#facc15' },
+            600: { light: '#ca8a04', dark: '#eab308' },
+          },
+        };
+        
+        return colorMap[colorName]?.[shade]?.[theme] || defaultColors[theme as keyof typeof defaultColors];
+      }
     }
     
-    // Draw nucleus
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, 20, 0, Math.PI * 2);
-    ctx.fillStyle = primaryColor;
-    ctx.fill();
-    
-    // Draw element symbol in nucleus
-    ctx.fillStyle = 'white';
-    ctx.font = 'bold 16px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(element.symbol, centerX, centerY);
-    
-    // Draw orbital paths for each electron shell
-    element.electrons.forEach((electrons, shellIndex) => {
+    return defaultColors[theme as keyof typeof defaultColors];
+  };
+  
+  const electronColor = extractColor();
+  const size = 280; // SVG size
+  const center = size / 2;
+  const nucleusRadius = 20;
+  
+  // Create orbital paths and electrons
+  const renderOrbitals = () => {
+    return element.electrons.map((electronCount, shellIndex) => {
       const shellRadius = 30 + (shellIndex * 35);
+      const electrons = Math.min(electronCount, 8); // Show max 8 electrons per shell
+      const orbitalPath = [];
       
-      // Draw shell path
-      ctx.beginPath();
-      ctx.arc(centerX, centerY, shellRadius, 0, Math.PI * 2);
-      ctx.strokeStyle = '#d1d5db';
-      ctx.lineWidth = 1;
-      ctx.stroke();
-      
-      // Add electrons to the shell - limit to max 8 visible electrons per shell
-      const visibleElectrons = Math.min(electrons, 8);
-      
-      for (let i = 0; i < visibleElectrons; i++) {
-        const angle = (i / visibleElectrons) * Math.PI * 2;
-        const electronX = centerX + shellRadius * Math.cos(angle);
-        const electronY = centerY + shellRadius * Math.sin(angle);
-        
-        // Draw electron
-        ctx.beginPath();
-        ctx.arc(electronX, electronY, 6, 0, Math.PI * 2);
-        ctx.fillStyle = primaryColor;
-        ctx.fill();
+      // Create slightly elliptical path for orbital
+      for (let i = 0; i <= 360; i++) {
+        const angle = (i * Math.PI) / 180;
+        const x = center + shellRadius * Math.cos(angle);
+        const y = center + shellRadius * 0.9 * Math.sin(angle); // 0.9 to make it slightly elliptical
+        orbitalPath.push(`${x},${y}`);
       }
       
-      // If there are more electrons than we're showing, add an indicator
-      if (electrons > 8) {
-        const angle = (Math.PI * 0.25);
-        const textX = centerX + (shellRadius + 15) * Math.cos(angle);
-        const textY = centerY + (shellRadius + 15) * Math.sin(angle);
+      // Create electrons for this shell
+      const electronElements = Array.from({ length: electrons }).map((_, i) => {
+        // Start at different angles
+        const startOffset = (i / electrons) * 100;
         
-        ctx.fillStyle = '#6b7280';
-        ctx.font = '12px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(`+${electrons - 8}`, textX, textY);
+        return (
+          <circle
+            key={`electron-${shellIndex}-${i}`}
+            r="6"
+            fill={electronColor}
+            className="electron"
+          >
+            <animate
+              attributeName="opacity"
+              values="0.7;1;0.7"
+              dur={`${1 + Math.random()}s`}
+              repeatCount="indefinite"
+            />
+            <animateMotion
+              path={`M ${orbitalPath.join(' ')} Z`}
+              begin={`${i * 0.5}s`}
+              dur={`${6 + shellIndex * 2 + i * 0.5}s`}
+              repeatCount="indefinite"
+              rotate="auto"
+            />
+          </circle>
+        );
+      });
+      
+      // If there are more electrons than shown, add indicator
+      let extraIndicator = null;
+      if (electronCount > 8) {
+        extraIndicator = (
+          <text
+            x={center + shellRadius * 0.7}
+            y={center - shellRadius * 0.7}
+            fill={theme === 'dark' ? '#d1d5db' : '#4b5563'}
+            fontSize="12"
+            textAnchor="middle"
+          >
+            +{electronCount - 8}
+          </text>
+        );
       }
+      
+      return (
+        <g key={`orbital-${shellIndex}`}>
+          {/* Orbital path */}
+          <path
+            d={`M ${orbitalPath.join(' ')} Z`}
+            fill="none"
+            stroke={theme === 'dark' ? '#4b5563' : '#d1d5db'}
+            strokeWidth="1"
+            opacity="0.6"
+          />
+          {electronElements}
+          {extraIndicator}
+        </g>
+      );
     });
-    
-    // Add orbital labels
-    ctx.font = '12px sans-serif';
-    ctx.fillStyle = '#4b5563';
-    ctx.textAlign = 'left';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(element.electronstring, centerX + 30, centerY + maxRadius - 20);
-    
-  }, [element, categoryColor]);
+  };
   
   return (
     <Card className="mt-4">
@@ -122,12 +150,48 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
       </CardHeader>
       <CardContent>
         <div className="relative w-full" style={{ height: '280px' }}>
-          <canvas 
-            ref={canvasRef} 
-            className="w-full h-full"
-          ></canvas>
+          <svg 
+            ref={svgRef} 
+            width="100%" 
+            height="100%"
+            viewBox={`0 0 ${size} ${size}`}
+            preserveAspectRatio="xMidYMid meet"
+          >
+            {/* Electron orbitals and electrons */}
+            {renderOrbitals()}
+            
+            {/* Nucleus */}
+            <g>
+              <circle
+                cx={center}
+                cy={center}
+                r={nucleusRadius}
+                fill={electronColor}
+              >
+                <animate
+                  attributeName="r"
+                  values={`${nucleusRadius-2};${nucleusRadius};${nucleusRadius-2}`}
+                  dur="3s"
+                  repeatCount="indefinite"
+                />
+              </circle>
+              
+              {/* Element symbol in nucleus */}
+              <text
+                x={center}
+                y={center}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fill="white"
+                fontSize="12"
+                fontWeight="bold"
+              >
+                {element.symbol}
+              </text>
+            </g>
+          </svg>
         </div>
-        <div className="mt-2 text-xs text-center text-gray-500">
+        <div className="mt-2 text-xs text-center text-gray-500 dark:text-gray-500">
           {t.elementDetails.electronConfig}: {element.electronstring}
         </div>
       </CardContent>
