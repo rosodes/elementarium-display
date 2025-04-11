@@ -1,3 +1,4 @@
+
 export interface UITranslations {
   close?: string;
   back?: string;
@@ -54,7 +55,7 @@ export const uiEn: UITranslations = {
   accessibilityLabel: "Periodic Table of Elements",
   elementTable: "Periodic Table of Elements",
   focusMode: "Focus mode",
-  usageDistribution: "Usage Distribution",
+  usageDistribution: "Usage Distribution", 
   simulatedData: "This is simulated data for demonstration purposes",
   note: "Note"
 };

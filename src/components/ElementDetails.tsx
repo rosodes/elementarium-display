@@ -13,6 +13,7 @@ import OverviewTab from './element-details/tabs/OverviewTab';
 import PropertiesTab from './element-details/tabs/PropertiesTab';
 import StructureTab from './element-details/tabs/StructureTab';
 import ApplicationsTab from './element-details/tabs/ApplicationsTab';
+import { useToast } from "./ui/use-toast";
 
 interface ElementDetailsProps {
   element: Element;
@@ -22,15 +23,32 @@ interface ElementDetailsProps {
 
 const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const categoryColor = element.category 
     ? getCategoryColor(element.category) 
     : getSeriesColor(element.series);
   
   const [tabValue, setTabValue] = useState("overview");
+  const [animateEntry, setAnimateEntry] = useState(true);
   
   // Get previous and next elements
   const prevElement = getElement(parseInt(element.atomic) - 1);
   const nextElement = getElement(parseInt(element.atomic) + 1);
+  
+  // Show toast when element details are loaded
+  useEffect(() => {
+    toast({
+      title: `${element.name} (${element.symbol})`,
+      description: `Atomic number: ${element.atomic}`,
+      duration: 3000,
+    });
+    
+    // Reset animation state when element changes
+    setAnimateEntry(true);
+    const timer = setTimeout(() => setAnimateEntry(false), 500);
+    
+    return () => clearTimeout(timer);
+  }, [element.atomic, toast, element.name, element.symbol]);
   
   // Handle keyboard navigation
   useEffect(() => {
@@ -50,7 +68,11 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm">
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full mx-auto overflow-hidden animate-fade-in">
+      <div 
+        className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full mx-auto overflow-hidden ${
+          animateEntry ? 'animate-scale-in' : ''
+        }`}
+      >
         {/* Header section with navigation */}
         <ElementHeader 
           element={element}
@@ -62,7 +84,7 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
         />
         
         <Tabs defaultValue="overview" value={tabValue} onValueChange={setTabValue} className="w-full">
-          <div className="border-b border-gray-200 dark:border-gray-700">
+          <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
             <TabsList className="flex w-full overflow-x-auto bg-transparent justify-start px-4 pt-2 h-auto">
               <TabsTrigger value="overview" className="px-4 py-2 text-sm">
                 {t.elementDetails.overview || "Overview"}
@@ -80,19 +102,19 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
           </div>
           
           <div className="p-4 sm:p-6 max-h-[70vh] overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-850">
-            <TabsContent value="overview" className="mt-0">
+            <TabsContent value="overview" className="mt-0 animate-fade-in">
               <OverviewTab element={element} />
             </TabsContent>
             
-            <TabsContent value="properties" className="mt-0">
+            <TabsContent value="properties" className="mt-0 animate-fade-in">
               <PropertiesTab element={element} categoryColor={categoryColor} />
             </TabsContent>
             
-            <TabsContent value="structure" className="mt-0">
+            <TabsContent value="structure" className="mt-0 animate-fade-in">
               <StructureTab element={element} categoryColor={categoryColor} />
             </TabsContent>
             
-            <TabsContent value="applications" className="mt-0">
+            <TabsContent value="applications" className="mt-0 animate-fade-in">
               <ApplicationsTab element={element} categoryColor={categoryColor} />
             </TabsContent>
           </div>
