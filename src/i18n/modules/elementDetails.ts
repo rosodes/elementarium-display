@@ -76,5 +76,3 @@ export interface ElementDetailsTranslations {
 export { elementDetailsEn } from './elementDetails/en';
 export { elementDetailsRu } from './elementDetails/ru';
 export { elementDetailsUk } from './elementDetails/uk';
-
-// Note: We're not exporting the chart components from here anymore

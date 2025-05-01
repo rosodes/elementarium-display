@@ -69,7 +69,7 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm">
       <div 
-        className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full mx-auto overflow-hidden ${
+        className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-5xl w-full mx-auto overflow-hidden ${
           animateEntry ? 'animate-scale-in' : ''
         }`}
       >
@@ -84,24 +84,32 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
         />
         
         <Tabs defaultValue="overview" value={tabValue} onValueChange={setTabValue} className="w-full">
-          <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-            <TabsList className="flex w-full overflow-x-auto bg-transparent justify-start px-4 pt-2 h-auto">
-              <TabsTrigger value="overview" className="px-4 py-2 text-sm">
+          <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
+            <TabsList className="flex w-full h-auto justify-start px-4 py-2 bg-gray-50 dark:bg-gray-850 rounded-none overflow-x-auto">
+              <TabsTrigger 
+                value="overview" 
+                className="rounded-md px-4 py-2 text-sm font-medium transition-colors data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground">
                 {t.elementDetails.overview || "Overview"}
               </TabsTrigger>
-              <TabsTrigger value="properties" className="px-4 py-2 text-sm">
+              <TabsTrigger 
+                value="properties" 
+                className="rounded-md px-4 py-2 text-sm font-medium transition-colors data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground">
                 {t.elementDetails.properties || "Properties"}
               </TabsTrigger>
-              <TabsTrigger value="structure" className="px-4 py-2 text-sm">
+              <TabsTrigger 
+                value="structure" 
+                className="rounded-md px-4 py-2 text-sm font-medium transition-colors data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground">
                 {t.elementDetails.atomicStructure || "Structure"}
               </TabsTrigger>
-              <TabsTrigger value="applications" className="px-4 py-2 text-sm">
+              <TabsTrigger 
+                value="applications" 
+                className="rounded-md px-4 py-2 text-sm font-medium transition-colors data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground">
                 {t.elementDetails.applications || "Applications"}
               </TabsTrigger>
             </TabsList>
           </div>
           
-          <div className="p-4 sm:p-6 max-h-[70vh] overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-850">
+          <div className="p-4 sm:p-6 max-h-[70vh] overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
             <TabsContent value="overview" className="mt-0 animate-fade-in">
               <OverviewTab element={element} />
             </TabsContent>

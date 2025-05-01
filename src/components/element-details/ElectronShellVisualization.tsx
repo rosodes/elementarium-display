@@ -53,6 +53,18 @@ const ElectronShellVisualization = ({ element, categoryColor }: ElectronShellVis
             500: { light: '#eab308', dark: '#facc15' },
             600: { light: '#ca8a04', dark: '#eab308' },
           },
+          pink: {
+            500: { light: '#ec4899', dark: '#f472b6' },
+            600: { light: '#db2777', dark: '#ec4899' },
+          },
+          indigo: {
+            500: { light: '#6366f1', dark: '#818cf8' },
+            600: { light: '#4f46e5', dark: '#6366f1' },
+          },
+          orange: {
+            500: { light: '#f97316', dark: '#fb923c' },
+            600: { light: '#ea580c', dark: '#f97316' },
+          },
         };
         
         return colorMap[colorName]?.[shade]?.[theme] || defaultColors[theme as keyof typeof defaultColors];
@@ -63,6 +75,7 @@ const ElectronShellVisualization = ({ element, categoryColor }: ElectronShellVis
   };
   
   const electronColor = extractColor();
+  const shellColor = theme === 'dark' ? '#6b7280' : '#d1d5db';
   const size = 300; // SVG size
   const center = size / 2;
   const maxElectrons = Math.max(...element.electrons);
@@ -116,7 +129,7 @@ const ElectronShellVisualization = ({ element, categoryColor }: ElectronShellVis
             cy={center}
             r={shellRadius}
             fill="none"
-            stroke={theme === 'dark' ? '#4b5563' : '#d1d5db'}
+            stroke={shellColor}
             strokeWidth="1"
             strokeDasharray={shellIndex % 2 === 0 ? "2 2" : "none"}
             className="electron-shell"
@@ -141,6 +154,33 @@ const ElectronShellVisualization = ({ element, categoryColor }: ElectronShellVis
       <div className="flex justify-center py-4">
         <div className="relative" style={{ width: `${size}px`, height: `${size}px` }}>
           <svg ref={svgRef} width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+            <defs>
+              <radialGradient id="nucleusGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stopColor={electronColor} stopOpacity="1" />
+                <stop offset="100%" stopColor={electronColor} stopOpacity="0.7" />
+              </radialGradient>
+              <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            
+            {/* Background glow */}
+            <circle
+              cx={center}
+              cy={center}
+              r={nucleusRadius * 1.5}
+              fill="url(#nucleusGradient)"
+              opacity="0.3"
+            >
+              <animate 
+                attributeName="r" 
+                values={`${nucleusRadius * 1.3};${nucleusRadius * 1.5};${nucleusRadius * 1.3}`} 
+                dur="4s" 
+                repeatCount="indefinite" 
+              />
+            </circle>
+            
             {/* Electron shells */}
             {renderElectronShells()}
             
@@ -149,19 +189,14 @@ const ElectronShellVisualization = ({ element, categoryColor }: ElectronShellVis
               cx={center}
               cy={center}
               r={nucleusRadius}
-              fill={electronColor}
+              fill="url(#nucleusGradient)"
+              filter="url(#glow)"
               className="nucleus"
             >
               <animate
                 attributeName="r"
                 values={`${nucleusRadius-2};${nucleusRadius};${nucleusRadius-2}`}
                 dur="3s"
-                repeatCount="indefinite"
-              />
-              <animate
-                attributeName="opacity"
-                values="0.8;1;0.8"
-                dur="2s"
                 repeatCount="indefinite"
               />
             </circle>
