@@ -1,12 +1,22 @@
 
+import { useEffect, useState, useCallback } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import PeriodicTable from '../components/PeriodicTable';
 import Header from '../components/Header';
 import { useLanguage } from '../context/LanguageContext';
-import { useState, useCallback } from 'react';
 
 const Index = () => {
-  const { t } = useLanguage();
+  const { t, setLanguage, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
+  const { lang } = useParams<{ lang?: string }>();
+  const location = useLocation();
+  
+  // Set language based on URL path if it's different from current language
+  useEffect(() => {
+    if (lang && ['en', 'ru', 'uk'].includes(lang) && lang !== language) {
+      setLanguage(lang as 'en' | 'ru' | 'uk');
+    }
+  }, [lang, setLanguage, language]);
   
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);

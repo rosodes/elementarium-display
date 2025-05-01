@@ -19,9 +19,10 @@ interface ElementDetailsProps {
   element: Element;
   onClose: () => void;
   onNavigate: (element: Element) => void;
+  isFullPage?: boolean; // New prop to determine if it's displayed as full page
 }
 
-const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) => {
+const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: ElementDetailsProps) => {
   const { t } = useLanguage();
   const { toast } = useToast();
   const categoryColor = element.category 
@@ -35,20 +36,22 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
   const prevElement = getElement(parseInt(element.atomic) - 1);
   const nextElement = getElement(parseInt(element.atomic) + 1);
   
-  // Show toast when element details are loaded
+  // Show toast when element details are loaded only in popup mode
   useEffect(() => {
-    toast({
-      title: `${element.name} (${element.symbol})`,
-      description: `Atomic number: ${element.atomic}`,
-      duration: 3000,
-    });
+    if (!isFullPage) {
+      toast({
+        title: `${element.name} (${element.symbol})`,
+        description: `Atomic number: ${element.atomic}`,
+        duration: 3000,
+      });
+    }
     
     // Reset animation state when element changes
     setAnimateEntry(true);
     const timer = setTimeout(() => setAnimateEntry(false), 500);
     
     return () => clearTimeout(timer);
-  }, [element.atomic, toast, element.name, element.symbol]);
+  }, [element.atomic, toast, element.name, element.symbol, isFullPage]);
   
   // Handle keyboard navigation
   useEffect(() => {
@@ -57,21 +60,28 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
         onNavigate(prevElement);
       } else if (e.key === 'ArrowRight' && nextElement) {
         onNavigate(nextElement);
-      } else if (e.key === 'Escape') {
+      } else if (e.key === 'Escape' && !isFullPage) {
         onClose();
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [element.atomic, onClose, onNavigate, prevElement, nextElement]);
+  }, [element.atomic, onClose, onNavigate, prevElement, nextElement, isFullPage]);
+
+  // Different container classes based on whether it's displayed as a popup or full page
+  const containerClasses = isFullPage
+    ? "w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden"
+    : "fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm";
+
+  const contentClasses = isFullPage
+    ? "w-full"
+    : "bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-[900px] w-full mx-auto overflow-hidden";
 
   return (
-    <div className="fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm">
+    <div className={containerClasses}>
       <div 
-        className={`bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-[900px] w-full mx-auto overflow-hidden ${
-          animateEntry ? 'animate-scale-in' : ''
-        }`}
+        className={`${contentClasses} ${animateEntry && !isFullPage ? 'animate-scale-in' : ''}`}
       >
         {/* Header section with navigation */}
         <ElementHeader 
@@ -81,6 +91,7 @@ const ElementDetails = ({ element, onClose, onNavigate }: ElementDetailsProps) =
           nextElement={nextElement}
           onClose={onClose}
           onNavigate={onNavigate}
+          isFullPage={isFullPage}
         />
         
         <Tabs defaultValue="overview" value={tabValue} onValueChange={setTabValue} className="w-full">

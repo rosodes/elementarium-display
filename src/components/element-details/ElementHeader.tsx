@@ -12,6 +12,7 @@ interface ElementHeaderProps {
   nextElement: Element | null;
   onClose: () => void;
   onNavigate: (element: Element) => void;
+  isFullPage?: boolean; // New prop to adjust styles for full page
 }
 
 const ElementHeader = ({ 
@@ -20,7 +21,8 @@ const ElementHeader = ({
   prevElement, 
   nextElement, 
   onClose, 
-  onNavigate 
+  onNavigate,
+  isFullPage = false
 }: ElementHeaderProps) => {
   const { t } = useLanguage();
   
@@ -48,14 +50,16 @@ const ElementHeader = ({
         </button>
       )}
       
-      {/* Close button - moved to the top right corner */}
-      <button 
-        onClick={onClose}
-        className="absolute right-3 top-3 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-gray-800 dark:text-white transition-colors z-10"
-        aria-label={t.ui?.close}
-      >
-        <X className="h-5 w-5 sm:h-6 sm:w-6" />
-      </button>
+      {/* Close button - only show in popup mode */}
+      {!isFullPage && (
+        <button 
+          onClick={onClose}
+          className="absolute right-3 top-3 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-gray-800 dark:text-white transition-colors z-10"
+          aria-label={t.ui?.close}
+        >
+          <X className="h-5 w-5 sm:h-6 sm:w-6" />
+        </button>
+      )}
       
       <div className="flex items-center mx-auto">
         <ElementImage element={element} categoryColor={categoryColor} />

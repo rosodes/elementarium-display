@@ -6,6 +6,7 @@ import ElementDetails from './ElementDetails';
 import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
 import ElementSearchResults from './search/ElementSearch';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 interface PeriodicTableProps {
   searchQuery?: string;
@@ -46,20 +47,29 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
 const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
   const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
   const { t, language } = useLanguage();
+  const navigate = useNavigate();
+  const { lang } = useParams<{ lang?: string }>();
+  const location = useLocation();
   
   // Use custom hook for element filtering
   const filteredElements = useElementSearch(searchQuery, language, t);
   
   const handleElementClick = (element: ElementType) => {
-    setSelectedElement(element);
+    // Navigate to the element page instead of opening popup
+    const basePath = lang ? `/${lang}` : '';
+    navigate(`${basePath}/${element.atomic}`);
   };
   
   const closeDetails = () => {
-    setSelectedElement(null);
+    // Return to base path based on language
+    const basePath = lang ? `/${lang}` : '/';
+    navigate(basePath);
   };
   
   const handleNavigateElement = (element: ElementType) => {
-    setSelectedElement(element);
+    // Navigate to the new element page
+    const basePath = lang ? `/${lang}` : '';
+    navigate(`${basePath}/${element.atomic}`);
   };
   
   return (
@@ -68,7 +78,7 @@ const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
       role="region"
       aria-label={t.elementDetails.elementTable}
     >
-      <div className="px-12">
+      <div className="px-4 sm:px-12">
         {/* Search results section */}
         <ElementSearchResults 
           searchQuery={searchQuery}
@@ -84,7 +94,8 @@ const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
         />
       </div>
       
-      {selectedElement && (
+      {/* Element details popup is only shown on the main page if URL params indicate */}
+      {selectedElement && location.pathname === '/' && (
         <ElementDetails 
           element={selectedElement} 
           onClose={closeDetails} 
