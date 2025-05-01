@@ -84,5 +84,8 @@ export const uiRu: UITranslations = {
   searchShortcut: "Сочетание клавиш",
   accessibilityLabel: "Периодическая таблица элементов",
   elementTable: "Периодическая таблица элементов",
-  focusMode: "Режим фокусировки"
+  focusMode: "Режим фокусировки",
+  usageDistribution: "Распределение использования",
+  simulatedData: "Это симулированные данные для демонстрационных целей",
+  note: "Примечание"
 };

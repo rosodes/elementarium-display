@@ -1,4 +1,3 @@
-
 export interface ElementTranslations {
   [key: string]: string;
 }
@@ -87,8 +86,9 @@ export interface UITranslations {
   accessibilityLabel?: string;
   elementTable?: string;
   focusMode?: string;
-  note?: string;
+  usageDistribution?: string;
   simulatedData?: string;
+  note?: string;
 }
 
 export interface ElementDetailsTranslations {
