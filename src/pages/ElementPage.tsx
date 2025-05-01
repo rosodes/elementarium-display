@@ -7,10 +7,10 @@ import { useLanguage } from '../context/LanguageContext';
 import { ArrowLeft } from 'lucide-react';
 import Header from '../components/Header';
 import ElementDetails from '../components/ElementDetails';
-import NotFound from './NotFound'; // Added missing import
+import NotFound from './NotFound';
 
 const ElementPage = () => {
-  const { elementId, lang } = useParams<{ elementId: string, lang?: string }>();
+  const { elementId, lang } = useParams<{ elementId: string; lang?: string }>();
   const navigate = useNavigate();
   const { t, setLanguage, language } = useLanguage();
   
@@ -41,6 +41,25 @@ const ElementPage = () => {
   if (!element) {
     return <NotFound />;
   }
+  
+  // Document title for SEO
+  useEffect(() => {
+    document.title = `${element.name} (${element.symbol}) - ${t.title}`;
+    
+    // Add meta description for SEO
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute('content', 
+        `${element.name} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`);
+    }
+    
+    return () => {
+      document.title = t.title;
+      if (metaDescription) {
+        metaDescription.setAttribute('content', t.subtitle);
+      }
+    };
+  }, [element, t]);
   
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">

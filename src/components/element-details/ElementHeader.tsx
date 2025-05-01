@@ -12,7 +12,7 @@ interface ElementHeaderProps {
   nextElement: Element | null;
   onClose: () => void;
   onNavigate: (element: Element) => void;
-  isFullPage?: boolean; // New prop to adjust styles for full page
+  isFullPage?: boolean; // Prop to adjust styles for full page
 }
 
 const ElementHeader = ({ 

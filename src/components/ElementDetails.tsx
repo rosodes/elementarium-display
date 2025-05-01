@@ -19,7 +19,7 @@ interface ElementDetailsProps {
   element: Element;
   onClose: () => void;
   onNavigate: (element: Element) => void;
-  isFullPage?: boolean; // New prop to determine if it's displayed as full page
+  isFullPage?: boolean; // Prop to determine if it's displayed as full page
 }
 
 const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: ElementDetailsProps) => {
@@ -41,7 +41,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
     if (!isFullPage) {
       toast({
         title: `${element.name} (${element.symbol})`,
-        description: `Atomic number: ${element.atomic}`,
+        description: `${t.elementDetails.atomicNumber}: ${element.atomic}`,
         duration: 3000,
       });
     }
@@ -51,7 +51,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
     const timer = setTimeout(() => setAnimateEntry(false), 500);
     
     return () => clearTimeout(timer);
-  }, [element.atomic, toast, element.name, element.symbol, isFullPage]);
+  }, [element.atomic, toast, element.name, element.symbol, isFullPage, t.elementDetails.atomicNumber]);
   
   // Handle keyboard navigation
   useEffect(() => {
@@ -77,6 +77,10 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
   const contentClasses = isFullPage
     ? "w-full"
     : "bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-[900px] w-full mx-auto overflow-hidden";
+
+  const tabsContentMaxHeightClass = isFullPage 
+    ? "max-h-full" 
+    : "max-h-[70vh]";
 
   return (
     <div className={containerClasses}>
@@ -120,7 +124,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
             </TabsList>
           </div>
           
-          <div className="p-5 sm:p-6 max-h-[70vh] overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+          <div className={`p-5 sm:p-6 ${tabsContentMaxHeightClass} overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900`}>
             <TabsContent value="overview" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
               <OverviewTab element={element} />
             </TabsContent>
