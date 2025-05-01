@@ -21,18 +21,18 @@ export function Toaster() {
           <Toast
             key={id}
             {...props}
-            className={`bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-lg ${
-              theme === 'dark' ? 'shadow-black/10' : 'shadow-gray-200/80'
-            } backdrop-blur-sm`}
+            className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 ${
+              theme === 'dark' ? 'shadow-lg shadow-black/20' : 'shadow-lg shadow-gray-300/70'
+            } backdrop-blur-sm rounded-lg`}
           >
             <div className="grid gap-1">
-              {title && <ToastTitle className="text-gray-900 dark:text-gray-100">{title}</ToastTitle>}
+              {title && <ToastTitle className="text-gray-900 dark:text-gray-100 font-medium">{title}</ToastTitle>}
               {description && (
                 <ToastDescription className="text-gray-600 dark:text-gray-300">{description}</ToastDescription>
               )}
             </div>
             {action}
-            <ToastClose className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100" />
+            <ToastClose className="text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 opacity-70 hover:opacity-100 transition-opacity" />
           </Toast>
         );
       })}

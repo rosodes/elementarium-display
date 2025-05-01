@@ -3,6 +3,7 @@ import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useLanguage } from '../../../context/LanguageContext';
+import { Lightbulb } from 'lucide-react';
 
 interface EverydayUsesProps {
   element: Element;
@@ -12,12 +13,15 @@ const EverydayUses = ({ element }: EverydayUsesProps) => {
   const { t } = useLanguage();
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-base">{t.elementDetails.everydayUses}</CardTitle>
+    <Card className="overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm">
+      <CardHeader className="bg-gray-50 dark:bg-gray-800/50 pb-2">
+        <CardTitle className="text-base flex items-center gap-2 text-gray-700 dark:text-gray-200">
+          {t.elementDetails.everydayUses}
+          <Lightbulb className="h-4 w-4 text-muted-foreground" />
+        </CardTitle>
       </CardHeader>
-      <CardContent>
-        <ul className="list-disc list-inside space-y-1 text-sm">
+      <CardContent className="pt-4">
+        <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 dark:text-gray-300">
           {element.category === 'metal' && (
             <>
               <li>Consumer electronics and devices</li>
