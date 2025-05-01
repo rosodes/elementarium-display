@@ -7,6 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { ArrowLeft } from 'lucide-react';
 import Header from '../components/Header';
 import ElementDetails from '../components/ElementDetails';
+import NotFound from './NotFound'; // Added missing import
 
 const ElementPage = () => {
   const { elementId, lang } = useParams<{ elementId: string, lang?: string }>();
