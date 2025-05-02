@@ -13,7 +13,14 @@ import { LanguageProvider } from "./context/LanguageContext";
 
 // Ukrainian language is already registered in src/i18n/index.ts
 // Update language names in Header.tsx when adding new languages
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    },
+  },
+});
 
 const App = () => (
   <QueryClientProvider client={queryClient}>

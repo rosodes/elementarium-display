@@ -1,6 +1,6 @@
 
 import { useEffect, useState, useCallback } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import PeriodicTable from '../components/PeriodicTable';
 import Header from '../components/Header';
 import { useLanguage } from '../context/LanguageContext';
@@ -20,7 +20,7 @@ const Index = () => {
     }
   }, [lang, setLanguage, language]);
   
-  // Handle element click to navigate to element page
+  // Handle element click to navigate to element page with proper language support
   const handleElementClick = useCallback((element: Element) => {
     const baseUrl = lang ? `/${lang}` : '';
     navigate(`${baseUrl}/element/${element.atomic}`);
@@ -29,6 +29,9 @@ const Index = () => {
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
   }, []);
+
+  // Canonical URL with language prefix if needed
+  const canonicalUrl = `${window.location.origin}${lang ? `/${lang}` : '/'}`;
   
   return (
     <>
@@ -39,8 +42,18 @@ const Index = () => {
         <meta property="og:title" content={t.title} />
         <meta property="og:description" content={t.subtitle} />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href={window.location.href} />
+        <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="index, follow" />
+        {/* Add structured data for website */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": t.title,
+            "description": t.subtitle,
+            "url": canonicalUrl,
+          })}
+        </script>
       </Helmet>
       
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">

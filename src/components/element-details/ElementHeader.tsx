@@ -26,16 +26,22 @@ const ElementHeader = ({
 }: ElementHeaderProps) => {
   const { t } = useLanguage();
   
+  // Use semantic heading level based on context
+  const HeadingTag = isFullPage ? 'h1' : 'h2';
+  
   return (
-    <div 
-      className={`bg-gradient-to-r from-white/20 to-white/5 relative p-3 sm:p-5 flex justify-between items-center`}
+    <header 
+      className={`${isFullPage ? 'bg-gradient-to-r from-opacity-20 to-opacity-10' : 'bg-gradient-to-r from-white/20 to-white/5'} relative p-3 sm:p-5 flex justify-between items-center`}
       style={{ 
         backgroundColor: categoryColor.split(' ')[0],
         boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
       }}
+      itemScope={isFullPage}
+      itemType={isFullPage ? "http://schema.org/ChemicalElement" : undefined}
     >
       {/* Element number badge */}
       <div className="absolute top-3 left-3 bg-white/30 rounded-full px-2 py-0.5 text-xs font-bold">
+        <meta itemProp="atomicNumber" content={element.atomic.toString()} />
         {element.atomic}
       </div>
 
@@ -64,10 +70,10 @@ const ElementHeader = ({
       <div className="flex items-center mx-auto">
         <ElementImage element={element} categoryColor={categoryColor} />
         <div className="text-center">
-          <div className="text-4xl sm:text-6xl font-bold tracking-tight">{element.symbol}</div>
-          <h2 className="text-xl sm:text-3xl font-bold mt-1">{element.name}</h2>
+          <div className="text-4xl sm:text-6xl font-bold tracking-tight" itemProp="alternateName">{element.symbol}</div>
+          <HeadingTag className="text-xl sm:text-3xl font-bold mt-1" itemProp="name">{element.name}</HeadingTag>
           <p className="text-xs sm:text-sm opacity-80 mt-1">
-            {t.elementDetails.atomicNumber}: {element.atomic} • {t.elementDetails.atomicWeight}: {element.weight}
+            {t.elementDetails.atomicNumber}: {element.atomic} • {t.elementDetails.atomicWeight}: <span itemProp="atomicWeight">{element.weight}</span>
           </p>
         </div>
       </div>
@@ -82,7 +88,7 @@ const ElementHeader = ({
           <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
       )}
-    </div>
+    </header>
   );
 };
 

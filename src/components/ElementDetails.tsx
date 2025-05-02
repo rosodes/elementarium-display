@@ -71,7 +71,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
 
   // Different container classes based on whether it's displayed as a popup or full page
   const containerClasses = isFullPage
-    ? "w-full bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden"
+    ? "w-full bg-white dark:bg-gray-800 rounded-lg shadow-2xl overflow-hidden"
     : "fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm";
 
   const contentClasses = isFullPage

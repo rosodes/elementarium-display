@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { elements } from '../data/elements';
-import ElementDetails from './ElementDetails';
 import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
 import ElementSearchResults from './search/ElementSearch';

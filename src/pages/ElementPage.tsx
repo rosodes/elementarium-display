@@ -5,10 +5,10 @@ import { getElement } from '../data/elements';
 import { Element as ElementType } from '../data/elementTypes';
 import { useLanguage } from '../context/LanguageContext';
 import { ArrowLeft } from 'lucide-react';
-import Header from '../components/Header';
 import ElementDetails from '../components/ElementDetails';
 import NotFound from './NotFound';
 import { Helmet } from 'react-helmet-async';
+import { getCategoryColor, getSeriesColor } from '../data/elements';
 
 const ElementPage = () => {
   const { elementId, lang } = useParams<{ elementId: string; lang?: string }>();
@@ -43,6 +43,11 @@ const ElementPage = () => {
     return <NotFound />;
   }
   
+  // Get element colors
+  const categoryColor = element.category 
+    ? getCategoryColor(element.category) 
+    : getSeriesColor(element.series);
+  
   // Get translated element name if available
   const translatedName = t.ui?.elements?.[element.symbol.toLowerCase()] || element.name;
   const pageTitle = `${translatedName} (${element.symbol}) - ${t.title}`;
@@ -73,14 +78,18 @@ const ElementPage = () => {
         </script>
       </Helmet>
       
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-        <Header />
-        
-        <main className="container mx-auto px-4 pt-4">
+      <div 
+        className="min-h-screen transition-colors duration-200"
+        style={{ 
+          backgroundColor: `color-mix(in srgb, ${categoryColor.split(' ')[0]} 10%, ${language === 'light' ? 'white' : '#1a1a1a'})`
+        }}
+      >
+        <main className="container mx-auto px-4 pt-4 pb-8">
           {/* Back button */}
           <Link 
             to={lang ? `/${lang}` : '/'}
-            className="inline-flex items-center mb-4 px-4 py-2 text-sm font-medium rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+            className="inline-flex items-center my-4 px-4 py-2 text-sm font-medium rounded-md bg-white/20 hover:bg-white/30 text-gray-800 dark:text-gray-200 transition-colors"
+            aria-label={t.ui.back || 'Back to Periodic Table'}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             {t.ui.back || 'Back to Periodic Table'}
@@ -97,7 +106,7 @@ const ElementPage = () => {
           </div>
         </main>
         
-        <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center mt-8">
+        <footer className="py-4 sm:py-6 px-4 text-xs text-gray-600 dark:text-gray-400 text-center">
           <p>{t.footer.dataNote}</p>
           <p>{t.footer.credits}</p>
           <p className="mt-1">{t.footer.version} • {t.footer.license}</p>
