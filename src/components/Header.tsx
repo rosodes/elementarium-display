@@ -1,4 +1,3 @@
-
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -12,6 +11,7 @@ import {
 import Legend from './periodic-table/Legend';
 import SearchBar from './periodic-table/SearchBar';
 import { Separator } from './ui/separator';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Map of language codes to display names
 const languageNames: Record<string, string> = {
@@ -28,6 +28,31 @@ interface HeaderProps {
 const Header = ({ onSearch }: HeaderProps) => {
   const { t, language, setLanguage, supportedLanguages } = useLanguage();
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Function to update URL with language parameter
+  const changeLanguageAndUpdateUrl = (newLang: string) => {
+    setLanguage(newLang);
+    
+    // Get current path and update language segment if needed
+    const pathParts = location.pathname.split('/').filter(Boolean);
+    
+    // Check if first segment is a language code
+    if (pathParts.length > 0 && supportedLanguages.includes(pathParts[0])) {
+      // Replace language code
+      pathParts[0] = newLang;
+    } else {
+      // Insert language code at beginning if not English
+      if (newLang !== 'en') {
+        pathParts.unshift(newLang);
+      }
+    }
+    
+    // Navigate to new URL (keep as '/' if English and no other segments)
+    const newPath = newLang === 'en' && pathParts.length <= 1 ? '/' : `/${pathParts.join('/')}`;
+    navigate(newPath);
+  };
 
   return (
     <header className="py-6 w-full">
@@ -56,7 +81,7 @@ const Header = ({ onSearch }: HeaderProps) => {
                     {supportedLanguages.map((lang) => (
                       <DropdownMenuItem 
                         key={lang}
-                        onClick={() => setLanguage(lang)}
+                        onClick={() => changeLanguageAndUpdateUrl(lang)}
                         className={language === lang ? "bg-accent" : ""}
                       >
                         {languageNames[lang] || lang}

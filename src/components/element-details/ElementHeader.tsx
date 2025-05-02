@@ -27,7 +27,7 @@ const ElementHeader = ({
   const { t } = useLanguage();
   
   // Use semantic heading level based on context
-  const HeadingTag = isFullPage ? 'h1' : 'h2';
+  const HeadingTag = isFullPage ? 'h1' : 'h2' as keyof JSX.IntrinsicElements;
   
   return (
     <header 

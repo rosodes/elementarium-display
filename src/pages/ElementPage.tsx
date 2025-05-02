@@ -53,6 +53,9 @@ const ElementPage = () => {
   const pageTitle = `${translatedName} (${element.symbol}) - ${t.title}`;
   const pageDescription = `${translatedName} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`;
   
+  // Canonical URL for this element with language prefix if needed
+  const canonicalUrl = `${window.location.origin}${lang ? `/${lang}` : ''}/element/${element.atomic}`;
+  
   return (
     <>
       {/* Enhanced SEO metadata using Helmet */}
@@ -62,7 +65,7 @@ const ElementPage = () => {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="article" />
-        <link rel="canonical" href={window.location.href} />
+        <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="index, follow" />
         {/* Schema.org structured data for chemical element */}
         <script type="application/ld+json">
@@ -73,7 +76,7 @@ const ElementPage = () => {
             "alternateName": element.symbol,
             "description": pageDescription,
             "molecularFormula": element.symbol,
-            "url": window.location.href
+            "url": canonicalUrl
           })}
         </script>
       </Helmet>
@@ -89,10 +92,10 @@ const ElementPage = () => {
           <Link 
             to={lang ? `/${lang}` : '/'}
             className="inline-flex items-center my-4 px-4 py-2 text-sm font-medium rounded-md bg-white/20 hover:bg-white/30 text-gray-800 dark:text-gray-200 transition-colors"
-            aria-label={t.ui.back || 'Back to Periodic Table'}
+            aria-label={t.ui?.back || 'Back to Periodic Table'}
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
-            {t.ui.back || 'Back to Periodic Table'}
+            {t.ui?.back || 'Back to Periodic Table'}
           </Link>
           
           {/* Display element details as a full page */}
