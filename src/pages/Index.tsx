@@ -11,7 +11,6 @@ const Index = () => {
   const { t, setLanguage, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const { lang } = useParams<{ lang?: string }>();
-  const location = useLocation();
   const navigate = useNavigate();
   
   // Set language based on URL path if it's different from current language
@@ -24,7 +23,7 @@ const Index = () => {
   // Handle element click to navigate to element page
   const handleElementClick = useCallback((element: Element) => {
     const baseUrl = lang ? `/${lang}` : '';
-    navigate(`${baseUrl}/${element.atomic}`);
+    navigate(`${baseUrl}/element/${element.atomic}`);
   }, [lang, navigate]);
   
   const handleSearch = useCallback((query: string) => {

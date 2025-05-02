@@ -25,13 +25,13 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <Routes>
-                {/* Main routes with language support */}
+                {/* Home routes with language support */}
                 <Route path="/" element={<Index />} />
                 <Route path="/:lang" element={<Index />} />
                 
                 {/* Element detail routes with language support */}
-                <Route path="/:elementId" element={<ElementPage />} />
-                <Route path="/:lang/:elementId" element={<ElementPage />} />
+                <Route path="/element/:elementId" element={<ElementPage />} />
+                <Route path="/:lang/element/:elementId" element={<ElementPage />} />
                 
                 {/* Catch all for 404 */}
                 <Route path="*" element={<NotFound />} />

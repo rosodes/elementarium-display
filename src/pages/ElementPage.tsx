@@ -29,7 +29,7 @@ const ElementPage = () => {
   // Handle navigation when element changes
   const handleNavigateElement = (newElement: ElementType) => {
     const baseUrl = lang ? `/${lang}` : '';
-    navigate(`${baseUrl}/${newElement.atomic}`);
+    navigate(`${baseUrl}/element/${newElement.atomic}`);
   };
   
   // Handle close button click
@@ -50,7 +50,7 @@ const ElementPage = () => {
   
   return (
     <>
-      {/* Server-side SEO metadata using Helmet */}
+      {/* Enhanced SEO metadata using Helmet */}
       <Helmet>
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
@@ -59,6 +59,18 @@ const ElementPage = () => {
         <meta property="og:type" content="article" />
         <link rel="canonical" href={window.location.href} />
         <meta name="robots" content="index, follow" />
+        {/* Schema.org structured data for chemical element */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ChemicalSubstance",
+            "name": translatedName,
+            "alternateName": element.symbol,
+            "description": pageDescription,
+            "molecularFormula": element.symbol,
+            "url": window.location.href
+          })}
+        </script>
       </Helmet>
       
       <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
@@ -74,7 +86,7 @@ const ElementPage = () => {
             {t.ui.back || 'Back to Periodic Table'}
           </Link>
           
-          {/* Display element details with full-page styling */}
+          {/* Display element details as a full page */}
           <div className="w-full max-w-7xl mx-auto">
             <ElementDetails 
               element={element} 

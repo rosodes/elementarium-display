@@ -9,7 +9,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 interface PeriodicTableProps {
   searchQuery?: string;
-  onElementClick?: (element: ElementType) => void; // Make this prop optional
+  onElementClick?: (element: ElementType) => void;
 }
 
 const useElementSearch = (searchQuery: string, language: string, t: any) => {
@@ -54,7 +54,7 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
   // Use custom hook for element filtering
   const filteredElements = useElementSearch(searchQuery, language, t);
   
-  const handleElementClick = (element: ElementType) => {
+  const handleElementClick = useCallback((element: ElementType) => {
     // If onElementClick prop is provided, use it
     if (onElementClick) {
       onElementClick(element);
@@ -63,8 +63,8 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
     
     // Otherwise, use default navigation behavior
     const basePath = lang ? `/${lang}` : '';
-    navigate(`${basePath}/${element.atomic}`);
-  };
+    navigate(`${basePath}/element/${element.atomic}`);
+  }, [onElementClick, lang, navigate]);
   
   const closeDetails = () => {
     // Return to base path based on language
@@ -75,7 +75,7 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
   const handleNavigateElement = (element: ElementType) => {
     // Navigate to the new element page
     const basePath = lang ? `/${lang}` : '';
-    navigate(`${basePath}/${element.atomic}`);
+    navigate(`${basePath}/element/${element.atomic}`);
   };
   
   return (

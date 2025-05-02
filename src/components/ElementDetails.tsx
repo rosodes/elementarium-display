@@ -19,7 +19,7 @@ interface ElementDetailsProps {
   element: Element;
   onClose: () => void;
   onNavigate: (element: Element) => void;
-  isFullPage?: boolean; // Prop to determine if it's displayed as full page
+  isFullPage?: boolean;
 }
 
 const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: ElementDetailsProps) => {
