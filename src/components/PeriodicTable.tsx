@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { elements } from '../data/elements';
@@ -6,7 +5,7 @@ import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
 import ElementSearchResults from './search/ElementSearch';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import ElementDetails from './ElementDetails'; // Добавляем импорт компонента ElementDetails
+import ElementDetails from './ElementDetails'; // Исправляем импорт
 
 interface PeriodicTableProps {
   searchQuery?: string;

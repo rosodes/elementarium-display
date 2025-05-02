@@ -29,6 +29,17 @@ const ElementHeader = ({
   // Use semantic heading level based on context
   const HeadingTag = isFullPage ? 'h1' : 'h2' as keyof JSX.IntrinsicElements;
   
+  // Генерируем прогрессивные микроданные schema.org для лучшего SEO
+  // Когда isFullPage=true, мы добавляем расширенную разметку schema.org
+  const schemaData = {
+    '@context': 'https://schema.org',
+    '@type': 'ChemicalElement',
+    'name': element.name,
+    'alternateName': element.symbol,
+    'atomicNumber': element.atomic,
+    'atomicWeight': element.weight
+  };
+  
   return (
     <header 
       className={`${isFullPage ? 'bg-gradient-to-r from-opacity-20 to-opacity-10' : 'bg-gradient-to-r from-white/20 to-white/5'} relative p-3 sm:p-5 flex justify-between items-center`}
@@ -38,7 +49,14 @@ const ElementHeader = ({
       }}
       itemScope={isFullPage}
       itemType={isFullPage ? "http://schema.org/ChemicalElement" : undefined}
+      // Добавляем скрытые микроданные для поисковых систем при полностраничном отображении
+      aria-describedby={isFullPage ? `element-${element.atomic}-description` : undefined}
     >
+      {/* Скрытые микроданные для поисковых систем */}
+      {isFullPage && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+      )}
+
       {/* Element number badge */}
       <div className="absolute top-3 left-3 bg-white/30 rounded-full px-2 py-0.5 text-xs font-bold">
         <meta itemProp="atomicNumber" content={element.atomic.toString()} />
@@ -87,6 +105,13 @@ const ElementHeader = ({
         >
           <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
+      )}
+      
+      {/* Скрытый элемент для описания (улучшает SEO) */}
+      {isFullPage && (
+        <div id={`element-${element.atomic}-description`} className="sr-only">
+          {element.name} ({element.symbol}), {t.elementDetails.atomicNumber}: {element.atomic}, {t.elementDetails.atomicWeight}: {element.weight}
+        </div>
       )}
     </header>
   );
