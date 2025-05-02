@@ -4,6 +4,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ElementPage from "./pages/ElementPage";
@@ -18,24 +19,26 @@ const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
       <LanguageProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              {/* Main routes with language support */}
-              <Route path="/" element={<Index />} />
-              <Route path="/:lang" element={<Index />} />
-              
-              {/* Element detail routes with language support */}
-              <Route path="/:elementId" element={<ElementPage />} />
-              <Route path="/:lang/:elementId" element={<ElementPage />} />
-              
-              {/* Catch all for 404 */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
+        <HelmetProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <Routes>
+                {/* Main routes with language support */}
+                <Route path="/" element={<Index />} />
+                <Route path="/:lang" element={<Index />} />
+                
+                {/* Element detail routes with language support */}
+                <Route path="/:elementId" element={<ElementPage />} />
+                <Route path="/:lang/:elementId" element={<ElementPage />} />
+                
+                {/* Catch all for 404 */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </TooltipProvider>
+        </HelmetProvider>
       </LanguageProvider>
     </ThemeProvider>
   </QueryClientProvider>

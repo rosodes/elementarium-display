@@ -8,6 +8,7 @@ import { ArrowLeft } from 'lucide-react';
 import Header from '../components/Header';
 import ElementDetails from '../components/ElementDetails';
 import NotFound from './NotFound';
+import { Helmet } from 'react-helmet-async';
 
 const ElementPage = () => {
   const { elementId, lang } = useParams<{ elementId: string; lang?: string }>();
@@ -42,56 +43,55 @@ const ElementPage = () => {
     return <NotFound />;
   }
   
-  // Document title for SEO
-  useEffect(() => {
-    document.title = `${element.name} (${element.symbol}) - ${t.title}`;
-    
-    // Add meta description for SEO
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 
-        `${element.name} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`);
-    }
-    
-    return () => {
-      document.title = t.title;
-      if (metaDescription) {
-        metaDescription.setAttribute('content', t.subtitle);
-      }
-    };
-  }, [element, t]);
+  // Get translated element name if available
+  const translatedName = t.ui?.elements?.[element.symbol.toLowerCase()] || element.name;
+  const pageTitle = `${translatedName} (${element.symbol}) - ${t.title}`;
+  const pageDescription = `${translatedName} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`;
   
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-      <Header />
+    <>
+      {/* Server-side SEO metadata using Helmet */}
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:type" content="article" />
+        <link rel="canonical" href={window.location.href} />
+        <meta name="robots" content="index, follow" />
+      </Helmet>
       
-      <main className="container mx-auto px-4 pt-4">
-        {/* Back button */}
-        <Link 
-          to={lang ? `/${lang}` : '/'}
-          className="inline-flex items-center mb-4 px-4 py-2 text-sm font-medium rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          {t.ui.back || 'Back to Periodic Table'}
-        </Link>
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+        <Header />
         
-        {/* Display element details with full-page styling */}
-        <div className="w-full max-w-7xl mx-auto">
-          <ElementDetails 
-            element={element} 
-            onClose={handleClose} 
-            onNavigate={handleNavigateElement}
-            isFullPage={true} // New prop to change styling for full page mode
-          />
-        </div>
-      </main>
-      
-      <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center mt-8">
-        <p>{t.footer.dataNote}</p>
-        <p>{t.footer.credits}</p>
-        <p className="mt-1">{t.footer.version} • {t.footer.license}</p>
-      </footer>
-    </div>
+        <main className="container mx-auto px-4 pt-4">
+          {/* Back button */}
+          <Link 
+            to={lang ? `/${lang}` : '/'}
+            className="inline-flex items-center mb-4 px-4 py-2 text-sm font-medium rounded-md bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200"
+          >
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            {t.ui.back || 'Back to Periodic Table'}
+          </Link>
+          
+          {/* Display element details with full-page styling */}
+          <div className="w-full max-w-7xl mx-auto">
+            <ElementDetails 
+              element={element} 
+              onClose={handleClose} 
+              onNavigate={handleNavigateElement}
+              isFullPage={true} 
+            />
+          </div>
+        </main>
+        
+        <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center mt-8">
+          <p>{t.footer.dataNote}</p>
+          <p>{t.footer.credits}</p>
+          <p className="mt-1">{t.footer.version} • {t.footer.license}</p>
+        </footer>
+      </div>
+    </>
   );
 };
 

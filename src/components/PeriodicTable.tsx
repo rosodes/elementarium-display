@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { elements } from '../data/elements';
@@ -10,6 +9,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 interface PeriodicTableProps {
   searchQuery?: string;
+  onElementClick?: (element: ElementType) => void; // Make this prop optional
 }
 
 const useElementSearch = (searchQuery: string, language: string, t: any) => {
@@ -44,7 +44,7 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
   return filteredElements;
 }
 
-const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
+const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps) => {
   const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
   const { t, language } = useLanguage();
   const navigate = useNavigate();
@@ -55,7 +55,13 @@ const PeriodicTable = ({ searchQuery = '' }: PeriodicTableProps) => {
   const filteredElements = useElementSearch(searchQuery, language, t);
   
   const handleElementClick = (element: ElementType) => {
-    // Navigate to the element page instead of opening popup
+    // If onElementClick prop is provided, use it
+    if (onElementClick) {
+      onElementClick(element);
+      return;
+    }
+    
+    // Otherwise, use default navigation behavior
     const basePath = lang ? `/${lang}` : '';
     navigate(`${basePath}/${element.atomic}`);
   };
