@@ -10,30 +10,42 @@ interface LanguageContextType {
   addLanguage: (key: string, translations: TranslationData) => void;
 }
 
+interface LanguageProviderProps {
+  children: React.ReactNode;
+  initialLanguage?: string; // Добавляем возможность задать начальный язык при SSR
+}
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<string>('en');
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, initialLanguage }) => {
+  const [language, setLanguage] = useState<string>(initialLanguage || 'en');
   const [supportedLanguages, setSupportedLanguages] = useState<string[]>(Object.keys(languages));
   
-  // Get initial language from localStorage or browser language
+  // Синхронизируем язык с localStorage при запуске на клиенте
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('preferredLanguage');
-    if (savedLanguage && languages[savedLanguage as keyof typeof languages]) {
-      setLanguage(savedLanguage);
-    } else {
-      // Use browser language if available and supported
-      const browserLang = navigator.language.split('-')[0];
-      if (languages[browserLang as keyof typeof languages]) {
-        setLanguage(browserLang);
+    if (typeof window !== 'undefined') { // Проверяем, что мы на клиенте
+      // Если нет initialLanguage (SSR), получаем из localStorage или по настройкам браузера
+      if (!initialLanguage) {
+        const savedLanguage = localStorage.getItem('preferredLanguage');
+        if (savedLanguage && languages[savedLanguage as keyof typeof languages]) {
+          setLanguage(savedLanguage);
+        } else {
+          // Использовать язык браузера, если он поддерживается
+          const browserLang = navigator.language.split('-')[0];
+          if (languages[browserLang as keyof typeof languages]) {
+            setLanguage(browserLang);
+          }
+        }
       }
     }
-  }, []);
+  }, [initialLanguage]);
   
   const changeLanguage = (lang: string) => {
     if (languages[lang as keyof typeof languages]) {
       setLanguage(lang);
-      localStorage.setItem('preferredLanguage', lang);
+      if (typeof window !== 'undefined') { // Сохраняем только на клиенте
+        localStorage.setItem('preferredLanguage', lang);
+      }
     } else {
       console.error(`Language "${lang}" is not supported`);
     }

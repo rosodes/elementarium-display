@@ -29,15 +29,21 @@ const ElementHeader = ({
   // Use semantic heading level based on context
   const HeadingTag = isFullPage ? 'h1' : 'h2' as keyof JSX.IntrinsicElements;
   
-  // Генерируем прогрессивные микроданные schema.org для лучшего SEO
-  // Когда isFullPage=true, мы добавляем расширенную разметку schema.org
+  // Расширенные микроданные для SEO
   const schemaData = {
     '@context': 'https://schema.org',
     '@type': 'ChemicalElement',
     'name': element.name,
     'alternateName': element.symbol,
     'atomicNumber': element.atomic,
-    'atomicWeight': element.weight
+    'atomicWeight': element.weight,
+    'description': `${element.name} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}`,
+    // Добавляем больше полезных данных для SEO
+    'image': `${window.location.origin}/element-images/${element.symbol.toLowerCase()}.svg`,
+    'sameAs': [
+      `https://en.wikipedia.org/wiki/${element.name}`,
+      `https://www.britannica.com/science/${element.name.toLowerCase()}`
+    ]
   };
   
   return (
@@ -49,10 +55,11 @@ const ElementHeader = ({
       }}
       itemScope={isFullPage}
       itemType={isFullPage ? "http://schema.org/ChemicalElement" : undefined}
-      // Добавляем скрытые микроданные для поисковых систем при полностраничном отображении
+      // Добавляем расширенные семантические атрибуты
+      aria-labelledby={`element-${element.atomic}-name`}
       aria-describedby={isFullPage ? `element-${element.atomic}-description` : undefined}
     >
-      {/* Скрытые микроданные для поисковых систем */}
+      {/* Структурированные данные для поисковых систем */}
       {isFullPage && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
       )}
@@ -63,12 +70,13 @@ const ElementHeader = ({
         {element.atomic}
       </div>
 
-      {/* Previous element button */}
+      {/* Previous element button с улучшенными подсказками */}
       {prevElement && (
         <button
           onClick={() => onNavigate(prevElement)}
           className="absolute left-12 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-gray-800 dark:text-white transition-colors"
           aria-label={`${t.elementDetails.previousElement}: ${prevElement.name}`}
+          title={`${prevElement.name} (${prevElement.symbol})`}
         >
           <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
@@ -89,28 +97,45 @@ const ElementHeader = ({
         <ElementImage element={element} categoryColor={categoryColor} />
         <div className="text-center">
           <div className="text-4xl sm:text-6xl font-bold tracking-tight" itemProp="alternateName">{element.symbol}</div>
-          <HeadingTag className="text-xl sm:text-3xl font-bold mt-1" itemProp="name">{element.name}</HeadingTag>
+          <HeadingTag 
+            id={`element-${element.atomic}-name`} 
+            className="text-xl sm:text-3xl font-bold mt-1" 
+            itemProp="name"
+          >
+            {element.name}
+          </HeadingTag>
           <p className="text-xs sm:text-sm opacity-80 mt-1">
-            {t.elementDetails.atomicNumber}: {element.atomic} • {t.elementDetails.atomicWeight}: <span itemProp="atomicWeight">{element.weight}</span>
+            {t.elementDetails.atomicNumber}: <span itemProp="atomicNumber">{element.atomic}</span> • 
+            {t.elementDetails.atomicWeight}: <span itemProp="atomicWeight">{element.weight}</span>
           </p>
+          
+          {/* Дополнительная семантическая информация для поисковых систем */}
+          {isFullPage && (
+            <>
+              <meta itemProp="description" content={`${element.name} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`} />
+              <link itemProp="image" href={`/element-images/${element.symbol.toLowerCase()}.svg`} />
+            </>
+          )}
         </div>
       </div>
       
-      {/* Next element button */}
+      {/* Next element button с улучшенными подсказками */}
       {nextElement && (
         <button
           onClick={() => onNavigate(nextElement)}
           className="absolute right-12 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-gray-800 dark:text-white transition-colors"
           aria-label={`${t.elementDetails.nextElement}: ${nextElement.name}`}
+          title={`${nextElement.name} (${nextElement.symbol})`}
         >
           <ArrowRight className="h-5 w-5 sm:h-6 sm:w-6" />
         </button>
       )}
       
-      {/* Скрытый элемент для описания (улучшает SEO) */}
+      {/* Дополнительный семантический блок для доступности и SEO */}
       {isFullPage && (
         <div id={`element-${element.atomic}-description`} className="sr-only">
-          {element.name} ({element.symbol}), {t.elementDetails.atomicNumber}: {element.atomic}, {t.elementDetails.atomicWeight}: {element.weight}
+          {element.name} ({element.symbol}), {t.elementDetails.atomicNumber}: {element.atomic}, {t.elementDetails.atomicWeight}: {element.weight}. 
+          {element.category && `${t.categories[element.category.toLowerCase() as keyof typeof t.categories]}.`}
         </div>
       )}
     </header>

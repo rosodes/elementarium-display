@@ -1,3 +1,4 @@
+
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -23,51 +24,65 @@ const languageNames: Record<string, string> = {
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
+  isElementPage?: boolean;
 }
 
-const Header = ({ onSearch }: HeaderProps) => {
+const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
   const { t, language, setLanguage, supportedLanguages } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Function to update URL with language parameter
+  // Функция для обновления URL с языковым параметром
   const changeLanguageAndUpdateUrl = (newLang: string) => {
     setLanguage(newLang);
     
-    // Get current path and update language segment if needed
+    // Получаем текущий путь и обновляем языковой сегмент при необходимости
     const pathParts = location.pathname.split('/').filter(Boolean);
+    let newPathParts: string[] = [];
     
-    // Check if first segment is a language code
+    // Проверяем, является ли первый сегмент кодом языка
     if (pathParts.length > 0 && supportedLanguages.includes(pathParts[0])) {
-      // Replace language code
-      pathParts[0] = newLang;
+      if (newLang === 'en') {
+        // Если переключаемся на английский, убираем языковой сегмент
+        newPathParts = pathParts.slice(1);
+      } else {
+        // Заменяем языковой сегмент
+        newPathParts = [newLang, ...pathParts.slice(1)];
+      }
     } else {
-      // Insert language code at beginning if not English
+      // Если первый сегмент не является языковым, добавляем языковой сегмент
+      // только если язык не английский
       if (newLang !== 'en') {
-        pathParts.unshift(newLang);
+        newPathParts = [newLang, ...pathParts];
+      } else {
+        newPathParts = [...pathParts];
       }
     }
     
-    // Navigate to new URL (keep as '/' if English and no other segments)
-    const newPath = newLang === 'en' && pathParts.length <= 1 ? '/' : `/${pathParts.join('/')}`;
+    // Навигация на новый URL
+    const newPath = newPathParts.length === 0 ? '/' : `/${newPathParts.join('/')}`;
     navigate(newPath);
   };
 
   return (
-    <header className="py-6 w-full">
-      <div className="px-12">
+    <header className={`py-6 w-full ${isElementPage ? 'bg-transparent' : ''}`}>
+      <div className="px-4 md:px-12">
         <div className="flex flex-col">
           {/* Top bar with title and controls */}
           <div className="flex justify-between items-center mb-4">
             <div className="flex-1">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
+              {!isElementPage && (
+                <>
+                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
+                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
+                </>
+              )}
             </div>
 
             <div className="flex items-center space-x-6">
               {/* Search bar positioned right */}
-              {onSearch && <SearchBar onSearch={onSearch} />}
+              {onSearch && !isElementPage && <SearchBar onSearch={onSearch} />}
               
               <div className="flex items-center space-x-3">
                 <DropdownMenu>
@@ -108,12 +123,15 @@ const Header = ({ onSearch }: HeaderProps) => {
             </div>
           </div>
 
-          <Separator className="my-4" />
-
-          {/* Legend component */}
-          <div className="max-w-md">
-            <Legend />
-          </div>
+          {!isElementPage && (
+            <>
+              <Separator className="my-4" />
+              {/* Legend component */}
+              <div className="max-w-md">
+                <Legend />
+              </div>
+            </>
+          )}
         </div>
       </div>
     </header>

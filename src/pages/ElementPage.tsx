@@ -9,6 +9,7 @@ import ElementDetails from '../components/ElementDetails';
 import NotFound from './NotFound';
 import { Helmet } from 'react-helmet-async';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
+import Header from '../components/Header';
 
 const ElementPage = () => {
   const { elementId, lang } = useParams<{ elementId: string; lang?: string }>();
@@ -54,7 +55,34 @@ const ElementPage = () => {
   const pageDescription = `${translatedName} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`;
   
   // Canonical URL for this element with language prefix if needed
-  const canonicalUrl = `${window.location.origin}${lang ? `/${lang}` : ''}/element/${element.atomic}`;
+  const origin = typeof window !== 'undefined' ? window.location.origin : '';
+  const canonicalUrl = `${origin}${lang ? `/${lang}` : ''}/element/${element.atomic}`;
+  
+  // Получаем следующий и предыдущий элементы для навигации
+  const nextElementId = element.atomic < 118 ? element.atomic + 1 : null;
+  const prevElementId = element.atomic > 1 ? element.atomic - 1 : null;
+  
+  // Данные для структурированных данных Schema.org
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "ChemicalSubstance",
+    "name": translatedName,
+    "alternateName": element.symbol,
+    "description": pageDescription,
+    "molecularFormula": element.symbol,
+    "url": canonicalUrl,
+    "identifier": {
+      "@type": "PropertyValue",
+      "propertyID": "atomic-number",
+      "value": element.atomic
+    },
+    "disambiguatingDescription": `${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`,
+    // Дополнительные данные для поисковых систем
+    "potentialAction": {
+      "@type": "ViewAction",
+      "target": canonicalUrl
+    }
+  };
   
   return (
     <>
@@ -65,19 +93,19 @@ const ElementPage = () => {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="article" />
+        <meta property="og:url" content={canonicalUrl} />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="index, follow" />
-        {/* Schema.org structured data for chemical element */}
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:description" content={pageDescription} />
+        {/* Добавляем hreflang для мультиязычности */}
+        <link rel="alternate" hrefLang="en" href={`${origin}/element/${element.atomic}`} />
+        <link rel="alternate" hrefLang="ru" href={`${origin}/ru/element/${element.atomic}`} />
+        <link rel="alternate" hrefLang="uk" href={`${origin}/uk/element/${element.atomic}`} />
+        {/* Schema.org структурированные данные для химического элемента */}
         <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ChemicalSubstance",
-            "name": translatedName,
-            "alternateName": element.symbol,
-            "description": pageDescription,
-            "molecularFormula": element.symbol,
-            "url": canonicalUrl
-          })}
+          {JSON.stringify(schemaData)}
         </script>
       </Helmet>
       
@@ -86,7 +114,12 @@ const ElementPage = () => {
         style={{ 
           backgroundColor: `color-mix(in srgb, ${categoryColor.split(' ')[0]} 10%, ${language === 'light' ? 'white' : '#1a1a1a'})`
         }}
+        itemScope
+        itemType="http://schema.org/ChemicalSubstance"
       >
+        {/* Используем Header с флагом, что это страница элемента */}
+        <Header isElementPage={true} />
+        
         <main className="container mx-auto px-4 pt-4 pb-8">
           {/* Back button */}
           <Link 

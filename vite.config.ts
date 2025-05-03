@@ -4,6 +4,7 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { Plugin } from 'vite';
+import { prerenderRoutes } from './src/prerender';
 
 // Плагин для предварительного рендеринга основных маршрутов
 const prerenderPlugin = (): Plugin => {
@@ -12,8 +13,14 @@ const prerenderPlugin = (): Plugin => {
     apply: 'build',
     async closeBundle() {
       console.log('Prerendering routes for SEO...');
-      // Логика предварительного рендеринга может быть добавлена здесь
-      // в полноценной реализации
+      const outputDir = path.resolve(__dirname, 'dist');
+      
+      try {
+        await prerenderRoutes(outputDir);
+        console.log('Prerendering complete');
+      } catch (err) {
+        console.error('Error during prerendering:', err);
+      }
     }
   };
 };
@@ -25,7 +32,10 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react(),
+    react({
+      // Улучшаем поддержку SSR
+      fastRefresh: mode !== 'production',
+    }),
     mode === 'development' && componentTagger(),
     mode === 'production' && prerenderPlugin(),
   ].filter(Boolean),
@@ -34,9 +44,18 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Добавляем конфигурацию для SSR
+  // Полная конфигурация для SSR
   build: {
     ssrManifest: true, // Генерируем манифест для SSR
     manifest: true, // Генерируем манифест ассетов
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Разделяем код на чанки для оптимизации
+          vendor: ['react', 'react-dom', 'react-router-dom'],
+          ui: ['@/components/ui'],
+        }
+      }
+    }
   },
 }));
