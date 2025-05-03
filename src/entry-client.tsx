@@ -82,16 +82,19 @@ startTransition(() => {
 
 // Enable the React profiler in development mode
 if (process.env.NODE_ENV === 'development') {
-  const { createRoot } = await import('react-dom/profiling');
-  const profiler = createRoot(document.getElementById('profiler-root') || document.createElement('div'));
-  window.__REACT_PROFILER__ = profiler;
+  import('react-dom/profiling').then(({ createRoot }) => {
+    const profiler = createRoot(document.getElementById('profiler-root') || document.createElement('div'));
+    window.__REACT_PROFILER__ = profiler;
+  });
 }
 
 // Add React Query devtools in development
 if (process.env.NODE_ENV === 'development') {
+  // Only attempt to load devtools in development
   import('@tanstack/react-query-devtools').then(({ ReactQueryDevtools }) => {
-    // Devtools are loaded dynamically in development
     console.log('React Query Devtools loaded');
+  }).catch(err => {
+    console.warn('Could not load React Query Devtools:', err);
   });
 }
 

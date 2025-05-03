@@ -56,7 +56,6 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           // Split code into chunks for optimization
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          // Remove the ui chunk reference since './src/components/ui' doesn't exist as a direct entry module
         }
       }
     }

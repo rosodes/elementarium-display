@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
 import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
@@ -25,7 +25,7 @@ function getLanguageFromUrl(url: string): string {
  * @param url URL to render
  * @returns Object with HTML and headers
  */
-export async function renderToString(url: string) {
+export async function renderPage(url: string) {
   const helmetContext: { helmet?: HelmetServerState } = {};
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -84,7 +84,7 @@ export async function prerenderRoutes(outputDir: string) {
     for (const route of routes) {
       console.log(`Prerendering route: ${route}`);
       
-      const result = await renderToString(route);
+      const result = await renderPage(route);
       const { html } = result;
       const helmetData = result.helmet;
       
@@ -138,4 +138,4 @@ export async function prerenderRoutes(outputDir: string) {
 }
 
 // Export function for build scripts
-export default renderToString;
+export default prerenderRoutes;

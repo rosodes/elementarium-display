@@ -1,6 +1,8 @@
 
 /**
  * Simple prerender function for SSR static generation
+ * 
+ * This file is used as a fallback if the TypeScript version fails
  */
 export async function prerenderRoutes(outputDir) {
   console.log('Prerendering routes to:', outputDir);

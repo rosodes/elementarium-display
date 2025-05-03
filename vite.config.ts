@@ -40,8 +40,6 @@ export default defineConfig(({ mode, command }) => ({
   },
   plugins: [
     react({
-      // Use fast refresh for better development experience
-      fastRefresh: true,
       // Use the SWC optimizer for better performance
       swcOptions: {
         jsc: {
@@ -64,11 +62,11 @@ export default defineConfig(({ mode, command }) => ({
     }),
     // Add compression for static assets
     mode === 'production' && compression({
-      algorithm: 'brotli',
+      algorithm: 'brotli' as any,
       ext: '.br',
     }),
     mode === 'production' && compression({
-      algorithm: 'gzip',
+      algorithm: 'gzip' as any,
       ext: '.gz',
     }),
   ].filter(Boolean),
