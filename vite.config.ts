@@ -39,21 +39,7 @@ export default defineConfig(({ mode, command }) => ({
     port: 8080,
   },
   plugins: [
-    react({
-      // Use the SWC optimizer for better performance
-      swcOptions: {
-        jsc: {
-          transform: {
-            react: {
-              // Enable new React compiler for better performance
-              runtime: 'automatic',
-              development: mode === 'development',
-              refresh: mode === 'development',
-            },
-          },
-        },
-      },
-    }),
+    react(),
     mode === 'development' && componentTagger(),
     mode === 'production' && prerenderPlugin(),
     // Add legacy browser support
@@ -125,18 +111,7 @@ export default defineConfig(({ mode, command }) => ({
     devSourcemap: mode !== 'production',
     modules: {
       generateScopedName: mode === 'production' ? '[hash:base64:5]' : '[local]_[hash:base64:5]',
-    },
-    postcss: {
-      plugins: [
-        require('autoprefixer'),
-        mode === 'production' && require('cssnano')({
-          preset: ['default', {
-            discardComments: { removeAll: true },
-            minifyFontValues: { removeQuotes: false },
-          }],
-        }),
-      ].filter(Boolean),
-    },
+    }
   },
   // Optimize dependencies pre-bundling
   optimizeDeps: {

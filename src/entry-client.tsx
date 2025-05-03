@@ -85,17 +85,21 @@ if (process.env.NODE_ENV === 'development') {
   import('react-dom/profiling').then(({ createRoot }) => {
     const profiler = createRoot(document.getElementById('profiler-root') || document.createElement('div'));
     window.__REACT_PROFILER__ = profiler;
+  }).catch(err => {
+    console.error('Failed to load React profiling:', err);
   });
 }
 
 // Add React Query devtools in development
 if (process.env.NODE_ENV === 'development') {
-  // Only attempt to load devtools in development
-  import('@tanstack/react-query-devtools').then(({ ReactQueryDevtools }) => {
-    console.log('React Query Devtools loaded');
-  }).catch(err => {
-    console.warn('Could not load React Query Devtools:', err);
-  });
+  // Only load devtools in development with proper error handling
+  import('@tanstack/react-query-devtools')
+    .then(({ ReactQueryDevtools }) => {
+      console.log('React Query Devtools loaded');
+    })
+    .catch(err => {
+      console.warn('Could not load React Query Devtools:', err);
+    });
 }
 
 // Remove loading indicator
