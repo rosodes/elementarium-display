@@ -10,7 +10,7 @@ export async function prerenderRoutes(outputDir) {
   // When using full SSR, prerendering may be less necessary
   // but can still be useful for static paths
   try {
-    console.log('Using JavaScript fallback prerender');
+    console.log('Using JavaScript fallback prerender for directory:', outputDir);
     // This is a simplified version that doesn't actually render,
     // but prevents build failures when the TypeScript version has issues
     return Promise.resolve();

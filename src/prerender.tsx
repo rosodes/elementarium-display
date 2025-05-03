@@ -79,7 +79,7 @@ export async function prerenderRoutes(outputDir: string) {
     '/element/79',    // Gold page (popular element)
   ];
   
-  console.log(`Starting prerendering of ${routes.length} routes...`);
+  console.log(`Starting prerendering of ${routes.length} routes to ${outputDir}...`);
   
   try {
     for (const route of routes) {

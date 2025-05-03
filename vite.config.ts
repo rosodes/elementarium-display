@@ -25,12 +25,13 @@ const prerenderPlugin = (): Plugin => {
         // Use a cleaner approach to import prerender module
         let prerender;
         try {
-          // Try loading JavaScript file first
-          prerender = await import('./src/prerender.js');
+          const prerenderModule = await import('./src/prerender.js');
+          prerender = prerenderModule;
         } catch (err) {
+          console.error('Failed to load prerender.js:', err);
           try {
-            // Try loading TypeScript file if JS fails
-            prerender = await import('./src/prerender.tsx');
+            const prerenderTsModule = await import('./src/prerender');
+            prerender = prerenderTsModule;
           } catch (innerErr) {
             console.error('Failed to load prerender module:', innerErr);
             return;

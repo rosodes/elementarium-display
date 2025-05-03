@@ -49,7 +49,7 @@ const getInitialLanguage = () => {
 
 // Define a component to lazy load React Query DevTools
 const ReactQueryDevtoolsProduction = React.lazy(() => 
-  import('@tanstack/react-query-devtools/build').then(d => ({
+  import('@tanstack/react-query-devtools').then(d => ({
     default: d.ReactQueryDevtools
   }))
 );
