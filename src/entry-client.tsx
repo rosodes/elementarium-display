@@ -48,8 +48,9 @@ const getInitialLanguage = () => {
 };
 
 // Define a component to lazy load React Query DevTools
+// Using the correct import path for React Query v5
 const ReactQueryDevtoolsProduction = React.lazy(() => 
-  import('@tanstack/react-query-devtools/production').then(d => ({
+  import('@tanstack/react-query-devtools').then(d => ({
     default: d.ReactQueryDevtools
   }))
 );

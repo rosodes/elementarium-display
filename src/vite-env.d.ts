@@ -24,7 +24,7 @@ declare module 'vite-plugin-compression' {
   import { Plugin } from 'vite';
   
   interface CompressionOptions {
-    algorithm?: 'gzip' | 'brotli';
+    algorithm?: string; // Changed to string to avoid type issues
     ext?: string;
     filter?: RegExp | ((file: string) => boolean);
     threshold?: number;

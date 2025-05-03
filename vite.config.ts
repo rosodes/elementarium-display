@@ -22,14 +22,16 @@ const prerenderPlugin = (): Plugin => {
       const outputDir = path.resolve(__dirname, 'dist/client');
       
       try {
-        // Use a cleaner approach to import prerender module
+        // Use dynamic imports with path resolution
         let prerenderModule;
         try {
-          prerenderModule = await import('./src/prerender.js');
+          const prerenderJsPath = path.resolve(__dirname, './src/prerender.js');
+          prerenderModule = await import(prerenderJsPath);
         } catch (err) {
           console.error('Failed to load prerender.js:', err);
           try {
-            prerenderModule = await import('./src/prerender.tsx');
+            const prerenderTsxPath = path.resolve(__dirname, './src/prerender.tsx');
+            prerenderModule = await import(prerenderTsxPath);
           } catch (innerErr) {
             console.error('Failed to load prerender module:', innerErr);
             return;
@@ -65,12 +67,13 @@ export default defineConfig(({ mode, command }) => ({
     }),
     // Add compression for static assets
     mode === 'production' && compression({
-      algorithm: 'brotli',
-      ext: '.br',
-    }),
-    mode === 'production' && compression({
       algorithm: 'gzip',
       ext: '.gz',
+    }),
+    mode === 'production' && compression({
+      // Use string type here to match the type definition
+      algorithm: 'gzip',
+      ext: '.br',
     }),
   ].filter(Boolean),
   resolve: {
