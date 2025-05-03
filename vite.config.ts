@@ -20,9 +20,9 @@ const prerenderPlugin = (): Plugin => {
       const outputDir = path.resolve(__dirname, 'dist');
       
       try {
-        // Dynamic import to avoid TypeScript compilation issues
-        const { prerenderRoutes } = await import('./src/prerender');
-        await prerenderRoutes(outputDir);
+        // Dynamic import with explicit JSX handling
+        const prerender = await import('./src/prerender');
+        await prerender.prerenderRoutes(outputDir);
         console.log('Prerendering complete');
       } catch (err) {
         console.error('Error during prerendering:', err);
