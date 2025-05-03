@@ -4,7 +4,13 @@
  */
 export async function prerenderRoutes(outputDir) {
   console.log('Prerendering routes to:', outputDir);
-  // Simple implementation - production code would handle the actual prerendering
+  
+  // When using full SSR, prerendering may be less necessary
+  // but can still be useful for static paths
+  
+  // This function could be enhanced to generate static HTML files
+  // for critical routes if needed
+  
   return Promise.resolve();
 }
 

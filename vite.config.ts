@@ -17,7 +17,7 @@ const prerenderPlugin = (): Plugin => {
     apply: 'build',
     async closeBundle() {
       console.log('Prerendering routes for SEO...');
-      const outputDir = path.resolve(__dirname, 'dist');
+      const outputDir = path.resolve(__dirname, 'dist/client');
       
       try {
         // Use path.join to import the prerender file
@@ -32,7 +32,7 @@ const prerenderPlugin = (): Plugin => {
 };
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode, command }) => ({
   server: {
     host: "::",
     port: 8080,
@@ -47,18 +47,20 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Full configuration for SSR
+  // SSR specific configuration
   build: {
-    ssrManifest: true, // Generate manifest for SSR
-    manifest: true, // Generate assets manifest
+    ssrManifest: true,
+    manifest: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split code into chunks for optimization
           vendor: ['react', 'react-dom', 'react-router-dom'],
           // No UI chunk reference as it was causing the build error
         }
       }
-    }
+    },
+    // Configure for SSR build
+    outDir: command === 'build' && process.env.SSR === 'true' ? 'dist/server' : 'dist/client',
+    ssr: command === 'build' && process.env.SSR === 'true' ? 'src/entry-server.tsx' : undefined,
   },
 }));
