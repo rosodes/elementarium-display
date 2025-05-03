@@ -5,5 +5,6 @@
   "build:client": "vite build --outDir dist/client",
   "build:server": "cross-env SSR=true vite build --outDir dist/server --ssr src/entry-server.tsx",
   "serve": "cross-env NODE_ENV=production node server.js",
-  "preview": "vite preview"
+  "preview": "vite preview",
+  "analyze": "cross-env ANALYZE=true npm run build:client"
 }

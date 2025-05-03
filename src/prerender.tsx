@@ -1,6 +1,6 @@
 
 import React from 'react';
-import ReactDOMServer from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
 import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
@@ -11,30 +11,32 @@ import fs from 'fs';
 import path from 'path';
 
 /**
- * Определяет язык из URL для предварительного рендеринга
+ * Determines language from URL for pre-rendering
  */
 function getLanguageFromUrl(url: string): string {
-  const parts = url.split('/').filter(Boolean);
-  
-  if (parts.length > 0) {
-    const possibleLang = parts[0];
-    // Проверяем, является ли первый сегмент кодом языка
-    if (['en', 'ru', 'uk'].includes(possibleLang)) {
-      return possibleLang;
-    }
-  }
-  
-  return 'en'; // По умолчанию английский
+  // Faster check for common language paths
+  if (url.startsWith('/ru')) return 'ru';
+  if (url.startsWith('/uk')) return 'uk';
+  return 'en'; // Default to English
 }
 
 /**
- * Функция для серверного рендеринга приложения с указанным URL
- * @param url URL для рендеринга
- * @returns Объект с HTML и заголовками
+ * Server-side rendering function for a given URL
+ * @param url URL to render
+ * @returns Object with HTML and headers
  */
 export async function renderToString(url: string) {
   const helmetContext: { helmet?: HelmetServerState } = {};
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: false,
+        staleTime: Infinity, // During prerendering, we don't need to refetch
+      },
+    },
+  });
+  
   const language = getLanguageFromUrl(url);
   
   const html = ReactDOMServer.renderToString(
@@ -55,29 +57,38 @@ export async function renderToString(url: string) {
   
   return {
     html,
-    helmet: helmetContext.helmet
+    helmet: helmetContext.helmet,
+    queryState: queryClient.getQueryState()
   };
 }
 
 /**
- * Предварительный рендеринг основных маршрутов
+ * Prerender main routes for better SEO
  */
 export async function prerenderRoutes(outputDir: string) {
+  // Most important routes to prerender for SEO
   const routes = [
-    '/',            // Главная страница на английском
-    '/ru',          // Главная страница на русском
-    '/uk',          // Главная страница на украинском
-    '/element/1',   // Страница водорода на английском
-    '/ru/element/1' // Страница водорода на русском
+    '/',              // English homepage
+    '/ru',            // Russian homepage
+    '/uk',            // Ukrainian homepage
+    '/element/1',     // Hydrogen page (English)
+    '/ru/element/1',  // Hydrogen page (Russian)
+    '/uk/element/1',  // Hydrogen page (Ukrainian)
+    '/element/6',     // Carbon page (popular element)
+    '/element/79',    // Gold page (popular element)
   ];
+  
+  console.log(`Starting prerendering of ${routes.length} routes...`);
   
   try {
     for (const route of routes) {
+      console.log(`Prerendering route: ${route}`);
+      
       const result = await renderToString(route);
       const { html } = result;
       const helmetData = result.helmet;
       
-      // Чтение шаблона
+      // Reading the template
       const templatePath = path.resolve(outputDir, 'index.html');
       let template = '';
       
@@ -95,12 +106,12 @@ export async function prerenderRoutes(outputDir: string) {
         ${helmetData.link?.toString() || ''}
         ${helmetData.script?.toString() || ''}` : '';
       
-      // Замена маркеров в шаблоне
+      // Replace placeholders in the template
       const renderedHtml = template
         .replace('<!--app-html-->', html)
         .replace('<!--app-head-->', head);
       
-      // Определяем путь для сохранения
+      // Determine path for saving
       let outputPath = route;
       if (outputPath === '/') {
         outputPath = '/index';
@@ -109,20 +120,22 @@ export async function prerenderRoutes(outputDir: string) {
       }
       outputPath = `${outputDir}${outputPath}.html`;
       
-      // Создаем подкаталоги при необходимости
+      // Create subdirectories if necessary
       const outputDirectory = path.dirname(outputPath);
       if (!fs.existsSync(outputDirectory)) {
         fs.mkdirSync(outputDirectory, { recursive: true });
       }
       
-      // Записываем файл
+      // Write the file
       fs.writeFileSync(outputPath, renderedHtml);
-      console.log(`Prerendered: ${route} -> ${outputPath}`);
+      console.log(`✓ Prerendered: ${route} -> ${outputPath}`);
     }
+    
+    console.log('Prerendering complete!');
   } catch (err) {
     console.error(`Error during prerendering: ${err}`);
   }
 }
 
-// Экспортируем функцию для использования в скриптах сборки
+// Export function for build scripts
 export default renderToString;

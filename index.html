@@ -9,16 +9,34 @@
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
     <title>Periodic Table of Elements</title>
     <meta name="description" content="Interactive periodic table of chemical elements with detailed information" />
-    <!-- Placeholder для метатегов и дополнительных заголовков -->
+    <!-- Placeholder for metatags and additional headers -->
     <!--app-head-->
-    <!-- Предзагрузка шрифтов -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <!-- Font preconnect for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Critical CSS will be inlined here during build -->
+    <!--app-css-->
+    <!-- Preload hint for main entry script -->
+    <link rel="modulepreload" href="/src/entry-client.tsx" as="script" crossorigin />
   </head>
   <body>
     <div id="root"><!--app-html--></div>
+    <!-- Loading indicator that is removed after hydration -->
+    <div id="loading-indicator" style="position:fixed;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#4f46e5,#8b5cf6);transform:scaleX(0);transform-origin:0% 0%;transition:transform .4s ease-in-out;z-index:9999;">
+      <script>
+        // Show loading indicator
+        document.getElementById('loading-indicator').style.transform = 'scaleX(.3)';
+        window.addEventListener('load', function() {
+          document.getElementById('loading-indicator').style.transform = 'scaleX(1)';
+          setTimeout(function() {
+            var indicator = document.getElementById('loading-indicator');
+            if (indicator) indicator.style.opacity = '0';
+          }, 200);
+        });
+      </script>
+    </div>
     <!-- Required Lovable script tag for new features -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/entry-client.tsx"></script>
   </body>
 </html>

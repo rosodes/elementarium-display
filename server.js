@@ -1,19 +1,41 @@
-
 const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const compression = require('compression');
 const serveStatic = require('serve-static');
 const { createServer: createViteServer } = require('vite');
+const { Stream } = require('stream');
 
+/**
+ * Creates the Express server for both development and production
+ */
 async function createServer(
   root = process.cwd(),
   isProd = process.env.NODE_ENV === 'production'
 ) {
   const app = express();
   
-  // Apply compression middleware
-  app.use(compression());
+  // Apply compression middleware with optimal settings
+  app.use(compression({
+    level: 6, // Balance between compression ratio and speed
+    threshold: 1024, // Only compress responses larger than 1KB
+    filter: (req, res) => {
+      // Don't compress already compressed assets
+      if (req.url.endsWith('.gz') || req.url.endsWith('.br')) {
+        return false;
+      }
+      // Use compression for all HTTP requests
+      return true;
+    }
+  }));
+
+  // Security headers
+  app.use((req, res, next) => {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('X-XSS-Protection', '1; mode=block');
+    res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+    next();
+  });
 
   let vite;
   if (!isProd) {
@@ -27,10 +49,57 @@ async function createServer(
     // Use Vite's connect instance as middleware
     app.use(vite.middlewares);
   } else {
-    // In production: serve built files
+    // In production: serve built files with optimal caching
     app.use(serveStatic(path.resolve(__dirname, 'dist/client'), {
-      index: false
+      index: false,
+      immutable: true,
+      maxAge: '30d', // Cache static assets for 30 days
+      setHeaders: (res, filePath) => {
+        // Apply appropriate cache control headers
+        if (filePath.includes('assets/')) {
+          if (filePath.endsWith('.js') || filePath.endsWith('.css')) {
+            // JS and CSS assets with hash in filename
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+          } else if (
+            filePath.endsWith('.jpg') || filePath.endsWith('.png') || 
+            filePath.endsWith('.gif') || filePath.endsWith('.svg') ||
+            filePath.endsWith('.webp')
+          ) {
+            // Image assets
+            res.setHeader('Cache-Control', 'public, max-age=604800, stale-while-revalidate=86400');
+          }
+        } else {
+          // Other assets - shorter cache, must revalidate
+          res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
+        }
+      }
     }));
+    
+    // Support for precompressed files
+    app.use(serveStatic(path.resolve(__dirname, 'dist/client'), {
+      index: false,
+      extensions: ['br', 'gz'],
+      // Serve brotli and gzip compressed files when available
+      setHeaders: (res, path) => {
+        if (path.endsWith('.br')) {
+          res.setHeader('Content-Encoding', 'br');
+          res.setHeader('Content-Type', getMimeType(path.slice(0, -3)));
+        } else if (path.endsWith('.gz')) {
+          res.setHeader('Content-Encoding', 'gzip');
+          res.setHeader('Content-Type', getMimeType(path.slice(0, -3)));
+        }
+      }
+    }));
+  }
+
+  // Helper function to get mime type
+  function getMimeType(path) {
+    if (path.endsWith('.js')) return 'application/javascript';
+    if (path.endsWith('.css')) return 'text/css';
+    if (path.endsWith('.html')) return 'text/html';
+    if (path.endsWith('.json')) return 'application/json';
+    if (path.endsWith('.svg')) return 'image/svg+xml';
+    return 'application/octet-stream';
   }
 
   // Serve index.html for all routes
@@ -40,34 +109,79 @@ async function createServer(
 
       // Determine language from URL
       let lang;
-      const urlParts = url.split('/').filter(Boolean);
-      if (urlParts.length > 0 && ['en', 'ru', 'uk'].includes(urlParts[0])) {
-        lang = urlParts[0];
+      if (url.startsWith('/ru')) {
+        lang = 'ru';
+      } else if (url.startsWith('/uk')) {
+        lang = 'uk';
       }
 
       if (isProd) {
-        // In production: read the pre-built index.html
-        let template = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
+        // Production: Read the pre-built index.html
+        const indexHtml = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
         
-        // Import the pre-built SSR bundle
+        // Import the server bundle
         const { render } = require('./dist/server/entry-server.js');
         
-        // Render the app HTML and get helmet data
-        const { appHtml, helmetContext } = render(url, lang);
-
-        // Insert helmet meta tags and app HTML into the template
-        const helmet = helmetContext.helmet || {};
-        const html = template
-          .replace('<!--app-head-->', 
-            `${helmet.title?.toString() || ''}
-             ${helmet.meta?.toString() || ''}
-             ${helmet.link?.toString() || ''}
-             ${helmet.script?.toString() || ''}`)
-          .replace('<!--app-html-->', appHtml);
-
-        res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+        // Set appropriate content type
+        res.setHeader('Content-Type', 'text/html');
+        
+        // Add HTTP/2 early hints if supported
+        if (res.writeEarlyHints) {
+          res.writeEarlyHints({
+            'Link': [
+              '</dist/client/assets/entry-client-*.js>; rel=preload; as=script',
+              '</dist/client/assets/vendor-*.js>; rel=preload; as=script',
+              '</dist/client/assets/styles-*.css>; rel=preload; as=style'
+            ]
+          });
+        }
+        
+        // Stream the HTML with server rendered content
+        let didError = false;
+        
+        // Start sending the HTML response
+        const parts = indexHtml.split('<!--app-html-->');
+        res.write(parts[0]);
+        
+        // Use streaming SSR
+        const { stream, helmetContext, queryClient } = render(url, lang, {
+          onShellReady() {
+            // Shell is ready, pipe it to client
+            stream.pipe(res, { end: false });
+          },
+          onAllReady() {
+            // Once everything is ready, end the stream and send the rest of the HTML
+            const helmet = helmetContext.helmet || {};
+            let headContent = '';
+            
+            // Add meta tags and title from Helmet
+            headContent += helmet.title?.toString() || '';
+            headContent += helmet.meta?.toString() || '';
+            headContent += helmet.link?.toString() || '';
+            headContent += helmet.script?.toString() || '';
+            
+            // Replace placeholder with actual head content
+            const htmlWithHead = parts[0].replace('<!--app-head-->', headContent);
+            
+            // Add React Query hydration script
+            const dehydratedState = queryClient.getQueryData();
+            const scriptContent = dehydratedState ? 
+              `<script>window.__REACT_QUERY_STATE__=${JSON.stringify(dehydratedState)}</script>` : '';
+            
+            // Finish the response
+            res.write(parts[1] + scriptContent);
+            res.end();
+          }
+        });
+        
+        // Handle server-side errors
+        stream.on('error', (err) => {
+          didError = true;
+          console.error('Error during streaming SSR:', err);
+          res.status(500).send('Internal Server Error');
+        });
       } else {
-        // In development: transform the template with Vite
+        // Development: Transform the template with Vite
         let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
         template = await vite.transformIndexHtml(url, template);
         
@@ -75,19 +189,40 @@ async function createServer(
         const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
         
         // Render the app HTML and get helmet data
-        const { appHtml, helmetContext } = render(url, lang);
-
-        // Insert helmet meta tags and app HTML into the template
-        const helmet = helmetContext.helmet || {};
-        const html = template
-          .replace('<!--app-head-->', 
-            `${helmet.title?.toString() || ''}
-             ${helmet.meta?.toString() || ''}
-             ${helmet.link?.toString() || ''}
-             ${helmet.script?.toString() || ''}`)
-          .replace('<!--app-html-->', appHtml);
-
-        res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+        const { stream, helmetContext } = render(url, lang, {
+          onShellReady() {
+            // Start sending the response once the shell is ready
+            res.status(200).set({ 'Content-Type': 'text/html' });
+            
+            // Extract head content from helmet
+            const helmet = helmetContext.helmet || {};
+            let headContent = '';
+            headContent += helmet.title?.toString() || '';
+            headContent += helmet.meta?.toString() || '';
+            headContent += helmet.link?.toString() || '';
+            headContent += helmet.script?.toString() || '';
+            
+            // Replace head placeholder
+            const htmlStart = template.replace('<!--app-head-->', headContent).split('<!--app-html-->')[0];
+            res.write(htmlStart);
+            
+            // Pipe the stream to the response
+            stream.pipe(res, { end: false });
+          },
+          onAllReady() {
+            // Complete the response when all content is ready
+            const htmlEnd = template.split('<!--app-html-->')[1];
+            res.write(htmlEnd);
+            res.end();
+          }
+        });
+        
+        // Handle development errors
+        stream.on('error', (err) => {
+          vite.ssrFixStacktrace(err);
+          console.error('SSR error:', err);
+          res.status(500).end(err.stack);
+        });
       }
     } catch (e) {
       if (!isProd) {

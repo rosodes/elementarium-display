@@ -1,11 +1,14 @@
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import PeriodicTable from '../components/PeriodicTable';
-import Header from '../components/Header';
 import { useLanguage } from '../context/LanguageContext';
 import { Element } from '../data/elementTypes';
 import { Helmet } from 'react-helmet-async';
+import Header from '../components/Header';
+import LoadingSpinner from '../components/ui/loading-spinner';
+
+// Lazy load the heavy PeriodicTable component
+const PeriodicTable = lazy(() => import('../components/PeriodicTable'));
 
 const Index = () => {
   const { t, setLanguage, language } = useLanguage();
@@ -31,7 +34,13 @@ const Index = () => {
   }, []);
 
   // Canonical URL with language prefix if needed
-  const canonicalUrl = `${window.location.origin}${lang ? `/${lang}` : '/'}`;
+  const canonicalUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}${lang ? `/${lang}` : '/'}`;
+  
+  // Preconnect to important domains
+  const preconnectDomains = [
+    'https://fonts.googleapis.com',
+    'https://fonts.gstatic.com'
+  ];
   
   return (
     <>
@@ -42,8 +51,15 @@ const Index = () => {
         <meta property="og:title" content={t.title} />
         <meta property="og:description" content={t.subtitle} />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonicalUrl} />
         <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="index, follow" />
+        
+        {/* Preconnect to important domains */}
+        {preconnectDomains.map(domain => (
+          <link key={domain} rel="preconnect" href={domain} crossOrigin="" />
+        ))}
+        
         {/* Add structured data for website */}
         <script type="application/ld+json">
           {JSON.stringify({
@@ -52,6 +68,7 @@ const Index = () => {
             "name": t.title,
             "description": t.subtitle,
             "url": canonicalUrl,
+            "inLanguage": language || "en"
           })}
         </script>
       </Helmet>
@@ -60,10 +77,16 @@ const Index = () => {
         <Header onSearch={handleSearch} />
         
         <main className="w-full">
-          <PeriodicTable 
-            searchQuery={searchQuery} 
-            onElementClick={handleElementClick} 
-          />
+          <Suspense fallback={
+            <div className="flex justify-center items-center h-64">
+              <LoadingSpinner size="lg" />
+            </div>
+          }>
+            <PeriodicTable 
+              searchQuery={searchQuery} 
+              onElementClick={handleElementClick} 
+            />
+          </Suspense>
         </main>
         
         <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center">

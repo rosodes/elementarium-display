@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { renderToString } from 'react-dom/server';
+import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
 import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
@@ -8,12 +8,37 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
-export function render(url: string, lang?: string) {
+// Enhanced getLanguageFromUrl with fallback and caching
+function getLanguageFromUrl(url: string): string {
+  // Use a faster approach with less string operations
+  if (url.startsWith('/ru/')) return 'ru';
+  if (url.startsWith('/uk/')) return 'uk';
+  if (url.startsWith('/ru')) return 'ru';
+  if (url.startsWith('/uk')) return 'uk';
+  
+  return 'en'; // Default to English
+}
+
+export function render(url: string, lang?: string, options: { onShellReady?: () => void, onAllReady?: () => void } = {}) {
+  // Create helmet context to collect meta tags
   const helmetContext: { helmet?: HelmetServerState } = {};
-  const queryClient = new QueryClient();
+  
+  // Create a new QueryClient for data fetching
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: false,
+        staleTime: 1000 * 60 * 5, // 5 minutes
+      },
+    },
+  });
+  
+  // Determine language from URL or use provided lang
   const initialLanguage = lang || getLanguageFromUrl(url);
   
-  const appHtml = renderToString(
+  // Create the React element to render
+  const jsx = (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <LanguageProvider initialLanguage={initialLanguage}>
@@ -26,22 +51,25 @@ export function render(url: string, lang?: string) {
       </ThemeProvider>
     </QueryClientProvider>
   );
-  
-  return { appHtml, helmetContext };
-}
 
-/**
- * Extracts language code from URL
- */
-function getLanguageFromUrl(url: string): string {
-  const parts = url.split('/').filter(Boolean);
+  // Use streaming SSR for better performance
+  const stream = renderToPipeableStream(jsx, {
+    onShellReady() {
+      // Shell content is ready to be flushed to the client
+      if (options.onShellReady) options.onShellReady();
+    },
+    onAllReady() {
+      // All content is ready, including suspended data
+      if (options.onAllReady) options.onAllReady();
+    },
+    onError(error) {
+      console.error('Error during streaming SSR:', error);
+    },
+  });
   
-  if (parts.length > 0) {
-    const possibleLang = parts[0];
-    if (['en', 'ru', 'uk'].includes(possibleLang)) {
-      return possibleLang;
-    }
-  }
-  
-  return 'en'; // Default to English
+  return {
+    stream,
+    helmetContext,
+    queryClient,
+  };
 }

@@ -41,6 +41,7 @@
     "@radix-ui/react-tooltip": "^1.1.4",
     "@swc/helpers": "^0.5.17",
     "@tanstack/react-query": "^5.56.2",
+    "@vitejs/plugin-legacy": "^6.1.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.0",
@@ -62,7 +63,9 @@
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
+    "terser": "^5.39.0",
     "vaul": "^0.9.3",
+    "vite-plugin-compression": "^0.5.1",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -72,7 +75,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react-swc": "^3.5.0",
-    "autoprefixer": "^10.4.20",
+    "autoprefixer": "^10.4.21",
     "eslint": "^9.9.0",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",

@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo, memo } from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { elements } from '../data/elements';
 import TableContainer from './periodic-table/TableContainer';
@@ -13,18 +13,17 @@ interface PeriodicTableProps {
   onElementClick?: (element: ElementType) => void;
 }
 
+// Custom hook for element searching with memoization
 const useElementSearch = (searchQuery: string, language: string, t: any) => {
-  const [filteredElements, setFilteredElements] = useState<ElementType[]>([]);
-
-  useEffect(() => {
-    // Filter elements when search query changes or language changes
-    if (!searchQuery.trim()) {
-      setFilteredElements([]);
-      return;
+  // Memoize filtered elements to avoid unnecessary re-filtering
+  return useMemo(() => {
+    if (!searchQuery?.trim()) {
+      return [];
     }
     
     const query = searchQuery.toLowerCase().trim();
-    const filtered = elements
+    
+    return elements
       .filter((element): element is ElementType => {
         if (!element) return false;
         
@@ -38,12 +37,14 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
         
         return matchesName || matchesSymbol || matchesAtomic;
       });
-    
-    setFilteredElements(filtered);
   }, [searchQuery, t.ui?.elements, language]);
+};
 
-  return filteredElements;
-}
+// Memoized search results component for better performance
+const MemoizedSearchResults = memo(ElementSearchResults);
+
+// Memoized table container to prevent unnecessary re-renders
+const MemoizedTableContainer = memo(TableContainer);
 
 const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps) => {
   const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
@@ -52,9 +53,10 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
   const { lang } = useParams<{ lang?: string }>();
   const location = useLocation();
   
-  // Use custom hook for element filtering
+  // Use custom hook for element filtering with memoization
   const filteredElements = useElementSearch(searchQuery, language, t);
   
+  // Memoize click handler to avoid recreating on every render
   const handleElementClick = useCallback((element: ElementType) => {
     // If onElementClick prop is provided, use it
     if (onElementClick) {
@@ -67,17 +69,20 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
     navigate(`${basePath}/element/${element.atomic}`);
   }, [onElementClick, lang, navigate]);
   
-  const closeDetails = () => {
+  const closeDetails = useCallback(() => {
     // Return to base path based on language
     const basePath = lang ? `/${lang}` : '/';
     navigate(basePath);
-  };
+  }, [lang, navigate]);
   
-  const handleNavigateElement = (element: ElementType) => {
+  const handleNavigateElement = useCallback((element: ElementType) => {
     // Navigate to the new element page
     const basePath = lang ? `/${lang}` : '';
     navigate(`${basePath}/element/${element.atomic}`);
-  };
+  }, [lang, navigate]);
+  
+  // Check if search results should be shown
+  const showSearchResults = searchQuery.trim().length > 0 && filteredElements.length > 0;
   
   return (
     <section 
@@ -86,16 +91,18 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
       aria-label={t.elementDetails?.elementTable || "Periodic Table"}
     >
       <div className="px-4 sm:px-12">
-        {/* Search results section */}
-        <ElementSearchResults 
-          searchQuery={searchQuery}
-          filteredElements={filteredElements}
-          onElementSelect={handleElementClick}
-        />
+        {/* Search results section - only render when needed */}
+        {showSearchResults && (
+          <MemoizedSearchResults 
+            searchQuery={searchQuery}
+            filteredElements={filteredElements}
+            onElementSelect={handleElementClick}
+          />
+        )}
       </div>
       
       <div className="periodic-table-container w-full">
-        <TableContainer 
+        <MemoizedTableContainer 
           onElementClick={handleElementClick} 
           selectedElement={selectedElement}
         />
@@ -113,4 +120,5 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
   );
 };
 
-export default PeriodicTable;
+// Export memoized component
+export default memo(PeriodicTable);

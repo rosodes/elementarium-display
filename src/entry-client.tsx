@@ -1,14 +1,20 @@
-import React from 'react';
-import { hydrateRoot, createRoot } from 'react-dom/client';
+
+import React, { startTransition } from 'react';
+import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
 import './styles/periodicTable.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, dehydrate, hydrate } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
+// Performance measurement
+const startTime = performance.now();
+console.log('Client-side hydration started');
+
+// Get container element
 const container = document.getElementById('root');
 
 // Handle the case where the 'root' element doesn't exist
@@ -16,25 +22,29 @@ if (!container) {
   throw new Error('Root element not found. Cannot mount app.');
 }
 
-// Create a new QueryClient for each request
+// Create a new QueryClient with optimized settings
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
       staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 1,
+      retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
     },
   },
 });
 
+// Hydrate query state from server if available
+if (window.__REACT_QUERY_STATE__) {
+  hydrate(queryClient, window.__REACT_QUERY_STATE__);
+}
+
 // Determine initial language from URL
 const getInitialLanguage = () => {
-  if (typeof window !== 'undefined') {
-    const path = window.location.pathname.split('/').filter(Boolean);
-    if (path.length > 0 && ['en', 'ru', 'uk'].includes(path[0])) {
-      return path[0];
-    }
-  }
-  return undefined; // Use default from LanguageProvider
+  const path = window.location.pathname;
+  if (path.startsWith('/ru/') || path === '/ru') return 'ru';
+  if (path.startsWith('/uk/') || path === '/uk') return 'uk';
+  return 'en';
 };
 
 const AppWithProviders = (
@@ -51,17 +61,53 @@ const AppWithProviders = (
   </QueryClientProvider>
 );
 
-// Determine if the app should hydrate existing HTML or create a new root
+// Check for SSR content
 const hasPreRenderedContent = container.innerHTML && 
                               container.innerHTML.trim() !== '' &&
                               !container.innerHTML.includes('<!--app-html-->');
 
-if (hasPreRenderedContent) {
-  // If there's pre-rendered content, hydrate it
-  hydrateRoot(container, AppWithProviders);
-  console.log('Client hydration complete');
-} else {
-  // Otherwise, create a new root
-  createRoot(container).render(AppWithProviders);
-  console.log('Client render complete');
+// Use startTransition to mark hydration as non-urgent
+// This improves initial page responsiveness
+startTransition(() => {
+  if (hasPreRenderedContent) {
+    // If there's pre-rendered content, hydrate it
+    hydrateRoot(container, AppWithProviders);
+    console.log(`Client hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+  } else {
+    // Create a new root if no SSR content exists
+    hydrateRoot(container, AppWithProviders);
+    console.log(`Client render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+  }
+});
+
+// Enable the React profiler in development mode
+if (process.env.NODE_ENV === 'development') {
+  const { createRoot } = await import('react-dom/profiling');
+  const profiler = createRoot(document.getElementById('profiler-root') || document.createElement('div'));
+  window.__REACT_PROFILER__ = profiler;
+}
+
+// Add React Query devtools in development
+if (process.env.NODE_ENV === 'development') {
+  import('@tanstack/react-query-devtools').then(({ ReactQueryDevtools }) => {
+    // Devtools are loaded dynamically in development
+    console.log('React Query Devtools loaded');
+  });
+}
+
+// Remove loading indicator
+const loadingIndicator = document.getElementById('loading-indicator');
+if (loadingIndicator) {
+  loadingIndicator.style.opacity = '0';
+  setTimeout(() => {
+    loadingIndicator.parentNode?.removeChild(loadingIndicator);
+  }, 300);
+}
+
+// Add global type for React Query state
+declare global {
+  interface Window {
+    __REACT_QUERY_STATE__?: any;
+    __REACT_PROFILER__?: any;
+  }
 }
