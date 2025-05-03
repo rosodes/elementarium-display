@@ -265,7 +265,12 @@ export const ru: TranslationData = {
     meltingBoilingPoints: "Температура плавления {melt} K и кипения {boil} K.",
     densityIs: "Плотность составляет {density} г/см³.",
     usedIn: "Обычно используется в {applications}.",
-    commonProperties: "Известен своими {properties}."
+    commonProperties: "Известен своими {properties}.",
+    // Add the required properties to fix the TypeScript errors
+    notAvailable: "Информация недоступна",
+    backToTable: "Вернуться к таблице",
+    previous: "Предыдущий",
+    next: "Следующий"
   },
   
   // Footer translations

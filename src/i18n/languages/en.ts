@@ -265,7 +265,12 @@ export const en: TranslationData = {
     meltingBoilingPoints: "It melts at {melt} K and boils at {boil} K.",
     densityIs: "It has a density of {density} g/cm³.",
     usedIn: "It is commonly used in {applications}.",
-    commonProperties: "It is known for its {properties}."
+    commonProperties: "It is known for its {properties}.",
+    // Add the required properties to fix the TypeScript errors
+    notAvailable: "Information not available",
+    backToTable: "Back to Periodic Table",
+    previous: "Previous",
+    next: "Next"
   },
   
   // Footer translations
