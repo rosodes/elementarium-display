@@ -20,8 +20,8 @@ const prerenderPlugin = (): Plugin => {
       const outputDir = path.resolve(__dirname, 'dist');
       
       try {
-        // Use direct import with resolved path
-        const prerender = await import('./src/prerender.tsx');
+        // Use path.join to import the prerender file
+        const prerender = await import(path.join(process.cwd(), 'src/prerender.js'));
         await prerender.prerenderRoutes(outputDir);
         console.log('Prerendering complete');
       } catch (err) {
