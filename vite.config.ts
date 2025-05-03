@@ -52,7 +52,6 @@ export default defineConfig(({ mode }) => ({
     ssrManifest: true, // Generate manifest for SSR
     manifest: true, // Generate assets manifest
     rollupOptions: {
-      external: ["@swc/react/jsx-runtime", "@swc/react/jsx-dev-runtime"],
       output: {
         manualChunks: {
           // Split code into chunks for optimization

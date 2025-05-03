@@ -1,3 +1,4 @@
+
 export interface ElementTranslations {
   [key: string]: string;
 }
@@ -162,6 +163,11 @@ export interface ElementDetailsTranslations {
   industrialUses?: string;
   everydayUses?: string;
   funFacts?: string;
+  // Required translation properties
+  notAvailable: string;  // Required
+  backToTable: string;   // Required
+  previous: string;      // Required
+  next: string;          // Required
 }
 
 export interface FooterTranslations {
