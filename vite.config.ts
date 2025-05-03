@@ -20,7 +20,7 @@ const prerenderPlugin = (): Plugin => {
       const outputDir = path.resolve(__dirname, 'dist');
       
       try {
-        // Use import() as a function, not with template literal syntax
+        // Use direct path import without JSX extension
         const prerender = await import('./src/prerender');
         await prerender.prerenderRoutes(outputDir);
         console.log('Prerendering complete');
