@@ -4,7 +4,6 @@ const express = require('express');
 const compression = require('compression');
 const serveStatic = require('serve-static');
 const { createServer: createViteServer } = require('vite');
-const { Stream } = require('stream');
 
 /**
  * Creates the Express server for both development and production
@@ -141,35 +140,25 @@ async function createServer(
         
         // Start sending the HTML response
         const parts = indexHtml.split('<!--app-html-->');
-        res.write(parts[0]);
         
         // Use streaming SSR
-        const { stream, helmetContext, queryClient } = render(url, lang, {
+        const { stream, helmetContext, dehydratedState } = render(url, lang, {
           onShellReady() {
+            // Send the first part of HTML
+            res.write(parts[0]);
             // Shell is ready, pipe it to client
             stream.pipe(res, { end: false });
           },
           onAllReady() {
-            // Once everything is ready, end the stream and send the rest of the HTML
+            // Once everything is ready
             const helmet = helmetContext.helmet || {};
-            let headContent = '';
-            
-            // Add meta tags and title from Helmet
-            headContent += helmet.title?.toString() || '';
-            headContent += helmet.meta?.toString() || '';
-            headContent += helmet.link?.toString() || '';
-            headContent += helmet.script?.toString() || '';
-            
-            // Replace placeholder with actual head content
-            const htmlWithHead = parts[0].replace('<!--app-head-->', headContent);
             
             // Add React Query hydration script
-            const dehydratedState = queryClient.getQueryData();
-            const scriptContent = dehydratedState ? 
+            const queryStateScript = dehydratedState ? 
               `<script>window.__REACT_QUERY_STATE__=${JSON.stringify(dehydratedState)}</script>` : '';
             
-            // Finish the response
-            res.write(parts[1] + scriptContent);
+            // Finish the response with React Query state
+            res.write(`${queryStateScript}${parts[1] || ''}`);
             res.end();
           }
         });
@@ -188,12 +177,12 @@ async function createServer(
         // Load the server entry from the Vite server
         const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
         
+        // Set content type
+        res.status(200).set({ 'Content-Type': 'text/html' });
+        
         // Render the app HTML and get helmet data
-        const { stream, helmetContext } = render(url, lang, {
+        const { stream, helmetContext, dehydratedState } = render(url, lang, {
           onShellReady() {
-            // Start sending the response once the shell is ready
-            res.status(200).set({ 'Content-Type': 'text/html' });
-            
             // Extract head content from helmet
             const helmet = helmetContext.helmet || {};
             let headContent = '';
@@ -210,9 +199,13 @@ async function createServer(
             stream.pipe(res, { end: false });
           },
           onAllReady() {
+            // Add React Query hydration script
+            const queryStateScript = dehydratedState ? 
+              `<script>window.__REACT_QUERY_STATE__=${JSON.stringify(dehydratedState)}</script>` : '';
+            
             // Complete the response when all content is ready
             const htmlEnd = template.split('<!--app-html-->')[1];
-            res.write(htmlEnd);
+            res.write(`${queryStateScript}${htmlEnd || ''}`);
             res.end();
           }
         });

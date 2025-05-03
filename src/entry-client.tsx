@@ -47,50 +47,43 @@ const getInitialLanguage = () => {
   return 'en';
 };
 
-// Define a component to lazy load React Query DevTools
-// Using the correct import path for React Query v5
-const ReactQueryDevtoolsProduction = React.lazy(() => 
-  import('@tanstack/react-query-devtools').then(d => ({
+// Import React Query DevTools with the correct path
+const ReactQueryDevtools = React.lazy(() => 
+  import('@tanstack/react-query-devtools/build/modern/production.js').then(d => ({
     default: d.ReactQueryDevtools
   }))
 );
 
 const AppWithProviders = (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider>
-      <LanguageProvider initialLanguage={getInitialLanguage()}>
-        <HelmetProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </HelmetProvider>
-      </LanguageProvider>
-    </ThemeProvider>
-    {process.env.NODE_ENV === 'development' && (
-      <React.Suspense fallback={null}>
-        <ReactQueryDevtoolsProduction />
-      </React.Suspense>
-    )}
-  </QueryClientProvider>
+  <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <LanguageProvider initialLanguage={getInitialLanguage()}>
+          <HelmetProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </HelmetProvider>
+        </LanguageProvider>
+      </ThemeProvider>
+      {process.env.NODE_ENV === 'development' && (
+        <React.Suspense fallback={null}>
+          <ReactQueryDevtools />
+        </React.Suspense>
+      )}
+    </QueryClientProvider>
+  </React.StrictMode>
 );
 
-// Check for SSR content
-const hasPreRenderedContent = container.innerHTML && 
-                              container.innerHTML.trim() !== '' &&
-                              !container.innerHTML.includes('<!--app-html-->');
+// Use a consistent approach for detecting SSR content
+const hasPreRenderedContent = container.innerHTML.trim() !== '';
 
 // Use startTransition to mark hydration as non-urgent
 // This improves initial page responsiveness
 startTransition(() => {
-  if (hasPreRenderedContent) {
-    // If there's pre-rendered content, hydrate it
-    hydrateRoot(container, AppWithProviders);
-    console.log(`Client hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
-  } else {
-    // Create a new root if no SSR content exists
-    hydrateRoot(container, AppWithProviders);
-    console.log(`Client render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
-  }
+  // Always hydrate since we're using SSR
+  hydrateRoot(container, AppWithProviders);
+  console.log(`Client hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
 });
 
 // Remove loading indicator

@@ -4,7 +4,7 @@ import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
 import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, dehydrate } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
@@ -39,17 +39,19 @@ export function render(url: string, lang?: string, options: { onShellReady?: () 
   
   // Create the React element to render
   const jsx = (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <LanguageProvider initialLanguage={initialLanguage}>
-          <HelmetProvider context={helmetContext}>
-            <StaticRouter location={url}>
-              <App />
-            </StaticRouter>
-          </HelmetProvider>
-        </LanguageProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <LanguageProvider initialLanguage={initialLanguage}>
+            <HelmetProvider context={helmetContext}>
+              <StaticRouter location={url}>
+                <App />
+              </StaticRouter>
+            </HelmetProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
   );
 
   // Use streaming SSR for better performance
@@ -71,5 +73,6 @@ export function render(url: string, lang?: string, options: { onShellReady?: () 
     stream,
     helmetContext,
     queryClient,
+    dehydratedState: dehydrate(queryClient)
   };
 }
