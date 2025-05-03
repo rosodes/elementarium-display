@@ -20,8 +20,8 @@ const prerenderPlugin = (): Plugin => {
       const outputDir = path.resolve(__dirname, 'dist');
       
       try {
-        // Fix the import to use .js extension which is what ESM expects after bundling
-        const prerender = await import('./src/prerender.js');
+        // Use direct import with resolved path
+        const prerender = await import('./src/prerender.tsx');
         await prerender.prerenderRoutes(outputDir);
         console.log('Prerendering complete');
       } catch (err) {
