@@ -62,6 +62,7 @@ export default defineConfig(({ mode, command }) => ({
       "@": path.resolve(__dirname, "./src"),
       // Add alias for problematic packages
       'react-fast-compare': path.resolve(__dirname, 'node_modules/react-fast-compare/index.js'),
+      'invariant': path.resolve(__dirname, 'node_modules/invariant/invariant.js'),
     },
   },
   // Performance optimizations
