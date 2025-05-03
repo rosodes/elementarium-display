@@ -70,5 +70,10 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   keyApplications: "Key applications and uses of",
   industrialUses: "Industrial Uses",
   everydayUses: "Everyday Applications",
-  funFacts: "Interesting Facts"
+  funFacts: "Interesting Facts",
+  // Add translations for the missing properties
+  notAvailable: "Information not available",
+  backToTable: "Back to Periodic Table",
+  previous: "Previous",
+  next: "Next"
 };

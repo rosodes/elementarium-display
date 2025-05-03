@@ -70,7 +70,7 @@ export interface ElementDetailsTranslations {
   industrialUses?: string;
   everydayUses?: string;
   funFacts?: string;
-  // Fixed missing properties
+  // Required translation properties
   notAvailable?: string;
   backToTable?: string;
   previous?: string;

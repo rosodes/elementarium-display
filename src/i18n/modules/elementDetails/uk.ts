@@ -71,5 +71,10 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   keyApplications: "Основні застосування та використання",
   industrialUses: "Промислове використання",
   everydayUses: "Повсякденне застосування",
-  funFacts: "Цікаві факти"
+  funFacts: "Цікаві факти",
+  // Add translations for the missing properties
+  notAvailable: "Інформація недоступна",
+  backToTable: "Повернутися до таблиці",
+  previous: "Попередній",
+  next: "Наступний"
 };
