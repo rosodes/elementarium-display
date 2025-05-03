@@ -71,7 +71,6 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   industrialUses: "Промышленное использование",
   everydayUses: "Повседневное применение",
   funFacts: "Интересные факты",
-  // Add translations for the missing properties
   notAvailable: "Информация недоступна",
   backToTable: "Вернуться к таблице",
   previous: "Предыдущий",

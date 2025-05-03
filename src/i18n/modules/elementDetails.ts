@@ -71,10 +71,10 @@ export interface ElementDetailsTranslations {
   everydayUses?: string;
   funFacts?: string;
   // Required translation properties
-  notAvailable?: string;
-  backToTable?: string;
-  previous?: string;
-  next?: string;
+  notAvailable: string;
+  backToTable: string;
+  previous: string;
+  next: string;
 }
 
 // Import from individual language files

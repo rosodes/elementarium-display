@@ -49,7 +49,6 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   previousElement: "Попередній елемент",
   nextElement: "Наступний елемент",
   isotopes: "Ізотопи",
-  // Add values for the missing properties
   industry: "Промисловість",
   discovery: "Відкриття",
   structure: "Структура",
@@ -72,7 +71,6 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   industrialUses: "Промислове використання",
   everydayUses: "Повсякденне застосування",
   funFacts: "Цікаві факти",
-  // Add translations for the missing properties
   notAvailable: "Інформація недоступна",
   backToTable: "Повернутися до таблиці",
   previous: "Попередній",
