@@ -2,18 +2,22 @@
 /**
  * Simple prerender function for SSR static generation
  * 
- * This file is used as a fallback if the TypeScript version fails
+ * This file is used as a fallback if the TypeScript version fails to compile
  */
 export async function prerenderRoutes(outputDir) {
   console.log('Prerendering routes to:', outputDir);
   
   // When using full SSR, prerendering may be less necessary
   // but can still be useful for static paths
-  
-  // This function could be enhanced to generate static HTML files
-  // for critical routes if needed
-  
-  return Promise.resolve();
+  try {
+    console.log('Using JavaScript fallback prerender');
+    // This is a simplified version that doesn't actually render,
+    // but prevents build failures when the TypeScript version has issues
+    return Promise.resolve();
+  } catch (err) {
+    console.error('Error in fallback prerender:', err);
+    return Promise.resolve();
+  }
 }
 
 export default prerenderRoutes;

@@ -12,3 +12,9 @@ declare module 'invariant' {
   function invariant(condition: any, message?: string): asserts condition;
   export = invariant;
 }
+
+// Fix for shallowequal default export issue
+declare module 'shallowequal' {
+  function shallowEqual(objA: any, objB: any): boolean;
+  export = shallowEqual;
+}

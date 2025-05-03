@@ -47,6 +47,13 @@ const getInitialLanguage = () => {
   return 'en';
 };
 
+// Define a component to lazy load React Query DevTools
+const ReactQueryDevtoolsProduction = React.lazy(() => 
+  import('@tanstack/react-query-devtools/production').then(d => ({
+    default: d.ReactQueryDevtools
+  }))
+);
+
 const AppWithProviders = (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider>
@@ -58,6 +65,11 @@ const AppWithProviders = (
         </HelmetProvider>
       </LanguageProvider>
     </ThemeProvider>
+    {process.env.NODE_ENV === 'development' && (
+      <React.Suspense fallback={null}>
+        <ReactQueryDevtoolsProduction position="bottom-right" />
+      </React.Suspense>
+    )}
   </QueryClientProvider>
 );
 
@@ -79,28 +91,6 @@ startTransition(() => {
     console.log(`Client render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
   }
 });
-
-// Enable the React profiler in development mode
-if (process.env.NODE_ENV === 'development') {
-  import('react-dom/profiling').then(({ createRoot }) => {
-    const profiler = createRoot(document.getElementById('profiler-root') || document.createElement('div'));
-    window.__REACT_PROFILER__ = profiler;
-  }).catch(err => {
-    console.error('Failed to load React profiling:', err);
-  });
-}
-
-// Add React Query devtools in development
-if (process.env.NODE_ENV === 'development') {
-  // Only load devtools in development with proper error handling
-  import('@tanstack/react-query-devtools')
-    .then(({ ReactQueryDevtools }) => {
-      console.log('React Query Devtools loaded');
-    })
-    .catch(err => {
-      console.warn('Could not load React Query Devtools:', err);
-    });
-}
 
 // Remove loading indicator
 const loadingIndicator = document.getElementById('loading-indicator');

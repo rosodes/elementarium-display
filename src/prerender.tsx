@@ -64,6 +64,7 @@ export async function renderPage(url: string) {
 
 /**
  * Prerender main routes for better SEO
+ * @param outputDir The directory where the rendered files will be saved
  */
 export async function prerenderRoutes(outputDir: string) {
   // Most important routes to prerender for SEO
