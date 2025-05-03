@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -33,7 +33,7 @@ function getLanguageFromUrl(url: string): string {
  * @returns Объект с HTML и заголовками
  */
 export async function renderToString(url: string) {
-  const helmetContext = {};
+  const helmetContext: { helmet?: HelmetServerState } = {};
   const queryClient = new QueryClient();
   const language = getLanguageFromUrl(url);
   
@@ -75,7 +75,7 @@ export async function prerenderRoutes(outputDir: string) {
     for (const route of routes) {
       const result = await renderToString(route);
       const { html } = result;
-      const helmetData = (result.helmet as any);
+      const helmetData = result.helmet?.helmet;
       
       // Чтение шаблона
       const templatePath = path.resolve(outputDir, 'index.html');
