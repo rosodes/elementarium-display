@@ -21,7 +21,7 @@ const prerenderPlugin = (): Plugin => {
       
       try {
         // Dynamic import with explicit JSX handling
-        const prerender = await import('./src/prerender');
+        const prerender = await import('./src/prerender.tsx');
         await prerender.prerenderRoutes(outputDir);
         console.log('Prerendering complete');
       } catch (err) {
