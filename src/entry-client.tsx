@@ -67,7 +67,7 @@ const AppWithProviders = (
     </ThemeProvider>
     {process.env.NODE_ENV === 'development' && (
       <React.Suspense fallback={null}>
-        <ReactQueryDevtoolsProduction position="bottom-right" />
+        <ReactQueryDevtoolsProduction />
       </React.Suspense>
     )}
   </QueryClientProvider>
@@ -105,6 +105,5 @@ if (loadingIndicator) {
 declare global {
   interface Window {
     __REACT_QUERY_STATE__?: any;
-    __REACT_PROFILER__?: any;
   }
 }

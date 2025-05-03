@@ -6,7 +6,6 @@ import { componentTagger } from "lovable-tagger";
 import { Plugin } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import compression from 'vite-plugin-compression';
-import type { Algorithm } from 'vite-plugin-compression';
 
 // Define the type for prerenderRoutes function to avoid import issues
 interface PrerenderOptions {
@@ -24,10 +23,11 @@ const prerenderPlugin = (): Plugin => {
       
       try {
         // Use dynamic import with explicit file path
-        const prerender = await import('./src/prerender.js').catch(() => {
-          // Fallback to the TypeScript file if the JS file doesn't exist
-          return import('./src/prerender');
-        });
+        const prerender = await import('./src/prerender.js').then(
+          (module) => module, 
+          () => import('./src/prerender.tsx')
+        );
+        
         await prerender.prerenderRoutes(outputDir);
         console.log('Prerendering complete');
       } catch (err) {
@@ -53,11 +53,11 @@ export default defineConfig(({ mode, command }) => ({
     }),
     // Add compression for static assets
     mode === 'production' && compression({
-      algorithm: 'brotli' as Algorithm,
+      algorithm: 'brotli',
       ext: '.br',
     }),
     mode === 'production' && compression({
-      algorithm: 'gzip' as Algorithm,
+      algorithm: 'gzip',
       ext: '.gz',
     }),
   ].filter(Boolean),
