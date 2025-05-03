@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => ({
         manualChunks: {
           // Split code into chunks for optimization
           vendor: ['react', 'react-dom', 'react-router-dom'],
-          ui: ['./src/components/ui'],
+          // No UI chunk reference as it was causing the build error
         }
       }
     }
