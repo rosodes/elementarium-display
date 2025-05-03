@@ -6,7 +6,7 @@ import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
 import ElementSearchResults from './search/ElementSearch';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import ElementDetails from './ElementDetails'; // Правильный импорт
+import ElementDetails from './ElementDetails';
 
 interface PeriodicTableProps {
   searchQuery?: string;
@@ -83,7 +83,7 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
     <section 
       className="w-full mx-auto"
       role="region"
-      aria-label={t.elementDetails.elementTable}
+      aria-label={t.elementDetails?.elementTable || "Periodic Table"}
     >
       <div className="px-4 sm:px-12">
         {/* Search results section */}

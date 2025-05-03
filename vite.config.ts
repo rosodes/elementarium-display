@@ -4,9 +4,13 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 import { Plugin } from 'vite';
-import { prerenderRoutes } from './src/prerender';
 
-// Плагин для предварительного рендеринга основных маршрутов
+// Define the type for prerenderRoutes function to avoid import issues
+interface PrerenderOptions {
+  outputDir: string;
+}
+
+// Import the prerenderRoutes function dynamically at runtime
 const prerenderPlugin = (): Plugin => {
   return {
     name: 'vite-plugin-prerender',
@@ -16,6 +20,8 @@ const prerenderPlugin = (): Plugin => {
       const outputDir = path.resolve(__dirname, 'dist');
       
       try {
+        // Dynamic import to avoid TypeScript compilation issues
+        const { prerenderRoutes } = await import('./src/prerender');
         await prerenderRoutes(outputDir);
         console.log('Prerendering complete');
       } catch (err) {
@@ -33,8 +39,8 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react({
-      // Улучшаем поддержку SSR
-      fastRefresh: mode !== 'production',
+      // Use SWC's default refresh implementation
+      jsxImportSource: '@swc/react',
     }),
     mode === 'development' && componentTagger(),
     mode === 'production' && prerenderPlugin(),
@@ -44,14 +50,14 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // Полная конфигурация для SSR
+  // Full configuration for SSR
   build: {
-    ssrManifest: true, // Генерируем манифест для SSR
-    manifest: true, // Генерируем манифест ассетов
+    ssrManifest: true, // Generate manifest for SSR
+    manifest: true, // Generate assets manifest
     rollupOptions: {
       output: {
         manualChunks: {
-          // Разделяем код на чанки для оптимизации
+          // Split code into chunks for optimization
           vendor: ['react', 'react-dom', 'react-router-dom'],
           ui: ['@/components/ui'],
         }

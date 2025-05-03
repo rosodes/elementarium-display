@@ -50,9 +50,9 @@ const AppWithProviders = (
 );
 
 // Определяем, был ли контент предварительно отрендерен
-const hasPreRenderedContent = rootElement.hasChildNodes() && 
-                             rootElement.firstChild && 
-                             rootElement.firstChild.nodeType !== Node.COMMENT_NODE;
+const hasPreRenderedContent = rootElement.innerHTML && 
+                             rootElement.innerHTML.trim() !== '' &&
+                             !rootElement.innerHTML.includes('<!--app-html-->');
 
 if (hasPreRenderedContent) {
   // Если есть предварительно отрендеренный контент, используем гидратацию
