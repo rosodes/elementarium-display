@@ -59,14 +59,17 @@ const ElementPage = () => {
     }
   };
   
+  // Create a safer description with fallback for missing properties
+  const elementDescription = `${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails?.notAvailable || 'Information not available'}`;
+  
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       {/* Add SEO metadata using Helmet */}
       <Helmet>
         <title>{`${element.name} (${element.symbol}) - ${t.title}`}</title>
-        <meta name="description" content={`${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails.notAvailable}`} />
+        <meta name="description" content={elementDescription} />
         <meta property="og:title" content={`${element.name} (${element.symbol}) - ${t.title}`} />
-        <meta property="og:description" content={`${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails.notAvailable}`} />
+        <meta property="og:description" content={elementDescription} />
         <meta property="og:type" content="website" />
         <link rel="canonical" href={canonicalUrl} />
         <script type="application/ld+json">
@@ -75,7 +78,7 @@ const ElementPage = () => {
             "@type": "ChemicalSubstance",
             "name": element.name,
             "alternateName": element.symbol,
-            "description": element.summary || t.elementDetails.notAvailable,
+            "description": element.summary || t.elementDetails?.notAvailable || 'Information not available',
             "url": canonicalUrl,
             "molecularFormula": element.symbol,
             "atomicNumber": element.atomic

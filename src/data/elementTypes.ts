@@ -88,6 +88,7 @@ export interface Element {
   discoveredBy?: string;
   namedAfter?: string;
   description?: string;
+  summary?: string; // Added missing property
 }
 
 export type ElementsArray = [null | undefined | Partial<Element>, ...Element[]];

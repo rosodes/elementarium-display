@@ -70,6 +70,11 @@ export interface ElementDetailsTranslations {
   industrialUses?: string;
   everydayUses?: string;
   funFacts?: string;
+  // Fixed missing properties
+  notAvailable?: string;
+  backToTable?: string;
+  previous?: string;
+  next?: string;
 }
 
 // Import from individual language files
