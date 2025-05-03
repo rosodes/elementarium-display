@@ -4,7 +4,7 @@ import * as ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
 import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, dehydrate } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 import fs from 'fs';
@@ -58,7 +58,7 @@ export async function renderPage(url: string) {
   return {
     html,
     helmet: helmetContext.helmet,
-    queryState: dehydrate(queryClient)  // Fixed: Added the missing argument here
+    queryState: dehydrate(queryClient)
   };
 }
 
@@ -141,9 +141,6 @@ export async function prerenderRoutes(outputDir: string) {
     console.error(`Error during prerendering: ${err}`);
   }
 }
-
-// Need to import the dehydrate function to fix the error
-import { dehydrate } from '@tanstack/react-query';
 
 // Export function for build scripts
 export default prerenderRoutes;

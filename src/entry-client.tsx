@@ -47,9 +47,9 @@ const getInitialLanguage = () => {
   return 'en';
 };
 
-// Import React Query DevTools with the correct path
+// ReactQueryDevtools with dynamic import
 const ReactQueryDevtools = React.lazy(() => 
-  import('@tanstack/react-query-devtools/build/modern/production.js').then(d => ({
+  import('@tanstack/react-query-devtools').then(d => ({
     default: d.ReactQueryDevtools
   }))
 );
@@ -74,9 +74,6 @@ const AppWithProviders = (
     </QueryClientProvider>
   </React.StrictMode>
 );
-
-// Use a consistent approach for detecting SSR content
-const hasPreRenderedContent = container.innerHTML.trim() !== '';
 
 // Use startTransition to mark hydration as non-urgent
 // This improves initial page responsiveness

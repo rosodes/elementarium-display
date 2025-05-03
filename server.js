@@ -116,7 +116,7 @@ async function createServer(
 
       if (isProd) {
         // Production: Read the pre-built index.html
-        const indexHtml = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
+        let indexHtml = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
         
         // Import the server bundle
         const { render } = require('./dist/server/entry-server.js');
@@ -135,17 +135,13 @@ async function createServer(
           });
         }
         
-        // Stream the HTML with server rendered content
-        let didError = false;
-        
-        // Start sending the HTML response
-        const parts = indexHtml.split('<!--app-html-->');
-        
         // Use streaming SSR
         const { stream, helmetContext, dehydratedState } = render(url, lang, {
           onShellReady() {
             // Send the first part of HTML
+            const parts = indexHtml.split('<!--app-html-->');
             res.write(parts[0]);
+            
             // Shell is ready, pipe it to client
             stream.pipe(res, { end: false });
           },
@@ -158,6 +154,7 @@ async function createServer(
               `<script>window.__REACT_QUERY_STATE__=${JSON.stringify(dehydratedState)}</script>` : '';
             
             // Finish the response with React Query state
+            const parts = indexHtml.split('<!--app-html-->');
             res.write(`${queryStateScript}${parts[1] || ''}`);
             res.end();
           }
@@ -165,7 +162,6 @@ async function createServer(
         
         // Handle server-side errors
         stream.on('error', (err) => {
-          didError = true;
           console.error('Error during streaming SSR:', err);
           res.status(500).send('Internal Server Error');
         });

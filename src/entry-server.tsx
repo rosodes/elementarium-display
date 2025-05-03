@@ -3,7 +3,7 @@ import React from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
-import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 import { QueryClient, QueryClientProvider, dehydrate } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -21,7 +21,7 @@ function getLanguageFromUrl(url: string): string {
 
 export function render(url: string, lang?: string, options: { onShellReady?: () => void, onAllReady?: () => void } = {}) {
   // Create helmet context to collect meta tags
-  const helmetContext: { helmet?: HelmetServerState } = {};
+  const helmetContext = {};
   
   // Create a new QueryClient for data fetching
   const queryClient = new QueryClient({

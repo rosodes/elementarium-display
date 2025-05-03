@@ -25,24 +25,14 @@ const prerenderPlugin = (): Plugin => {
         // Use dynamic imports with path resolution
         let prerenderModule;
         try {
-          const prerenderJsPath = path.resolve(__dirname, './src/prerender.js');
-          prerenderModule = await import(prerenderJsPath);
-        } catch (err) {
-          console.error('Failed to load prerender.js:', err);
-          try {
-            const prerenderTsxPath = path.resolve(__dirname, './src/prerender.tsx');
-            prerenderModule = await import(prerenderTsxPath);
-          } catch (innerErr) {
-            console.error('Failed to load prerender module:', innerErr);
-            return;
+          // First try to import the JS version
+          const { prerenderRoutes } = await import('./src/prerender');
+          if (typeof prerenderRoutes === 'function') {
+            await prerenderRoutes(outputDir);
+            console.log('Prerendering complete');
           }
-        }
-        
-        if (prerenderModule && typeof prerenderModule.prerenderRoutes === 'function') {
-          await prerenderModule.prerenderRoutes(outputDir);
-          console.log('Prerendering complete');
-        } else {
-          console.error('Prerender module found but prerenderRoutes function is missing');
+        } catch (err) {
+          console.error('Error during prerendering:', err);
         }
       } catch (err) {
         console.error('Error during prerendering:', err);
@@ -71,18 +61,14 @@ export default defineConfig(({ mode, command }) => ({
       ext: '.gz',
     }),
     mode === 'production' && compression({
-      // Use string type here to match the type definition
       algorithm: 'gzip',
       ext: '.br',
+      compressionOptions: { level: 11 },
     }),
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      // Add alias for problematic packages
-      'react-fast-compare': path.resolve(__dirname, 'node_modules/react-fast-compare/index.js'),
-      'invariant': path.resolve(__dirname, 'node_modules/invariant/invariant.js'),
-      'shallowequal': path.resolve(__dirname, 'node_modules/shallowequal/index.js'),
     },
   },
   // Performance optimizations
