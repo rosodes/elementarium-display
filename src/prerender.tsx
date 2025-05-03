@@ -58,7 +58,7 @@ export async function renderPage(url: string) {
   return {
     html,
     helmet: helmetContext.helmet,
-    queryState: queryClient.getQueryState()
+    queryState: dehydrate(queryClient)  // Fixed: Added the missing argument here
   };
 }
 
@@ -141,6 +141,9 @@ export async function prerenderRoutes(outputDir: string) {
     console.error(`Error during prerendering: ${err}`);
   }
 }
+
+// Need to import the dehydrate function to fix the error
+import { dehydrate } from '@tanstack/react-query';
 
 // Export function for build scripts
 export default prerenderRoutes;
