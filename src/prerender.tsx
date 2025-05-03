@@ -55,7 +55,7 @@ export async function renderToString(url: string) {
   
   return {
     html,
-    helmet: helmetContext
+    helmet: helmetContext.helmet
   };
 }
 
@@ -75,7 +75,7 @@ export async function prerenderRoutes(outputDir: string) {
     for (const route of routes) {
       const result = await renderToString(route);
       const { html } = result;
-      const helmetData = result.helmet?.helmet;
+      const helmetData = result.helmet;
       
       // Чтение шаблона
       const templatePath = path.resolve(outputDir, 'index.html');
