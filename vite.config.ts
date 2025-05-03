@@ -22,7 +22,8 @@ const prerenderPlugin = (): Plugin => {
       const outputDir = path.resolve(__dirname, 'dist/client');
       
       try {
-        const prerender = await import(path.join(process.cwd(), 'src/prerender.js'));
+        // Use dynamic import with explicit file path
+        const prerender = await import('./src/prerender.js');
         await prerender.prerenderRoutes(outputDir);
         console.log('Prerendering complete');
       } catch (err) {
@@ -48,17 +49,19 @@ export default defineConfig(({ mode, command }) => ({
     }),
     // Add compression for static assets
     mode === 'production' && compression({
-      algorithm: 'brotli' as any,
+      algorithm: 'brotli',
       ext: '.br',
     }),
     mode === 'production' && compression({
-      algorithm: 'gzip' as any,
+      algorithm: 'gzip',
       ext: '.gz',
     }),
   ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
+      // Add alias for problematic packages
+      'react-fast-compare': path.resolve(__dirname, 'node_modules/react-fast-compare/index.js'),
     },
   },
   // Performance optimizations
@@ -117,5 +120,9 @@ export default defineConfig(({ mode, command }) => ({
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
     exclude: ['react-helmet-async'],
+    esbuildOptions: {
+      // Fix for CJS/ESM interop issues
+      preserveSymlinks: true,
+    }
   },
 }));
