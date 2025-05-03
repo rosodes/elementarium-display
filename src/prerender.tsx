@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import App from './App';
-import { HelmetProvider, FilledContext } from 'react-helmet-async';
+import { HelmetProvider } from 'react-helmet-async';
 
 /**
  * Функция для серверного рендеринга приложения с указанным URL
@@ -11,7 +11,7 @@ import { HelmetProvider, FilledContext } from 'react-helmet-async';
  * @returns Объект с HTML и заголовками
  */
 export async function renderToString(url: string) {
-  const helmetContext = {} as FilledContext;
+  const helmetContext = {};
   
   const html = ReactDOMServer.renderToString(
     <React.StrictMode>
@@ -23,11 +23,9 @@ export async function renderToString(url: string) {
     </React.StrictMode>
   );
   
-  const { helmet } = helmetContext;
-  
   return {
     html,
-    helmet
+    helmet: helmetContext
   };
 }
 

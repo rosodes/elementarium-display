@@ -5,7 +5,7 @@ import TableContainer from './periodic-table/TableContainer';
 import { useLanguage } from '../context/LanguageContext';
 import ElementSearchResults from './search/ElementSearch';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import ElementDetails from './ElementDetails'; // Исправляем импорт
+import ElementDetails from './ElementDetails'; // Fixed import
 
 interface PeriodicTableProps {
   searchQuery?: string;

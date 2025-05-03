@@ -25,10 +25,7 @@ export default defineConfig(({ mode }) => ({
     port: 8080,
   },
   plugins: [
-    react({
-      // Включаем поддержку SSR
-      fastRefresh: true,
-    }),
+    react(),
     mode === 'development' && componentTagger(),
     mode === 'production' && prerenderPlugin(),
   ].filter(Boolean),
