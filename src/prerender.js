@@ -5,6 +5,11 @@
  * This file is used as a fallback if the TypeScript version fails to compile
  */
 export async function prerenderRoutes(outputDir) {
+  if (!outputDir) {
+    console.error('Output directory is required for prerendering');
+    return Promise.reject(new Error('Output directory is required'));
+  }
+  
   console.log('Prerendering routes to:', outputDir);
   
   // When using full SSR, prerendering may be less necessary

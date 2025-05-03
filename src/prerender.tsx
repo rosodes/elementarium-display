@@ -67,6 +67,10 @@ export async function renderPage(url: string) {
  * @param outputDir The directory where the rendered files will be saved
  */
 export async function prerenderRoutes(outputDir: string) {
+  if (!outputDir) {
+    throw new Error('Output directory is required for prerendering');
+  }
+  
   // Most important routes to prerender for SEO
   const routes = [
     '/',              // English homepage

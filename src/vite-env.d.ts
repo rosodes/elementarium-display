@@ -18,3 +18,20 @@ declare module 'shallowequal' {
   function shallowEqual(objA: any, objB: any): boolean;
   export = shallowEqual;
 }
+
+// Add type definition for vite-plugin-compression
+declare module 'vite-plugin-compression' {
+  import { Plugin } from 'vite';
+  
+  interface CompressionOptions {
+    algorithm?: 'gzip' | 'brotli';
+    ext?: string;
+    filter?: RegExp | ((file: string) => boolean);
+    threshold?: number;
+    deleteOriginFile?: boolean;
+    compressionOptions?: Record<string, any>;
+  }
+  
+  function compression(options?: CompressionOptions): Plugin;
+  export default compression;
+}
