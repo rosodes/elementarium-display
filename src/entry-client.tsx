@@ -37,39 +37,6 @@ const queryClient = new QueryClient({
 // Declare ReactQueryDevtools variable
 let ReactQueryDevtools = null;
 
-// Use a self-invoking async function to handle all dynamic imports
-(async () => {
-  // Hydrate query state from server if available
-  if (window.__REACT_QUERY_STATE__) {
-    try {
-      const reactQueryModule = await import('@tanstack/react-query');
-      // Properly hydrate the query client with state data
-      // We need to loop through the query state and set each query individually
-      const dehydratedState = window.__REACT_QUERY_STATE__;
-      if (dehydratedState && Array.isArray(dehydratedState.queries)) {
-        dehydratedState.queries.forEach((query) => {
-          queryClient.setQueryData(query.queryKey, query.state.data);
-        });
-      }
-      console.log('React Query state hydrated successfully');
-    } catch (error) {
-      console.error('Error hydrating React Query state:', error);
-    }
-  }
-
-  // Dynamically import ReactQueryDevtools only in development
-  if (import.meta.env.DEV) {
-    try {
-      const devtoolsModule = await import('@tanstack/react-query-devtools');
-      ReactQueryDevtools = devtoolsModule.ReactQueryDevtools;
-      // Force re-render once devtools are loaded
-      renderApp();
-    } catch (err) {
-      console.error('Failed to load React Query Devtools:', err);
-    }
-  }
-})();
-
 // Determine initial language from URL
 const getInitialLanguage = () => {
   const path = window.location.pathname;
@@ -108,8 +75,44 @@ function renderApp() {
   });
 }
 
-// Initial render
-renderApp();
+// Hydrate query state from server if available
+if (window.__REACT_QUERY_STATE__) {
+  // Use IIFE to allow async/await in top-level code
+  (async () => {
+    try {
+      const reactQueryModule = await import('@tanstack/react-query');
+      // Properly hydrate the query client with state data
+      const dehydratedState = window.__REACT_QUERY_STATE__;
+      if (dehydratedState && Array.isArray(dehydratedState.queries)) {
+        dehydratedState.queries.forEach((query) => {
+          queryClient.setQueryData(query.queryKey, query.state.data);
+        });
+      }
+      console.log('React Query state hydrated successfully');
+    } catch (error) {
+      console.error('Error hydrating React Query state:', error);
+    }
+    
+    // Initial render after hydration
+    renderApp();
+  })();
+} else {
+  // Initial render with no hydration needed
+  renderApp();
+}
+
+// Dynamically import ReactQueryDevtools only in development
+if (import.meta.env.DEV) {
+  import('@tanstack/react-query-devtools')
+    .then((devtoolsModule) => {
+      ReactQueryDevtools = devtoolsModule.ReactQueryDevtools;
+      // Force re-render once devtools are loaded
+      renderApp();
+    })
+    .catch((err) => {
+      console.error('Failed to load React Query Devtools:', err);
+    });
+}
 
 // Remove loading indicator
 const loadingIndicator = document.getElementById('loading-indicator');
