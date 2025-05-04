@@ -43,7 +43,14 @@ let ReactQueryDevtools = null;
   if (window.__REACT_QUERY_STATE__) {
     try {
       const reactQueryModule = await import('@tanstack/react-query');
-      queryClient.setQueryData(window.__REACT_QUERY_STATE__);
+      // Properly hydrate the query client with state data
+      // We need to loop through the query state and set each query individually
+      const dehydratedState = window.__REACT_QUERY_STATE__;
+      if (dehydratedState && Array.isArray(dehydratedState.queries)) {
+        dehydratedState.queries.forEach((query) => {
+          queryClient.setQueryData(query.queryKey, query.state.data);
+        });
+      }
       console.log('React Query state hydrated successfully');
     } catch (error) {
       console.error('Error hydrating React Query state:', error);
