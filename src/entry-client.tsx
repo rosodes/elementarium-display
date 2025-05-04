@@ -36,15 +36,17 @@ const queryClient = new QueryClient({
 
 // Hydrate query state from server if available
 if (window.__REACT_QUERY_STATE__) {
-  try {
-    const hydrate = async () => {
-      const { hydrate: hydrateQuery } = await import('@tanstack/react-query');
-      hydrateQuery(queryClient, window.__REACT_QUERY_STATE__);
-    };
-    hydrate();
-  } catch (error) {
-    console.error('Error hydrating React Query state:', error);
-  }
+  // Use a modern async pattern that works with ESM
+  (async () => {
+    try {
+      // Dynamic import using ESM syntax
+      const { hydrate } = await import('@tanstack/react-query');
+      hydrate(queryClient, window.__REACT_QUERY_STATE__);
+      console.log('React Query state hydrated successfully');
+    } catch (error) {
+      console.error('Error hydrating React Query state:', error);
+    }
+  })();
 }
 
 // Determine initial language from URL
@@ -57,8 +59,8 @@ const getInitialLanguage = () => {
 
 // ReactQueryDevtools with dynamic import using native ESM syntax
 const ReactQueryDevtools = React.lazy(() => 
-  import('@tanstack/react-query-devtools').then(d => ({
-    default: d.ReactQueryDevtools
+  import('@tanstack/react-query-devtools').then(module => ({
+    default: module.ReactQueryDevtools
   }))
 );
 

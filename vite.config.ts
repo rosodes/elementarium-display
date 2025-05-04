@@ -72,12 +72,15 @@ export default defineConfig(({ mode }) => ({
       },
       output: {
         format: 'es', // Ensure ESM output
+        entryFileNames: '[name].[hash].js',
+        chunkFileNames: 'chunks/[name].[hash].js',
       },
     },
   },
   optimizeDeps: {
     esbuildOptions: {
       target: 'es2020',
+      format: 'esm', // Explicitly set ESM format
       supported: { 
         bigint: true 
       },
