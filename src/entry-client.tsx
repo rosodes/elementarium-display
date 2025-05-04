@@ -39,7 +39,6 @@ let ReactQueryDevtools = null;
 
 // Hydrate query state from server if available
 if (window.__REACT_QUERY_STATE__) {
-  // Use native Promise approach for dynamic import
   (async () => {
     try {
       const { hydrate } = await import('@tanstack/react-query');
@@ -53,7 +52,6 @@ if (window.__REACT_QUERY_STATE__) {
 
 // Dynamically import ReactQueryDevtools only in development
 if (import.meta.env.DEV) {
-  // Use native Promise approach for dynamic import
   (async () => {
     try {
       const { ReactQueryDevtools: DevTools } = await import('@tanstack/react-query-devtools');
