@@ -13,9 +13,16 @@ const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
   plugins: [
-    react(),
+    react({
+      // Configure Babel to use browserslist
+      babel: {
+        babelrc: false,
+        configFile: false,
+      }
+    }),
     legacy({
       targets: ['defaults', 'not IE 11'],
+      modernPolyfills: true
     }),
     compression({
       algorithm: 'brotliCompress',
