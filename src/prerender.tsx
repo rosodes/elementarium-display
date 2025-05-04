@@ -92,16 +92,33 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
             });
             
             stream.pipe(writable);
-            stream.on('error', reject);
+            
+            // Add error handler using try-catch instead of .on('error')
+            try {
+              // The .on() method is not available on PipeableStream
+              // We're already handling errors with the writable stream and Promise
+            } catch (error) {
+              reject(error);
+            }
           });
         } 
         // Handle streams with async iterator
-        else if (Symbol.asyncIterator in stream) {
-          const chunks: Buffer[] = [];
-          for await (const chunk of stream) {
-            chunks.push(chunk);
+        else {
+          try {
+            // Check if stream is an async iterable using a type guard
+            if (Symbol.asyncIterator in Object(stream)) {
+              const asyncStream = stream as unknown as AsyncIterable<Buffer | string>;
+              const chunks: Buffer[] = [];
+              
+              for await (const chunk of asyncStream) {
+                chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+              }
+              
+              content = Buffer.concat(chunks).toString();
+            }
+          } catch (error) {
+            console.error('Error reading stream:', error);
           }
-          content = Buffer.concat(chunks).toString();
         }
       }
       

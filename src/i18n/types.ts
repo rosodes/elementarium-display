@@ -1,4 +1,3 @@
-
 export interface ElementTranslations {
   [key: string]: string;
 }
@@ -90,6 +89,10 @@ export interface UITranslations {
   usageDistribution?: string;
   simulatedData?: string;
   note?: string;
+  elementRemoved?: string;
+  elementBookmarked?: string;
+  linkCopied?: string;
+  linkCopiedToClipboard?: string;
 }
 
 export interface ElementDetailsTranslations {
@@ -196,6 +199,7 @@ export interface TranslationData extends CommonTranslations {
   ui: UITranslations;
   elementDetails: ElementDetailsTranslations;
   footer: FooterTranslations;
+  loading?: string; // Add missing loading property
 }
 
 export type LanguageKey = 'en' | 'ru' | 'uk';

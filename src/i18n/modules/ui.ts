@@ -28,6 +28,11 @@ export interface UITranslations {
   usageDistribution?: string;
   simulatedData?: string;
   note?: string;
+  // Add missing properties
+  elementRemoved?: string;
+  elementBookmarked?: string;
+  linkCopied?: string;
+  linkCopiedToClipboard?: string;
 }
 
 export const uiEn: UITranslations = {
@@ -57,7 +62,12 @@ export const uiEn: UITranslations = {
   focusMode: "Focus mode",
   usageDistribution: "Usage Distribution", 
   simulatedData: "This is simulated data for demonstration purposes",
-  note: "Note"
+  note: "Note",
+  // Add English translations for new properties
+  elementRemoved: "Element removed from bookmarks",
+  elementBookmarked: "Element bookmarked",
+  linkCopied: "Link copied",
+  linkCopiedToClipboard: "Link has been copied to clipboard"
 };
 
 export const uiRu: UITranslations = {
@@ -87,5 +97,10 @@ export const uiRu: UITranslations = {
   focusMode: "Режим фокусировки",
   usageDistribution: "Распределение использования",
   simulatedData: "Это симулированные данные для демонстрационных целей",
-  note: "Примечание"
+  note: "Примечание",
+  // Add Russian translations for new properties
+  elementRemoved: "Элемент удален из закладок",
+  elementBookmarked: "Элемент добавлен в закладки",
+  linkCopied: "Ссылка скопирована",
+  linkCopiedToClipboard: "Ссылка скопирована в буфер обмена"
 };
