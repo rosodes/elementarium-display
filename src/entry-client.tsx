@@ -58,7 +58,6 @@ if (window.__REACT_QUERY_STATE__) {
   // Use a modern async pattern that works with ESM
   (async () => {
     try {
-      // Dynamic import using ESM syntax
       const { hydrate } = await import('@tanstack/react-query');
       hydrate(queryClient, window.__REACT_QUERY_STATE__);
       console.log('React Query state hydrated successfully');
