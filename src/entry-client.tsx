@@ -34,7 +34,7 @@ const queryClient = new QueryClient({
   },
 });
 
-// Declare ReactQueryDevtools variable
+// Declare ReactQueryDevtools variable that will be loaded dynamically
 let ReactQueryDevtools = null;
 
 // Determine initial language from URL
@@ -106,7 +106,7 @@ if (window.__REACT_QUERY_STATE__) {
   renderApp();
 }
 
-// Dynamically import ReactQueryDevtools only in development
+// Dynamically import ReactQueryDevtools only in development using ESM dynamic import
 if (import.meta.env.DEV) {
   import('@tanstack/react-query-devtools')
     .then((devtoolsModule) => {
