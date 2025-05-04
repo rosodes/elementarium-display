@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => ({
       modernPolyfills: true
     }),
     compression({
-      algorithm: 'brotliCompress',
+      algorithm: 'brotliCompress', // Changed from 'brotli' to 'brotliCompress'
       ext: '.br',
     }),
     compression({
