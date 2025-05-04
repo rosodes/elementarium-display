@@ -39,8 +39,8 @@ let ReactQueryDevtools = null;
 
 // Hydrate query state from server if available
 if (window.__REACT_QUERY_STATE__) {
-  // Use dynamic ESM import with async/await for hydration
-  const importAndHydrate = async () => {
+  // Use native Promise approach for dynamic import
+  (async () => {
     try {
       const { hydrate } = await import('@tanstack/react-query');
       hydrate(queryClient, window.__REACT_QUERY_STATE__);
@@ -48,18 +48,16 @@ if (window.__REACT_QUERY_STATE__) {
     } catch (error) {
       console.error('Error hydrating React Query state:', error);
     }
-  };
-  
-  importAndHydrate();
+  })();
 }
 
 // Dynamically import ReactQueryDevtools only in development
 if (import.meta.env.DEV) {
-  // Use dynamic ESM import with async/await
-  const loadDevTools = async () => {
+  // Use native Promise approach for dynamic import
+  (async () => {
     try {
-      const module = await import('@tanstack/react-query-devtools');
-      ReactQueryDevtools = module.ReactQueryDevtools;
+      const { ReactQueryDevtools: DevTools } = await import('@tanstack/react-query-devtools');
+      ReactQueryDevtools = DevTools;
       // Force a re-render to display devtools after they've been loaded
       if (container) {
         renderApp();
@@ -67,9 +65,7 @@ if (import.meta.env.DEV) {
     } catch (err) {
       console.error('Failed to load React Query Devtools:', err);
     }
-  };
-  
-  loadDevTools();
+  })();
 }
 
 // Determine initial language from URL
