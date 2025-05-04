@@ -47,7 +47,7 @@ const getInitialLanguage = () => {
   return 'en';
 };
 
-// ReactQueryDevtools with dynamic import
+// ReactQueryDevtools with dynamic import using native ESM syntax
 const ReactQueryDevtools = React.lazy(() => 
   import('@tanstack/react-query-devtools').then(d => ({
     default: d.ReactQueryDevtools
@@ -66,7 +66,7 @@ const AppWithProviders = (
           </HelmetProvider>
         </LanguageProvider>
       </ThemeProvider>
-      {process.env.NODE_ENV === 'development' && (
+      {import.meta.env.DEV && (
         <React.Suspense fallback={null}>
           <ReactQueryDevtools />
         </React.Suspense>

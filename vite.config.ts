@@ -70,6 +70,9 @@ export default defineConfig(({ mode }) => ({
         main: path.resolve(__dirname, 'index.html'),
         server: path.resolve(__dirname, 'src/entry-server.tsx'),
       },
+      output: {
+        format: 'es', // Ensure ESM output
+      },
     },
   },
   optimizeDeps: {
