@@ -33,7 +33,7 @@ export default defineConfig(({ mode }) => ({
             corejs: '3.22'
           }],
           ['@babel/preset-typescript', {
-            // Эти настройки помогут избежать проблем с трансформацией TypeScript
+            // These settings help avoid TypeScript transformation issues
             isTSX: true,
             allowNamespaces: true,
             allExtensions: true,
@@ -96,7 +96,7 @@ export default defineConfig(({ mode }) => ({
   // Explicitly ensure that code is processed as ESM
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode),
-    __IS_DEV__: mode === 'development',
+    '__IS_DEV__': mode === 'development',
   },
   // Ensure we're not transforming ESM to CommonJS
   esbuild: {

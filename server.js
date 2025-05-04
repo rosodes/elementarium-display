@@ -118,8 +118,9 @@ async function createServer(
         // Production: Read the pre-built index.html
         let indexHtml = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
         
-        // Import the server bundle
-        const { render } = require('./dist/server/entry-server.js');
+        // Import the server bundle with dynamic import() for ESM compatibility
+        const serverEntryPath = './dist/server/entry-server.js';
+        const { render } = await import(serverEntryPath);
         
         // Set appropriate content type
         res.setHeader('Content-Type', 'text/html');
