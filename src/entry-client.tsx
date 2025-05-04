@@ -34,12 +34,12 @@ const queryClient = new QueryClient({
   },
 });
 
-// Ensure ReactQueryDevtools is lazily loaded
+// Variable to hold ReactQueryDevtools component
 let ReactQueryDevtools = null;
 
 // Hydrate query state from server if available
 if (window.__REACT_QUERY_STATE__) {
-  // Use dynamic ESM import
+  // Use dynamic ESM import for hydration
   import('@tanstack/react-query')
     .then(({ hydrate }) => {
       hydrate(queryClient, window.__REACT_QUERY_STATE__);
