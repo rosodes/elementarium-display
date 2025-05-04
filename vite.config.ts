@@ -14,13 +14,16 @@ const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 export default defineConfig(({ mode }) => ({
   plugins: [
     react({
-      // Configure Babel to use browserslist targets directly
+      // Use simpler babel configuration to avoid browserslist issues
       babel: {
         babelrc: false,
         configFile: false,
         presets: [
           ['@babel/preset-env', {
-            targets: 'defaults, not IE 11',
+            targets: { 
+              browsers: ['> 0.5%', 'last 2 versions', 'not dead', 'not IE 11'],
+              node: 'current'
+            },
             useBuiltIns: 'usage',
             corejs: '3.22'
           }]
@@ -28,7 +31,7 @@ export default defineConfig(({ mode }) => ({
       }
     }),
     legacy({
-      targets: ['defaults', 'not IE 11'],
+      targets: ['> 0.5%', 'last 2 versions', 'not dead', 'not IE 11'],
       modernPolyfills: true
     }),
     compression({
