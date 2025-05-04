@@ -158,6 +158,26 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
       nucleus.classList.add('animate-pulse');
     }
   }, []);
+
+  // Fixed: Removed the jsx attribute from the style element
+  const cssStyles = `
+    .electron-particle {
+      filter: drop-shadow(0 0 2px ${electronColor});
+    }
+    .nucleus-pulse {
+      animation: nucleus-pulse 3s infinite;
+    }
+    @keyframes nucleus-pulse {
+      0% { r: ${nucleusRadius - 2}; }
+      50% { r: ${nucleusRadius + 2}; }
+      100% { r: ${nucleusRadius - 2}; }
+    }
+    .orbital-shell:hover path {
+      stroke: ${electronColor};
+      opacity: 0.8;
+      transition: all 0.3s ease;
+    }
+  `;
   
   return (
     <Card className="mt-4 overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-300">
@@ -166,25 +186,8 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
       </CardHeader>
       <CardContent className="p-0">
         <div className="relative w-full" style={{ height: '280px' }}>
-          {/* Add CSS for enhanced visual effects */}
-          <style jsx>{`
-            .electron-particle {
-              filter: drop-shadow(0 0 2px ${electronColor});
-            }
-            .nucleus-pulse {
-              animation: nucleus-pulse 3s infinite;
-            }
-            @keyframes nucleus-pulse {
-              0% { r: ${nucleusRadius - 2}; }
-              50% { r: ${nucleusRadius + 2}; }
-              100% { r: ${nucleusRadius - 2}; }
-            }
-            .orbital-shell:hover path {
-              stroke: ${electronColor};
-              opacity: 0.8;
-              transition: all 0.3s ease;
-            }
-          `}</style>
+          {/* Add CSS with standard style element */}
+          <style>{cssStyles}</style>
           
           <svg 
             ref={svgRef} 

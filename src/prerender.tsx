@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { render } from './entry-server';
+import { Writable } from 'stream';
 
 // Using fileURLToPath to get proper file paths in ESM
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -71,14 +72,41 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
       // Add app container
       html += '<div id="root">';
       
-      // Collect stream chunks
-      const chunks: Buffer[] = [];
-      for await (const chunk of stream) {
-        chunks.push(chunk);
+      // Fix: Convert PipeableStream to proper async iterable
+      let content = '';
+      if (stream) {
+        // Handle Node.js streams
+        if (typeof stream.pipe === 'function') {
+          const chunks: Buffer[] = [];
+          await new Promise<void>((resolve, reject) => {
+            const writable = new Writable({
+              write(chunk, encoding, callback) {
+                chunks.push(Buffer.from(chunk, encoding as BufferEncoding));
+                callback();
+              },
+              final(callback) {
+                content = Buffer.concat(chunks).toString();
+                resolve();
+                callback();
+              }
+            });
+            
+            stream.pipe(writable);
+            stream.on('error', reject);
+          });
+        } 
+        // Handle streams with async iterator
+        else if (Symbol.asyncIterator in stream) {
+          const chunks: Buffer[] = [];
+          for await (const chunk of stream) {
+            chunks.push(chunk);
+          }
+          content = Buffer.concat(chunks).toString();
+        }
       }
       
       // Add rendered app content
-      html += Buffer.concat(chunks).toString();
+      html += content;
       html += '</div>';
       
       // Add dehydrated state for React Query

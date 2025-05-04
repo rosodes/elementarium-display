@@ -135,24 +135,28 @@ const ElementPage = () => {
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       {/* Add SEO metadata using Helmet */}
       <Helmet>
-        <title>{`${element.name} (${element.symbol}) - ${t.title}`}</title>
-        <meta name="description" content={elementDescription} />
-        <meta property="og:title" content={`${element.name} (${element.symbol}) - ${t.title}`} />
-        <meta property="og:description" content={elementDescription} />
-        <meta property="og:type" content="website" />
-        <link rel="canonical" href={canonicalUrl} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "ChemicalSubstance",
-            "name": element.name,
-            "alternateName": element.symbol,
-            "description": element.summary || t.elementDetails?.notAvailable || 'Information not available',
-            "url": canonicalUrl,
-            "molecularFormula": element.symbol,
-            "atomicNumber": element.atomic
-          })}
-        </script>
+        <title>{element ? `${element.name} (${element.symbol}) - ${t.title}` : t.loading}</title>
+        <meta name="description" content={element ? `${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails?.notAvailable || 'Information not available'}` : ''} />
+        {element && (
+          <>
+            <meta property="og:title" content={`${element.name} (${element.symbol}) - ${t.title}`} />
+            <meta property="og:description" content={`${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails?.notAvailable || 'Information not available'}`} />
+            <meta property="og:type" content="website" />
+            <link rel="canonical" href={element ? `${window.location.origin}${lang ? `/${lang}` : ''}/element/${element.atomic}` : ''} />
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ChemicalSubstance",
+                "name": element.name,
+                "alternateName": element.symbol,
+                "description": element.summary || t.elementDetails?.notAvailable || 'Information not available',
+                "url": `${window.location.origin}${lang ? `/${lang}` : ''}/element/${element.atomic}`,
+                "molecularFormula": element.symbol,
+                "atomicNumber": element.atomic
+              })}
+            </script>
+          </>
+        )}
       </Helmet>
       
       {/* Navigation bar with actions */}
@@ -173,7 +177,7 @@ const ElementPage = () => {
               <span className="text-gray-500 dark:text-gray-400 hidden sm:inline">|</span>
               
               <div className="font-medium text-sm">
-                {element.name} ({element.symbol})
+                {element ? `${element.name} (${element.symbol})` : t.ui?.loading || 'Loading...'}
               </div>
             </div>
             
@@ -183,6 +187,7 @@ const ElementPage = () => {
                 size="sm"
                 onClick={toggleBookmark}
                 aria-label={isBookmarked ? "Remove from favorites" : "Add to favorites"}
+                disabled={!element}
               >
                 <Star className={`h-4 w-4 ${isBookmarked ? 'fill-yellow-400 text-yellow-400' : ''}`} />
               </Button>
@@ -192,6 +197,7 @@ const ElementPage = () => {
                 size="sm"
                 onClick={shareElement}
                 aria-label="Share"
+                disabled={!element}
               >
                 <Share className="h-4 w-4" />
               </Button>
@@ -202,40 +208,56 @@ const ElementPage = () => {
       
       {/* Element details component with navigation */}
       <div className="container mx-auto py-6 px-4">
-        <div className="flex items-center mb-4 justify-between">
-          <Button 
-            variant="outline"
-            size="sm"
-            onClick={() => handleNavigateElement('prev')}
-            disabled={parseInt(element.atomic) <= 1}
-            aria-label={t.elementDetails?.previousElement || "Previous element"}
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            {t.elementDetails?.previous || "Previous"}
-          </Button>
-          
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => handleNavigateElement('next')}
-            disabled={parseInt(element.atomic) >= elements.length}
-            aria-label={t.elementDetails?.nextElement || "Next element"}
-          >
-            {t.elementDetails?.next || "Next"}
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
-        
-        <Separator className="my-4" />
-        
-        <ElementDetails 
-          element={element} 
-          onClose={() => navigate(lang ? `/${lang}` : '/')}
-          onNavigate={(newElement) => {
-            navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
-          }}
-          isFullPage={true}
-        />
+        {element ? (
+          <>
+            <div className="flex items-center mb-4 justify-between">
+              <Button 
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const prevElement = elements.find(e => e && e.atomic === String(parseInt(element.atomic) - 1));
+                  if (prevElement) navigate(lang ? `/${lang}/element/${prevElement.atomic}` : `/element/${prevElement.atomic}`);
+                }}
+                disabled={parseInt(element.atomic) <= 1}
+                aria-label={t.elementDetails?.previousElement || "Previous element"}
+              >
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                {t.elementDetails?.previous || "Previous"}
+              </Button>
+              
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => {
+                  const nextElement = elements.find(e => e && e.atomic === String(parseInt(element.atomic) + 1));
+                  if (nextElement) navigate(lang ? `/${lang}/element/${nextElement.atomic}` : `/element/${nextElement.atomic}`);
+                }}
+                disabled={parseInt(element.atomic) >= elements.filter(Boolean).length}
+                aria-label={t.elementDetails?.nextElement || "Next element"}
+              >
+                {t.elementDetails?.next || "Next"}
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </div>
+            
+            <Separator className="my-4" />
+            
+            <ElementDetails 
+              element={element} 
+              onClose={() => navigate(lang ? `/${lang}` : '/')}
+              onNavigate={(newElement) => {
+                navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
+              }}
+              isFullPage={true}
+            />
+          </>
+        ) : (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-pulse">
+              <p>{t.ui?.loading || 'Loading...'}</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

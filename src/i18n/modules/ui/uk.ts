@@ -28,5 +28,10 @@ export const uiUk: UITranslations = {
   focusMode: "Режим фокусування",
   usageDistribution: "Розподіл використання",
   simulatedData: "Це симульовані дані для демонстраційних цілей",
-  note: "Примітка"
+  note: "Примітка",
+  // Added missing translation properties
+  elementRemoved: "Елемент видалено з закладок",
+  elementBookmarked: "Елемент додано до закладок",
+  linkCopied: "Посилання скопійовано",
+  linkCopiedToClipboard: "Посилання скопійовано до буфера обміну"
 };
