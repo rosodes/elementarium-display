@@ -14,10 +14,11 @@ const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 export default defineConfig(({ mode }) => ({
   plugins: [
     react({
-      // Completely disable browserslist for Babel to avoid the error
+      // Complete bypass of browserslist for Babel
       babel: {
         babelrc: false,
         configFile: false,
+        browserslistConfigFile: false,
         presets: [
           ['@babel/preset-env', {
             // Hard-code targets instead of using browserslist
