@@ -34,8 +34,7 @@ const queryClient = new QueryClient({
   },
 });
 
-// Instead of using React in type annotations, we'll define the type differently
-// to avoid the Babel transform error
+// Avoid using React in type annotations by using 'any'
 let ReactQueryDevtools: any = null;
 
 // Dynamically import ReactQueryDevtools only in development
