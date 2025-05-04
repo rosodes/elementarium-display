@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Element from '../Element';
 import { elements } from '../../data/elements';
@@ -16,8 +17,7 @@ const findElement = (atomicNumber: number | string): ElementType | null => {
   return element as ElementType;
 };
 
-// We'll keep the references to the newly created functions here, but the actual
-// implementations will move to separate files
+// We'll import the functions from separate files to fix potential circular dependencies
 export { renderLanthanides, renderActinides } from './tableRows/fBlockRows';
 export { renderPeriod1, renderPeriod2, renderPeriod3 } from './tableRows/upperPeriodRows';
 export { renderPeriod4, renderPeriod5 } from './tableRows/middlePeriodRows';
