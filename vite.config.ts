@@ -32,12 +32,7 @@ export default defineConfig(({ mode }) => ({
             useBuiltIns: 'usage',
             corejs: '3.22'
           }],
-          ['@babel/preset-typescript', {
-            isTSX: true,
-            allExtensions: true,
-            allowDeclareFields: true,
-            onlyRemoveTypeImports: true
-          }]
+          '@babel/preset-typescript'
         ]
       }
     }),
