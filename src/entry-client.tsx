@@ -37,7 +37,7 @@ const queryClient = new QueryClient({
 // Declare ReactQueryDevtools variable
 let ReactQueryDevtools = null;
 
-// Use a self-invoking async function to handle hydration
+// Use a self-invoking async function to handle all dynamic imports
 (async () => {
   // Hydrate query state from server if available
   if (window.__REACT_QUERY_STATE__) {
