@@ -80,8 +80,9 @@ if (window.__REACT_QUERY_STATE__) {
   // Use IIFE to allow async/await in top-level code
   (async () => {
     try {
-      // Use dynamic import instead of require
-      const reactQueryModule = await import('@tanstack/react-query');
+      // Use dynamic import for React Query module
+      const { dehydrate } = await import('@tanstack/react-query');
+      
       // Properly hydrate the query client with state data
       const dehydratedState = window.__REACT_QUERY_STATE__;
       if (dehydratedState && Array.isArray(dehydratedState.queries)) {
