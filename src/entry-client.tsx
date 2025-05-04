@@ -34,14 +34,23 @@ const queryClient = new QueryClient({
   },
 });
 
-// Avoid using React in type annotations by using 'any'
-let ReactQueryDevtools: any = null;
+// Using React.lazy instead of direct variable assignment for ReactQueryDevtools
+let ReactQueryDevtools = null;
 
 // Dynamically import ReactQueryDevtools only in development
 if (import.meta.env.DEV) {
-  import('@tanstack/react-query-devtools').then(module => {
-    ReactQueryDevtools = module.ReactQueryDevtools;
-  });
+  // Use dynamic import with proper type handling
+  import('@tanstack/react-query-devtools')
+    .then(module => {
+      ReactQueryDevtools = module.ReactQueryDevtools;
+      // Force a re-render to display devtools after they've been loaded
+      if (container) {
+        renderApp();
+      }
+    })
+    .catch(err => {
+      console.error('Failed to load React Query Devtools:', err);
+    });
 }
 
 // Hydrate query state from server if available
@@ -67,34 +76,40 @@ const getInitialLanguage = () => {
   return 'en';
 };
 
-const AppWithProviders = (
-  <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <LanguageProvider initialLanguage={getInitialLanguage()}>
-          <HelmetProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </HelmetProvider>
-        </LanguageProvider>
-      </ThemeProvider>
-      {import.meta.env.DEV && ReactQueryDevtools && (
-        <React.Suspense fallback={null}>
-          <ReactQueryDevtools />
-        </React.Suspense>
-      )}
-    </QueryClientProvider>
-  </React.StrictMode>
-);
+// Function to render the app - allows rerendering after devtools load
+function renderApp() {
+  const AppWithProviders = (
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <LanguageProvider initialLanguage={getInitialLanguage()}>
+            <HelmetProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </HelmetProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+        {import.meta.env.DEV && ReactQueryDevtools && (
+          <React.Suspense fallback={null}>
+            {React.createElement(ReactQueryDevtools)}
+          </React.Suspense>
+        )}
+      </QueryClientProvider>
+    </React.StrictMode>
+  );
 
-// Use startTransition to mark hydration as non-urgent
-// This improves initial page responsiveness
-startTransition(() => {
-  // Always hydrate since we're using SSR
-  hydrateRoot(container, AppWithProviders);
-  console.log(`Client hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
-});
+  // Use startTransition to mark hydration as non-urgent
+  // This improves initial page responsiveness
+  startTransition(() => {
+    // Always hydrate since we're using SSR
+    hydrateRoot(container, AppWithProviders);
+    console.log(`Client hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+  });
+}
+
+// Initial render
+renderApp();
 
 // Remove loading indicator
 const loadingIndicator = document.getElementById('loading-indicator');
