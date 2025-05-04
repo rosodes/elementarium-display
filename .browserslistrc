@@ -3,3 +3,7 @@
 last 2 versions
 not dead
 not IE 11
+chrome >= 60
+firefox >= 60
+safari >= 12
+edge >= 79

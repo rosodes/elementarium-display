@@ -6,7 +6,7 @@ import App from './App';
 import './index.css';
 import './styles/periodicTable.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { QueryClient, QueryClientProvider, hydrate } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 
@@ -36,7 +36,15 @@ const queryClient = new QueryClient({
 
 // Hydrate query state from server if available
 if (window.__REACT_QUERY_STATE__) {
-  hydrate(queryClient, window.__REACT_QUERY_STATE__);
+  try {
+    const hydrate = async () => {
+      const { hydrate: hydrateQuery } = await import('@tanstack/react-query');
+      hydrateQuery(queryClient, window.__REACT_QUERY_STATE__);
+    };
+    hydrate();
+  } catch (error) {
+    console.error('Error hydrating React Query state:', error);
+  }
 }
 
 // Determine initial language from URL

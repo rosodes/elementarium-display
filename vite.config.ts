@@ -83,4 +83,9 @@ export default defineConfig(({ mode }) => ({
       },
     }
   },
+  // Explicitly ensure that code is processed as ESM
+  define: {
+    'process.env.NODE_ENV': JSON.stringify(mode),
+    __IS_DEV__: mode === 'development',
+  },
 }))
