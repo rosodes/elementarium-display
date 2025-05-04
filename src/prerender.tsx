@@ -96,6 +96,8 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
           if (typeof stream.pipe === 'function') {
             const chunks: Buffer[] = [];
             await new Promise<void>((resolve, reject) => {
+              // Create a simplified writable that's compatible with pipe
+              // Use type assertion to handle the type mismatch
               const writable = {
                 write(chunk: any, encoding: string, callback: () => void) {
                   chunks.push(Buffer.from(chunk, encoding as BufferEncoding));
@@ -106,7 +108,7 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
                   resolve();
                   callback();
                 }
-              } as Writable;
+              } as unknown as Writable;
               
               stream.pipe(writable);
             });
