@@ -1,9 +1,16 @@
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const compression = require('compression');
-const serveStatic = require('serve-static');
-const { createServer: createViteServer } = require('vite');
+
+// Use import statements instead of require
+import fs from 'fs';
+import path from 'path';
+import express from 'express';
+import compression from 'compression';
+import serveStatic from 'serve-static';
+import { fileURLToPath } from 'url';
+import { createServer as createViteServer } from 'vite';
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Creates the Express server for both development and production
