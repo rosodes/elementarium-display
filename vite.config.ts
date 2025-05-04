@@ -91,4 +91,13 @@ export default defineConfig(({ mode }) => ({
     'process.env.NODE_ENV': JSON.stringify(mode),
     __IS_DEV__: mode === 'development',
   },
+  // Ensure we're not transforming ESM to CommonJS
+  esbuild: {
+    format: 'esm',
+    target: 'es2020',
+    supported: {
+      'dynamic-import': true,
+      'import-meta': true,
+    },
+  }
 }))

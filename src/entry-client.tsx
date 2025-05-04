@@ -34,6 +34,21 @@ const queryClient = new QueryClient({
   },
 });
 
+// Define ReactQueryDevtools type to avoid reference errors
+type ReactQueryDevtoolsType = React.LazyExoticComponent<React.ComponentType<any>>;
+
+// Declare ReactQueryDevtools before initializing it
+let ReactQueryDevtools: ReactQueryDevtoolsType | null = null;
+
+// Dynamically import ReactQueryDevtools only in development
+if (import.meta.env.DEV) {
+  ReactQueryDevtools = React.lazy(() => 
+    import('@tanstack/react-query-devtools').then(module => ({
+      default: module.ReactQueryDevtools
+    }))
+  );
+}
+
 // Hydrate query state from server if available
 if (window.__REACT_QUERY_STATE__) {
   // Use a modern async pattern that works with ESM
@@ -57,13 +72,6 @@ const getInitialLanguage = () => {
   return 'en';
 };
 
-// ReactQueryDevtools with dynamic import using native ESM syntax
-const ReactQueryDevtools = React.lazy(() => 
-  import('@tanstack/react-query-devtools').then(module => ({
-    default: module.ReactQueryDevtools
-  }))
-);
-
 const AppWithProviders = (
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
@@ -76,7 +84,7 @@ const AppWithProviders = (
           </HelmetProvider>
         </LanguageProvider>
       </ThemeProvider>
-      {import.meta.env.DEV && (
+      {import.meta.env.DEV && ReactQueryDevtools && (
         <React.Suspense fallback={null}>
           <ReactQueryDevtools />
         </React.Suspense>
