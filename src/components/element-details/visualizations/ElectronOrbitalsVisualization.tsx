@@ -74,24 +74,25 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
       const orbitalPath = [];
       
       // Create slightly elliptical path for orbital
-      for (let i = 0; i <= 360; i++) {
+      for (let i = 0; i <= 360; i += 5) { // Optimize by reducing points
         const angle = (i * Math.PI) / 180;
         const x = center + shellRadius * Math.cos(angle);
         const y = center + shellRadius * 0.9 * Math.sin(angle); // 0.9 to make it slightly elliptical
         orbitalPath.push(`${x},${y}`);
       }
       
-      // Create electrons for this shell
+      // Create electrons for this shell with optimized animation
       const electronElements = Array.from({ length: electrons }).map((_, i) => {
         // Start at different angles
         const startOffset = (i / electrons) * 100;
+        const animationDuration = 6 + shellIndex * 2;
         
         return (
           <circle
             key={`electron-${shellIndex}-${i}`}
             r="6"
             fill={electronColor}
-            className="electron"
+            className="electron-particle"
           >
             <animate
               attributeName="opacity"
@@ -102,10 +103,15 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
             <animateMotion
               path={`M ${orbitalPath.join(' ')} Z`}
               begin={`${i * 0.5}s`}
-              dur={`${6 + shellIndex * 2 + i * 0.5}s`}
+              dur={`${animationDuration}s`}
               repeatCount="indefinite"
               rotate="auto"
             />
+            {/* Add glow effect */}
+            <filter id={`glow-${shellIndex}-${i}`}>
+              <feGaussianBlur stdDeviation="2" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
           </circle>
         );
       });
@@ -127,7 +133,7 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
       }
       
       return (
-        <g key={`orbital-${shellIndex}`}>
+        <g key={`orbital-${shellIndex}`} className="orbital-shell">
           {/* Orbital path */}
           <path
             d={`M ${orbitalPath.join(' ')} Z`}
@@ -143,38 +149,77 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
     });
   };
   
+  // Add pulse animation to nucleus
+  useEffect(() => {
+    if (!svgRef.current) return;
+    
+    const nucleus = svgRef.current.querySelector('.nucleus');
+    if (nucleus) {
+      nucleus.classList.add('animate-pulse');
+    }
+  }, []);
+  
   return (
-    <Card className="mt-4">
-      <CardHeader>
-        <CardTitle className="text-sm">{t.elementDetails.orbitalDiagram}</CardTitle>
+    <Card className="mt-4 overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <CardHeader className="bg-gray-50 dark:bg-gray-800/50 pb-2">
+        <CardTitle className="text-sm text-gray-700 dark:text-gray-200">{t.elementDetails.orbitalDiagram}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="p-0">
         <div className="relative w-full" style={{ height: '280px' }}>
+          {/* Add CSS for enhanced visual effects */}
+          <style jsx>{`
+            .electron-particle {
+              filter: drop-shadow(0 0 2px ${electronColor});
+            }
+            .nucleus-pulse {
+              animation: nucleus-pulse 3s infinite;
+            }
+            @keyframes nucleus-pulse {
+              0% { r: ${nucleusRadius - 2}; }
+              50% { r: ${nucleusRadius + 2}; }
+              100% { r: ${nucleusRadius - 2}; }
+            }
+            .orbital-shell:hover path {
+              stroke: ${electronColor};
+              opacity: 0.8;
+              transition: all 0.3s ease;
+            }
+          `}</style>
+          
           <svg 
             ref={svgRef} 
             width="100%" 
             height="100%"
             viewBox={`0 0 ${size} ${size}`}
             preserveAspectRatio="xMidYMid meet"
+            className="bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900"
           >
+            {/* Background gradient */}
+            <defs>
+              <radialGradient id="nucleusGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stopColor={electronColor} stopOpacity="1" />
+                <stop offset="100%" stopColor={electronColor} stopOpacity="0.6" />
+              </radialGradient>
+              
+              {/* Glow filter */}
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            
             {/* Electron orbitals and electrons */}
             {renderOrbitals()}
             
             {/* Nucleus */}
-            <g>
+            <g className="nucleus" filter="url(#glow)">
               <circle
                 cx={center}
                 cy={center}
                 r={nucleusRadius}
-                fill={electronColor}
-              >
-                <animate
-                  attributeName="r"
-                  values={`${nucleusRadius-2};${nucleusRadius};${nucleusRadius-2}`}
-                  dur="3s"
-                  repeatCount="indefinite"
-                />
-              </circle>
+                fill="url(#nucleusGradient)"
+                className="nucleus-pulse"
+              />
               
               {/* Element symbol in nucleus */}
               <text
@@ -183,7 +228,7 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
                 textAnchor="middle"
                 dominantBaseline="middle"
                 fill="white"
-                fontSize="12"
+                fontSize="14"
                 fontWeight="bold"
               >
                 {element.symbol}
@@ -191,8 +236,10 @@ const ElectronOrbitalsVisualization = ({ element, categoryColor }: ElectronOrbit
             </g>
           </svg>
         </div>
-        <div className="mt-2 text-xs text-center text-gray-500 dark:text-gray-500">
-          {t.elementDetails.electronConfig}: {element.electronstring}
+        <div className="p-4 pt-2">
+          <div className="mt-2 text-xs text-center text-gray-500 dark:text-gray-400">
+            {t.elementDetails.electronConfig}: {element.electronstring}
+          </div>
         </div>
       </CardContent>
     </Card>

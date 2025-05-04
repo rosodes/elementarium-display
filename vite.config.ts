@@ -1,135 +1,46 @@
 
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { componentTagger } from "lovable-tagger";
-import { Plugin } from 'vite';
-import legacy from '@vitejs/plugin-legacy';
-import compression from 'vite-plugin-compression';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { readFileSync } from 'fs'
+import path from 'path'
+import compression from 'vite-plugin-compression'
+import legacy from '@vitejs/plugin-legacy'
 
-// Define the type for prerenderRoutes function to avoid import issues
-interface PrerenderOptions {
-  outputDir: string;
-}
-
-// Import the prerenderRoutes function dynamically at runtime
-const prerenderPlugin = (): Plugin => {
-  return {
-    name: 'vite-plugin-prerender',
-    apply: 'build',
-    async closeBundle() {
-      console.log('Prerendering routes for SEO...');
-      const outputDir = path.resolve(__dirname, 'dist/client');
-      
-      try {
-        // Use dynamic imports with path resolution
-        let prerenderModule;
-        try {
-          // First try to import the JS version
-          const { prerenderRoutes } = await import('./src/prerender');
-          if (typeof prerenderRoutes === 'function') {
-            await prerenderRoutes(outputDir);
-            console.log('Prerendering complete');
-          }
-        } catch (err) {
-          console.error('Error during prerendering:', err);
-        }
-      } catch (err) {
-        console.error('Error during prerendering:', err);
-      }
-    }
-  };
-};
+// Read package.json to detect dependencies
+const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode, command }) => ({
-  server: {
-    host: "::",
-    port: 8080,
-  },
+export default defineConfig({
   plugins: [
     react(),
-    mode === 'development' && componentTagger(),
-    mode === 'production' && prerenderPlugin(),
-    // Add legacy browser support
-    mode === 'production' && legacy({
+    legacy({
       targets: ['defaults', 'not IE 11'],
     }),
-    // Add compression for static assets
-    mode === 'production' && compression({
+    compression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+    }),
+    compression({
       algorithm: 'gzip',
       ext: '.gz',
     }),
-    mode === 'production' && compression({
-      algorithm: 'gzip',
-      ext: '.br',
-      compressionOptions: { level: 11 },
-    }),
-  ].filter(Boolean),
+  ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      '@': path.resolve(__dirname, './src')
     },
   },
-  // Performance optimizations
   build: {
-    ssrManifest: true,
-    manifest: true,
+    outDir: 'dist',
+    emptyOutDir: true,
+    sourcemap: true,
     minify: 'terser',
-    target: 'es2018',
-    cssCodeSplit: true,
-    sourcemap: mode !== 'production',
-    chunkSizeWarningLimit: 1000,
-    assetsInlineLimit: 4096, // 4KB
-    reportCompressedSize: false, // Speed up build
     rollupOptions: {
-      output: {
-        manualChunks: (id) => {
-          // Default code splitting strategy
-          if (id.includes('node_modules')) {
-            // Split vendor chunks
-            if (id.includes('react') || id.includes('react-dom')) {
-              return 'vendor-react';
-            }
-            if (id.includes('react-router')) {
-              return 'vendor-router';
-            }
-            if (id.includes('@radix-ui')) {
-              return 'vendor-radix';
-            }
-            if (id.includes('recharts') || id.includes('d3')) {
-              return 'vendor-charts';
-            }
-            return 'vendor'; // All other deps
-          }
-          // App code splitting
-          if (id.includes('/components/element-details/')) {
-            return 'element-details';
-          }
-          if (id.includes('/components/periodic-table/')) {
-            return 'periodic-table';
-          }
-        }
-      }
+      input: {
+        main: path.resolve(__dirname, 'index.html'),
+        server: path.resolve(__dirname, 'src/entry-server.tsx'),
+        prerender: path.resolve(__dirname, 'src/prerender.js')
+      },
     },
-    // Configure for SSR build
-    outDir: command === 'build' && process.env.SSR === 'true' ? 'dist/server' : 'dist/client',
-    ssr: command === 'build' && process.env.SSR === 'true' ? 'src/entry-server.tsx' : undefined,
   },
-  // CSS optimization
-  css: {
-    devSourcemap: mode !== 'production',
-    modules: {
-      generateScopedName: mode === 'production' ? '[hash:base64:5]' : '[local]_[hash:base64:5]',
-    }
-  },
-  // Optimize dependencies pre-bundling
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom'],
-    exclude: ['react-helmet-async'],
-    esbuildOptions: {
-      // Fix for CJS/ESM interop issues
-      preserveSymlinks: true,
-    }
-  },
-}));
+})

@@ -1,146 +1,109 @@
 
 import React from 'react';
-import * as ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router-dom/server';
-import App from './App';
-import { HelmetProvider, HelmetServerState } from 'react-helmet-async';
-import { QueryClient, QueryClientProvider, dehydrate } from "@tanstack/react-query";
-import { ThemeProvider } from "./context/ThemeContext";
-import { LanguageProvider } from "./context/LanguageContext";
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+import { render } from './entry-server';
 
-/**
- * Determines language from URL for pre-rendering
- */
-function getLanguageFromUrl(url: string): string {
-  // Faster check for common language paths
-  if (url.startsWith('/ru')) return 'ru';
-  if (url.startsWith('/uk')) return 'uk';
-  return 'en'; // Default to English
-}
+// Using fileURLToPath to get proper file paths in ESM
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-/**
- * Server-side rendering function for a given URL
- * @param url URL to render
- * @returns Object with HTML and headers
- */
-export async function renderPage(url: string) {
-  const helmetContext: { helmet?: HelmetServerState } = {};
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        retry: false,
-        staleTime: Infinity, // During prerendering, we don't need to refetch
-      },
-    },
+export async function prerenderRoutes(outDir: string): Promise<void> {
+  const routes = ['/', '/en', '/ru', '/uk'];
+  
+  // Pre-render element pages for some key elements
+  const keyElementIds = ['1', '6', '8', '26', '79', '92']; // H, C, O, Fe, Au, U
+  const languages = ['en', 'ru', 'uk'];
+  
+  // Add element routes
+  languages.forEach(lang => {
+    keyElementIds.forEach(elementId => {
+      routes.push(`/${lang}/element/${elementId}`);
+      routes.push(`/element/${elementId}`);
+    });
   });
-  
-  const language = getLanguageFromUrl(url);
-  
-  const html = ReactDOMServer.renderToString(
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <LanguageProvider initialLanguage={language}>
-            <HelmetProvider context={helmetContext}>
-              <StaticRouter location={url}>
-                <App />
-              </StaticRouter>
-            </HelmetProvider>
-          </LanguageProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </React.StrictMode>
-  );
-  
-  return {
-    html,
-    helmet: helmetContext.helmet,
-    queryState: dehydrate(queryClient)
-  };
-}
 
-/**
- * Prerender main routes for better SEO
- * @param outputDir The directory where the rendered files will be saved
- */
-export async function prerenderRoutes(outputDir: string) {
-  if (!outputDir) {
-    throw new Error('Output directory is required for prerendering');
-  }
-  
-  // Most important routes to prerender for SEO
-  const routes = [
-    '/',              // English homepage
-    '/ru',            // Russian homepage
-    '/uk',            // Ukrainian homepage
-    '/element/1',     // Hydrogen page (English)
-    '/ru/element/1',  // Hydrogen page (Russian)
-    '/uk/element/1',  // Hydrogen page (Ukrainian)
-    '/element/6',     // Carbon page (popular element)
-    '/element/79',    // Gold page (popular element)
-  ];
-  
-  console.log(`Starting prerendering of ${routes.length} routes to ${outputDir}...`);
+  console.log(`Pre-rendering ${routes.length} routes...`);
   
   try {
-    for (const route of routes) {
-      console.log(`Prerendering route: ${route}`);
+    for (const url of routes) {
+      // Determine language from URL
+      let lang = 'en'; // Default language
+      if (url.startsWith('/ru/') || url === '/ru') lang = 'ru';
+      if (url.startsWith('/uk/') || url === '/uk') lang = 'uk';
       
-      const result = await renderPage(route);
-      const { html } = result;
-      const helmetData = result.helmet;
+      // Render the app for this route
+      console.log(`Pre-rendering: ${url} (${lang})`);
       
-      // Reading the template
-      const templatePath = path.resolve(outputDir, 'index.html');
-      let template = '';
+      const { stream, helmetContext, dehydratedState } = render(url, lang, {
+        onAllReady: () => {
+          console.log(`Finished rendering ${url}`);
+        }
+      });
       
-      try {
-        template = fs.readFileSync(templatePath, 'utf-8');
-      } catch (err) {
-        console.error(`Failed to read template: ${err}`);
-        continue;
+      // Create the HTML file content
+      let html = '<!DOCTYPE html>\n<html lang="' + lang + '">';
+      
+      // Add head content from helmet
+      const { helmet } = helmetContext as any;
+      if (helmet) {
+        html += helmet.title.toString();
+        html += helmet.meta.toString();
+        html += helmet.link.toString();
+        html += helmet.script.toString();
+      } else {
+        html += '<head>';
+        html += '<meta charset="UTF-8">';
+        html += '<meta name="viewport" content="width=device-width, initial-scale=1.0">';
+        html += '<title>Periodic Table</title>';
+        html += '</head>';
       }
       
-      // Extract head content from helmet
-      const head = helmetData ? 
-        `${helmetData.title?.toString() || ''}
-        ${helmetData.meta?.toString() || ''}
-        ${helmetData.link?.toString() || ''}
-        ${helmetData.script?.toString() || ''}` : '';
+      // Start body
+      html += '<body>';
       
-      // Replace placeholders in the template
-      const renderedHtml = template
-        .replace('<!--app-html-->', html)
-        .replace('<!--app-head-->', head);
+      // Add loading indicator
+      html += '<div id="loading-indicator" style="position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.8); z-index:9999; transition:opacity 0.3s ease-out;">';
+      html += '<div class="spinner" style="width:40px; height:40px; border:4px solid rgba(0,0,0,0.1); border-left-color:#3b82f6; border-radius:50%; animation:spin 1s linear infinite;"></div>';
+      html += '</div>';
+      html += '<style>@keyframes spin{to{transform:rotate(360deg)}}</style>';
       
-      // Determine path for saving
-      let outputPath = route;
-      if (outputPath === '/') {
-        outputPath = '/index';
-      } else if (outputPath.endsWith('/')) {
-        outputPath = outputPath.slice(0, -1);
+      // Add app container
+      html += '<div id="root">';
+      
+      // Collect stream chunks
+      const chunks: Buffer[] = [];
+      for await (const chunk of stream) {
+        chunks.push(chunk);
       }
-      outputPath = `${outputDir}${outputPath}.html`;
       
-      // Create subdirectories if necessary
-      const outputDirectory = path.dirname(outputPath);
-      if (!fs.existsSync(outputDirectory)) {
-        fs.mkdirSync(outputDirectory, { recursive: true });
+      // Add rendered app content
+      html += Buffer.concat(chunks).toString();
+      html += '</div>';
+      
+      // Add dehydrated state for React Query
+      if (dehydratedState) {
+        html += `<script>window.__REACT_QUERY_STATE__ = ${JSON.stringify(dehydratedState)}</script>`;
       }
+      
+      // Close body and html
+      html += '</body></html>';
+      
+      // Create the output directory if it doesn't exist
+      const fileUrl = url === '/' ? '/index.html' : `${url.endsWith('/') ? url + 'index.html' : url + '.html'}`;
+      const filePath = path.join(outDir, fileUrl);
+      await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
       
       // Write the file
-      fs.writeFileSync(outputPath, renderedHtml);
-      console.log(`✓ Prerendered: ${route} -> ${outputPath}`);
+      await fs.promises.writeFile(filePath, html);
+      console.log(`Pre-rendered: ${filePath}`);
     }
     
-    console.log('Prerendering complete!');
-  } catch (err) {
-    console.error(`Error during prerendering: ${err}`);
+    console.log('Pre-rendering complete!');
+  } catch (error) {
+    console.error('Error during pre-rendering:', error);
+    throw error;
   }
 }
 
-// Export function for build scripts
 export default prerenderRoutes;
