@@ -18,8 +18,13 @@ export default defineConfig(({ mode }) => ({
       babel: {
         babelrc: false,
         configFile: false,
-        browserslistConfigFile: true,
-        browserslistEnv: mode
+        presets: [
+          ['@babel/preset-env', {
+            useBuiltIns: 'usage',
+            corejs: '3.22',
+            targets: 'defaults'
+          }]
+        ]
       }
     }),
     legacy({
