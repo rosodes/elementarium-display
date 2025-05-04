@@ -18,6 +18,8 @@ export default defineConfig(({ mode }) => ({
       babel: {
         babelrc: false,
         configFile: false,
+        browserslistConfigFile: true,
+        browserslistEnv: mode
       }
     }),
     legacy({
