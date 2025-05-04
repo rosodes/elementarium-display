@@ -5,12 +5,13 @@ import { readFileSync } from 'fs'
 import path from 'path'
 import compression from 'vite-plugin-compression'
 import legacy from '@vitejs/plugin-legacy'
+import { componentTagger } from "lovable-tagger"
 
 // Read package.json to detect dependencies
 const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [
     react(),
     legacy({
@@ -24,13 +25,16 @@ export default defineConfig({
       algorithm: 'gzip',
       ext: '.gz',
     }),
-  ],
+    // Add componentTagger plugin for development mode
+    mode === 'development' && componentTagger(),
+  ].filter(Boolean),
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
     },
   },
   server: {
+    host: "::",
     port: 8080
   },
   build: {
@@ -42,8 +46,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
         server: path.resolve(__dirname, 'src/entry-server.tsx'),
-        prerender: path.resolve(__dirname, 'src/prerender.js')
       },
     },
   },
-})
+}))

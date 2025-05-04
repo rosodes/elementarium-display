@@ -1,15 +1,31 @@
 
 import React from 'react';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import type { Writable } from 'stream';
 import { render } from './entry-server';
-import { Writable } from 'stream';
 
-// Using fileURLToPath to get proper file paths in ESM
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+// Import these only in Node.js environment
+let fs: any;
+let path: any;
+let fileURLToPath: any;
+
+// Conditionally import Node.js modules
+if (typeof process !== 'undefined' && process.versions && process.versions.node) {
+  fs = await import('fs');
+  path = await import('path');
+  const url = await import('url');
+  fileURLToPath = url.fileURLToPath;
+}
 
 export async function prerenderRoutes(outDir: string): Promise<void> {
+  // Only run in Node.js environment
+  if (typeof process === 'undefined' || !process.versions || !process.versions.node) {
+    console.warn('Prerendering is only available in Node.js environment');
+    return;
+  }
+
+  // Get dirname properly in ESM
+  const __dirname = path ? path.dirname(fileURLToPath(import.meta.url)) : '';
+  
   const routes = ['/', '/en', '/ru', '/uk'];
   
   // Pre-render element pages for some key elements
@@ -72,53 +88,42 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
       // Add app container
       html += '<div id="root">';
       
-      // Fix: Convert PipeableStream to proper async iterable
+      // Fix: Process stream content in a cross-platform way
       let content = '';
       if (stream) {
-        // Handle Node.js streams
-        if (typeof stream.pipe === 'function') {
-          const chunks: Buffer[] = [];
-          await new Promise<void>((resolve, reject) => {
-            const writable = new Writable({
-              write(chunk, encoding, callback) {
-                chunks.push(Buffer.from(chunk, encoding as BufferEncoding));
-                callback();
-              },
-              final(callback) {
-                content = Buffer.concat(chunks).toString();
-                resolve();
-                callback();
-              }
+        try {
+          // Handle Node.js streams
+          if (typeof stream.pipe === 'function') {
+            const chunks: Buffer[] = [];
+            await new Promise<void>((resolve, reject) => {
+              const writable = {
+                write(chunk: any, encoding: string, callback: () => void) {
+                  chunks.push(Buffer.from(chunk, encoding as BufferEncoding));
+                  callback();
+                },
+                final(callback: () => void) {
+                  content = Buffer.concat(chunks).toString();
+                  resolve();
+                  callback();
+                }
+              } as Writable;
+              
+              stream.pipe(writable);
             });
+          } 
+          // Handle streams with async iterator
+          else if (typeof stream === 'object' && stream !== null && Symbol.asyncIterator in stream) {
+            const chunks: Buffer[] = [];
+            const asyncStream = stream as unknown as AsyncIterable<any>;
             
-            stream.pipe(writable);
+            for await (const chunk of asyncStream) {
+              chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
+            }
             
-            // Add error handler using try-catch instead of .on('error')
-            try {
-              // The .on() method is not available on PipeableStream
-              // We're already handling errors with the writable stream and Promise
-            } catch (error) {
-              reject(error);
-            }
-          });
-        } 
-        // Handle streams with async iterator
-        else {
-          try {
-            // Check if stream is an async iterable using a type guard
-            if (Symbol.asyncIterator in Object(stream)) {
-              const asyncStream = stream as unknown as AsyncIterable<Buffer | string>;
-              const chunks: Buffer[] = [];
-              
-              for await (const chunk of asyncStream) {
-                chunks.push(typeof chunk === 'string' ? Buffer.from(chunk) : chunk);
-              }
-              
-              content = Buffer.concat(chunks).toString();
-            }
-          } catch (error) {
-            console.error('Error reading stream:', error);
+            content = Buffer.concat(chunks).toString();
           }
+        } catch (error) {
+          console.error('Error processing stream:', error);
         }
       }
       
