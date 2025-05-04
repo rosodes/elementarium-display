@@ -1,22 +1,14 @@
+
 import React from 'react';
 import type { Writable } from 'stream';
 import { render } from './entry-server';
 
-// Dynamic import of Node.js modules only in Node environment
-let fs: any;
-let path: any;
-let fileURLToPath: any;
+// Define types for dynamically imported Node.js modules
+type FSModule = typeof import('fs');
+type PathModule = typeof import('path');
+type FileURLToPathFn = (url: string) => string;
 
-// Conditional import of Node.js modules
-if (typeof process !== 'undefined' && process.versions && process.versions.node) {
-  // Using dynamic imports with top-level await
-  const promises = Promise.all([
-    import('fs').then(module => { fs = module; }),
-    import('path').then(module => { path = module; }),
-    import('url').then(module => { fileURLToPath = module.fileURLToPath; })
-  ]);
-}
-
+// Use a more reliable approach for dynamic imports in Node.js environment
 export async function prerenderRoutes(outDir: string): Promise<void> {
   // Execute only in Node.js environment
   if (typeof process === 'undefined' || !process.versions || !process.versions.node) {
@@ -24,20 +16,17 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
     return;
   }
 
-  // If modules are not loaded, load them
-  if (!fs || !path || !fileURLToPath) {
-    const [fsModule, pathModule, urlModule] = await Promise.all([
-      import('fs'),
-      import('path'),
-      import('url').then(module => module.fileURLToPath)
-    ]);
-    fs = fsModule;
-    path = pathModule;
-    fileURLToPath = urlModule;
-  }
-
+  console.log('Starting prerendering process...');
+  
+  // Dynamically import Node.js modules
+  const [fs, path, { fileURLToPath }] = await Promise.all([
+    import('fs') as Promise<FSModule>,
+    import('path') as Promise<PathModule>,
+    import('url').then(module => ({ fileURLToPath: module.fileURLToPath as FileURLToPathFn }))
+  ]);
+  
   // Get dirname correctly in ESM
-  const __dirname = path ? path.dirname(fileURLToPath(import.meta.url)) : '';
+  const __dirname = path.dirname(fileURLToPath(import.meta.url));
   
   // Pre-render pages for some key elements
   const routes = ['/', '/en', '/ru', '/uk'];

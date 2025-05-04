@@ -34,8 +34,8 @@ const queryClient = new QueryClient({
   },
 });
 
-// Declare ReactQueryDevtools variable that will be loaded dynamically
-let ReactQueryDevtools: any = null;
+// Variable for React Query devtools that will be loaded dynamically
+let ReactQueryDevtools = null;
 
 // Determine initial language from URL
 const getInitialLanguage = () => {
@@ -79,27 +79,24 @@ function renderApp() {
 
 // Hydrate query state from server if available
 if (window.__REACT_QUERY_STATE__) {
-  // Use IIFE to allow async/await in top-level code
-  (async () => {
-    try {
-      console.log('Hydrating React Query state...');
-      
-      // Properly hydrate the query client with state data
-      const dehydratedState = window.__REACT_QUERY_STATE__;
-      if (dehydratedState && Array.isArray(dehydratedState.queries)) {
-        console.log(`Found ${dehydratedState.queries.length} queries to hydrate`);
-        dehydratedState.queries.forEach((query) => {
-          queryClient.setQueryData(query.queryKey, query.state.data);
-        });
-      }
-      console.log('React Query state hydrated successfully');
-    } catch (error) {
-      console.error('Error hydrating React Query state:', error);
-    }
+  try {
+    console.log('Hydrating React Query state...');
     
-    // Initial render after hydration attempt
-    renderApp();
-  })();
+    // Properly hydrate the query client with state data
+    const dehydratedState = window.__REACT_QUERY_STATE__;
+    if (dehydratedState && Array.isArray(dehydratedState.queries)) {
+      console.log(`Found ${dehydratedState.queries.length} queries to hydrate`);
+      dehydratedState.queries.forEach((query) => {
+        queryClient.setQueryData(query.queryKey, query.state.data);
+      });
+    }
+    console.log('React Query state hydrated successfully');
+  } catch (error) {
+    console.error('Error hydrating React Query state:', error);
+  }
+  
+  // Initial render after hydration attempt
+  renderApp();
 } else {
   // Initial render with no hydration needed
   console.log('No React Query state to hydrate');
