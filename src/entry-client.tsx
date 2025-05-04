@@ -1,5 +1,5 @@
 
-import React, { startTransition } from 'react';
+import React, { startTransition, Suspense } from 'react';
 import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
@@ -34,12 +34,25 @@ const queryClient = new QueryClient({
   },
 });
 
-// Using React.lazy instead of direct variable assignment for ReactQueryDevtools
+// Ensure ReactQueryDevtools is lazily loaded
 let ReactQueryDevtools = null;
+
+// Hydrate query state from server if available
+if (window.__REACT_QUERY_STATE__) {
+  // Use dynamic ESM import
+  import('@tanstack/react-query')
+    .then(({ hydrate }) => {
+      hydrate(queryClient, window.__REACT_QUERY_STATE__);
+      console.log('React Query state hydrated successfully');
+    })
+    .catch(error => {
+      console.error('Error hydrating React Query state:', error);
+    });
+}
 
 // Dynamically import ReactQueryDevtools only in development
 if (import.meta.env.DEV) {
-  // Use dynamic import with proper type handling
+  // Use dynamic ESM import
   import('@tanstack/react-query-devtools')
     .then(module => {
       ReactQueryDevtools = module.ReactQueryDevtools;
@@ -51,20 +64,6 @@ if (import.meta.env.DEV) {
     .catch(err => {
       console.error('Failed to load React Query Devtools:', err);
     });
-}
-
-// Hydrate query state from server if available
-if (window.__REACT_QUERY_STATE__) {
-  // Use a modern async pattern that works with ESM
-  (async () => {
-    try {
-      const { hydrate } = await import('@tanstack/react-query');
-      hydrate(queryClient, window.__REACT_QUERY_STATE__);
-      console.log('React Query state hydrated successfully');
-    } catch (error) {
-      console.error('Error hydrating React Query state:', error);
-    }
-  })();
 }
 
 // Determine initial language from URL
@@ -90,9 +89,9 @@ function renderApp() {
           </LanguageProvider>
         </ThemeProvider>
         {import.meta.env.DEV && ReactQueryDevtools && (
-          <React.Suspense fallback={null}>
-            {React.createElement(ReactQueryDevtools)}
-          </React.Suspense>
+          <Suspense fallback={null}>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </Suspense>
         )}
       </QueryClientProvider>
     </React.StrictMode>
