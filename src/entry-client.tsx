@@ -47,12 +47,14 @@ const getInitialLanguage = () => {
 
 // Function to render the app - allows rerendering after devtools load
 function renderApp() {
+  const helmetContext = {};
+  
   const AppWithProviders = (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <LanguageProvider initialLanguage={getInitialLanguage()}>
-            <HelmetProvider>
+            <HelmetProvider context={helmetContext}>
               <BrowserRouter>
                 <App />
               </BrowserRouter>
