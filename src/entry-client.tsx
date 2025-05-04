@@ -80,12 +80,12 @@ if (window.__REACT_QUERY_STATE__) {
   // Use IIFE to allow async/await in top-level code
   (async () => {
     try {
-      // Use dynamic import for React Query module
-      const { dehydrate } = await import('@tanstack/react-query');
+      console.log('Hydrating React Query state...');
       
       // Properly hydrate the query client with state data
       const dehydratedState = window.__REACT_QUERY_STATE__;
       if (dehydratedState && Array.isArray(dehydratedState.queries)) {
+        console.log(`Found ${dehydratedState.queries.length} queries to hydrate`);
         dehydratedState.queries.forEach((query) => {
           queryClient.setQueryData(query.queryKey, query.state.data);
         });
@@ -95,11 +95,12 @@ if (window.__REACT_QUERY_STATE__) {
       console.error('Error hydrating React Query state:', error);
     }
     
-    // Initial render after hydration
+    // Initial render after hydration attempt
     renderApp();
   })();
 } else {
   // Initial render with no hydration needed
+  console.log('No React Query state to hydrate');
   renderApp();
 }
 
@@ -108,6 +109,7 @@ if (import.meta.env.DEV) {
   import('@tanstack/react-query-devtools')
     .then((devtoolsModule) => {
       ReactQueryDevtools = devtoolsModule.ReactQueryDevtools;
+      console.log('React Query Devtools loaded');
       // Force re-render once devtools are loaded
       renderApp();
     })
