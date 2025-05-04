@@ -14,7 +14,7 @@ const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 export default defineConfig(({ mode }) => ({
   plugins: [
     react({
-      // Complete bypass of browserslist for Babel
+      // Configure Babel to handle TypeScript properly
       babel: {
         babelrc: false,
         configFile: false,
@@ -31,6 +31,12 @@ export default defineConfig(({ mode }) => ({
             },
             useBuiltIns: 'usage',
             corejs: '3.22'
+          }],
+          ['@babel/preset-typescript', {
+            isTSX: true,
+            allExtensions: true,
+            allowDeclareFields: true,
+            onlyRemoveTypeImports: true
           }]
         ]
       }

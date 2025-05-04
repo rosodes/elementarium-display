@@ -34,11 +34,9 @@ const queryClient = new QueryClient({
   },
 });
 
-// Define ReactQueryDevtools type to avoid reference errors
-type ReactQueryDevtoolsType = React.LazyExoticComponent<React.ComponentType<any>>;
-
-// Declare ReactQueryDevtools before initializing it
-let ReactQueryDevtools: ReactQueryDevtoolsType | null = null;
+// Instead of using React in type annotations, we'll define the type differently
+// to avoid the Babel transform error
+let ReactQueryDevtools: any = null;
 
 // Dynamically import ReactQueryDevtools only in development
 if (import.meta.env.DEV) {
