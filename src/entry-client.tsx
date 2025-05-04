@@ -34,37 +34,34 @@ const queryClient = new QueryClient({
   },
 });
 
-// Variable to hold ReactQueryDevtools component
+// Declare ReactQueryDevtools variable
 let ReactQueryDevtools = null;
 
-// Hydrate query state from server if available
-if (window.__REACT_QUERY_STATE__) {
-  (async () => {
+// Use a self-invoking async function to handle hydration
+(async () => {
+  // Hydrate query state from server if available
+  if (window.__REACT_QUERY_STATE__) {
     try {
-      const { hydrate } = await import('@tanstack/react-query');
-      hydrate(queryClient, window.__REACT_QUERY_STATE__);
+      const reactQueryModule = await import('@tanstack/react-query');
+      reactQueryModule.hydrate(queryClient, window.__REACT_QUERY_STATE__);
       console.log('React Query state hydrated successfully');
     } catch (error) {
       console.error('Error hydrating React Query state:', error);
     }
-  })();
-}
+  }
 
-// Dynamically import ReactQueryDevtools only in development
-if (import.meta.env.DEV) {
-  (async () => {
+  // Dynamically import ReactQueryDevtools only in development
+  if (import.meta.env.DEV) {
     try {
-      const { ReactQueryDevtools: DevTools } = await import('@tanstack/react-query-devtools');
-      ReactQueryDevtools = DevTools;
-      // Force a re-render to display devtools after they've been loaded
-      if (container) {
-        renderApp();
-      }
+      const devtoolsModule = await import('@tanstack/react-query-devtools');
+      ReactQueryDevtools = devtoolsModule.ReactQueryDevtools;
+      // Force re-render once devtools are loaded
+      renderApp();
     } catch (err) {
       console.error('Failed to load React Query Devtools:', err);
     }
-  })();
-}
+  }
+})();
 
 // Determine initial language from URL
 const getInitialLanguage = () => {
@@ -98,9 +95,7 @@ function renderApp() {
   );
 
   // Use startTransition to mark hydration as non-urgent
-  // This improves initial page responsiveness
   startTransition(() => {
-    // Always hydrate since we're using SSR
     hydrateRoot(container, AppWithProviders);
     console.log(`Client hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
   });
