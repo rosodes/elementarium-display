@@ -35,7 +35,7 @@ const queryClient = new QueryClient({
 });
 
 // Declare ReactQueryDevtools variable that will be loaded dynamically
-let ReactQueryDevtools = null;
+let ReactQueryDevtools: any = null;
 
 // Determine initial language from URL
 const getInitialLanguage = () => {

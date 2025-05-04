@@ -1,6 +1,6 @@
 
-// Этот файл - мост между JS и TS для функциональности предварительного рендеринга
-// Используем динамический импорт для совместимости с ESM
+// This file serves as a bridge between JS and TS for prerendering functionality
+// Using dynamic imports for ESM compatibility
 export async function prerenderRoutes(...args) {
   try {
     const { prerenderRoutes: prerenderRoutesTs } = await import('./prerender.tsx');
@@ -11,5 +11,5 @@ export async function prerenderRoutes(...args) {
   }
 }
 
-// Экспортируем функцию для использования в процессе сборки
+// Export function for use in the build process
 export default prerenderRoutes;

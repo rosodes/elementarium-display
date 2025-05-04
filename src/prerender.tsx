@@ -1,16 +1,15 @@
-
 import React from 'react';
 import type { Writable } from 'stream';
 import { render } from './entry-server';
 
-// Динамический импорт Node.js модулей только в среде Node
+// Dynamic import of Node.js modules only in Node environment
 let fs: any;
 let path: any;
 let fileURLToPath: any;
 
-// Условный импорт Node.js модулей
+// Conditional import of Node.js modules
 if (typeof process !== 'undefined' && process.versions && process.versions.node) {
-  // Использование динамических импортов с top-level await
+  // Using dynamic imports with top-level await
   const promises = Promise.all([
     import('fs').then(module => { fs = module; }),
     import('path').then(module => { path = module; }),
@@ -19,13 +18,13 @@ if (typeof process !== 'undefined' && process.versions && process.versions.node)
 }
 
 export async function prerenderRoutes(outDir: string): Promise<void> {
-  // Выполняется только в среде Node.js
+  // Execute only in Node.js environment
   if (typeof process === 'undefined' || !process.versions || !process.versions.node) {
     console.warn('Prerendering is only available in Node.js environment');
     return;
   }
 
-  // Если модули не загружены, загрузим их
+  // If modules are not loaded, load them
   if (!fs || !path || !fileURLToPath) {
     const [fsModule, pathModule, urlModule] = await Promise.all([
       import('fs'),
@@ -37,16 +36,17 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
     fileURLToPath = urlModule;
   }
 
-  // Получаем dirname корректно в ESM
+  // Get dirname correctly in ESM
   const __dirname = path ? path.dirname(fileURLToPath(import.meta.url)) : '';
   
+  // Pre-render pages for some key elements
   const routes = ['/', '/en', '/ru', '/uk'];
   
-  // Pre-render страницы элементов для некоторых ключевых элементов
+  // Pre-render element pages for some key elements
   const keyElementIds = ['1', '6', '8', '26', '79', '92']; // H, C, O, Fe, Au, U
   const languages = ['en', 'ru', 'uk'];
   
-  // Добавление путей к элементам
+  // Add element paths
   languages.forEach(lang => {
     keyElementIds.forEach(elementId => {
       routes.push(`/${lang}/element/${elementId}`);
@@ -58,12 +58,12 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
   
   try {
     for (const url of routes) {
-      // Определяем язык из URL
-      let lang = 'en'; // Язык по умолчанию
+      // Determine language from URL
+      let lang = 'en'; // Default language
       if (url.startsWith('/ru/') || url === '/ru') lang = 'ru';
       if (url.startsWith('/uk/') || url === '/uk') lang = 'uk';
       
-      // Рендерим приложение для этого маршрута
+      // Render the app for this route
       console.log(`Pre-rendering: ${url} (${lang})`);
       
       const { stream, helmetContext, dehydratedState } = render(url, lang, {
@@ -72,10 +72,10 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
         }
       });
       
-      // Создаем содержимое HTML-файла
+      // Create HTML file content
       let html = '<!DOCTYPE html>\n<html lang="' + lang + '">';
       
-      // Добавляем содержимое head из helmet
+      // Add head content from helmet
       const { helmet } = helmetContext as any;
       if (helmet) {
         html += helmet.title.toString();
@@ -90,27 +90,27 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
         html += '</head>';
       }
       
-      // Начинаем body
+      // Start body
       html += '<body>';
       
-      // Добавляем индикатор загрузки
+      // Add loading indicator
       html += '<div id="loading-indicator" style="position:fixed; inset:0; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.8); z-index:9999; transition:opacity 0.3s ease-out;">';
       html += '<div class="spinner" style="width:40px; height:40px; border:4px solid rgba(0,0,0,0.1); border-left-color:#3b82f6; border-radius:50%; animation:spin 1s linear infinite;"></div>';
       html += '</div>';
       html += '<style>@keyframes spin{to{transform:rotate(360deg)}}</style>';
       
-      // Добавляем контейнер приложения
+      // Add app container
       html += '<div id="root">';
       
-      // Обработка потока контента кроссплатформенно
+      // Process stream content cross-platform
       let content = '';
       if (stream) {
         try {
-          // Обработка Node.js потоков
+          // Process Node.js streams
           if (typeof stream.pipe === 'function') {
             const chunks: Buffer[] = [];
             await new Promise<void>((resolve, reject) => {
-              // Создаем упрощенный writable для работы с pipe
+              // Create simplified writable for pipe
               const writable = {
                 write(chunk: any, encoding: string, callback: () => void) {
                   chunks.push(Buffer.from(chunk, encoding as BufferEncoding));
@@ -126,7 +126,7 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
               stream.pipe(writable);
             });
           } 
-          // Обработка потоков с асинхронным итератором
+          // Process streams with async iterator
           else if (typeof stream === 'object' && stream !== null && Symbol.asyncIterator in stream) {
             const chunks: Buffer[] = [];
             const asyncStream = stream as unknown as AsyncIterable<any>;
@@ -142,26 +142,26 @@ export async function prerenderRoutes(outDir: string): Promise<void> {
         }
       }
       
-      // Добавляем отрендеренный контент приложения
+      // Add rendered app content
       html += content;
       html += '</div>';
       
-      // Добавляем дегидрированное состояние для React Query
+      // Add dehydrated state for React Query
       if (dehydratedState) {
         html += `<script>window.__REACT_QUERY_STATE__ = ${JSON.stringify(dehydratedState)}</script>`;
       }
       
-      // Закрываем body и html
+      // Close body and html
       html += '<script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>';
       html += '<script type="module" src="/src/entry-client.tsx"></script>';
       html += '</body></html>';
       
-      // Создаем выходной каталог, если он не существует
+      // Create output directory if it doesn't exist
       const fileUrl = url === '/' ? '/index.html' : `${url.endsWith('/') ? url + 'index.html' : url + '.html'}`;
       const filePath = path.join(outDir, fileUrl);
       await fs.promises.mkdir(path.dirname(filePath), { recursive: true });
       
-      // Записываем файл
+      // Write file
       await fs.promises.writeFile(filePath, html);
       console.log(`Pre-rendered: ${filePath}`);
     }
