@@ -43,7 +43,7 @@ let ReactQueryDevtools = null;
   if (window.__REACT_QUERY_STATE__) {
     try {
       const reactQueryModule = await import('@tanstack/react-query');
-      reactQueryModule.hydrate(queryClient, window.__REACT_QUERY_STATE__);
+      queryClient.setQueryData(window.__REACT_QUERY_STATE__);
       console.log('React Query state hydrated successfully');
     } catch (error) {
       console.error('Error hydrating React Query state:', error);
