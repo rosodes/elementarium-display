@@ -14,15 +14,15 @@ const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 export default defineConfig(({ mode }) => ({
   plugins: [
     react({
-      // Configure Babel to use browserslist
+      // Configure Babel to use browserslist targets directly
       babel: {
         babelrc: false,
         configFile: false,
         presets: [
           ['@babel/preset-env', {
+            targets: 'defaults, not IE 11',
             useBuiltIns: 'usage',
-            corejs: '3.22',
-            targets: 'defaults'
+            corejs: '3.22'
           }]
         ]
       }
