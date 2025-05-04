@@ -39,11 +39,9 @@ let ReactQueryDevtools: any = null;
 
 // Dynamically import ReactQueryDevtools only in development
 if (import.meta.env.DEV) {
-  ReactQueryDevtools = React.lazy(() => 
-    import('@tanstack/react-query-devtools').then(module => ({
-      default: module.ReactQueryDevtools
-    }))
-  );
+  import('@tanstack/react-query-devtools').then(module => {
+    ReactQueryDevtools = module.ReactQueryDevtools;
+  });
 }
 
 // Hydrate query state from server if available
