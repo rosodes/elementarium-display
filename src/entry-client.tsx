@@ -6,7 +6,7 @@ import App from './App';
 import './index.css';
 import './styles/periodicTable.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { QueryClient, QueryClientProvider, dehydrate, hydrate } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider, hydrate } from "@tanstack/react-query";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
 

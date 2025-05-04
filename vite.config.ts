@@ -72,4 +72,12 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      target: 'es2020',
+      supported: { 
+        bigint: true 
+      },
+    }
+  },
 }))
