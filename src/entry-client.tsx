@@ -36,7 +36,7 @@ function ReactQueryDevTools() {
       console.log('Loading React Query DevTools (pure ESM)...');
       
       // Use dynamic ESM import with explicit error handling
-      import('@tanstack/react-query-devtools')
+      import('@tanstack/react-query-devtools/esm')
         .then(module => {
           console.log('DevTools module loaded successfully:', module);
           
@@ -50,6 +50,18 @@ function ReactQueryDevTools() {
         })
         .catch(err => {
           console.error('Failed to load DevTools (ESM import error):', err);
+          // Try alternative import path
+          console.log('Trying alternative import path...');
+          import('@tanstack/react-query-devtools')
+            .then(module => {
+              console.log('Alternative import successful:', module);
+              if (module && module.ReactQueryDevtools) {
+                setDevToolsComponent(() => module.ReactQueryDevtools);
+              }
+            })
+            .catch(altErr => {
+              console.error('All import attempts failed:', altErr);
+            });
         });
     }
   }, []);

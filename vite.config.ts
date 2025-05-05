@@ -62,8 +62,9 @@ export default defineConfig(({ mode }) => ({
     alias: {
       '@': path.resolve(__dirname, './src')
     },
-    // Ensure proper resolution of ESM modules
-    mainFields: ['browser', 'module', 'jsnext:main', 'jsnext']
+    // Ensure proper resolution of ESM modules by prioritizing browser field
+    mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
   },
   server: {
     host: "::",
@@ -108,6 +109,9 @@ export default defineConfig(({ mode }) => ({
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode),
     '__IS_DEV__': mode === 'development',
+    // Make sure require is undefined in client code
+    'require': 'undefined',
+    'global': 'globalThis',
   },
   // Ensure we're using ESM
   esbuild: {
@@ -126,6 +130,9 @@ export default defineConfig(({ mode }) => ({
     noExternal: [
       '@tanstack/react-query',
       '@tanstack/react-query-devtools'
-    ]
+    ],
+    // Ensure target is modern for SSR
+    target: 'esnext',
+    format: 'esm'
   }
 }))
