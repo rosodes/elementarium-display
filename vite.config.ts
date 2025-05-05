@@ -62,6 +62,8 @@ export default defineConfig(({ mode }) => ({
     alias: {
       '@': path.resolve(__dirname, './src')
     },
+    // Ensure proper resolution of ESM modules
+    mainFields: ['module', 'jsnext:main', 'jsnext']
   },
   server: {
     host: "::",
@@ -91,7 +93,15 @@ export default defineConfig(({ mode }) => ({
       supported: { 
         bigint: true 
       },
-    }
+    },
+    // Pre-bundle these packages to avoid CommonJS issues
+    include: [
+      'react', 
+      'react-dom', 
+      'react-router-dom',
+      '@tanstack/react-query',
+      'react-helmet-async'
+    ]
   },
   // Explicitly ensure that code is processed as ESM
   define: {
@@ -106,5 +116,12 @@ export default defineConfig(({ mode }) => ({
       'dynamic-import': true,
       'import-meta': true,
     },
+  },
+  // Improve SSR handling
+  ssr: {
+    // External packages that shouldn't be bundled for SSR
+    external: ['react-helmet-async'],
+    // Don't externalize these packages (bundle them)
+    noExternal: ['@tanstack/react-query', '@tanstack/react-query-devtools'],
   }
 }))

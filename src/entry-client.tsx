@@ -1,6 +1,6 @@
 
-import React, { startTransition, Suspense } from 'react';
-import { hydrateRoot } from 'react-dom/client';
+import React, { startTransition, Suspense, lazy, useState, useEffect } from 'react';
+import { hydrateRoot, createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './index.css';
@@ -14,14 +14,6 @@ import { LanguageProvider } from './context/LanguageContext';
 const startTime = performance.now();
 console.log('Client-side hydration started');
 
-// Get container element
-const container = document.getElementById('root');
-
-// Handle the case where the 'root' element doesn't exist
-if (!container) {
-  throw new Error('Root element not found. Cannot mount app.');
-}
-
 // Create a new QueryClient with optimized settings
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,8 +26,26 @@ const queryClient = new QueryClient({
   },
 });
 
-// Variable for React Query devtools that will be loaded dynamically
-let ReactQueryDevtools = null;
+// Use lazy loading for React Query Devtools to avoid require() calls at module level
+const ReactQueryDevtools = import.meta.env.DEV
+  ? lazy(() => import('@tanstack/react-query-devtools').then(module => ({
+      default: module.ReactQueryDevtools
+    })))
+  : null;
+
+// Simple error boundary component for catching hydration errors
+const ErrorFallback = () => (
+  <div className="p-4 m-4 border border-red-500 rounded bg-red-50 text-red-800">
+    <h2>Something went wrong</h2>
+    <p>The application failed to load correctly. Please try refreshing the page.</p>
+    <button 
+      onClick={() => window.location.reload()} 
+      className="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+    >
+      Refresh Page
+    </button>
+  </div>
+);
 
 // Determine initial language from URL
 const getInitialLanguage = () => {
@@ -45,10 +55,43 @@ const getInitialLanguage = () => {
   return 'en';
 };
 
-// Function to render the app - allows rerendering after devtools load
+// Main rendering function
 function renderApp() {
-  const helmetContext = {};
+  // Find the container and handle missing root
+  const container = document.getElementById('root');
+  if (!container) {
+    console.error('Root element not found. Creating a fallback container.');
+    const fallbackContainer = document.createElement('div');
+    fallbackContainer.id = 'root-fallback';
+    document.body.appendChild(fallbackContainer);
+    
+    createRoot(fallbackContainer).render(<ErrorFallback />);
+    return;
+  }
   
+  const helmetContext = {};
+
+  // Check for hydration data
+  if (window.__REACT_QUERY_STATE__) {
+    try {
+      console.log('Hydrating React Query state...');
+      
+      // Properly hydrate the query client with state data
+      const dehydratedState = window.__REACT_QUERY_STATE__;
+      if (dehydratedState && Array.isArray(dehydratedState.queries)) {
+        console.log(`Found ${dehydratedState.queries.length} queries to hydrate`);
+        dehydratedState.queries.forEach((query) => {
+          queryClient.setQueryData(query.queryKey, query.state.data);
+        });
+      }
+      console.log('React Query state hydrated successfully');
+    } catch (error) {
+      console.error('Error hydrating React Query state:', error);
+    }
+  } else {
+    console.log('No React Query state to hydrate');
+  }
+
   const AppWithProviders = (
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
@@ -62,7 +105,7 @@ function renderApp() {
           </LanguageProvider>
         </ThemeProvider>
         {import.meta.env.DEV && ReactQueryDevtools && (
-          <Suspense fallback={null}>
+          <Suspense fallback={<div>Loading DevTools...</div>}>
             <ReactQueryDevtools initialIsOpen={false} />
           </Suspense>
         )}
@@ -70,52 +113,31 @@ function renderApp() {
     </React.StrictMode>
   );
 
-  // Use startTransition to mark hydration as non-urgent
-  startTransition(() => {
-    hydrateRoot(container, AppWithProviders);
-    console.log(`Client hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
-  });
-}
-
-// Hydrate query state from server if available
-if (window.__REACT_QUERY_STATE__) {
   try {
-    console.log('Hydrating React Query state...');
-    
-    // Properly hydrate the query client with state data
-    const dehydratedState = window.__REACT_QUERY_STATE__;
-    if (dehydratedState && Array.isArray(dehydratedState.queries)) {
-      console.log(`Found ${dehydratedState.queries.length} queries to hydrate`);
-      dehydratedState.queries.forEach((query) => {
-        queryClient.setQueryData(query.queryKey, query.state.data);
-      });
-    }
-    console.log('React Query state hydrated successfully');
+    // Use startTransition to mark hydration as non-urgent
+    startTransition(() => {
+      // Try to hydrate, but fallback to normal render if SSR HTML is missing
+      const isSSR = container.innerHTML.trim().length > 0;
+      
+      if (isSSR) {
+        console.log('Attempting SSR hydration');
+        hydrateRoot(container, AppWithProviders);
+      } else {
+        console.log('No SSR HTML found, falling back to client-side rendering');
+        createRoot(container).render(AppWithProviders);
+      }
+      
+      console.log(`Client hydration/render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+    });
   } catch (error) {
-    console.error('Error hydrating React Query state:', error);
+    console.error('Fatal rendering error:', error);
+    // Render error fallback if hydration fails completely
+    createRoot(container).render(<ErrorFallback />);
   }
-  
-  // Initial render after hydration attempt
-  renderApp();
-} else {
-  // Initial render with no hydration needed
-  console.log('No React Query state to hydrate');
-  renderApp();
 }
 
-// Dynamically import ReactQueryDevtools only in development using ESM dynamic import
-if (import.meta.env.DEV) {
-  import('@tanstack/react-query-devtools')
-    .then((devtoolsModule) => {
-      ReactQueryDevtools = devtoolsModule.ReactQueryDevtools;
-      console.log('React Query Devtools loaded');
-      // Force re-render once devtools are loaded
-      renderApp();
-    })
-    .catch((err) => {
-      console.error('Failed to load React Query Devtools:', err);
-    });
-}
+// Initialize the app
+renderApp();
 
 // Remove loading indicator
 const loadingIndicator = document.getElementById('loading-indicator');
@@ -126,7 +148,7 @@ if (loadingIndicator) {
   }, 300);
 }
 
-// Add global type for React Query state
+// TypeScript declaration for React Query state
 declare global {
   interface Window {
     __REACT_QUERY_STATE__?: any;
