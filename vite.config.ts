@@ -64,7 +64,7 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, './src')
       },
-      // Ensure proper resolution of ESM modules by prioritizing browser field
+      // Ensure proper resolution of ESM modules 
       mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
@@ -109,8 +109,12 @@ export default defineConfig(({ mode }) => {
     },
     // Define environment variables
     define: {
-      'process.env.NODE_ENV': JSON.stringify(mode),
-      '__IS_DEV__': mode === 'development',
+      'import.meta.env.DEV': mode === 'development',
+      'import.meta.env.PROD': mode === 'production',
+      // Properly handle process.env for browser environment
+      'process.env': {
+        NODE_ENV: JSON.stringify(mode)
+      },
       // Make sure global objects are properly defined
       'global': 'globalThis',
     },
