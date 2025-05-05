@@ -26,31 +26,31 @@ const queryClient = new QueryClient({
   },
 });
 
-// Use dynamic import with React.lazy to avoid require() calls
-const ReactQueryDevToolsLazy = lazy(() => 
-  import('@tanstack/react-query-devtools')
-    .then(module => ({
-      default: () => {
-        const { ReactQueryDevtools } = module;
-        return <ReactQueryDevtools initialIsOpen={false} />;
-      }
-    }))
-    .catch(error => {
-      console.error('Failed to load React Query DevTools:', error);
-      return { default: () => null };
-    })
-);
-
-// Simple DevTools wrapper component
+// Create a custom DevTools component that only loads in development
 function ReactQueryDevTools() {
-  // Only render in development
-  if (typeof import.meta !== 'undefined' && !import.meta.env.DEV) return null;
+  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType | null>(null);
   
-  return (
-    <Suspense fallback={null}>
-      <ReactQueryDevToolsLazy />
-    </Suspense>
-  );
+  useEffect(() => {
+    // Only load in development and in browser environment
+    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV) {
+      console.log('Loading React Query DevTools dynamically...');
+      
+      // Dynamic import using ESM syntax
+      import('@tanstack/react-query-devtools')
+        .then((module) => {
+          console.log('DevTools loaded successfully');
+          // Extract the component and set it in state
+          const { ReactQueryDevtools } = module;
+          setDevToolsComponent(() => ReactQueryDevtools);
+        })
+        .catch((error) => {
+          console.error('Failed to load React Query DevTools:', error);
+        });
+    }
+  }, []);
+  
+  // Render the component only if it's loaded
+  return DevToolsComponent ? <DevToolsComponent initialIsOpen={false} /> : null;
 }
 
 // Error fallback component for catching hydration errors
