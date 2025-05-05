@@ -104,8 +104,12 @@ export default defineConfig(({ mode }) => {
         'react-router-dom',
         '@tanstack/react-query',
       ],
-      // Exclude devtools to avoid require issues
-      exclude: ['@tanstack/react-query-devtools'],
+      // Exclude packages that might cause require issues
+      exclude: [
+        '@tanstack/react-query-devtools',
+        'react-query/devtools',
+        'react-query-devtools'
+      ],
     },
     // Define environment variables
     define: {
@@ -118,7 +122,11 @@ export default defineConfig(({ mode }) => {
       // Make sure global objects are properly defined for ESM
       'global': 'globalThis',
       // Add safety polyfills for browser vs Node.js compatibility
-      'process': 'null',
+      'process': JSON.stringify({
+        env: { 
+          NODE_ENV: mode 
+        }
+      }),
     },
     // Ensure we're using ESM
     esbuild: {

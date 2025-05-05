@@ -47,15 +47,14 @@ const queryClient = new QueryClient({
   },
 });
 
-// Simple version of ReactQueryDevTools without dynamic imports
+// Simple React Query DevTools component without dynamic imports
+// This avoids the "require is not defined" error
 function ReactQueryDevTools() {
-  // Only show in development mode 
-  // We're avoiding any dynamic imports that might cause "require is not defined"
   if (import.meta.env.DEV) {
     return (
       <div className="fixed bottom-2 right-2 z-50 p-2 bg-white dark:bg-gray-800 rounded shadow-lg border border-gray-200 dark:border-gray-700">
-        <p className="text-xs text-gray-500">React Query DevTools disabled</p>
-        <p className="text-xs text-gray-400">Dynamic imports removed to fix ESM errors</p>
+        <p className="text-xs text-gray-500">React Query DevTools</p>
+        <p className="text-xs text-gray-400">Dynamic imports disabled to fix ESM errors</p>
       </div>
     );
   }
@@ -102,15 +101,19 @@ function renderApp() {
   try {
     // Safe hydration of React Query state - without any require statements
     if (typeof window !== 'undefined' && window.__REACT_QUERY_STATE__) {
-      const queryState = window.__REACT_QUERY_STATE__;
-      if (queryState?.queries?.length) {
-        console.log(`Hydrating ${queryState.queries.length} queries...`);
-        queryState.queries.forEach(query => {
-          if (query.queryKey && query.state?.data) {
-            queryClient.setQueryData(query.queryKey, query.state.data);
-          }
-        });
-        console.log('Query hydration complete');
+      try {
+        const queryState = window.__REACT_QUERY_STATE__;
+        if (queryState?.queries?.length) {
+          console.log(`Hydrating ${queryState.queries.length} queries...`);
+          queryState.queries.forEach(query => {
+            if (query.queryKey && query.state?.data) {
+              queryClient.setQueryData(query.queryKey, query.state.data);
+            }
+          });
+          console.log('Query hydration complete');
+        }
+      } catch (error) {
+        console.error('Failed to hydrate query state:', error);
       }
     }
   } catch (error) {
