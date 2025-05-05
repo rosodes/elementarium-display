@@ -26,38 +26,33 @@ const queryClient = new QueryClient({
   },
 });
 
-// Create a custom DevTools component that only loads in development
+// ReactQueryDevTools implementation without require
 function ReactQueryDevTools() {
-  // Using React.ComponentType for proper typing
-  type DevToolsComponentType = React.ComponentType<{
+  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<{
     initialIsOpen?: boolean;
-    [key: string]: any;
-  }>;
-  
-  const [DevToolsComponent, setDevToolsComponent] = useState<DevToolsComponentType | null>(null);
+  }> | null>(null);
   
   useEffect(() => {
-    // Only load in development and in browser environment
-    const isDev = process.env.NODE_ENV === 'development' || (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV);
+    // Only load in development environment
+    const isDev = import.meta.env?.DEV || false;
     
-    if (isDev) {
+    if (isDev && typeof window !== 'undefined') {
       console.log('Loading React Query DevTools dynamically...');
       
-      // Use dynamic import with ESM syntax only
+      // Use dynamic import - fully ESM compatible approach
       import('@tanstack/react-query-devtools')
-        .then((module) => {
+        .then(module => {
           console.log('DevTools loaded successfully');
-          if (module && module.ReactQueryDevtools) {
+          if (module && typeof module.ReactQueryDevtools === 'function') {
             setDevToolsComponent(() => module.ReactQueryDevtools);
           }
         })
-        .catch((error) => {
+        .catch(error => {
           console.error('Failed to load React Query DevTools:', error);
         });
     }
   }, []);
   
-  // Render the component only if it's loaded
   if (!DevToolsComponent) return null;
   return <DevToolsComponent initialIsOpen={false} />;
 }
@@ -100,9 +95,9 @@ function renderApp() {
   
   const helmetContext = {};
 
-  // Check for hydration data
-  if (window.__REACT_QUERY_STATE__) {
-    try {
+  try {
+    // Check for hydration data using modern approach
+    if (window.__REACT_QUERY_STATE__) {
       console.log('Hydrating React Query state...');
       
       // Properly hydrate the query client with state data
@@ -114,11 +109,12 @@ function renderApp() {
         });
       }
       console.log('React Query state hydrated successfully');
-    } catch (error) {
-      console.error('Error hydrating React Query state:', error);
+    } else {
+      console.log('No React Query state to hydrate');
     }
-  } else {
-    console.log('No React Query state to hydrate');
+  } catch (error) {
+    console.error('Error hydrating React Query state:', error);
+    // Continue with rendering even if hydration fails
   }
 
   const AppWithProviders = (
@@ -133,7 +129,6 @@ function renderApp() {
             </HelmetProvider>
           </LanguageProvider>
         </ThemeProvider>
-        {/* Dev tools */}
         <ReactQueryDevTools />
       </QueryClientProvider>
     </React.StrictMode>
