@@ -94,23 +94,23 @@ export default defineConfig(({ mode }) => ({
         bigint: true 
       },
     },
-    // Pre-bundle these packages to avoid CommonJS issues
+    // Ensure React Query DevTools is properly pre-bundled to avoid require() issues
     include: [
       'react', 
       'react-dom', 
       'react-router-dom',
       '@tanstack/react-query',
       'react-helmet-async',
-      // Add react-query-devtools to pre-bundling to resolve CommonJS issues
+      // Explicitly include the DevTools to pre-bundle it
       '@tanstack/react-query-devtools'
     ]
   },
-  // Explicitly ensure that code is processed as ESM
+  // Define environment variables
   define: {
     'process.env.NODE_ENV': JSON.stringify(mode),
     '__IS_DEV__': mode === 'development',
   },
-  // Ensure we're not transforming ESM to CommonJS
+  // Ensure we're using ESM
   esbuild: {
     format: 'esm',
     target: 'es2020',
@@ -119,11 +119,11 @@ export default defineConfig(({ mode }) => ({
       'import-meta': true,
     },
   },
-  // Improve SSR handling
+  // SSR specific options
   ssr: {
     // External packages that shouldn't be bundled for SSR
     external: ['react-helmet-async'],
-    // Don't externalize these packages (bundle them)
+    // Force bundle these packages for SSR to avoid CommonJS issues
     noExternal: [
       '@tanstack/react-query', 
       '@tanstack/react-query-devtools'

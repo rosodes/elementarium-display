@@ -26,32 +26,33 @@ const queryClient = new QueryClient({
   },
 });
 
-// We'll use a functional approach to handle React Query DevTools to avoid any require() calls
-// Instead of using lazy loading, we'll conditionally render nothing in production
-// This completely avoids the require problem that happens when the module is processed
-const DevToolsComponent = () => {
+// Simplified DevTools component that completely avoids the require() issue
+// by using a useState + useEffect approach for dynamic imports
+function DevToolsComponent() {
   const [DevTools, setDevTools] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
-    // Only in development and only in client
+    // Only attempt to load in development mode
     if (import.meta.env.DEV) {
-      // Use a promise-based dynamic import with proper error handling
+      console.log('Attempting to load React Query DevTools...');
+      // Dynamic import avoids the require() call at module evaluation time
       import('@tanstack/react-query-devtools')
-        .then((module) => {
-          console.log('DevTools module loaded successfully');
+        .then(module => {
+          console.log('DevTools loaded successfully');
+          // Store the component reference once loaded
           setDevTools(() => module.ReactQueryDevtools);
         })
-        .catch((err) => {
-          console.error('Failed to load React Query DevTools:', err);
+        .catch(err => {
+          console.error('Failed to load DevTools:', err);
         });
     }
   }, []);
   
-  // Only render if we have the component and we're in development
+  // Render DevTools only if they've loaded successfully
   return DevTools ? <DevTools initialIsOpen={false} /> : null;
-};
+}
 
-// Simple error fallback component for catching hydration errors
+// Error fallback component for catching hydration errors
 const ErrorFallback = () => (
   <div className="p-4 m-4 border border-red-500 rounded bg-red-50 text-red-800">
     <h2>Something went wrong</h2>
@@ -122,7 +123,7 @@ function renderApp() {
             </HelmetProvider>
           </LanguageProvider>
         </ThemeProvider>
-        {/* Render DevTools only in development */}
+        {/* Only render DevTools in development environment */}
         {import.meta.env.DEV && <DevToolsComponent />}
       </QueryClientProvider>
     </React.StrictMode>
