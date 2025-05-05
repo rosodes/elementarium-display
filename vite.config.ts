@@ -5,7 +5,7 @@ import { readFileSync } from 'fs'
 import path from 'path'
 import compression from 'vite-plugin-compression'
 import legacy from '@vitejs/plugin-legacy'
-import { componentTagger } from "lovable-tagger"
+import { componentTagger } from 'lovable-tagger'
 
 // Read package.json to detect dependencies
 const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => ({
       modernPolyfills: true
     }),
     compression({
-      algorithm: 'brotliCompress', // Changed from 'brotli' to 'brotliCompress'
+      algorithm: 'brotliCompress',
       ext: '.br',
     }),
     compression({
