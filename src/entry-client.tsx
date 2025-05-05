@@ -26,33 +26,26 @@ const queryClient = new QueryClient({
   },
 });
 
-// ReactQueryDevTools using dynamic import for ESM compatibility
+// ReactQueryDevTools component using dynamic ESM import
 function ReactQueryDevTools() {
-  const [DevToolsComponent, setDevToolsComponent] = useState(null);
+  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
     // Only load in development and in browser environment
     if (import.meta.env.DEV && typeof window !== 'undefined') {
-      // Using top-level await in dynamic import (ES Module syntax)
-      const loadDevTools = async () => {
+      (async () => {
         try {
-          // Using dynamic import with explicit path
+          // Use dynamic import (ESM style)
           const devtools = await import('@tanstack/react-query-devtools');
-          if (devtools && devtools.ReactQueryDevtools) {
-            setDevToolsComponent(() => devtools.ReactQueryDevtools);
-          } else {
-            console.error('ReactQueryDevtools not found in module');
-          }
+          setDevToolsComponent(() => devtools.ReactQueryDevtools);
         } catch (err) {
-          console.error('Failed to load DevTools:', err);
+          console.error('Failed to load React Query DevTools:', err);
         }
-      };
-      
-      loadDevTools();
+      })();
     }
   }, []);
   
-  return DevToolsComponent ? React.createElement(DevToolsComponent, { initialIsOpen: false }) : null;
+  return DevToolsComponent ? <DevToolsComponent initialIsOpen={false} /> : null;
 }
 
 // Error fallback component

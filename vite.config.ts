@@ -64,8 +64,8 @@ export default defineConfig(({ mode }) => {
       alias: {
         '@': path.resolve(__dirname, './src')
       },
-      // Ensure proper resolution of ESM modules 
-      mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
+      // Ensure proper resolution of ESM modules - put browser first
+      mainFields: ['browser', 'module', 'main'],
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
     server: {
@@ -104,8 +104,6 @@ export default defineConfig(({ mode }) => {
         'react-router-dom',
         '@tanstack/react-query',
       ],
-      // Exclude devtools from pre-bundling to allow dynamic import
-      exclude: ['@tanstack/react-query-devtools']
     },
     // Define environment variables
     define: {
