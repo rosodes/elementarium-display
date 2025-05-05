@@ -35,23 +35,19 @@ function ReactQueryDevTools() {
     if (import.meta.env.DEV && typeof window !== 'undefined') {
       console.log('Loading React Query DevTools using dynamic import...');
       
-      // Dynamic ESM import with proper error handling
-      import('@tanstack/react-query-devtools')
+      // Use a dynamic import to load the DevTools component
+      import('@tanstack/react-query-devtools/esm')
         .then(module => {
-          console.log('DevTools loaded successfully, module:', module);
-          // Log the module structure to understand its format
-          console.log('Module structure:', Object.keys(module));
+          console.log('DevTools loaded successfully');
           
-          if (typeof module === 'object') {
-            // Check if ReactQueryDevtools exists directly on the module
+          if (module && typeof module === 'object') {
+            // ReactQueryDevtools should be a named export
             if (module.ReactQueryDevtools) {
-              console.log('Found ReactQueryDevtools in module');
+              console.log('Found ReactQueryDevtools component');
               setDevTools(() => module.ReactQueryDevtools);
             } else {
               console.error('ReactQueryDevtools not found in module. Available exports:', Object.keys(module));
             }
-          } else {
-            console.error('Unexpected module type:', typeof module);
           }
         })
         .catch(err => {
@@ -67,6 +63,7 @@ function ReactQueryDevTools() {
   
   // Only render if DevTools component is available
   if (!DevTools) return null;
+  
   try {
     return <DevTools initialIsOpen={false} />;
   } catch (err) {
