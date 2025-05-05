@@ -101,7 +101,7 @@ export default defineConfig(({ mode }) => ({
       'react-router-dom',
       '@tanstack/react-query',
       'react-helmet-async',
-      // Adding devtools to pre-bundle to avoid require() issues
+      // Add react-query-devtools to pre-bundling to resolve CommonJS issues
       '@tanstack/react-query-devtools'
     ]
   },
@@ -124,6 +124,9 @@ export default defineConfig(({ mode }) => ({
     // External packages that shouldn't be bundled for SSR
     external: ['react-helmet-async'],
     // Don't externalize these packages (bundle them)
-    noExternal: ['@tanstack/react-query', '@tanstack/react-query-devtools'],
+    noExternal: [
+      '@tanstack/react-query', 
+      '@tanstack/react-query-devtools'
+    ],
   }
 }))
