@@ -28,7 +28,7 @@ const queryClient = new QueryClient({
 
 // Create a custom DevTools component that only loads in development
 function ReactQueryDevTools() {
-  // Define a better type for the DevTools component that includes the initialIsOpen prop
+  // Define a generic type for the DevTools component
   type DevToolsComponentType = React.ComponentType<{
     initialIsOpen?: boolean;
     [key: string]: any;
@@ -38,16 +38,14 @@ function ReactQueryDevTools() {
   
   useEffect(() => {
     // Only load in development and in browser environment
-    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV) {
+    if (process.env.NODE_ENV === 'development' || (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV)) {
       console.log('Loading React Query DevTools dynamically...');
       
-      // Dynamic import using ESM syntax
+      // Use dynamic import (ESM) instead of require
       import('@tanstack/react-query-devtools')
         .then((module) => {
           console.log('DevTools loaded successfully');
-          // Extract the component and set it in state
-          const { ReactQueryDevtools } = module;
-          setDevToolsComponent(() => ReactQueryDevtools);
+          setDevToolsComponent(() => module.ReactQueryDevtools);
         })
         .catch((error) => {
           console.error('Failed to load React Query DevTools:', error);
@@ -56,7 +54,8 @@ function ReactQueryDevTools() {
   }, []);
   
   // Render the component only if it's loaded
-  return DevToolsComponent ? <DevToolsComponent initialIsOpen={false} /> : null;
+  if (!DevToolsComponent) return null;
+  return <DevToolsComponent initialIsOpen={false} />;
 }
 
 // Error fallback component for catching hydration errors
