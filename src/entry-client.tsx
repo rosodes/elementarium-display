@@ -44,10 +44,3 @@ try {
 
 // Clean up UI
 removeLoadingIndicator();
-
-// TypeScript declaration for React Query state - simplified to avoid any issues
-declare global {
-  interface Window {
-    __REACT_QUERY_STATE__?: any;
-  }
-}

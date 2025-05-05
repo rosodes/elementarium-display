@@ -28,7 +28,6 @@ export const createAppWithProviders = (
             </HelmetProvider>
           </LanguageProvider>
         </ThemeProvider>
-        {/* Removed ReactQueryDevTools component entirely */}
       </QueryClientProvider>
     </React.StrictMode>
   );

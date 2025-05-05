@@ -2,6 +2,7 @@
 /**
  * Error handling utility for client-side errors
  */
+import React from 'react';
 
 // Global error logger
 export const logError = (error: Error, info: string) => {
