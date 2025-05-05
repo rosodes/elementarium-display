@@ -49,6 +49,7 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   previousElement: "Попередній елемент",
   nextElement: "Наступний елемент",
   isotopes: "Ізотопи",
+  // Add the missing properties for Ukrainian
   industry: "Промисловість",
   discovery: "Відкриття",
   structure: "Структура",

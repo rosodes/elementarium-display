@@ -49,6 +49,7 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   previousElement: "Предыдущий элемент",
   nextElement: "Следующий элемент",
   isotopes: "Изотопы",
+  // Add the missing properties for Russian
   industry: "Промышленность",
   discovery: "Открытие",
   structure: "Структура",

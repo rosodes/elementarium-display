@@ -47,7 +47,7 @@ export interface ElementDetailsTranslations {
   previousElement?: string;
   nextElement?: string;
   isotopes?: string;
-  // Additional properties
+  // Additional properties that were missing
   industry?: string;
   discovery?: string;
   structure?: string;

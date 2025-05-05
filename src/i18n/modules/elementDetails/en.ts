@@ -49,6 +49,7 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   previousElement: "Previous element",
   nextElement: "Next element",
   isotopes: "Isotopes",
+  // Add the missing properties for English
   industry: "Industry",
   discovery: "Discovery",
   structure: "Structure",
