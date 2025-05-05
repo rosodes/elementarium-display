@@ -10,6 +10,27 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from './context/ThemeContext';
 import { LanguageProvider } from './context/LanguageContext';
 
+// Global error logger
+const logError = (error: Error, info: string) => {
+  console.error(`🔴 Error in ${info}:`, error);
+  console.error(`📑 Stack trace:`, error.stack);
+  
+  // Send to console in a visible format
+  console.log('%c APP ERROR DETECTED ', 'background: #FF0000; color: white; font-size: 16px; font-weight: bold;');
+  console.log(`Error message: ${error.message}`);
+  console.log(`Location: ${info}`);
+  
+  // You could add an API call here to log errors to a server
+};
+
+// Set up global error handler
+if (typeof window !== 'undefined') {
+  window.onerror = (message, source, lineno, colno, error) => {
+    logError(error || new Error(String(message)), `Window error at ${source}:${lineno}:${colno}`);
+    return false; // Let default handler run as well
+  };
+}
+
 // Performance measurement
 const startTime = performance.now();
 console.log('Client-side hydration started');
@@ -26,26 +47,19 @@ const queryClient = new QueryClient({
   },
 });
 
-// ReactQueryDevTools component using dynamic ESM import
+// Simple version of ReactQueryDevTools without dynamic imports
 function ReactQueryDevTools() {
-  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
-  
-  useEffect(() => {
-    // Only load in development and in browser environment
-    if (import.meta.env.DEV && typeof window !== 'undefined') {
-      (async () => {
-        try {
-          // Use dynamic import (ESM style)
-          const devtools = await import('@tanstack/react-query-devtools');
-          setDevToolsComponent(() => devtools.ReactQueryDevtools);
-        } catch (err) {
-          console.error('Failed to load React Query DevTools:', err);
-        }
-      })();
-    }
-  }, []);
-  
-  return DevToolsComponent ? <DevToolsComponent initialIsOpen={false} /> : null;
+  // Only show in development mode 
+  // We're avoiding any dynamic imports that might cause "require is not defined"
+  if (import.meta.env.DEV) {
+    return (
+      <div className="fixed bottom-2 right-2 z-50 p-2 bg-white dark:bg-gray-800 rounded shadow-lg border border-gray-200 dark:border-gray-700">
+        <p className="text-xs text-gray-500">React Query DevTools disabled</p>
+        <p className="text-xs text-gray-400">Dynamic imports removed to fix ESM errors</p>
+      </div>
+    );
+  }
+  return null;
 }
 
 // Error fallback component
@@ -86,7 +100,7 @@ function renderApp() {
   const helmetContext = {};
 
   try {
-    // Safe hydration of React Query state
+    // Safe hydration of React Query state - without any require statements
     if (typeof window !== 'undefined' && window.__REACT_QUERY_STATE__) {
       const queryState = window.__REACT_QUERY_STATE__;
       if (queryState?.queries?.length) {
@@ -100,7 +114,7 @@ function renderApp() {
       }
     }
   } catch (error) {
-    console.error('Hydration error:', error);
+    logError(error as Error, 'Query hydration');
   }
 
   const AppWithProviders = (
@@ -135,13 +149,33 @@ function renderApp() {
       console.log(`Client hydration/render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
     });
   } catch (error) {
-    console.error('Fatal rendering error:', error);
+    logError(error as Error, 'Root rendering');
     createRoot(container).render(<ErrorFallback />);
   }
 }
 
-// Initialize the app
-renderApp();
+// Initialize the app with error handling
+try {
+  renderApp();
+} catch (error) {
+  logError(error as Error, 'App initialization');
+  
+  // Last resort error display
+  const rootElement = document.getElementById('root');
+  if (rootElement) {
+    rootElement.innerHTML = `
+      <div style="padding: 20px; margin: 20px; border: 1px solid #f56565; background: #fff5f5; color: #c53030;">
+        <h2>Critical Error</h2>
+        <p>The application couldn't start due to a fatal error.</p>
+        <p>${error instanceof Error ? error.message : 'Unknown error'}</p>
+        <button onclick="window.location.reload()" 
+          style="margin-top: 10px; padding: 8px 16px; background: #c53030; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Refresh Page
+        </button>
+      </div>
+    `;
+  }
+}
 
 // Remove loading indicator
 const loadingIndicator = document.getElementById('loading-indicator');
