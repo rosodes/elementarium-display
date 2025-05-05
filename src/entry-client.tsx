@@ -35,15 +35,21 @@ function ReactQueryDevTools() {
     if (import.meta.env.DEV && typeof window !== 'undefined') {
       console.log('Loading React Query DevTools using dynamic import...');
       
-      // Dynamic ESM import
+      // Dynamic ESM import with proper error handling
       import('@tanstack/react-query-devtools')
         .then(module => {
-          console.log('DevTools loaded successfully:', module);
-          // Make sure we access the correct export
-          if (module && module.ReactQueryDevtools) {
-            setDevTools(() => module.ReactQueryDevtools);
-          } else {
-            console.error('ReactQueryDevtools not found in module', module);
+          console.log('DevTools loaded successfully, module:', module);
+          try {
+            // Handle different export formats
+            if (module.ReactQueryDevtools) {
+              setDevTools(() => module.ReactQueryDevtools);
+            } else if (module.default && module.default.ReactQueryDevtools) {
+              setDevTools(() => module.default.ReactQueryDevtools);
+            } else {
+              console.error('ReactQueryDevtools not found in module:', Object.keys(module));
+            }
+          } catch (err) {
+            console.error('Error setting up DevTools component:', err);
           }
         })
         .catch(err => {
@@ -58,7 +64,13 @@ function ReactQueryDevTools() {
   }, []);
   
   // Only render if DevTools component is available
-  return DevTools ? <DevTools initialIsOpen={false} /> : null;
+  if (!DevTools) return null;
+  try {
+    return <DevTools initialIsOpen={false} />;
+  } catch (err) {
+    console.error('Error rendering DevTools:', err);
+    return null;
+  }
 }
 
 // Error fallback component
