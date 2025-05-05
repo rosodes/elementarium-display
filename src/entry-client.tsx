@@ -1,3 +1,4 @@
+
 import React, { startTransition, Suspense, lazy, useState, useEffect } from 'react';
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -77,7 +78,7 @@ const getInitialLanguage = () => {
   const path = window.location.pathname;
   if (path.startsWith('/ru/') || path === '/ru') return 'ru';
   if (path.startsWith('/uk/') || path === '/uk') return 'uk';
-  return 'en';
+  return 'en'; // Default to English
 };
 
 // Main rendering function
