@@ -27,7 +27,13 @@ const queryClient = new QueryClient({
 
 // Create a custom DevTools component that only loads in development
 function ReactQueryDevTools() {
-  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
+  // Define a better type for the DevTools component that includes the initialIsOpen prop
+  type DevToolsComponentType = React.ComponentType<{
+    initialIsOpen?: boolean;
+    [key: string]: any;
+  }>;
+  
+  const [DevToolsComponent, setDevToolsComponent] = useState<DevToolsComponentType | null>(null);
   
   useEffect(() => {
     // Only load in development and in browser environment
@@ -49,8 +55,7 @@ function ReactQueryDevTools() {
   }, []);
   
   // Render the component only if it's loaded
-  // Cast to any or use proper typing to avoid TypeScript errors with props
-  return DevToolsComponent ? React.createElement(DevToolsComponent, { initialIsOpen: false }) : null;
+  return DevToolsComponent ? <DevToolsComponent initialIsOpen={false} /> : null;
 }
 
 // Error fallback component for catching hydration errors
