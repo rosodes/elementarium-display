@@ -100,7 +100,9 @@ export default defineConfig(({ mode }) => ({
       'react-dom', 
       'react-router-dom',
       '@tanstack/react-query',
-      'react-helmet-async'
+      'react-helmet-async',
+      // Adding devtools to pre-bundle to avoid require() issues
+      '@tanstack/react-query-devtools'
     ]
   },
   // Explicitly ensure that code is processed as ESM

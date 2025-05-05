@@ -26,12 +26,13 @@ const queryClient = new QueryClient({
   },
 });
 
-// Use lazy loading for React Query Devtools to avoid require() calls at module level
+// Use dynamic import with ESM syntax for React Query Devtools
+// This approach avoids the require() call that was causing the error
 const ReactQueryDevtools = import.meta.env.DEV
   ? lazy(() => import('@tanstack/react-query-devtools').then(module => ({
       default: module.ReactQueryDevtools
     })))
-  : null;
+  : () => null;
 
 // Simple error boundary component for catching hydration errors
 const ErrorFallback = () => (
