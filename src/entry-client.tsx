@@ -26,20 +26,19 @@ const queryClient = new QueryClient({
   },
 });
 
-// Simple DevTools implementation that lazy loads only in development
+// Pure ESM implementation of React Query DevTools
 function ReactQueryDevTools() {
   const [DevTools, setDevTools] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
-    // Only load in development environment and in browser
-    if (typeof window !== 'undefined' && import.meta.env.DEV === true) {
-      console.log('Loading React Query DevTools...');
+    // Only load in development and in browser
+    if (import.meta.env.DEV && typeof window !== 'undefined') {
+      console.log('Loading React Query DevTools with ESM import...');
       
-      // Dynamic import with ESM syntax
+      // Dynamic ESM import
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
-          // Store the component in state
           setDevTools(() => module.ReactQueryDevtools);
         })
         .catch(err => {
@@ -48,11 +47,10 @@ function ReactQueryDevTools() {
     }
   }, []);
   
-  // Only render if DevTools is loaded
   return DevTools ? <DevTools initialIsOpen={false} /> : null;
 }
 
-// Error fallback component for catching hydration errors
+// Error fallback component
 const ErrorFallback = () => (
   <div className="p-4 m-4 border border-red-500 rounded bg-red-50 text-red-800">
     <h2>Something went wrong</h2>
@@ -66,7 +64,7 @@ const ErrorFallback = () => (
   </div>
 );
 
-// Determine initial language from URL
+// Get initial language from URL
 const getInitialLanguage = () => {
   const path = window.location.pathname;
   if (path.startsWith('/ru/') || path === '/ru') return 'ru';
@@ -76,7 +74,6 @@ const getInitialLanguage = () => {
 
 // Main rendering function
 function renderApp() {
-  // Find the container and handle missing root
   const container = document.getElementById('root');
   if (!container) {
     console.error('Root element not found. Creating a fallback container.');
@@ -91,10 +88,10 @@ function renderApp() {
   const helmetContext = {};
 
   try {
-    // Handle React Query state hydration safely
-    if (window.__REACT_QUERY_STATE__) {
+    // Safe hydration of React Query state
+    if (typeof window !== 'undefined' && window.__REACT_QUERY_STATE__) {
       const queryState = window.__REACT_QUERY_STATE__;
-      if (queryState && Array.isArray(queryState.queries)) {
+      if (queryState?.queries?.length) {
         console.log(`Hydrating ${queryState.queries.length} queries...`);
         queryState.queries.forEach(query => {
           if (query.queryKey && query.state?.data) {
@@ -126,9 +123,7 @@ function renderApp() {
   );
 
   try {
-    // Use startTransition to mark hydration as non-urgent
     startTransition(() => {
-      // Try to hydrate, but fallback to normal render if SSR HTML is missing
       const isSSR = container.innerHTML.trim().length > 0;
       
       if (isSSR) {
@@ -143,7 +138,6 @@ function renderApp() {
     });
   } catch (error) {
     console.error('Fatal rendering error:', error);
-    // Render error fallback if hydration fails completely
     createRoot(container).render(<ErrorFallback />);
   }
 }
@@ -163,6 +157,15 @@ if (loadingIndicator) {
 // TypeScript declaration for React Query state
 declare global {
   interface Window {
-    __REACT_QUERY_STATE__?: any;
+    __REACT_QUERY_STATE__?: {
+      queries: Array<{
+        queryKey: unknown[];
+        state: {
+          data?: unknown;
+          [key: string]: unknown;
+        };
+        [key: string]: unknown;
+      }>;
+    };
   }
 }
