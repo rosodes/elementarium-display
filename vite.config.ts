@@ -101,7 +101,7 @@ export default defineConfig(({ mode }) => ({
       'react-router-dom',
       '@tanstack/react-query',
       'react-helmet-async',
-      // Pre-bundle the DevTools package to avoid any require() issues
+      // Explicitly pre-bundle DevTools to avoid require() calls
       '@tanstack/react-query-devtools'
     ]
   },
@@ -128,5 +128,8 @@ export default defineConfig(({ mode }) => ({
       '@tanstack/react-query', 
       '@tanstack/react-query-devtools'
     ],
+    // Ensure proper handling of ESM modules in SSR
+    target: 'esnext',
+    format: 'esm',
   }
 }))

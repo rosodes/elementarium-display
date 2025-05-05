@@ -26,28 +26,32 @@ const queryClient = new QueryClient({
   },
 });
 
-// ESM-compatible DevTools component with proper error handling
+// ESM-compatible DevTools implementation with explicit lazy loading
+// This approach completely avoids any require() calls during module evaluation
+const ReactQueryDevToolsLazy = lazy(() => {
+  console.log('Lazy loading React Query DevTools...');
+  return import('@tanstack/react-query-devtools')
+    .then(module => {
+      console.log('Successfully loaded React Query DevTools');
+      return { default: module.ReactQueryDevtools };
+    })
+    .catch(error => {
+      console.error('Failed to load React Query DevTools:', error);
+      // Return a dummy component on error
+      return { default: () => null };
+    });
+});
+
+// Simple DevTools wrapper component
 function ReactQueryDevTools() {
-  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
+  // Only render in development
+  if (!import.meta.env.DEV) return null;
   
-  useEffect(() => {
-    // Only load in development and only in client
-    if (import.meta.env.DEV) {
-      console.log('Loading React Query DevTools...');
-      // Use dynamic import to avoid CommonJS require() calls
-      import('@tanstack/react-query-devtools')
-        .then(module => {
-          console.log('Successfully loaded React Query DevTools');
-          setDevToolsComponent(() => module.ReactQueryDevtools);
-        })
-        .catch(error => {
-          console.error('Failed to load React Query DevTools:', error);
-        });
-    }
-  }, []);
-  
-  // Only render the component if it's loaded
-  return DevToolsComponent ? <DevToolsComponent initialIsOpen={false} /> : null;
+  return (
+    <Suspense fallback={null}>
+      <ReactQueryDevToolsLazy initialIsOpen={false} />
+    </Suspense>
+  );
 }
 
 // Error fallback component for catching hydration errors
@@ -122,7 +126,7 @@ function renderApp() {
           </LanguageProvider>
         </ThemeProvider>
         {/* Only render DevTools in development */}
-        {import.meta.env.DEV && <ReactQueryDevTools />}
+        <ReactQueryDevTools />
       </QueryClientProvider>
     </React.StrictMode>
   );
