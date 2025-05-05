@@ -6,133 +6,134 @@ import path from 'path'
 import compression from 'vite-plugin-compression'
 import legacy from '@vitejs/plugin-legacy'
 import { componentTagger } from 'lovable-tagger'
+import type { UserConfig } from 'vite'
 
 // Read package.json to detect dependencies
 const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
-  plugins: [
-    react({
-      // Configure Babel to handle TypeScript properly
-      babel: {
-        babelrc: false,
-        configFile: false,
-        browserslistConfigFile: false,
-        presets: [
-          ['@babel/preset-env', {
-            // Hard-code targets instead of using browserslist
-            targets: { 
-              chrome: "60",
-              firefox: "60",
-              safari: "12",
-              edge: "79",
-              node: "current"
-            },
-            useBuiltIns: 'usage',
-            corejs: '3.22'
-          }],
-          ['@babel/preset-typescript', {
-            // These settings help avoid TypeScript transformation issues
-            isTSX: true,
-            allowNamespaces: true,
-            allExtensions: true,
-            allowDeclareFields: true
-          }]
-        ]
-      }
-    }),
-    legacy({
-      // Hard-code targets here too for consistency
-      targets: ['chrome >= 60', 'firefox >= 60', 'safari >= 12', 'edge >= 79'],
-      modernPolyfills: true
-    }),
-    compression({
-      algorithm: 'brotliCompress',
-      ext: '.br',
-    }),
-    compression({
-      algorithm: 'gzip',
-      ext: '.gz',
-    }),
-    // Add componentTagger plugin for development mode
-    mode === 'development' && componentTagger(),
-  ].filter(Boolean),
-  resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src')
-    },
-    // Ensure proper resolution of ESM modules by prioritizing browser field
-    mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
-    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
-  },
-  server: {
-    host: "::",
-    port: 8080
-  },
-  build: {
-    outDir: 'dist',
-    emptyOutDir: true,
-    sourcemap: true,
-    minify: 'terser',
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, 'index.html'),
-        server: path.resolve(__dirname, 'src/entry-server.tsx'),
+export default defineConfig(({ mode }) => {
+  const config: UserConfig = {
+    plugins: [
+      react({
+        // Configure Babel to handle TypeScript properly
+        babel: {
+          babelrc: false,
+          configFile: false,
+          browserslistConfigFile: false,
+          presets: [
+            ['@babel/preset-env', {
+              // Hard-code targets instead of using browserslist
+              targets: { 
+                chrome: "60",
+                firefox: "60",
+                safari: "12",
+                edge: "79",
+                node: "current"
+              },
+              useBuiltIns: 'usage',
+              corejs: '3.22'
+            }],
+            ['@babel/preset-typescript', {
+              // These settings help avoid TypeScript transformation issues
+              isTSX: true,
+              allowNamespaces: true,
+              allExtensions: true,
+              allowDeclareFields: true
+            }]
+          ]
+        }
+      }),
+      legacy({
+        // Hard-code targets here too for consistency
+        targets: ['chrome >= 60', 'firefox >= 60', 'safari >= 12', 'edge >= 79'],
+        modernPolyfills: true
+      }),
+      compression({
+        algorithm: 'brotliCompress',
+        ext: '.br',
+      }),
+      compression({
+        algorithm: 'gzip',
+        ext: '.gz',
+      }),
+      // Add componentTagger plugin for development mode
+      mode === 'development' && componentTagger(),
+    ].filter(Boolean),
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src')
       },
-      output: {
-        format: 'es', // Ensure ESM output
-        entryFileNames: '[name].[hash].js',
-        chunkFileNames: 'chunks/[name].[hash].js',
+      // Ensure proper resolution of ESM modules by prioritizing browser field
+      mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+    },
+    server: {
+      host: "::",
+      port: 8080
+    },
+    build: {
+      outDir: 'dist',
+      emptyOutDir: true,
+      sourcemap: true,
+      minify: 'terser',
+      rollupOptions: {
+        input: {
+          main: path.resolve(__dirname, 'index.html'),
+          server: path.resolve(__dirname, 'src/entry-server.tsx'),
+        },
+        output: {
+          format: 'es', // Ensure ESM output
+          entryFileNames: '[name].[hash].js',
+          chunkFileNames: 'chunks/[name].[hash].js',
+        },
       },
     },
-  },
-  optimizeDeps: {
-    esbuildOptions: {
+    optimizeDeps: {
+      esbuildOptions: {
+        target: 'es2020',
+        format: 'esm', // Explicitly set ESM format
+        supported: { 
+          bigint: true 
+        },
+      },
+      // Pre-bundle these packages to avoid ESM/CJS interop issues
+      include: [
+        'react', 
+        'react-dom', 
+        'react-router-dom',
+        '@tanstack/react-query',
+        '@tanstack/react-query-devtools'
+      ],
+      exclude: []
+    },
+    // Define environment variables
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(mode),
+      '__IS_DEV__': mode === 'development',
+      // Make sure global objects are properly defined
+      'global': 'globalThis',
+    },
+    // Ensure we're using ESM
+    esbuild: {
+      format: 'esm',
       target: 'es2020',
-      format: 'esm', // Explicitly set ESM format
-      supported: { 
-        bigint: true 
+      supported: {
+        'dynamic-import': true,
+        'import-meta': true,
       },
     },
-    // Pre-bundle these packages to avoid ESM/CJS interop issues
-    include: [
-      'react', 
-      'react-dom', 
-      'react-router-dom',
-      '@tanstack/react-query',
-      '@tanstack/react-query-devtools'
-    ],
-    exclude: []
-  },
-  // Define environment variables
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(mode),
-    '__IS_DEV__': mode === 'development',
-    // Make sure require is undefined in client code
-    'require': 'undefined',
-    'global': 'globalThis',
-  },
-  // Ensure we're using ESM
-  esbuild: {
-    format: 'esm',
-    target: 'es2020',
-    supported: {
-      'dynamic-import': true,
-      'import-meta': true,
-    },
-  },
-  // SSR specific options
-  ssr: {
-    // External packages that shouldn't be bundled for SSR
-    external: ['react-helmet-async'],
-    // Force bundle these packages for SSR to avoid CommonJS issues
-    noExternal: [
-      '@tanstack/react-query',
-      '@tanstack/react-query-devtools'
-    ],
-    // Ensure target is modern for SSR
-    target: 'esnext',
-    format: 'esm'
-  }
-}))
+    // SSR specific options
+    ssr: {
+      // External packages that shouldn't be bundled for SSR
+      external: ['react-helmet-async'],
+      // Force bundle these packages for SSR to avoid CommonJS issues
+      noExternal: [
+        '@tanstack/react-query',
+        '@tanstack/react-query-devtools'
+      ]
+    }
+  };
+  
+  return config;
+})

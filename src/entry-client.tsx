@@ -26,17 +26,17 @@ const queryClient = new QueryClient({
   },
 });
 
-// React Query DevTools component using dynamic import with explicit ESM handling
+// React Query DevTools component using dynamic import
 function ReactQueryDevTools() {
   const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
     // Only load in development and in browser environment
-    if (import.meta.env.DEV && typeof window !== 'undefined') {
-      console.log('Loading React Query DevTools (pure ESM)...');
+    if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined') {
+      console.log('Loading React Query DevTools...');
       
-      // Use dynamic ESM import with explicit error handling
-      import('@tanstack/react-query-devtools/esm')
+      // Use dynamic import with proper error handling
+      import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools module loaded successfully:', module);
           
@@ -49,19 +49,7 @@ function ReactQueryDevTools() {
           }
         })
         .catch(err => {
-          console.error('Failed to load DevTools (ESM import error):', err);
-          // Try alternative import path
-          console.log('Trying alternative import path...');
-          import('@tanstack/react-query-devtools')
-            .then(module => {
-              console.log('Alternative import successful:', module);
-              if (module && module.ReactQueryDevtools) {
-                setDevToolsComponent(() => module.ReactQueryDevtools);
-              }
-            })
-            .catch(altErr => {
-              console.error('All import attempts failed:', altErr);
-            });
+          console.error('Failed to load DevTools:', err);
         });
     }
   }, []);
