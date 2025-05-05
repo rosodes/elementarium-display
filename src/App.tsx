@@ -1,7 +1,6 @@
 
 import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes, Route } from "react-router-dom";
 import { useLanguage } from "./context/LanguageContext";
@@ -19,8 +18,6 @@ const PageLoader = () => (
   </div>
 );
 
-// Ukrainian language is already registered in src/i18n/index.ts
-// Update language names in Header.tsx when adding new languages
 const App = () => {
   const { t } = useLanguage();
 
@@ -28,7 +25,6 @@ const App = () => {
     <>
       <TooltipProvider>
         <Toaster />
-        <Sonner />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             {/* Home routes with language support */}

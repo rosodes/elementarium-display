@@ -5,7 +5,6 @@ import { readFileSync } from 'fs'
 import path from 'path'
 import compression from 'vite-plugin-compression'
 import legacy from '@vitejs/plugin-legacy'
-import { componentTagger } from 'lovable-tagger'
 import type { UserConfig } from 'vite'
 
 // Read package.json to detect dependencies
@@ -57,8 +56,6 @@ export default defineConfig(({ mode }) => {
         algorithm: 'gzip',
         ext: '.gz',
       }),
-      // Add componentTagger plugin for development mode
-      mode === 'development' && componentTagger(),
     ].filter(Boolean),
     resolve: {
       alias: {
@@ -103,12 +100,9 @@ export default defineConfig(({ mode }) => {
         'react-router-dom',
         '@tanstack/react-query',
       ],
-      // Exclude ALL potentially problematic packages
+      // Exclude potentially problematic packages
       exclude: [
         '@tanstack/react-query-devtools',
-        'react-query/devtools',
-        'react-query-devtools',
-        // Add any other packages that might use require
       ],
     },
     // Define environment variables
