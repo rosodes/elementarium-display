@@ -101,7 +101,7 @@ export default defineConfig(({ mode }) => ({
       'react-router-dom',
       '@tanstack/react-query',
       'react-helmet-async',
-      // Include React Query DevTools for prebundling
+      // Explicitly include React Query DevTools for prebundling
       '@tanstack/react-query-devtools'
     ]
   },

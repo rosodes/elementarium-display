@@ -26,20 +26,25 @@ const queryClient = new QueryClient({
   },
 });
 
-// ESM implementation of React Query DevTools with dynamic import
+// Pure ESM implementation of React Query DevTools
 function ReactQueryDevTools() {
   const [DevTools, setDevTools] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
-    // Only load in development and in browser
+    // Only load in development and in browser environment
     if (import.meta.env.DEV && typeof window !== 'undefined') {
-      console.log('Loading React Query DevTools dynamically...');
+      console.log('Loading React Query DevTools using dynamic import...');
       
-      // Using dynamic import (ESM) instead of require (CommonJS)
+      // Dynamic ESM import
       import('@tanstack/react-query-devtools')
         .then(module => {
-          console.log('DevTools loaded successfully');
-          setDevTools(() => module.ReactQueryDevtools);
+          console.log('DevTools loaded successfully:', module);
+          // Make sure we access the correct export
+          if (module && module.ReactQueryDevtools) {
+            setDevTools(() => module.ReactQueryDevtools);
+          } else {
+            console.error('ReactQueryDevtools not found in module', module);
+          }
         })
         .catch(err => {
           console.error('Failed to load DevTools:', err);
@@ -47,11 +52,12 @@ function ReactQueryDevTools() {
     }
     
     return () => {
-      // Cleanup function
+      // Clean up on unmount
       setDevTools(null);
     };
   }, []);
   
+  // Only render if DevTools component is available
   return DevTools ? <DevTools initialIsOpen={false} /> : null;
 }
 
@@ -93,7 +99,7 @@ function renderApp() {
   const helmetContext = {};
 
   try {
-    // Safe hydration of React Query state, using only properties that exist
+    // Safe hydration of React Query state
     if (typeof window !== 'undefined' && window.__REACT_QUERY_STATE__) {
       const queryState = window.__REACT_QUERY_STATE__;
       if (queryState?.queries?.length) {
