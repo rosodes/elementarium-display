@@ -6,9 +6,9 @@ import App from './App';
 import './index.css';
 import './styles/periodicTable.css';
 import { HelmetProvider } from 'react-helmet-async';
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ThemeProvider } from "./context/ThemeContext";
-import { LanguageProvider } from "./context/LanguageContext";
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ThemeProvider } from './context/ThemeContext';
+import { LanguageProvider } from './context/LanguageContext';
 
 // Performance measurement
 const startTime = performance.now();
