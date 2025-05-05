@@ -65,8 +65,7 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src')
       },
       // Ensure proper resolution of ESM modules
-      mainFields: ['browser', 'module', 'main'],
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
+      mainFields: ['module', 'browser', 'main'],
     },
     server: {
       host: "::",
@@ -104,11 +103,12 @@ export default defineConfig(({ mode }) => {
         'react-router-dom',
         '@tanstack/react-query',
       ],
-      // Exclude packages that might cause require issues
+      // Exclude ALL potentially problematic packages
       exclude: [
         '@tanstack/react-query-devtools',
         'react-query/devtools',
-        'react-query-devtools'
+        'react-query-devtools',
+        // Add any other packages that might use require
       ],
     },
     // Define environment variables
@@ -121,12 +121,6 @@ export default defineConfig(({ mode }) => {
       },
       // Make sure global objects are properly defined for ESM
       'global': 'globalThis',
-      // Add safety polyfills for browser vs Node.js compatibility
-      'process': JSON.stringify({
-        env: { 
-          NODE_ENV: mode 
-        }
-      }),
     },
     // Ensure we're using ESM
     esbuild: {

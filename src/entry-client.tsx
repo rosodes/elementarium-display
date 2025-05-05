@@ -1,5 +1,5 @@
 
-import React, { startTransition, Suspense, lazy, useState, useEffect } from 'react';
+import React, { startTransition, Suspense } from 'react';
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
@@ -19,15 +19,13 @@ const logError = (error: Error, info: string) => {
   console.log('%c APP ERROR DETECTED ', 'background: #FF0000; color: white; font-size: 16px; font-weight: bold;');
   console.log(`Error message: ${error.message}`);
   console.log(`Location: ${info}`);
-  
-  // You could add an API call here to log errors to a server
 };
 
 // Set up global error handler
 if (typeof window !== 'undefined') {
   window.onerror = (message, source, lineno, colno, error) => {
     logError(error || new Error(String(message)), `Window error at ${source}:${lineno}:${colno}`);
-    return false; // Let default handler run as well
+    return false;
   };
 }
 
@@ -46,20 +44,6 @@ const queryClient = new QueryClient({
     },
   },
 });
-
-// Simple React Query DevTools component without dynamic imports
-// This avoids the "require is not defined" error
-function ReactQueryDevTools() {
-  if (import.meta.env.DEV) {
-    return (
-      <div className="fixed bottom-2 right-2 z-50 p-2 bg-white dark:bg-gray-800 rounded shadow-lg border border-gray-200 dark:border-gray-700">
-        <p className="text-xs text-gray-500">React Query DevTools</p>
-        <p className="text-xs text-gray-400">Dynamic imports disabled to fix ESM errors</p>
-      </div>
-    );
-  }
-  return null;
-}
 
 // Error fallback component
 const ErrorFallback = () => (
@@ -98,27 +82,7 @@ function renderApp() {
   
   const helmetContext = {};
 
-  try {
-    // Safe hydration of React Query state - without any require statements
-    if (typeof window !== 'undefined' && window.__REACT_QUERY_STATE__) {
-      try {
-        const queryState = window.__REACT_QUERY_STATE__;
-        if (queryState?.queries?.length) {
-          console.log(`Hydrating ${queryState.queries.length} queries...`);
-          queryState.queries.forEach(query => {
-            if (query.queryKey && query.state?.data) {
-              queryClient.setQueryData(query.queryKey, query.state.data);
-            }
-          });
-          console.log('Query hydration complete');
-        }
-      } catch (error) {
-        console.error('Failed to hydrate query state:', error);
-      }
-    }
-  } catch (error) {
-    logError(error as Error, 'Query hydration');
-  }
+  // Completely removed the React Query state hydration code that could cause issues
 
   const AppWithProviders = (
     <React.StrictMode>
@@ -132,7 +96,7 @@ function renderApp() {
             </HelmetProvider>
           </LanguageProvider>
         </ThemeProvider>
-        <ReactQueryDevTools />
+        {/* Removed ReactQueryDevTools component entirely */}
       </QueryClientProvider>
     </React.StrictMode>
   );
@@ -189,18 +153,9 @@ if (loadingIndicator) {
   }, 300);
 }
 
-// TypeScript declaration for React Query state
+// TypeScript declaration for React Query state - simplified to avoid any issues
 declare global {
   interface Window {
-    __REACT_QUERY_STATE__?: {
-      queries: Array<{
-        queryKey: unknown[];
-        state: {
-          data?: unknown;
-          [key: string]: unknown;
-        };
-        [key: string]: unknown;
-      }>;
-    };
+    __REACT_QUERY_STATE__?: any;
   }
 }
