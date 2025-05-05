@@ -100,7 +100,9 @@ export default defineConfig(({ mode }) => ({
       'react-dom', 
       'react-router-dom',
       '@tanstack/react-query',
-      'react-helmet-async'
+      'react-helmet-async',
+      // Include React Query DevTools for prebundling
+      '@tanstack/react-query-devtools'
     ]
   },
   // Define environment variables
@@ -123,7 +125,7 @@ export default defineConfig(({ mode }) => ({
     external: ['react-helmet-async'],
     // Force bundle these packages for SSR to avoid CommonJS issues
     noExternal: [
-      '@tanstack/react-query', 
+      '@tanstack/react-query',
       '@tanstack/react-query-devtools'
     ]
   }

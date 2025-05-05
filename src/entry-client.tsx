@@ -33,9 +33,9 @@ function ReactQueryDevTools() {
   useEffect(() => {
     // Only load in development and in browser
     if (import.meta.env.DEV && typeof window !== 'undefined') {
-      console.log('Loading React Query DevTools...');
+      console.log('Loading React Query DevTools dynamically...');
       
-      // Using dynamic import instead of require
+      // Using dynamic import (ESM) instead of require (CommonJS)
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
@@ -45,6 +45,11 @@ function ReactQueryDevTools() {
           console.error('Failed to load DevTools:', err);
         });
     }
+    
+    return () => {
+      // Cleanup function
+      setDevTools(null);
+    };
   }, []);
   
   return DevTools ? <DevTools initialIsOpen={false} /> : null;
