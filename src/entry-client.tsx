@@ -26,35 +26,29 @@ const queryClient = new QueryClient({
   },
 });
 
-// ReactQueryDevTools implementation without require
+// Simple DevTools implementation using pure ESM approach
 function ReactQueryDevTools() {
-  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<{
-    initialIsOpen?: boolean;
-  }> | null>(null);
+  // Use null initially
+  const [DevTools, setDevTools] = useState<null | React.ComponentType<any>>(null);
   
   useEffect(() => {
     // Only load in development environment
-    const isDev = import.meta.env?.DEV || false;
-    
-    if (isDev && typeof window !== 'undefined') {
-      console.log('Loading React Query DevTools dynamically...');
+    if (typeof window !== 'undefined' && import.meta.env?.DEV === true) {
+      console.log('Loading React Query DevTools...');
       
-      // Use dynamic import - fully ESM compatible approach
+      // Use dynamic import with modern ESM
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
-          if (module && typeof module.ReactQueryDevtools === 'function') {
-            setDevToolsComponent(() => module.ReactQueryDevtools);
-          }
+          setDevTools(() => module.ReactQueryDevtools);
         })
-        .catch(error => {
-          console.error('Failed to load React Query DevTools:', error);
+        .catch(err => {
+          console.error('Failed to load DevTools:', err);
         });
     }
   }, []);
   
-  if (!DevToolsComponent) return null;
-  return <DevToolsComponent initialIsOpen={false} />;
+  return DevTools ? <DevTools initialIsOpen={false} /> : null;
 }
 
 // Error fallback component for catching hydration errors
@@ -96,25 +90,19 @@ function renderApp() {
   const helmetContext = {};
 
   try {
-    // Check for hydration data using modern approach
-    if (window.__REACT_QUERY_STATE__) {
-      console.log('Hydrating React Query state...');
-      
-      // Properly hydrate the query client with state data
-      const dehydratedState = window.__REACT_QUERY_STATE__;
-      if (dehydratedState && Array.isArray(dehydratedState.queries)) {
-        console.log(`Found ${dehydratedState.queries.length} queries to hydrate`);
-        dehydratedState.queries.forEach((query) => {
+    // Handle React Query state hydration
+    const queryState = window.__REACT_QUERY_STATE__;
+    if (queryState && Array.isArray(queryState.queries)) {
+      console.log(`Hydrating ${queryState.queries.length} queries...`);
+      queryState.queries.forEach(query => {
+        if (query.queryKey && query.state?.data) {
           queryClient.setQueryData(query.queryKey, query.state.data);
-        });
-      }
-      console.log('React Query state hydrated successfully');
-    } else {
-      console.log('No React Query state to hydrate');
+        }
+      });
+      console.log('Query hydration complete');
     }
   } catch (error) {
-    console.error('Error hydrating React Query state:', error);
-    // Continue with rendering even if hydration fails
+    console.error('Hydration error:', error);
   }
 
   const AppWithProviders = (
