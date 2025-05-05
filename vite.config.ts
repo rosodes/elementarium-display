@@ -94,14 +94,14 @@ export default defineConfig(({ mode }) => ({
         bigint: true 
       },
     },
-    // Ensure React Query DevTools is properly pre-bundled to avoid require() issues
+    // Force pre-bundle these packages to avoid ESM/CJS interop issues
     include: [
       'react', 
       'react-dom', 
       'react-router-dom',
       '@tanstack/react-query',
       'react-helmet-async',
-      // Explicitly include the DevTools to pre-bundle it
+      // Pre-bundle the DevTools package to avoid any require() issues
       '@tanstack/react-query-devtools'
     ]
   },
