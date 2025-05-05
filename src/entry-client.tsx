@@ -35,7 +35,6 @@ function ReactQueryDevTools() {
     if (import.meta.env.DEV && typeof window !== 'undefined') {
       console.log('Loading React Query DevTools...');
       
-      // Use dynamic ESM import instead of require
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
