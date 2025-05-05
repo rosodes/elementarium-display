@@ -39,15 +39,19 @@ function ReactQueryDevTools() {
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully, module:', module);
-          try {
-            // Handle the export format for the latest React Query DevTools
+          // Log the module structure to understand its format
+          console.log('Module structure:', Object.keys(module));
+          
+          if (typeof module === 'object') {
+            // Check if ReactQueryDevtools exists directly on the module
             if (module.ReactQueryDevtools) {
+              console.log('Found ReactQueryDevtools in module');
               setDevTools(() => module.ReactQueryDevtools);
             } else {
-              console.error('ReactQueryDevtools not found in module:', Object.keys(module));
+              console.error('ReactQueryDevtools not found in module. Available exports:', Object.keys(module));
             }
-          } catch (err) {
-            console.error('Error setting up DevTools component:', err);
+          } else {
+            console.error('Unexpected module type:', typeof module);
           }
         })
         .catch(err => {
