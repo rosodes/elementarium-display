@@ -63,7 +63,7 @@ export default defineConfig(({ mode }) => ({
       '@': path.resolve(__dirname, './src')
     },
     // Ensure proper resolution of ESM modules
-    mainFields: ['module', 'jsnext:main', 'jsnext']
+    mainFields: ['browser', 'module', 'jsnext:main', 'jsnext']
   },
   server: {
     host: "::",
@@ -94,15 +94,15 @@ export default defineConfig(({ mode }) => ({
         bigint: true 
       },
     },
-    // Force pre-bundle these packages to avoid ESM/CJS interop issues
+    // Pre-bundle these packages to avoid ESM/CJS interop issues
     include: [
       'react', 
       'react-dom', 
       'react-router-dom',
       '@tanstack/react-query',
-      // Use the correct main entry point for React Query DevTools
       '@tanstack/react-query-devtools'
-    ]
+    ],
+    exclude: []
   },
   // Define environment variables
   define: {

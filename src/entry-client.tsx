@@ -26,26 +26,26 @@ const queryClient = new QueryClient({
   },
 });
 
-// Pure ESM implementation of React Query DevTools using dynamic import
+// React Query DevTools component using import() for lazy loading
 function ReactQueryDevTools() {
   const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
     // Only load in development and in browser environment
     if (import.meta.env.DEV && typeof window !== 'undefined') {
-      console.log('Loading React Query DevTools using dynamic import...');
+      console.log('Loading React Query DevTools...');
       
-      // Import directly from the package - no specific path
+      // Use dynamic ESM import
       import('@tanstack/react-query-devtools')
         .then(module => {
-          console.log('DevTools loaded successfully');
-          console.log('Available exports:', Object.keys(module));
+          console.log('DevTools module loaded successfully');
           
-          // The ReactQueryDevtools should be a named export
+          // Check if the module has the expected export
           if (module && typeof module.ReactQueryDevtools === 'function') {
+            console.log('Found ReactQueryDevtools component, setting it');
             setDevToolsComponent(() => module.ReactQueryDevtools);
           } else {
-            console.error('ReactQueryDevtools not found in module. Available exports:', Object.keys(module));
+            console.error('ReactQueryDevtools export not found in module. Available exports:', Object.keys(module));
           }
         })
         .catch(err => {
@@ -54,6 +54,7 @@ function ReactQueryDevTools() {
     }
   }, []);
   
+  // Only render if the component is available
   if (!DevToolsComponent) return null;
   
   try {
