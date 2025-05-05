@@ -28,7 +28,7 @@ const queryClient = new QueryClient({
 
 // Create a custom DevTools component that only loads in development
 function ReactQueryDevTools() {
-  // Define a generic type for the DevTools component
+  // Using React.ComponentType for proper typing
   type DevToolsComponentType = React.ComponentType<{
     initialIsOpen?: boolean;
     [key: string]: any;
@@ -38,14 +38,18 @@ function ReactQueryDevTools() {
   
   useEffect(() => {
     // Only load in development and in browser environment
-    if (process.env.NODE_ENV === 'development' || (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV)) {
+    const isDev = process.env.NODE_ENV === 'development' || (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV);
+    
+    if (isDev) {
       console.log('Loading React Query DevTools dynamically...');
       
-      // Use dynamic import (ESM) instead of require
+      // Use dynamic import with ESM syntax only
       import('@tanstack/react-query-devtools')
         .then((module) => {
           console.log('DevTools loaded successfully');
-          setDevToolsComponent(() => module.ReactQueryDevtools);
+          if (module && module.ReactQueryDevtools) {
+            setDevToolsComponent(() => module.ReactQueryDevtools);
+          }
         })
         .catch((error) => {
           console.error('Failed to load React Query DevTools:', error);
