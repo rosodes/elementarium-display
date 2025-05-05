@@ -28,12 +28,13 @@ const queryClient = new QueryClient({
 
 // ESM-compatible DevTools component with proper error handling
 function ReactQueryDevTools() {
-  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType | null>(null);
+  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
     // Only load in development and only in client
     if (import.meta.env.DEV) {
       console.log('Loading React Query DevTools...');
+      // Use dynamic import to avoid CommonJS require() calls
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('Successfully loaded React Query DevTools');
@@ -45,11 +46,8 @@ function ReactQueryDevTools() {
     }
   }, []);
   
-  // Render nothing until the component is loaded
-  if (!DevToolsComponent) return null;
-  
-  // Render the actual component once loaded
-  return <DevToolsComponent initialIsOpen={false} />;
+  // Only render the component if it's loaded
+  return DevToolsComponent ? <DevToolsComponent initialIsOpen={false} /> : null;
 }
 
 // Error fallback component for catching hydration errors
