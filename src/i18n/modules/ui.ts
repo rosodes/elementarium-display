@@ -25,7 +25,7 @@ export interface UITranslations {
   accessibilityLabel?: string;
   elementTable?: string;
   focusMode?: string;
-  usageDistribution?: string;
+  usageDistribution?: string;  // Added this property
   simulatedData?: string;
   note?: string;
   // Add missing properties
