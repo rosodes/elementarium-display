@@ -40,11 +40,9 @@ function ReactQueryDevTools() {
         .then(module => {
           console.log('DevTools loaded successfully, module:', module);
           try {
-            // Handle different export formats
+            // Handle the export format for the latest React Query DevTools
             if (module.ReactQueryDevtools) {
               setDevTools(() => module.ReactQueryDevtools);
-            } else if (module.default && module.default.ReactQueryDevtools) {
-              setDevTools(() => module.default.ReactQueryDevtools);
             } else {
               console.error('ReactQueryDevtools not found in module:', Object.keys(module));
             }
