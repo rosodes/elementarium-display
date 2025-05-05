@@ -26,32 +26,23 @@ const queryClient = new QueryClient({
   },
 });
 
-// Purely ESM implementation of React Query DevTools
+// Implementation of React Query DevTools with dynamic import
 function ReactQueryDevTools() {
   const [DevTools, setDevTools] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
     // Only load in development and in browser
     if (import.meta.env.DEV && typeof window !== 'undefined') {
-      console.log('Loading React Query DevTools with ESM dynamic import...');
+      console.log('Loading React Query DevTools...');
       
-      import('@tanstack/react-query-devtools/esm')
+      // Use only the standard import path that we know exists
+      import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
           setDevTools(() => module.ReactQueryDevtools);
         })
         .catch(err => {
-          // Fallback to standard import if ESM fails
-          console.error('Failed to load ESM DevTools, trying standard import:', err);
-          
-          import('@tanstack/react-query-devtools')
-            .then(module => {
-              console.log('Standard DevTools loaded successfully');
-              setDevTools(() => module.ReactQueryDevtools);
-            })
-            .catch(err2 => {
-              console.error('Failed to load DevTools completely:', err2);
-            });
+          console.error('Failed to load DevTools:', err);
         });
     }
   }, []);
