@@ -26,48 +26,38 @@ const queryClient = new QueryClient({
   },
 });
 
-// Pure ESM implementation of React Query DevTools
+// Pure ESM implementation of React Query DevTools using dynamic import
 function ReactQueryDevTools() {
-  const [DevTools, setDevTools] = useState<React.ComponentType<any> | null>(null);
+  const [DevToolsComponent, setDevToolsComponent] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
     // Only load in development and in browser environment
     if (import.meta.env.DEV && typeof window !== 'undefined') {
       console.log('Loading React Query DevTools using dynamic import...');
       
-      // Use a dynamic import to load the DevTools component
-      // Import from the base package rather than a specific path
+      // Import directly from the package - no specific path
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
           console.log('Available exports:', Object.keys(module));
           
-          if (module && typeof module === 'object') {
-            // ReactQueryDevtools should be a named export
-            if (module.ReactQueryDevtools) {
-              console.log('Found ReactQueryDevtools component');
-              setDevTools(() => module.ReactQueryDevtools);
-            } else {
-              console.error('ReactQueryDevtools not found in module. Available exports:', Object.keys(module));
-            }
+          // The ReactQueryDevtools should be a named export
+          if (module && typeof module.ReactQueryDevtools === 'function') {
+            setDevToolsComponent(() => module.ReactQueryDevtools);
+          } else {
+            console.error('ReactQueryDevtools not found in module. Available exports:', Object.keys(module));
           }
         })
         .catch(err => {
           console.error('Failed to load DevTools:', err);
         });
     }
-    
-    return () => {
-      // Clean up on unmount
-      setDevTools(null);
-    };
   }, []);
   
-  // Only render if DevTools component is available
-  if (!DevTools) return null;
+  if (!DevToolsComponent) return null;
   
   try {
-    return <DevTools initialIsOpen={false} />;
+    return <DevToolsComponent initialIsOpen={false} />;
   } catch (err) {
     console.error('Error rendering DevTools:', err);
     return null;
