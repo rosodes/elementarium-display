@@ -127,9 +127,6 @@ export default defineConfig(({ mode }) => ({
     noExternal: [
       '@tanstack/react-query', 
       '@tanstack/react-query-devtools'
-    ],
-    // Ensure proper handling of ESM modules in SSR
-    target: 'esnext',
-    format: 'esm',
+    ]
   }
 }))

@@ -26,30 +26,29 @@ const queryClient = new QueryClient({
   },
 });
 
-// ESM-compatible DevTools implementation with explicit lazy loading
-// This approach completely avoids any require() calls during module evaluation
-const ReactQueryDevToolsLazy = lazy(() => {
-  console.log('Lazy loading React Query DevTools...');
-  return import('@tanstack/react-query-devtools')
-    .then(module => {
-      console.log('Successfully loaded React Query DevTools');
-      return { default: module.ReactQueryDevtools };
-    })
+// Use dynamic import with React.lazy to avoid require() calls
+const ReactQueryDevToolsLazy = lazy(() => 
+  import('@tanstack/react-query-devtools')
+    .then(module => ({
+      default: () => {
+        const { ReactQueryDevtools } = module;
+        return <ReactQueryDevtools initialIsOpen={false} />;
+      }
+    }))
     .catch(error => {
       console.error('Failed to load React Query DevTools:', error);
-      // Return a dummy component on error
       return { default: () => null };
-    });
-});
+    })
+);
 
 // Simple DevTools wrapper component
 function ReactQueryDevTools() {
   // Only render in development
-  if (!import.meta.env.DEV) return null;
+  if (typeof import.meta !== 'undefined' && !import.meta.env.DEV) return null;
   
   return (
     <Suspense fallback={null}>
-      <ReactQueryDevToolsLazy initialIsOpen={false} />
+      <ReactQueryDevToolsLazy />
     </Suspense>
   );
 }
@@ -125,7 +124,7 @@ function renderApp() {
             </HelmetProvider>
           </LanguageProvider>
         </ThemeProvider>
-        {/* Only render DevTools in development */}
+        {/* Dev tools */}
         <ReactQueryDevTools />
       </QueryClientProvider>
     </React.StrictMode>
