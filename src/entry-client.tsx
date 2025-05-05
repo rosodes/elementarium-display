@@ -14,7 +14,7 @@ import { LanguageProvider } from './context/LanguageContext';
 const startTime = performance.now();
 console.log('Client-side hydration started');
 
-// Create a new QueryClient with optimized settings
+// Create a new QueryClient for React Query
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -26,20 +26,20 @@ const queryClient = new QueryClient({
   },
 });
 
-// Simple DevTools implementation using pure ESM approach
+// Simple DevTools implementation that lazy loads only in development
 function ReactQueryDevTools() {
-  // Use null initially
-  const [DevTools, setDevTools] = useState<null | React.ComponentType<any>>(null);
+  const [DevTools, setDevTools] = useState<React.ComponentType<any> | null>(null);
   
   useEffect(() => {
-    // Only load in development environment
-    if (typeof window !== 'undefined' && import.meta.env?.DEV === true) {
+    // Only load in development environment and in browser
+    if (typeof window !== 'undefined' && import.meta.env.DEV === true) {
       console.log('Loading React Query DevTools...');
       
-      // Use dynamic import with modern ESM
+      // Dynamic import with ESM syntax
       import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
+          // Store the component in state
           setDevTools(() => module.ReactQueryDevtools);
         })
         .catch(err => {
@@ -48,6 +48,7 @@ function ReactQueryDevTools() {
     }
   }, []);
   
+  // Only render if DevTools is loaded
   return DevTools ? <DevTools initialIsOpen={false} /> : null;
 }
 
@@ -90,16 +91,18 @@ function renderApp() {
   const helmetContext = {};
 
   try {
-    // Handle React Query state hydration
-    const queryState = window.__REACT_QUERY_STATE__;
-    if (queryState && Array.isArray(queryState.queries)) {
-      console.log(`Hydrating ${queryState.queries.length} queries...`);
-      queryState.queries.forEach(query => {
-        if (query.queryKey && query.state?.data) {
-          queryClient.setQueryData(query.queryKey, query.state.data);
-        }
-      });
-      console.log('Query hydration complete');
+    // Handle React Query state hydration safely
+    if (window.__REACT_QUERY_STATE__) {
+      const queryState = window.__REACT_QUERY_STATE__;
+      if (queryState && Array.isArray(queryState.queries)) {
+        console.log(`Hydrating ${queryState.queries.length} queries...`);
+        queryState.queries.forEach(query => {
+          if (query.queryKey && query.state?.data) {
+            queryClient.setQueryData(query.queryKey, query.state.data);
+          }
+        });
+        console.log('Query hydration complete');
+      }
     }
   } catch (error) {
     console.error('Hydration error:', error);
