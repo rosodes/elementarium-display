@@ -36,9 +36,11 @@ function ReactQueryDevTools() {
       console.log('Loading React Query DevTools using dynamic import...');
       
       // Use a dynamic import to load the DevTools component
-      import('@tanstack/react-query-devtools/esm')
+      // Import from the base package rather than a specific path
+      import('@tanstack/react-query-devtools')
         .then(module => {
           console.log('DevTools loaded successfully');
+          console.log('Available exports:', Object.keys(module));
           
           if (module && typeof module === 'object') {
             // ReactQueryDevtools should be a named export
