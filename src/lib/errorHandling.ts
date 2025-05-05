@@ -26,7 +26,7 @@ export const setupGlobalErrorHandler = (): void => {
 };
 
 // Error fallback component
-export const ErrorFallback = () => (
+export const ErrorFallback: React.FC = () => (
   <div className="p-4 m-4 border border-red-500 rounded bg-red-50 text-red-800">
     <h2>Something went wrong</h2>
     <p>The application failed to load correctly. Please try refreshing the page.</p>
