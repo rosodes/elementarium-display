@@ -5,7 +5,7 @@
 import React from 'react';
 
 // Global error logger
-export const logError = (error: Error, info: string) => {
+export const logError = (error: Error, info: string): void => {
   console.error(`🔴 Error in ${info}:`, error);
   console.error(`📑 Stack trace:`, error.stack);
   
