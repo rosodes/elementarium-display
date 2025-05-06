@@ -5,6 +5,7 @@ import { readFileSync } from 'fs'
 import path from 'path'
 import compression from 'vite-plugin-compression'
 import legacy from '@vitejs/plugin-legacy'
+import { componentTagger } from 'lovable-tagger'
 import type { UserConfig } from 'vite'
 
 // Read package.json to detect dependencies
@@ -43,6 +44,8 @@ export default defineConfig(({ mode }) => {
           ]
         }
       }),
+      // Add componentTagger plugin for development mode
+      mode === 'development' && componentTagger(),
       legacy({
         // Hard-code targets here too for consistency
         targets: ['chrome >= 60', 'firefox >= 60', 'safari >= 12', 'edge >= 79'],
