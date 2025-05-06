@@ -1,15 +1,11 @@
 
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { readFileSync } from 'fs'
 import path from 'path'
 import compression from 'vite-plugin-compression'
 import legacy from '@vitejs/plugin-legacy'
 import { componentTagger } from 'lovable-tagger'
 import type { UserConfig } from 'vite'
-
-// Read package.json to detect dependencies
-const pkg = JSON.parse(readFileSync('./package.json', 'utf8'))
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -79,7 +75,6 @@ export default defineConfig(({ mode }) => {
       rollupOptions: {
         input: {
           main: path.resolve(__dirname, 'index.html'),
-          server: path.resolve(__dirname, 'src/entry-server.tsx'),
         },
         output: {
           format: 'es', // Ensure ESM output
@@ -96,17 +91,6 @@ export default defineConfig(({ mode }) => {
           bigint: true 
         },
       },
-      // Pre-bundle these packages to avoid ESM/CJS interop issues
-      include: [
-        'react', 
-        'react-dom', 
-        'react-router-dom',
-        '@tanstack/react-query',
-      ],
-      // Exclude potentially problematic packages
-      exclude: [
-        '@tanstack/react-query-devtools',
-      ],
     },
     // Define environment variables
     define: {

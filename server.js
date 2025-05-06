@@ -1,5 +1,5 @@
 
-// Use import statements instead of require for ESM compatibility
+// Use import statements for ESM compatibility
 import { createServer } from './src/server/createServer.js';
 
 // Start the server with improved logging
