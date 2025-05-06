@@ -1,37 +1,38 @@
 
 import { QueryClient } from '@tanstack/react-query';
 
-// Create a new QueryClient for React Query
-export const createQueryClient = (): QueryClient => {
+// Initialize React Query client with proper settings
+export const createQueryClient = () => {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        refetchOnWindowFocus: false,
-        staleTime: 1000 * 60 * 5, // 5 minutes
         retry: 1,
-        retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000),
+        refetchOnWindowFocus: false,
+        staleTime: 5 * 60 * 1000, // 5 minutes
       },
     },
   });
 };
 
-// Get initial language from URL
+// Detect initial language from browser or localStorage
 export const getInitialLanguage = (): string => {
   if (typeof window === 'undefined') return 'en';
   
-  const path = window.location.pathname;
-  if (path.startsWith('/ru/') || path === '/ru') return 'ru';
-  if (path.startsWith('/uk/') || path === '/uk') return 'uk';
-  return 'en'; // Default to English
+  // Check localStorage first
+  const savedLang = localStorage.getItem('language');
+  if (savedLang) return savedLang;
+  
+  // Then check browser language
+  const browserLang = navigator.language.split('-')[0];
+  return ['en', 'ru', 'uk'].includes(browserLang) ? browserLang : 'en';
 };
 
-// Remove loading indicator
+// Remove initial loading indicator
 export const removeLoadingIndicator = (): void => {
-  const loadingIndicator = document.getElementById('loading-indicator');
-  if (loadingIndicator) {
-    loadingIndicator.style.opacity = '0';
-    setTimeout(() => {
-      loadingIndicator.parentNode?.removeChild(loadingIndicator);
-    }, 300);
-  }
+  setTimeout(() => {
+    const indicator = document.getElementById('loading-indicator');
+    if (indicator && indicator.parentNode) {
+      indicator.parentNode.removeChild(indicator);
+    }
+  }, 500);
 };
