@@ -7,7 +7,6 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from '../context/ThemeContext';
 import { LanguageProvider } from '../context/LanguageContext';
 import App from '../App';
-import { logError, getErrorFallbackHTML } from './errorHandling';
 
 // Wrap App with all providers
 export const createAppWithProviders = (
@@ -46,8 +45,17 @@ export function renderApp(
     fallbackContainer.id = 'root-fallback';
     document.body.appendChild(fallbackContainer);
     
-    // Instead of rendering React component, insert HTML string
-    fallbackContainer.innerHTML = getErrorFallbackHTML();
+    // Use plain HTML instead of relying on error handling module
+    fallbackContainer.innerHTML = `
+      <div style="padding: 20px; margin: 20px; border: 1px solid #f56565; background: #fff5f5; color: #c53030;">
+        <h2>Application Error</h2>
+        <p>Unable to find root element.</p>
+        <button onclick="window.location.reload()" 
+          style="margin-top: 10px; padding: 8px 16px; background: #c53030; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Refresh Page
+        </button>
+      </div>
+    `;
     return;
   }
   
@@ -68,8 +76,17 @@ export function renderApp(
       console.log(`Client hydration/render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
     });
   } catch (error) {
-    logError(error as Error, 'Root rendering');
-    // Instead of rendering React component, insert HTML string
-    container.innerHTML = getErrorFallbackHTML();
+    console.error('Error rendering application:', error);
+    // Use plain HTML instead of requiring error handling module
+    container.innerHTML = `
+      <div style="padding: 20px; margin: 20px; border: 1px solid #f56565; background: #fff5f5; color: #c53030;">
+        <h2>Application Error</h2>
+        <p>Failed to render application.</p>
+        <button onclick="window.location.reload()" 
+          style="margin-top: 10px; padding: 8px 16px; background: #c53030; color: white; border: none; border-radius: 4px; cursor: pointer;">
+          Refresh Page
+        </button>
+      </div>
+    `;
   }
 }

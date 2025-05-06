@@ -84,6 +84,11 @@ export default defineConfig(({ mode }) => {
       },
     },
     optimizeDeps: {
+      include: [
+        '@tanstack/react-query',
+        'react-helmet-async',
+        'react-router-dom'
+      ],
       esbuildOptions: {
         target: 'es2020',
         format: 'esm', // Explicitly set ESM format
@@ -96,7 +101,7 @@ export default defineConfig(({ mode }) => {
     define: {
       'import.meta.env.DEV': mode === 'development',
       'import.meta.env.PROD': mode === 'production',
-      // Properly handle process.env for browser environment
+      // Remove process.env references to avoid require issues
       'process.env': {
         NODE_ENV: JSON.stringify(mode)
       },
