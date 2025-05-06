@@ -1,11 +1,11 @@
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
-import compression from 'vite-plugin-compression'
-import legacy from '@vitejs/plugin-legacy'
-import { componentTagger } from 'lovable-tagger'
-import type { UserConfig } from 'vite'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+import compression from 'vite-plugin-compression';
+import legacy from '@vitejs/plugin-legacy';
+import { componentTagger } from 'lovable-tagger';
+import type { UserConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
