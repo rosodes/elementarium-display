@@ -7,7 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { ThemeProvider } from '../context/ThemeContext';
 import { LanguageProvider } from '../context/LanguageContext';
 import App from '../App';
-import { logError, ErrorFallback } from './errorHandling';
+import { logError, getErrorFallbackHTML } from './errorHandling';
 
 // Wrap App with all providers
 export const createAppWithProviders = (
@@ -46,7 +46,8 @@ export function renderApp(
     fallbackContainer.id = 'root-fallback';
     document.body.appendChild(fallbackContainer);
     
-    createRoot(fallbackContainer).render(<ErrorFallback />);
+    // Instead of rendering React component, insert HTML string
+    fallbackContainer.innerHTML = getErrorFallbackHTML();
     return;
   }
   
@@ -68,6 +69,7 @@ export function renderApp(
     });
   } catch (error) {
     logError(error as Error, 'Root rendering');
-    createRoot(container).render(<ErrorFallback />);
+    // Instead of rendering React component, insert HTML string
+    container.innerHTML = getErrorFallbackHTML();
   }
 }

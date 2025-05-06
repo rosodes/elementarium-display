@@ -1,18 +1,12 @@
 
 /**
- * Error handling utility for client-side errors
+ * Simple error handling utility without React components
  */
-import React from 'react';
 
-// Global error logger
+// Basic error logger
 export const logError = (error: Error, info: string): void => {
-  console.error(`🔴 Error in ${info}:`, error);
-  console.error(`📑 Stack trace:`, error.stack);
-  
-  // Send to console in a visible format
-  console.log('%c APP ERROR DETECTED ', 'background: #FF0000; color: white; font-size: 16px; font-weight: bold;');
-  console.log(`Error message: ${error.message}`);
-  console.log(`Location: ${info}`);
+  console.error(`Error in ${info}:`, error);
+  console.error(`Stack trace:`, error.stack);
 };
 
 // Set up global error handler
@@ -25,12 +19,17 @@ export const setupGlobalErrorHandler = (): void => {
   }
 };
 
-// Simplified error fallback component
-export const ErrorFallback: React.FC = () => {
-  return (
-    <div className="p-4 m-4 border border-red-500 rounded bg-red-50 text-red-800">
+// Simple error fallback - No React component, just a function returning HTML
+export const getErrorFallbackHTML = (): string => {
+  return `
+    <div style="padding: 1rem; margin: 1rem; border: 1px solid #f56565; border-radius: 0.25rem; background-color: #fff5f5; color: #c53030;">
       <h2>Something went wrong</h2>
       <p>The application failed to load correctly. Please try refreshing the page.</p>
+      <button 
+        onclick="window.location.reload()" 
+        style="margin-top: 0.5rem; padding: 0.5rem 1rem; background-color: #c53030; color: white; border: none; border-radius: 0.25rem; cursor: pointer;">
+        Refresh Page
+      </button>
     </div>
-  );
+  `;
 };
