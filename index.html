@@ -20,7 +20,7 @@
     <link rel="modulepreload" href="/src/entry-client.tsx" as="script" crossorigin />
   </head>
   <body>
-    <div id="root"><!--app-html--></div>
+    <div id="root" data-ssr="true"><!--app-html--></div>
     <!-- Loading indicator that is removed after hydration -->
     <div id="loading-indicator" style="position:fixed;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#4f46e5,#8b5cf6);transform:scaleX(0);transform-origin:0% 0%;transition:transform .4s ease-in-out;z-index:9999;">
       <script>

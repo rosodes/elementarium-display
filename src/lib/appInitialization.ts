@@ -1,9 +1,15 @@
 
 import { QueryClient } from '@tanstack/react-query';
 
+// Memoized QueryClient for better state management
+let queryClientInstance: QueryClient | null = null;
+
 // Initialize React Query client with proper settings
 export const createQueryClient = () => {
-  return new QueryClient({
+  // Return existing instance if already created
+  if (queryClientInstance) return queryClientInstance;
+  
+  queryClientInstance = new QueryClient({
     defaultOptions: {
       queries: {
         retry: 1,
@@ -12,15 +18,22 @@ export const createQueryClient = () => {
       },
     },
   });
+  
+  return queryClientInstance;
 };
 
 // Detect initial language from browser or localStorage
 export const getInitialLanguage = (): string => {
+  // Handle SSR case
   if (typeof window === 'undefined') return 'en';
   
   // Check localStorage first
-  const savedLang = localStorage.getItem('language');
-  if (savedLang) return savedLang;
+  try {
+    const savedLang = localStorage.getItem('language');
+    if (savedLang) return savedLang;
+  } catch (e) {
+    console.warn('Failed to access localStorage:', e);
+  }
   
   // Then check browser language
   const browserLang = navigator.language.split('-')[0];

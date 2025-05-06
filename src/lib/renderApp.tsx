@@ -61,19 +61,33 @@ export function renderApp(
   
   const AppWithProviders = createAppWithProviders(queryClient, initialLanguage);
 
+  // Improve SSR detection
+  const isSSR = container.hasAttribute('data-ssr') || container.innerHTML.trim().length > 0;
+  
+  // Mark the root for proper hydration detection in future loads
+  if (!container.hasAttribute('data-ssr') && isSSR) {
+    container.setAttribute('data-ssr', 'true');
+  }
+
   try {
     startTransition(() => {
-      const isSSR = container.innerHTML.trim().length > 0;
-      
       if (isSSR) {
         console.log('Attempting SSR hydration');
-        hydrateRoot(container, AppWithProviders);
+        try {
+          hydrateRoot(container, AppWithProviders);
+        } catch (hydrationError) {
+          console.warn("Hydration failed, falling back to client render:", hydrationError);
+          // Clear container to prevent hydration errors
+          container.innerHTML = '';
+          // Fall back to client-side rendering
+          createRoot(container).render(AppWithProviders);
+        }
       } else {
-        console.log('No SSR HTML found, falling back to client-side rendering');
+        console.log('No SSR HTML found, using client-side rendering');
         createRoot(container).render(AppWithProviders);
       }
       
-      console.log(`Client hydration/render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+      console.log(`${isSSR ? 'Hydration' : 'Client render'} complete in ${(performance.now() - startTime).toFixed(1)}ms`);
     });
   } catch (error) {
     console.error('Error rendering application:', error);

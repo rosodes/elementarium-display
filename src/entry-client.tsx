@@ -8,12 +8,12 @@ import { renderApp } from './lib/renderApp';
 const startTime = performance.now();
 console.log('Client-side hydration started');
 
-// Initialize the app
+// Initialize the app with memoized query client to prevent duplication
 const queryClient = createQueryClient();
 const initialLanguage = getInitialLanguage();
 
-// Render the app with focus on production
+// Enhanced rendering with additional hydration checks
 renderApp(queryClient, initialLanguage, startTime);
 
-// Clean up UI
+// Clean up UI with proper timing
 removeLoadingIndicator();

@@ -12,32 +12,11 @@ export default defineConfig(({ mode }) => {
   const config: UserConfig = {
     plugins: [
       react({
-        // Configure Babel to handle TypeScript properly
+        // Remove Babel config to prevent conflicts with Vite's esbuild
         babel: {
           babelrc: false,
           configFile: false,
-          browserslistConfigFile: false,
-          presets: [
-            ['@babel/preset-env', {
-              // Hard-code targets instead of using browserslist
-              targets: { 
-                chrome: "60",
-                firefox: "60",
-                safari: "12",
-                edge: "79",
-                node: "current"
-              },
-              useBuiltIns: 'usage',
-              corejs: '3.22'
-            }],
-            ['@babel/preset-typescript', {
-              // These settings help avoid TypeScript transformation issues
-              isTSX: true,
-              allowNamespaces: true,
-              allExtensions: true,
-              allowDeclareFields: true
-            }]
-          ]
+          presets: []
         }
       }),
       // Add componentTagger plugin for development mode
@@ -58,10 +37,21 @@ export default defineConfig(({ mode }) => {
     ].filter(Boolean),
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src')
+        '@': path.resolve(__dirname, './src'),
+        // Add Node.js built-in module shims to prevent 'require' issues
+        path: 'path-browserify',
+        fs: 'memfs',
+        crypto: 'crypto-browserify',
+        stream: 'stream-browserify',
+        buffer: 'buffer',
+        util: 'util',
+        process: 'process/browser',
+        zlib: 'browserify-zlib',
+        querystring: 'query-string'
       },
       // Ensure proper resolution of ESM modules
-      mainFields: ['module', 'browser', 'main'],
+      mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
     server: {
       host: "::",
@@ -84,29 +74,42 @@ export default defineConfig(({ mode }) => {
       },
     },
     optimizeDeps: {
+      // Force-include problematic dependencies
       include: [
         '@tanstack/react-query',
         'react-helmet-async',
-        'react-router-dom'
+        'react-router-dom',
+        '@radix-ui/react-toast',
+        'next-themes'
       ],
+      // Explicitly exclude Node.js built-in modules
+      exclude: ['fs', 'path', 'crypto', 'os', 'buffer'],
       esbuildOptions: {
         target: 'es2020',
         format: 'esm', // Explicitly set ESM format
         supported: { 
           bigint: true 
         },
+        // Force tree-shaking
+        treeShaking: true,
+        // Prevent inlining of require()
+        define: {
+          'require': 'globalThis.require'
+        }
       },
     },
     // Define environment variables
     define: {
       'import.meta.env.DEV': mode === 'development',
       'import.meta.env.PROD': mode === 'production',
-      // Remove process.env references to avoid require issues
-      'process.env': {
-        NODE_ENV: JSON.stringify(mode)
-      },
+      // Replace process.env with direct values
+      'process.env': JSON.stringify({
+        NODE_ENV: mode
+      }),
       // Make sure global objects are properly defined for ESM
       'global': 'globalThis',
+      // Provide a shim for require
+      'require': 'undefined'
     },
     // Ensure we're using ESM
     esbuild: {
@@ -123,7 +126,9 @@ export default defineConfig(({ mode }) => {
       external: ['react-helmet-async'],
       // Force bundle these packages for SSR to avoid CommonJS issues
       noExternal: [
-        '@tanstack/react-query'
+        '@tanstack/react-query',
+        '@radix-ui/**',
+        'next-themes'
       ]
     }
   };
