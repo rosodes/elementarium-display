@@ -5,27 +5,52 @@ import React from 'react';
 import { createQueryClient, getInitialLanguage, removeLoadingIndicator } from './lib/appInitialization';
 import { renderApp } from './lib/renderApp';
 
-// Убираем лишний замер производительности для оптимизации
-console.log('Client-side hydration started');
+// Performance marker for initial load
+performance.mark('client-entry-start');
 
-// Используем отложенную инициализацию для улучшения скорости запуска
+// Create query client with optimized settings
 const queryClient = createQueryClient();
 const initialLanguage = getInitialLanguage();
 
-// Оптимизируем восстановление состояния React Query
-const queryState = window.__REACT_QUERY_STATE__;
-if (queryState && Array.isArray(queryState.queries)) {
-  queryState.queries.forEach((query) => {
-    if (query.queryKey && query.state?.data) {
-      queryClient.setQueryData(query.queryKey, query.state.data);
-    }
-  });
-}
+// Prioritize critical path rendering
+const renderApplication = () => {
+  // Get React Query state from server if available
+  const queryState = window.__REACT_QUERY_STATE__;
+  
+  // Optimize query client hydration
+  if (queryState && Array.isArray(queryState.queries)) {
+    queryClient.setQueryDefaults(['*'], {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 10, // 10 minutes
+    });
+    
+    // Restore cached queries without additional network requests
+    queryState.queries.forEach((query) => {
+      if (query.queryKey && query.state?.data) {
+        queryClient.setQueryData(query.queryKey, query.state.data, {
+          updatedAt: query.state.dataUpdatedAt || Date.now()
+        });
+      }
+    });
+  }
 
-// Используем requestAnimationFrame для рендеринга при первой доступной возможности
-requestAnimationFrame(() => {
+  // Use requestIdleCallback for non-critical work if supported
+  const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 50));
+  
+  // Render immediately for better performance
   renderApp(queryClient, initialLanguage);
   
-  // Удаляем загрузчик только после фактического рендеринга
-  setTimeout(removeLoadingIndicator, 0);
-});
+  // Remove loading indicator after a small delay to prevent flash
+  idleCallback(() => {
+    removeLoadingIndicator();
+    performance.mark('client-entry-end');
+    performance.measure('client-hydration', 'client-entry-start', 'client-entry-end');
+  });
+};
+
+// Use modern browser features for performance
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', renderApplication);
+} else {
+  renderApplication();
+}

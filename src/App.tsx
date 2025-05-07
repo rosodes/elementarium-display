@@ -2,7 +2,7 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useLanguage } from "./context/LanguageContext";
 import LoadingSpinner from "./components/ui/loading-spinner";
 
@@ -13,7 +13,7 @@ const ElementPage = lazy(() => import("./pages/ElementPage"));
 
 // Оптимизированный компонент загрузки с предопределенной высотой
 const PageLoader = () => (
-  <div className="flex justify-center items-center min-h-[80vh]" style={{minHeight: '80vh', height: '80vh'}}>
+  <div className="flex justify-center items-center min-h-[80vh]">
     <LoadingSpinner />
   </div>
 );
@@ -24,6 +24,11 @@ const ClientOnly = ({ children }: { children: React.ReactNode }) => {
   
   useEffect(() => {
     setMounted(true);
+    
+    // Log successful client hydration for debugging
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Client component mounted successfully');
+    }
   }, []);
   
   return mounted ? children : null;
@@ -49,10 +54,14 @@ const App = () => {
           <Route path="/element/:elementId" element={<ElementPage />} />
           <Route path="/:lang/element/:elementId" element={<ElementPage />} />
           
-          {/* Отдельный Route для 404 страницы */}
+          {/* Redirect legacy or incorrectly formatted URLs to home */}
+          <Route path="/index.html" element={<Navigate to="/" replace />} />
+          <Route path="/index" element={<Navigate to="/" replace />} />
+          
+          {/* Fixed 404 page */}
           <Route path="/404" element={<NotFound />} />
           
-          {/* Catch all for 404 */}
+          {/* Catch all for 404 - must be last */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
