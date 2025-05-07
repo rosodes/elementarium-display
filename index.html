@@ -9,33 +9,55 @@
     <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
     <title>Periodic Table of Elements</title>
     <meta name="description" content="Interactive periodic table of chemical elements with detailed information" />
-    <!-- Placeholder for metatags and additional headers -->
-    <!--app-head-->
-    <!-- Font preconnect for faster loading -->
+    
+    <!-- DNS prefetch and preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Critical CSS will be inlined here during build -->
+    
+    <!-- Placeholder for metatags -->
+    <!--app-head-->
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/src/entry-client.tsx" as="script" type="module" />
+    
+    <!-- Inlined critical CSS for fast render -->
+    <style>
+      :root{--background:#fff;--foreground:#1a1a1a}
+      @media(prefers-color-scheme:dark){:root{--background:#1a1a1a;--foreground:#fff}}
+      body{margin:0;padding:0;background:var(--background);color:var(--foreground);font-family:system-ui,sans-serif}
+      #loading-indicator{position:fixed;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#4f46e5,#8b5cf6);transform:scaleX(0);transform-origin:0% 0%;transition:transform .4s ease-in-out;z-index:9999}
+      .initial-layout{display:flex;min-height:100vh;flex-direction:column;justify-content:flex-start}
+      .page-loader{display:flex;justify-content:center;align-items:center;min-height:80vh;height:80vh}
+    </style>
+    
+    <!-- App CSS -->
     <!--app-css-->
   </head>
   <body>
-    <div id="root" data-ssr="true"><!--app-html--></div>
-    <!-- Loading indicator that is removed after hydration -->
-    <div id="loading-indicator" style="position:fixed;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#4f46e5,#8b5cf6);transform:scaleX(0);transform-origin:0% 0%;transition:transform .4s ease-in-out;z-index:9999;">
+    <!-- Предопределенная структура для уменьшения CLS -->
+    <div id="root" data-ssr="true" class="initial-layout"><!--app-html--></div>
+    
+    <!-- Оптимизированный загрузочный индикатор -->
+    <div id="loading-indicator">
       <script>
-        // Show loading indicator
-        document.getElementById('loading-indicator').style.transform = 'scaleX(.3)';
+        // Показываем индикатор загрузки с анимацией
+        const indicator = document.getElementById('loading-indicator');
+        indicator.style.transform = 'scaleX(.3)';
+        
+        // Обновляем индикатор по мере загрузки страницы
         window.addEventListener('load', function() {
-          document.getElementById('loading-indicator').style.transform = 'scaleX(1)';
-          setTimeout(function() {
-            var indicator = document.getElementById('loading-indicator');
-            if (indicator) indicator.style.opacity = '0';
-          }, 200);
+          indicator.style.transform = 'scaleX(1)';
         });
+        
+        // Добавляем дополнительную отметку времени для измерения производительности
+        window.PERF_MARKS = window.PERF_MARKS || {};
+        window.PERF_MARKS.timeLoaded = performance.now();
       </script>
     </div>
-    <!-- Required Lovable script tag -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <!-- Ensure client entry is loaded as a module -->
+    
+    <!-- Load scripts with optimized attributes -->
     <script type="module" src="/src/entry-client.tsx"></script>
   </body>
 </html>

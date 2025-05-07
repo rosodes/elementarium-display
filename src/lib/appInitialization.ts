@@ -1,20 +1,19 @@
 
 import { QueryClient } from '@tanstack/react-query';
 
-// Memoized QueryClient for better state management
+// Мемоизированный QueryClient для лучшего управления состоянием
 let queryClientInstance: QueryClient | null = null;
 
-// Initialize React Query client with proper settings
+// Инициализация React Query client с оптимизированными настройками
 export const createQueryClient = () => {
   if (!queryClientInstance) {
-    // Create a new instance with optimized settings
     queryClientInstance = new QueryClient({
       defaultOptions: {
         queries: {
-          retry: 1,
+          retry: false, // Отключаем повторные попытки для ускорения
           refetchOnWindowFocus: false,
-          staleTime: 5 * 60 * 1000, // 5 minutes
-          structuralSharing: true,
+          staleTime: 5 * 60 * 1000, // 5 минут
+          gcTime: 10 * 60 * 1000, // 10 минут для сборки мусора
         },
       },
     });
@@ -23,31 +22,51 @@ export const createQueryClient = () => {
   return queryClientInstance;
 };
 
-// Detect initial language from browser or localStorage
+// Определяем начальный язык с оптимизацией
 export const getInitialLanguage = (): string => {
-  // Handle SSR case
+  // Обрабатываем случай SSR
   if (typeof window === 'undefined') return 'en';
   
-  // Check localStorage first
-  let savedLang;
+  // Кэшируем значение URL для предотвращения повторных вычислений
+  const pathName = window.location.pathname;
+  
+  // Быстрая проверка языка из URL
+  if (pathName.startsWith('/ru/') || pathName === '/ru') return 'ru';
+  if (pathName.startsWith('/uk/') || pathName === '/uk') return 'uk';
+  
+  // Проверяем localStorage только если не нашли в URL
   try {
-    savedLang = localStorage.getItem('language');
-    if (savedLang) return savedLang;
+    const savedLang = localStorage.getItem('language');
+    if (savedLang && ['en', 'ru', 'uk'].includes(savedLang)) return savedLang;
   } catch {
-    // Silent fail if localStorage is not available
+    // Молча игнорируем, если localStorage недоступен
   }
   
-  // Then check browser language
+  // Затем проверяем язык браузера
   const browserLang = navigator.language.split('-')[0];
   return ['en', 'ru', 'uk'].includes(browserLang) ? browserLang : 'en';
 };
 
-// Remove initial loading indicator
+// Удаляем индикатор загрузки с улучшенным таймингом
 export const removeLoadingIndicator = (): void => {
+  const indicator = document.getElementById('loading-indicator');
+  if (!indicator) return;
+  
+  // Плавно скрываем индикатор с анимацией
+  indicator.style.opacity = '0';
+  indicator.style.transition = 'opacity 300ms ease-out';
+  
+  // Удаляем после завершения анимации
   setTimeout(() => {
-    const indicator = document.getElementById('loading-indicator');
-    if (indicator && indicator.parentNode) {
+    if (indicator.parentNode) {
       indicator.parentNode.removeChild(indicator);
     }
-  }, 500);
+  }, 300);
 };
+
+// Очищаем типы для Window
+declare global {
+  interface Window {
+    __REACT_QUERY_STATE__?: any;
+  }
+}

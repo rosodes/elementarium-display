@@ -11,14 +11,14 @@ const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ElementPage = lazy(() => import("./pages/ElementPage"));
 
-// Loading fallback component
+// Оптимизированный компонент загрузки с предопределенной высотой
 const PageLoader = () => (
-  <div className="flex justify-center items-center min-h-screen">
+  <div className="flex justify-center items-center min-h-[80vh]" style={{minHeight: '80vh', height: '80vh'}}>
     <LoadingSpinner />
   </div>
 );
 
-// Client-only components wrapper
+// Client-only components wrapper с оптимизацией
 const ClientOnly = ({ children }: { children: React.ReactNode }) => {
   const [mounted, setMounted] = useState(false);
   
@@ -26,8 +26,7 @@ const ClientOnly = ({ children }: { children: React.ReactNode }) => {
     setMounted(true);
   }, []);
   
-  if (!mounted) return null;
-  return <>{children}</>;
+  return mounted ? children : null;
 };
 
 const App = () => {
@@ -49,6 +48,9 @@ const App = () => {
           {/* Element detail routes with language support */}
           <Route path="/element/:elementId" element={<ElementPage />} />
           <Route path="/:lang/element/:elementId" element={<ElementPage />} />
+          
+          {/* Отдельный Route для 404 страницы */}
+          <Route path="/404" element={<NotFound />} />
           
           {/* Catch all for 404 */}
           <Route path="*" element={<NotFound />} />

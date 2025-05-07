@@ -12,18 +12,22 @@ import { useTheme } from "@/context/ThemeContext";
 import { useEffect, useState } from "react";
 
 export function Toaster() {
-  // Use client-only rendering for Toaster to avoid hydration issues
+  // Используем строгий клиентский рендеринг для Toaster
   const [isMounted, setIsMounted] = useState(false);
   const { toasts } = useToast();
   const { theme } = useTheme();
   
-  // Only render on client to avoid hydration mismatch
+  // Рендерим только на клиенте, чтобы избежать несоответствия при гидрации
   useEffect(() => {
-    setIsMounted(true);
+    // Используем requestAnimationFrame для рендеринга после первого paint
+    requestAnimationFrame(() => {
+      setIsMounted(true);
+    });
   }, []);
   
+  // Не рендерим ничего на сервере или при начальном рендеринге
   if (!isMounted) {
-    return null; // Return null on server or during initial render
+    return null;
   }
   
   return (
@@ -35,7 +39,7 @@ export function Toaster() {
             {...props}
             className={`bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 ${
               theme === 'dark' ? 'shadow-lg shadow-black/20' : 'shadow-lg shadow-gray-300/70'
-            } backdrop-blur-sm rounded-lg`}
+            } backdrop-blur-sm rounded-lg translate-y-0 opacity-100`}
           >
             <div className="grid gap-1">
               {title && <ToastTitle className="text-gray-900 dark:text-gray-100 font-medium">{title}</ToastTitle>}

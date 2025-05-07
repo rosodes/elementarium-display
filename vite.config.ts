@@ -9,35 +9,68 @@ import type { UserConfig } from 'vite';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  const isProd = mode === 'production';
+  
   const config: UserConfig = {
     plugins: [
       react({
-        // Use standard React configuration
+        // Используем автоматический JSX runtime для оптимизации размера
         jsxRuntime: 'automatic',
         babel: {
           babelrc: false,
           configFile: false,
+          // Отключаем лишние преобразования для современных браузеров
+          presets: isProd ? [
+            [
+              '@babel/preset-env',
+              {
+                targets: {
+                  // Используем только современные браузеры
+                  esmodules: true
+                },
+                // Отключаем ненужные полифилы
+                useBuiltIns: false,
+                // Используем только минимальные преобразования
+                bugfixes: true,
+                // Не преобразовываем модули, Vite это сделает
+                modules: false
+              }
+            ]
+          ] : []
         }
       }),
-      // Add componentTagger plugin for development mode
+      // Добавляем componentTagger только для разработки
       mode === 'development' && componentTagger(),
-      legacy({
-        targets: ['chrome >= 60', 'firefox >= 60', 'safari >= 12', 'edge >= 79'],
-        modernPolyfills: true
+      
+      // Для продакшена генерируем два варианта бандлов
+      isProd && legacy({
+        // Основной бандл только для современных браузеров
+        targets: [
+          'last 2 Chrome versions',
+          'last 2 Firefox versions', 
+          'last 2 Safari versions',
+          'last 2 Edge versions'
+        ],
+        // Отключаем полифилы для современных браузеров
+        polyfills: false,
+        modernPolyfills: false
       }),
-      compression({
+      
+      // Оптимизируем размер с помощью сжатия
+      isProd && compression({
         algorithm: 'brotliCompress',
         ext: '.br',
       }),
-      compression({
+      isProd && compression({
         algorithm: 'gzip',
         ext: '.gz',
       }),
     ].filter(Boolean),
+    
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
-        // Provide empty modules for Node.js built-ins to prevent browser errors
+        // Предоставляем пустые модули для встроенных модулей Node.js
         path: 'path-browserify',
         fs: 'browserify-zlib',
         crypto: 'crypto-browserify',
@@ -48,32 +81,66 @@ export default defineConfig(({ mode }) => {
         zlib: 'browserify-zlib',
         querystring: 'query-string',
       },
-      // Ensure proper resolution of ESM modules
+      // Обеспечиваем правильное разрешение модулей ESM
       mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
+    
     server: {
       host: "::",
       port: 8080
     },
+    
     build: {
       outDir: 'dist',
       emptyOutDir: true,
-      sourcemap: true,
+      // Генерируем sourcemap только в режиме разработки
+      sourcemap: !isProd,
       minify: 'terser',
+      terserOptions: {
+        // Оптимизируем код для современных браузеров
+        ecma: 2020,
+        compress: {
+          // Удаляем все console.log в продакшене
+          drop_console: isProd,
+          // Более агрессивное устранение мертвого кода
+          dead_code: true,
+          // Улучшенная оптимизация
+          passes: 2
+        }
+      },
       rollupOptions: {
         input: {
           main: path.resolve(__dirname, 'index.html'),
         },
         output: {
-          format: 'es', // Ensure ESM output
-          entryFileNames: '[name].[hash].js',
-          chunkFileNames: 'chunks/[name].[hash].js',
+          format: 'es', // Используем ESM формат для современных браузеров
+          entryFileNames: 'assets/[name].[hash].js',
+          chunkFileNames: 'assets/chunks/[name].[hash].js',
+          assetFileNames: 'assets/[name].[hash].[ext]',
+          // Оптимизируем чанки для повышения кэширования
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              // Разделяем vendor библиотеки
+              if (id.includes('react') || id.includes('react-dom')) {
+                return 'vendor-react';
+              }
+              if (id.includes('@tanstack')) {
+                return 'vendor-tanstack';
+              }
+              return 'vendor';
+            }
+          }
         },
       },
+      // Отключаем транспиляцию для CSS, используем современные возможности
+      cssCodeSplit: true,
+      // Размер гарантированно инлайненных ресурсов
+      assetsInlineLimit: 4096,
     },
+    
     optimizeDeps: {
-      // Force-include these dependencies to ensure proper pre-bundling
+      // Принудительное включение этих зависимостей для обеспечения надлежащего предварительного бандлинга
       include: [
         '@tanstack/react-query',
         'react',
@@ -83,34 +150,36 @@ export default defineConfig(({ mode }) => {
         '@radix-ui/react-toast',
         'next-themes'
       ],
-      // Explicitly exclude Node.js built-in modules
+      // Явно исключаем модули Node.js
       exclude: ['fs', 'path'],
       esbuildOptions: {
         target: 'es2020',
         supported: { 
           bigint: true 
         },
-        // Force tree-shaking
+        // Принудительное применение treeShaking
         treeShaking: true,
-        // Define global variables for browser environment
+        // Определяем глобальные переменные для среды браузера
         define: {
           'global': 'globalThis',
           'process.env.NODE_ENV': JSON.stringify(mode)
         }
       },
     },
+    
     // Define environment variables
     define: {
       'import.meta.env.DEV': mode === 'development',
       'import.meta.env.PROD': mode === 'production',
-      // Replace process.env with direct values
+      // Заменяем process.env прямыми значениями
       'process.env': JSON.stringify({
         NODE_ENV: mode
       }),
-      // Make sure global objects are properly defined for ESM
+      // Убедимся, что глобальные объекты правильно определены для ESM
       'global': 'globalThis',
     },
-    // Ensure we're using ESM
+    
+    // Обеспечиваем использование ESM
     esbuild: {
       format: 'esm',
       target: 'es2020',
@@ -119,11 +188,12 @@ export default defineConfig(({ mode }) => {
         'import-meta': true,
       },
     },
+    
     // SSR specific options
     ssr: {
-      // External packages that shouldn't be bundled for SSR
+      // Внешние пакеты, которые не должны быть бандлины для SSR
       external: ['react-helmet-async'],
-      // Force bundle these packages for SSR to avoid CommonJS issues
+      // Принудительно бандлить эти пакеты для SSR
       noExternal: [
         '@tanstack/react-query',
         'react',

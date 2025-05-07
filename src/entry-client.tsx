@@ -5,34 +5,27 @@ import React from 'react';
 import { createQueryClient, getInitialLanguage, removeLoadingIndicator } from './lib/appInitialization';
 import { renderApp } from './lib/renderApp';
 
-// Performance measurement
-const startTime = performance.now();
+// Убираем лишний замер производительности для оптимизации
 console.log('Client-side hydration started');
 
-// Initialize the app with memoized query client to prevent duplication
+// Используем отложенную инициализацию для улучшения скорости запуска
 const queryClient = createQueryClient();
 const initialLanguage = getInitialLanguage();
 
-// Check for React Query state from SSR
-const queryState = (window as any).__REACT_QUERY_STATE__;
-if (queryState) {
-  try {
-    // Correctly restore query state by looping through dehydrated state
-    if (Array.isArray(queryState.queries)) {
-      queryState.queries.forEach((query: any) => {
-        if (query.queryKey && query.state && query.state.data) {
-          queryClient.setQueryData(query.queryKey, query.state.data);
-        }
-      });
+// Оптимизируем восстановление состояния React Query
+const queryState = window.__REACT_QUERY_STATE__;
+if (queryState && Array.isArray(queryState.queries)) {
+  queryState.queries.forEach((query) => {
+    if (query.queryKey && query.state?.data) {
+      queryClient.setQueryData(query.queryKey, query.state.data);
     }
-  } catch (err) {
-    console.error('Error restoring query client cache:', err);
-  }
+  });
 }
 
-// Enhanced rendering with additional hydration checks
-setTimeout(() => {
-  renderApp(queryClient, initialLanguage, startTime);
-  // Clean up UI with proper timing
-  removeLoadingIndicator();
-}, 0);
+// Используем requestAnimationFrame для рендеринга при первой доступной возможности
+requestAnimationFrame(() => {
+  renderApp(queryClient, initialLanguage);
+  
+  // Удаляем загрузчик только после фактического рендеринга
+  setTimeout(removeLoadingIndicator, 0);
+});
