@@ -14,18 +14,25 @@ const queryClient = createQueryClient();
 const initialLanguage = getInitialLanguage();
 
 // Check for React Query state from SSR
-const queryState = window.__REACT_QUERY_STATE__;
+const queryState = (window as any).__REACT_QUERY_STATE__;
 if (queryState) {
-  // Correctly restore query state by looping through dehydrated state
-  if (Array.isArray(queryState.queries)) {
-    queryState.queries.forEach((query) => {
-      queryClient.setQueryData(query.queryKey, query.state.data);
-    });
+  try {
+    // Correctly restore query state by looping through dehydrated state
+    if (Array.isArray(queryState.queries)) {
+      queryState.queries.forEach((query: any) => {
+        if (query.queryKey && query.state && query.state.data) {
+          queryClient.setQueryData(query.queryKey, query.state.data);
+        }
+      });
+    }
+  } catch (err) {
+    console.error('Error restoring query client cache:', err);
   }
 }
 
 // Enhanced rendering with additional hydration checks
-renderApp(queryClient, initialLanguage, startTime);
-
-// Clean up UI with proper timing
-removeLoadingIndicator();
+setTimeout(() => {
+  renderApp(queryClient, initialLanguage, startTime);
+  // Clean up UI with proper timing
+  removeLoadingIndicator();
+}, 0);

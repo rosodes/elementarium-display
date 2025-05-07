@@ -9,10 +9,22 @@ import {
   ToastViewport,
 } from "@/components/ui/toast";
 import { useTheme } from "@/context/ThemeContext";
+import { useEffect, useState } from "react";
 
 export function Toaster() {
+  // Use client-only rendering for Toaster to avoid hydration issues
+  const [isMounted, setIsMounted] = useState(false);
   const { toasts } = useToast();
   const { theme } = useTheme();
+  
+  // Only render on client to avoid hydration mismatch
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
+  if (!isMounted) {
+    return null; // Return null on server or during initial render
+  }
   
   return (
     <ToastProvider>

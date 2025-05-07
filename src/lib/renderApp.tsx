@@ -61,10 +61,12 @@ export function renderApp(
   
   const AppWithProviders = createAppWithProviders(queryClient, initialLanguage);
 
-  // Improve SSR detection with data attribute and more reliable checks
+  // Improve SSR detection
   const hasSSRAttribute = container.hasAttribute('data-ssr');
   const hasContent = container.innerHTML.trim().length > 0;
-  const isSSR = hasSSRAttribute && hasContent;
+  
+  // Only try hydration if we're confident server rendering happened
+  const isSSR = hasSSRAttribute && hasContent && container.innerHTML.indexOf('<!--app-html-->') === -1;
   
   try {
     if (isSSR) {

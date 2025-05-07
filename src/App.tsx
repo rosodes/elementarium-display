@@ -1,5 +1,5 @@
 
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes, Route } from "react-router-dom";
@@ -18,28 +18,42 @@ const PageLoader = () => (
   </div>
 );
 
+// Client-only components wrapper
+const ClientOnly = ({ children }: { children: React.ReactNode }) => {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  
+  if (!mounted) return null;
+  return <>{children}</>;
+};
+
 const App = () => {
   const { t } = useLanguage();
 
   return (
     <>
-      <TooltipProvider>
-        <Toaster />
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            {/* Home routes with language support */}
-            <Route path="/" element={<Index />} />
-            <Route path="/:lang" element={<Index />} />
-            
-            {/* Element detail routes with language support */}
-            <Route path="/element/:elementId" element={<ElementPage />} />
-            <Route path="/:lang/element/:elementId" element={<ElementPage />} />
-            
-            {/* Catch all for 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </TooltipProvider>
+      <ClientOnly>
+        <TooltipProvider>
+          <Toaster />
+        </TooltipProvider>
+      </ClientOnly>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Home routes with language support */}
+          <Route path="/" element={<Index />} />
+          <Route path="/:lang" element={<Index />} />
+          
+          {/* Element detail routes with language support */}
+          <Route path="/element/:elementId" element={<ElementPage />} />
+          <Route path="/:lang/element/:elementId" element={<ElementPage />} />
+          
+          {/* Catch all for 404 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </>
   );
 };

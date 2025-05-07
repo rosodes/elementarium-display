@@ -54,7 +54,7 @@ export function render(url: string, lang?: string, options: { onShellReady?: () 
     </React.StrictMode>
   );
 
-  // Use streaming SSR for better performance
+  // Use streaming SSR for better performance with shorter timeout
   const stream = renderToPipeableStream(jsx, {
     onShellReady() {
       // Shell content is ready to be flushed to the client
