@@ -48,8 +48,7 @@ export default defineConfig(({ mode }) => {
         process: 'process/browser',
         zlib: 'browserify-zlib',
         querystring: 'query-string',
-        // Use ESM versions of packages that might be causing issues
-        react: path.resolve(__dirname, 'node_modules/react/index.js')
+        // Don't alias React package - let Vite handle it normally
       },
       // Ensure proper resolution of ESM modules
       mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
