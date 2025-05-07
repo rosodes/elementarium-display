@@ -17,7 +17,6 @@ export default defineConfig(({ mode }) => {
         babel: {
           babelrc: false,
           configFile: false,
-          plugins: []
         }
       }),
       // Add componentTagger plugin for development mode
@@ -40,7 +39,7 @@ export default defineConfig(({ mode }) => {
         '@': path.resolve(__dirname, './src'),
         // Provide empty modules for Node.js built-ins to prevent browser errors
         path: 'path-browserify',
-        fs: 'memfs',
+        fs: 'browserify-zlib',
         crypto: 'crypto-browserify',
         stream: 'stream-browserify',
         buffer: 'buffer',
@@ -85,20 +84,18 @@ export default defineConfig(({ mode }) => {
         'next-themes'
       ],
       // Explicitly exclude Node.js built-in modules
-      exclude: ['fs', 'path', 'crypto', 'os', 'buffer'],
+      exclude: ['fs', 'path'],
       esbuildOptions: {
         target: 'es2020',
-        format: 'esm', // Explicitly set ESM format
         supported: { 
           bigint: true 
         },
         // Force tree-shaking
         treeShaking: true,
-        // Ensure no Node.js require() appears in client bundle
+        // Define global variables for browser environment
         define: {
           'global': 'globalThis',
-          'process.env.NODE_ENV': JSON.stringify(mode),
-          'require': 'undefined'
+          'process.env.NODE_ENV': JSON.stringify(mode)
         }
       },
     },
@@ -110,8 +107,6 @@ export default defineConfig(({ mode }) => {
       'process.env': JSON.stringify({
         NODE_ENV: mode
       }),
-      // Remove require completely
-      'require': 'undefined',
       // Make sure global objects are properly defined for ESM
       'global': 'globalThis',
     },

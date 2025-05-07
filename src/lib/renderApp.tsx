@@ -1,5 +1,5 @@
 
-import React, { startTransition } from 'react';
+import React from 'react';
 import { hydrateRoot, createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -16,17 +16,19 @@ export const createAppWithProviders = (
   const helmetContext = {};
   
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <LanguageProvider initialLanguage={initialLanguage}>
-          <HelmetProvider context={helmetContext}>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </HelmetProvider>
-        </LanguageProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <React.StrictMode>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider>
+          <LanguageProvider initialLanguage={initialLanguage}>
+            <HelmetProvider context={helmetContext}>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </HelmetProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </React.StrictMode>
   );
 };
 
@@ -62,15 +64,9 @@ export function renderApp(
   // Improve SSR detection with data attribute and more reliable checks
   const hasSSRAttribute = container.hasAttribute('data-ssr');
   const hasContent = container.innerHTML.trim().length > 0;
-  const isSSR = hasSSRAttribute || hasContent;
+  const isSSR = hasSSRAttribute && hasContent;
   
-  // Mark the root for proper hydration detection in future loads
-  if (!hasSSRAttribute && isSSR) {
-    container.setAttribute('data-ssr', 'true');
-  }
-
   try {
-    // Use regular rendering instead of startTransition to ensure proper control flow
     if (isSSR) {
       console.log('Attempting SSR hydration');
       try {

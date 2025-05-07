@@ -6,10 +6,7 @@ let queryClientInstance: QueryClient | null = null;
 
 // Initialize React Query client with proper settings
 export const createQueryClient = () => {
-  // Clear existing instance if it exists to prevent stale state
-  if (queryClientInstance) {
-    queryClientInstance.clear();
-  } else {
+  if (!queryClientInstance) {
     // Create a new instance with optimized settings
     queryClientInstance = new QueryClient({
       defaultOptions: {
