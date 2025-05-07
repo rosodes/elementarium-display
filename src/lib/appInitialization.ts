@@ -9,6 +9,7 @@ export const createQueryClient = () => {
   // Return existing instance if already created
   if (queryClientInstance) return queryClientInstance;
   
+  // Create a new instance with optimized settings
   queryClientInstance = new QueryClient({
     defaultOptions: {
       queries: {

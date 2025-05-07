@@ -95,10 +95,11 @@ export default defineConfig(({ mode }) => {
         },
         // Force tree-shaking
         treeShaking: true,
-        // Remove define for require - this is causing the issue
+        // Ensure no Node.js require() appears in client bundle
         define: {
-          'global': 'window',
-          'process.env.NODE_ENV': JSON.stringify(mode)
+          'global': 'globalThis',
+          'process.env.NODE_ENV': JSON.stringify(mode),
+          'require': 'undefined'
         }
       },
     },
@@ -110,7 +111,7 @@ export default defineConfig(({ mode }) => {
       'process.env': JSON.stringify({
         NODE_ENV: mode
       }),
-      // Provide empty stub for require
+      // Remove require completely
       'require': 'undefined',
       // Make sure global objects are properly defined for ESM
       'global': 'globalThis',

@@ -12,6 +12,12 @@ console.log('Client-side hydration started');
 const queryClient = createQueryClient();
 const initialLanguage = getInitialLanguage();
 
+// Check for React Query state from SSR
+const queryState = window.__REACT_QUERY_STATE__;
+if (queryState) {
+  queryClient.setQueryData(queryState);
+}
+
 // Enhanced rendering with additional hydration checks
 renderApp(queryClient, initialLanguage, startTime);
 

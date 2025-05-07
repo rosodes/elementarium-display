@@ -61,11 +61,13 @@ export function renderApp(
   
   const AppWithProviders = createAppWithProviders(queryClient, initialLanguage);
 
-  // Improve SSR detection with data attribute
-  const isSSR = container.hasAttribute('data-ssr') || container.innerHTML.trim().length > 0;
+  // Improve SSR detection with data attribute and more reliable checks
+  const hasSSRAttribute = container.hasAttribute('data-ssr');
+  const hasContent = container.innerHTML.trim().length > 0;
+  const isSSR = hasSSRAttribute || hasContent;
   
   // Mark the root for proper hydration detection in future loads
-  if (!container.hasAttribute('data-ssr') && isSSR) {
+  if (!hasSSRAttribute && isSSR) {
     container.setAttribute('data-ssr', 'true');
   }
 
@@ -75,19 +77,20 @@ export function renderApp(
         console.log('Attempting SSR hydration');
         try {
           hydrateRoot(container, AppWithProviders);
+          console.log(`Hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
         } catch (hydrationError) {
           console.warn("Hydration failed, falling back to client render:", hydrationError);
           // Clear container to prevent hydration errors
           container.innerHTML = '';
           // Fall back to client-side rendering
           createRoot(container).render(AppWithProviders);
+          console.log(`Client render fallback complete in ${(performance.now() - startTime).toFixed(1)}ms`);
         }
       } else {
         console.log('No SSR HTML found, using client-side rendering');
         createRoot(container).render(AppWithProviders);
+        console.log(`Client render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
       }
-      
-      console.log(`${isSSR ? 'Hydration' : 'Client render'} complete in ${(performance.now() - startTime).toFixed(1)}ms`);
     });
   } catch (error) {
     console.error('Error rendering application:', error);
