@@ -28,11 +28,12 @@ export const getInitialLanguage = (): string => {
   if (typeof window === 'undefined') return 'en';
   
   // Check localStorage first
+  let savedLang;
   try {
-    const savedLang = localStorage.getItem('language');
+    savedLang = localStorage.getItem('language');
     if (savedLang) return savedLang;
-  } catch (e) {
-    console.warn('Failed to access localStorage:', e);
+  } catch {
+    // Silent fail if localStorage is not available
   }
   
   // Then check browser language

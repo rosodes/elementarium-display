@@ -12,11 +12,11 @@ export default defineConfig(({ mode }) => {
   const config: UserConfig = {
     plugins: [
       react({
-        // Remove Babel config to prevent conflicts with Vite's esbuild
+        // Use simpler babel config
         babel: {
           babelrc: false,
           configFile: false,
-          presets: []
+          plugins: []
         }
       }),
       // Add componentTagger plugin for development mode
@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),
-        // Add Node.js built-in module shims to prevent 'require' issues
+        // Provide empty modules for Node.js built-ins to prevent browser errors
         path: 'path-browserify',
         fs: 'memfs',
         crypto: 'crypto-browserify',
@@ -47,7 +47,9 @@ export default defineConfig(({ mode }) => {
         util: 'util',
         process: 'process/browser',
         zlib: 'browserify-zlib',
-        querystring: 'query-string'
+        querystring: 'query-string',
+        // Use ESM versions of packages that might be causing issues
+        react: path.resolve(__dirname, 'node_modules/react/index.js')
       },
       // Ensure proper resolution of ESM modules
       mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],
@@ -74,9 +76,11 @@ export default defineConfig(({ mode }) => {
       },
     },
     optimizeDeps: {
-      // Force-include problematic dependencies
+      // Force-include these dependencies to ensure proper pre-bundling
       include: [
         '@tanstack/react-query',
+        'react',
+        'react-dom',
         'react-helmet-async',
         'react-router-dom',
         '@radix-ui/react-toast',
@@ -92,9 +96,10 @@ export default defineConfig(({ mode }) => {
         },
         // Force tree-shaking
         treeShaking: true,
-        // Prevent inlining of require()
+        // Remove define for require - this is causing the issue
         define: {
-          'require': 'globalThis.require'
+          'global': 'window',
+          'process.env.NODE_ENV': JSON.stringify(mode)
         }
       },
     },
@@ -106,10 +111,10 @@ export default defineConfig(({ mode }) => {
       'process.env': JSON.stringify({
         NODE_ENV: mode
       }),
+      // Provide empty stub for require
+      'require': 'undefined',
       // Make sure global objects are properly defined for ESM
       'global': 'globalThis',
-      // Provide a shim for require
-      'require': 'undefined'
     },
     // Ensure we're using ESM
     esbuild: {
@@ -127,6 +132,8 @@ export default defineConfig(({ mode }) => {
       // Force bundle these packages for SSR to avoid CommonJS issues
       noExternal: [
         '@tanstack/react-query',
+        'react',
+        'react-dom',
         '@radix-ui/**',
         'next-themes'
       ]

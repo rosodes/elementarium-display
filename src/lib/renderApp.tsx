@@ -61,7 +61,7 @@ export function renderApp(
   
   const AppWithProviders = createAppWithProviders(queryClient, initialLanguage);
 
-  // Improve SSR detection
+  // Improve SSR detection with data attribute
   const isSSR = container.hasAttribute('data-ssr') || container.innerHTML.trim().length > 0;
   
   // Mark the root for proper hydration detection in future loads
