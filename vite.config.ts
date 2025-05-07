@@ -12,7 +12,8 @@ export default defineConfig(({ mode }) => {
   const config: UserConfig = {
     plugins: [
       react({
-        // Use simpler babel config
+        // Use standard React configuration
+        jsxRuntime: 'automatic',
         babel: {
           babelrc: false,
           configFile: false,
@@ -22,7 +23,6 @@ export default defineConfig(({ mode }) => {
       // Add componentTagger plugin for development mode
       mode === 'development' && componentTagger(),
       legacy({
-        // Hard-code targets here too for consistency
         targets: ['chrome >= 60', 'firefox >= 60', 'safari >= 12', 'edge >= 79'],
         modernPolyfills: true
       }),
@@ -48,7 +48,6 @@ export default defineConfig(({ mode }) => {
         process: 'process/browser',
         zlib: 'browserify-zlib',
         querystring: 'query-string',
-        // Don't alias React package - let Vite handle it normally
       },
       // Ensure proper resolution of ESM modules
       mainFields: ['browser', 'module', 'jsnext:main', 'jsnext', 'main'],

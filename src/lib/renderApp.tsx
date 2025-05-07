@@ -16,19 +16,17 @@ export const createAppWithProviders = (
   const helmetContext = {};
   
   return (
-    <React.StrictMode>
-      <QueryClientProvider client={queryClient}>
-        <ThemeProvider>
-          <LanguageProvider initialLanguage={initialLanguage}>
-            <HelmetProvider context={helmetContext}>
-              <BrowserRouter>
-                <App />
-              </BrowserRouter>
-            </HelmetProvider>
-          </LanguageProvider>
-        </ThemeProvider>
-      </QueryClientProvider>
-    </React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <LanguageProvider initialLanguage={initialLanguage}>
+          <HelmetProvider context={helmetContext}>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </HelmetProvider>
+        </LanguageProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
@@ -72,26 +70,25 @@ export function renderApp(
   }
 
   try {
-    startTransition(() => {
-      if (isSSR) {
-        console.log('Attempting SSR hydration');
-        try {
-          hydrateRoot(container, AppWithProviders);
-          console.log(`Hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
-        } catch (hydrationError) {
-          console.warn("Hydration failed, falling back to client render:", hydrationError);
-          // Clear container to prevent hydration errors
-          container.innerHTML = '';
-          // Fall back to client-side rendering
-          createRoot(container).render(AppWithProviders);
-          console.log(`Client render fallback complete in ${(performance.now() - startTime).toFixed(1)}ms`);
-        }
-      } else {
-        console.log('No SSR HTML found, using client-side rendering');
+    // Use regular rendering instead of startTransition to ensure proper control flow
+    if (isSSR) {
+      console.log('Attempting SSR hydration');
+      try {
+        hydrateRoot(container, AppWithProviders);
+        console.log(`Hydration complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+      } catch (hydrationError) {
+        console.warn("Hydration failed, falling back to client render:", hydrationError);
+        // Clear container to prevent hydration errors
+        container.innerHTML = '';
+        // Fall back to client-side rendering
         createRoot(container).render(AppWithProviders);
-        console.log(`Client render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+        console.log(`Client render fallback complete in ${(performance.now() - startTime).toFixed(1)}ms`);
       }
-    });
+    } else {
+      console.log('No SSR HTML found, using client-side rendering');
+      createRoot(container).render(AppWithProviders);
+      console.log(`Client render complete in ${(performance.now() - startTime).toFixed(1)}ms`);
+    }
   } catch (error) {
     console.error('Error rendering application:', error);
     // Use plain HTML instead of requiring error handling module

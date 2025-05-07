@@ -6,19 +6,22 @@ let queryClientInstance: QueryClient | null = null;
 
 // Initialize React Query client with proper settings
 export const createQueryClient = () => {
-  // Return existing instance if already created
-  if (queryClientInstance) return queryClientInstance;
-  
-  // Create a new instance with optimized settings
-  queryClientInstance = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: 1,
-        refetchOnWindowFocus: false,
-        staleTime: 5 * 60 * 1000, // 5 minutes
+  // Clear existing instance if it exists to prevent stale state
+  if (queryClientInstance) {
+    queryClientInstance.clear();
+  } else {
+    // Create a new instance with optimized settings
+    queryClientInstance = new QueryClient({
+      defaultOptions: {
+        queries: {
+          retry: 1,
+          refetchOnWindowFocus: false,
+          staleTime: 5 * 60 * 1000, // 5 minutes
+          structuralSharing: true,
+        },
       },
-    },
-  });
+    });
+  }
   
   return queryClientInstance;
 };
