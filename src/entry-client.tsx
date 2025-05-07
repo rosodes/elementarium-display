@@ -15,7 +15,12 @@ const initialLanguage = getInitialLanguage();
 // Check for React Query state from SSR
 const queryState = window.__REACT_QUERY_STATE__;
 if (queryState) {
-  queryClient.setQueryData(queryState);
+  // Correctly restore query state by looping through dehydrated state
+  if (Array.isArray(queryState.queries)) {
+    queryState.queries.forEach((query: any) => {
+      queryClient.setQueryData(query.queryKey, query.state.data);
+    });
+  }
 }
 
 // Enhanced rendering with additional hydration checks
