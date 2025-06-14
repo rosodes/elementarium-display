@@ -1,4 +1,5 @@
 
+// Расширенный интерфейс для всех поддерживаемых вариантов UI-переводов
 export interface UITranslations {
   close?: string;
   back?: string;
@@ -25,17 +26,18 @@ export interface UITranslations {
   accessibilityLabel?: string;
   elementTable?: string;
   focusMode?: string;
-  usageDistribution?: string;  // Added this property
+  usageDistribution?: string;
   simulatedData?: string;
   note?: string;
-  // Add missing properties
   elementRemoved?: string;
   elementBookmarked?: string;
   linkCopied?: string;
   linkCopiedToClipboard?: string;
-  // --- NEW KEYS ---
   naturalElements?: string;
   syntheticElements?: string;
+  hotkeySearch?: string;
+  hotkeyHome?: string;
+  hotkeyClose?: string;
 }
 
 export const uiEn: UITranslations = {
@@ -66,12 +68,10 @@ export const uiEn: UITranslations = {
   usageDistribution: "Usage Distribution", 
   simulatedData: "This is simulated data for demonstration purposes",
   note: "Note",
-  // Add English translations for new properties
   elementRemoved: "Element removed from bookmarks",
   elementBookmarked: "Element bookmarked",
   linkCopied: "Link copied",
   linkCopiedToClipboard: "Link has been copied to clipboard",
-  // --- NEW KEYS ---
   naturalElements: "Natural",
   syntheticElements: "Synthetic",
   hotkeySearch: "Search",
@@ -107,15 +107,14 @@ export const uiRu: UITranslations = {
   usageDistribution: "Распределение использования",
   simulatedData: "Это симулированные данные для демонстрационных целей",
   note: "Примечание",
-  // Add Russian translations for new properties
   elementRemoved: "Элемент удален из закладок",
   elementBookmarked: "Элемент добавлен в закладки",
   linkCopied: "Ссылка скопирована",
   linkCopiedToClipboard: "Ссылка скопирована в буфер обмена",
-  // --- NEW KEYS ---
   naturalElements: "Природных",
   syntheticElements: "Синтетических",
   hotkeySearch: "Поиск",
   hotkeyHome: "На главную",
   hotkeyClose: "Закрыть"
 };
+
