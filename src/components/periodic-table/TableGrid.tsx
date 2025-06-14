@@ -179,13 +179,14 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
             }
             
             if (cell.type === 'element') {
+              // ВАЖНО: добавим всегда element-card
               return (
-                <Element 
+                <Element
                   key={key}
-                  element={cell.data} 
+                  element={cell.data}
                   onClick={() => onElementClick(cell.data)}
                   data-atomic={cell.data.atomic}
-                  className="w-[76px] h-[76px]"
+                  className="element-card w-[76px] h-[76px]"
                 />
               );
             }

@@ -1,4 +1,3 @@
-
 /* Direct grid positioning for each element by atomic number using data attributes */
 /* Using higher specificity with direct child selectors to ensure these rules are applied */
 
@@ -105,4 +104,3 @@ div.periodic-table > .element-card[data-atomic="115"] { grid-column: 16 !importa
 div.periodic-table > .element-card[data-atomic="116"] { grid-column: 17 !important; grid-row: 8 !important; }
 div.periodic-table > .element-card[data-atomic="117"] { grid-column: 18 !important; grid-row: 8 !important; }
 div.periodic-table > .element-card[data-atomic="118"] { grid-column: 19 !important; grid-row: 8 !important; }
-
