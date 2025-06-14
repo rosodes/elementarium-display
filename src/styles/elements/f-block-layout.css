@@ -16,7 +16,7 @@
 /* F-block table container */
 .f-block-table {
   display: flex;
-  flex-direction: column;
+  flex-direction: column !important;
   gap: 8px;
   width: 100%;
   max-width: 1000px;
@@ -32,13 +32,15 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
-/* Each row (lanthanides or actinides) */
+/* Each row (lanthanides or actinides) - КРИТИЧЕСКИ ВАЖНО */
 .f-block-row {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 8px !important;
+  width: 100% !important;
+  min-height: 70px;
+  border: 1px solid red; /* Временная отладочная граница */
 }
 
 /* Period labels (6*, 7*) */
@@ -55,6 +57,7 @@
   border-right: 1px solid #e5e7eb;
   margin-right: 4px;
   flex-shrink: 0;
+  background-color: rgba(255, 255, 0, 0.2); /* Временный желтый фон для отладки */
 }
 
 .dark .f-block-label {
@@ -62,23 +65,44 @@
   border-right-color: #4b5563;
 }
 
-/* Container for elements in each row - ИСПРАВЛЕНО */
+/* Container for elements in each row - КРИТИЧЕСКИ ВАЖНО */
 .f-block-elements-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 4px;
-  flex: 1;
-  align-items: center;
-  justify-content: flex-start;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  flex: 1 !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  min-height: 70px !important;
+  background-color: rgba(0, 255, 0, 0.1); /* Временный зеленый фон для отладки */
+  border: 1px dashed blue; /* Временная отладочная граница */
 }
 
-/* Element cards in f-block */
+/* Element cards in f-block - ПЕРЕОПРЕДЕЛЯЕМ ВСЕ ВОЗМОЖНЫЕ СТИЛИ */
 .f-block-elements-container .element-card {
   width: 60px !important;
   height: 70px !important;
   font-size: 0.8rem !important;
-  flex-shrink: 0;
+  flex-shrink: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  margin: 0 !important;
+  float: none !important;
+  position: relative !important;
+  clear: none !important;
+}
+
+/* Переопределяем любые глобальные стили, которые могут влиять на элементы */
+.f-block-section * {
+  box-sizing: border-box;
+}
+
+.f-block-section .element-card {
+  display: flex !important;
+  flex-direction: column !important;
+  width: 60px !important;
+  height: 70px !important;
 }
 
 /* Responsive adjustments */
@@ -105,11 +129,11 @@
   }
   
   .f-block-row {
-    gap: 4px;
+    gap: 4px !important;
   }
   
   .f-block-elements-container {
-    gap: 2px;
+    gap: 2px !important;
   }
   
   .f-block-elements-container .element-card {

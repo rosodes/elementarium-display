@@ -41,6 +41,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
     }
     
     console.log('Lanthanides count:', lanthanideElements.length);
+    console.log('Lanthanides elements:', lanthanideElements);
     return lanthanideElements;
   };
   
@@ -63,8 +64,15 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
     }
     
     console.log('Actinides count:', actinideElements.length);
+    console.log('Actinides elements:', actinideElements);
     return actinideElements;
   };
+  
+  const lanthanides = renderLanthanides();
+  const actinides = renderActinides();
+  
+  console.log('Final lanthanides array:', lanthanides);
+  console.log('Final actinides array:', actinides);
   
   return (
     <div className="f-block-section">
@@ -81,18 +89,36 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
       {/* F-block table */}
       <div className="f-block-table">
         {/* Lanthanides row */}
-        <div className="f-block-row">
+        <div className="f-block-row" style={{ display: 'flex', flexDirection: 'row' }}>
           <div className="f-block-label">6*</div>
-          <div className="f-block-elements-container">
-            {renderLanthanides()}
+          <div 
+            className="f-block-elements-container" 
+            style={{ 
+              display: 'flex', 
+              flexDirection: 'row', 
+              flexWrap: 'wrap',
+              gap: '4px',
+              flex: 1
+            }}
+          >
+            {lanthanides}
           </div>
         </div>
         
         {/* Actinides row */}
-        <div className="f-block-row">
+        <div className="f-block-row" style={{ display: 'flex', flexDirection: 'row' }}>
           <div className="f-block-label">7*</div>
-          <div className="f-block-elements-container">
-            {renderActinides()}
+          <div 
+            className="f-block-elements-container"
+            style={{ 
+              display: 'flex', 
+              flexDirection: 'row', 
+              flexWrap: 'wrap',
+              gap: '4px',
+              flex: 1
+            }}
+          >
+            {actinides}
           </div>
         </div>
       </div>
