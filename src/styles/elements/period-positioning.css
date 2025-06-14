@@ -1,107 +1,109 @@
 
-/* Period 1: H (2,2), He (19,2) */
-.period-1 .element-card:nth-child(2) { grid-column: 2; grid-row: 2; }
-.period-1 .element-card:nth-child(3) { grid-column: 19; grid-row: 2; }
+/* Direct grid positioning for each element by atomic number */
 
-/* Period 2: Li-Be (2-3,3), B-Ne (14-19,3) */
-.period-2 .element-card:nth-child(2) { grid-column: 2; grid-row: 3; }
-.period-2 .element-card:nth-child(3) { grid-column: 3; grid-row: 3; }
-.period-2 .element-card:nth-child(4) { grid-column: 14; grid-row: 3; }
-.period-2 .element-card:nth-child(5) { grid-column: 15; grid-row: 3; }
-.period-2 .element-card:nth-child(6) { grid-column: 16; grid-row: 3; }
-.period-2 .element-card:nth-child(7) { grid-column: 17; grid-row: 3; }
-.period-2 .element-card:nth-child(8) { grid-column: 18; grid-row: 3; }
-.period-2 .element-card:nth-child(9) { grid-column: 19; grid-row: 3; }
+/* Period 1: H (1) and He (2) */
+.element-card[aria-label*="Hydrogen"] { grid-column: 2; grid-row: 2; }
+.element-card[aria-label*="Helium"] { grid-column: 19; grid-row: 2; }
 
-/* Period 3: Na-Mg (2-3,4), Al-Ar (14-19,4) */
-.period-3 .element-card:nth-child(2) { grid-column: 2; grid-row: 4; }
-.period-3 .element-card:nth-child(3) { grid-column: 3; grid-row: 4; }
-.period-3 .element-card:nth-child(4) { grid-column: 14; grid-row: 4; }
-.period-3 .element-card:nth-child(5) { grid-column: 15; grid-row: 4; }
-.period-3 .element-card:nth-child(6) { grid-column: 16; grid-row: 4; }
-.period-3 .element-card:nth-child(7) { grid-column: 17; grid-row: 4; }
-.period-3 .element-card:nth-child(8) { grid-column: 18; grid-row: 4; }
-.period-3 .element-card:nth-child(9) { grid-column: 19; grid-row: 4; }
+/* Period 2: Li (3) to Ne (10) */
+.element-card[aria-label*="Lithium"] { grid-column: 2; grid-row: 3; }
+.element-card[aria-label*="Beryllium"] { grid-column: 3; grid-row: 3; }
+.element-card[aria-label*="Boron"] { grid-column: 14; grid-row: 3; }
+.element-card[aria-label*="Carbon"] { grid-column: 15; grid-row: 3; }
+.element-card[aria-label*="Nitrogen"] { grid-column: 16; grid-row: 3; }
+.element-card[aria-label*="Oxygen"] { grid-column: 17; grid-row: 3; }
+.element-card[aria-label*="Fluorine"] { grid-column: 18; grid-row: 3; }
+.element-card[aria-label*="Neon"] { grid-column: 19; grid-row: 3; }
 
-/* Period 4: K-Kr (2-19,5) full row */
-.period-4 .element-card:nth-child(2) { grid-column: 2; grid-row: 5; }
-.period-4 .element-card:nth-child(3) { grid-column: 3; grid-row: 5; }
-.period-4 .element-card:nth-child(4) { grid-column: 4; grid-row: 5; }
-.period-4 .element-card:nth-child(5) { grid-column: 5; grid-row: 5; }
-.period-4 .element-card:nth-child(6) { grid-column: 6; grid-row: 5; }
-.period-4 .element-card:nth-child(7) { grid-column: 7; grid-row: 5; }
-.period-4 .element-card:nth-child(8) { grid-column: 8; grid-row: 5; }
-.period-4 .element-card:nth-child(9) { grid-column: 9; grid-row: 5; }
-.period-4 .element-card:nth-child(10) { grid-column: 10; grid-row: 5; }
-.period-4 .element-card:nth-child(11) { grid-column: 11; grid-row: 5; }
-.period-4 .element-card:nth-child(12) { grid-column: 12; grid-row: 5; }
-.period-4 .element-card:nth-child(13) { grid-column: 13; grid-row: 5; }
-.period-4 .element-card:nth-child(14) { grid-column: 14; grid-row: 5; }
-.period-4 .element-card:nth-child(15) { grid-column: 15; grid-row: 5; }
-.period-4 .element-card:nth-child(16) { grid-column: 16; grid-row: 5; }
-.period-4 .element-card:nth-child(17) { grid-column: 17; grid-row: 5; }
-.period-4 .element-card:nth-child(18) { grid-column: 18; grid-row: 5; }
-.period-4 .element-card:nth-child(19) { grid-column: 19; grid-row: 5; }
+/* Period 3: Na (11) to Ar (18) */
+.element-card[aria-label*="Sodium"] { grid-column: 2; grid-row: 4; }
+.element-card[aria-label*="Magnesium"] { grid-column: 3; grid-row: 4; }
+.element-card[aria-label*="Aluminum"] { grid-column: 14; grid-row: 4; }
+.element-card[aria-label*="Silicon"] { grid-column: 15; grid-row: 4; }
+.element-card[aria-label*="Phosphorus"] { grid-column: 16; grid-row: 4; }
+.element-card[aria-label*="Sulfur"] { grid-column: 17; grid-row: 4; }
+.element-card[aria-label*="Chlorine"] { grid-column: 18; grid-row: 4; }
+.element-card[aria-label*="Argon"] { grid-column: 19; grid-row: 4; }
 
-/* Period 5: Rb-Xe (2-19,6) full row */
-.period-5 .element-card:nth-child(2) { grid-column: 2; grid-row: 6; }
-.period-5 .element-card:nth-child(3) { grid-column: 3; grid-row: 6; }
-.period-5 .element-card:nth-child(4) { grid-column: 4; grid-row: 6; }
-.period-5 .element-card:nth-child(5) { grid-column: 5; grid-row: 6; }
-.period-5 .element-card:nth-child(6) { grid-column: 6; grid-row: 6; }
-.period-5 .element-card:nth-child(7) { grid-column: 7; grid-row: 6; }
-.period-5 .element-card:nth-child(8) { grid-column: 8; grid-row: 6; }
-.period-5 .element-card:nth-child(9) { grid-column: 9; grid-row: 6; }
-.period-5 .element-card:nth-child(10) { grid-column: 10; grid-row: 6; }
-.period-5 .element-card:nth-child(11) { grid-column: 11; grid-row: 6; }
-.period-5 .element-card:nth-child(12) { grid-column: 12; grid-row: 6; }
-.period-5 .element-card:nth-child(13) { grid-column: 13; grid-row: 6; }
-.period-5 .element-card:nth-child(14) { grid-column: 14; grid-row: 6; }
-.period-5 .element-card:nth-child(15) { grid-column: 15; grid-row: 6; }
-.period-5 .element-card:nth-child(16) { grid-column: 16; grid-row: 6; }
-.period-5 .element-card:nth-child(17) { grid-column: 17; grid-row: 6; }
-.period-5 .element-card:nth-child(18) { grid-column: 18; grid-row: 6; }
-.period-5 .element-card:nth-child(19) { grid-column: 19; grid-row: 6; }
+/* Period 4: K (19) to Kr (36) - full row */
+.element-card[aria-label*="Potassium"] { grid-column: 2; grid-row: 5; }
+.element-card[aria-label*="Calcium"] { grid-column: 3; grid-row: 5; }
+.element-card[aria-label*="Scandium"] { grid-column: 4; grid-row: 5; }
+.element-card[aria-label*="Titanium"] { grid-column: 5; grid-row: 5; }
+.element-card[aria-label*="Vanadium"] { grid-column: 6; grid-row: 5; }
+.element-card[aria-label*="Chromium"] { grid-column: 7; grid-row: 5; }
+.element-card[aria-label*="Manganese"] { grid-column: 8; grid-row: 5; }
+.element-card[aria-label*="Iron"] { grid-column: 9; grid-row: 5; }
+.element-card[aria-label*="Cobalt"] { grid-column: 10; grid-row: 5; }
+.element-card[aria-label*="Nickel"] { grid-column: 11; grid-row: 5; }
+.element-card[aria-label*="Copper"] { grid-column: 12; grid-row: 5; }
+.element-card[aria-label*="Zinc"] { grid-column: 13; grid-row: 5; }
+.element-card[aria-label*="Gallium"] { grid-column: 14; grid-row: 5; }
+.element-card[aria-label*="Germanium"] { grid-column: 15; grid-row: 5; }
+.element-card[aria-label*="Arsenic"] { grid-column: 16; grid-row: 5; }
+.element-card[aria-label*="Selenium"] { grid-column: 17; grid-row: 5; }
+.element-card[aria-label*="Bromine"] { grid-column: 18; grid-row: 5; }
+.element-card[aria-label*="Krypton"] { grid-column: 19; grid-row: 5; }
 
-/* Period 6: Cs-Ba (2-3,7), La (4,7), separator (5,7), Hf-Rn (6-19,7) */
-.period-6 .element-card:nth-child(2) { grid-column: 2; grid-row: 7; }
-.period-6 .element-card:nth-child(3) { grid-column: 3; grid-row: 7; }
-.period-6 .element-card:nth-child(4) { grid-column: 4; grid-row: 7; }
-.period-6 .separator { grid-column: 5; grid-row: 7; }
-.period-6 .element-card:nth-child(6) { grid-column: 6; grid-row: 7; }
-.period-6 .element-card:nth-child(7) { grid-column: 7; grid-row: 7; }
-.period-6 .element-card:nth-child(8) { grid-column: 8; grid-row: 7; }
-.period-6 .element-card:nth-child(9) { grid-column: 9; grid-row: 7; }
-.period-6 .element-card:nth-child(10) { grid-column: 10; grid-row: 7; }
-.period-6 .element-card:nth-child(11) { grid-column: 11; grid-row: 7; }
-.period-6 .element-card:nth-child(12) { grid-column: 12; grid-row: 7; }
-.period-6 .element-card:nth-child(13) { grid-column: 13; grid-row: 7; }
-.period-6 .element-card:nth-child(14) { grid-column: 14; grid-row: 7; }
-.period-6 .element-card:nth-child(15) { grid-column: 15; grid-row: 7; }
-.period-6 .element-card:nth-child(16) { grid-column: 16; grid-row: 7; }
-.period-6 .element-card:nth-child(17) { grid-column: 17; grid-row: 7; }
-.period-6 .element-card:nth-child(18) { grid-column: 18; grid-row: 7; }
-.period-6 .element-card:nth-child(19) { grid-column: 19; grid-row: 7; }
+/* Period 5: Rb (37) to Xe (54) - full row */
+.element-card[aria-label*="Rubidium"] { grid-column: 2; grid-row: 6; }
+.element-card[aria-label*="Strontium"] { grid-column: 3; grid-row: 6; }
+.element-card[aria-label*="Yttrium"] { grid-column: 4; grid-row: 6; }
+.element-card[aria-label*="Zirconium"] { grid-column: 5; grid-row: 6; }
+.element-card[aria-label*="Niobium"] { grid-column: 6; grid-row: 6; }
+.element-card[aria-label*="Molybdenum"] { grid-column: 7; grid-row: 6; }
+.element-card[aria-label*="Technetium"] { grid-column: 8; grid-row: 6; }
+.element-card[aria-label*="Ruthenium"] { grid-column: 9; grid-row: 6; }
+.element-card[aria-label*="Rhodium"] { grid-column: 10; grid-row: 6; }
+.element-card[aria-label*="Palladium"] { grid-column: 11; grid-row: 6; }
+.element-card[aria-label*="Silver"] { grid-column: 12; grid-row: 6; }
+.element-card[aria-label*="Cadmium"] { grid-column: 13; grid-row: 6; }
+.element-card[aria-label*="Indium"] { grid-column: 14; grid-row: 6; }
+.element-card[aria-label*="Tin"] { grid-column: 15; grid-row: 6; }
+.element-card[aria-label*="Antimony"] { grid-column: 16; grid-row: 6; }
+.element-card[aria-label*="Tellurium"] { grid-column: 17; grid-row: 6; }
+.element-card[aria-label*="Iodine"] { grid-column: 18; grid-row: 6; }
+.element-card[aria-label*="Xenon"] { grid-column: 19; grid-row: 6; }
 
-/* Period 7: Fr-Ra (2-3,8), Ac (4,8), separator (5,8), Rf-Og (6-19,8) */
-.period-7 .element-card:nth-child(2) { grid-column: 2; grid-row: 8; }
-.period-7 .element-card:nth-child(3) { grid-column: 3; grid-row: 8; }
-.period-7 .element-card:nth-child(4) { grid-column: 4; grid-row: 8; }
-.period-7 .separator { grid-column: 5; grid-row: 8; }
-.period-7 .element-card:nth-child(6) { grid-column: 6; grid-row: 8; }
-.period-7 .element-card:nth-child(7) { grid-column: 7; grid-row: 8; }
-.period-7 .element-card:nth-child(8) { grid-column: 8; grid-row: 8; }
-.period-7 .element-card:nth-child(9) { grid-column: 9; grid-row: 8; }
-.period-7 .element-card:nth-child(10) { grid-column: 10; grid-row: 8; }
-.period-7 .element-card:nth-child(11) { grid-column: 11; grid-row: 8; }
-.period-7 .element-card:nth-child(12) { grid-column: 12; grid-row: 8; }
-.period-7 .element-card:nth-child(13) { grid-column: 13; grid-row: 8; }
-.period-7 .element-card:nth-child(14) { grid-column: 14; grid-row: 8; }
-.period-7 .element-card:nth-child(15) { grid-column: 15; grid-row: 8; }
-.period-7 .element-card:nth-child(16) { grid-column: 16; grid-row: 8; }
-.period-7 .element-card:nth-child(17) { grid-column: 17; grid-row: 8; }
-.period-7 .element-card:nth-child(18) { grid-column: 18; grid-row: 8; }
-.period-7 .element-card:nth-child(19) { grid-column: 19; grid-row: 8; }
+/* Period 6: Cs (55) to Rn (86) with La gap */
+.element-card[aria-label*="Cesium"] { grid-column: 2; grid-row: 7; }
+.element-card[aria-label*="Barium"] { grid-column: 3; grid-row: 7; }
+.element-card[aria-label*="Lanthanum"] { grid-column: 4; grid-row: 7; }
+.element-card[aria-label*="Hafnium"] { grid-column: 6; grid-row: 7; }
+.element-card[aria-label*="Tantalum"] { grid-column: 7; grid-row: 7; }
+.element-card[aria-label*="Tungsten"] { grid-column: 8; grid-row: 7; }
+.element-card[aria-label*="Rhenium"] { grid-column: 9; grid-row: 7; }
+.element-card[aria-label*="Osmium"] { grid-column: 10; grid-row: 7; }
+.element-card[aria-label*="Iridium"] { grid-column: 11; grid-row: 7; }
+.element-card[aria-label*="Platinum"] { grid-column: 12; grid-row: 7; }
+.element-card[aria-label*="Gold"] { grid-column: 13; grid-row: 7; }
+.element-card[aria-label*="Mercury"] { grid-column: 14; grid-row: 7; }
+.element-card[aria-label*="Thallium"] { grid-column: 15; grid-row: 7; }
+.element-card[aria-label*="Lead"] { grid-column: 16; grid-row: 7; }
+.element-card[aria-label*="Bismuth"] { grid-column: 17; grid-row: 7; }
+.element-card[aria-label*="Polonium"] { grid-column: 18; grid-row: 7; }
+.element-card[aria-label*="Astatine"] { grid-column: 19; grid-row: 7; }
+.element-card[aria-label*="Radon"] { grid-column: 19; grid-row: 7; }
+
+/* Period 7: Fr (87) to Og (118) with Ac gap */
+.element-card[aria-label*="Francium"] { grid-column: 2; grid-row: 8; }
+.element-card[aria-label*="Radium"] { grid-column: 3; grid-row: 8; }
+.element-card[aria-label*="Actinium"] { grid-column: 4; grid-row: 8; }
+.element-card[aria-label*="Rutherfordium"] { grid-column: 6; grid-row: 8; }
+.element-card[aria-label*="Dubnium"] { grid-column: 7; grid-row: 8; }
+.element-card[aria-label*="Seaborgium"] { grid-column: 8; grid-row: 8; }
+.element-card[aria-label*="Bohrium"] { grid-column: 9; grid-row: 8; }
+.element-card[aria-label*="Hassium"] { grid-column: 10; grid-row: 8; }
+.element-card[aria-label*="Meitnerium"] { grid-column: 11; grid-row: 8; }
+.element-card[aria-label*="Darmstadtium"] { grid-column: 12; grid-row: 8; }
+.element-card[aria-label*="Roentgenium"] { grid-column: 13; grid-row: 8; }
+.element-card[aria-label*="Copernicium"] { grid-column: 14; grid-row: 8; }
+.element-card[aria-label*="Nihonium"] { grid-column: 15; grid-row: 8; }
+.element-card[aria-label*="Flerovium"] { grid-column: 16; grid-row: 8; }
+.element-card[aria-label*="Moscovium"] { grid-column: 17; grid-row: 8; }
+.element-card[aria-label*="Livermorium"] { grid-column: 18; grid-row: 8; }
+.element-card[aria-label*="Tennessine"] { grid-column: 19; grid-row: 8; }
+.element-card[aria-label*="Oganesson"] { grid-column: 19; grid-row: 8; }
 
 /* Separator styling */
 .separator {
@@ -110,8 +112,14 @@
   background-color: #8bc34a;
   width: 2px;
   margin: 0 auto;
+  grid-column: 5;
 }
 
 .dark .separator {
   background-color: #689f38;
+}
+
+/* Empty cells should not display */
+.empty-cell {
+  display: none;
 }

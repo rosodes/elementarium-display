@@ -10,16 +10,24 @@ interface PeriodRowProps {
 const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   const { t } = useLanguage();
 
-  // Use display: contents to make period row transparent to CSS Grid
-  const rowClass = `period-row period-${periodLabel}`;
-
   return (
-    <div className={rowClass} style={{ display: 'contents' }}>
-      <div className="period-row-label">
+    <>
+      <div 
+        className={`period-row-label period-${periodLabel}-label`}
+        style={{
+          gridColumn: 1,
+          gridRow: periodLabel === "1" ? 2 : 
+                   periodLabel === "2" ? 3 :
+                   periodLabel === "3" ? 4 :
+                   periodLabel === "4" ? 5 :
+                   periodLabel === "5" ? 6 :
+                   periodLabel === "6" ? 7 : 8
+        }}
+      >
         {periodLabel}
       </div>
       {elements}
-    </div>
+    </>
   );
 };
 

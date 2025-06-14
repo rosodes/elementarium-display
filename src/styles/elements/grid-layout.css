@@ -43,20 +43,6 @@
 .group-numbers-row > div:nth-child(18) { grid-column: 18; grid-row: 1; }
 .group-numbers-row > div:nth-child(19) { grid-column: 19; grid-row: 1; }
 
-/* Period rows use display: contents to flatten structure */
-.period-row {
-  display: contents;
-}
-
-/* Period labels positioning */
-.period-1 .period-row-label { grid-column: 1; grid-row: 2; }
-.period-2 .period-row-label { grid-column: 1; grid-row: 3; }
-.period-3 .period-row-label { grid-column: 1; grid-row: 4; }
-.period-4 .period-row-label { grid-column: 1; grid-row: 5; }
-.period-5 .period-row-label { grid-column: 1; grid-row: 6; }
-.period-6 .period-row-label { grid-column: 1; grid-row: 7; }
-.period-7 .period-row-label { grid-column: 1; grid-row: 8; }
-
 /* Element card dimensions */
 .element-card {
   width: 55px;
