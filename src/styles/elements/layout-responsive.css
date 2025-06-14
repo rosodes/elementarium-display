@@ -1,0 +1,50 @@
+
+/* Responsive enhancements */
+@media (max-width: 1400px) {
+  .periodic-table {
+    padding: 20px;
+    gap: 6px;
+  }
+  
+  .f-block-container {
+    margin-left: 4px;
+  }
+  
+  .periodic-table-wrapper {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .periodic-table {
+    padding: 16px;
+    gap: 5px;
+  }
+  
+  .periodic-table-wrapper {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .periodic-table {
+    padding: 12px;
+    gap: 4px;
+    border-radius: 16px;
+  }
+  
+  .periodic-table-container {
+    padding: 0 16px 16px;
+    border-radius: 16px;
+  }
+  
+  .lanthanide-actinide-section {
+    padding: 16px;
+    margin-top: 2rem;
+    border-radius: 12px;
+  }
+  
+  .periodic-table-wrapper {
+    padding: 0 5px;
+  }
+}
