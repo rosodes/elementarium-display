@@ -13,7 +13,7 @@ const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   return (
     <div 
       key={`period-row-${periodLabel}`} 
-      className="period-row"
+      className={`period-row period-${periodLabel.replace('*', '')}`}
       role="row"
       aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
     >
