@@ -16,6 +16,7 @@ const Legend = () => {
     <div className="legend flex flex-wrap gap-4 mb-6 text-xs">
       {blockColors.map(({ colorClass, colorName, labelKey }) => (
         <div key={colorClass} className="flex items-center gap-2">
+          {/* Цветной квадрат с рамкой */}
           <div className={`w-4 h-4 rounded border ${colorClass}`}></div>
           <span className="text-gray-800 dark:text-gray-200 font-medium">
             {t.legend[labelKey]}
@@ -27,7 +28,7 @@ const Legend = () => {
         <div
           className="w-4 h-4 rounded border flex items-center justify-center"
           style={{
-            background: 'rgba(239, 68, 68, 0.15)', // мягкий красный фон
+            background: 'rgba(239, 68, 68, 0.15)',
             borderColor: '#ef4444',
           }}
         >
@@ -43,3 +44,4 @@ const Legend = () => {
 };
 
 export default Legend;
+
