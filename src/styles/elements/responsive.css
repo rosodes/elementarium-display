@@ -1,14 +1,13 @@
 
-/* Responsive styles */
+/* Responsive styles - все элементы остаются одинакового размера */
 @media (max-width: 1400px) {
-  .element-card {
-    width: 70px;
-    height: 70px;
-  }
-  
-  .dashed-connector {
-    width: 15px;
-    height: 70px;
+  .element-card,
+  .empty-cell,
+  .dashed-connector,
+  .lanthanide-block,
+  .actinide-block {
+    width: 70px !important;
+    height: 70px !important;
   }
   
   .f-block-container {
@@ -22,14 +21,13 @@
 }
 
 @media (max-width: 1200px) {
-  .element-card {
-    width: 65px;
-    height: 65px;
-  }
-  
-  .dashed-connector {
-    width: 15px;
-    height: 65px;
+  .element-card,
+  .empty-cell,
+  .dashed-connector,
+  .lanthanide-block,
+  .actinide-block {
+    width: 70px !important;
+    height: 70px !important;
   }
   
   .f-block-container {
@@ -38,15 +36,14 @@
 }
 
 @media (max-width: 992px) {
-  .element-card {
-    width: 60px;
-    height: 60px;
+  .element-card,
+  .empty-cell,
+  .dashed-connector,
+  .lanthanide-block,
+  .actinide-block {
+    width: 70px !important;
+    height: 70px !important;
     padding: 2px;
-  }
-  
-  .dashed-connector {
-    width: 12px;
-    height: 60px;
   }
   
   .element-card .text-lg {
@@ -59,15 +56,14 @@
 }
 
 @media (max-width: 768px) {
-  .element-card {
-    width: 55px;
-    height: 55px;
+  .element-card,
+  .empty-cell,
+  .dashed-connector,
+  .lanthanide-block,
+  .actinide-block {
+    width: 70px !important;
+    height: 70px !important;
     padding: 2px;
-  }
-  
-  .dashed-connector {
-    width: 10px;
-    height: 55px;
   }
   
   .f-block-container {
@@ -81,15 +77,14 @@
 }
 
 @media (max-width: 640px) {
-  .element-card {
-    width: 50px;
-    height: 50px;
+  .element-card,
+  .empty-cell,
+  .dashed-connector,
+  .lanthanide-block,
+  .actinide-block {
+    width: 70px !important;
+    height: 70px !important;
     padding: 2px;
-  }
-  
-  .dashed-connector {
-    width: 8px;
-    height: 50px;
   }
   
   .element-card .text-lg {
@@ -107,15 +102,14 @@
 }
 
 @media (max-width: 480px) {
-  .element-card {
-    width: 45px;
-    height: 45px;
+  .element-card,
+  .empty-cell,
+  .dashed-connector,
+  .lanthanide-block,
+  .actinide-block {
+    width: 70px !important;
+    height: 70px !important;
     padding: 1px;
-  }
-  
-  .dashed-connector {
-    width: 7px;
-    height: 45px;
   }
   
   .element-card .text-lg {
