@@ -17,21 +17,21 @@ const ElementPage = () => {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { toast } = useToast();
-  
+
   // Set language based on URL parameter
   useEffect(() => {
     if (lang && ['en', 'ru', 'uk'].includes(lang) && lang !== language) {
       setLanguage(lang);
     }
   }, [lang, language, setLanguage]);
-  
+
   // Find element based on elementId parameter
   useEffect(() => {
     if (elementId) {
       const foundElement = elements.find(e => e && e.atomic === elementId);
       if (foundElement) {
         setElement(foundElement as ElementType);
-        
+
         // Check if element is bookmarked
         try {
           const bookmarks = JSON.parse(localStorage.getItem('bookmarkedElements') || '[]');
@@ -44,31 +44,31 @@ const ElementPage = () => {
       }
     }
   }, [elementId, navigate, lang]);
-  
+
   // Navigation handlers
   const handleHome = () => navigate(lang ? `/${lang}` : '/');
-  
+
   const handlePrevious = () => {
     if (element) {
       const prevElementId = parseInt(element.atomic) - 1;
       navigate(lang ? `/${lang}/element/${prevElementId}` : `/element/${prevElementId}`);
     }
   };
-  
+
   const handleNext = () => {
     if (element) {
       const nextElementId = parseInt(element.atomic) + 1;
       navigate(lang ? `/${lang}/element/${nextElementId}` : `/element/${nextElementId}`);
     }
   };
-  
+
   const handleToggleBookmark = () => {
     if (!elementId || !element) return;
-    
+
     try {
       const bookmarks = JSON.parse(localStorage.getItem('bookmarkedElements') || '[]');
       let newBookmarks;
-      
+
       if (isBookmarked) {
         newBookmarks = bookmarks.filter((id: string) => id !== elementId);
         toast({
@@ -84,23 +84,23 @@ const ElementPage = () => {
           duration: 3000,
         });
       }
-      
+
       localStorage.setItem('bookmarkedElements', JSON.stringify(newBookmarks));
       setIsBookmarked(!isBookmarked);
     } catch (e) {
       console.error('Error updating bookmarks:', e);
     }
   };
-  
+
   const handleShare = () => {
     if (!element) return;
-    
+
     const shareData = {
       title: `${element.name} (${element.symbol}) - Periodic Table`,
       text: `Learn about ${element.name} (${element.symbol}), atomic number ${element.atomic}`,
       url: window.location.href
     };
-    
+
     if (navigator.share && navigator.canShare(shareData)) {
       navigator.share(shareData)
         .catch((error) => console.log('Error sharing:', error));
@@ -114,48 +114,90 @@ const ElementPage = () => {
       });
     }
   };
-  
+
   if (!element) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <main className="flex justify-center items-center min-h-[50vh] bg-white dark:bg-gray-900" aria-busy="true">
         <div className="animate-pulse">
           <p>{t.ui?.loading || 'Loading...'}</p>
         </div>
-      </div>
+      </main>
     );
   }
-  
+
   const canGoPrevious = parseInt(element.atomic) > 1;
   const canGoNext = parseInt(element.atomic) < elements.filter(Boolean).length;
-  
+
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+    <div
+      className="min-h-screen w-full bg-white dark:bg-gray-900 transition-colors duration-200"
+      role="main"
+      aria-labelledby={`element-title-${element.atomic}`}
+      tabIndex={-1}
+      id="element-fullpage"
+    >
       <ElementPageHead element={element} lang={lang} />
-      
-      <ElementNavigation
-        element={element}
-        isBookmarked={isBookmarked}
-        onHome={handleHome}
-        onPrevious={handlePrevious}
-        onNext={handleNext}
-        onToggleBookmark={handleToggleBookmark}
-        onShare={handleShare}
-        canGoPrevious={canGoPrevious}
-        canGoNext={canGoNext}
-      />
-      
-      <div className="container mx-auto py-6 px-4">
-        <Separator className="my-4" />
-        
-        <ElementDetails 
-          element={element} 
-          onClose={handleHome}
-          onNavigate={(newElement) => {
-            navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
-          }}
-          isFullPage={true}
+
+      {/* Навигация по элементу */}
+      <nav
+        aria-label={t.elementDetails?.element || "Element Navigation"}
+        role="navigation"
+        className="w-full"
+      >
+        <ElementNavigation
+          element={element}
+          isBookmarked={isBookmarked}
+          onHome={handleHome}
+          onPrevious={handlePrevious}
+          onNext={handleNext}
+          onToggleBookmark={handleToggleBookmark}
+          onShare={handleShare}
+          canGoPrevious={canGoPrevious}
+          canGoNext={canGoNext}
         />
-      </div>
+      </nav>
+
+      {/* Content full width, semantically sectioned */}
+      <section
+        aria-labelledby={`element-details-title-${element.atomic}`}
+        className="w-full py-8 animate-fade-in"
+        tabIndex={0}
+      >
+        <h1
+          id={`element-details-title-${element.atomic}`}
+          className="sr-only"
+        >
+          {element.name} ({element.symbol}) {t.elementDetails?.element}
+        </h1>
+        <div className="w-full max-w-none mx-0">
+          {/* Вставляем ElementDetails, который уже покрывает большую часть информации и хорошо структурирован */}
+          <ElementDetails
+            element={element}
+            onClose={handleHome}
+            onNavigate={(newElement) => {
+              navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
+            }}
+            isFullPage={true}
+          />
+        </div>
+      </section>
+      <footer
+        className="w-full py-4 px-6 text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
+        aria-label={t.footer?.credits}
+      >
+        <Separator />
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
+          <span>
+            {t.footer.dataNote}
+          </span>
+          <span>
+            {t.footer.credits}
+          </span>
+          <span className="mt-1">
+            {t.footer.version} • {t.footer.license}
+          </span>
+        </div>
+      </footer>
     </div>
   );
 };
