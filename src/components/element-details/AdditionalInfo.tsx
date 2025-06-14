@@ -106,6 +106,41 @@ const elementToxicityData: Record<
     ecologicalImpact: "Mining and extraction impact environment; metal itself is not harmful.",
     reactivity: "Chemically inert; does not oxidize under normal conditions."
   },
+  "Helium": {
+    toxicity: "Helium is non-toxic and inert under all normal conditions.",
+    bioRole: "Helium has no biological role in living organisms.",
+    precautions: "Helium is safe to handle, but inhaling helium gas may cause asphyxiation and voice changes.",
+    ecologicalImpact: "Helium is an environmentally harmless noble gas that does not react in the atmosphere.",
+    reactivity: "Extremely low reactivity; does not form stable compounds."
+  },
+  "Lithium": {
+    toxicity: "Lithium is moderately toxic in its elemental and ionic forms.",
+    bioRole: "Lithium has no biological role but is used medically for bipolar disorder.",
+    precautions: "Avoid skin and eye contact with elemental lithium; flammable when exposed to water.",
+    ecologicalImpact: "Lithium mining can affect soil and groundwater. Elemental lithium is dangerous for aquatic life.",
+    reactivity: "Reacts vigorously with water; forms lithium hydroxide and hydrogen gas."
+  },
+  "Beryllium": {
+    toxicity: "Beryllium is highly toxic if inhaled as dust or fumes, causing chronic beryllium disease.",
+    bioRole: "Beryllium has no biological function.",
+    precautions: "Avoid breathing dust/fumes; use protective masks and gloves.",
+    ecologicalImpact: "Beryllium dust can contaminate soil and be hazardous to animals.",
+    reactivity: "Reacts with strong acids and alkalis; stable in air due to oxide layer."
+  },
+  "Boron": {
+    toxicity: "Elemental boron is of low toxicity, but some boron compounds are toxic.",
+    bioRole: "Trace amounts are essential for plants and possibly beneficial to humans.",
+    precautions: "Avoid prolonged exposure to boron dust.",
+    ecologicalImpact: "Boron pollution can harm plants and aquatic organisms at high concentrations.",
+    reactivity: "Relatively unreactive at standard conditions; forms borides, borates, and boron halides."
+  },
+  "Fluorine": {
+    toxicity: "Fluorine gas is extremely toxic and corrosive; causes severe burns and lung damage.",
+    bioRole: "No biological role for elemental fluorine; fluoride ions are important for teeth.",
+    precautions: "Handle only in specialized containment; avoid any contact.",
+    ecologicalImpact: "Highly harmful to life; forms persistent pollutants with organic matter.",
+    reactivity: "Most reactive of all elements; combines with almost everything, even noble gases."
+  },
 };
 
 // Секция токсичности

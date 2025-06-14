@@ -68,6 +68,36 @@ const elementFunFacts: Record<string, string[]> = {
     "Used for thousands of years as money and ornament.",
     "Gold is edible and used on luxury desserts as gold leaf."
   ],
+  "Helium": [
+    "Helium was discovered in the sun before it was found on Earth.",
+    "Helium is the second lightest element.",
+    "Because it's lighter than air, helium makes balloons float.",
+    "Unlike hydrogen, helium does not burn, so it's used in airships."
+  ],
+  "Lithium": [
+    "Lithium is the lightest metal and can float on oil.",
+    "It is used in rechargeable batteries for smartphones and laptops.",
+    "Lithium salts are used as mood stabilizers.",
+    "When placed in a flame, lithium produces a bright red color."
+  ],
+  "Beryllium": [
+    "Beryllium is two-thirds the density of aluminum but much stiffer.",
+    "X-ray windows are made from beryllium because it's nearly transparent to X-rays.",
+    "Astronauts' spacesuit visors sometimes use beryllium for strength.",
+    "It was once used in gemstones called emeralds (as part of beryl minerals)."
+  ],
+  "Boron": [
+    "Boron helps plants grow and is an essential micronutrient for them.",
+    "Boron fibers are used to strengthen aerospace structures.",
+    "Boron nitride is harder than diamond in some forms.",
+    "Silly Putty owes its unique properties to boron compounds."
+  ],
+  "Fluorine": [
+    "Fluorine is the most reactive of all elements.",
+    "Teflon, the non-stick coating, contains fluorine atoms.",
+    "Even water can burn in fluorine gas!",
+    "Fluoride in toothpaste helps prevent tooth decay."
+  ],
 };
 
 interface FunFactsSectionProps {
