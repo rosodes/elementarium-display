@@ -2,7 +2,6 @@
 import React, { memo } from 'react';
 import Element from '../Element';
 import { Element as ElementType } from '../../data/elementTypes';
-import { useLanguage } from '../../context/LanguageContext';
 import { elements } from '../../data/elements';
 
 interface FBlockSectionProps {
@@ -18,8 +17,6 @@ const findElement = (atomicNumber: number | string): ElementType | null => {
 };
 
 const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
-  const { t } = useLanguage();
-  
   console.log('FBlockSection rendering...');
   
   // Generate lanthanides (elements 57-71)
@@ -41,7 +38,6 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
     }
     
     console.log('Lanthanides count:', lanthanideElements.length);
-    console.log('Lanthanides elements:', lanthanideElements);
     return lanthanideElements;
   };
   
@@ -64,29 +60,15 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
     }
     
     console.log('Actinides count:', actinideElements.length);
-    console.log('Actinides elements:', actinideElements);
     return actinideElements;
   };
   
   const lanthanides = renderLanthanides();
   const actinides = renderActinides();
   
-  console.log('Final lanthanides array:', lanthanides);
-  console.log('Final actinides array:', actinides);
-  
   return (
     <div className="f-block-section">
-      {/* Section title */}
-      <div className="text-center mb-4">
-        <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
-          {t.elementDetails?.fBlockElements || "Лантаноиды и Актиноиды"}
-        </h3>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          {t.elementDetails?.fBlockDescription || "Внутренние переходные элементы"}
-        </p>
-      </div>
-      
-      {/* F-block table */}
+      {/* F-block table - без заголовков */}
       <div className="f-block-table">
         {/* Lanthanides row */}
         <div className="f-block-row" style={{ display: 'flex', flexDirection: 'row' }}>
@@ -120,18 +102,6 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
           >
             {actinides}
           </div>
-        </div>
-      </div>
-      
-      {/* Visual indicators */}
-      <div className="flex justify-center mt-2 space-x-6 text-xs text-gray-500 dark:text-gray-400">
-        <div className="flex items-center space-x-2">
-          <div className="w-4 h-1 bg-blue-400 rounded"></div>
-          <span>Лантаноиды (La-Lu)</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-4 h-1 bg-purple-400 rounded"></div>
-          <span>Актиноиды (Ac-Lr)</span>
         </div>
       </div>
     </div>
