@@ -3,7 +3,6 @@ import { Element as ElementType } from '../../data/elementTypes';
 import { useLanguage } from '../../context/LanguageContext';
 import TableGrid from './TableGrid';
 import FBlockSection from './FBlockSection';
-import TableLegend from './TableLegend';
 import QuickStats from './QuickStats';
 import KeyboardShortcuts from './KeyboardShortcuts';
 import LoadingIndicator from '../ui/loading-indicator';
@@ -78,9 +77,6 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
       >
         <div className="flex flex-col items-center w-full space-y-6">
           <QuickStats />
-          <TableLegend />
-          
-          {/* Центрированная периодическая таблица с улучшенным выравниванием */}
           <div className="w-full flex flex-col items-center justify-center overflow-x-auto">
             <div className="flex flex-col items-center gap-6 min-w-fit">
               <div className="w-full flex justify-center">
