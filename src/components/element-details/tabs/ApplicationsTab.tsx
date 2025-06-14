@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
@@ -12,6 +11,8 @@ import IndustrialUses from '../applications/IndustrialUses';
 import EverydayUses from '../applications/EverydayUses';
 import UsageSection from '../applications/UsageSection';
 import DiscoverySection from '../applications/DiscoverySection';
+import HydrogenExtractionSection from "../new-sections/HydrogenExtractionSection";
+import HydrogenCommercialUsesSection from "../new-sections/HydrogenCommercialUsesSection";
 
 interface ApplicationsTabProps {
   element: Element;
@@ -20,6 +21,16 @@ interface ApplicationsTabProps {
 
 const ApplicationsTab = ({ element, categoryColor }: ApplicationsTabProps) => {
   const { t } = useLanguage();
+
+  // Только для Hydrogen расширенные тематические секции
+  if (element.atomic === "1") {
+    return (
+      <div className="space-y-6 max-w-full">
+        <HydrogenCommercialUsesSection />
+        <HydrogenExtractionSection />
+      </div>
+    );
+  }
 
   // Можно дополнительно раскрыть области применения, добавить инфографику, факты
   return (
@@ -40,4 +51,3 @@ const ApplicationsTab = ({ element, categoryColor }: ApplicationsTabProps) => {
 };
 
 export default ApplicationsTab;
-

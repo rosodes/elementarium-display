@@ -1,10 +1,14 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import ElementOxidationStatesSection from "../ElementOxidationStatesSection";
 import ElementProperties from "../ElementProperties";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 import { useLanguage } from "../../../context/LanguageContext";
+
+import HydrogenOxStatesSection from "../new-sections/HydrogenOxStatesSection";
+import HydrogenPhysicalConstantsSection from "../new-sections/HydrogenPhysicalConstantsSection";
+import HydrogenReactivitySection from "../new-sections/HydrogenReactivitySection";
+import HydrogenNaturalOccurrenceSection from "../new-sections/HydrogenNaturalOccurrenceSection";
 
 interface PropertiesTabProps {
   element: Element;
@@ -13,6 +17,18 @@ interface PropertiesTabProps {
 
 const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
   const { t } = useLanguage();
+
+  // Основные свойства для Hydrogen — отдельные тематические секции + стандартная раскладка для прочих
+  if (element.atomic === "1") {
+    return (
+      <div className="space-y-4">
+        <HydrogenOxStatesSection />
+        <HydrogenPhysicalConstantsSection />
+        <HydrogenReactivitySection />
+        <HydrogenNaturalOccurrenceSection />
+      </div>
+    );
+  }
 
   // Расширенный набор карточек свойств (можно вынести в отдельные компоненты)
   return (
@@ -66,4 +82,3 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
 };
 
 export default PropertiesTab;
-
