@@ -114,12 +114,15 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
       if (el && col <= 12)
         grid[7][col] = { type: 'element', data: el };
     }
-    // 13-18 столбец — Nh(113) - Og(118)
-    for (let an = 113, col = 13; an <= 118; an++, col++) {
+    // 13-17 столбец — Nh(113) - Ts(117)
+    for (let an = 113, col = 13; an <= 117; an++, col++) {
       const el = findElement(an);
-      if (el && col <= 18)
+      if (el && col <= 17)
         grid[7][col] = { type: 'element', data: el };
     }
+    // 118 элемент — Og — ставим в колонку 19!
+    const og = findElement(118);
+    if (og) grid[7][19] = { type: 'element', data: og };
 
     return grid;
   };
