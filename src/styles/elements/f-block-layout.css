@@ -11,9 +11,8 @@
   margin-left: auto;
   margin-right: auto;
   padding: 0 20px;
-  /* Позиционирование относительно элемента 104 */
+  /* Точное позиционирование относительно элемента 104 */
   position: relative;
-  left: 0;
 }
 
 /* F-block table container */
@@ -28,8 +27,9 @@
   border-radius: 8px;
   padding: 8px;
   background: rgba(255, 255, 255, 0.5);
-  /* Выравнивание под элемент 104 - смещение влево */
-  margin-left: calc(40px + 3 * (60px + 4px));
+  /* Точное выравнивание под элемент 104 */
+  margin-left: calc(40px + 2 * (64px + 4px) + 32px);
+  transform: translateX(-8px);
 }
 
 .dark .f-block-table {
@@ -80,9 +80,9 @@
   min-height: 70px !important;
 }
 
-/* Element cards in f-block - одинаковый размер */
+/* Element cards in f-block */
 .f-block-elements-container .element-card {
-  width: 60px !important;
+  width: 64px !important;
   height: 70px !important;
   font-size: 0.8rem !important;
   flex-shrink: 0 !important;
@@ -102,15 +102,50 @@
 .f-block-section .element-card {
   display: flex !important;
   flex-direction: column !important;
-  width: 60px !important;
+  width: 64px !important;
   height: 70px !important;
 }
 
 /* Responsive adjustments */
+@media (max-width: 1400px) {
+  .f-block-table {
+    margin-left: calc(40px + 2 * (60px + 4px) + 28px);
+    transform: translateX(-6px);
+  }
+  
+  .f-block-elements-container .element-card {
+    width: 60px !important;
+    height: 65px !important;
+  }
+  
+  .f-block-label {
+    height: 65px;
+    min-width: 38px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .f-block-table {
+    margin-left: calc(40px + 2 * (58px + 4px) + 24px);
+    transform: translateX(-4px);
+  }
+  
+  .f-block-elements-container .element-card {
+    width: 58px !important;
+    height: 62px !important;
+  }
+  
+  .f-block-label {
+    height: 62px;
+    min-width: 36px;
+  }
+}
+
 @media (max-width: 1024px) {
   .f-block-table {
     max-width: 900px;
-    margin-left: calc(35px + 3 * (50px + 2px));
+    margin-left: calc(35px + 2 * (50px + 3px) + 20px);
+    transform: translateX(-3px);
   }
   
   .f-block-elements-container .element-card {
@@ -120,7 +155,7 @@
   
   .f-block-label {
     height: 60px;
-    min-width: 35px;
+    min-width: 32px;
   }
 }
 
@@ -133,7 +168,8 @@
     gap: 2px;
     max-width: 100%;
     padding: 6px;
-    margin-left: calc(30px + 3 * (40px + 2px));
+    margin-left: calc(30px + 2 * (42px + 2px) + 16px);
+    transform: translateX(-2px);
   }
   
   .f-block-row {
@@ -145,22 +181,70 @@
   }
   
   .f-block-elements-container .element-card {
-    width: 40px !important;
-    height: 50px !important;
+    width: 42px !important;
+    height: 52px !important;
     font-size: 0.7rem !important;
   }
   
   .f-block-label {
     font-size: 0.75rem;
-    min-width: 25px;
-    height: 50px;
+    min-width: 28px;
+    height: 52px;
   }
 }
 
-/* Дополнительные стили для точного выравнивания */
-@media (min-width: 1200px) {
+@media (max-width: 640px) {
   .f-block-table {
-    /* Более точное позиционирование для больших экранов */
-    margin-left: calc(40px + 3 * (64px + 4px));
+    margin-left: calc(25px + 2 * (38px + 2px) + 12px);
+    transform: translateX(-1px);
+  }
+  
+  .f-block-elements-container .element-card {
+    width: 38px !important;
+    height: 48px !important;
+    font-size: 0.65rem !important;
+  }
+  
+  .f-block-label {
+    font-size: 0.7rem;
+    min-width: 24px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .f-block-table {
+    margin-left: calc(20px + 2 * (34px + 1px) + 8px);
+    transform: translateX(0px);
+  }
+  
+  .f-block-elements-container .element-card {
+    width: 34px !important;
+    height: 44px !important;
+    font-size: 0.6rem !important;
+  }
+  
+  .f-block-label {
+    font-size: 0.65rem;
+    min-width: 20px;
+    height: 44px;
+  }
+}
+
+/* Дополнительные стили для идеального выравнивания */
+@media (min-width: 1600px) {
+  .f-block-table {
+    margin-left: calc(42px + 2 * (66px + 4px) + 36px);
+    transform: translateX(-10px);
+  }
+  
+  .f-block-elements-container .element-card {
+    width: 66px !important;
+    height: 72px !important;
+  }
+  
+  .f-block-label {
+    height: 72px;
+    min-width: 42px;
   }
 }
