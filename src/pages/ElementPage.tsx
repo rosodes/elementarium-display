@@ -1,4 +1,3 @@
-
 import { useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '@/components/ui/use-toast';
@@ -28,17 +27,21 @@ const ElementPage = () => {
 
   // Load the element and language
   useEffect(() => {
-    // Find the correct element from url params
-    let id = urlParams.atomic?.toString() || urlParams.id?.toString();
-    let atomicNumber = id ? parseInt(id, 10) : NaN;
-    // Fix: Ensure both sides are number before comparison
-    const found = !isNaN(atomicNumber) && elements.find((el) => Number(el.atomic) === atomicNumber);
+    // --- FIX: use correct param name and robust parsing ---
+    const idParam = urlParams.elementId?.toString();
+    if (!idParam) {
+      setElement(null);
+      setElementId(null);
+      return;
+    }
+    // atomic is string in data!
+    const found = elements.find((el) => el && el.atomic === idParam);
     setElement(found || null);
-    setElementId(found ? Number(found.atomic) : null); // ensure number
-    // Language
+    setElementId(found ? Number(found.atomic) : null);
     setLang(language);
     setLanguage(language);
-  }, [urlParams.atomic, urlParams.id, language, setLanguage]);
+    console.log('Loaded element:', found, 'for id:', idParam);
+  }, [urlParams.elementId, language, setLanguage]);
 
   // Bookmark logic (localStorage-based)
   useEffect(() => {
