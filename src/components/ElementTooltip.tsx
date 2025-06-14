@@ -28,10 +28,9 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
   // Get category display name
   const getCategoryName = (): string => {
     if (!element.series) return '';
-    
     const seriesMap: Record<string, string> = {
       'Alkali': t.categories?.alkali || 'Щелочные металлы',
-      'Alkaline': t.categories?.alkaline || 'Щелочноземельные металлы', 
+      'Alkaline': t.categories?.alkaline || 'Щелочноземельные металлы',
       'Transition': t.categories?.transition || 'Переходные металлы',
       'Post-transition': t.categories?.postTransition || 'Постпереходные металлы',
       'Metalloid': t.categories?.metalloid || 'Металлоиды',
@@ -40,7 +39,6 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
       'Lanthanide': t.categories?.lanthanide || 'Лантаноиды',
       'Actinide': t.categories?.actinide || 'Актиноиды'
     };
-    
     return seriesMap[element.series] || element.series;
   };
 
@@ -52,6 +50,9 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
     ]);
     return radioactiveElements.has(Number(element.atomic));
   };
+
+  // Для элементов 90–103 (актиноиды) используем попап снизу, для остальных — сверху
+  const tooltipSide = Number(element.atomic) >= 90 && Number(element.atomic) <= 103 ? 'bottom' : 'top';
 
   const tooltipContent = (
     <div className="space-y-2 min-w-48">
@@ -120,8 +121,9 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
   return (
     <EnhancedTooltip
       content={tooltipContent}
-      side="top"
+      side={tooltipSide}
       delay={200}
+      portalled={true}
     >
       {children}
     </EnhancedTooltip>
