@@ -1,4 +1,3 @@
-
 /* Updated grid layout for the periodic table */
 .periodic-table {
   display: grid !important;
@@ -87,10 +86,6 @@
 
 /* Element card dimensions and grid participation */
 .element-card {
-  width: 100% !important;
-  height: 70px !important;
-  max-width: 80px !important;
-  margin: 0 !important;
   box-sizing: border-box !important;
   display: flex !important;
   flex-direction: column !important;
