@@ -4,6 +4,7 @@ import { getCategoryColor, getSeriesColor } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
 import { getElement } from '../data/elements';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
+import ElementDetailVisualSections from "./element-details/visualizations/ElementDetailVisualSections";
 
 // Import refactored components
 import ElementHeader from './element-details/ElementHeader';
@@ -126,10 +127,9 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
           
           <div className={`p-5 sm:p-6 ${tabsContentMaxHeightClass} overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900`}>
             <TabsContent value="overview" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
-              {/* --- ДОБАВЛЕНА СЕКЦИЯ ИЗОТОПОВ --- */}
               <ElementIsotopesSection element={element} />
-              {/* --- дальше прежний контент --- */}
               <OverviewTab element={element} />
+              <ElementDetailVisualSections element={element} />
             </TabsContent>
             
             <TabsContent value="properties" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
