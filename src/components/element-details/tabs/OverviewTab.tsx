@@ -8,6 +8,7 @@ import AdditionalInfo from '../AdditionalInfo';
 import HistoryBlock from '../HistoryBlock'; // add
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
 import ElementIsotopesTable from "../ElementIsotopesTable"; // добавлено
+import HydrogenDetailSections from "../new-sections/HydrogenDetailSections";
 
 interface OverviewTabProps {
   element: Element;
@@ -241,6 +242,10 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
 
       {renderElementFacts()}
       <HistoryBlock element={element} />
+
+      {/* ВСТАВКА РАСШИРЕННОЙ ИНФЫ ТОЛЬКО ДЛЯ HYDROGEN */}
+      {element.atomic === "1" && <HydrogenDetailSections />}
+
       <div className="mt-4">
         <Card className="overflow-hidden border border-gray-200 dark:border-gray-700">
           <CardHeader className="bg-gray-50 dark:bg-gray-800 p-4">
