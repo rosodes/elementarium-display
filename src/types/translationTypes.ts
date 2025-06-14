@@ -185,10 +185,15 @@ export interface ElementDetailsTranslations {
   readonly everydayUses?: string;
   readonly funFacts?: string;
   // Required translation properties
-  readonly notAvailable: string;
-  readonly backToTable: string;
-  readonly previous: string;
-  readonly next: string;
+  notAvailable: string;
+  backToTable: string;
+  previous: string;
+  next: string;
+  conductivity?: string;
+  radioactive?: string;
+  yes?: string;
+  no?: string;
+  stability?: string;
 }
 
 export interface FooterTranslations {

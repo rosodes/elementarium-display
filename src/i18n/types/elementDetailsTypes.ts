@@ -76,6 +76,7 @@ export interface ElementDetailsTranslations {
   noOxidationStatesForNobleGases?: string;
   noOxidationStates?: string;
   conductivity?: string;
+  stability?: string; // <-- add this for isotopes table
   // Required translation properties
   notAvailable: string;
   backToTable: string;

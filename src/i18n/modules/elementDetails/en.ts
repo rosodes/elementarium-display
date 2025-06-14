@@ -1,3 +1,4 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -70,16 +71,15 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   industrialUses: "Industrial Uses",
   everydayUses: "Everyday Applications",
   funFacts: "Interesting Facts",
-  // Специальные ключи для степеней окисления
   noOxidationStatesForNobleGases: "Noble gases do not have oxidation states under normal conditions.",
   noOxidationStates: "No oxidation state data available.",
   notAvailable: "Information not available",
   backToTable: "Back to Periodic Table",
   previous: "Previous",
   next: "Next",
-  // --- ADDED KEYS ---
   conductivity: "Conductivity",
   radioactive: "Radioactive",
   yes: "Yes",
-  no: "No"
+  no: "No",
+  stability: "Stability", // <-- Add new key for Isotopes table
 };

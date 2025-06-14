@@ -2,7 +2,14 @@
 import React from "react";
 import { Element, ElementIsotope } from "../../data/elementTypes";
 import { useLanguage } from "../../context/LanguageContext";
-import { Table, Tbody, Td, Th, Thead, Tr } from "../ui/table";
+import {
+  Table,
+  TableHeader,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "../ui/table";
 import { Sparkles } from "lucide-react";
 
 interface Props {
@@ -20,36 +27,36 @@ const ElementIsotopesTable: React.FC<Props> = ({ isotopes, element }) => {
         {t.elementDetails?.isotopes || "Isotopes"}
       </div>
       <Table className="min-w-full bg-white/60 dark:bg-gray-900/60 shadow rounded-lg text-sm">
-        <Thead>
-          <Tr>
-            <Th>
+        <TableHeader>
+          <TableRow>
+            <TableHead>
               {t.elementDetails?.symbol || "Symbol"}
-            </Th>
-            <Th>
+            </TableHead>
+            <TableHead>
               {t.elementDetails?.abundance || "Natural abundance, %"}
-            </Th>
-            <Th>
+            </TableHead>
+            <TableHead>
               {t.elementDetails?.stability || "Stability"}
-            </Th>
-            <Th>
+            </TableHead>
+            <TableHead>
               {t.elementDetails?.funFacts || "Details"}
-            </Th>
-          </Tr>
-        </Thead>
-        <Tbody>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
           {isotopes.map((iso, idx) => (
-            <Tr key={idx}>
-              <Td>{iso.symbol}</Td>
-              <Td>{typeof iso.abundance === "number" ? iso.abundance : "-"}</Td>
-              <Td>
+            <TableRow key={idx}>
+              <TableCell>{iso.symbol}</TableCell>
+              <TableCell>{typeof iso.abundance === "number" ? iso.abundance : "-"}</TableCell>
+              <TableCell>
                 {iso.stable === true
                   ? t.elementDetails?.yes || "Stable"
                   : t.elementDetails?.no || "Unstable"}
-              </Td>
-              <Td>{iso.comment || "\u2013"}</Td>
-            </Tr>
+              </TableCell>
+              <TableCell>{iso.comment || "\u2013"}</TableCell>
+            </TableRow>
           ))}
-        </Tbody>
+        </TableBody>
       </Table>
     </div>
   );
