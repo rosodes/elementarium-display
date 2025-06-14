@@ -2,13 +2,7 @@
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 
-// Определяем допустимые языки
-type Lang = "ru" | "en" | "uk";
-const getLang = (l: string): Lang => {
-  if (["ru", "en", "uk"].includes(l)) return l as Lang;
-  return "en";
-};
-
+// Список категорий с цветами и описаниями на трёх языках
 const LEGEND_ITEMS = [
   {
     colorClass: "bg-s-block",
@@ -142,6 +136,8 @@ const RADIOACTIVE = {
   },
 };
 
+const getLang = (l: string) => (["ru", "en", "uk"].includes(l) ? l : "en");
+
 const Legend: React.FC = () => {
   const { language } = useLanguage();
   const lang = getLang(language);
@@ -162,16 +158,18 @@ const Legend: React.FC = () => {
               title={item.label[lang]}
             />
             <div>
-              <span className="font-medium text-gray-800 dark:text-gray-100">{item.label[lang]}</span>
-              <div className="text-gray-500 dark:text-gray-400 text-[11px] leading-tight mt-0.5">{item.description[lang]}</div>
+              <div className="font-medium text-gray-800 dark:text-gray-100">{item.label[lang]}</div>
+              <div className="text-gray-500 dark:text-gray-400 text-[11px] leading-tight mt-0.5">
+                {item.description[lang]}
+              </div>
             </div>
           </div>
         ))}
         {/* Радиоактивные элементы */}
         <div key="radioactive" className="flex items-start gap-2">
-          <div className="relative w-5 h-5 rounded border border-red-400 bg-white mt-0.5 flex-shrink-0">
+          <div className="relative w-5 h-5 rounded border border-red-400 bg-transparent mt-0.5 flex-shrink-0">
             <span className="absolute inset-0 flex items-center justify-center">
-              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
+              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse border border-red-500"></span>
             </span>
           </div>
           <div>
