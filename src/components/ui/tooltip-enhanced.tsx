@@ -26,7 +26,7 @@ const EnhancedTooltip = ({
   side = 'top',
   delay = 200,
   disabled = false,
-  portalled = true,
+  portalled = true, // Это свойство можно оставить в пропсах, но оно не используется напрямую.
 }: EnhancedTooltipProps) => {
   if (disabled) {
     return <>{children}</>;
@@ -44,8 +44,8 @@ const EnhancedTooltip = ({
           sideOffset={8}
           avoidCollisions={true}
           className="max-w-xs p-3 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600 shadow-xl rounded-lg z-[100]"
-          // используем portal для popup — чтобы не был частью таблицы!
-          portalled={portalled}
+          // Radix Tooltip по умолчанию уже использует portal для содержимого.
+          // Свойство portalled у TooltipContent не существует в публичном API shadcn/ui.
         >
           {content}
         </TooltipContent>
@@ -55,3 +55,4 @@ const EnhancedTooltip = ({
 };
 
 export default EnhancedTooltip;
+
