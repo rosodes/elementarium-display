@@ -5,6 +5,7 @@ import { Info, Thermometer, Box, Award, Atom, Hash, Zap, Layers, BookOpen, Spark
 import BasicInfo from '../BasicInfo';
 import PhysicalProperties from '../PhysicalProperties';
 import AdditionalInfo from '../AdditionalInfo';
+import HistoryBlock from '../HistoryBlock'; // add
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
 
 interface OverviewTabProps {
@@ -234,6 +235,9 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
 
       {/* Новые подробные карточки с дополнительной информацией */}
       {renderElementFacts()}
+
+      {/* Историческая справка только для элементов с детальной инфой */}
+      <HistoryBlock element={element} />
 
       <div className="mt-4">
         <Card className="overflow-hidden border border-gray-200 dark:border-gray-700">
