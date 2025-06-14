@@ -19,147 +19,148 @@ const findElement = (atomicNumber: number): ElementType | null => {
 const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   console.log('TableGrid rendering...');
   
-  // Force all styles inline with maximum specificity
+  // Container with fixed dimensions and relative positioning
   const containerStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: '40px repeat(18, 60px)',
-    gridTemplateRows: '35px repeat(7, 70px)',
-    gap: '4px',
-    width: 'fit-content',
+    position: 'relative',
+    width: '1200px',
+    height: '600px',
     margin: '0 auto',
     padding: '20px',
     backgroundColor: '#ffffff',
-    border: '2px solid red', // Debug border to see container
-    boxSizing: 'border-box',
-    position: 'relative',
-    minWidth: '1200px',
-    minHeight: '600px',
-    // Force override any conflicting styles
-    flex: 'none',
-    flexDirection: 'unset',
-    flexWrap: 'unset',
-    alignItems: 'unset',
-    justifyContent: 'unset'
+    border: '2px solid red',
+    boxSizing: 'border-box'
   };
 
-  // All element positions with their exact grid coordinates
+  // Calculate absolute positions for each grid cell
+  const cellWidth = 60;
+  const cellHeight = 70;
+  const gap = 4;
+  const headerHeight = 35;
+  const labelWidth = 40;
+
+  const getAbsolutePosition = (row: number, col: number) => ({
+    position: 'absolute' as const,
+    left: labelWidth + (col - 1) * (cellWidth + gap),
+    top: headerHeight + (row - 1) * (cellHeight + gap),
+    width: cellWidth,
+    height: cellHeight
+  });
+
+  const getHeaderPosition = (col: number) => ({
+    position: 'absolute' as const,
+    left: labelWidth + (col - 1) * (cellWidth + gap),
+    top: 0,
+    width: cellWidth,
+    height: headerHeight,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '0.8rem',
+    color: '#6b7280',
+    fontWeight: '600',
+    border: '1px solid blue'
+  });
+
+  const getLabelPosition = (row: number) => ({
+    position: 'absolute' as const,
+    left: 0,
+    top: headerHeight + (row - 1) * (cellHeight + gap),
+    width: labelWidth,
+    height: cellHeight,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '1rem',
+    color: '#6b7280',
+    fontWeight: '600',
+    border: '1px solid green'
+  });
+
+  // All element positions with their exact coordinates
   const elementPositions = [
     // Period 1
-    { atomic: 1, row: 2, col: 2 },   // H
-    { atomic: 2, row: 2, col: 19 },  // He
+    { atomic: 1, row: 1, col: 1 },   // H
+    { atomic: 2, row: 1, col: 18 },  // He
     
     // Period 2
-    { atomic: 3, row: 3, col: 2 },   // Li
-    { atomic: 4, row: 3, col: 3 },   // Be
-    { atomic: 5, row: 3, col: 14 },  // B
-    { atomic: 6, row: 3, col: 15 },  // C
-    { atomic: 7, row: 3, col: 16 },  // N
-    { atomic: 8, row: 3, col: 17 },  // O
-    { atomic: 9, row: 3, col: 18 },  // F
-    { atomic: 10, row: 3, col: 19 }, // Ne
+    { atomic: 3, row: 2, col: 1 },   // Li
+    { atomic: 4, row: 2, col: 2 },   // Be
+    { atomic: 5, row: 2, col: 13 },  // B
+    { atomic: 6, row: 2, col: 14 },  // C
+    { atomic: 7, row: 2, col: 15 },  // N
+    { atomic: 8, row: 2, col: 16 },  // O
+    { atomic: 9, row: 2, col: 17 },  // F
+    { atomic: 10, row: 2, col: 18 }, // Ne
     
     // Period 3
-    { atomic: 11, row: 4, col: 2 },  // Na
-    { atomic: 12, row: 4, col: 3 },  // Mg
-    { atomic: 13, row: 4, col: 14 }, // Al
-    { atomic: 14, row: 4, col: 15 }, // Si
-    { atomic: 15, row: 4, col: 16 }, // P
-    { atomic: 16, row: 4, col: 17 }, // S
-    { atomic: 17, row: 4, col: 18 }, // Cl
-    { atomic: 18, row: 4, col: 19 }, // Ar
+    { atomic: 11, row: 3, col: 1 },  // Na
+    { atomic: 12, row: 3, col: 2 },  // Mg
+    { atomic: 13, row: 3, col: 13 }, // Al
+    { atomic: 14, row: 3, col: 14 }, // Si
+    { atomic: 15, row: 3, col: 15 }, // P
+    { atomic: 16, row: 3, col: 16 }, // S
+    { atomic: 17, row: 3, col: 17 }, // Cl
+    { atomic: 18, row: 3, col: 18 }, // Ar
     
     // Period 4 - full row
-    { atomic: 19, row: 5, col: 2 },  { atomic: 20, row: 5, col: 3 },
-    { atomic: 21, row: 5, col: 4 },  { atomic: 22, row: 5, col: 5 },
-    { atomic: 23, row: 5, col: 6 },  { atomic: 24, row: 5, col: 7 },
-    { atomic: 25, row: 5, col: 8 },  { atomic: 26, row: 5, col: 9 },
-    { atomic: 27, row: 5, col: 10 }, { atomic: 28, row: 5, col: 11 },
-    { atomic: 29, row: 5, col: 12 }, { atomic: 30, row: 5, col: 13 },
-    { atomic: 31, row: 5, col: 14 }, { atomic: 32, row: 5, col: 15 },
-    { atomic: 33, row: 5, col: 16 }, { atomic: 34, row: 5, col: 17 },
-    { atomic: 35, row: 5, col: 18 }, { atomic: 36, row: 5, col: 19 },
+    { atomic: 19, row: 4, col: 1 },  { atomic: 20, row: 4, col: 2 },
+    { atomic: 21, row: 4, col: 3 },  { atomic: 22, row: 4, col: 4 },
+    { atomic: 23, row: 4, col: 5 },  { atomic: 24, row: 4, col: 6 },
+    { atomic: 25, row: 4, col: 7 },  { atomic: 26, row: 4, col: 8 },
+    { atomic: 27, row: 4, col: 9 },  { atomic: 28, row: 4, col: 10 },
+    { atomic: 29, row: 4, col: 11 }, { atomic: 30, row: 4, col: 12 },
+    { atomic: 31, row: 4, col: 13 }, { atomic: 32, row: 4, col: 14 },
+    { atomic: 33, row: 4, col: 15 }, { atomic: 34, row: 4, col: 16 },
+    { atomic: 35, row: 4, col: 17 }, { atomic: 36, row: 4, col: 18 },
     
     // Period 5 - full row
-    { atomic: 37, row: 6, col: 2 },  { atomic: 38, row: 6, col: 3 },
-    { atomic: 39, row: 6, col: 4 },  { atomic: 40, row: 6, col: 5 },
-    { atomic: 41, row: 6, col: 6 },  { atomic: 42, row: 6, col: 7 },
-    { atomic: 43, row: 6, col: 8 },  { atomic: 44, row: 6, col: 9 },
-    { atomic: 45, row: 6, col: 10 }, { atomic: 46, row: 6, col: 11 },
-    { atomic: 47, row: 6, col: 12 }, { atomic: 48, row: 6, col: 13 },
-    { atomic: 49, row: 6, col: 14 }, { atomic: 50, row: 6, col: 15 },
-    { atomic: 51, row: 6, col: 16 }, { atomic: 52, row: 6, col: 17 },
-    { atomic: 53, row: 6, col: 18 }, { atomic: 54, row: 6, col: 19 },
+    { atomic: 37, row: 5, col: 1 },  { atomic: 38, row: 5, col: 2 },
+    { atomic: 39, row: 5, col: 3 },  { atomic: 40, row: 5, col: 4 },
+    { atomic: 41, row: 5, col: 5 },  { atomic: 42, row: 5, col: 6 },
+    { atomic: 43, row: 5, col: 7 },  { atomic: 44, row: 5, col: 8 },
+    { atomic: 45, row: 5, col: 9 },  { atomic: 46, row: 5, col: 10 },
+    { atomic: 47, row: 5, col: 11 }, { atomic: 48, row: 5, col: 12 },
+    { atomic: 49, row: 5, col: 13 }, { atomic: 50, row: 5, col: 14 },
+    { atomic: 51, row: 5, col: 15 }, { atomic: 52, row: 5, col: 16 },
+    { atomic: 53, row: 5, col: 17 }, { atomic: 54, row: 5, col: 18 },
     
     // Period 6 - with lanthanide gap
-    { atomic: 55, row: 7, col: 2 },  { atomic: 56, row: 7, col: 3 },
-    { atomic: 57, row: 7, col: 4 },  // La
-    { atomic: 72, row: 7, col: 5 },  { atomic: 73, row: 7, col: 6 },
-    { atomic: 74, row: 7, col: 7 },  { atomic: 75, row: 7, col: 8 },
-    { atomic: 76, row: 7, col: 9 },  { atomic: 77, row: 7, col: 10 },
-    { atomic: 78, row: 7, col: 11 }, { atomic: 79, row: 7, col: 12 },
-    { atomic: 80, row: 7, col: 13 }, { atomic: 81, row: 7, col: 14 },
-    { atomic: 82, row: 7, col: 15 }, { atomic: 83, row: 7, col: 16 },
-    { atomic: 84, row: 7, col: 17 }, { atomic: 85, row: 7, col: 18 },
-    { atomic: 86, row: 7, col: 19 },
+    { atomic: 55, row: 6, col: 1 },  { atomic: 56, row: 6, col: 2 },
+    { atomic: 57, row: 6, col: 3 },  // La
+    { atomic: 72, row: 6, col: 4 },  { atomic: 73, row: 6, col: 5 },
+    { atomic: 74, row: 6, col: 6 },  { atomic: 75, row: 6, col: 7 },
+    { atomic: 76, row: 6, col: 8 },  { atomic: 77, row: 6, col: 9 },
+    { atomic: 78, row: 6, col: 10 }, { atomic: 79, row: 6, col: 11 },
+    { atomic: 80, row: 6, col: 12 }, { atomic: 81, row: 6, col: 13 },
+    { atomic: 82, row: 6, col: 14 }, { atomic: 83, row: 6, col: 15 },
+    { atomic: 84, row: 6, col: 16 }, { atomic: 85, row: 6, col: 17 },
+    { atomic: 86, row: 6, col: 18 },
     
     // Period 7 - with actinide gap
-    { atomic: 87, row: 8, col: 2 },  { atomic: 88, row: 8, col: 3 },
-    { atomic: 89, row: 8, col: 4 },  // Ac
-    { atomic: 104, row: 8, col: 5 }, { atomic: 105, row: 8, col: 6 },
-    { atomic: 106, row: 8, col: 7 }, { atomic: 107, row: 8, col: 8 },
-    { atomic: 108, row: 8, col: 9 }, { atomic: 109, row: 8, col: 10 },
-    { atomic: 110, row: 8, col: 11 }, { atomic: 111, row: 8, col: 12 },
-    { atomic: 112, row: 8, col: 13 }, { atomic: 113, row: 8, col: 14 },
-    { atomic: 114, row: 8, col: 15 }, { atomic: 115, row: 8, col: 16 },
-    { atomic: 116, row: 8, col: 17 }, { atomic: 117, row: 8, col: 18 },
-    { atomic: 118, row: 8, col: 19 },
+    { atomic: 87, row: 7, col: 1 },  { atomic: 88, row: 7, col: 2 },
+    { atomic: 89, row: 7, col: 3 },  // Ac
+    { atomic: 104, row: 7, col: 4 }, { atomic: 105, row: 7, col: 5 },
+    { atomic: 106, row: 7, col: 6 }, { atomic: 107, row: 7, col: 7 },
+    { atomic: 108, row: 7, col: 8 }, { atomic: 109, row: 7, col: 9 },
+    { atomic: 110, row: 7, col: 10 }, { atomic: 111, row: 7, col: 11 },
+    { atomic: 112, row: 7, col: 12 }, { atomic: 113, row: 7, col: 13 },
+    { atomic: 114, row: 7, col: 14 }, { atomic: 115, row: 7, col: 15 },
+    { atomic: 116, row: 7, col: 16 }, { atomic: 117, row: 7, col: 17 },
+    { atomic: 118, row: 7, col: 18 },
   ];
 
   return (
-    <div 
-      style={containerStyle}
-      className="force-grid-layout"
-    >
+    <div style={containerStyle}>
       {/* Group numbers header */}
       {Array.from({ length: 18 }, (_, i) => i + 1).map(groupNum => (
-        <div
-          key={`group-${groupNum}`}
-          style={{
-            gridColumn: groupNum + 1,
-            gridRow: 1,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '0.8rem',
-            color: '#6b7280',
-            fontWeight: '600',
-            height: '35px',
-            width: '60px',
-            border: '1px solid blue' // Debug border
-          }}
-        >
+        <div key={`group-${groupNum}`} style={getHeaderPosition(groupNum)}>
           {groupNum}
         </div>
       ))}
 
       {/* Period labels */}
       {Array.from({ length: 7 }, (_, i) => i + 1).map(periodNum => (
-        <div
-          key={`period-${periodNum}`}
-          style={{
-            gridColumn: 1,
-            gridRow: periodNum + 1,
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            fontSize: '1rem',
-            color: '#6b7280',
-            fontWeight: '600',
-            height: '70px',
-            width: '40px',
-            border: '1px solid green' // Debug border
-          }}
-        >
+        <div key={`period-${periodNum}`} style={getLabelPosition(periodNum)}>
           {periodNum}
         </div>
       ))}
@@ -173,15 +174,11 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
           <div
             key={`element-${atomic}`}
             style={{
-              gridColumn: col,
-              gridRow: row,
-              width: '60px',
-              height: '70px',
+              ...getAbsolutePosition(row, col),
+              border: '1px solid orange',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center',
-              border: '1px solid orange', // Debug border
-              position: 'relative'
+              alignItems: 'center'
             }}
           >
             <Element 
@@ -191,10 +188,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
                 width: '100%',
                 height: '100%',
                 margin: '0',
-                boxSizing: 'border-box',
-                position: 'absolute',
-                top: 0,
-                left: 0
+                boxSizing: 'border-box'
               }}
             />
           </div>
