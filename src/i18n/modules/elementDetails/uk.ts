@@ -1,4 +1,6 @@
 
+// Ukrainian translation for elementDetails, синхронизирована структура с en/ru для корректной мультиязычности
+
 import type { ElementDetailsTranslations } from "../elementDetails";
 
 export const elementDetailsUk: ElementDetailsTranslations = {
@@ -49,7 +51,7 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   previousElement: "Попередній елемент",
   nextElement: "Наступний елемент",
   isotopes: "Ізотопи",
-  // Новые ключи по аналогии с en (требуется перевод или можно временно оставить как в en)
+  // Новые и синхронизированные ключи
   industry: "Промисловість",
   discovery: "Відкриття",
   structure: "Структура",
@@ -72,7 +74,7 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   industrialUses: "Промислове використання",
   everydayUses: "Повсякденне застосування",
   funFacts: "Цікаві факти",
-  // F-block specific translations — оставляем на английском как временный fallback
+  // F-block specific translations — temporary fallback to English (можна перевести позже)
   fBlockElements: "F-block elements",
   fBlockDescription: "The f-block elements, including lanthanides and actinides",
   notAvailable: "Інформація недоступна",

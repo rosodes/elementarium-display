@@ -1,4 +1,6 @@
 
+// Ukrainian translation for UI module, структура полностью синхронизирована с en и ru
+
 import type { UITranslations } from "../ui";
 
 export const uiUk: UITranslations = {
@@ -29,7 +31,7 @@ export const uiUk: UITranslations = {
   usageDistribution: "Розподіл використання",
   simulatedData: "Це симульовані дані для демонстраційних цілей",
   note: "Примітка",
-  // Украинские переводы для новых свойств (или берем с en если нет локализации)
+  // Новые и выровненные ключи
   elementRemoved: "Елемент видалено з закладок",
   elementBookmarked: "Елемент додано до закладок",
   linkCopied: "Посилання скопійовано",
