@@ -3,10 +3,11 @@
 .periodic-table {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 2px;
   width: max-content;
   padding: 10px;
   margin: 0 auto;
+  align-items: center;
 }
 
 .periodic-table-container {
@@ -14,13 +15,15 @@
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-  padding-left: 48px;
-  padding-right: 48px;
+  padding-left: 24px;
+  padding-right: 24px;
   margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
 .periodic-table-container::-webkit-scrollbar {
-  height: 6px; /* Height for horizontal scrollbar */
+  height: 6px;
 }
 
 .periodic-table-container::-webkit-scrollbar-thumb {
@@ -42,8 +45,11 @@
 
 .period-row {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 70px;
 }
 
 /* Group and period labels */
@@ -54,6 +60,8 @@
   font-weight: bold;
   color: #666;
   text-align: center;
+  min-width: 24px;
+  height: 70px;
 }
 
 .dark .group-label, 
@@ -68,6 +76,7 @@
   justify-content: center;
   padding: 0.5rem;
   color: #666;
+  height: 70px;
 }
 
 .dark .lanthanide-block, 
@@ -79,49 +88,35 @@
 .element-card {
   width: 70px;
   height: 70px;
+  flex-shrink: 0;
 }
 
-/* Improve alignment of block elements */
-.period-row:nth-child(6) .element-card:nth-child(3),
-.period-row:nth-child(7) .element-card:nth-child(3) {
-  margin-right: 0;
+/* Empty cells should match element size */
+.element-placeholder {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
 }
 
 /* Lanthanide/Actinide section layout */
 .lanthanide-actinide-section {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   display: flex;
   justify-content: center;
   position: relative;
 }
 
 .f-block-container {
-  margin-left: 140px; /* Updated to 140px as requested */
+  margin-left: 160px;
   position: relative;
-  z-index: 1; /* Ensure f-block is above connector lines */
-}
-
-/* Make sure the placeholder connectors align properly */
-.placeholder-lanthanide,
-.placeholder-actinide {
-  position: relative;
-  z-index: 0;
+  z-index: 1;
 }
 
 /* Update connector size to match element cards */
 .dashed-connector {
   width: 2px;
   height: 70px;
-}
-
-/* Tooltip text color fix for dark mode */
-.dark .gpt-selector-tooltip {
-  color: #fff;
-}
-
-/* Fix for all text tooltips in dark mode */
-.dark [role="tooltip"] {
-  color: #fff;
+  flex-shrink: 0;
 }
 
 /* Fix vertical divider styling */
@@ -129,9 +124,29 @@
   width: 1px;
   height: 70px;
   background-color: rgba(0, 0, 0, 0.3);
-  margin: 0 2px;
+  margin: 0 1px;
+  flex-shrink: 0;
 }
 
 .dark .period-row .vertical-divider {
   background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Improve spacing between periods */
+.period-row + .period-row {
+  margin-top: 2px;
+}
+
+/* Center group numbers properly */
+.group-numbers-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 4px;
+  justify-content: flex-start;
+}
+
+.group-numbers-row > div:first-child {
+  min-width: 24px;
+  margin-right: 2px;
 }
