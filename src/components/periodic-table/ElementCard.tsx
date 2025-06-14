@@ -37,11 +37,7 @@ const ElementCard = ({ element, onClick, className = '' }: ElementCardProps) => 
   
   return (
     <div
-      className={`w-[70px] h-[70px] relative overflow-hidden cursor-pointer
-                 border border-white/40 dark:border-white/20 rounded-2xl backdrop-blur-sm
-                 focus:outline-none focus:ring-3 focus:ring-blue-400/60 flex-shrink-0
-                 transition-all duration-200 hover:scale-105 hover:shadow-lg
-                 ${className}`}
+      className={`element-card ${className}`}
       style={{ backgroundColor }}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
