@@ -19,7 +19,7 @@ const EnhancedTooltip = ({
   children, 
   content, 
   side = 'top', 
-  delay = 300,
+  delay = 200,
   disabled = false 
 }: EnhancedTooltipProps) => {
   if (disabled) {
@@ -34,7 +34,8 @@ const EnhancedTooltip = ({
         </TooltipTrigger>
         <TooltipContent 
           side={side} 
-          className="max-w-xs p-2 text-sm bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900 border-0 shadow-lg"
+          className="max-w-xs p-3 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600 shadow-xl rounded-lg z-50"
+          sideOffset={8}
         >
           {content}
         </TooltipContent>

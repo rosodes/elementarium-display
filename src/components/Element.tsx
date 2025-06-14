@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
 import { getCategoryColor } from '../data/elementCategories';
+import ElementTooltip from './ElementTooltip';
 import type { BaseElementProps } from '../types/componentTypes';
 import type { ActionFunction, ClassName } from '../types/utilityTypes';
 import type { ElementSymbolKey } from '../types/translationTypes';
@@ -64,57 +65,59 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
   const handleClick = (): void => onClick(element);
   
   return (
-    <button 
-      className={`element-card ${getElementColor()}
-                transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
-                hover:shadow-lg hover:scale-105 flex-shrink-0 relative
-                dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5
-                ${isHovering ? 'z-10 shadow-xl' : ''} ${className || ''}`}
-      onClick={handleClick}
-      onMouseEnter={handleHoverStart}
-      onMouseLeave={handleHoverEnd}
-      onFocus={handleHoverStart}
-      onBlur={handleHoverEnd}
-      aria-label={`${getElementName()} (${element.symbol}), ${t.elementDetails.atomicNumber} ${element.atomic}`}
-      data-atomic={element.atomic}
-      tabIndex={0}
-      style={style}
-      {...props}
-    >
-      <div className="flex justify-between items-start w-full">
-        <div className="text-[7px] sm:text-[9px] font-semibold">{element.atomic}</div>
-        {element.oxidation && (
-          <div className="text-[7px] sm:text-[9px]">
-            {element.oxidation.split(',')[0]?.replace('c', '') || ''}
-          </div>
-        )}
-      </div>
-      
-      <div className="text-center flex-grow flex flex-col justify-center items-center">
-        <div className="text-sm sm:text-lg md:text-xl font-bold">{element.symbol}</div>
-        <div className={`${getNameFontSize()} truncate max-w-full font-medium leading-tight`}>
-          {getElementName()}
+    <ElementTooltip element={element}>
+      <button 
+        className={`element-card ${getElementColor()}
+                  transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
+                  hover:shadow-lg hover:scale-105 flex-shrink-0 relative
+                  dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5
+                  ${isHovering ? 'z-10 shadow-xl' : ''} ${className || ''}`}
+        onClick={handleClick}
+        onMouseEnter={handleHoverStart}
+        onMouseLeave={handleHoverEnd}
+        onFocus={handleHoverStart}
+        onBlur={handleHoverEnd}
+        aria-label={`${getElementName()} (${element.symbol}), ${t.elementDetails.atomicNumber} ${element.atomic}`}
+        data-atomic={element.atomic}
+        tabIndex={0}
+        style={style}
+        {...props}
+      >
+        <div className="flex justify-between items-start w-full">
+          <div className="text-[7px] sm:text-[9px] font-semibold">{element.atomic}</div>
+          {element.oxidation && (
+            <div className="text-[7px] sm:text-[9px]">
+              {element.oxidation.split(',')[0]?.replace('c', '') || ''}
+            </div>
+          )}
         </div>
-      </div>
-      
-      <div className="flex justify-between items-end w-full">
-        <div className="text-[6px] sm:text-[8px] opacity-80">{element.weight}</div>
-        {isRadioactive() && (
-          <div 
-            className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 animate-pulse-subtle" 
-            title={t.ui?.radioactive || "Radioactive"} 
-            aria-label={t.ui?.radioactive || "Radioactive element"}
-          />
-        )}
-      </div>
-      
-      {/* Hidden detailed information for screen readers */}
-      <span className="sr-only">
-        {t.elementDetails.series}: {element.series}. 
-        {element.discover ? `${t.elementDetails.discovered}: ${element.discover}.` : ''} 
-        {element.electronstring ? `${t.elementDetails.electronConfig}: ${element.electronstring}.` : ''}
-      </span>
-    </button>
+        
+        <div className="text-center flex-grow flex flex-col justify-center items-center">
+          <div className="text-sm sm:text-lg md:text-xl font-bold">{element.symbol}</div>
+          <div className={`${getNameFontSize()} truncate max-w-full font-medium leading-tight`}>
+            {getElementName()}
+          </div>
+        </div>
+        
+        <div className="flex justify-between items-end w-full">
+          <div className="text-[6px] sm:text-[8px] opacity-80">{element.weight}</div>
+          {isRadioactive() && (
+            <div 
+              className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 animate-pulse-subtle" 
+              title={t.ui?.radioactive || "Radioactive"} 
+              aria-label={t.ui?.radioactive || "Radioactive element"}
+            />
+          )}
+        </div>
+        
+        {/* Hidden detailed information for screen readers */}
+        <span className="sr-only">
+          {t.elementDetails.series}: {element.series}. 
+          {element.discover ? `${t.elementDetails.discovered}: ${element.discover}.` : ''} 
+          {element.electronstring ? `${t.elementDetails.electronConfig}: ${element.electronstring}.` : ''}
+        </span>
+      </button>
+    </ElementTooltip>
   );
 };
 
