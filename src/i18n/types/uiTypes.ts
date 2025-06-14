@@ -1,4 +1,3 @@
-
 import { ElementTranslations } from './elementTypes';
 
 export interface UITranslations {
@@ -34,4 +33,6 @@ export interface UITranslations {
   elementBookmarked?: string;
   linkCopied?: string;
   linkCopiedToClipboard?: string;
+  naturalElements?: string;
+  syntheticElements?: string;
 }
