@@ -57,29 +57,30 @@ const ElementMainContent = ({
         aria-describedby={`element-details-title-${element.atomic}`}
       >
         <ElementPageHead element={element} lang={lang} />
-        <nav
-          aria-label={t.elementDetails?.element || "Element Navigation"}
-          role="navigation"
-          className="w-full"
-        >
-          <ElementNavigation
-            element={element}
-            isBookmarked={isBookmarked}
-            onHome={handleHome}
-            onPrevious={handlePrevious}
-            onNext={handleNext}
-            onToggleBookmark={handleToggleBookmark}
-            onShare={handleShare}
-            canGoPrevious={canGoPrevious}
-            canGoNext={canGoNext}
-          />
-        </nav>
         <section
           aria-labelledby={`element-details-title-${element.atomic}`}
           className="w-full max-w-7xl mx-auto py-8 px-4 md:px-12 xl:px-36 animate-fade-in"
           tabIndex={0}
         >
           <div className="relative w-full max-w-none mx-0 rounded-2xl bg-white/90 dark:bg-gray-900/95 shadow-xl ring-2 ring-blue-300/10 dark:ring-blue-800/20 p-0 md:p-2 transition border border-gray-200 dark:border-gray-700">
+            {/* Навигация внутри карточки */}
+            <nav
+              aria-label={t.elementDetails?.element || "Element Navigation"}
+              role="navigation"
+              className="w-full"
+            >
+              <ElementNavigation
+                element={element}
+                isBookmarked={isBookmarked}
+                onHome={handleHome}
+                onPrevious={handlePrevious}
+                onNext={handleNext}
+                onToggleBookmark={handleToggleBookmark}
+                onShare={handleShare}
+                canGoPrevious={canGoPrevious}
+                canGoNext={canGoNext}
+              />
+            </nav>
             <ElementDetails
               element={element}
               onClose={handleHome}
