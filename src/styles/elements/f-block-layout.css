@@ -1,5 +1,15 @@
+/* Общие стили для f-блока, можно вынести в variables.css */
+/* Цвета и отступы могут быть скорректированы */
 
-/* ... keep existing code (верх всего файла и base rules) the same ... */
+/* Базовые стили для секции f-блока */
+.f-block-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 16px; /* Отступ сверху */
+  width: 100%;
+  padding: 0 16px; /* Отступы по бокам */
+}
 
 /* F-block table container */
 .f-block-table {
@@ -19,8 +29,9 @@
     + (16 * (64px + 4px))            /* 16 d-block: элементы 72-87 (ширина+gap) */
     + (2 * (64px + 4px))             /* 2 пробела фиктивных после группы 2-3 */
     + 4px                            /* микрокоррекция под shadcn borers */
+    + 12px                           /* ДОБАВЛЕННЫЙ СДВИГ ВПРАВО! */
   );
-  transform: translateX(-16px); /* микрокоррекция */
+  transform: translateX(-4px); /* Меньше отрицательный сдвиг: выравнивание правее */
 }
 
 .dark .f-block-table {
@@ -28,11 +39,51 @@
   background: rgba(0, 0, 0, 0.2);
 }
 
-/* ... keep existing code (section, rows, label, container, etc.) the same ... */
+/* F-block row styles */
+.f-block-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px !important;
+  width: 100%;
+}
 
+/* Label style for f-block rows */
 .f-block-label {
-  /* ... keep existing code (.f-block-label base styles) the same ... */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 40px;
+  height: 70px;
+  padding: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4b5563;
+  background-color: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  text-align: center;
+  white-space: nowrap;
+  user-select: none;
   margin-right: 6px; /* +2px до элементов, чуть больше "зазор" */
+}
+
+.dark .f-block-label {
+  color: #d1d5db;
+  background-color: #4b5563;
+  border-color: #6b7280;
+}
+
+/* Container for f-block elements */
+.f-block-elements-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4px !important;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 /* Элементы f-блока внутри контейнера */
@@ -51,16 +102,21 @@
   margin-top: 1px !important;
 }
 
-/* ... keep existing code (смена размера карты в .f-block-section) the same ... */
+/* Slightly smaller cards in the f-block section */
+.f-block-section .element-card {
+  width: 64px;
+  height: 70px;
+  font-size: 0.8rem;
+}
 
 /* MEDIA для позиционирования под 104-м элементом на разных ширинах */
 @media (max-width: 1400px) {
   .f-block-table {
     /* Аналогично, пересчет позиций для уменьшенных карточек */
     margin-left: calc(
-      32px + (16 * (60px + 4px)) + (2 * (60px + 4px)) + 2px
+      32px + (16 * (60px + 4px)) + (2 * (60px + 4px)) + 10px /* сдвиг вправо */
     );
-    transform: translateX(-11px);
+    transform: translateX(-3px);
   }
   .f-block-elements-container .element-card {
     width: 60px !important;
@@ -72,9 +128,9 @@
 @media (max-width: 1200px) {
   .f-block-table {
     margin-left: calc(
-      26px + (16 * (58px + 4px)) + (2 * (58px + 4px))
+      26px + (16 * (58px + 4px)) + (2 * (58px + 4px)) + 8px /* сдвиг вправо */
     );
-    transform: translateX(-8px);
+    transform: translateX(-2px);
   }
   .f-block-elements-container .element-card {
     width: 58px !important;
@@ -87,9 +143,9 @@
   .f-block-table {
     max-width: 900px;
     margin-left: calc(
-      14px + (16 * (50px + 3px)) + (2 * (50px + 3px))
+      14px + (16 * (50px + 3px)) + (2 * (50px + 3px)) + 6px /* вправо */
     );
-    transform: translateX(-4px);
+    transform: translateX(-1px);
   }
   .f-block-elements-container .element-card {
     width: 50px !important;
@@ -106,9 +162,9 @@
     max-width: 100%;
     padding: 5px;
     margin-left: calc(
-      6px + (16 * (42px + 2px)) + (2 * (42px + 2px))
+      6px + (16 * (42px + 2px)) + (2 * (42px + 2px)) + 2px /* вправо */
     );
-    transform: translateX(-2px);
+    transform: translateX(-1px);
   }
   .f-block-row { gap: 1.5px !important; }
   .f-block-elements-container { gap: 1.5px !important; }
@@ -123,9 +179,9 @@
 @media (max-width: 640px) {
   .f-block-table {
     margin-left: calc(
-      3px + (16 * (38px + 2px)) + (2 * (38px + 2px))
+      3px + (16 * (38px + 2px)) + (2 * (38px + 2px)) + 1px
     );
-    transform: translateX(-1px);
+    transform: translateX(0px);
   }
   .f-block-elements-container .element-card {
     width: 38px !important;
@@ -139,6 +195,7 @@
   .f-block-table {
     margin-left: calc(
       0px + (16 * (34px + 1px)) + (2 * (34px + 1px))
+      /* для самой маленькой ширины сдвиг не нужен */
     );
     transform: translateX(0px);
   }
@@ -153,9 +210,9 @@
 @media (min-width: 1600px) {
   .f-block-table {
     margin-left: calc(
-      46px + (16 * (66px + 4px)) + (2 * (66px + 4px))
+      46px + (16 * (66px + 4px)) + (2 * (66px + 4px)) + 16px
     );
-    transform: translateX(-19px);
+    transform: translateX(-8px);
   }
   .f-block-elements-container .element-card {
     width: 66px !important;
@@ -164,4 +221,4 @@
   .f-block-label { height: 72px; min-width: 42px; }
 }
 
-/* ... keep existing code (остальной файл, если есть) the same ... */
+/* Дополнительные стили при необходимости */
