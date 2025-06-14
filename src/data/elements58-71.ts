@@ -141,7 +141,8 @@ export const elements58to71: Element[] = [
     },
     isotopes: 11,
     group: 3,
-    period: 6
+    period: 6,
+    radioactive: true
   },
   {
     atomic: "62",

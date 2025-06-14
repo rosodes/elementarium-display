@@ -37,6 +37,7 @@ export const elements90to103: Element[] = [
     isotopes: 12,
     group: 3,
     period: 7,
+    radioactive: true
   },
   // 91 Pa
   {
@@ -69,7 +70,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 14,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 92 U
   {
@@ -105,7 +107,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 22,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 93 Np
   {
@@ -138,7 +141,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 16,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 94 Pu
   {
@@ -174,7 +178,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 19,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 95 Am
   {
@@ -207,7 +212,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 15,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 96 Cm
   {
@@ -240,7 +246,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 20,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 97 Bk
   {
@@ -273,7 +280,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 10,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 98 Cf
   {
@@ -306,7 +314,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 18,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 99 Es
   {
@@ -338,7 +347,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 12,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 100 Fm
   {
@@ -369,7 +379,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 10,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 101 Md
   {
@@ -400,7 +411,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 3,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
   // 102 No
   {
@@ -431,9 +443,10 @@ export const elements90to103: Element[] = [
     },
     isotopes: 10,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   },
-  // 103 Lr: d-блок, группа 3, Transition для цветовой кодировки d-блока
+  // 103 Lr: d-блок, группа 3, Transition, радиоактивный  
   {
     atomic: "103",
     symbol: "Lr",
@@ -464,6 +477,7 @@ export const elements90to103: Element[] = [
     group: 3,
     period: 7,
     block: "d",
-    category: "transition metal"
+    category: "transition metal",
+    radioactive: true
   }
 ];

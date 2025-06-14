@@ -113,7 +113,7 @@ export const elements81to90: Element[] = [
     period: 6
   },
 
-  // Polonium (84) — проверяем маркеры для металлоида:
+  // Polonium (84) — полуметалл и радиоактивен
   {
     atomic: "84",
     symbol: "Po",
@@ -148,7 +148,8 @@ export const elements81to90: Element[] = [
     isotopes: 33,
     group: 16,
     period: 6,
-    category: "metalloid"
+    category: "metalloid",
+    radioactive: true
   },
 
   // Astatine (85)
@@ -181,7 +182,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 24,
     group: 17,
-    period: 6
+    period: 6,
+    radioactive: true
   },
 
   // Radon (86)
@@ -217,7 +219,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 20,
     group: 18,
-    period: 6
+    period: 6,
+    radioactive: true
   },
 
   // Francium (87)
@@ -251,7 +254,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 23,
     group: 1,
-    period: 7
+    period: 7,
+    radioactive: true
   },
 
   // Radium (88)
@@ -285,7 +289,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 15,
     group: 2,
-    period: 7
+    period: 7,
+    radioactive: true
   },
 
   // Actinium (89)
@@ -319,6 +324,7 @@ export const elements81to90: Element[] = [
     },
     isotopes: 12,
     group: 3,
-    period: 7
+    period: 7,
+    radioactive: true
   }
 ];
