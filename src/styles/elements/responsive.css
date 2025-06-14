@@ -1,4 +1,5 @@
-/* Responsive styles */
+
+/* Responsive styles - только позиционирование, НЕ размеры элементов */
 @media (max-width: 1400px) {
   .dashed-connector {
     width: 15px;

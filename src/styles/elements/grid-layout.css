@@ -84,16 +84,7 @@
 .period-6-label { grid-row: 7 !important; }
 .period-7-label { grid-row: 8 !important; }
 
-/* Element card dimensions and grid participation */
-.element-card {
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-/* Explicit element positioning by atomic number */
+/* Element positioning by atomic number - все элементы строго 76x76px */
 .element-card[data-atomic="1"] { grid-column: 2 !important; grid-row: 2 !important; }
 .element-card[data-atomic="2"] { grid-column: 19 !important; grid-row: 2 !important; }
 

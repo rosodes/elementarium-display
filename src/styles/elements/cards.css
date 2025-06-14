@@ -3,6 +3,10 @@
 .element-card {
   width: 76px !important;
   height: 76px !important;
+  min-width: 76px !important;
+  min-height: 76px !important;
+  max-width: 76px !important;
+  max-height: 76px !important;
   aspect-ratio: 1 / 1;
   position: relative;
   border-radius: 4px;
@@ -11,6 +15,11 @@
   color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 /* Focus states for accessibility */
