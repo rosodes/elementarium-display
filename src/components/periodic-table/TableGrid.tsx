@@ -19,7 +19,7 @@ const findElement = (atomicNumber: number): ElementType | null => {
 const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   console.log('TableGrid rendering...');
   
-  // Create a 2D array to represent the grid (excluding f-block elements)
+  // Create a 2D array to represent the grid
   const createGridArray = () => {
     // Create 8 rows x 19 columns (including headers)
     const grid: (ElementType | string | null)[][] = Array(8).fill(null).map(() => Array(19).fill(null));
@@ -34,7 +34,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
       grid[row][0] = `period-${row}`;
     }
     
-    // Define element positions (excluding lanthanides 58-71 and actinides 90-103)
+    // Define element positions
     const elementPositions = [
       // Period 1
       { atomic: 1, row: 1, col: 1 },   // H
@@ -74,20 +74,20 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
         col: 1 + i
       })),
       
-      // Period 6 - with lanthanide gap (skip 58-71)
+      // Period 6 - with lanthanide gap
       { atomic: 55, row: 6, col: 1 },  // Cs
       { atomic: 56, row: 6, col: 2 },  // Ba
-      { atomic: 57, row: 6, col: 3 },  // La (placeholder for lanthanides)
+      { atomic: 57, row: 6, col: 3 },  // La
       ...Array.from({ length: 15 }, (_, i) => ({
         atomic: 72 + i,
         row: 6,
         col: 4 + i
       })),
       
-      // Period 7 - with actinide gap (skip 90-103)
+      // Period 7 - with actinide gap
       { atomic: 87, row: 7, col: 1 },  // Fr
       { atomic: 88, row: 7, col: 2 },  // Ra
-      { atomic: 89, row: 7, col: 3 },  // Ac (placeholder for actinides)
+      { atomic: 89, row: 7, col: 3 },  // Ac
       ...Array.from({ length: 15 }, (_, i) => ({
         atomic: 104 + i,
         row: 7,
@@ -109,88 +109,89 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   const grid = createGridArray();
   
   return (
-    <div 
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '40px repeat(18, 60px)',
-        gridTemplateRows: '35px repeat(7, 70px)',
-        gap: '4px',
-        minWidth: '1200px',
-        padding: '20px',
-        justifyItems: 'center',
-        alignItems: 'center',
-        margin: '0 auto'
-      }}
-    >
-      {grid.map((row, rowIndex) =>
-        row.map((cell, colIndex) => {
-          const key = `${rowIndex}-${colIndex}`;
-          
-          if (!cell) {
-            return <div key={key} />; // Empty cell
-          }
-          
-          if (typeof cell === 'string') {
-            if (cell.startsWith('group-')) {
-              const groupNumber = cell.split('-')[1];
+    <div className="w-full max-w-6xl mx-auto overflow-x-auto">
+      <div 
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '40px repeat(18, 60px)',
+          gridTemplateRows: '35px repeat(7, 70px)',
+          gap: '4px',
+          minWidth: '1200px',
+          padding: '20px',
+          justifyItems: 'center',
+          alignItems: 'center'
+        }}
+      >
+        {grid.map((row, rowIndex) =>
+          row.map((cell, colIndex) => {
+            const key = `${rowIndex}-${colIndex}`;
+            
+            if (!cell) {
+              return <div key={key} />; // Empty cell
+            }
+            
+            if (typeof cell === 'string') {
+              if (cell.startsWith('group-')) {
+                const groupNumber = cell.split('-')[1];
+                return (
+                  <div
+                    key={key}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '12px',
+                      fontWeight: '600',
+                      color: '#6b7280',
+                      height: '35px'
+                    }}
+                  >
+                    {groupNumber}
+                  </div>
+                );
+              }
+              
+              if (cell.startsWith('period-')) {
+                const periodNumber = cell.split('-')[1];
+                return (
+                  <div
+                    key={key}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '14px',
+                      fontWeight: '600',
+                      color: '#6b7280',
+                      height: '70px'
+                    }}
+                  >
+                    {periodNumber}
+                  </div>
+                );
+              }
+            }
+            
+            if (typeof cell === 'object' && 'atomic' in cell) {
               return (
-                <div
+                <Element
                   key={key}
+                  element={cell as ElementType}
+                  onClick={() => onElementClick(cell as ElementType)}
+                  data-atomic={cell.atomic}
                   style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '12px',
-                    fontWeight: '600',
-                    color: '#6b7280',
-                    height: '35px'
+                    width: '60px',
+                    height: '70px',
+                    margin: '0'
                   }}
-                >
-                  {groupNumber}
-                </div>
+                />
               );
             }
             
-            if (cell.startsWith('period-')) {
-              const periodNumber = cell.split('-')[1];
-              return (
-                <div
-                  key={key}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: '14px',
-                    fontWeight: '600',
-                    color: '#6b7280',
-                    height: '70px'
-                  }}
-                >
-                  {periodNumber}
-                </div>
-              );
-            }
-          }
-          
-          if (typeof cell === 'object' && 'atomic' in cell) {
-            return (
-              <Element
-                key={key}
-                element={cell as ElementType}
-                onClick={() => onElementClick(cell as ElementType)}
-                data-atomic={cell.atomic}
-                style={{
-                  width: '60px',
-                  height: '70px',
-                  margin: '0'
-                }}
-              />
-            );
-          }
-          
-          return <div key={key} />;
-        })
-      )}
+            return <div key={key} />;
+          })
+        )}
+      </div>
     </div>
   );
 });
