@@ -75,7 +75,7 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
         aria-label={t.elementDetails.elementTable}
       >
         <div className="flex flex-col items-center w-full space-y-6">
-          <div className="w-full flex flex-col items-center justify-center overflow-x-auto">
+          <div className="w-full flex flex-col items-center justify-center overflow-x-auto pb-6">
             <div className="flex flex-col items-center gap-6 min-w-fit">
               <div className="w-full flex justify-center">
                 <TableGrid onElementClick={onElementClick} />
