@@ -32,6 +32,42 @@ const elementFunFacts: Record<string, string[]> = {
     "Also called 'quick silver,' it was used in thermometers and barometers.",
     "Mercury's symbol Hg comes from the Latin name 'hydrargyrum', meaning 'water-silver'."
   ],
+  "Carbon": [
+    "Carbon exists in several allotropes, including diamond, graphite, and graphene.",
+    "Every known lifeform is carbon-based.",
+    "Carbon's fourth most abundant element in the universe by mass.",
+    "The word 'carbon' comes from Latin 'carbo', meaning coal."
+  ],
+  "Nitrogen": [
+    "Makes up 78% of Earth's atmosphere by volume.",
+    "Discovered by Daniel Rutherford in 1772.",
+    "Liquid nitrogen is used as a coolant and looks like a foggy, boiling fluid.",
+    "Essential for all living things."
+  ],
+  "Iron": [
+    "Iron is the most used metal by mass worldwide.",
+    "Stellar fusion in massive stars produces iron before a supernova.",
+    "Earth's core is believed to be mainly iron and nickel.",
+    "Iron turns red when rusted due to oxidation."
+  ],
+  "Copper": [
+    "Copper was the first metal to be used by humans over 10,000 years ago.",
+    "Pure copper is reddish-orange and highly conductive.",
+    "The Statue of Liberty is made of copper and has turned green due to patina.",
+    "Copper's symbol Cu comes from the Latin 'cuprum.'"
+  ],
+  "Chlorine": [
+    "Chlorine is a greenish-yellow gas at room temperature.",
+    "First used as a poison gas weapon in World War I.",
+    "Added to drinking water for disinfection.",
+    "Its name comes from the Greek 'chloros', meaning greenish-yellow."
+  ],
+  "Gold": [
+    "Gold is the most malleable and ductile metal known.",
+    "A single gold gram can be beaten into a sheet 1 square meter in area.",
+    "Used for thousands of years as money and ornament.",
+    "Gold is edible and used on luxury desserts as gold leaf."
+  ],
 };
 
 interface FunFactsSectionProps {

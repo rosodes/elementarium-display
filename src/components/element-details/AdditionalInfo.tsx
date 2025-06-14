@@ -64,6 +64,48 @@ const elementToxicityData: Record<
     ecologicalImpact: "Not environmentally hazardous as a mineral salt; pure form dangerous to aquatic life.",
     reactivity: "Reacts explosively with water, forming sodium hydroxide and hydrogen."
   },
+  "Carbon": {
+    toxicity: "Elemental carbon is generally non-toxic, but some forms (fine dust) can be harmful if inhaled.",
+    bioRole: "Carbon is essential for all known life; forms the backbone of organic molecules.",
+    precautions: "Avoid inhaling dust (especially charcoal or carbon black).",
+    ecologicalImpact: "Carbon is a key part of Earth's carbon cycle; excess CO₂ is a climate concern.",
+    reactivity: "Relatively unreactive at room temperature; reacts with oxygen when burned."
+  },
+  "Nitrogen": {
+    toxicity: "Non-toxic and inert at standard conditions, but can cause asphyxiation in confined spaces.",
+    bioRole: "Vital element for all organisms—found in proteins and DNA.",
+    precautions: "Avoid confined spaces with nitrogen gas—risk of oxygen displacement.",
+    ecologicalImpact: "Key nutrient; excessive nitrogen in fertilizers leads to water pollution.",
+    reactivity: "Inert as N₂ molecule, but reactive as part of compounds (e.g., ammonia, nitrates)."
+  },
+  "Iron": {
+    toxicity: "Essential in small quantities, but toxic in excess (especially in supplement form).",
+    bioRole: "Carries oxygen in blood (hemoglobin); vital for life.",
+    precautions: "Avoid excessive intake; toxic to aquatic life in large concentrations.",
+    ecologicalImpact: "Rusts readily, entering soils and waters; generally low ecological toxicity.",
+    reactivity: "Reacts with oxygen and water (rusts easily); forms many important alloys."
+  },
+  "Copper": {
+    toxicity: "Essential trace element, but toxic in large amounts to humans and aquatic life.",
+    bioRole: "Important in enzymes and cellular respiration.",
+    precautions: "Minimize dust inhalation and ingestion of large quantities.",
+    ecologicalImpact: "Can accumulate in water and soils, affecting aquatic organisms.",
+    reactivity: "Forms patina in moist air; reacts with acids and bases."
+  },
+  "Chlorine": {
+    toxicity: "Toxic and corrosive gas; irritates eyes and lungs; dangerous in high concentrations.",
+    bioRole: "Important for life in ionic form (Cl⁻); no role for elemental gas.",
+    precautions: "Handle only in ventilated areas; avoid inhalation and skin contact.",
+    ecologicalImpact: "Used as disinfectant; can form harmful byproducts in water.",
+    reactivity: "Highly reactive; forms chlorides with most elements."
+  },
+  "Gold": {
+    toxicity: "Gold metal is non-toxic and safe for use in food and electronics.",
+    bioRole: "No known biological function; considered biologically inert.",
+    precautions: "Gold salts can be toxic if ingested.",
+    ecologicalImpact: "Mining and extraction impact environment; metal itself is not harmful.",
+    reactivity: "Chemically inert; does not oxidize under normal conditions."
+  },
 };
 
 // Секция токсичности
