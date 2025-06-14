@@ -1,4 +1,3 @@
-
 import React from "react";
 import HydrogenPhysicalConstantsSection from "./HydrogenPhysicalConstantsSection";
 import HydrogenOxStatesSection from "./HydrogenOxStatesSection";
@@ -12,6 +11,8 @@ import HydrogenExtractionSection from "./HydrogenExtractionSection";
 import HydrogenCrystalStructureSection from "./HydrogenCrystalStructureSection";
 import HydrogenCommercialUsesSection from "./HydrogenCommercialUsesSection";
 import HydrogenComparisonsSection from "./HydrogenComparisonsSection";
+import HydrogenDistributionPieChart from "./HydrogenDistributionPieChart";
+import HydrogenUniverseBarChart from "./HydrogenUniverseBarChart";
 // новые визуальные/анимированные секции:
 import HydrogenSpectralSeriesSection from "./HydrogenSpectralSeriesSection";
 import HydrogenEnergySection from "./HydrogenEnergySection";
@@ -36,9 +37,11 @@ const HydrogenDetailSections: React.FC = () => {
       <HydrogenSpectralSeriesSection />
       <HydrogenEnergySection />
       <HydrogenSafetySection />
+      {/* Новые визуальные секции для школы/понятного изучения */}
+      <HydrogenDistributionPieChart />
+      <HydrogenUniverseBarChart />
     </>
   );
 };
 
 export default HydrogenDetailSections;
-
