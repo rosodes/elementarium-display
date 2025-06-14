@@ -69,7 +69,7 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   keyApplications: "Key applications and uses of",
   industrialUses: "Industrial Uses",
   everydayUses: "Everyday Applications",
-  funFacts: "Interesting Facts",
+  funFacts: "Fun Facts",
   noOxidationStatesForNobleGases: "Noble gases do not have oxidation states under normal conditions.",
   noOxidationStates: "No oxidation state data available.",
   notAvailable: "Information not available",

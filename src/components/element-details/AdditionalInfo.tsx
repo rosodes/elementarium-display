@@ -1,8 +1,8 @@
-
 import React from "react";
 import { Element } from "../../data/elementTypes";
 import { useLanguage } from "../../context/LanguageContext";
 import { AlertCircle, Sparkles } from "lucide-react";
+import FunFactsSection from "./FunFactsSection";
 
 // Расширенный набор информации по токсичности, экологии и реакционности
 const elementToxicityData: Record<
@@ -52,6 +52,79 @@ const elementToxicityData: Record<
   },
 };
 
+// Секция токсичности
+const ToxicitySection: React.FC<{ toxData: any; t: any }> = ({ toxData, t }) => {
+  const hasAnyToxData = toxData.toxicity || toxData.bioRole || toxData.precautions;
+  return (
+    <div className="mt-3">
+      <div className="flex items-center gap-2 mb-2">
+        <AlertCircle className="text-amber-400 w-5 h-5" />
+        <span className="font-semibold text-gray-700 dark:text-gray-200">
+          {t.elementDetails?.toxicityInfo || "Toxicity & Safety"}
+        </span>
+      </div>
+      {hasAnyToxData ? (
+        <ul className="ml-2 space-y-1 text-xs text-gray-700 dark:text-gray-200">
+          {toxData.toxicity && (
+            <li>
+              <span className="font-medium">{t.elementDetails?.toxicityInfo || "Toxicity"}:</span>{" "}
+              {toxData.toxicity}
+            </li>
+          )}
+          {toxData.bioRole && (
+            <li>
+              <span className="font-medium">{t.elementDetails?.bioRole || "Biological role"}:</span>{" "}
+              {toxData.bioRole}
+            </li>
+          )}
+          {toxData.precautions && (
+            <li>
+              <span className="font-medium">{t.elementDetails?.precautions || "Precautions"}:</span>{" "}
+              {toxData.precautions}
+            </li>
+          )}
+        </ul>
+      ) : (
+        <span className="text-xs text-gray-500 italic">{t.elementDetails?.noToxicityInfo || "No significant toxicity or precaution information."}</span>
+      )}
+    </div>
+  );
+};
+
+
+// Секция экологии и реакционности
+const EcologySection: React.FC<{ toxData: any; t: any }> = ({ toxData, t }) => {
+  const hasAnyEcoData = toxData.ecologicalImpact || toxData.reactivity;
+  return (
+    <div className="mt-4">
+      <div className="flex items-center gap-2 mb-2">
+        <Sparkles className="text-green-500 w-5 h-5" />
+        <span className="font-semibold text-gray-700 dark:text-gray-200">
+          {t.elementDetails?.ecologyInfo || "Ecology & Reactivity"}
+        </span>
+      </div>
+      {hasAnyEcoData ? (
+        <ul className="ml-2 space-y-1 text-xs text-gray-700 dark:text-gray-200">
+          {toxData.ecologicalImpact && (
+            <li>
+              <span className="font-medium">{t.elementDetails?.ecologicalImpact || "Ecological impact"}:</span>{" "}
+              {toxData.ecologicalImpact}
+            </li>
+          )}
+          {toxData.reactivity && (
+            <li>
+              <span className="font-medium">{t.elementDetails?.reactivity || "Reactivity"}:</span>{" "}
+              {toxData.reactivity}
+            </li>
+          )}
+        </ul>
+      ) : (
+        <span className="text-xs text-gray-500 italic">{t.elementDetails?.noEcologyInfo || "No significant ecological or reactivity information yet."}</span>
+      )}
+    </div>
+  );
+};
+
 interface Props {
   element: Element;
 }
@@ -60,75 +133,15 @@ const AdditionalInfo: React.FC<Props> = ({ element }) => {
 
   const toxData = elementToxicityData[element.name ?? ""] || {};
 
-  const hasAnyToxData = toxData.toxicity || toxData.bioRole || toxData.precautions;
-  const hasAnyEcoData = toxData.ecologicalImpact || toxData.reactivity;
-
   return (
     <div>
       {element.summary && (
         <p className="mb-2">{element.summary}</p>
       )}
-      {/* Токсичность и безопасность */}
-      <div className="mt-3">
-        <div className="flex items-center gap-2 mb-2">
-          <AlertCircle className="text-amber-400 w-5 h-5" />
-          <span className="font-semibold text-gray-700 dark:text-gray-200">
-            {t.elementDetails?.toxicityInfo || "Toxicity & Safety"}
-          </span>
-        </div>
-        {hasAnyToxData ? (
-          <ul className="ml-2 space-y-1 text-xs text-gray-700 dark:text-gray-200">
-            {toxData.toxicity && (
-              <li>
-                <span className="font-medium">{t.elementDetails?.toxicityInfo || "Toxicity"}:</span>{" "}
-                {toxData.toxicity}
-              </li>
-            )}
-            {toxData.bioRole && (
-              <li>
-                <span className="font-medium">{t.elementDetails?.bioRole || "Biological role"}:</span>{" "}
-                {toxData.bioRole}
-              </li>
-            )}
-            {toxData.precautions && (
-              <li>
-                <span className="font-medium">{t.elementDetails?.precautions || "Precautions"}:</span>{" "}
-                {toxData.precautions}
-              </li>
-            )}
-          </ul>
-        ) : (
-          <span className="text-xs text-gray-500 italic">{t.elementDetails?.noToxicityInfo || "No significant toxicity or precaution information."}</span>
-        )}
-      </div>
 
-      {/* Экология и реакционная способность */}
-      <div className="mt-4">
-        <div className="flex items-center gap-2 mb-2">
-          <Sparkles className="text-green-500 w-5 h-5" />
-          <span className="font-semibold text-gray-700 dark:text-gray-200">
-            {t.elementDetails?.ecologyInfo || "Ecology & Reactivity"}
-          </span>
-        </div>
-        {hasAnyEcoData ? (
-          <ul className="ml-2 space-y-1 text-xs text-gray-700 dark:text-gray-200">
-            {toxData.ecologicalImpact && (
-              <li>
-                <span className="font-medium">{t.elementDetails?.ecologicalImpact || "Ecological impact"}:</span>{" "}
-                {toxData.ecologicalImpact}
-              </li>
-            )}
-            {toxData.reactivity && (
-              <li>
-                <span className="font-medium">{t.elementDetails?.reactivity || "Reactivity"}:</span>{" "}
-                {toxData.reactivity}
-              </li>
-            )}
-          </ul>
-        ) : (
-          <span className="text-xs text-gray-500 italic">{t.elementDetails?.noEcologyInfo || "No significant ecological or reactivity information yet."}</span>
-        )}
-      </div>
+      <ToxicitySection toxData={toxData} t={t} />
+      <EcologySection toxData={toxData} t={t} />
+      <FunFactsSection element={element} />
     </div>
   );
 };
