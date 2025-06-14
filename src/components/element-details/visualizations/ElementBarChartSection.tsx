@@ -15,7 +15,7 @@ function getBarChartData(element: Element) {
   const sources = [
     { label: "Universe", value: element.abundance.universe },
     { label: "Earth's Crust", value: element.abundance.crust },
-    { label: "Oceans", value: element.abundance.ocean || element.abundance.oceans },
+    { label: "Oceans", value: element.abundance.ocean },
     { label: "Human Body", value: element.abundance.human }
   ];
   // Фильтруем только определённые значения (числовые и > 0)
