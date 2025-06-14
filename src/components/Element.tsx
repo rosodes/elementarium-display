@@ -17,9 +17,6 @@ const Element = ({ element, onClick, className, ...props }: ElementProps) => {
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const { t } = useLanguage();
   
-  // Debug logging
-  console.log(`Element ${element.symbol} (${element.atomic}) rendering with data-atomic="${element.atomic}"`);
-  
   // Determine the element color based on electron block with better contrast
   const getElementColor = (): ClassName => {
     // Determine block (s, p, d, f) based on electronic configuration
