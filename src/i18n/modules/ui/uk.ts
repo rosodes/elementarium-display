@@ -38,5 +38,7 @@ export const uiUk: UITranslations = {
   syntheticElements: "Синтетичні",
   hotkeySearch: "Пошук",
   hotkeyHome: "На головну",
-  hotkeyClose: "Закрити"
+  hotkeyClose: "Закрити",
+  // Add skipToContent key
+  skipToContent: "Перейти до головного контенту"
 };

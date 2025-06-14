@@ -1,4 +1,3 @@
-
 // Расширенный интерфейс для всех поддерживаемых вариантов UI-переводов
 export interface UITranslations {
   close?: string;
@@ -38,6 +37,7 @@ export interface UITranslations {
   hotkeySearch?: string;
   hotkeyHome?: string;
   hotkeyClose?: string;
+  skipToContent?: string;
 }
 
 export const uiEn: UITranslations = {
@@ -76,7 +76,8 @@ export const uiEn: UITranslations = {
   syntheticElements: "Synthetic",
   hotkeySearch: "Search",
   hotkeyHome: "Home",
-  hotkeyClose: "Close"
+  hotkeyClose: "Close",
+  skipToContent: "Skip to main content"
 };
 
 export const uiRu: UITranslations = {
@@ -115,6 +116,6 @@ export const uiRu: UITranslations = {
   syntheticElements: "Синтетических",
   hotkeySearch: "Поиск",
   hotkeyHome: "На главную",
-  hotkeyClose: "Закрыть"
+  hotkeyClose: "Закрыть",
+  skipToContent: "Перейти к основному содержимому"
 };
-
