@@ -8,9 +8,7 @@ import AdditionalInfo from '../AdditionalInfo';
 import HistoryBlock from '../HistoryBlock'; // add
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
 import ElementIsotopesTable from "../ElementIsotopesTable"; // добавлено
-import HydrogenHistorySection from "../new-sections/HydrogenHistorySection";
-import HydrogenVisualSection from "../new-sections/HydrogenVisualSection";
-import HydrogenInterestingFactsSection from "../new-sections/HydrogenInterestingFactsSection";
+import HydrogenDetailSections from "../new-sections/HydrogenDetailSections";
 
 interface OverviewTabProps {
   element: Element;
@@ -237,16 +235,17 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         </Card>
       </div>
 
-      {/* --- Краткая история и интересные факты — только для водорода --- */}
-      {element.atomic === "1" && (
-        <>
-          <HydrogenVisualSection />
-          <HydrogenHistorySection />
-          <HydrogenInterestingFactsSection />
-        </>
+      {/* Новая секция: подробная таблица изотопов если есть данные */}
+      {element.isotopesDetailed && Array.isArray(element.isotopesDetailed) && element.isotopesDetailed.length > 0 && (
+        <ElementIsotopesTable isotopes={element.isotopesDetailed} element={element} />
       )}
+
       {renderElementFacts()}
       <HistoryBlock element={element} />
+
+      {/* ВСТАВКА РАСШИРЕННОЙ ИНФЫ ТОЛЬКО ДЛЯ HYDROGEN */}
+      {element.atomic === "1" && <HydrogenDetailSections />}
+
       <div className="mt-4">
         <Card className="overflow-hidden border border-gray-200 dark:border-gray-700">
           <CardHeader className="bg-gray-50 dark:bg-gray-800 p-4">
@@ -258,6 +257,8 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
           </CardContent>
         </Card>
       </div>
+      
+      {/* Applications внизу */}
       {renderApplications()}
     </>
   );

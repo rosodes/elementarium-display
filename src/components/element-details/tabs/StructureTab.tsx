@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
@@ -6,9 +7,6 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ElectronOrbitalsVisualization from '../visualizations/ElectronOrbitalsVisualization';
 import IsotopeChart from '../../../i18n/modules/elementDetails/IsotopeChart';
-import HydrogenIsotopesSection from "../new-sections/HydrogenIsotopesSection";
-import HydrogenCrystalStructureSection from "../new-sections/HydrogenCrystalStructureSection";
-import HydrogenComparisonsSection from "../new-sections/HydrogenComparisonsSection";
 
 interface StructureTabProps {
   element: Element;
@@ -17,17 +15,6 @@ interface StructureTabProps {
 
 const StructureTab = ({ element, categoryColor }: StructureTabProps) => {
   const { t } = useLanguage();
-
-  // Для Hydrogen — отдельные тематические секции
-  if (element.atomic === "1") {
-    return (
-      <div className="space-y-4">
-        <HydrogenIsotopesSection />
-        <HydrogenCrystalStructureSection />
-        <HydrogenComparisonsSection />
-      </div>
-    );
-  }
 
   // Расширенная информация по оболочкам и структуре
   return (
@@ -140,3 +127,4 @@ const StructureTab = ({ element, categoryColor }: StructureTabProps) => {
 };
 
 export default StructureTab;
+
