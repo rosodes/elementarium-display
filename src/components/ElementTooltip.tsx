@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { useLanguage } from '../context/LanguageContext';
@@ -50,18 +51,17 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
     return radioactiveElements.has(Number(element.atomic));
   };
 
-  // Popup снизу только для элементов 90–103, для остальных — сверху
+  // Жёстко задаём сторону и запрещаем авто-флип тултипа
   const atomicNumber = Number(element.atomic);
-  const tooltipSide: 'top' | 'bottom' = atomicNumber >= 90 && atomicNumber <= 103 ? 'bottom' : 'top';
+  const isFBlock = atomicNumber >= 90 && atomicNumber <= 103;
+  const tooltipSide: 'top' | 'bottom' = isFBlock ? 'bottom' : 'top';
+  const avoidCollisions = false; // категорически запрещаем flip Radix'у
 
-  // Для дебага — временно логируем сторону
+  // Debug
   if (process.env.NODE_ENV === 'development') {
     // eslint-disable-next-line no-console
-    console.log(`[TOOLTIP] Element ${element.symbol} (${element.atomic}): side = ${tooltipSide}`);
+    console.log(`[TOOLTIP FIX] Element ${element.symbol} (${element.atomic}): side=${tooltipSide}, avoidCollisions=${avoidCollisions}`);
   }
-
-  // Новое: явно прописываем fixedSide для улучшения UX
-  const avoidCollisions = !(tooltipSide === 'top'); // только сверху без flip
 
   const tooltipContent = (
     <div className="space-y-2 min-w-48">
@@ -85,7 +85,7 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
           <span className="opacity-80">{t.elementDetails?.atomicWeight || 'Атомная масса'}:</span>
           <span className="font-medium">{formatWeight(element.weight)}</span>
         </div>
-        
+
         <div className="flex justify-between">
           <span className="opacity-80">{t.elementDetails?.series || 'Категория'}:</span>
           <span className="font-medium text-xs">{getCategoryName()}</span>
@@ -141,3 +141,4 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
 };
 
 export default ElementTooltip;
+
