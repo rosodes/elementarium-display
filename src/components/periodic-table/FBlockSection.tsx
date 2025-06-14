@@ -23,21 +23,21 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
         </p>
       </div>
       
-      {/* F-block grid container */}
+      {/* F-block grid container - separate table */}
       <div className="f-block-container">
         {renderLanthanides(onElementClick, false)}
         {renderActinides(onElementClick, false)}
       </div>
       
-      {/* Visual connector indicators */}
-      <div className="flex justify-center mt-2 space-x-4">
+      {/* Visual indicators */}
+      <div className="flex justify-center mt-2 space-x-6 text-xs text-gray-500 dark:text-gray-400">
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-0.5 bg-gray-400"></div>
-          <span className="text-xs text-gray-500">La-Lu (6-й период)</span>
+          <div className="w-4 h-1 bg-blue-400 rounded"></div>
+          <span>Лантаноиды (La-Lu)</span>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-0.5 bg-gray-400"></div>
-          <span className="text-xs text-gray-500">Ac-Lr (7-й период)</span>
+          <div className="w-4 h-1 bg-purple-400 rounded"></div>
+          <span>Актиноиды (Ac-Lr)</span>
         </div>
       </div>
     </div>

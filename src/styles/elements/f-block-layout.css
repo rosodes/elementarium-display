@@ -5,12 +5,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1rem;
   width: 100%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 48px;
+  padding: 0 20px;
 }
 
 .f-block-container {
@@ -19,12 +19,20 @@
   grid-template-rows: repeat(2, 70px);
   gap: 4px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   justify-items: center;
   align-items: center;
-  /* Align with groups 3-12 plus some lanthanides/actinides */
-  padding-left: calc(2 * (100% / 18)); /* Offset to align with group 3 */
+  /* Create a separate table layout for f-block elements */
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.dark .f-block-container {
+  border-color: #374151;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* Period labels for f-block */
@@ -32,24 +40,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  opacity: 0.7;
+  opacity: 0.8;
   color: #374151;
   min-height: 70px;
   writing-mode: horizontal-tb;
   grid-column: 1;
+  border-right: 1px solid #e5e7eb;
+  margin-right: 4px;
 }
 
 .dark .f-block-container .period-row-label {
-  color: #ffffff;
+  color: #d1d5db;
+  border-right-color: #4b5563;
 }
 
 /* F-block element cards sizing */
 .f-block-container .element-card {
   width: 100% !important;
   height: 70px !important;
-  max-width: 75px !important;
+  max-width: 60px !important;
+  font-size: 0.8rem !important;
 }
 
 /* Lanthanides row layout */
@@ -62,7 +74,7 @@
   grid-row: 1;
 }
 
-/* Position lanthanide elements 57-71 in first row, aligned with groups 3-12 */
+/* Position lanthanide elements 57-71 in first row */
 .lanthanides-row .element-card:nth-child(2) { grid-column: 2; grid-row: 1; }   /* La - 57 */
 .lanthanides-row .element-card:nth-child(3) { grid-column: 3; grid-row: 1; }   /* Ce - 58 */
 .lanthanides-row .element-card:nth-child(4) { grid-column: 4; grid-row: 1; }   /* Pr - 59 */
@@ -89,7 +101,7 @@
   grid-row: 2;
 }
 
-/* Position actinide elements 89-103 in second row, aligned with groups 3-12 */
+/* Position actinide elements 89-103 in second row */
 .actinides-row .element-card:nth-child(2) { grid-column: 2; grid-row: 2; }   /* Ac - 89 */
 .actinides-row .element-card:nth-child(3) { grid-column: 3; grid-row: 2; }   /* Th - 90 */
 .actinides-row .element-card:nth-child(4) { grid-column: 4; grid-row: 2; }   /* Pa - 91 */
@@ -109,18 +121,34 @@
 /* Responsive adjustments */
 @media (max-width: 1024px) {
   .f-block-container {
-    padding-left: calc(1.5 * (100% / 18));
+    max-width: 900px;
+  }
+  
+  .f-block-container .element-card {
+    max-width: 50px !important;
+    height: 60px !important;
   }
 }
 
 @media (max-width: 768px) {
+  .lanthanide-actinide-section {
+    padding: 0 10px;
+  }
+  
   .f-block-container {
-    padding-left: calc(1 * (100% / 18));
     gap: 2px;
+    max-width: 100%;
+    padding: 4px;
   }
   
   .f-block-container .element-card {
-    max-width: 60px !important;
-    height: 60px !important;
+    max-width: 40px !important;
+    height: 50px !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .f-block-container .period-row-label {
+    font-size: 0.75rem;
+    min-height: 50px;
   }
 }
