@@ -1,8 +1,6 @@
 import { Element } from './elementTypes';
 
 // Актиноиды: элементы 90 (Th) — 103 (Lr)
-import { Element } from './elementTypes';
-
 export const elements90to103: Element[] = [
   // 90 Th
   {
