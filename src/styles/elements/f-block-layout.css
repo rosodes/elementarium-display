@@ -1,7 +1,7 @@
 
 /* F-block section layout */
 .f-block-section {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,6 +11,9 @@
   margin-left: auto;
   margin-right: auto;
   padding: 0 20px;
+  /* Позиционирование относительно элемента 104 */
+  position: relative;
+  left: 0;
 }
 
 /* F-block table container */
@@ -25,6 +28,8 @@
   border-radius: 8px;
   padding: 8px;
   background: rgba(255, 255, 255, 0.5);
+  /* Выравнивание под элемент 104 - смещение влево */
+  margin-left: calc(40px + 3 * (60px + 4px));
 }
 
 .dark .f-block-table {
@@ -67,7 +72,7 @@
 .f-block-elements-container {
   display: flex !important;
   flex-direction: row !important;
-  flex-wrap: wrap !important;
+  flex-wrap: nowrap !important;
   gap: 4px !important;
   flex: 1 !important;
   align-items: center !important;
@@ -105,6 +110,7 @@
 @media (max-width: 1024px) {
   .f-block-table {
     max-width: 900px;
+    margin-left: calc(35px + 3 * (50px + 2px));
   }
   
   .f-block-elements-container .element-card {
@@ -114,6 +120,7 @@
   
   .f-block-label {
     height: 60px;
+    min-width: 35px;
   }
 }
 
@@ -126,6 +133,7 @@
     gap: 2px;
     max-width: 100%;
     padding: 6px;
+    margin-left: calc(30px + 3 * (40px + 2px));
   }
   
   .f-block-row {
@@ -144,7 +152,15 @@
   
   .f-block-label {
     font-size: 0.75rem;
-    min-width: 30px;
+    min-width: 25px;
     height: 50px;
+  }
+}
+
+/* Дополнительные стили для точного выравнивания */
+@media (min-width: 1200px) {
+  .f-block-table {
+    /* Более точное позиционирование для больших экранов */
+    margin-left: calc(40px + 3 * (64px + 4px));
   }
 }
