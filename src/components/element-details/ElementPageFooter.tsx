@@ -6,7 +6,7 @@ const ElementPageFooter = () => {
   const { t } = useLanguage();
   return (
     <footer
-      className="w-full py-6 px-4 md:px-10 text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 mt-8"
+      className="w-full py-6 px-4 md:px-10 text-xs text-gray-600 dark:text-gray-300 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 mt-8"
       role="contentinfo"
       aria-label={t.footer?.credits}
       tabIndex={0}

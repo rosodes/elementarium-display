@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { elements } from '../data/elements';
@@ -124,7 +123,7 @@ const ElementPage = () => {
     return (
       <main className="flex justify-center items-center min-h-[50vh] bg-white dark:bg-gray-900" aria-busy="true">
         <div className="animate-pulse">
-          <p>{t.ui?.loading || 'Loading...'}</p>
+          <p className="text-gray-800 dark:text-gray-100">{t.ui?.loading || 'Loading...'}</p>
         </div>
       </main>
     );
@@ -174,7 +173,6 @@ const ElementPage = () => {
           />
         </nav>
 
-        {/* Макисмально читаемый и аккуратный блок с деталями элемента */}
         <section
           aria-labelledby={`element-details-title-${element.atomic}`}
           className="w-full max-w-7xl mx-auto py-8 px-4 md:px-12 xl:px-36 animate-fade-in"
@@ -186,7 +184,7 @@ const ElementPage = () => {
           >
             {element.name} ({element.symbol}) {t.elementDetails?.element}
           </h1>
-          <div className="relative w-full max-w-none mx-0 rounded-2xl bg-white/90 dark:bg-gray-900/85 shadow-xl ring-2 ring-blue-300/10 dark:ring-blue-800/15 p-0 md:p-2 transition">
+          <div className="relative w-full max-w-none mx-0 rounded-2xl bg-white/90 dark:bg-gray-900/95 shadow-xl ring-2 ring-blue-300/10 dark:ring-blue-800/20 p-0 md:p-2 transition border border-gray-200 dark:border-gray-700">
             <ElementDetails
               element={element}
               onClose={handleHome}
