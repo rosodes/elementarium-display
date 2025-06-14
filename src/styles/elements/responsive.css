@@ -1,52 +1,8 @@
 
-/* Responsive styles - только позиционирование, НЕ размеры элементов */
-@media (max-width: 1400px) {
-  .dashed-connector {
-    width: 15px;
-    height: 76px;
-  }
-
-  .f-block-container {
-    margin-left: 2px;
-  }
-
-  .periodic-table-container {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .dashed-connector {
-    width: 15px;
-    height: 76px;
-  }
-  .f-block-container {
-    margin-left: 2px;
-  }
-}
-
-@media (max-width: 992px) {
-  .dashed-connector {
-    width: 12px;
-    height: 76px;
-  }
-  .element-card .text-lg {
-    font-size: 0.9rem;
-  }
-  .f-block-container {
-    margin-left: 2px;
-  }
-}
+/* Убираем все адаптивные изменения размеров - только статичные 76x76px */
+/* Оставляем только изменения для соединительных линий если нужно */
 
 @media (max-width: 768px) {
-  .dashed-connector {
-    width: 10px;
-    height: 76px;
-  }
-  .f-block-container {
-    margin-left: 2px;
-  }
   .connector-line::before,
   .connector-line::after {
     border-left-width: 1.5px;
@@ -54,31 +10,8 @@
 }
 
 @media (max-width: 640px) {
-  .dashed-connector {
-    width: 8px;
-    height: 76px;
-  }
-  .element-card .text-lg {
-    font-size: 0.75rem;
-  }
-  .f-block-container {
-    margin-left: 2px;
-  }
   .connector-line::before,
   .connector-line::after {
     border-left-width: 1px;
-  }
-}
-
-@media (max-width: 480px) {
-  .dashed-connector {
-    width: 7px;
-    height: 76px;
-  }
-  .element-card .text-lg {
-    font-size: 0.7rem;
-  }
-  .element-card .text-xs {
-    font-size: 0.65rem;
   }
 }
