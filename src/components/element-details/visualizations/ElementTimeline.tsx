@@ -76,9 +76,9 @@ const ElementTimeline = ({ element }: ElementTimelineProps) => {
       date: "Present",
       title: "Modern Applications",
       description: `${element.name} is now used in ${
-        (element.category === 'transition' || element.category === 'post-transition' || element.category === 'alkali' || element.category === 'alkaline') ? 'advanced materials, electronics, and industrial processes' : 
+        (element.category === 'transition metal' || element.category === 'post-transition metal' || element.category === 'alkali metal' || element.category === 'alkaline earth metal') ? 'advanced materials, electronics, and industrial processes' : 
         element.category === 'nonmetal' ? 'pharmaceuticals, chemicals, and energy technologies' :
-        element.category === 'noble' ? 'lighting, cryogenics, and specialized atmospheres' :
+        element.category === 'noble gas' ? 'lighting, cryogenics, and specialized atmospheres' :
         'various scientific and industrial applications'
       }.`,
       highlight: false
