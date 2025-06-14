@@ -1,4 +1,3 @@
-
 import { Element } from './elementTypes';
 
 export const elements1to10: Element[] = [
@@ -112,7 +111,7 @@ export const elements1to10: Element[] = [
     // For compatibility
     number: 2,
     atomicMass: "4.0026",
-    category: "noble",
+    category: "noble gas",
     group: 18,
     period: 1,
     block: "s",
@@ -173,7 +172,7 @@ export const elements1to10: Element[] = [
     isotopes: 9,
     group: 1,
     period: 2,
-    category: "alkali"
+    category: "alkali metal"
   },
   {
     atomic: "4",
@@ -230,7 +229,7 @@ export const elements1to10: Element[] = [
     isotopes: 12,
     group: 2,
     period: 2,
-    category: "alkaline"
+    category: "alkaline earth metal"
   },
   {
     atomic: "5",
@@ -588,6 +587,6 @@ export const elements1to10: Element[] = [
     isotopes: 22,
     group: 18,
     period: 2,
-    category: "noble"
+    category: "noble gas"
   }
 ];

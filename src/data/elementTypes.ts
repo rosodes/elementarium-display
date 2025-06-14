@@ -62,13 +62,13 @@ export type ElementSeries =
   | 'Unknown';
 
 export type ElementCategory = 
-  | 'alkali metal'
-  | 'alkaline earth metal'
-  | 'transition metal'
-  | 'post-transition metal'
+  | 'alkali'
+  | 'alkaline'
+  | 'transition'
+  | 'post-transition'
   | 'metalloid'
   | 'nonmetal'
-  | 'noble gas'
+  | 'noble'
   | 'lanthanide'
   | 'actinide'
   | 'unknown';

@@ -1,4 +1,3 @@
-
 import { Element } from './elementTypes';
 
 export const elements11to20: Element[] = [
@@ -64,7 +63,7 @@ export const elements11to20: Element[] = [
     isotopes: 16,
     group: 1,
     period: 3,
-    category: "alkali"
+    category: "alkali metal"
   },
   
   // Magnesium (12)
@@ -129,7 +128,7 @@ export const elements11to20: Element[] = [
     isotopes: 19,
     group: 2,
     period: 3,
-    category: "alkaline"
+    category: "alkaline earth metal"
   },
   
   // Aluminum (13)
@@ -194,7 +193,7 @@ export const elements11to20: Element[] = [
     isotopes: 22,
     group: 13,
     period: 3,
-    category: "post-transition"
+    category: "post-transition metal"
   },
   
   // Silicon (14)
@@ -522,7 +521,7 @@ export const elements11to20: Element[] = [
     group: 18,
     period: 3,
     block: "p",
-    category: "noble",
+    category: "noble gas",
     atomicMass: "39.948",
     electronConfiguration: "1s² 2s² 2p⁶ 3s² 3p⁶",
     description: "Argon is a colorless, odorless, and unreactive noble gas. It is the third-most abundant gas in Earth's atmosphere, used in lighting and welding applications."
@@ -591,7 +590,7 @@ export const elements11to20: Element[] = [
     group: 1,
     period: 4,
     block: "s",
-    category: "alkali",
+    category: "alkali metal",
     atomicMass: "39.098",
     electronConfiguration: "1s² 2s² 2p⁶ 3s² 3p⁶ 4s¹",
     description: "Potassium is a soft, silvery-white metal that oxidizes rapidly in air. It is an essential nutrient for living organisms and is widely used in agriculture."
@@ -660,7 +659,7 @@ export const elements11to20: Element[] = [
     group: 2,
     period: 4,
     block: "s",
-    category: "alkaline",
+    category: "alkaline earth metal",
     atomicMass: "40.078",
     electronConfiguration: "1s² 2s² 2p⁶ 3s² 3p⁶ 4s²",
     description: "Calcium is a soft, silvery-white alkaline earth metal. It is essential for living organisms, particularly for bone formation, and is the fifth most abundant element in Earth's crust."

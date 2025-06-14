@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
 import { getCategoryColor } from '../data/elementCategories';
-import type { BaseElementProps, ActionFunction, ClassName } from '../types/utilityTypes';
+import type { BaseElementProps, ActionFunction, ClassName } from '../types/componentTypes';
 import type { ElementSymbolKey } from '../types/translationTypes';
 
 interface ElementProps extends Omit<BaseElementProps, 'element'> {

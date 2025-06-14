@@ -1,4 +1,3 @@
-
 // Strict translation key types
 export type LanguageKey = 'en' | 'ru' | 'uk';
 
@@ -19,7 +18,7 @@ export type ElementSymbolKey =
 
 // Improved translation interfaces with better type safety
 export interface ElementTranslations {
-  readonly [K in ElementSymbolKey]?: string;
+  readonly [key: string]: string;
 }
 
 export interface LegendTranslations {

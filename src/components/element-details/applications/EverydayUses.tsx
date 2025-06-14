@@ -22,7 +22,7 @@ const EverydayUses = ({ element }: EverydayUsesProps) => {
       </CardHeader>
       <CardContent className="pt-4">
         <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 dark:text-gray-300">
-          {element.category === 'metal' && (
+          {(element.category === 'transition' || element.category === 'post-transition' || element.category === 'alkali' || element.category === 'alkaline') && (
             <>
               <li>Consumer electronics and devices</li>
               <li>Construction materials and tools</li>
@@ -37,7 +37,7 @@ const EverydayUses = ({ element }: EverydayUsesProps) => {
               {element.symbol === 'C' && <li>Basis for organic chemistry and life</li>}
             </>
           )}
-          {element.category === 'noble gas' && (
+          {element.category === 'noble' && (
             <>
               <li>Lighting applications</li>
               <li>Protective atmospheres</li>

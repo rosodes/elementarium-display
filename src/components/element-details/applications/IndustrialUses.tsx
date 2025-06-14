@@ -25,11 +25,11 @@ const IndustrialUses = ({ element }: IndustrialUsesProps) => {
           <li>Manufacturing of {element.series.toLowerCase()} components</li>
           <li>Used in specialized industrial processes</li>
           <li>
-            {element.category === 'metal' || element.category === 'metalloid' 
+            {(element.category === 'transition' || element.category === 'post-transition' || element.category === 'alkali' || element.category === 'alkaline' || element.category === 'metalloid') 
               ? 'Production of alloys and compounds' 
               : 'Chemical synthesis and reactions'}
           </li>
-          {element.category === 'metal' && <li>Electrical conductors and wiring</li>}
+          {(element.category === 'transition' || element.category === 'post-transition' || element.category === 'alkali' || element.category === 'alkaline') && <li>Electrical conductors and wiring</li>}
           {element.electroneg && parseFloat(element.electroneg) > 2.5 && 
             <li>Catalysts for chemical reactions</li>}
           {element.melt && parseInt(element.melt) > 1500 && 
