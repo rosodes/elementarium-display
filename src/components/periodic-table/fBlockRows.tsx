@@ -36,7 +36,11 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
   }
   
   return (
-    <PeriodRow periodLabel={periodLabel} elements={lanthanideElements} />
+    <PeriodRow 
+      periodLabel={periodLabel} 
+      elements={lanthanideElements} 
+      className="lanthanides-row"
+    />
   );
 };
 
@@ -63,6 +67,10 @@ export const renderActinides = (onElementClick: (element: ElementType) => void, 
   }
   
   return (
-    <PeriodRow periodLabel={periodLabel} elements={actinideElements} />
+    <PeriodRow 
+      periodLabel={periodLabel} 
+      elements={actinideElements} 
+      className="actinides-row"
+    />
   );
 };

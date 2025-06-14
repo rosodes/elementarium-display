@@ -5,20 +5,19 @@ import { useLanguage } from '../../context/LanguageContext';
 interface PeriodRowProps {
   periodLabel: string;
   elements: React.ReactNode[];
+  className?: string;
 }
 
-const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
+const PeriodRow = ({ periodLabel, elements, className = '' }: PeriodRowProps) => {
   const { t } = useLanguage();
 
   return (
-    <>
-      <div 
-        className={`period-row-label period-${periodLabel}-label`}
-      >
+    <div className={`${className}`}>
+      <div className="period-row-label">
         {periodLabel}
       </div>
       {elements}
-    </>
+    </div>
   );
 };
 
