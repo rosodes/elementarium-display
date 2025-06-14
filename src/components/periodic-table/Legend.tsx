@@ -2,13 +2,15 @@
 import React from "react";
 import { useLanguage } from "../../context/LanguageContext";
 
+// Определяем допустимые языки
 type Lang = "ru" | "en" | "uk";
 const getLang = (l: string): Lang => {
   if (["ru", "en", "uk"].includes(l)) return l as Lang;
   return "en";
 };
 
-const COLORS = [
+/** Данные по цветам и блокам/категориям */
+const LEGEND_ITEMS = [
   {
     colorClass: "bg-s-block",
     label: {
@@ -128,6 +130,7 @@ const COLORS = [
   },
 ];
 
+// Данные для радиоактивных элементов
 const RADIOACTIVE = {
   label: {
     ru: "Радиоактивные элементы",
@@ -152,9 +155,8 @@ const Legend: React.FC = () => {
         {lang === "en" && "Element colors in the Periodic Table"}
         {lang === "uk" && "Кольори елементів у періодичній таблиці"}
       </h2>
-      {/* MAIN LEGEND GRID ONLY SPECIFIED COLORS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {COLORS.map((item) => (
+        {LEGEND_ITEMS.map((item) => (
           <div key={item.colorClass} className="flex items-start gap-2">
             <div className={`w-5 h-5 rounded border ${item.colorClass} mt-0.5 flex-shrink-0`} aria-label={item.label[lang]} title={item.label[lang]} />
             <div>
@@ -165,7 +167,7 @@ const Legend: React.FC = () => {
             </div>
           </div>
         ))}
-        {/* Радиоактивные элементы (красная точка или фон) */}
+        {/* Радиоактивные элементы (пульсирующая красная точка) */}
         <div key="radioactive" className="flex items-start gap-2">
           <div className="relative w-5 h-5 rounded border border-red-400 bg-white mt-0.5 flex-shrink-0">
             <span className="absolute inset-0 flex items-center justify-center">
