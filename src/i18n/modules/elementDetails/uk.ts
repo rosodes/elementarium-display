@@ -48,6 +48,8 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   previousElement: "Попередній елемент",
   nextElement: "Наступний елемент",
   isotopes: "Ізотопи",
+  toxicityAndEcology: "Токсичність і екологія",
+  historicalInfo: "Історична інформація",
   industry: "Промисловість",
   discovery: "Відкриття",
   structure: "Структура",

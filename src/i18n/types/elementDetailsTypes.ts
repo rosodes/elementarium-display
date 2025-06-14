@@ -1,4 +1,3 @@
-
 export interface ElementDetailsTranslations {
   showMoreInfo?: string;
   viewOnWikipedia?: string;
@@ -75,10 +74,14 @@ export interface ElementDetailsTranslations {
   // Новые ключи для осмысленных сообщений по степеням окисления
   noOxidationStatesForNobleGases?: string;
   noOxidationStates?: string;
+  // Новое для раздела токсичности и истории
+  toxicity?: string;
+  ecology?: string; // расширяемый, если будет отдельным
+  toxicityAndEcology?: string;
+  historicalInfo?: string;
   // Required translation properties
   notAvailable: string;
   backToTable: string;
   previous: string;
   next: string;
 }
-
