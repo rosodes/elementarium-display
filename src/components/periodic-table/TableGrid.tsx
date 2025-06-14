@@ -52,9 +52,9 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
       const el = findElement(i);
       if (el) grid[4][i - 17] = { type: 'element', data: el };
     }
-    // Kr (36): strictly 19th column of 5th row
+    // Kr (36): строго 19 колонка, 5 строка
     const kr = findElement(36);
-    if (kr) grid[4][19] = { type: 'element', data: kr };
+    if (kr) grid[4][18] = { type: 'element', data: kr }; // <== исправлено
 
     // Period 5: Rb to Te (37–52)
     for (let i = 37; i <= 52; i++) {
@@ -63,9 +63,9 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     }
     // I (53): 18th col, Xe (54): 19th col in 6th row
     const i53 = findElement(53);
-    if (i53) grid[5][18] = { type: 'element', data: i53 };
+    if (i53) grid[5][17] = { type: 'element', data: i53 }; // <== исправлено
     const xe = findElement(54);
-    if (xe) grid[5][19] = { type: 'element', data: xe };
+    if (xe) grid[5][18] = { type: 'element', data: xe }; // <== исправлено
 
     // Period 6: Cs, Ba, La-Lu gap, Hf-Po (72-84)
     const cs = findElement(55), ba = findElement(56), la = findElement(57);
@@ -76,11 +76,11 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
       const el = findElement(i);
       if (el) grid[6][i - 68] = { type: 'element', data: el };
     }
-    // At (85): 18th, Rn (86): 19th col of 7th row
+    // At (85): 18-я колонка, Rn (86): 19-я колонка в 7 строке
     const at = findElement(85);
-    if (at) grid[6][18] = { type: 'element', data: at };
+    if (at) grid[6][17] = { type: 'element', data: at }; // <== исправлено
     const rn = findElement(86);
-    if (rn) grid[6][19] = { type: 'element', data: rn };
+    if (rn) grid[6][18] = { type: 'element', data: rn }; // <== исправлено
 
     // Period 7: Fr, Ra, Ac, Rf-Og (104–118)
     const fr = findElement(87), ra = findElement(88), ac = findElement(89);
@@ -125,3 +125,4 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
 
 TableGrid.displayName = 'TableGrid';
 export default TableGrid;
+
