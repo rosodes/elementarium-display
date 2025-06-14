@@ -1,4 +1,3 @@
-
 export interface ElementDetailsTranslations {
   showMoreInfo?: string;
   viewOnWikipedia?: string;
@@ -77,6 +76,11 @@ export interface ElementDetailsTranslations {
   noOxidationStates?: string;
   conductivity?: string;
   stability?: string; // <-- add this for isotopes table
+  // Новые ключи для toxicity section
+  toxicityInfo?: string;
+  bioRole?: string;
+  precautions?: string;
+  noToxicityInfo?: string;
   // Required translation properties
   notAvailable: string;
   backToTable: string;

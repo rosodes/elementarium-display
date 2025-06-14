@@ -239,7 +239,6 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         <ElementIsotopesTable isotopes={element.isotopesDetailed} element={element} />
       )}
 
-      {/* Новые подробные карточки с дополнительной информацией */}
       {renderElementFacts()}
       <HistoryBlock element={element} />
       <div className="mt-4">
@@ -248,6 +247,7 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
             <CardTitle className="text-lg">{t.elementDetails.additionalInfo}</CardTitle>
           </CardHeader>
           <CardContent className="p-4">
+            {/* Новый раздел по токсичности и мерам безопасности: */}
             <AdditionalInfo element={element} />
           </CardContent>
         </Card>

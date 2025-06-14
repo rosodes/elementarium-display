@@ -1,4 +1,3 @@
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -81,5 +80,10 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   radioactive: "Radioactive",
   yes: "Yes",
   no: "No",
-  stability: "Stability", // <-- Add new key for Isotopes table
+  stability: "Stability",
+  // --- TOXICITY & SAFETY KEYS ---
+  toxicityInfo: "Toxicity & Safety",
+  bioRole: "Biological role",
+  precautions: "Precautions",
+  noToxicityInfo: "No significant toxicity or precaution information.",
 };
