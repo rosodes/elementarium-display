@@ -2,8 +2,8 @@
 /* Updated grid layout for the periodic table */
 .periodic-table {
   display: grid;
-  grid-template-columns: 40px repeat(18, 1fr); /* 1 label + 18 groups */
-  grid-template-rows: 35px repeat(7, 1fr);    /* 1 header + 7 periods */
+  grid-template-columns: 40px repeat(18, 1fr); /* 1 label column + 18 groups */
+  grid-template-rows: 35px repeat(7, 1fr);    /* 1 header row + 7 periods */
   gap: 3px;
   width: 100%;
   max-width: 1200px;
@@ -13,6 +13,7 @@
   justify-items: center;
   min-width: 1100px;
   min-height: 600px;
+  padding: 20px;
 }
 
 /* Group numbers header row */
@@ -44,6 +45,26 @@
 .group-numbers-row > div:nth-child(18) { grid-column: 18; grid-row: 1; }
 .group-numbers-row > div:nth-child(19) { grid-column: 19; grid-row: 1; }
 
+/* Period label styling and positioning */
+.period-1-label, .period-2-label, .period-3-label, .period-4-label, 
+.period-5-label, .period-6-label, .period-7-label {
+  font-size: 1.05rem;
+  color: #96a0ae;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1;
+}
+
+.period-1-label { grid-row: 2; }
+.period-2-label { grid-row: 3; }
+.period-3-label { grid-row: 4; }
+.period-4-label { grid-row: 5; }
+.period-5-label { grid-row: 6; }
+.period-6-label { grid-row: 7; }
+.period-7-label { grid-row: 8; }
+
 /* Element card dimensions */
 .element-card {
   width: 55px;
@@ -57,25 +78,3 @@
   justify-content: center;
   align-items: center;
 }
-
-/* Period label styling */
-.period-row-label {
-  font-size: 1.05rem;
-  justify-content: center;
-  align-items: center;
-  color: #96a0ae;
-  min-width: 34px;
-  min-height: 60px;
-  font-weight: 500;
-  display: flex;
-  grid-column: 1;
-}
-
-/* Period label positioning */
-.period-1-label { grid-row: 2; }
-.period-2-label { grid-row: 3; }
-.period-3-label { grid-row: 4; }
-.period-4-label { grid-row: 5; }
-.period-5-label { grid-row: 6; }
-.period-6-label { grid-row: 7; }
-.period-7-label { grid-row: 8; }
