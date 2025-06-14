@@ -91,10 +91,9 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
         </div>
 
         {element.electronstring && (
-          // Добавлен горизонтальный скролл для длинных конфигураций
-          <div className="flex justify-between">
+          <div className="flex flex-col sm:flex-row sm:justify-between">
             <span className="opacity-80">{t.elementDetails?.electronConfig || 'Электронная конфигурация'}:</span>
-            <span className="font-mono text-xs sm:text-sm overflow-x-auto max-w-[11rem] whitespace-nowrap block">
+            <span className="font-mono text-xs sm:text-sm break-words whitespace-normal text-right sm:text-left">
               {element.electronstring}
             </span>
           </div>
