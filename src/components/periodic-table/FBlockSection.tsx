@@ -2,7 +2,7 @@
 import React, { memo } from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
 import { elements } from '../../data/elements';
-import Element from '../Element'; // Correct import
+import Element from '../Element';
 
 // Helper function to safely find element
 const findElement = (atomicNumber: number | string): ElementType | null => {
@@ -31,14 +31,21 @@ function getFBlockRow(
           key={`fblock-${i}`}
           element={element}
           onClick={() => onElementClick(element)}
-          className="element-card"
+          className="element-card flex-shrink-0"
         />
       );
     }
   }
-  // Ensure there are 14 elements in total (shouldn't be needed, but just in case)
+  // Ensure there are 14 elements in total
   while (row.length < 14) {
-    row.push(<div key={`fblock-empty-${row.length}`} className="w-[76px] h-[76px]" />);
+    row.push(
+      <div
+        key={`fblock-empty-${row.length}`}
+        className="element-card flex-shrink-0 bg-transparent"
+        tabIndex={-1}
+        aria-hidden="true"
+      />
+    );
   }
   return row;
 }
@@ -69,7 +76,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
             6*
           </div>
           <div
-            className="f-block-elements-container gap-1"
+            className="f-block-elements-container gap-1 items-stretch"
             style={{ display: 'flex', flexDirection: 'row' }}
           >
             {lanthanides}
@@ -88,7 +95,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
             7*
           </div>
           <div
-            className="f-block-elements-container gap-1"
+            className="f-block-elements-container gap-1 items-stretch"
             style={{ display: 'flex', flexDirection: 'row' }}
           >
             {actinides}
