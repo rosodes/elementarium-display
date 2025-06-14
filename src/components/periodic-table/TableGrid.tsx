@@ -38,7 +38,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     const he = findElement(2);
     if (h) grid[1][1] = { type: 'element', data: h };
     if (he) grid[1][18] = { type: 'element', data: he };
-    
+
     // Period 2: Li to Ne
     for (let i = 3; i <= 10; i++) {
       const element = findElement(i);
@@ -66,61 +66,64 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
         }
       }
     }
-    
-    // Period 4: K to Kr (полный ряд)
+
+    // Period 4: K to Kr (19–36)
     for (let i = 19; i <= 36; i++) {
       const element = findElement(i);
       if (element) {
+        // Чёткая группировка 2–19: K–Kr
         grid[4][i - 17] = { type: 'element', data: element };
       }
     }
-    
-    // Period 5: Rb to Xe (полный ряд)
+    // Kr (36) — кол. 19
+    // grid[4][19 - 17] = grid[4][2]; ... grid[4][36 - 17] = grid[4][19]
+
+    // Period 5: Rb to Xe (37–54)
     for (let i = 37; i <= 54; i++) {
       const element = findElement(i);
       if (element) {
         grid[5][i - 35] = { type: 'element', data: element };
       }
     }
-    
-    // Period 6: Cs, Ba, La-Lu (57-71), Hf-Rn (72-86)
+    // I (53): 53-35=18, Xe (54): 54-35=19
+
+    // Period 6: Cs, Ba, La-Lu gap, Hf-Rn (72-86)
     // Cs, Ba
     const cs = findElement(55);
     const ba = findElement(56);
     if (cs) grid[6][1] = { type: 'element', data: cs };
     if (ba) grid[6][2] = { type: 'element', data: ba };
-    
     // La placeholder
     const la = findElement(57);
     if (la) grid[6][3] = { type: 'element', data: la };
-    
-    // Hf to Rn
+
+    // Hf to Rn (72-86, Hf=5 col, Rn=17 col)
     for (let i = 72; i <= 86; i++) {
       const element = findElement(i);
       if (element) {
         grid[6][i - 68] = { type: 'element', data: element };
       }
     }
-    
+    // At (85): 85-68=17, Rn (86): 86-68=18
+
     // Period 7: Fr, Ra, Ac, Rf-Og (104-118)
-    // Fr, Ra
     const fr = findElement(87);
     const ra = findElement(88);
     if (fr) grid[7][1] = { type: 'element', data: fr };
     if (ra) grid[7][2] = { type: 'element', data: ra };
-    
-    // Ac placeholder
     const ac = findElement(89);
     if (ac) grid[7][3] = { type: 'element', data: ac };
-    
-    // Rf to Og
+
     for (let i = 104; i <= 118; i++) {
       const element = findElement(i);
       if (element) {
         grid[7][i - 100] = { type: 'element', data: element };
       }
     }
-    
+
+    // At (85) и Rn (86) надо в 6-ю строку, но они здесь не присутствуют, их обрабатываем выше!
+    // Все остальные элементы строго по классической сетке!
+
     return grid;
   };
 
@@ -191,3 +194,4 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
 TableGrid.displayName = 'TableGrid';
 
 export default TableGrid;
+
