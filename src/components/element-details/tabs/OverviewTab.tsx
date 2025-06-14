@@ -7,6 +7,7 @@ import PhysicalProperties from '../PhysicalProperties';
 import AdditionalInfo from '../AdditionalInfo';
 import HistoryBlock from '../HistoryBlock'; // add
 import { Card, CardHeader, CardTitle, CardContent } from '../../ui/card';
+import ElementIsotopesTable from "../ElementIsotopesTable"; // добавлено
 
 interface OverviewTabProps {
   element: Element;
@@ -233,12 +234,14 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         </Card>
       </div>
 
+      {/* Новая секция: подробная таблица изотопов если есть данные */}
+      {element.isotopesDetailed && Array.isArray(element.isotopesDetailed) && element.isotopesDetailed.length > 0 && (
+        <ElementIsotopesTable isotopes={element.isotopesDetailed} element={element} />
+      )}
+
       {/* Новые подробные карточки с дополнительной информацией */}
       {renderElementFacts()}
-
-      {/* Историческая справка только для элементов с детальной инфой */}
       <HistoryBlock element={element} />
-
       <div className="mt-4">
         <Card className="overflow-hidden border border-gray-200 dark:border-gray-700">
           <CardHeader className="bg-gray-50 dark:bg-gray-800 p-4">
