@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
@@ -7,6 +6,9 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import ElectronOrbitalsVisualization from '../visualizations/ElectronOrbitalsVisualization';
 import IsotopeChart from '../../../i18n/modules/elementDetails/IsotopeChart';
+import HydrogenIsotopesSection from "../new-sections/HydrogenIsotopesSection";
+import HydrogenCrystalStructureSection from "../new-sections/HydrogenCrystalStructureSection";
+import HydrogenComparisonsSection from "../new-sections/HydrogenComparisonsSection";
 
 interface StructureTabProps {
   element: Element;
@@ -16,9 +18,17 @@ interface StructureTabProps {
 const StructureTab = ({ element, categoryColor }: StructureTabProps) => {
   const { t } = useLanguage();
 
-  // Расширенная информация по оболочкам и структуре
   return (
     <div className="space-y-6">
+      {/* --- ДОБАВЛЕННЫЕ СЕКЦИИ ТОЛЬКО ДЛЯ ГИДРОГЕНА --- */}
+      {element.atomic === "1" && (
+        <>
+          <HydrogenIsotopesSection />
+          <HydrogenCrystalStructureSection />
+          <HydrogenComparisonsSection />
+        </>
+      )}
+      {/* Расширенная информация по оболочкам и структуре */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Left column - основные сведения об электронных слоях */}
         <div>
@@ -127,4 +137,3 @@ const StructureTab = ({ element, categoryColor }: StructureTabProps) => {
 };
 
 export default StructureTab;
-

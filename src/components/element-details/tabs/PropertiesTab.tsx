@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import ElementOxidationStatesSection from "../ElementOxidationStatesSection";
@@ -61,9 +60,18 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
           {element.valence || t.elementDetails.notAvailable}
         </CardContent>
       </Card>
+
+      {/* ДОПОЛНЕНИЯ ДЛЯ ВОДОРОДА */}
+      {element.atomic === "1" && (
+        <>
+          <HydrogenPhysicalConstantsSection />
+          <HydrogenOxStatesSection />
+          <HydrogenReactivitySection />
+          <HydrogenNaturalOccurrenceSection />
+        </>
+      )}
     </div>
   );
 };
 
 export default PropertiesTab;
-

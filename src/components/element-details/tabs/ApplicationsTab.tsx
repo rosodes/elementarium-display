@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
@@ -12,6 +11,10 @@ import IndustrialUses from '../applications/IndustrialUses';
 import EverydayUses from '../applications/EverydayUses';
 import UsageSection from '../applications/UsageSection';
 import DiscoverySection from '../applications/DiscoverySection';
+
+// Импорт секций применения для водорода:
+import HydrogenCommercialUsesSection from "../new-sections/HydrogenCommercialUsesSection";
+import HydrogenExtractionSection from "../new-sections/HydrogenExtractionSection";
 
 interface ApplicationsTabProps {
   element: Element;
@@ -35,9 +38,16 @@ const ApplicationsTab = ({ element, categoryColor }: ApplicationsTabProps) => {
       <ElementTimeline element={element} />
       <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
       <DiscoverySection element={element} />
+
+      {/* --- ДОПОЛНЕНИЕ ДЛЯ HYDROGEN --- */}
+      {element.atomic === "1" && (
+        <>
+          <HydrogenExtractionSection />
+          <HydrogenCommercialUsesSection />
+        </>
+      )}
     </div>
   );
 };
 
 export default ApplicationsTab;
-
