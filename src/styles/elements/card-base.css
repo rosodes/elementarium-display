@@ -1,12 +1,11 @@
 
-/* Core element card styling with improved animations and no horizontal overflow */
+/* Core element card styling without animations */
 .element-card {
   width: 70px;
   height: 70px;
   position: relative;
   border-radius: 16px;
   padding: 8px;
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   color: rgba(0, 0, 0, 0.9);
   box-shadow: 
     0 4px 16px rgba(0, 0, 0, 0.1),
@@ -16,12 +15,10 @@
   border: 1px solid rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(12px);
   cursor: pointer;
-  transform-origin: center;
-  will-change: transform, box-shadow;
   overflow: hidden;
 }
 
-/* Enhanced focus states for better accessibility */
+/* Focus states for accessibility */
 .element-card:focus-visible {
   outline: none;
   border-color: #3b82f6;
@@ -30,42 +27,6 @@
     0 12px 40px rgba(0, 0, 0, 0.2),
     inset 0 2px 4px rgba(255, 255, 255, 0.5);
   z-index: 50;
-  transform: translateY(-4px) scale(1.02);
-}
-
-/* Enhanced hover states with contained scaling to prevent overflow */
-.element-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 
-    0 20px 60px rgba(0, 0, 0, 0.15),
-    0 12px 30px rgba(0, 0, 0, 0.1),
-    inset 0 2px 6px rgba(255, 255, 255, 0.6);
-  z-index: 40;
-  border-color: rgba(255, 255, 255, 0.7);
-}
-
-/* Active state with premium feedback */
-.element-card:active {
-  transform: translateY(-2px) scale(1.01);
-  transition-duration: 0.15s;
-  box-shadow: 
-    0 12px 30px rgba(0, 0, 0, 0.12),
-    0 6px 15px rgba(0, 0, 0, 0.08);
-}
-
-/* Premium loading state animation */
-.element-card.loading {
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255,255,255,0.6), 
-    transparent);
-  background-size: 200px 100%;
-  animation: premium-shimmer 2s infinite ease-in-out;
-}
-
-/* Text shadow utilities */
-.text-shadow-lg {
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Accessibility support */
