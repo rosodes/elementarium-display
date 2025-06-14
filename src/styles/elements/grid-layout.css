@@ -2,8 +2,8 @@
 /* Updated grid layout for the periodic table */
 .periodic-table {
   display: grid;
-  grid-template-columns: 40px repeat(18, 55px); /* 1 label + 18 groups */
-  grid-template-rows: 35px repeat(7, 65px);    /* 1 header + 7 periods */
+  grid-template-columns: 40px repeat(18, 1fr); /* 1 label + 18 groups */
+  grid-template-rows: 35px repeat(7, 1fr);    /* 1 header + 7 periods */
   gap: 3px;
   width: 100%;
   max-width: 1200px;
@@ -12,6 +12,7 @@
   align-items: center;
   justify-items: center;
   min-width: 1100px;
+  min-height: 600px;
 }
 
 /* Group numbers header row */
@@ -67,4 +68,14 @@
   min-height: 60px;
   font-weight: 500;
   display: flex;
+  grid-column: 1;
 }
+
+/* Period label positioning */
+.period-1-label { grid-row: 2; }
+.period-2-label { grid-row: 3; }
+.period-3-label { grid-row: 4; }
+.period-4-label { grid-row: 5; }
+.period-5-label { grid-row: 6; }
+.period-6-label { grid-row: 7; }
+.period-7-label { grid-row: 8; }

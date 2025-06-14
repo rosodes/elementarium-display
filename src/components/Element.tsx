@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
@@ -75,6 +76,7 @@ const Element = ({ element, onClick, className, ...props }: ElementProps) => {
       onFocus={handleHoverStart}
       onBlur={handleHoverEnd}
       aria-label={`${getElementName()} (${element.symbol}), ${t.elementDetails.atomicNumber} ${element.atomic}`}
+      data-atomic={element.atomic}
       tabIndex={0}
       {...props}
     >
