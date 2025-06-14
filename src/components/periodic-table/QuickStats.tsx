@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { elements } from '../../data/elements';
+import { useLanguage } from '../../context/LanguageContext';
 
 const QuickStats = () => {
+  const { t } = useLanguage();
   const totalElements = elements.length;
   const naturalElements = elements.filter(el => el && parseInt(el.atomic) <= 92).length;
   const syntheticElements = totalElements - naturalElements;
@@ -11,25 +13,25 @@ const QuickStats = () => {
     const radioactiveNumbers = [43, 61, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118];
     return radioactiveNumbers.includes(parseInt(el.atomic));
   }).length;
-  
+
   return (
     <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg border">
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-center">
         <div>
           <div className="text-lg font-bold text-blue-600 dark:text-blue-400">{totalElements}</div>
-          <div className="text-xs text-gray-600 dark:text-gray-400">Всего элементов</div>
+          <div className="text-xs text-gray-600 dark:text-gray-400">{t.ui?.elementTable || t.legend?.title || "Elements total"}</div>
         </div>
         <div>
           <div className="text-lg font-bold text-green-600 dark:text-green-400">{naturalElements}</div>
-          <div className="text-xs text-gray-600 dark:text-gray-400">Природных</div>
+          <div className="text-xs text-gray-600 dark:text-gray-400">{t.ui?.naturalElements ?? "Natural"}</div>
         </div>
         <div>
           <div className="text-lg font-bold text-purple-600 dark:text-purple-400">{syntheticElements}</div>
-          <div className="text-xs text-gray-600 dark:text-gray-400">Синтетических</div>
+          <div className="text-xs text-gray-600 dark:text-gray-400">{t.ui?.syntheticElements ?? "Synthetic"}</div>
         </div>
         <div>
           <div className="text-lg font-bold text-red-600 dark:text-red-400">{radioactiveElements}</div>
-          <div className="text-xs text-gray-600 dark:text-gray-400">Радиоактивных</div>
+          <div className="text-xs text-gray-600 dark:text-gray-400">{t.ui?.radioactive || "Radioactive"}</div>
         </div>
       </div>
     </div>
@@ -37,3 +39,4 @@ const QuickStats = () => {
 };
 
 export default QuickStats;
+
