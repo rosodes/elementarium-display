@@ -1,3 +1,4 @@
+
 export interface ElementDetailsTranslations {
   showMoreInfo?: string;
   viewOnWikipedia?: string;
@@ -80,3 +81,4 @@ export interface ElementDetailsTranslations {
   previous: string;
   next: string;
 }
+

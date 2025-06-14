@@ -1,5 +1,5 @@
 
-import type { ElementDetailsTranslations } from "../elementDetails";
+import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
   showMoreInfo: "Show more information",

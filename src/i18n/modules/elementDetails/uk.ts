@@ -1,6 +1,7 @@
+
 // Український переклад elementDetails, повністю синхронізований і без англійських fallbacks
 
-import type { ElementDetailsTranslations } from "../elementDetails";
+import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsUk: ElementDetailsTranslations = {
   showMoreInfo: "Показати більше інформації",
