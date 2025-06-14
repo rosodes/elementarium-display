@@ -1,4 +1,3 @@
-
 import React, { memo } from 'react';
 import TableGridCell from './TableGridCell';
 import { Element as ElementType } from '../../data/elementTypes';
@@ -38,10 +37,6 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
 
     // === Вторая строка ===
     // Li (3), Be (4), ... B (5) ... Ne (10)
-    const row2_positions = [
-      3, 4,  // Li, Be в группах 1,2
-      5, 6, 7, 8, 9, 10 // B, C, N, O, F, Ne в группах 13-18 (13=5, 14=6, ... 18=10)
-    ];
     if (findElement(3)) grid[2][1] = { type: 'element', data: findElement(3)! }; // Li
     if (findElement(4)) grid[2][2] = { type: 'element', data: findElement(4)! }; // Be
     for (let an = 5, col = 13; an <= 10; an++, col++) {
@@ -61,7 +56,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     }
 
     // === Четвертая строка ===
-    // K (19), Ca (20), дальше Sc-Zn (21-30: 3-12 группа), Ga...Kr (31-36: 13-18 группа)
+    // K (19), Ca (20), Sc-Zn (21-30: 3-12 группа), Ga...Kr (31-36: 13-18 группа)
     if (findElement(19)) grid[4][1] = { type: 'element', data: findElement(19)! }; // K
     if (findElement(20)) grid[4][2] = { type: 'element', data: findElement(20)! }; // Ca
     for (let an = 21, col = 3; an <= 30; an++, col++) {
@@ -76,7 +71,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     }
 
     // === Пятая строка ===
-    // Rb (37), Sr (38), дальше Y-Cd (39-48), In-Xe (49-54)
+    // Rb (37), Sr (38), Y-Cd (39-48), In-Xe (49-54)
     if (findElement(37)) grid[5][1] = { type: 'element', data: findElement(37)! }; // Rb
     if (findElement(38)) grid[5][2] = { type: 'element', data: findElement(38)! }; // Sr
     for (let an = 39, col = 3; an <= 48; an++, col++) {
@@ -90,34 +85,36 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
         grid[5][col] = { type: 'element', data: el };
     }
 
-    // === Шестая строка ===
-    // Cs (55), Ba (56), La (57) - Lu (71) обычно снизу, Hf (72) - Hg (80) на основной сетке 
+    // === Шестая строка === — корректировка по вашей схеме
+    // Cs (55), Ba (56), La (57, обязательно! дальше разрыв), Hf (72)-Hg (80), Tl(81)-Rn(86)
     if (findElement(55)) grid[6][1] = { type: 'element', data: findElement(55)! }; // Cs
     if (findElement(56)) grid[6][2] = { type: 'element', data: findElement(56)! }; // Ba
-    // 3-12 столбец — Hf(72)-Hg(80)
-    for (let an = 72, col = 3; an <= 80; an++, col++) {
+    if (findElement(57)) grid[6][3] = { type: 'element', data: findElement(57)! }; // La (Лантан)
+    // 4-12 столбец — Hf(72)-Hg(80)
+    for (let an = 72, col = 4; an <= 80; an++, col++) {
       const el = findElement(an);
       if (el && col <= 12)
         grid[6][col] = { type: 'element', data: el };
     }
-    // 13-18 — Tl(81)-Rn(86)
+    // 13-18 столбец — Tl(81)-Rn(86)
     for (let an = 81, col = 13; an <= 86; an++, col++) {
       const el = findElement(an);
       if (el && col <= 18)
         grid[6][col] = { type: 'element', data: el };
     }
 
-    // === Седьмая строка ===
-    // Fr (87), Ra (88), Ac (89) - Lr (103) обычно снизу, Rf(104) - Cn(112), Nh(113)-Og(118)
+    // === Седьмая строка === — также корректировка
+    // Fr (87), Ra (88), Ac (89, обязательно! дальше разрыв), Rf(104)-Cn(112), Nh(113)-Og(118)
     if (findElement(87)) grid[7][1] = { type: 'element', data: findElement(87)! }; // Fr
     if (findElement(88)) grid[7][2] = { type: 'element', data: findElement(88)! }; // Ra
-    // 3-12 — Rf(104) - Cn(112)
-    for (let an = 104, col = 3; an <= 112; an++, col++) {
+    if (findElement(89)) grid[7][3] = { type: 'element', data: findElement(89)! }; // Ac (Актиний)
+    // 4-12 столбец — Rf(104) - Cn(112)
+    for (let an = 104, col = 4; an <= 112; an++, col++) {
       const el = findElement(an);
       if (el && col <= 12)
         grid[7][col] = { type: 'element', data: el };
     }
-    // 13-18 — Nh(113) - Og(118)
+    // 13-18 столбец — Nh(113) - Og(118)
     for (let an = 113, col = 13; an <= 118; an++, col++) {
       const el = findElement(an);
       if (el && col <= 18)
@@ -158,4 +155,3 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
 
 TableGrid.displayName = 'TableGrid';
 export default TableGrid;
-

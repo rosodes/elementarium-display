@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Element from '../../Element';
 import { Element as ElementType } from '../../../data/elementTypes';
@@ -16,14 +15,13 @@ const findElement = (atomicNumber: number | string): ElementType | null => {
 
 export const renderLanthanides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
   const periodLabel = "6*";
-  
-  // Start with element 58 if skipFirstElement is true, otherwise start with 57
-  const startIndex = skipFirstElement ? 58 : 57;
+  // Лантаноиды должны начинаться с Ce (58), а не с La (57)
+  const startIndex = skipFirstElement ? 58 : 58;
   const endIndex = 71;
-  
+
   const lanthanideElements = [];
-  
-  // Add vertical divider at the beginning if we're starting from element 58
+
+  // Add vertical divider at the beginning если требуется
   if (skipFirstElement) {
     lanthanideElements.push(
       <div key="lanthanide-divider" className="flex items-center h-[70px] mr-2">
@@ -31,7 +29,7 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
       </div>
     );
   }
-  
+
   for (let i = startIndex; i <= endIndex; i++) {
     const element = findElement(i);
     if (element) {
@@ -44,7 +42,7 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
       );
     }
   }
-  
+
   return (
     <PeriodRow periodLabel={periodLabel} elements={lanthanideElements} />
   );
@@ -52,14 +50,12 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
 
 export const renderActinides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
   const periodLabel = "7*";
-  
-  // Start with element 90 if skipFirstElement is true, otherwise start with 89
-  const startIndex = skipFirstElement ? 90 : 89;
+  // Актиноиды должны начинаться с Th (90), а не с Ac (89)
+  const startIndex = skipFirstElement ? 90 : 90;
   const endIndex = 103;
-  
+
   const actinideElements = [];
-  
-  // Add vertical divider at the beginning if we're starting from element 90
+
   if (skipFirstElement) {
     actinideElements.push(
       <div key="actinide-divider" className="flex items-center h-[70px] mr-2">
@@ -67,7 +63,7 @@ export const renderActinides = (onElementClick: (element: ElementType) => void, 
       </div>
     );
   }
-  
+
   for (let i = startIndex; i <= endIndex; i++) {
     const element = findElement(i);
     if (element) {
@@ -80,7 +76,7 @@ export const renderActinides = (onElementClick: (element: ElementType) => void, 
       );
     }
   }
-  
+
   return (
     <PeriodRow periodLabel={periodLabel} elements={actinideElements} />
   );
