@@ -1,10 +1,10 @@
 
-/* Enhanced typography with better readability */
+/* Enhanced typography with better readability and depth */
 .element-card .element-atomic {
   font-size: 11px;
   font-weight: 700;
   opacity: 0.85;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 6px rgba(0, 0, 0, 0.1);
   line-height: 1;
   transition: all 0.3s ease;
 }
@@ -13,7 +13,7 @@
   font-size: 22px;
   font-weight: 800;
   letter-spacing: -1px;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.5);
   line-height: 0.85;
   transition: all 0.3s ease;
 }
@@ -23,7 +23,7 @@
   font-weight: 600;
   opacity: 0.95;
   line-height: 1.1;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 6px rgba(0, 0, 0, 0.1);
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -35,12 +35,50 @@
   font-size: 8px;
   font-weight: 600;
   opacity: 0.75;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 1px 4px rgba(0, 0, 0, 0.1);
   line-height: 1;
   transition: all 0.3s ease;
 }
 
-/* Responsive typography adjustments */
+/* Enhanced hover states for typography */
+.element-card:hover .element-atomic {
+  opacity: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4), 0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+.element-card:hover .element-symbol {
+  text-shadow: 0 3px 8px rgba(0, 0, 0, 0.4), 0 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.element-card:hover .element-name {
+  opacity: 1;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 8px rgba(0, 0, 0, 0.15);
+}
+
+.element-card:hover .element-mass {
+  opacity: 1;
+  text-shadow: 0 2px 3px rgba(0, 0, 0, 0.3), 0 1px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark theme typography enhancements */
+.dark .element-card .element-atomic,
+.dark .element-card .element-symbol,
+.dark .element-card .element-name,
+.dark .element-card .element-mass {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.dark .element-card:hover .element-atomic,
+.dark .element-card:hover .element-symbol {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark .element-card:hover .element-name,
+.dark .element-card:hover .element-mass {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8), 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive typography adjustments with improved scaling */
 @media (max-width: 768px) {
   .element-card .element-symbol {
     font-size: 18px;
@@ -57,4 +95,36 @@
   .element-card .element-mass {
     font-size: 7px;
   }
+}
+
+@media (max-width: 480px) {
+  .element-card .element-symbol {
+    font-size: 16px;
+  }
+  
+  .element-card .element-name {
+    font-size: 7px;
+  }
+  
+  .element-card .element-atomic {
+    font-size: 8px;
+  }
+  
+  .element-card .element-mass {
+    font-size: 6px;
+  }
+}
+
+/* Enhanced typography for group and period labels */
+.group-label, .period-label {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+.group-label span, .period-label span {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.group-label:hover span, .period-label:hover span {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 1px 8px rgba(0, 0, 0, 0.15);
 }
