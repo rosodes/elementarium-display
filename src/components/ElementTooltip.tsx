@@ -51,8 +51,9 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
     return radioactiveElements.has(Number(element.atomic));
   };
 
-  // Для элементов 90–103 (актиноиды) используем попап снизу, для остальных — сверху
-  const tooltipSide = Number(element.atomic) >= 90 && Number(element.atomic) <= 103 ? 'bottom' : 'top';
+  // Popup снизу только для элементов 90–103, для остальных — сверху
+  const atomicNumber = Number(element.atomic);
+  const tooltipSide = atomicNumber >= 90 && atomicNumber <= 103 ? 'bottom' : 'top';
 
   const tooltipContent = (
     <div className="space-y-2 min-w-48">
@@ -131,3 +132,4 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
 };
 
 export default ElementTooltip;
+
