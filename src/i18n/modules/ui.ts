@@ -33,6 +33,9 @@ export interface UITranslations {
   elementBookmarked?: string;
   linkCopied?: string;
   linkCopiedToClipboard?: string;
+  // --- NEW KEYS ---
+  naturalElements?: string;
+  syntheticElements?: string;
 }
 
 export const uiEn: UITranslations = {
@@ -67,7 +70,10 @@ export const uiEn: UITranslations = {
   elementRemoved: "Element removed from bookmarks",
   elementBookmarked: "Element bookmarked",
   linkCopied: "Link copied",
-  linkCopiedToClipboard: "Link has been copied to clipboard"
+  linkCopiedToClipboard: "Link has been copied to clipboard",
+  // --- NEW KEYS ---
+  naturalElements: "Natural",
+  syntheticElements: "Synthetic"
 };
 
 export const uiRu: UITranslations = {
@@ -102,5 +108,9 @@ export const uiRu: UITranslations = {
   elementRemoved: "Элемент удален из закладок",
   elementBookmarked: "Элемент добавлен в закладки",
   linkCopied: "Ссылка скопирована",
-  linkCopiedToClipboard: "Ссылка скопирована в буфер обмена"
+  linkCopiedToClipboard: "Ссылка скопирована в буфер обмена",
+  // --- NEW KEYS ---
+  naturalElements: "Природных",
+  syntheticElements: "Синтетических"
 };
+
