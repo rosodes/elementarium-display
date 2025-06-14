@@ -1,3 +1,4 @@
+
 // Лантаноиды: элементы 58 (Ce) — 71 (Lu)
 import { Element } from './elementTypes';
 import ce from './elements/lanthanides/ce';
@@ -22,7 +23,6 @@ export const elements58to71: Element[] = [
   pr,
   // Nd (60)
   nd,
-  // 61–70 — по тому же принципу, один элемент — одна запись. 
   pm,
   sm,
   eu,
