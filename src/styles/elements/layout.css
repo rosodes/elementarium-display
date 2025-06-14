@@ -1,11 +1,7 @@
 
 /* Import all layout-related CSS modules */
 @import './table-structure.css';
-@import './grid-structure.css';
-@import './grid-headers.css';
-@import './element-positioning.css';
-@import './period-4-5-positioning.css';
-@import './period-6-7-positioning.css';
+@import './grid-layout.css';
 @import './period-positioning.css';
 @import './f-block-layout.css';
 @import './manual-grid-override.css';
