@@ -150,40 +150,110 @@ const Index = () => {
               <span className="font-bold italic underline">Таблица Менделеева</span> — уникальное научное достижение, служащее <span className="font-bold italic underline">основой всей современной химии</span>. Созданная <span className="font-bold italic underline">Дмитрием Ивановичем Менделеевым</span> в <span className="font-bold italic underline">1869&nbsp;году</span>, она упорядочивает все известные химические элементы по возрастанию их атомных номеров, сочетая их в группы и периоды по похожим свойствам. Такой подход позволяет быстро находить информацию об элементах, <span className="font-bold italic underline">предсказывать характеристики ещё не открытых веществ</span>, а также видеть закономерности в строении вещества. Сегодня таблица стала незаменимым инструментом для <span className="font-bold italic underline">школьников, студентов, преподавателей</span> и учёных во всём мире. С её помощью исследуются свойства новых материалов, развивается <span className="font-bold italic underline">медицина, энергетика, нанотехнологии</span> и многие другие отрасли науки и промышленности. Простота её структуры скрывает глубокую логику природы, помогая <span className="font-bold italic underline">раскрывать тайны окружающего мира</span>. В этом справочнике собраны все элементы, их свойства, история и современные научные данные.
             </p>
           </div>
-          {/* Правая часть: таблица цен */}
+          {/* Правая часть: цветовая легенда */}
           <div className="flex-1 max-w-full">
             <section>
               <div className="pb-2 flex items-center">
-                <h2 className="text-base font-semibold">Цены на Смартфоны Apple iPhone 15</h2>
+                <h2 className="text-base font-semibold">Цветовая легенда по блокам и категориям элементов</h2>
               </div>
               <div className="overflow-x-auto">
                 <table className="min-w-[340px] w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm text-sm">
                   <thead>
                     <tr className="bg-gray-50 dark:bg-gray-800">
-                      <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">Смартфоны Apple iPhone 15</td>
-                      <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">Цена</td>
+                      <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">Цвет / Категория</td>
+                      <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">Описание</td>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Green (MTP53)</td>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-s-block border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">s-блок</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Щелочные и щелочноземельные металлы <span className="text-xs text-gray-600">(Na, Ca)</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Black (MTP03)</td>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-p-block border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">p-блок</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Неметаллы, галогены, благородные газы, часть металлов <span className="text-xs text-gray-600">(C, O, F, Ne)</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Pink (MTP13)</td>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-d-block border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">d-блок</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Переходные металлы <span className="text-xs text-gray-600">(Fe, Cu, Zn)</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Yellow (MTP23)</td>
-                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-f-block border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">f-блок</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Лантанoиды и актиноиды <span className="text-xs text-gray-600">(Ce, U)</span>
+                      </td>
                     </tr>
                     <tr>
-                      <td className="p-2">Apple iPhone 15 128GB Blue (MTP43)</td>
-                      <td className="p-2">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-alkali border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">Щелочные металлы</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Пример: литий, натрий <span className="text-xs text-gray-600">(Li, Na)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-post_transition border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">Постпереходные металлы</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Пример: алюминий, индий <span className="text-xs text-gray-600">(Al, In)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-metalloid border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">Металлоиды</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Пример: бор, кремний <span className="text-xs text-gray-600">(B, Si)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-unknown border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">Неизвестные свойства</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Элементы с неизвестными или неполными характеристиками
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        <span className="inline-block w-5 h-5 rounded bg-noble border mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">Благородные газы</span>
+                      </td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">
+                        Пример: гелий, неон, аргон <span className="text-xs text-gray-600">(He, Ne, Ar)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className="p-2">
+                        <span className="inline-block w-3 h-3 rounded-full bg-red-500 animate-pulse mr-2 align-middle" /> 
+                        <span className="align-middle font-semibold">Радиоактивные элементы</span>
+                      </td>
+                      <td className="p-2">
+                        Помечаются пульсирующей меткой/фоном, легко заметны в таблице
+                      </td>
                     </tr>
                   </tbody>
                 </table>
