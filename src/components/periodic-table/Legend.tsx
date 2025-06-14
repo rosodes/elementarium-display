@@ -24,7 +24,13 @@ const Legend = () => {
         </div>
       ))}
       <div className="flex items-center gap-2">
-        <div className="w-4 h-4 rounded flex items-center justify-center border" style={{ borderColor: '#ef4444' }}>
+        <div
+          className="w-4 h-4 rounded border flex items-center justify-center"
+          style={{
+            background: 'rgba(239, 68, 68, 0.15)', // мягкий красный фон
+            borderColor: '#ef4444',
+          }}
+        >
           <div className="w-2 h-2 rounded-full bg-red-500"></div>
         </div>
         <span className="text-gray-800 dark:text-gray-200 font-medium">
@@ -37,4 +43,3 @@ const Legend = () => {
 };
 
 export default Legend;
-
