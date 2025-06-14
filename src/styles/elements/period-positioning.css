@@ -44,7 +44,7 @@ div.periodic-table > .element-card[data-atomic="32"] { grid-column: 15 !importan
 div.periodic-table > .element-card[data-atomic="33"] { grid-column: 16 !important; grid-row: 5 !important; }
 div.periodic-table > .element-card[data-atomic="34"] { grid-column: 17 !important; grid-row: 5 !important; }
 div.periodic-table > .element-card[data-atomic="35"] { grid-column: 18 !important; grid-row: 5 !important; }
-div.periodic-table > .element-card[data-atomic="36"] { grid-column: 19 !important; grid-row: 5 !important; }
+/* div.periodic-table > .element-card[data-atomic="36"] { grid-column: 19 !important; grid-row: 5 !important; } -- убрано */
 
 /* Period 5: Rb (37) to Xe (54) - full row */
 div.periodic-table > .element-card[data-atomic="37"] { grid-column: 2 !important; grid-row: 6 !important; }
@@ -63,8 +63,8 @@ div.periodic-table > .element-card[data-atomic="49"] { grid-column: 14 !importan
 div.periodic-table > .element-card[data-atomic="50"] { grid-column: 15 !important; grid-row: 6 !important; }
 div.periodic-table > .element-card[data-atomic="51"] { grid-column: 16 !important; grid-row: 6 !important; }
 div.periodic-table > .element-card[data-atomic="52"] { grid-column: 17 !important; grid-row: 6 !important; }
-div.periodic-table > .element-card[data-atomic="53"] { grid-column: 18 !important; grid-row: 6 !important; }
-div.periodic-table > .element-card[data-atomic="54"] { grid-column: 19 !important; grid-row: 6 !important; }
+/* div.periodic-table > .element-card[data-atomic="53"] { grid-column: 18 !important; grid-row: 6 !important; } -- убрано */
+/* div.periodic-table > .element-card[data-atomic="54"] { grid-column: 19 !important; grid-row: 6 !important; } -- убрано */
 
 /* Period 6: Cs (55) to Rn (86) with La gap */
 div.periodic-table > .element-card[data-atomic="55"] { grid-column: 2 !important; grid-row: 7 !important; }
@@ -83,8 +83,8 @@ div.periodic-table > .element-card[data-atomic="81"] { grid-column: 14 !importan
 div.periodic-table > .element-card[data-atomic="82"] { grid-column: 15 !important; grid-row: 7 !important; }
 div.periodic-table > .element-card[data-atomic="83"] { grid-column: 16 !important; grid-row: 7 !important; }
 div.periodic-table > .element-card[data-atomic="84"] { grid-column: 17 !important; grid-row: 7 !important; }
-div.periodic-table > .element-card[data-atomic="85"] { grid-column: 18 !important; grid-row: 7 !important; }
-div.periodic-table > .element-card[data-atomic="86"] { grid-column: 19 !important; grid-row: 7 !important; }
+/* div.periodic-table > .element-card[data-atomic="85"] { grid-column: 18 !important; grid-row: 7 !important; } -- убрано */
+/* div.periodic-table > .element-card[data-atomic="86"] { grid-column: 19 !important; grid-row: 7 !important; } -- убрано */
 
 /* Period 7: Fr (87) to Og (118) with Ac gap */
 div.periodic-table > .element-card[data-atomic="87"] { grid-column: 2 !important; grid-row: 8 !important; }
@@ -105,3 +105,4 @@ div.periodic-table > .element-card[data-atomic="115"] { grid-column: 16 !importa
 div.periodic-table > .element-card[data-atomic="116"] { grid-column: 17 !important; grid-row: 8 !important; }
 div.periodic-table > .element-card[data-atomic="117"] { grid-column: 18 !important; grid-row: 8 !important; }
 div.periodic-table > .element-card[data-atomic="118"] { grid-column: 19 !important; grid-row: 8 !important; }
+
