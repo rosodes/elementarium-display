@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,9 +10,10 @@ interface ElementProps extends BaseElementProps {
   readonly element: ElementType;
   readonly onClick: ActionFunction<ElementType>;
   readonly className?: ClassName;
+  readonly style?: React.CSSProperties;
 }
 
-const Element = ({ element, onClick, className, ...props }: ElementProps) => {
+const Element = ({ element, onClick, className, style, ...props }: ElementProps) => {
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const { t } = useLanguage();
   
@@ -78,6 +78,7 @@ const Element = ({ element, onClick, className, ...props }: ElementProps) => {
       aria-label={`${getElementName()} (${element.symbol}), ${t.elementDetails.atomicNumber} ${element.atomic}`}
       data-atomic={element.atomic}
       tabIndex={0}
+      style={style}
       {...props}
     >
       <div className="flex justify-between items-start w-full">
