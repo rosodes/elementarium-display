@@ -1,44 +1,17 @@
 
 /* Строгая сетка для таблицы Менделеева */
 .periodic-table {
-  display: grid !important;
-  grid-template-columns: 40px repeat(18, 76px) !important;
-  grid-template-rows: 35px repeat(7, 76px) !important;
-  gap: 4px !important;
-  justify-content: center !important;
-  margin: 0 auto !important;
-  padding: 20px !important;
-  box-sizing: border-box !important;
+  display: grid;
+  grid-template-columns: 40px repeat(18, 76px);
+  grid-template-rows: 35px repeat(7, 76px);
+  gap: 4px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
 }
-
-/* Все элементы строго 76x76px */
-.element-card {
-  width: 76px !important;
-  height: 76px !important;
-  min-width: 76px !important;
-  min-height: 76px !important;
-  max-width: 76px !important;
-  max-height: 76px !important;
-  box-sizing: border-box !important;
+/* Заголовки групп/столбцов — 1-я строка: precise header placement */
+.periodic-table > div:nth-child(n+1):nth-child(-n+19) {
+  grid-row: 1;
 }
-
-/* Заголовки групп */
-.periodic-table > div:nth-child(1) { grid-row: 1; grid-column: 1; }
-.periodic-table > div:nth-child(2) { grid-row: 1; grid-column: 2; }
-.periodic-table > div:nth-child(3) { grid-row: 1; grid-column: 3; }
-.periodic-table > div:nth-child(4) { grid-row: 1; grid-column: 4; }
-.periodic-table > div:nth-child(5) { grid-row: 1; grid-column: 5; }
-.periodic-table > div:nth-child(6) { grid-row: 1; grid-column: 6; }
-.periodic-table > div:nth-child(7) { grid-row: 1; grid-column: 7; }
-.periodic-table > div:nth-child(8) { grid-row: 1; grid-column: 8; }
-.periodic-table > div:nth-child(9) { grid-row: 1; grid-column: 9; }
-.periodic-table > div:nth-child(10) { grid-row: 1; grid-column: 10; }
-.periodic-table > div:nth-child(11) { grid-row: 1; grid-column: 11; }
-.periodic-table > div:nth-child(12) { grid-row: 1; grid-column: 12; }
-.periodic-table > div:nth-child(13) { grid-row: 1; grid-column: 13; }
-.periodic-table > div:nth-child(14) { grid-row: 1; grid-column: 14; }
-.periodic-table > div:nth-child(15) { grid-row: 1; grid-column: 15; }
-.periodic-table > div:nth-child(16) { grid-row: 1; grid-column: 16; }
-.periodic-table > div:nth-child(17) { grid-row: 1; grid-column: 17; }
-.periodic-table > div:nth-child(18) { grid-row: 1; grid-column: 18; }
-.periodic-table > div:nth-child(19) { grid-row: 1; grid-column: 19; }
+/* Элементы всегда используют .element-card size, поэтому спец. позиционирование больше не нужно */

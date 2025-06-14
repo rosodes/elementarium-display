@@ -1,5 +1,5 @@
 
-/* Basic element card styling */
+/* Basic element card styling: гарантия фиксированного размера */
 .element-card {
   width: 76px !important;
   height: 76px !important;
@@ -7,7 +7,12 @@
   min-height: 76px !important;
   max-width: 76px !important;
   max-height: 76px !important;
-  aspect-ratio: 1 / 1;
+  box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  aspect-ratio: 1 / 1 !important;
   position: relative;
   border-radius: 4px;
   padding: 4px;
@@ -15,11 +20,6 @@
   color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
-  box-sizing: border-box !important;
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
 }
 
 /* Focus states for accessibility */
@@ -29,7 +29,6 @@
   z-index: 10;
 }
 
-/* dark mode focus state */
 .dark .element-card:focus-visible {
   outline: 3px solid #90caf9;
 }

@@ -4,4 +4,5 @@
 @import './grid-layout.css';
 @import './period-positioning.css';
 @import './f-block-layout.css';
-@import './manual-grid-override.css';
+/* manual-grid-override.css был удалён для предотвращения конфликтов */
+/* @import './manual-grid-override.css'; */
