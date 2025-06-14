@@ -2,7 +2,7 @@
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Info, Thermometer, Box, Award, Atom } from 'lucide-react';
+import { Info, Thermometer, Box, Award, Atom, Hash, Radioactive, Layers, BookOpen, Sparkles } from 'lucide-react';
 import BasicInfo from '../BasicInfo';
 import PhysicalProperties from '../PhysicalProperties';
 import AdditionalInfo from '../AdditionalInfo';
@@ -14,8 +14,137 @@ interface OverviewTabProps {
 
 const OverviewTab = ({ element }: OverviewTabProps) => {
   const { t } = useLanguage();
-  
-  // Enhanced interactive overview for element applications
+
+  // Карточки с базовыми свойствами элемента для максимального наполнения
+  const renderElementFacts = () => {
+    // Радиоактивный ли элемент и есть ли информация
+    const radioactive =
+      typeof element.radioactive !== "undefined"
+        ? element.radioactive
+        : typeof element.category === "string"
+          ? ["actinide", "radioactive"].includes(element.category)
+          : false;
+
+    // summary или короткое описание элемента, если есть
+    const shortDesc =
+      element.summary && typeof element.summary === "string"
+        ? element.summary
+        : undefined;
+
+    // Электронные оболочки строкой
+    const electronShellsDisplay =
+      Array.isArray(element.electrons) && element.electrons.length
+        ? element.electrons.join(", ")
+        : null;
+
+    // Температуры в K
+    const melt = element.melt ? `${element.melt} K` : t.elementDetails.notAvailable;
+    const boil = element.boil ? `${element.boil} K` : t.elementDetails.notAvailable;
+
+    // Изотопы/кол-во, если есть
+    const isotopes = element.isotopes
+      ? `${element.isotopes}`
+      : t.elementDetails.notAvailable;
+
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <Hash className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.series || 'Series'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">{element.series}</p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <Atom className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.electronDistribution || 'Electron Distribution'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">
+              {electronShellsDisplay
+                ? `${t.elementDetails.shells || 'Shells'}: ${electronShellsDisplay}`
+                : t.elementDetails.notAvailable}
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <Layers className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.group || 'Group'} & {t.elementDetails.period || 'Period'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">
+              {t.elementDetails.group}: {element.group ?? t.elementDetails.notAvailable}
+              <br />
+              {t.elementDetails.period}: {element.period ?? t.elementDetails.notAvailable}
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <Sparkles className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.electronegativity || 'Electronegativity'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">
+              {element.electroneg ?? t.elementDetails.notAvailable}
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <Thermometer className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.meltingBoilingPoint || 'Melting & Boiling'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">
+              {t.elementDetails.meltingPoint}: {melt}
+              <br />
+              {t.elementDetails.boilingPoint}: {boil}
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <Radioactive className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.radioactive || 'Radioactive'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">
+              {radioactive ? t.elementDetails.yes || "Yes" : t.elementDetails.no || "No"}
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <BookOpen className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.isotopes || 'Isotopes'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">
+              {isotopes}
+            </p>
+          </CardContent>
+        </Card>
+        {shortDesc && (
+          <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700 md:col-span-3">
+            <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+              <Info className="h-5 w-5 mb-1" />
+              <CardTitle className="text-sm font-medium text-center">{t.elementDetails.additionalInfo || "Additional Information"}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-xs text-center text-gray-600 dark:text-gray-300">{shortDesc}</p>
+            </CardContent>
+          </Card>
+        )}
+      </div>
+    );
+  };
+
+  // Существующие приложения и доп. разделы, теперь после крупных фактов
   const renderApplications = () => {
     const applications = [
       {
@@ -38,7 +167,6 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         description: `${element.electrons.length} ${t.elementDetails.shells || 'shells'}, ${t.elementDetails.atomicRadius || 'Atomic radius'}: ${element.radius?.calculated || element.radius?.empirical || '?'} pm`
       }
     ];
-    
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
         {applications.map((app, index) => (
@@ -59,7 +187,7 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
       </div>
     );
   };
-  
+
   return (
     <>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
@@ -87,7 +215,10 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
           </CardContent>
         </Card>
       </div>
-      
+
+      {/* ↪ Новые подробные карточки с дополнительной информацией */}
+      {renderElementFacts()}
+
       <div className="mt-4">
         <Card className="overflow-hidden border border-gray-200 dark:border-gray-700">
           <CardHeader className="bg-gray-50 dark:bg-gray-800 p-4">
@@ -99,6 +230,7 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         </Card>
       </div>
       
+      {/* Блок "Applications" остается внизу */}
       {renderApplications()}
     </>
   );
