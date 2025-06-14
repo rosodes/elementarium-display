@@ -2,7 +2,6 @@
 import React, { memo } from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
 import { elements } from '../../data/elements';
-import PeriodRow from './PeriodRow';
 import Element from '../Element'; // Correct import
 
 // Helper function to safely find element
@@ -32,7 +31,7 @@ function getFBlockRow(
           key={`fblock-${i}`}
           element={element}
           onClick={() => onElementClick(element)}
-          className="element-card w-[76px] h-[76px]"
+          className="element-card"
         />
       );
     }
@@ -70,8 +69,8 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
             6*
           </div>
           <div
-            className="f-block-elements-container"
-            style={{ display: 'flex', flexDirection: 'row', gap: 0 }}
+            className="f-block-elements-container gap-1"
+            style={{ display: 'flex', flexDirection: 'row' }}
           >
             {lanthanides}
           </div>
@@ -89,8 +88,8 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
             7*
           </div>
           <div
-            className="f-block-elements-container"
-            style={{ display: 'flex', flexDirection: 'row', gap: 0 }}
+            className="f-block-elements-container gap-1"
+            style={{ display: 'flex', flexDirection: 'row' }}
           >
             {actinides}
           </div>
