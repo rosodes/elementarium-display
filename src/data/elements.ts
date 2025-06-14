@@ -1,4 +1,3 @@
-
 import { type Element, type ElementsArray } from './elementTypes';
 import { categories, getCategoryColor, getSeriesColor } from './elementCategories';
 import { elements1to10 } from './elements1-10';
@@ -11,7 +10,7 @@ import { elements61to70 } from './elements61-70';
 import { elements71to80 } from './elements71-80';
 import { elements81to90 } from './elements81-90';
 import { elements91to100 } from './elements91-100';
-import { elements101to114 } from './elements101-114';
+import { elements101to118 } from './elements101-118';
 import { group1Elements } from './elements/group1';
 
 // Combining all elements into one array
@@ -26,7 +25,7 @@ const elementsList: Element[] = [
   ...elements71to80,
   ...elements81to90,
   ...elements91to100,
-  ...elements101to114
+  ...elements101to118
 ];
 
 // Creating array with empty first element for compatibility
