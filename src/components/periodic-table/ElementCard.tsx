@@ -35,9 +35,9 @@ const ElementCard = ({ element, onClick, className = '' }: ElementCardProps) => 
   return (
     <div
       className={`element-card group relative overflow-hidden cursor-pointer transition-all duration-500 ease-out
-                 hover:scale-110 hover:shadow-2xl hover:z-20 focus:outline-none focus:ring-3 focus:ring-blue-400/60
+                 hover:scale-105 hover:shadow-2xl hover:z-20 focus:outline-none focus:ring-3 focus:ring-blue-400/60
                  border border-white/40 dark:border-white/20 rounded-2xl backdrop-blur-sm
-                 transform-gpu will-change-transform hover:rotate-1 focus:rotate-1
+                 transform-gpu will-change-transform
                  ${className}`}
       style={{ backgroundColor: categoryColor }}
       onClick={handleClick}
@@ -57,7 +57,7 @@ const ElementCard = ({ element, onClick, className = '' }: ElementCardProps) => 
       
       {/* Atomic number */}
       <div className="element-atomic absolute top-2 left-2 text-xs font-bold opacity-85 
-                      transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
+                      transition-all duration-300 group-hover:scale-105 group-hover:opacity-100">
         {element.atomic}
       </div>
       

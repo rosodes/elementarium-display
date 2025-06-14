@@ -1,5 +1,5 @@
 
-/* Enhanced element card styling with improved animations and accessibility */
+/* Enhanced element card styling with improved animations and no horizontal overflow */
 .element-card {
   width: 70px;
   height: 70px;
@@ -38,7 +38,7 @@
     0 12px 40px rgba(0, 0, 0, 0.2),
     inset 0 2px 4px rgba(255, 255, 255, 0.5);
   z-index: 50;
-  transform: translateY(-6px) scale(1.15) rotate(1deg);
+  transform: translateY(-6px) scale(1.05);
 }
 
 .dark .element-card:focus-visible {
@@ -49,9 +49,9 @@
     inset 0 2px 4px rgba(255, 255, 255, 0.2);
 }
 
-/* Enhanced hover states with premium spring animation */
+/* Enhanced hover states with contained scaling to prevent overflow */
 .element-card:hover {
-  transform: translateY(-8px) scale(1.15) rotateZ(1.5deg);
+  transform: translateY(-6px) scale(1.05);
   box-shadow: 
     0 20px 60px rgba(0, 0, 0, 0.15),
     0 12px 30px rgba(0, 0, 0, 0.1),
@@ -70,7 +70,7 @@
 
 /* Active state with premium feedback */
 .element-card:active {
-  transform: translateY(-4px) scale(1.1) rotate(0.5deg);
+  transform: translateY(-3px) scale(1.02);
   transition-duration: 0.15s;
   box-shadow: 
     0 12px 30px rgba(0, 0, 0, 0.12),
