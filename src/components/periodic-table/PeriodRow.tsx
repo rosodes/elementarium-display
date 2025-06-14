@@ -10,10 +10,18 @@ interface PeriodRowProps {
 const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   const { t } = useLanguage();
   
+  // Determine CSS class based on period label
+  const getRowClass = () => {
+    if (periodLabel.includes('*')) {
+      // For lanthanides and actinides
+      return periodLabel.includes('6') ? 'lanthanides-row' : 'actinides-row';
+    }
+    return `period-${periodLabel}`;
+  };
+  
   return (
     <div 
-      key={`period-row-${periodLabel}`} 
-      className={`period-row period-${periodLabel.replace('*', '')}`}
+      className={`period-row ${getRowClass()}`}
       role="row"
       aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
     >

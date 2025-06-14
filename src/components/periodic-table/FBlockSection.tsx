@@ -9,10 +9,10 @@ interface FBlockSectionProps {
 
 const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
   return (
-    <div className="lanthanide-actinide-section mt-6">
-      <div className="f-block-container flex flex-col gap-0">
-        {renderLanthanides(onElementClick, true)}
-        {renderActinides(onElementClick, true)}
+    <div className="lanthanide-actinide-section">
+      <div className="f-block-container">
+        {renderLanthanides(onElementClick, false)}
+        {renderActinides(onElementClick, false)}
       </div>
     </div>
   );
