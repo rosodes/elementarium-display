@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { useLanguage } from '../context/LanguageContext';
@@ -64,7 +63,7 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
   }
 
   const tooltipContent = (
-    <div className="space-y-2 min-w-48">
+    <div className="space-y-2 min-w-0 w-full">
       {/* Element header */}
       <div className="border-b border-gray-200 dark:border-gray-600 pb-2">
         <div className="flex items-center justify-between">
@@ -92,9 +91,12 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
         </div>
 
         {element.electronstring && (
+          // Добавлен горизонтальный скролл для длинных конфигураций
           <div className="flex justify-between">
             <span className="opacity-80">{t.elementDetails?.electronConfig || 'Электронная конфигурация'}:</span>
-            <span className="font-mono text-xs">{element.electronstring}</span>
+            <span className="font-mono text-xs sm:text-sm overflow-x-auto max-w-[11rem] whitespace-nowrap block">
+              {element.electronstring}
+            </span>
           </div>
         )}
 
@@ -141,4 +143,3 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
 };
 
 export default ElementTooltip;
-

@@ -50,17 +50,17 @@ const EnhancedTooltip = ({
           side={side}
           sideOffset={8}
           avoidCollisions={avoidCollisions}
+          // Сделаем компактнее: ужимаем max-width и padding
           className={`
-            max-w-[310px] sm:max-w-[370px] w-auto min-w-[170px] 
-            p-2.5 sm:p-3
-            max-h-[75vh] overflow-auto
+            max-w-xs w-full min-w-0
+            p-2
+            max-h-[65vh] overflow-auto
             bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600 shadow-xl rounded-lg z-[100]
           `}
           style={{
             wordBreak: 'break-word',
-            // На всякий случай — ограничим ширину на уровне инлайново, для Radix портала
             maxWidth: '95vw',
-            minWidth: '150px',
+            minWidth: '0',
           }}
         >
           {content}
