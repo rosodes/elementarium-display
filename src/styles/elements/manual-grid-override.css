@@ -1,0 +1,31 @@
+
+/* Manual grid override to ensure proper periodic table layout */
+.manual-periodic-table-grid {
+  display: grid !important;
+  flex-direction: unset !important;
+  flex-wrap: unset !important;
+  align-items: unset !important;
+  justify-content: unset !important;
+}
+
+.manual-periodic-table-grid > * {
+  flex: none !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Ensure element cards don't have conflicting flex properties */
+.manual-periodic-table-grid .element-card {
+  flex: none !important;
+  align-self: unset !important;
+  justify-self: unset !important;
+}
+
+/* Clear any inherited positioning */
+.manual-periodic-table-grid .empty-cell,
+.manual-periodic-table-grid .group-number,
+.manual-periodic-table-grid .period-number {
+  position: static !important;
+  float: none !important;
+  clear: none !important;
+}

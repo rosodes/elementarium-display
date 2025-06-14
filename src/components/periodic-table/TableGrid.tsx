@@ -122,44 +122,58 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
 
   const grid = createPeriodicGrid();
   
+  const gridContainerStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: '40px repeat(18, 60px)',
+    gridTemplateRows: '35px repeat(7, 70px)',
+    gap: '4px',
+    width: 'fit-content',
+    margin: '0 auto',
+    padding: '20px',
+    border: '2px solid red', // Debug border - different color to see if this is being applied
+    backgroundColor: '#f0f0f0', // Light background to see grid structure
+    position: 'relative'
+  };
+  
   return (
     <div 
-      className="periodic-table-manual-grid"
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '40px repeat(18, 60px)',
-        gridTemplateRows: '35px repeat(7, 70px)',
-        gap: '4px',
-        width: '100%',
-        maxWidth: '1400px',
-        margin: '0 auto',
-        padding: '20px',
-        boxSizing: 'border-box',
-        border: '2px solid blue' // Debug border
-      }}
+      className="manual-periodic-table-grid"
+      style={gridContainerStyle}
     >
       {grid.map((row, rowIndex) => 
         row.map((cell, colIndex) => {
           const key = `cell-${rowIndex}-${colIndex}`;
           
+          const cellStyle: React.CSSProperties = {
+            gridColumn: colIndex + 1,
+            gridRow: rowIndex + 1,
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+          };
+          
           if (!cell) {
-            return <div key={key} className="empty-cell"></div>;
+            return (
+              <div 
+                key={key} 
+                style={cellStyle}
+                className="empty-cell"
+              />
+            );
           }
           
           if (cell.type === 'group') {
             return (
               <div 
                 key={key}
-                className="group-number"
                 style={{
+                  ...cellStyle,
                   fontSize: '0.8rem',
                   color: '#6b7280',
                   fontWeight: '600',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
                   height: '35px'
                 }}
+                className="group-number"
               >
                 {cell.number}
               </div>
@@ -170,16 +184,14 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
             return (
               <div 
                 key={key}
-                className="period-number"
                 style={{
+                  ...cellStyle,
                   fontSize: '1rem',
                   color: '#6b7280',
                   fontWeight: '600',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
                   height: '70px'
                 }}
+                className="period-number"
               >
                 {cell.number}
               </div>
@@ -188,21 +200,35 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
           
           if (cell.type === 'element') {
             return (
-              <Element 
+              <div
                 key={key}
-                element={cell.element} 
-                onClick={() => onElementClick(cell.element)}
                 style={{
+                  ...cellStyle,
                   width: '60px',
-                  height: '70px',
-                  margin: '0',
-                  boxSizing: 'border-box'
+                  height: '70px'
                 }}
-              />
+              >
+                <Element 
+                  element={cell.element} 
+                  onClick={() => onElementClick(cell.element)}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    margin: '0',
+                    boxSizing: 'border-box'
+                  }}
+                />
+              </div>
             );
           }
           
-          return <div key={key} className="empty-cell"></div>;
+          return (
+            <div 
+              key={key} 
+              style={cellStyle}
+              className="empty-cell"
+            />
+          );
         })
       )}
     </div>
