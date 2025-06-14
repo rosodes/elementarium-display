@@ -458,14 +458,14 @@ export const elements58to71: Element[] = [
     group: 3,
     period: 6
   },
-  // 71 Lu:
+  // 71 Lu, теперь d-блок, группа 3, серия Transition, корректная масса
   {
     atomic: "71",
     symbol: "Lu",
     name: "Lutetium",
-    weight: "174.97",
+    weight: "174.967",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d1",
-    series: "Lanthanide",
+    series: "Transition",
     melt: "1936",
     boil: "3675",
     electroneg: "1.27",
@@ -486,12 +486,14 @@ export const elements58to71: Element[] = [
     expandedconfig: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d1",
     electrons: [2, 8, 18, 32, 9, 2],
     quantum: {
-      l: 3,
-      m: 2,
-      n: 4
+      l: 2,
+      m: 0,
+      n: 5
     },
     isotopes: 2,
     group: 3,
     period: 6,
+    block: "d",
+    category: "transition metal"
   }
 ];

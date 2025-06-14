@@ -1,4 +1,3 @@
-
 // Ensure only Tl (81)–Ac (89). Ac (89) is at the start of actinides block, but may also be referenced.
 import { Element } from './elementTypes';
 
@@ -114,14 +113,14 @@ export const elements81to90: Element[] = [
     period: 6
   },
 
-  // Polonium (84)
+  // Polonium (84) — проверяем маркеры для металлоида:
   {
     atomic: "84",
     symbol: "Po",
     name: "Polonium",
     weight: "[209]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p4",
-    series: "Post-transition",
+    series: "Metalloid",
     melt: "527",
     boil: "1235",
     electroneg: "2.0",
@@ -148,7 +147,8 @@ export const elements81to90: Element[] = [
     },
     isotopes: 33,
     group: 16,
-    period: 6
+    period: 6,
+    category: "metalloid"
   },
 
   // Astatine (85)

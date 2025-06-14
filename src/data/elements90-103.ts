@@ -433,14 +433,14 @@ export const elements90to103: Element[] = [
     group: 3,
     period: 7
   },
-  // 103 Lr
+  // 103 Lr: d-блок, группа 3, Transition для цветовой кодировки d-блока
   {
     atomic: "103",
     symbol: "Lr",
     name: "Lawrencium",
     weight: "[266]",
     electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d10 6p6 7s2 5f14 7p1",
-    series: "Actinide",
+    series: "Transition",
     melt: "1927",
     electroneg: "1.3",
     valence: "3",
@@ -462,6 +462,8 @@ export const elements90to103: Element[] = [
     },
     isotopes: 11,
     group: 3,
-    period: 7
+    period: 7,
+    block: "d",
+    category: "transition metal"
   }
 ];
