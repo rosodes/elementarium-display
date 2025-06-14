@@ -86,20 +86,11 @@
   justify-content: flex-start;
 }
 
-/* Элементы f-блока внутри контейнера */
 .f-block-elements-container .element-card {
-  width: 64px !important;
-  height: 70px !important;
-  font-size: 0.8rem !important;
-  flex-shrink: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  margin: 0 !important;
-  float: none !important;
-  position: relative !important;
-  clear: none !important;
-  /* Добавим визуально margin-top: 1px для лучшего выравнивания с d-блоком */
-  margin-top: 1px !important;
+  width: unset !important;
+  height: unset !important;
+  font-size: unset !important;
+  /* Подчистим любые локальные override-стили */
 }
 
 /* Slightly smaller cards in the f-block section */
