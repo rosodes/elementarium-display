@@ -71,16 +71,22 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
     <>
       <KeyboardShortcuts onSearch={handleSearchFocus} />
       <div 
-        className="periodic-table-wrapper relative overflow-hidden w-full pl-2"
+        className="periodic-table-wrapper relative overflow-hidden w-full"
         role="grid"
         onKeyDown={handleKeyDown}
         ref={tableRef}
         aria-label={t.elementDetails.elementTable}
       >
-        <QuickStats />
-        <TableLegend />
-        <TableGrid onElementClick={onElementClick} />
-        <FBlockSection onElementClick={onElementClick} />
+        <div className="flex flex-col items-center w-full">
+          <QuickStats />
+          <TableLegend />
+          
+          <div className="w-full flex justify-center">
+            <TableGrid onElementClick={onElementClick} />
+          </div>
+          
+          <FBlockSection onElementClick={onElementClick} />
+        </div>
         
         {/* Keyboard shortcuts hint */}
         <div className="mt-4 p-2 text-xs text-gray-500 dark:text-gray-400 text-center">
