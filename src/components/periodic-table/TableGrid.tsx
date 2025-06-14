@@ -1,4 +1,3 @@
-
 import React, { memo } from 'react';
 import Element from '../Element';
 import { Element as ElementType } from '../../data/elementTypes';
@@ -71,12 +70,12 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     for (let i = 19; i <= 36; i++) {
       const element = findElement(i);
       if (element) {
-        // Чёткая группировка 2–19: K–Kr
         grid[4][i - 17] = { type: 'element', data: element };
       }
     }
-    // Kr (36) — кол. 19
-    // grid[4][19 - 17] = grid[4][2]; ... grid[4][36 - 17] = grid[4][19]
+    // Явно ставим Kr (36) в 19 колонку 5 ряда
+    const kr = findElement(36);
+    if (kr) grid[4][19] = { type: 'element', data: kr };
 
     // Period 5: Rb to Xe (37–54)
     for (let i = 37; i <= 54; i++) {
@@ -85,7 +84,11 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
         grid[5][i - 35] = { type: 'element', data: element };
       }
     }
-    // I (53): 53-35=18, Xe (54): 54-35=19
+    // I (53): 18 колонка, Xe (54): 19 колонка 6 ряда
+    const i53 = findElement(53);
+    if (i53) grid[5][18] = { type: 'element', data: i53 };
+    const xe = findElement(54);
+    if (xe) grid[5][19] = { type: 'element', data: xe };
 
     // Period 6: Cs, Ba, La-Lu gap, Hf-Rn (72-86)
     // Cs, Ba
@@ -104,7 +107,11 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
         grid[6][i - 68] = { type: 'element', data: element };
       }
     }
-    // At (85): 85-68=17, Rn (86): 86-68=18
+    // At (85): 18 колонка, Rn (86): 19 колонка 7 ряда
+    const at = findElement(85);
+    if (at) grid[6][18] = { type: 'element', data: at };
+    const rn = findElement(86);
+    if (rn) grid[6][19] = { type: 'element', data: rn };
 
     // Period 7: Fr, Ra, Ac, Rf-Og (104-118)
     const fr = findElement(87);
@@ -194,4 +201,3 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
 TableGrid.displayName = 'TableGrid';
 
 export default TableGrid;
-
