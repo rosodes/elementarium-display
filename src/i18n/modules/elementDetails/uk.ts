@@ -1,5 +1,5 @@
 
-// Ukrainian translation for elementDetails, синхронизирована структура с en/ru для корректной мультиязычности
+// Український переклад elementDetails, повністю синхронізований і без англійських fallbacks
 
 import type { ElementDetailsTranslations } from "../elementDetails";
 
@@ -51,11 +51,10 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   previousElement: "Попередній елемент",
   nextElement: "Наступний елемент",
   isotopes: "Ізотопи",
-  // Новые и синхронизированные ключи
   industry: "Промисловість",
   discovery: "Відкриття",
   structure: "Структура",
-  shells: "оболонки",
+  shells: "Оболонки",
   meltingBoilingPoint: "Температура плавлення і кипіння",
   electronProperties: "Електронні властивості",
   electronAffinity: "Спорідненість до електрона",
@@ -66,17 +65,17 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   atomicRadii: "Атомні радіуси",
   vanDerWaals: "Ван-дер-Ваальса",
   quantumNumbers: "Квантові числа",
-  principal: "Головне",
-  azimuthal: "Азимутальне",
-  magnetic: "Магнітне",
+  principal: "Головне квантове число",
+  azimuthal: "Азимутальне квантове число",
+  magnetic: "Магнітне квантове число",
   orbitalDiagram: "Орбітальна діаграма",
   keyApplications: "Основні застосування та використання",
   industrialUses: "Промислове використання",
   everydayUses: "Повсякденне застосування",
   funFacts: "Цікаві факти",
-  // F-block specific translations — temporary fallback to English (можна перевести позже)
-  fBlockElements: "F-block elements",
-  fBlockDescription: "The f-block elements, including lanthanides and actinides",
+  // F-block specific translations
+  fBlockElements: "F-блок елементи",
+  fBlockDescription: "Елементи f-блоку, включаючи лантаноїди та актиноїди",
   notAvailable: "Інформація недоступна",
   backToTable: "Повернутися до таблиці",
   previous: "Попередній",
