@@ -69,6 +69,9 @@ export interface ElementDetailsTranslations {
   industrialUses?: string;
   everydayUses?: string;
   funFacts?: string;
+  // F-block specific translations
+  fBlockElements?: string;
+  fBlockDescription?: string;
   // Required translation properties
   notAvailable: string;
   backToTable: string;
