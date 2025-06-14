@@ -117,7 +117,8 @@ export const handleNetworkError = (error: unknown, endpoint: string): Error => {
   }
   
   const enhancedError = new Error(message);
-  enhancedError.cause = networkError;
+  // Store original error info in a custom property instead of using 'cause'
+  (enhancedError as any).originalError = networkError;
   
   logError(enhancedError, `Network error for endpoint: ${endpoint}`);
   return enhancedError;
