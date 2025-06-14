@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { HelmetProvider } from "react-helmet-async";
 import { useLanguage } from "./context/LanguageContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -93,13 +94,15 @@ function AppContent() {
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <LanguageProvider initialLanguage="en">
-          <BrowserRouter>
-            <AppContent />
-          </BrowserRouter>
-        </LanguageProvider>
-      </ThemeProvider>
+      <HelmetProvider>
+        <ThemeProvider>
+          <LanguageProvider initialLanguage="en">
+            <BrowserRouter>
+              <AppContent />
+            </BrowserRouter>
+          </LanguageProvider>
+        </ThemeProvider>
+      </HelmetProvider>
     </QueryClientProvider>
   );
 };
