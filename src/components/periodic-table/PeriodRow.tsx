@@ -10,17 +10,17 @@ interface PeriodRowProps {
 const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   const { t } = useLanguage();
 
-  // Важно: никаких "rowClass" НЕ ДАЕМ div-у! Только для стилизации на grid родителе
-  // Номер периода (1-7, 6*, 7*) идёт единым div
-  // ДАЛЕЕ все элементы массива elements идут без обёртки!
+  // Формируем правильные CSS классы для периода
+  let rowClass = `period-row period-${periodLabel}`;
+  if (periodLabel === '6*') rowClass += ' lanthanides-row';
+  if (periodLabel === '7*') rowClass += ' actinides-row';
 
   return (
-    <>
+    <div className={rowClass}>
       <div
         className="period-row-label"
         role="row"
         aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
-        // Main CSS grid разруливается grid-layout.css через селекторы :nth-child и классы .period-x на div.periodic-table > children
         style={{
           gridColumn: 1,
           display: 'flex',
@@ -33,11 +33,9 @@ const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
       >
         {periodLabel}
       </div>
-      {/* Все элементы идут следом без обёртки! */}
-      {elements.map((el, idx) => (
-        <React.Fragment key={idx}>{el}</React.Fragment>
-      ))}
-    </>
+      {/* Все элементы идут следом без дополнительной обёртки */}
+      {elements}
+    </div>
   );
 };
 
