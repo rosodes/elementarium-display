@@ -1,3 +1,5 @@
+
+// Ensure only Tl (81)–Ac (89). Ac (89) is at the start of actinides block, but may also be referenced.
 import { Element } from './elementTypes';
 
 export const elements81to90: Element[] = [

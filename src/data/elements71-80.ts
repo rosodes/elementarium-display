@@ -1,3 +1,6 @@
+
+// Ensure no overlap of Lu (71), which is in elements58-71.ts.
+// This chunk covers Hf (72)–Hg (80).
 import { Element } from './elementTypes';
 
 export const elements71to80: Element[] = [
