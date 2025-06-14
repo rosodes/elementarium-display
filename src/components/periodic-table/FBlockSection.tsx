@@ -20,6 +20,8 @@ const findElement = (atomicNumber: number | string): ElementType | null => {
 const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
   const { t } = useLanguage();
   
+  console.log('FBlockSection rendering...');
+  
   // Generate lanthanides (elements 57-71)
   const renderLanthanides = () => {
     const lanthanideElements = [];
@@ -38,6 +40,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
       }
     }
     
+    console.log('Lanthanides count:', lanthanideElements.length);
     return lanthanideElements;
   };
   
@@ -59,6 +62,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
       }
     }
     
+    console.log('Actinides count:', actinideElements.length);
     return actinideElements;
   };
   
@@ -79,7 +83,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
         {/* Lanthanides row */}
         <div className="f-block-row">
           <div className="f-block-label">6*</div>
-          <div className="f-block-elements">
+          <div className="f-block-elements-container">
             {renderLanthanides()}
           </div>
         </div>
@@ -87,7 +91,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
         {/* Actinides row */}
         <div className="f-block-row">
           <div className="f-block-label">7*</div>
-          <div className="f-block-elements">
+          <div className="f-block-elements-container">
             {renderActinides()}
           </div>
         </div>

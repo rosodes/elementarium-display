@@ -35,6 +35,7 @@
 /* Each row (lanthanides or actinides) */
 .f-block-row {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 8px;
   width: 100%;
@@ -61,17 +62,19 @@
   border-right-color: #4b5563;
 }
 
-/* Container for elements in each row */
-.f-block-elements {
+/* Container for elements in each row - ИСПРАВЛЕНО */
+.f-block-elements-container {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 4px;
   flex: 1;
   align-items: center;
+  justify-content: flex-start;
 }
 
 /* Element cards in f-block */
-.f-block-elements .element-card {
+.f-block-elements-container .element-card {
   width: 60px !important;
   height: 70px !important;
   font-size: 0.8rem !important;
@@ -84,7 +87,7 @@
     max-width: 900px;
   }
   
-  .f-block-elements .element-card {
+  .f-block-elements-container .element-card {
     width: 50px !important;
     height: 60px !important;
   }
@@ -105,11 +108,11 @@
     gap: 4px;
   }
   
-  .f-block-elements {
+  .f-block-elements-container {
     gap: 2px;
   }
   
-  .f-block-elements .element-card {
+  .f-block-elements-container .element-card {
     width: 40px !important;
     height: 50px !important;
     font-size: 0.7rem !important;
