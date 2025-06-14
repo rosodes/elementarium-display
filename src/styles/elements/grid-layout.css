@@ -1,57 +1,32 @@
 
-/* Main periodic table grid structure */
+/* Обновлённая сетка для центральной таблицы */
 .periodic-table {
   display: grid;
-  grid-template-columns: 40px repeat(18, 1fr);
-  grid-template-rows: auto repeat(7, 1fr);
-  gap: 2px;
+  grid-template-columns: 40px repeat(18, 55px); /* 1 label + 18 групп */
+  grid-template-rows: 35px repeat(7, 65px);    /* 1 label + 7 периодов */
+  gap: 3px;
   width: 100%;
-  max-width: 1400px;
-  padding: 20px;
+  max-width: 1200px;
   margin: 0 auto;
   background: transparent;
-  justify-items: center;
+  /* !!! Новый стиль для выравнивания элементов */
   align-items: center;
+  justify-items: center;
+  min-width: 1100px;
 }
 
-/* Group numbers row */
+/* Группа: группа начинается со второго столбца */
 .group-numbers-row {
   display: contents;
 }
-
 .group-numbers-row > div:first-child {
   grid-column: 1;
   grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
-  opacity: 0.7;
-  color: #374151;
 }
-
-.dark .group-numbers-row > div:first-child {
-  color: #d1d5db;
-}
-
 .group-numbers-row > div:not(:first-child) {
   grid-row: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
-  opacity: 0.7;
-  color: #374151;
-  min-height: 30px;
+  /* 2-19 grid-column для 18 групп */
 }
-
-.dark .group-numbers-row > div:not(:first-child) {
-  color: #d1d5db;
-}
-
-/* Group number positioning */
 .group-numbers-row > div:nth-child(2) { grid-column: 2; }
 .group-numbers-row > div:nth-child(3) { grid-column: 3; }
 .group-numbers-row > div:nth-child(4) { grid-column: 4; }
@@ -71,33 +46,31 @@
 .group-numbers-row > div:nth-child(18) { grid-column: 18; }
 .group-numbers-row > div:nth-child(19) { grid-column: 19; }
 
-/* Period rows base styles */
+/* Выравнивание периодов */
 .period-row {
   display: contents;
 }
 
+/* Первый div в period-row — это номер периода (1-7), всегда в 1-м столбце соответствующей строки */
 .period-row > div:first-child {
   grid-column: 1;
-  display: flex;
+  font-size: 1.05rem;
+  justify-content: right;
   align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  font-weight: 600;
-  opacity: 0.7;
-  color: #374151;
-  min-height: 70px;
+  color: #96a0ae;
+  min-width: 34px;
+  min-height: 60px;
+  font-weight: 500;
+  display: flex;
 }
 
-.dark .period-row > div:first-child {
-  color: #ffffff;
-}
-
-/* Element cards base positioning */
+/* Элементы автоматом вставляются по столбцам, установка через period-positioning.css */
+/* Обновим ширину карточек */
 .element-card {
-  width: 100%;
-  height: 70px;
-  min-width: 70px;
-  max-width: 90px;
+  width: 55px;
+  height: 65px;
+  min-width: 55px;
+  max-width: 70px;
   margin: 0;
   box-sizing: border-box;
   display: flex;
@@ -105,3 +78,4 @@
   justify-content: center;
   align-items: center;
 }
+
