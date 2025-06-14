@@ -24,13 +24,6 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
   const renderLanthanides = () => {
     const lanthanideElements = [];
     
-    // Add period label
-    lanthanideElements.push(
-      <div key="lanthanide-label" className="period-row-label">
-        6*
-      </div>
-    );
-    
     // Add elements 57-71
     for (let i = 57; i <= 71; i++) {
       const element = findElement(i);
@@ -52,13 +45,6 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
   const renderActinides = () => {
     const actinideElements = [];
     
-    // Add period label
-    actinideElements.push(
-      <div key="actinide-label" className="period-row-label">
-        7*
-      </div>
-    );
-    
     // Add elements 89-103
     for (let i = 89; i <= 103; i++) {
       const element = findElement(i);
@@ -77,7 +63,7 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
   };
   
   return (
-    <div className="lanthanide-actinide-section">
+    <div className="f-block-section">
       {/* Section title */}
       <div className="text-center mb-4">
         <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -88,16 +74,22 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
         </p>
       </div>
       
-      {/* F-block grid container - separate table */}
-      <div className="f-block-container">
+      {/* F-block table */}
+      <div className="f-block-table">
         {/* Lanthanides row */}
-        <div className="lanthanides-row">
-          {renderLanthanides()}
+        <div className="f-block-row">
+          <div className="f-block-label">6*</div>
+          <div className="f-block-elements">
+            {renderLanthanides()}
+          </div>
         </div>
         
         {/* Actinides row */}
-        <div className="actinides-row">
-          {renderActinides()}
+        <div className="f-block-row">
+          <div className="f-block-label">7*</div>
+          <div className="f-block-elements">
+            {renderActinides()}
+          </div>
         </div>
       </div>
       
