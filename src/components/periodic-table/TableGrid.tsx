@@ -19,180 +19,137 @@ const findElement = (atomicNumber: number): ElementType | null => {
 const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   console.log('TableGrid rendering...');
   
-  // Container with fixed dimensions and relative positioning
-  const containerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: '1200px',
-    height: '600px',
-    margin: '0 auto',
-    padding: '20px',
-    backgroundColor: '#ffffff',
-    border: '2px solid red',
-    boxSizing: 'border-box'
-  };
-
-  // Calculate absolute positions for each grid cell
-  const cellWidth = 60;
-  const cellHeight = 70;
-  const gap = 4;
-  const headerHeight = 35;
-  const labelWidth = 40;
-
-  const getAbsolutePosition = (row: number, col: number) => ({
-    position: 'absolute' as const,
-    left: labelWidth + (col - 1) * (cellWidth + gap),
-    top: headerHeight + (row - 1) * (cellHeight + gap),
-    width: cellWidth,
-    height: cellHeight
-  });
-
-  const getHeaderPosition = (col: number) => ({
-    position: 'absolute' as const,
-    left: labelWidth + (col - 1) * (cellWidth + gap),
-    top: 0,
-    width: cellWidth,
-    height: headerHeight,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '0.8rem',
-    color: '#6b7280',
-    fontWeight: '600',
-    border: '1px solid blue'
-  });
-
-  const getLabelPosition = (row: number) => ({
-    position: 'absolute' as const,
-    left: 0,
-    top: headerHeight + (row - 1) * (cellHeight + gap),
-    width: labelWidth,
-    height: cellHeight,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '1rem',
-    color: '#6b7280',
-    fontWeight: '600',
-    border: '1px solid green'
-  });
-
-  // All element positions with their exact coordinates
-  const elementPositions = [
-    // Period 1
-    { atomic: 1, row: 1, col: 1 },   // H
-    { atomic: 2, row: 1, col: 18 },  // He
-    
-    // Period 2
-    { atomic: 3, row: 2, col: 1 },   // Li
-    { atomic: 4, row: 2, col: 2 },   // Be
-    { atomic: 5, row: 2, col: 13 },  // B
-    { atomic: 6, row: 2, col: 14 },  // C
-    { atomic: 7, row: 2, col: 15 },  // N
-    { atomic: 8, row: 2, col: 16 },  // O
-    { atomic: 9, row: 2, col: 17 },  // F
-    { atomic: 10, row: 2, col: 18 }, // Ne
-    
-    // Period 3
-    { atomic: 11, row: 3, col: 1 },  // Na
-    { atomic: 12, row: 3, col: 2 },  // Mg
-    { atomic: 13, row: 3, col: 13 }, // Al
-    { atomic: 14, row: 3, col: 14 }, // Si
-    { atomic: 15, row: 3, col: 15 }, // P
-    { atomic: 16, row: 3, col: 16 }, // S
-    { atomic: 17, row: 3, col: 17 }, // Cl
-    { atomic: 18, row: 3, col: 18 }, // Ar
-    
-    // Period 4 - full row
-    { atomic: 19, row: 4, col: 1 },  { atomic: 20, row: 4, col: 2 },
-    { atomic: 21, row: 4, col: 3 },  { atomic: 22, row: 4, col: 4 },
-    { atomic: 23, row: 4, col: 5 },  { atomic: 24, row: 4, col: 6 },
-    { atomic: 25, row: 4, col: 7 },  { atomic: 26, row: 4, col: 8 },
-    { atomic: 27, row: 4, col: 9 },  { atomic: 28, row: 4, col: 10 },
-    { atomic: 29, row: 4, col: 11 }, { atomic: 30, row: 4, col: 12 },
-    { atomic: 31, row: 4, col: 13 }, { atomic: 32, row: 4, col: 14 },
-    { atomic: 33, row: 4, col: 15 }, { atomic: 34, row: 4, col: 16 },
-    { atomic: 35, row: 4, col: 17 }, { atomic: 36, row: 4, col: 18 },
-    
-    // Period 5 - full row
-    { atomic: 37, row: 5, col: 1 },  { atomic: 38, row: 5, col: 2 },
-    { atomic: 39, row: 5, col: 3 },  { atomic: 40, row: 5, col: 4 },
-    { atomic: 41, row: 5, col: 5 },  { atomic: 42, row: 5, col: 6 },
-    { atomic: 43, row: 5, col: 7 },  { atomic: 44, row: 5, col: 8 },
-    { atomic: 45, row: 5, col: 9 },  { atomic: 46, row: 5, col: 10 },
-    { atomic: 47, row: 5, col: 11 }, { atomic: 48, row: 5, col: 12 },
-    { atomic: 49, row: 5, col: 13 }, { atomic: 50, row: 5, col: 14 },
-    { atomic: 51, row: 5, col: 15 }, { atomic: 52, row: 5, col: 16 },
-    { atomic: 53, row: 5, col: 17 }, { atomic: 54, row: 5, col: 18 },
-    
-    // Period 6 - with lanthanide gap
-    { atomic: 55, row: 6, col: 1 },  { atomic: 56, row: 6, col: 2 },
-    { atomic: 57, row: 6, col: 3 },  // La
-    { atomic: 72, row: 6, col: 4 },  { atomic: 73, row: 6, col: 5 },
-    { atomic: 74, row: 6, col: 6 },  { atomic: 75, row: 6, col: 7 },
-    { atomic: 76, row: 6, col: 8 },  { atomic: 77, row: 6, col: 9 },
-    { atomic: 78, row: 6, col: 10 }, { atomic: 79, row: 6, col: 11 },
-    { atomic: 80, row: 6, col: 12 }, { atomic: 81, row: 6, col: 13 },
-    { atomic: 82, row: 6, col: 14 }, { atomic: 83, row: 6, col: 15 },
-    { atomic: 84, row: 6, col: 16 }, { atomic: 85, row: 6, col: 17 },
-    { atomic: 86, row: 6, col: 18 },
-    
-    // Period 7 - with actinide gap
-    { atomic: 87, row: 7, col: 1 },  { atomic: 88, row: 7, col: 2 },
-    { atomic: 89, row: 7, col: 3 },  // Ac
-    { atomic: 104, row: 7, col: 4 }, { atomic: 105, row: 7, col: 5 },
-    { atomic: 106, row: 7, col: 6 }, { atomic: 107, row: 7, col: 7 },
-    { atomic: 108, row: 7, col: 8 }, { atomic: 109, row: 7, col: 9 },
-    { atomic: 110, row: 7, col: 10 }, { atomic: 111, row: 7, col: 11 },
-    { atomic: 112, row: 7, col: 12 }, { atomic: 113, row: 7, col: 13 },
-    { atomic: 114, row: 7, col: 14 }, { atomic: 115, row: 7, col: 15 },
-    { atomic: 116, row: 7, col: 16 }, { atomic: 117, row: 7, col: 17 },
-    { atomic: 118, row: 7, col: 18 },
-  ];
-
   return (
-    <div style={containerStyle}>
+    <div className="periodic-table">
       {/* Group numbers header */}
-      {Array.from({ length: 18 }, (_, i) => i + 1).map(groupNum => (
-        <div key={`group-${groupNum}`} style={getHeaderPosition(groupNum)}>
-          {groupNum}
-        </div>
-      ))}
+      <div className="group-numbers-row">
+        <div></div>
+        {Array.from({ length: 18 }, (_, i) => i + 1).map(groupNum => (
+          <div key={`group-${groupNum}`}>
+            {groupNum}
+          </div>
+        ))}
+      </div>
 
       {/* Period labels */}
-      {Array.from({ length: 7 }, (_, i) => i + 1).map(periodNum => (
-        <div key={`period-${periodNum}`} style={getLabelPosition(periodNum)}>
-          {periodNum}
-        </div>
-      ))}
+      <div className="period-1-label">1</div>
+      <div className="period-2-label">2</div>
+      <div className="period-3-label">3</div>
+      <div className="period-4-label">4</div>
+      <div className="period-5-label">5</div>
+      <div className="period-6-label">6</div>
+      <div className="period-7-label">7</div>
 
-      {/* Elements */}
-      {elementPositions.map(({ atomic, row, col }) => {
-        const element = findElement(atomic);
-        if (!element) return null;
+      {/* Period 1: H and He */}
+      {findElement(1) && (
+        <Element 
+          element={findElement(1)!} 
+          onClick={() => onElementClick(findElement(1)!)}
+        />
+      )}
+      {findElement(2) && (
+        <Element 
+          element={findElement(2)!} 
+          onClick={() => onElementClick(findElement(2)!)}
+        />
+      )}
 
-        return (
-          <div
-            key={`element-${atomic}`}
-            style={{
-              ...getAbsolutePosition(row, col),
-              border: '1px solid orange',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <Element 
-              element={element} 
-              onClick={() => onElementClick(element)}
-              style={{
-                width: '100%',
-                height: '100%',
-                margin: '0',
-                boxSizing: 'border-box'
-              }}
-            />
-          </div>
-        );
+      {/* Period 2: Li to Ne */}
+      {[3, 4, 5, 6, 7, 8, 9, 10].map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
+      })}
+
+      {/* Period 3: Na to Ar */}
+      {[11, 12, 13, 14, 15, 16, 17, 18].map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
+      })}
+
+      {/* Period 4: K to Kr (full row) */}
+      {Array.from({ length: 18 }, (_, i) => i + 19).map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
+      })}
+
+      {/* Period 5: Rb to Xe (full row) */}
+      {Array.from({ length: 18 }, (_, i) => i + 37).map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
+      })}
+
+      {/* Period 6: Cs to Rn with lanthanide gap */}
+      {/* Cs, Ba, La */}
+      {[55, 56, 57].map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
+      })}
+      
+      {/* Hf to Rn (skip lanthanides 58-71) */}
+      {Array.from({ length: 15 }, (_, i) => i + 72).map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
+      })}
+
+      {/* Period 7: Fr to Og with actinide gap */}
+      {/* Fr, Ra, Ac */}
+      {[87, 88, 89].map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
+      })}
+      
+      {/* Rf to Og (skip actinides 90-103) */}
+      {Array.from({ length: 15 }, (_, i) => i + 104).map(atomicNum => {
+        const element = findElement(atomicNum);
+        return element ? (
+          <Element 
+            key={`element-${atomicNum}`}
+            element={element} 
+            onClick={() => onElementClick(element)}
+          />
+        ) : null;
       })}
     </div>
   );
