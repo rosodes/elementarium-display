@@ -1,18 +1,9 @@
 
-/* Period row positioning */
-.period-1 > div:first-child { grid-row: 2; }
-.period-2 > div:first-child { grid-row: 3; }
-.period-3 > div:first-child { grid-row: 4; }
-.period-4 > div:first-child { grid-row: 5; }
-.period-5 > div:first-child { grid-row: 6; }
-.period-6 > div:first-child { grid-row: 7; }
-.period-7 > div:first-child { grid-row: 8; }
-
-/* Period 1: H (1,1), He (1,18) */
+/* Period 1: H (2,2), He (19,2) */
 .period-1 .element-card:nth-child(2) { grid-column: 2; grid-row: 2; }
 .period-1 .element-card:nth-child(3) { grid-column: 19; grid-row: 2; }
 
-/* Period 2: Li-Be (2-3), B-Ne (13-18) */
+/* Period 2: Li-Be (2-3,3), B-Ne (14-19,3) */
 .period-2 .element-card:nth-child(2) { grid-column: 2; grid-row: 3; }
 .period-2 .element-card:nth-child(3) { grid-column: 3; grid-row: 3; }
 .period-2 .element-card:nth-child(4) { grid-column: 14; grid-row: 3; }
@@ -22,7 +13,7 @@
 .period-2 .element-card:nth-child(8) { grid-column: 18; grid-row: 3; }
 .period-2 .element-card:nth-child(9) { grid-column: 19; grid-row: 3; }
 
-/* Period 3: Na-Mg (2-3), Al-Ar (13-18) */
+/* Period 3: Na-Mg (2-3,4), Al-Ar (14-19,4) */
 .period-3 .element-card:nth-child(2) { grid-column: 2; grid-row: 4; }
 .period-3 .element-card:nth-child(3) { grid-column: 3; grid-row: 4; }
 .period-3 .element-card:nth-child(4) { grid-column: 14; grid-row: 4; }
@@ -32,7 +23,7 @@
 .period-3 .element-card:nth-child(8) { grid-column: 18; grid-row: 4; }
 .period-3 .element-card:nth-child(9) { grid-column: 19; grid-row: 4; }
 
-/* Period 4: K-Kr (2-19, full row) */
+/* Period 4: K-Kr (2-19,5) full row */
 .period-4 .element-card:nth-child(2) { grid-column: 2; grid-row: 5; }
 .period-4 .element-card:nth-child(3) { grid-column: 3; grid-row: 5; }
 .period-4 .element-card:nth-child(4) { grid-column: 4; grid-row: 5; }
@@ -52,7 +43,7 @@
 .period-4 .element-card:nth-child(18) { grid-column: 18; grid-row: 5; }
 .period-4 .element-card:nth-child(19) { grid-column: 19; grid-row: 5; }
 
-/* Period 5: Rb-Xe (2-19, full row) */
+/* Period 5: Rb-Xe (2-19,6) full row */
 .period-5 .element-card:nth-child(2) { grid-column: 2; grid-row: 6; }
 .period-5 .element-card:nth-child(3) { grid-column: 3; grid-row: 6; }
 .period-5 .element-card:nth-child(4) { grid-column: 4; grid-row: 6; }
@@ -72,10 +63,11 @@
 .period-5 .element-card:nth-child(18) { grid-column: 18; grid-row: 6; }
 .period-5 .element-card:nth-child(19) { grid-column: 19; grid-row: 6; }
 
-/* Period 6: Cs-Ba (2-3), La (4), Hf-Rn (6-19) */
+/* Period 6: Cs-Ba (2-3,7), La (4,7), separator (5,7), Hf-Rn (6-19,7) */
 .period-6 .element-card:nth-child(2) { grid-column: 2; grid-row: 7; }
 .period-6 .element-card:nth-child(3) { grid-column: 3; grid-row: 7; }
 .period-6 .element-card:nth-child(4) { grid-column: 4; grid-row: 7; }
+.period-6 .separator { grid-column: 5; grid-row: 7; }
 .period-6 .element-card:nth-child(6) { grid-column: 6; grid-row: 7; }
 .period-6 .element-card:nth-child(7) { grid-column: 7; grid-row: 7; }
 .period-6 .element-card:nth-child(8) { grid-column: 8; grid-row: 7; }
@@ -90,12 +82,12 @@
 .period-6 .element-card:nth-child(17) { grid-column: 17; grid-row: 7; }
 .period-6 .element-card:nth-child(18) { grid-column: 18; grid-row: 7; }
 .period-6 .element-card:nth-child(19) { grid-column: 19; grid-row: 7; }
-.period-6 .element-card:nth-child(20) { grid-column: 20; grid-row: 7; }
 
-/* Period 7: Fr-Ra (2-3), Ac (4), Rf-Og (6-19) */
+/* Period 7: Fr-Ra (2-3,8), Ac (4,8), separator (5,8), Rf-Og (6-19,8) */
 .period-7 .element-card:nth-child(2) { grid-column: 2; grid-row: 8; }
 .period-7 .element-card:nth-child(3) { grid-column: 3; grid-row: 8; }
 .period-7 .element-card:nth-child(4) { grid-column: 4; grid-row: 8; }
+.period-7 .separator { grid-column: 5; grid-row: 8; }
 .period-7 .element-card:nth-child(6) { grid-column: 6; grid-row: 8; }
 .period-7 .element-card:nth-child(7) { grid-column: 7; grid-row: 8; }
 .period-7 .element-card:nth-child(8) { grid-column: 8; grid-row: 8; }
@@ -110,22 +102,16 @@
 .period-7 .element-card:nth-child(17) { grid-column: 17; grid-row: 8; }
 .period-7 .element-card:nth-child(18) { grid-column: 18; grid-row: 8; }
 .period-7 .element-card:nth-child(19) { grid-column: 19; grid-row: 8; }
-.period-7 .element-card:nth-child(20) { grid-column: 20; grid-row: 8; }
-
-/* Separators for periods 6 and 7 */
-.period-6 > div:nth-child(5).separator { grid-column: 5; grid-row: 7; }
-.period-7 > div:nth-child(5).separator { grid-column: 5; grid-row: 8; }
 
 /* Separator styling */
-.period-row .separator {
+.separator {
   height: 100%;
   opacity: 0.5;
   background-color: #8bc34a;
   width: 2px;
   margin: 0 auto;
-  grid-row: inherit;
 }
 
-.dark .period-row .separator {
+.dark .separator {
   background-color: #689f38;
 }

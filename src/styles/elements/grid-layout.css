@@ -1,71 +1,63 @@
 
-/* Обновлённая сетка для центральной таблицы */
+/* Updated grid layout for the periodic table */
 .periodic-table {
   display: grid;
-  grid-template-columns: 40px repeat(18, 55px); /* 1 label + 18 групп */
-  grid-template-rows: 35px repeat(7, 65px);    /* 1 label + 7 периодов */
+  grid-template-columns: 40px repeat(18, 55px); /* 1 label + 18 groups */
+  grid-template-rows: 35px repeat(7, 65px);    /* 1 header + 7 periods */
   gap: 3px;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   background: transparent;
-  /* !!! Новый стиль для выравнивания элементов */
   align-items: center;
   justify-items: center;
   min-width: 1100px;
 }
 
-/* Группа: группа начинается со второго столбца */
+/* Group numbers header row */
 .group-numbers-row {
   display: contents;
 }
+
 .group-numbers-row > div:first-child {
   grid-column: 1;
   grid-row: 1;
 }
-.group-numbers-row > div:not(:first-child) {
-  grid-row: 1;
-  /* 2-19 grid-column для 18 групп */
-}
-.group-numbers-row > div:nth-child(2) { grid-column: 2; }
-.group-numbers-row > div:nth-child(3) { grid-column: 3; }
-.group-numbers-row > div:nth-child(4) { grid-column: 4; }
-.group-numbers-row > div:nth-child(5) { grid-column: 5; }
-.group-numbers-row > div:nth-child(6) { grid-column: 6; }
-.group-numbers-row > div:nth-child(7) { grid-column: 7; }
-.group-numbers-row > div:nth-child(8) { grid-column: 8; }
-.group-numbers-row > div:nth-child(9) { grid-column: 9; }
-.group-numbers-row > div:nth-child(10) { grid-column: 10; }
-.group-numbers-row > div:nth-child(11) { grid-column: 11; }
-.group-numbers-row > div:nth-child(12) { grid-column: 12; }
-.group-numbers-row > div:nth-child(13) { grid-column: 13; }
-.group-numbers-row > div:nth-child(14) { grid-column: 14; }
-.group-numbers-row > div:nth-child(15) { grid-column: 15; }
-.group-numbers-row > div:nth-child(16) { grid-column: 16; }
-.group-numbers-row > div:nth-child(17) { grid-column: 17; }
-.group-numbers-row > div:nth-child(18) { grid-column: 18; }
-.group-numbers-row > div:nth-child(19) { grid-column: 19; }
 
-/* Выравнивание периодов */
+.group-numbers-row > div:nth-child(2) { grid-column: 2; grid-row: 1; }
+.group-numbers-row > div:nth-child(3) { grid-column: 3; grid-row: 1; }
+.group-numbers-row > div:nth-child(4) { grid-column: 4; grid-row: 1; }
+.group-numbers-row > div:nth-child(5) { grid-column: 5; grid-row: 1; }
+.group-numbers-row > div:nth-child(6) { grid-column: 6; grid-row: 1; }
+.group-numbers-row > div:nth-child(7) { grid-column: 7; grid-row: 1; }
+.group-numbers-row > div:nth-child(8) { grid-column: 8; grid-row: 1; }
+.group-numbers-row > div:nth-child(9) { grid-column: 9; grid-row: 1; }
+.group-numbers-row > div:nth-child(10) { grid-column: 10; grid-row: 1; }
+.group-numbers-row > div:nth-child(11) { grid-column: 11; grid-row: 1; }
+.group-numbers-row > div:nth-child(12) { grid-column: 12; grid-row: 1; }
+.group-numbers-row > div:nth-child(13) { grid-column: 13; grid-row: 1; }
+.group-numbers-row > div:nth-child(14) { grid-column: 14; grid-row: 1; }
+.group-numbers-row > div:nth-child(15) { grid-column: 15; grid-row: 1; }
+.group-numbers-row > div:nth-child(16) { grid-column: 16; grid-row: 1; }
+.group-numbers-row > div:nth-child(17) { grid-column: 17; grid-row: 1; }
+.group-numbers-row > div:nth-child(18) { grid-column: 18; grid-row: 1; }
+.group-numbers-row > div:nth-child(19) { grid-column: 19; grid-row: 1; }
+
+/* Period rows use display: contents to flatten structure */
 .period-row {
   display: contents;
 }
 
-/* Первый div в period-row — это номер периода (1-7), всегда в 1-м столбце соответствующей строки */
-.period-row > div:first-child {
-  grid-column: 1;
-  font-size: 1.05rem;
-  justify-content: right;
-  align-items: center;
-  color: #96a0ae;
-  min-width: 34px;
-  min-height: 60px;
-  font-weight: 500;
-  display: flex;
-}
+/* Period labels positioning */
+.period-1 > div:first-child { grid-column: 1; grid-row: 2; }
+.period-2 > div:first-child { grid-column: 1; grid-row: 3; }
+.period-3 > div:first-child { grid-column: 1; grid-row: 4; }
+.period-4 > div:first-child { grid-column: 1; grid-row: 5; }
+.period-5 > div:first-child { grid-column: 1; grid-row: 6; }
+.period-6 > div:first-child { grid-column: 1; grid-row: 7; }
+.period-7 > div:first-child { grid-column: 1; grid-row: 8; }
 
-/* Элементы автоматом вставляются по столбцам, установка через period-positioning.css */
-/* Обновим ширину карточек */
+/* Element card dimensions */
 .element-card {
   width: 55px;
   height: 65px;
@@ -79,3 +71,14 @@
   align-items: center;
 }
 
+/* Period label styling */
+.period-row-label {
+  font-size: 1.05rem;
+  justify-content: center;
+  align-items: center;
+  color: #96a0ae;
+  min-width: 34px;
+  min-height: 60px;
+  font-weight: 500;
+  display: flex;
+}
