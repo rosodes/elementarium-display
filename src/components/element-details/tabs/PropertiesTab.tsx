@@ -5,11 +5,8 @@ import ElementOxidationStatesSection from "../ElementOxidationStatesSection";
 import ElementProperties from "../ElementProperties";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 import { useLanguage } from "../../../context/LanguageContext";
-// Добавляем недостающие импорты:
-import HydrogenPhysicalConstantsSection from "../new-sections/HydrogenPhysicalConstantsSection";
-import HydrogenOxStatesSection from "../new-sections/HydrogenOxStatesSection";
-import HydrogenReactivitySection from "../new-sections/HydrogenReactivitySection";
-import HydrogenNaturalOccurrenceSection from "../new-sections/HydrogenNaturalOccurrenceSection";
+// --- подключаем общую секцию деталей водорода ---
+import HydrogenDetailSections from "../new-sections/HydrogenDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -19,7 +16,6 @@ interface PropertiesTabProps {
 const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
   const { t } = useLanguage();
 
-  // Расширенный набор карточек свойств (можно вынести в отдельные компоненты)
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <Card>
@@ -67,17 +63,13 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
         </CardContent>
       </Card>
 
-      {/* ДОПОЛНЕНИЯ ДЛЯ ВОДОРОДА */}
+      {/* --- Все расширенные карточки водорода (визуальные, анимации и т.д.) централизовано --- */}
       {element.atomic === "1" && (
-        <>
-          <HydrogenPhysicalConstantsSection />
-          <HydrogenOxStatesSection />
-          <HydrogenReactivitySection />
-          <HydrogenNaturalOccurrenceSection />
-        </>
+        <HydrogenDetailSections />
       )}
     </div>
   );
 };
 
 export default PropertiesTab;
+

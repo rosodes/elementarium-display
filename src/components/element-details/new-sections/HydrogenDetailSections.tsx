@@ -1,38 +1,38 @@
+
 import React from "react";
-import HydrogenIsotopesSection from "./HydrogenIsotopesSection";
-import HydrogenOxStatesSection from "./HydrogenOxStatesSection";
-import HydrogenExtractionSection from "./HydrogenExtractionSection";
-import HydrogenCrystalStructureSection from "./HydrogenCrystalStructureSection";
-import HydrogenComparisonsSection from "./HydrogenComparisonsSection";
-import HydrogenVisualSection from "./HydrogenVisualSection";
-import HydrogenReactivitySection from "./HydrogenReactivitySection";
-import HydrogenCommercialUsesSection from "./HydrogenCommercialUsesSection";
 import HydrogenPhysicalConstantsSection from "./HydrogenPhysicalConstantsSection";
+import HydrogenOxStatesSection from "./HydrogenOxStatesSection";
+import HydrogenReactivitySection from "./HydrogenReactivitySection";
 import HydrogenNaturalOccurrenceSection from "./HydrogenNaturalOccurrenceSection";
+import HydrogenIsotopesSection from "./HydrogenIsotopesSection";
+import HydrogenVisualSection from "./HydrogenVisualSection";
 import HydrogenHistorySection from "./HydrogenHistorySection";
 import HydrogenInterestingFactsSection from "./HydrogenInterestingFactsSection";
+import HydrogenExtractionSection from "./HydrogenExtractionSection";
+import HydrogenCrystalStructureSection from "./HydrogenCrystalStructureSection";
+import HydrogenCommercialUsesSection from "./HydrogenCommercialUsesSection";
+import HydrogenComparisonsSection from "./HydrogenComparisonsSection";
+// новые визуальные/анимированные секции:
 import HydrogenSpectralSeriesSection from "./HydrogenSpectralSeriesSection";
 import HydrogenEnergySection from "./HydrogenEnergySection";
 import HydrogenSafetySection from "./HydrogenSafetySection";
 
-/**
- * Все расширенные секции по Hydrogen объединённые в один компонент для OverviewTab.
- */
 const HydrogenDetailSections: React.FC = () => {
   return (
     <>
-      <HydrogenIsotopesSection />
       <HydrogenPhysicalConstantsSection />
       <HydrogenOxStatesSection />
-      <HydrogenCrystalStructureSection />
-      <HydrogenNaturalOccurrenceSection />
-      <HydrogenExtractionSection />
       <HydrogenReactivitySection />
+      <HydrogenNaturalOccurrenceSection />
+      <HydrogenIsotopesSection />
+      <HydrogenVisualSection />
+      <HydrogenHistorySection />
+      <HydrogenInterestingFactsSection />
+      <HydrogenExtractionSection />
+      <HydrogenCrystalStructureSection />
       <HydrogenCommercialUsesSection />
       <HydrogenComparisonsSection />
-      <HydrogenHistorySection />
-      <HydrogenVisualSection />
-      <HydrogenInterestingFactsSection />
+      {/* добавлены новые расширенные секции */}
       <HydrogenSpectralSeriesSection />
       <HydrogenEnergySection />
       <HydrogenSafetySection />
@@ -41,3 +41,4 @@ const HydrogenDetailSections: React.FC = () => {
 };
 
 export default HydrogenDetailSections;
+
