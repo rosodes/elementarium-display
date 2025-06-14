@@ -3,7 +3,6 @@ import React, { memo } from 'react';
 import Element from '../Element';
 import { Element as ElementType } from '../../data/elementTypes';
 import { elements } from '../../data/elements';
-import GroupNumbers from './GroupNumbers';
 
 interface TableGridProps {
   onElementClick: (element: ElementType) => void;
