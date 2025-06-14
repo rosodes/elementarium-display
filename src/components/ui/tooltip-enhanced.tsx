@@ -13,12 +13,13 @@ interface EnhancedTooltipProps {
   side?: 'top' | 'right' | 'bottom' | 'left';
   delay?: number;
   disabled?: boolean;
-  portalled?: boolean; // новое, дефолт true
+  portalled?: boolean;
+  avoidCollisions?: boolean; // новое!
 }
 
 /**
  * Tooltip, который всегда показывает контент через портал (не влияет на layout контейнера).
- * Также поддерживает автоматический flip side, чтобы не вылезать за края экрана/контейнера.
+ * Поддерживает фиксированные стороны.
  */
 const EnhancedTooltip = ({
   children,
@@ -26,13 +27,19 @@ const EnhancedTooltip = ({
   side = 'top',
   delay = 200,
   disabled = false,
-  portalled = true, // Это свойство можно оставить в пропсах, но оно не используется напрямую.
+  portalled = true,
+  avoidCollisions = false, // новое, только если явно передан
 }: EnhancedTooltipProps) => {
   if (disabled) {
     return <>{children}</>;
   }
 
-  // Обеспечиваем auto flip и избежание пересечения с краями.
+  // Для дебага — временно логируем props
+  if (process.env.NODE_ENV === 'development') {
+    // eslint-disable-next-line no-console
+    console.log('[EnhancedTooltip]', { side, avoidCollisions });
+  }
+
   return (
     <TooltipProvider delayDuration={delay}>
       <Tooltip>
@@ -42,10 +49,8 @@ const EnhancedTooltip = ({
         <TooltipContent
           side={side}
           sideOffset={8}
-          avoidCollisions={true}
+          avoidCollisions={avoidCollisions}
           className="max-w-xs p-3 text-sm bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600 shadow-xl rounded-lg z-[100]"
-          // Radix Tooltip по умолчанию уже использует portal для содержимого.
-          // Свойство portalled у TooltipContent не существует в публичном API shadcn/ui.
         >
           {content}
         </TooltipContent>
