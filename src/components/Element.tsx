@@ -17,6 +17,9 @@ const Element = ({ element, onClick, className, ...props }: ElementProps) => {
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const { t } = useLanguage();
   
+  // Debug logging
+  console.log(`Element ${element.symbol} (${element.atomic}) rendering with data-atomic="${element.atomic}"`);
+  
   // Determine the element color based on electron block with better contrast
   const getElementColor = (): ClassName => {
     // Determine block (s, p, d, f) based on electronic configuration
@@ -65,7 +68,7 @@ const Element = ({ element, onClick, className, ...props }: ElementProps) => {
   
   return (
     <button 
-      className={`element-card w-[70px] h-[70px] ${getElementColor()}
+      className={`element-card ${getElementColor()}
                 transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
                 hover:shadow-lg hover:scale-105 flex-shrink-0 relative
                 dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5

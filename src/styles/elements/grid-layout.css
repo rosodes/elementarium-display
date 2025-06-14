@@ -1,19 +1,26 @@
 
 /* Updated grid layout for the periodic table */
 .periodic-table {
-  display: grid;
-  grid-template-columns: 40px repeat(18, 1fr); /* 1 label column + 18 groups */
-  grid-template-rows: 35px repeat(7, 1fr);    /* 1 header row + 7 periods */
-  gap: 3px;
+  display: grid !important;
+  grid-template-columns: 40px repeat(18, 60px); /* 1 label column + 18 groups */
+  grid-template-rows: 35px repeat(7, 70px);    /* 1 header row + 7 periods */
+  gap: 4px;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   background: transparent;
   align-items: center;
   justify-items: center;
-  min-width: 1100px;
+  min-width: 1200px;
   min-height: 600px;
   padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Ensure all direct children participate in grid */
+.periodic-table > * {
+  grid-column: auto;
+  grid-row: auto;
 }
 
 /* Group numbers header row */
@@ -24,6 +31,9 @@
 .group-numbers-row > div:first-child {
   grid-column: 1;
   grid-row: 1;
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 600;
 }
 
 .group-numbers-row > div:nth-child(2) { grid-column: 2; grid-row: 1; }
@@ -45,16 +55,28 @@
 .group-numbers-row > div:nth-child(18) { grid-column: 18; grid-row: 1; }
 .group-numbers-row > div:nth-child(19) { grid-column: 19; grid-row: 1; }
 
+/* Group number styling */
+.group-numbers-row > div {
+  font-size: 0.8rem;
+  color: #6b7280;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+}
+
 /* Period label styling and positioning */
 .period-1-label, .period-2-label, .period-3-label, .period-4-label, 
 .period-5-label, .period-6-label, .period-7-label {
-  font-size: 1.05rem;
-  color: #96a0ae;
-  font-weight: 500;
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
   grid-column: 1;
+  height: 70px;
 }
 
 .period-1-label { grid-row: 2; }
@@ -67,10 +89,8 @@
 
 /* Element card dimensions */
 .element-card {
-  width: 55px;
-  height: 65px;
-  min-width: 55px;
-  max-width: 70px;
+  width: 60px;
+  height: 70px;
   margin: 0;
   box-sizing: border-box;
   display: flex;
