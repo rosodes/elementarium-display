@@ -1,3 +1,4 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsRu: ElementDetailsTranslations = {
@@ -48,8 +49,6 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   previousElement: "Предыдущий элемент",
   nextElement: "Следующий элемент",
   isotopes: "Изотопы",
-  toxicityAndEcology: "Токсичность и экология",
-  historicalInfo: "Исторические сведения",
   industry: "Промышленность",
   discovery: "Открытие",
   structure: "Структура",

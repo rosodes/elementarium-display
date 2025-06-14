@@ -7,16 +7,52 @@ const hydrogen: Element = {
   weight: "1.008",
   electronstring: "1s1",
   series: "Nonmetal",
+  melt: "14.01",
+  boil: "20.28",
+  electroneg: "2.20",
   valence: "1",
-  oxidation: "1,-1",
-  radius: { covalent: "31" },
+  oxidation: "-1c,1c",
+  radius: {
+    calculated: "53",
+    empirical: "25",
+    covalent: "37",
+    vanderwaals: "120"
+  },
+  discover: "1766",
+  density: {
+    stp: "0.0899"
+  },
+  affinity: "72.8",
+  conductivity: {
+    thermal: "0.1805"
+  },
+  abundance: {
+    universe: "75",
+    solar: "75",
+    meteor: "2.4",
+    crust: "0.15",
+    ocean: "11",
+    human: "10"
+  },
+  heat: {
+    specific: "14300",
+    vaporization: "0.452",
+    fusion: "0.558"
+  },
+  ionize: {
+    1: "1312.0"
+  },
   expandedconfig: "1s1",
   electrons: [1],
   quantum: { l: 0, m: 0, n: 1 },
-  isotopes: 3,
-  toxicity:
-    "Hydrogen gas is non-toxic and does not harm the environment directly, but asphyxiation can occur at high concentrations due to oxygen displacement. Liquid hydrogen is extremely cold and can cause severe frostbite.",
-  historyInfo:
-    "Hydrogen was first recognized as a distinct element by Henry Cavendish in 1766. Its name comes from the Greek 'hydro' and 'genes', meaning 'water-forming', because it produces water when burned."
+  isotopes: 7,
+  number: 1,
+  atomicMass: "1.008",
+  category: "nonmetal",
+  group: 1,
+  period: 1,
+  block: "s",
+  electronConfiguration: "1s¹",
+  description: "Hydrogen is the lightest element and the most abundant chemical substance in the universe."
 };
 export default hydrogen;

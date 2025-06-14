@@ -107,9 +107,7 @@ export interface Element {
   readonly quantum: ElementQuantum;
   readonly isotopes: number;
   readonly isotopesDetailed?: ElementIsotope[];
-  readonly toxicity?: string;
-  readonly historyInfo?: string;
-
+  
   // Новое свойство: радиоактивность
   readonly radioactive?: boolean;
   
