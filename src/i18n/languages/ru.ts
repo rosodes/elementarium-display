@@ -1,4 +1,3 @@
-
 import { TranslationData } from "..";
 
 // Russian element names
@@ -219,7 +218,15 @@ export const ru: TranslationData = {
     searchShortcut: "Сочетание клавиш",
     accessibilityLabel: "Периодическая таблица элементов",
     elementTable: "Периодическая таблица элементов",
-    focusMode: "Режим фокусировки"
+    focusMode: "Режим фокусировки",
+    usageDistribution: "Распределение использования",
+    simulatedData: "Это симулированные данные для демонстрационных целей",
+    note: "Примечание",
+    // Новые ключи по аналогии с англ. вариантом:
+    elementRemoved: "Элемент удален из закладок",
+    elementBookmarked: "Элемент добавлен в закладки",
+    linkCopied: "Ссылка скопирована",
+    linkCopiedToClipboard: "Ссылка скопирована в буфер обмена"
   },
   
   // Element details translations
@@ -270,7 +277,33 @@ export const ru: TranslationData = {
     notAvailable: "Информация недоступна",
     backToTable: "Вернуться к таблице",
     previous: "Предыдущий",
-    next: "Следующий"
+    next: "Следующий",
+    // Новые ключи для согласованности (копируем их с en и/или переводим):
+    industry: "Промышленность",
+    discovery: "Открытие",
+    structure: "Структура",
+    shells: "оболочки",
+    meltingBoilingPoint: "Точки плавления и кипения",
+    electronProperties: "Электронные свойства",
+    electronAffinity: "Сродство к электрону",
+    abundance: "Распространенность",
+    universe: "Вселенная",
+    solar: "Солнечная система",
+    crust: "Земная кора",
+    atomicRadii: "Атомные радиусы",
+    vanDerWaals: "Ван-дер-Ваальса",
+    quantumNumbers: "Квантовые числа",
+    principal: "Главное",
+    azimuthal: "Азимутальное",
+    magnetic: "Магнитное",
+    orbitalDiagram: "Орбитальная диаграмма",
+    keyApplications: "Основные применения и использование",
+    industrialUses: "Промышленное использование",
+    everydayUses: "Повседневное применение",
+    funFacts: "Интересные факты",
+    // F-block specific translations (копируем с en для совместимости)
+    fBlockElements: "F-блок элементы",
+    fBlockDescription: "Элементы f-блока, включая лантаноиды и актиноиды"
   },
   
   // Footer translations

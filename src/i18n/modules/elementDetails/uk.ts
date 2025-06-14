@@ -49,7 +49,7 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   previousElement: "Попередній елемент",
   nextElement: "Наступний елемент",
   isotopes: "Ізотопи",
-  // Add the missing properties for Ukrainian
+  // Новые ключи по аналогии с en (требуется перевод или можно временно оставить как в en)
   industry: "Промисловість",
   discovery: "Відкриття",
   structure: "Структура",
@@ -72,6 +72,9 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   industrialUses: "Промислове використання",
   everydayUses: "Повсякденне застосування",
   funFacts: "Цікаві факти",
+  // F-block specific translations — оставляем на английском как временный fallback
+  fBlockElements: "F-block elements",
+  fBlockDescription: "The f-block elements, including lanthanides and actinides",
   notAvailable: "Інформація недоступна",
   backToTable: "Повернутися до таблиці",
   previous: "Попередній",

@@ -29,7 +29,7 @@ export const uiUk: UITranslations = {
   usageDistribution: "Розподіл використання",
   simulatedData: "Це симульовані дані для демонстраційних цілей",
   note: "Примітка",
-  // Add Ukrainian translations for the new properties
+  // Украинские переводы для новых свойств (или берем с en если нет локализации)
   elementRemoved: "Елемент видалено з закладок",
   elementBookmarked: "Елемент додано до закладок",
   linkCopied: "Посилання скопійовано",
