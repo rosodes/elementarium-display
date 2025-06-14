@@ -16,7 +16,7 @@ const findElement = (atomicNumber: number | string): ElementType | null => {
 export const renderLanthanides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
   const periodLabel = "6*";
   
-  // Start with element 57 for La, then 58-71 for lanthanides
+  // Lanthanides: elements 57-71 (La to Lu)
   const startIndex = 57;
   const endIndex = 71;
   
@@ -47,7 +47,7 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
 export const renderActinides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
   const periodLabel = "7*";
   
-  // Start with element 89 for Ac, then 90-103 for actinides
+  // Actinides: elements 89-103 (Ac to Lr)
   const startIndex = 89;
   const endIndex = 103;
   
