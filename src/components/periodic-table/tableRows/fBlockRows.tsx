@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Element from '../../Element';
 import { Element as ElementType } from '../../../data/elementTypes';
@@ -15,13 +16,13 @@ const findElement = (atomicNumber: number | string): ElementType | null => {
 
 export const renderLanthanides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
   const periodLabel = "6*";
-  // Лантаноиды должны начинаться с Ce (58), а не с La (57)
-  const startIndex = skipFirstElement ? 58 : 58;
+  // Лантаноиды: Ce (58) ... Lu (71) без La
+  const startIndex = 58;
   const endIndex = 71;
 
   const lanthanideElements = [];
 
-  // Add vertical divider at the beginning если требуется
+  // Опциональный вертикальный разделитель
   if (skipFirstElement) {
     lanthanideElements.push(
       <div key="lanthanide-divider" className="flex items-center h-[70px] mr-2">
@@ -50,8 +51,8 @@ export const renderLanthanides = (onElementClick: (element: ElementType) => void
 
 export const renderActinides = (onElementClick: (element: ElementType) => void, skipFirstElement: boolean = false) => {
   const periodLabel = "7*";
-  // Актиноиды должны начинаться с Th (90), а не с Ac (89)
-  const startIndex = skipFirstElement ? 90 : 90;
+  // Актиноиды: Th (90) ... Lr (103) без Ac
+  const startIndex = 90;
   const endIndex = 103;
 
   const actinideElements = [];
