@@ -1,17 +1,13 @@
 
-/* Убираем все адаптивные изменения размеров - только статичные 76x76px */
-/* Оставляем только изменения для соединительных линий если нужно */
-
+/* Минимальные адаптивные изменения только для зазоров */
 @media (max-width: 768px) {
-  .connector-line::before,
-  .connector-line::after {
-    border-left-width: 1.5px;
+  .periodic-table {
+    gap: 2px !important;
   }
 }
 
 @media (max-width: 640px) {
-  .connector-line::before,
-  .connector-line::after {
-    border-left-width: 1px;
+  .periodic-table {
+    gap: 1px !important;
   }
 }
