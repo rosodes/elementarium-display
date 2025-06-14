@@ -8,6 +8,7 @@ import ElementPageHead from '../components/element-details/ElementPageHead';
 import { useLanguage } from '../context/LanguageContext';
 import { useToast } from '@/components/ui/use-toast';
 import ElementPageFooter from '../components/element-details/ElementPageFooter';
+import LanguageThemeControls from '../components/LanguageThemeControls';
 
 const ElementPage = () => {
   const { elementId, lang } = useParams<{ elementId: string, lang?: string }>();
@@ -143,6 +144,11 @@ const ElementPage = () => {
       >
         {t.ui?.skipToContent || "Skip to main content"}
       </a>
+
+      {/* Мини-шапка для смены языка и темы */}
+      <div className="w-full flex items-center justify-end py-2 px-4 md:px-12 xl:px-36 bg-transparent">
+        <LanguageThemeControls compact />
+      </div>
 
       <div
         ref={mainRef}

@@ -1,4 +1,3 @@
-
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -9,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-// Removed: import Legend from './periodic-table/Legend';
+import LanguageThemeControls from './LanguageThemeControls';
 import SearchBar from './periodic-table/SearchBar';
 import { Separator } from './ui/separator';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -84,42 +83,7 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
               {/* Search bar positioned right */}
               {onSearch && !isElementPage && <SearchBar onSearch={onSearch} />}
               
-              <div className="flex items-center space-x-3">
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon" className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700">
-                      <Globe className="h-[1.2rem] w-[1.2rem]" />
-                      <span className="sr-only">{t.selectLanguage}</span>
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    {supportedLanguages.map((lang) => (
-                      <DropdownMenuItem 
-                        key={lang}
-                        onClick={() => changeLanguageAndUpdateUrl(lang)}
-                        className={language === lang ? "bg-accent" : ""}
-                      >
-                        {languageNames[lang] || lang}
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
-                
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={toggleTheme}
-                  aria-label={t.toggleTheme}
-                  className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700"
-                >
-                  {theme === 'light' ? (
-                    <Moon className="h-[1.2rem] w-[1.2rem]" />
-                  ) : (
-                    <Sun className="h-[1.2rem] w-[1.2rem]" />
-                  )}
-                  <span className="sr-only">{t.toggleTheme}</span>
-                </Button>
-              </div>
+              <LanguageThemeControls />
             </div>
           </div>
 
