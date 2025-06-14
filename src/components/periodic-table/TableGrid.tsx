@@ -18,6 +18,8 @@ const findElement = (atomicNumber: number): ElementType | null => {
 };
 
 const TableGrid = memo(({ onElementClick }: TableGridProps) => {
+  console.log('TableGrid rendering...');
+  
   // Create all elements that should be in the periodic table
   const renderAllElements = () => {
     const elementComponents = [];
@@ -26,6 +28,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     [1, 2].forEach(atomicNum => {
       const element = findElement(atomicNum);
       if (element) {
+        console.log(`Adding element ${element.symbol} (${element.atomic}) to grid`);
         elementComponents.push(
           <Element 
             key={`element-${atomicNum}`}
@@ -40,6 +43,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     for (let i = 3; i <= 10; i++) {
       const element = findElement(i);
       if (element) {
+        console.log(`Adding element ${element.symbol} (${element.atomic}) to grid`);
         elementComponents.push(
           <Element 
             key={`element-${i}`}
@@ -146,11 +150,12 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
       }
     }
     
+    console.log(`Total elements rendered: ${elementComponents.length}`);
     return elementComponents;
   };
 
   return (
-    <div className="periodic-table">
+    <div className="periodic-table" style={{ border: '2px solid red' }}>
       <GroupNumbers />
       
       {/* Period labels */}
