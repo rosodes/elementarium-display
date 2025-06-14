@@ -1,6 +1,89 @@
 
-/* Enhanced animations for periodic table elements - modular approach */
-@import './animation-keyframes.css';
-@import './animation-classes.css';
-@import './animation-transitions.css';
-@import './animation-accessibility.css';
+/* Animations for periodic table elements */
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes scale-out {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(0.95); opacity: 0; }
+}
+
+@keyframes pulse-subtle {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Animation classes */
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.fade-in-animation {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.fade-out-animation {
+  animation: fade-out 0.3s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+/* Custom transition for element details modal */
+.element-details-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.element-details-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.element-details-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.element-details-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Tooltip styling - add background color to ensure visibility */
+[data-radix-tooltip-content] {
+  background-color: white;
+  color: #333;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  z-index: 100;
+  max-width: 300px;
+}
+
+.dark [data-radix-tooltip-content] {
+  background-color: #1f2937;
+  color: #f3f4f6;
+  border-color: #374151;
+}

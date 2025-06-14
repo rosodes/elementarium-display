@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useLanguage } from '../context/LanguageContext';
@@ -14,6 +13,7 @@ interface ElementProps extends BaseElementProps {
 }
 
 const Element = ({ element, onClick, className, ...props }: ElementProps) => {
+  const [isHovering, setIsHovering] = useState<boolean>(false);
   const { t } = useLanguage();
   
   // Determine the element color based on electron block with better contrast
@@ -58,15 +58,22 @@ const Element = ({ element, onClick, className, ...props }: ElementProps) => {
     return t.ui?.elements?.[elementKey] || element.name || element.symbol;
   };
   
+  const handleHoverStart = (): void => setIsHovering(true);
+  const handleHoverEnd = (): void => setIsHovering(false);
   const handleClick = (): void => onClick(element);
   
   return (
     <button 
       className={`element-card w-[70px] h-[70px] ${getElementColor()}
-                focus:outline-none focus:ring-2 focus:ring-primary
-                flex-shrink-0 relative flex flex-col justify-between p-1 sm:p-1.5
-                ${className || ''}`}
+                transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
+                hover:shadow-lg hover:scale-105 flex-shrink-0 relative
+                dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5
+                ${isHovering ? 'z-10 shadow-xl' : ''} ${className || ''}`}
       onClick={handleClick}
+      onMouseEnter={handleHoverStart}
+      onMouseLeave={handleHoverEnd}
+      onFocus={handleHoverStart}
+      onBlur={handleHoverEnd}
       aria-label={`${getElementName()} (${element.symbol}), ${t.elementDetails.atomicNumber} ${element.atomic}`}
       tabIndex={0}
       {...props}
@@ -91,7 +98,7 @@ const Element = ({ element, onClick, className, ...props }: ElementProps) => {
         <div className="text-[6px] sm:text-[8px] opacity-80">{element.weight}</div>
         {isRadioactive() && (
           <div 
-            className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500" 
+            className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 animate-pulse-subtle" 
             title={t.ui?.radioactive || "Radioactive"} 
             aria-label={t.ui?.radioactive || "Radioactive element"}
           />

@@ -1,6 +1,137 @@
 
-/* Import all layout-related CSS modules */
-@import './layout-containers.css';
-@import './layout-scrollbars.css';
-@import './layout-labels.css';
-@import './layout-responsive.css';
+/* Layout styles for the periodic table */
+.periodic-table {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: max-content;
+  padding: 10px;
+  margin: 0 auto;
+}
+
+.periodic-table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  padding-left: 48px;
+  padding-right: 48px;
+  margin-top: 1rem;
+}
+
+.periodic-table-container::-webkit-scrollbar {
+  height: 6px; /* Height for horizontal scrollbar */
+}
+
+.periodic-table-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.dark .periodic-table-container::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.periodic-table-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.dark .periodic-table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.period-row {
+  display: flex;
+  gap: 4px;
+  flex-wrap: nowrap;
+}
+
+/* Group and period labels */
+.group-label, .period-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+}
+
+.dark .group-label, 
+.dark .period-label {
+  color: #fff;
+}
+
+/* Lanthanide and actinide blocks */
+.lanthanide-block, .actinide-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  color: #666;
+}
+
+.dark .lanthanide-block, 
+.dark .actinide-block {
+  color: #fff;
+}
+
+/* Element cards base size */
+.element-card {
+  width: 70px;
+  height: 70px;
+}
+
+/* Improve alignment of block elements */
+.period-row:nth-child(6) .element-card:nth-child(3),
+.period-row:nth-child(7) .element-card:nth-child(3) {
+  margin-right: 0;
+}
+
+/* Lanthanide/Actinide section layout */
+.lanthanide-actinide-section {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.f-block-container {
+  margin-left: 140px; /* Updated to 140px as requested */
+  position: relative;
+  z-index: 1; /* Ensure f-block is above connector lines */
+}
+
+/* Make sure the placeholder connectors align properly */
+.placeholder-lanthanide,
+.placeholder-actinide {
+  position: relative;
+  z-index: 0;
+}
+
+/* Update connector size to match element cards */
+.dashed-connector {
+  width: 2px;
+  height: 70px;
+}
+
+/* Tooltip text color fix for dark mode */
+.dark .gpt-selector-tooltip {
+  color: #fff;
+}
+
+/* Fix for all text tooltips in dark mode */
+.dark [role="tooltip"] {
+  color: #fff;
+}
+
+/* Fix vertical divider styling */
+.period-row .vertical-divider {
+  width: 1px;
+  height: 70px;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0 2px;
+}
+
+.dark .period-row .vertical-divider {
+  background-color: rgba(255, 255, 255, 0.3);
+}

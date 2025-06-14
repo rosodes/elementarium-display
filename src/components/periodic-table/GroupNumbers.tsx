@@ -7,27 +7,18 @@ const GroupNumbers = () => {
   
   return (
     <div 
-      className="flex flex-row flex-nowrap items-center gap-2 mb-4 px-0" 
+      className="flex flex-row flex-nowrap items-center gap-0.5 sm:gap-1 mb-1" 
       role="row" 
       aria-label={t.ui?.groupNumbersLabel || "Group numbers"}
     >
-      {/* Period label placeholder with consistent spacing */}
-      <div className="w-12 mr-2 flex-shrink-0" aria-hidden="true"></div>
-      
+      <div className="w-5 sm:w-6 mr-0.5 sm:mr-1" aria-hidden="true"></div>
       {Array.from({ length: 18 }, (_, i) => i + 1).map(num => (
         <div 
           key={`group-${num}`}
-          className="group-label w-[70px] h-10 text-center text-sm font-bold flex-shrink-0 
-                     text-gray-800 dark:text-gray-100 flex items-center justify-center
-                     bg-gradient-to-br from-blue-50 via-blue-100 to-blue-150 
-                     dark:from-blue-900/60 dark:via-blue-800/60 dark:to-blue-700/60
-                     border-2 border-blue-200/70 dark:border-blue-600/70 rounded-xl
-                     shadow-lg backdrop-blur-sm relative overflow-hidden cursor-pointer"
+          className="w-[54px] sm:w-[70px] text-center text-[8px] sm:text-xs font-semibold opacity-70 flex-shrink-0 text-gray-800 dark:text-gray-200"
           aria-label={`${t.ui?.group || "Group"} ${num}`}
         >
-          <span className="font-extrabold tracking-tight relative z-10">
-            {num}
-          </span>
+          {num}
         </div>
       ))}
     </div>

@@ -4,7 +4,7 @@ import { useTheme } from '../context/ThemeContext';
 
 export const categories = {
   "Alkali": "Alkali Metal",
-  "Alkaline": "Alkaline Earth Metal", 
+  "Alkaline": "Alkaline Earth Metal",
   "Transition": "Transition Metal",
   "Post-transition": "Post-Transition Metal",
   "Metalloid": "Metalloid",
@@ -15,43 +15,39 @@ export const categories = {
   "Unknown": "Unknown"
 };
 
-export const getCategoryColor = (category?: string): string => {
-  if (!category) {
-    return "#c7c7c7";
-  }
-
+export const getCategoryColor = (category: string): string => {
   const categoryMap: Record<string, string> = {
-    "alkali": "#ff6e6c",
-    "nonmetal": "#7dace4", 
-    "noble": "#f2b5d4",
-    "alkaline": "#ffc15e",
-    "metalloid": "#8adbbc",
-    "post-transition": "#b0a3f5",
-    "transition": "#88d9e6",
-    "lanthanide": "#ffa69e",
-    "actinide": "#ff7e5f",
-    "unknown": "#c7c7c7"
+    "alkali": "bg-alkali",
+    "nonmetal": "bg-nonmetal",
+    "noble": "bg-noble",
+    "alkaline": "bg-alkaline",
+    "metalloid": "bg-metalloid",
+    "post-transition": "bg-post_transition",
+    "transition": "bg-transition",
+    "lanthanide": "bg-lanthanide",
+    "actinide": "bg-actinide",
+    "unknown": "bg-unknown"
   };
   
   const key = category.toLowerCase();
-  return categoryMap[key] || "#c7c7c7";
+  return categoryMap[key] || "bg-unknown";
 };
 
 export const getSeriesColor = (series: string): string => {
   const seriesMap: Record<string, string> = {
-    "Alkali": "#ff6e6c",
-    "Nonmetal": "#7dace4",
-    "Noble": "#f2b5d4", 
-    "Alkaline": "#ffc15e",
-    "Metalloid": "#8adbbc",
-    "Post-transition": "#b0a3f5",
-    "Transition": "#88d9e6",
-    "Lanthanide": "#ffa69e", 
-    "Actinide": "#ff7e5f",
-    "Unknown": "#c7c7c7"
+    "Alkali": "bg-alkali",
+    "Nonmetal": "bg-nonmetal",
+    "Noble": "bg-noble",
+    "Alkaline": "bg-alkaline",
+    "Metalloid": "bg-metalloid",
+    "Post-transition": "bg-post_transition",
+    "Transition": "bg-transition",
+    "Lanthanide": "bg-lanthanide",
+    "Actinide": "bg-actinide",
+    "Unknown": "bg-unknown"
   };
   
-  return seriesMap[series] || "#c7c7c7";
+  return seriesMap[series] || "bg-unknown";
 };
 
 // This function helps determine if text should be dark or light based on the background
