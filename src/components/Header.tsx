@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Legend from './periodic-table/Legend';
+// Removed: import Legend from './periodic-table/Legend';
 import SearchBar from './periodic-table/SearchBar';
 import { Separator } from './ui/separator';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -126,10 +126,10 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
           {!isElementPage && (
             <>
               <Separator className="my-4" />
-              {/* Legend component */}
-              <div className="max-w-md">
+              {/* Legend component removed */}
+              {/* <div className="max-w-md">
                 <Legend />
-              </div>
+              </div> */}
             </>
           )}
         </div>
