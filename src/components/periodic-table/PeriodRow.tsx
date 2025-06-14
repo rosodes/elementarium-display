@@ -13,21 +13,26 @@ const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   return (
     <div 
       key={`period-row-${periodLabel}`} 
-      className="period-row flex flex-row flex-nowrap items-center gap-1.5 mb-2 px-2"
+      className="period-row flex flex-row flex-nowrap items-center gap-2 mb-3 px-2"
       role="row"
       aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
     >
       <div 
-        className="w-6 h-[70px] flex items-center justify-center mr-2
-                   text-sm font-bold text-gray-700 dark:text-gray-300
-                   bg-gradient-to-b from-green-50 to-green-100 dark:from-green-900/30 dark:to-green-800/30
-                   border border-green-200 dark:border-green-700 rounded-lg
-                   shadow-sm hover:shadow-md transition-all duration-200" 
+        className="period-label w-8 h-[70px] flex items-center justify-center mr-2
+                   text-sm font-bold text-gray-700 dark:text-gray-200
+                   bg-gradient-to-br from-green-50 via-green-100 to-green-200 
+                   dark:from-green-900/40 dark:via-green-800/40 dark:to-green-700/40
+                   border border-green-200 dark:border-green-600 rounded-lg
+                   shadow-sm hover:shadow-md transition-all duration-300
+                   hover:transform hover:-translate-y-0.5" 
         aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
       >
-        {periodLabel}
+        <span className="font-extrabold tracking-tight">{periodLabel}</span>
       </div>
-      {elements}
+      
+      <div className="flex flex-row flex-nowrap items-center gap-2">
+        {elements}
+      </div>
     </div>
   );
 };

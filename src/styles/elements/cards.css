@@ -1,104 +1,166 @@
 
-/* Enhanced element card styling */
+/* Enhanced element card styling with improved animations and accessibility */
 .element-card {
   width: 70px;
   height: 70px;
   position: relative;
-  border-radius: 8px;
-  padding: 4px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 12px;
+  padding: 6px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   color: rgba(0, 0, 0, 0.9);
   box-shadow: 
-    0 1px 3px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.08),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 1px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
   flex-shrink: 0;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(4px);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transform-origin: center;
 }
 
 .dark .element-card {
-  color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   box-shadow: 
-    0 1px 3px rgba(0, 0, 0, 0.3),
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    0 2px 12px rgba(0, 0, 0, 0.25),
+    0 1px 6px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.1);
 }
 
-/* Enhanced focus states for accessibility */
+/* Enhanced focus states for better accessibility */
 .element-card:focus-visible {
-  outline: 3px solid #3b82f6;
-  outline-offset: 2px;
-  z-index: 30;
+  outline: none;
+  border-color: #3b82f6;
   box-shadow: 
-    0 0 0 4px rgba(59, 130, 246, 0.2),
-    0 4px 12px rgba(0, 0, 0, 0.15);
+    0 0 0 4px rgba(59, 130, 246, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  z-index: 40;
+  transform: translateY(-4px) scale(1.08);
 }
 
 .dark .element-card:focus-visible {
-  outline: 3px solid #60a5fa;
+  border-color: #60a5fa;
   box-shadow: 
-    0 0 0 4px rgba(96, 165, 250, 0.2),
-    0 4px 12px rgba(0, 0, 0, 0.3);
+    0 0 0 4px rgba(96, 165, 250, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
 }
 
-/* Enhanced hover states with better animation */
+/* Enhanced hover states with spring animation */
 .element-card:hover {
-  transform: translateY(-3px) scale(1.08);
+  transform: translateY(-6px) scale(1.12) rotateZ(1deg);
   box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 0.15),
-    0 6px 12px rgba(0, 0, 0, 0.1),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
-  z-index: 20;
-  border-color: rgba(255, 255, 255, 0.4);
+    0 16px 48px rgba(0, 0, 0, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.08),
+    inset 0 2px 4px rgba(255, 255, 255, 0.5);
+  z-index: 30;
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 .dark .element-card:hover {
   box-shadow: 
-    0 10px 25px rgba(0, 0, 0, 0.4),
-    0 6px 12px rgba(0, 0, 0, 0.3),
-    inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.2);
+    0 16px 48px rgba(0, 0, 0, 0.35),
+    0 8px 24px rgba(0, 0, 0, 0.25),
+    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Active state */
+/* Active state with satisfying feedback */
 .element-card:active {
-  transform: translateY(-1px) scale(1.02);
+  transform: translateY(-2px) scale(1.06);
   transition-duration: 0.1s;
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
-/* Typography enhancements within cards */
+/* Typography enhancements with better readability */
 .element-card .element-atomic {
-  font-size: 10px;
-  font-weight: 600;
-  opacity: 0.8;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.85;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  line-height: 1;
 }
 
 .element-card .element-symbol {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  line-height: 0.9;
 }
 
 .element-card .element-name {
   font-size: 9px;
-  font-weight: 500;
-  opacity: 0.9;
+  font-weight: 600;
+  opacity: 0.95;
   line-height: 1.1;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .element-card .element-mass {
   font-size: 8px;
-  font-weight: 500;
-  opacity: 0.7;
+  font-weight: 600;
+  opacity: 0.75;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  line-height: 1;
 }
 
-/* Screen reader only class */
+/* Pulse animation for radioactive elements */
+@keyframes radioactive-pulse {
+  0%, 100% { 
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.element-card .radioactive-indicator {
+  animation: radioactive-pulse 2s ease-in-out infinite;
+}
+
+/* Loading state animation */
+@keyframes shimmer {
+  0% { background-position: -200px 0; }
+  100% { background-position: calc(200px + 100%) 0; }
+}
+
+.element-card.loading {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Responsive typography adjustments */
+@media (max-width: 768px) {
+  .element-card .element-symbol {
+    font-size: 16px;
+  }
+  
+  .element-card .element-name {
+    font-size: 8px;
+  }
+  
+  .element-card .element-atomic {
+    font-size: 9px;
+  }
+  
+  .element-card .element-mass {
+    font-size: 7px;
+  }
+}
+
+/* Screen reader accessibility */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -109,4 +171,41 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .element-card {
+    border-width: 3px;
+    border-color: currentColor;
+  }
+  
+  .element-card:hover,
+  .element-card:focus-visible {
+    border-color: #000;
+    background-color: #fff;
+    color: #000;
+  }
+  
+  .dark .element-card:hover,
+  .dark .element-card:focus-visible {
+    border-color: #fff;
+    background-color: #000;
+    color: #fff;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .element-card {
+    transition: none;
+  }
+  
+  .element-card:hover {
+    transform: none;
+  }
+  
+  .radioactive-indicator {
+    animation: none;
+  }
 }

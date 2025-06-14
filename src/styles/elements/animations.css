@@ -1,89 +1,273 @@
 
-/* Animations for periodic table elements */
+/* Enhanced animations for periodic table elements with better performance */
 @keyframes fade-in {
-  0% { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.95); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
 }
 
 @keyframes fade-out {
-  0% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(10px); }
+  0% { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.95); 
+  }
 }
 
 @keyframes scale-in {
-  0% { transform: scale(0.95); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% { 
+    transform: scale(0.8) rotate(-5deg); 
+    opacity: 0; 
+  }
+  50% { 
+    transform: scale(1.05) rotate(0deg); 
+    opacity: 0.8; 
+  }
+  100% { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 1; 
+  }
 }
 
 @keyframes scale-out {
-  from { transform: scale(1); opacity: 1; }
-  to { transform: scale(0.95); opacity: 0; }
+  from { 
+    transform: scale(1) rotate(0deg); 
+    opacity: 1; 
+  }
+  to { 
+    transform: scale(0.8) rotate(5deg); 
+    opacity: 0; 
+  }
 }
 
 @keyframes pulse-subtle {
-  0% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); opacity: 0.8; }
+  0% { 
+    transform: scale(1); 
+    opacity: 0.8; 
+  }
+  50% { 
+    transform: scale(1.08); 
+    opacity: 1; 
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  }
+  100% { 
+    transform: scale(1); 
+    opacity: 0.8; 
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotate(1deg); 
+  }
+}
+
+@keyframes glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(59, 130, 246, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4); 
+  }
+}
+
+@keyframes shimmer {
+  0% { 
+    background-position: -200px 0; 
+  }
+  100% { 
+    background-position: calc(200px + 100%) 0; 
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.3) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(0.9) rotate(-2deg);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100px) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 /* Animation classes */
 .animate-pulse-subtle {
-  animation: pulse-subtle 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: pulse-subtle 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease-out;
 }
 
 .fade-in-animation {
-  animation: fade-in 0.5s ease-out forwards;
+  animation: fade-in 0.6s ease-out forwards;
 }
 
 .fade-out-animation {
-  animation: fade-out 0.3s ease-out forwards;
+  animation: fade-out 0.4s ease-out forwards;
 }
 
 .animate-fade-in {
-  animation: fade-in 0.3s ease-out;
+  animation: fade-in 0.4s ease-out;
 }
 
 .animate-scale-in {
-  animation: scale-in 0.3s ease-out;
+  animation: scale-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Enhanced loading state */
+.loading-shimmer {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.4), 
+    transparent);
+  background-size: 200px 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .loading-shimmer {
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255,255,255,0.1), 
+    transparent);
 }
 
 /* Custom transition for element details modal */
 .element-details-enter {
   opacity: 0;
-  transform: scale(0.9);
+  transform: scale(0.8) translateY(50px);
 }
 
 .element-details-enter-active {
   opacity: 1;
-  transform: scale(1);
-  transition: opacity 300ms, transform 300ms;
+  transform: scale(1) translateY(0);
+  transition: opacity 400ms cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .element-details-exit {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1) translateY(0);
 }
 
 .element-details-exit-active {
   opacity: 0;
-  transform: scale(0.9);
-  transition: opacity 300ms, transform 300ms;
+  transform: scale(0.8) translateY(50px);
+  transition: opacity 300ms ease-out, 
+              transform 300ms ease-out;
 }
 
-/* Tooltip styling - add background color to ensure visibility */
+/* Enhanced tooltip styling */
 [data-radix-tooltip-content] {
-  background-color: white;
-  color: #333;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.98) 0%, 
+    rgba(248, 250, 252, 0.98) 100%);
+  color: #1f2937;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 12px;
+  padding: 12px 16px;
   z-index: 100;
-  max-width: 300px;
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.5;
+  backdrop-filter: blur(8px);
+  animation: bounce-in 0.3s ease-out;
 }
 
 .dark [data-radix-tooltip-content] {
-  background-color: #1f2937;
+  background: linear-gradient(135deg, 
+    rgba(31, 41, 55, 0.98) 0%, 
+    rgba(17, 24, 39, 0.98) 100%);
   color: #f3f4f6;
-  border-color: #374151;
+  border-color: rgba(75, 85, 99, 0.6);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Staggered animation for element cards */
+.element-card:nth-child(1) { animation-delay: 0ms; }
+.element-card:nth-child(2) { animation-delay: 50ms; }
+.element-card:nth-child(3) { animation-delay: 100ms; }
+.element-card:nth-child(4) { animation-delay: 150ms; }
+.element-card:nth-child(5) { animation-delay: 200ms; }
+.element-card:nth-child(6) { animation-delay: 250ms; }
+.element-card:nth-child(7) { animation-delay: 300ms; }
+.element-card:nth-child(8) { animation-delay: 350ms; }
+
+/* Performance optimizations */
+.element-card,
+.group-label,
+.period-label {
+  will-change: transform;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-pulse-subtle,
+  .animate-float,
+  .animate-glow {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .element-card:hover,
+  .element-card:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
 }
