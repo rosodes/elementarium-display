@@ -49,7 +49,6 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   previousElement: "Предыдущий элемент",
   nextElement: "Следующий элемент",
   isotopes: "Изотопы",
-  // Add the missing properties for Russian
   industry: "Промышленность",
   discovery: "Открытие",
   structure: "Структура",
@@ -72,6 +71,9 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   industrialUses: "Промышленное использование",
   everydayUses: "Повседневное применение",
   funFacts: "Интересные факты",
+  // Новые ключи
+  noOxidationStatesForNobleGases: "Для благородных газов степени окисления в нормальных условиях отсутствуют.",
+  noOxidationStates: "Данные о степенях окисления отсутствуют.",
   notAvailable: "Информация недоступна",
   backToTable: "Вернуться к таблице",
   previous: "Предыдущий",

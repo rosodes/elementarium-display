@@ -1,4 +1,3 @@
-
 // Український переклад elementDetails, повністю синхронізований і без англійських fallbacks
 
 import type { ElementDetailsTranslations } from "../elementDetails";
@@ -76,6 +75,9 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   // F-block specific translations
   fBlockElements: "F-блок елементи",
   fBlockDescription: "Елементи f-блоку, включаючи лантаноїди та актиноїди",
+  // Нові ключі для нормальних повідомлень
+  noOxidationStatesForNobleGases: "Благородні гази не мають ступенів окиснення за нормальних умов.",
+  noOxidationStates: "Дані про ступені окиснення відсутні.",
   notAvailable: "Інформація недоступна",
   backToTable: "Повернутися до таблиці",
   previous: "Попередній",

@@ -49,7 +49,6 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   previousElement: "Previous element",
   nextElement: "Next element",
   isotopes: "Isotopes",
-  // Add the missing properties for English
   industry: "Industry",
   discovery: "Discovery",
   structure: "Structure",
@@ -72,6 +71,9 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   industrialUses: "Industrial Uses",
   everydayUses: "Everyday Applications",
   funFacts: "Interesting Facts",
+  // Специальные ключи для степеней окисления
+  noOxidationStatesForNobleGases: "Noble gases do not have oxidation states under normal conditions.",
+  noOxidationStates: "No oxidation state data available.",
   notAvailable: "Information not available",
   backToTable: "Back to Periodic Table",
   previous: "Previous",
