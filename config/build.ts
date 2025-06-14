@@ -39,7 +39,7 @@ export function createBuildConfig(isProd: boolean) {
         chunkFileNames: 'assets/[name].[hash].js',
         assetFileNames: 'assets/[name].[hash].[ext]',
         // Optimized manual chunks for better caching
-        manualChunks: (id) => {
+        manualChunks: (id: string) => {
           // Vendor chunks for better caching
           if (id.includes('node_modules')) {
             if (id.includes('react') || id.includes('react-dom')) {
@@ -76,7 +76,7 @@ export function createBuildConfig(isProd: boolean) {
           }
         }
       },
-      external: (id) => {
+      external: (id: string) => {
         // Externalize heavy dependencies that can be loaded from CDN if needed
         return false; // Keep all dependencies bundled for now
       }

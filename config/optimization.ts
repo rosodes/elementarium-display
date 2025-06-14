@@ -41,10 +41,9 @@ export function createOptimizationConfig(mode: string) {
     esbuild: {
       target: 'es2020' as const,
       legalComments: 'none' as const,
-      treeShaking: true,
       // Additional optimizations for production
       ...(isProd && {
-        drop: ['console', 'debugger'],
+        drop: ['console' as const, 'debugger' as const],
         minifyIdentifiers: true,
         minifySyntax: true,
         minifyWhitespace: true
