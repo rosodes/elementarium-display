@@ -7,11 +7,11 @@ import { createBuildConfig } from './config/build';
 import { createServerConfig } from './config/server';
 import { createOptimizationConfig } from './config/optimization';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(async ({ mode }) => {
   const isProd = mode === 'production';
   
   const config: UserConfig = {
-    plugins: createPlugins(mode),
+    plugins: await createPlugins(mode),
     
     resolve: {
       alias: {
@@ -21,7 +21,10 @@ export default defineConfig(({ mode }) => {
       extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
     
-    server: createServerConfig(),
+    server: {
+      ...createServerConfig(),
+      port: 8080
+    },
     build: createBuildConfig(isProd),
     ...createOptimizationConfig(mode)
   };

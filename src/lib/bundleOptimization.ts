@@ -40,7 +40,7 @@ export const prefetchNonCriticalChunks = () => {
   if ('requestIdleCallback' in window) {
     requestIdleCallback(() => {
       // Prefetch element details chunk when idle
-      import('../components/element-details/ElementDetails');
+      import('../components/ElementDetails');
     });
   }
 };

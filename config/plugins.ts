@@ -5,10 +5,10 @@ import compression from 'vite-plugin-compression';
 import legacy from '@vitejs/plugin-legacy';
 import { componentTagger } from 'lovable-tagger';
 
-export function createPlugins(mode: string) {
+export async function createPlugins(mode: string) {
   const isProd = mode === 'production';
   
-  return [
+  const plugins = [
     react({
       jsxRuntime: 'automatic',
       babel: {
@@ -64,14 +64,19 @@ export function createPlugins(mode: string) {
       compressionOptions: {
         level: 9
       }
-    }),
-    
-    // Bundle analyzer (optional, can be enabled via environment variable)
-    process.env.ANALYZE && isProd && (await import('rollup-plugin-visualizer')).visualizer({
+    })
+  ].filter(Boolean);
+
+  // Bundle analyzer (optional, can be enabled via environment variable)
+  if (process.env.ANALYZE && isProd) {
+    const { visualizer } = await import('rollup-plugin-visualizer');
+    plugins.push(visualizer({
       filename: 'dist/stats.html',
       open: true,
       gzipSize: true,
       brotliSize: true
-    })
-  ].filter(Boolean);
+    }));
+  }
+
+  return plugins;
 }
