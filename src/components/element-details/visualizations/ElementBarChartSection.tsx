@@ -21,9 +21,15 @@ function getBarChartData(element: Element) {
   // Фильтруем только определённые значения (числовые и > 0)
   const barData = sources
     .map((src, idx) => {
-      let v = src.value;
-      if (typeof v === "string") v = parseFloat(v);
-      if (!v || isNaN(v) || v <= 0) return null;
+      let v: number;
+      if (typeof src.value === "string") {
+        v = parseFloat(src.value);
+      } else if (typeof src.value === "number") {
+        v = src.value;
+      } else {
+        return null;
+      }
+      if (isNaN(v) || v <= 0) return null;
       // Цвета для наглядности
       const COLORS = ["#818cf8", "#a3e635", "#38bdf8", "#60a5fa"];
       return { env: src.label, percent: v, color: COLORS[idx % COLORS.length] };
