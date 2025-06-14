@@ -1,6 +1,76 @@
 import { Element } from './elementTypes';
 export const elements51to60: Element[] = [
-  // ... элементы 51–57 (до Ce включительно), элементы 58–60 (Ce, Pr, Nd) удалены, перемещены в elements58-71.ts
-  // ... перепроверьте порядок — элементы 58,59,60 должны быть только в новом файле!
-  // Например, Bi (83)–Ba (56)–La (57)
+  // 51 Sb — 57 La (без 58–60! Они в elements58-71.ts)
+  {
+    atomic: "51",
+    symbol: "Sb",
+    name: "Antimony",
+    weight: "121.76",
+    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p3",
+    series: "Metalloid",
+    group: 15,
+    period: 5,
+  },
+  // 52–56 — оформляются как раньше, до La включительно:
+  {
+    atomic: "52",
+    symbol: "Te",
+    name: "Tellurium",
+    weight: "127.60",
+    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10",
+    series: "Metalloid",
+    group: 16,
+    period: 5,
+  },
+  {
+    atomic: "53",
+    symbol: "I",
+    name: "Iodine",
+    weight: "126.90",
+    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p5",
+    series: "Halogen",
+    group: 17,
+    period: 5,
+  },
+  {
+    atomic: "54",
+    symbol: "Xe",
+    name: "Xenon",
+    weight: "131.29",
+    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p6",
+    series: "Noble gas",
+    group: 18,
+    period: 5,
+  },
+  {
+    atomic: "55",
+    symbol: "Cs",
+    name: "Cesium",
+    weight: "132.91",
+    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p6 7s1",
+    series: "Alkali metal",
+    group: 1,
+    period: 6,
+  },
+  {
+    atomic: "56",
+    symbol: "Ba",
+    name: "Barium",
+    weight: "137.33",
+    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p6 7s2",
+    series: "Alkaline earth metal",
+    group: 2,
+    period: 6,
+  },
+  // 57 La (без 58–60! Они в elements58-71.ts)
+  {
+    atomic: "57",
+    symbol: "La",
+    name: "Lanthanum",
+    weight: "138.91",
+    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d1",
+    series: "Lanthanide",
+    group: 3,
+    period: 6,
+  },
 ];
