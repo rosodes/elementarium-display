@@ -81,7 +81,8 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
           <QuickStats />
           <TableLegend />
           
-          <div className="w-full flex justify-center items-center">
+          {/* Центрированная периодическая таблица */}
+          <div className="w-full flex flex-col items-center justify-center">
             <div className="flex flex-col items-center gap-6">
               <TableGrid onElementClick={onElementClick} />
               <FBlockSection onElementClick={onElementClick} />
