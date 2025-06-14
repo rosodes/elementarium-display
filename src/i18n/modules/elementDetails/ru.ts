@@ -1,4 +1,3 @@
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsRu: ElementDetailsTranslations = {
@@ -77,5 +76,9 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   notAvailable: "Информация недоступна",
   backToTable: "Вернуться к таблице",
   previous: "Предыдущий",
-  next: "Следующий"
+  next: "Следующий",
+  conductivity: "Проводимость",
+  radioactive: "Радиоактивность",
+  yes: "Да",
+  no: "Нет"
 };

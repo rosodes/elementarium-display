@@ -1,4 +1,3 @@
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -79,6 +78,7 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   previous: "Previous",
   next: "Next",
   // --- ADDED KEYS ---
+  conductivity: "Conductivity",
   radioactive: "Radioactive",
   yes: "Yes",
   no: "No"

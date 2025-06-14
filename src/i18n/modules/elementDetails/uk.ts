@@ -1,4 +1,3 @@
-
 // Український переклад elementDetails, повністю синхронізований і без англійських fallbacks
 
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
@@ -82,5 +81,9 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   notAvailable: "Інформація недоступна",
   backToTable: "Повернутися до таблиці",
   previous: "Попередній",
-  next: "Наступний"
+  next: "Наступний",
+  conductivity: "Провідність",
+  radioactive: "Радіоактивність",
+  yes: "Так",
+  no: "Ні"
 };

@@ -75,6 +75,7 @@ export interface ElementDetailsTranslations {
   // Новые ключи для осмысленных сообщений по степеням окисления
   noOxidationStatesForNobleGases?: string;
   noOxidationStates?: string;
+  conductivity?: string;
   // Required translation properties
   notAvailable: string;
   backToTable: string;
@@ -85,4 +86,3 @@ export interface ElementDetailsTranslations {
   yes?: string;
   no?: string;
 }
-
