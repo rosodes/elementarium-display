@@ -69,7 +69,7 @@ export const elements1to10: Element[] = [
     weight: "4.002602",
     electronstring: "1s2",
     series: "Noble",
-    boil: "4.22",
+    boil: "4.222",
     valence: "0",
     radius: {
       calculated: "31",
@@ -110,7 +110,7 @@ export const elements1to10: Element[] = [
     
     // For compatibility
     number: 2,
-    atomicMass: "4.0026",
+    atomicMass: "4.002602",
     category: "noble gas",
     group: 18,
     period: 1,
@@ -535,7 +535,7 @@ export const elements1to10: Element[] = [
     atomic: "10",
     symbol: "Ne",
     name: "Neon",
-    weight: "20.180",
+    weight: "20.1797",
     electronstring: "1s2 2s2 2p6",
     series: "Noble",
     melt: "24.56",
@@ -587,6 +587,7 @@ export const elements1to10: Element[] = [
     isotopes: 22,
     group: 18,
     period: 2,
-    category: "noble gas"
+    category: "noble gas",
+    atomicMass: "20.1797"
   }
 ];
