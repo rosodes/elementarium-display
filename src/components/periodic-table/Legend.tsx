@@ -7,7 +7,6 @@ const blockColors = [
     colorClass: 'bg-s-block',
     colorName: 'Синий',
     labelKey: 'sBlock',
-    // Описание по-русски и по-английски
     descriptions: {
       ru: 'Щелочные и щелочноземельные металлы (s-блок)',
       en: 'Alkali and alkaline earth metals (s-block)',
@@ -47,15 +46,14 @@ const blockColors = [
 ];
 
 const Legend = () => {
-  const { t, lang } = useLanguage();
+  const { t, language } = useLanguage();
   // Проверяем язык; если не ru/en/uk — по умолчанию en
-  const language = ['ru', 'uk', 'en'].includes(lang) ? lang : 'en';
+  const langValue = ['ru', 'uk', 'en'].includes(language) ? language : 'en';
 
   return (
     <div className="legend flex flex-wrap gap-4 mb-6 text-xs">
       {blockColors.map(({ colorClass, colorName, labelKey, descriptions }) => (
         <div key={colorClass} className="flex items-center gap-2">
-          {/* Цветной квадрат с рамкой */}
           <div className={`w-4 h-4 rounded border ${colorClass}`}></div>
           <div>
             <span className="text-gray-800 dark:text-gray-200 font-medium">
@@ -63,7 +61,7 @@ const Legend = () => {
             </span>
             <span className="ml-1 text-gray-500 dark:text-gray-400">({colorName})</span>
             <div className="text-gray-500 dark:text-gray-400 text-[11px] leading-tight mt-0.5">
-              {descriptions[language]}
+              {descriptions[langValue]}
             </div>
           </div>
         </div>
@@ -83,9 +81,9 @@ const Legend = () => {
             {t.legend.radioactive}
           </span>
           <div className="ml-1 text-gray-500 dark:text-gray-400 text-[11px] leading-tight mt-0.5">
-            {language === 'ru' && 'Радиоактивные элементы (выделены красной точкой)'}
-            {language === 'en' && 'Radioactive elements (marked with a red circle)'}
-            {language === 'uk' && 'Радіоактивні елементи (виділено червоною точкою)'}
+            {langValue === 'ru' && 'Радиоактивные элементы (выделены красной точкой)'}
+            {langValue === 'en' && 'Radioactive elements (marked with a red circle)'}
+            {langValue === 'uk' && 'Радіоактивні елементи (виділено червоною точкою)'}
           </div>
         </div>
       </div>
@@ -94,4 +92,3 @@ const Legend = () => {
 };
 
 export default Legend;
-
