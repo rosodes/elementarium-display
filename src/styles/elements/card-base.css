@@ -1,5 +1,5 @@
 
-/* Core element card styling without animations */
+/* Core element card styling with consistent alignment */
 .element-card {
   width: 70px;
   height: 70px;
@@ -16,6 +16,10 @@
   backdrop-filter: blur(12px);
   cursor: pointer;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /* Focus states for accessibility */
@@ -29,6 +33,16 @@
   z-index: 50;
 }
 
+/* Dark mode support */
+.dark .element-card {
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
 /* Accessibility support */
 .sr-only {
   position: absolute;
@@ -40,4 +54,34 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+
+/* Empty cell placeholder */
+.empty-cell {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+/* Dashed connector for lanthanides/actinides */
+.dashed-connector {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px dashed rgba(107, 114, 128, 0.4);
+  border-radius: 12px;
+  background: rgba(249, 250, 251, 0.5);
+  color: rgba(107, 114, 128, 0.7);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.dark .dashed-connector {
+  border-color: rgba(156, 163, 175, 0.4);
+  background: rgba(17, 24, 39, 0.5);
+  color: rgba(156, 163, 175, 0.7);
 }

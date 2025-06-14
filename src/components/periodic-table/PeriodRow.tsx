@@ -13,12 +13,12 @@ const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   return (
     <div 
       key={`period-row-${periodLabel}`} 
-      className="period-row flex flex-row flex-nowrap items-center gap-2 mb-4 px-2"
+      className="period-row flex flex-row flex-nowrap items-center gap-2 mb-2 px-0"
       role="row"
       aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
     >
       <div 
-        className="period-label w-10 h-[70px] flex items-center justify-center mr-3
+        className="period-label w-12 h-[70px] flex items-center justify-center mr-2 flex-shrink-0
                    text-sm font-bold text-gray-800 dark:text-gray-100
                    bg-gradient-to-br from-emerald-50 via-emerald-100 to-emerald-150 
                    dark:from-emerald-900/60 dark:via-emerald-800/60 dark:to-emerald-700/60

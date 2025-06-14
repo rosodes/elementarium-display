@@ -1,9 +1,9 @@
 
-/* Enhanced layout styles with premium visual hierarchy and no horizontal overflow */
+/* Enhanced layout styles with premium visual hierarchy and proper alignment */
 .periodic-table {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   width: max-content;
   padding: 32px;
   margin: 0 auto;
@@ -21,6 +21,7 @@
   backdrop-filter: blur(16px);
   position: relative;
   overflow: hidden;
+  align-items: flex-start;
 }
 
 .dark .periodic-table {
@@ -54,6 +55,9 @@
     0 2px 6px rgba(0, 0, 0, 0.1);
   border: 2px solid rgba(226, 232, 240, 0.9);
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .dark .periodic-table-container {
@@ -69,23 +73,25 @@
 
 /* Prevent horizontal scroll from element hover effects */
 .periodic-table-wrapper {
-  overflow: hidden;
-  padding: 0 20px;
+  overflow: visible;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Enhanced period row styling with contained hover effects */
+/* Enhanced period row styling with proper alignment */
 .period-row {
   display: flex;
-  gap: 10px;
+  gap: 2px;
   flex-wrap: nowrap;
   align-items: center;
-  transition: all 0.4s ease;
+  justify-content: flex-start;
   position: relative;
-  padding: 0 10px;
-}
-
-.period-row:hover {
-  transform: translateX(2px);
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
 
 /* Enhanced lanthanide and actinide blocks */
@@ -104,16 +110,11 @@
   box-shadow: 
     0 4px 12px rgba(0, 0, 0, 0.08),
     inset 0 2px 4px rgba(255, 255, 255, 0.8);
-  transition: all 0.4s ease;
   backdrop-filter: blur(8px);
   cursor: pointer;
-}
-
-.lanthanide-block:hover, .actinide-block:hover {
-  transform: translateY(-2px) scale(1.01);
-  box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.1),
-    inset 0 2px 4px rgba(255, 255, 255, 0.9);
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
 }
 
 .dark .lanthanide-block, 
@@ -130,7 +131,7 @@
 
 /* Enhanced lanthanide/actinide section */
 .lanthanide-actinide-section {
-  margin-top: 5rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   position: relative;
@@ -139,11 +140,12 @@
     rgba(243, 244, 246, 0.9) 50%,
     rgba(249, 250, 251, 0.9) 100%);
   border-radius: 20px;
-  padding: 32px;
+  padding: 24px;
   box-shadow: 
     0 8px 24px rgba(0, 0, 0, 0.06),
     inset 0 2px 4px rgba(255, 255, 255, 0.7);
   border: 2px solid rgba(226, 232, 240, 0.6);
+  width: 100%;
 }
 
 .dark .lanthanide-actinide-section {
@@ -158,7 +160,11 @@
 }
 
 .f-block-container {
-  margin-left: 160px;
+  margin-left: 0;
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
