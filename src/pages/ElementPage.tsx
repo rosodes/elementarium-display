@@ -72,16 +72,24 @@ const ElementPage = () => {
 
   // Navigation logic
   const handleHome = () => navigate(lang ? `/${lang}` : '/');
+
+  // Исправлено: Проверяем el !== null во всех .find для навигации!
   const handlePrevious = () => {
     if (!element || Number(element.atomic) <= 1) return;
-    const prev = elements.find((el) => Number(el.atomic) === Number(element.atomic) - 1);
+    const prev = elements.find(
+      (el) => el && Number(el.atomic) === Number(element.atomic) - 1
+    );
     if (prev) navigate(lang ? `/${lang}/element/${prev.atomic}` : `/element/${prev.atomic}`);
   };
+
   const handleNext = () => {
     if (!element || Number(element.atomic) >= 118) return;
-    const next = elements.find((el) => Number(el.atomic) === Number(element.atomic) + 1);
+    const next = elements.find(
+      (el) => el && Number(el.atomic) === Number(element.atomic) + 1
+    );
     if (next) navigate(lang ? `/${lang}/element/${next.atomic}` : `/element/${next.atomic}`);
   };
+
   const canGoPrevious = !!(element && Number(element.atomic) > 1);
   const canGoNext = !!(element && Number(element.atomic) < 118);
 
@@ -133,6 +141,7 @@ const ElementPage = () => {
         {t.ui?.skipToContent || "Skip to main content"}
       </a>
 
+      {/* Оставляем только верхний header */}
       <ElementPageHeader />
 
       <div
@@ -144,6 +153,7 @@ const ElementPage = () => {
         aria-labelledby={`element-title-${element.atomic}`}
         aria-describedby={`element-details-title-${element.atomic}`}
       >
+        {/* SEO/meta head, НЕ ДУБЛИРУЕТ заголовок */}
         <ElementPageHead element={element} lang={lang} />
 
         <nav
@@ -169,12 +179,8 @@ const ElementPage = () => {
           className="w-full max-w-7xl mx-auto py-8 px-4 md:px-12 xl:px-36 animate-fade-in"
           tabIndex={0}
         >
-          <h1
-            id={`element-details-title-${element.atomic}`}
-            className="sr-only"
-          >
-            {element.name} ({element.symbol}) {t.elementDetails?.element}
-          </h1>
+          {/* Удалён дублирующий h1 (скрытый sr-only), если он был причиной двойного заголовка */}
+          {/* <h1 id={`element-details-title-${element.atomic}`} className="sr-only"> ... </h1> */}
           <div className="relative w-full max-w-none mx-0 rounded-2xl bg-white/90 dark:bg-gray-900/95 shadow-xl ring-2 ring-blue-300/10 dark:ring-blue-800/20 p-0 md:p-2 transition border border-gray-200 dark:border-gray-700">
             <ElementDetails
               element={element}
