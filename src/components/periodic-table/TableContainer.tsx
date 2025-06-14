@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, memo, useState } from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
 import { useLanguage } from '../../context/LanguageContext';
@@ -97,9 +96,18 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
         {/* Keyboard shortcuts hint */}
         <div className="mt-6 p-2 text-xs text-gray-500 dark:text-gray-400 text-center">
           <div className="flex flex-wrap justify-center gap-4">
-            <span><kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">Ctrl+K</kbd> Поиск</span>
-            <span><kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">H</kbd> На главную</span>
-            <span><kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">Esc</kbd> Закрыть</span>
+            <span>
+              <kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">Ctrl+K</kbd>
+              {" "}{t.ui?.hotkeySearch || "Search"}
+            </span>
+            <span>
+              <kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">H</kbd>
+              {" "}{t.ui?.hotkeyHome || "Home"}
+            </span>
+            <span>
+              <kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">Esc</kbd>
+              {" "}{t.ui?.hotkeyClose || "Close"}
+            </span>
           </div>
         </div>
       </div>

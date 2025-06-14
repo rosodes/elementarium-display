@@ -35,4 +35,7 @@ export interface UITranslations {
   linkCopiedToClipboard?: string;
   naturalElements?: string;
   syntheticElements?: string;
+  hotkeySearch?: string;
+  hotkeyHome?: string;
+  hotkeyClose?: string;
 }

@@ -73,7 +73,10 @@ export const uiEn: UITranslations = {
   linkCopiedToClipboard: "Link has been copied to clipboard",
   // --- NEW KEYS ---
   naturalElements: "Natural",
-  syntheticElements: "Synthetic"
+  syntheticElements: "Synthetic",
+  hotkeySearch: "Search",
+  hotkeyHome: "Home",
+  hotkeyClose: "Close"
 };
 
 export const uiRu: UITranslations = {
@@ -111,6 +114,8 @@ export const uiRu: UITranslations = {
   linkCopiedToClipboard: "Ссылка скопирована в буфер обмена",
   // --- NEW KEYS ---
   naturalElements: "Природных",
-  syntheticElements: "Синтетических"
+  syntheticElements: "Синтетических",
+  hotkeySearch: "Поиск",
+  hotkeyHome: "На главную",
+  hotkeyClose: "Закрыть"
 };
-

@@ -35,5 +35,8 @@ export const uiUk: UITranslations = {
   linkCopiedToClipboard: "Посилання скопійовано до буфера обміну",
   // --- NEW KEYS ---
   naturalElements: "Природні",
-  syntheticElements: "Синтетичні"
+  syntheticElements: "Синтетичні",
+  hotkeySearch: "Пошук",
+  hotkeyHome: "На головну",
+  hotkeyClose: "Закрити"
 };
