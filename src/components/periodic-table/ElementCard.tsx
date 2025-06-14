@@ -36,7 +36,7 @@ const ElementCard = ({ element, onClick, className = '' }: ElementCardProps) => 
       <div className="element-atomic">{element.atomic}</div>
       <div className="element-symbol">{element.symbol}</div>
       <div className="element-name">{element.name}</div>
-      <div className="element-mass">{element.atomic_mass}</div>
+      <div className="element-mass">{element.weight}</div>
     </div>
   );
 };
