@@ -137,10 +137,14 @@ const Index = () => {
           </Suspense>
         </main>
         <div className="w-full flex flex-col md:flex-row justify-between items-start gap-6 px-4 pb-4">
-          {/* Левая часть: произвольный текст */}
+          {/* Левая часть: текст о таблице Менделеева */}
           <div className="flex-1">
+            <header>
+              <h2 className="text-lg font-bold mb-1">Таблица Менделеева – основы химии</h2>
+              <h3 className="text-base font-semibold mb-2">Почему <span className="font-bold italic underline">Периодическая система</span> важна?</h3>
+            </header>
             <p className="text-sm text-left text-gray-800 dark:text-gray-200">
-              Сравните цены на новейшие смартфоны Apple iPhone 15 и выберите лучшую для себя!
+              <span className="font-bold italic underline">Периодическая таблица</span> элементов, созданная Дмитрием Менделеевым, ― это <span className="font-bold italic underline">фундамент</span> современной химии. Она помогает понять <span className="font-bold italic underline">свойства элементов</span>, их <span className="font-bold italic underline">структуру</span> и <span className="font-bold italic underline">взаимодействие</span> между ними. Благодаря&nbsp;ней ученые предсказали существование новых элементов и объяснили закономерности природы. Сегодня <span className="font-bold italic underline">Периодическая таблица</span> используется по всему миру — в науке, образовании и промышленности.
             </p>
           </div>
           {/* Правая часть: таблица цен */}
