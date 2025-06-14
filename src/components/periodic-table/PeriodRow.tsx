@@ -11,8 +11,8 @@ const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   const { t } = useLanguage();
 
   return (
-    <div className="f-block-row">
-      <div className={`period-row-label period-${periodLabel}-label`}>
+    <div className="period-row">
+      <div className="period-row-label">
         {periodLabel}
       </div>
       {elements}

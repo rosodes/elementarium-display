@@ -22,17 +22,17 @@
   align-items: center;
 }
 
-/* Individual f-block rows */
-.f-block-row {
+/* Period row styling for f-block */
+.period-row {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem;
+  width: 100%;
   justify-content: center;
-  flex-wrap: nowrap;
 }
 
 /* Period labels for f-block */
-.f-block-row > div:first-child {
+.period-row-label {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,22 +42,24 @@
   color: #374151;
   min-height: 70px;
   min-width: 40px;
-  margin-right: 8px;
-  flex-shrink: 0;
+  margin-right: 0.5rem;
 }
 
-.dark .f-block-row > div:first-child {
+.dark .period-row-label {
   color: #ffffff;
 }
 
-/* Ensure f-block elements display horizontally */
-.f-block-row .element-card {
+/* Ensure element cards in f-block maintain proper sizing */
+.f-block-container .element-card {
   width: 60px !important;
   height: 70px !important;
   margin: 0 !important;
   flex-shrink: 0;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
+}
+
+/* Override any grid positioning for f-block elements */
+.lanthanide-actinide-section .element-card {
+  position: static !important;
+  grid-column: unset !important;
+  grid-row: unset !important;
 }
