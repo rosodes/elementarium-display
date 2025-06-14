@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -137,6 +136,54 @@ const Index = () => {
             />
           </Suspense>
         </main>
+        <div className="w-full flex flex-col md:flex-row justify-between items-start gap-6 px-4 pb-4">
+          {/* Левая часть: произвольный текст */}
+          <div className="flex-1">
+            <p className="text-sm text-left text-gray-800 dark:text-gray-200">
+              Сравните цены на новейшие смартфоны Apple iPhone 15 и выберите лучшую для себя!
+            </p>
+          </div>
+          {/* Правая часть: таблица цен */}
+          <div className="flex-1 max-w-full">
+            <section>
+              <div className="pb-2 flex items-center">
+                <h2 className="text-base font-semibold">Цены на Смартфоны Apple iPhone 15</h2>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="min-w-[340px] w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm text-sm">
+                  <thead>
+                    <tr className="bg-gray-50 dark:bg-gray-800">
+                      <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">Смартфоны Apple iPhone 15</td>
+                      <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">Цена</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Green (MTP53)</td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Black (MTP03)</td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Pink (MTP13)</td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                    </tr>
+                    <tr>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">Apple iPhone 15 128GB Yellow (MTP23)</td>
+                      <td className="p-2 border-b border-gray-100 dark:border-gray-700">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                    </tr>
+                    <tr>
+                      <td className="p-2">Apple iPhone 15 128GB Blue (MTP43)</td>
+                      <td className="p-2">33&nbsp;999 <span className="text-xs text-gray-600 dark:text-gray-300">грн</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </div>
         <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center">
           <p>{t.footer.dataNote}</p>
           <p>{t.footer.credits}</p>
@@ -148,4 +195,3 @@ const Index = () => {
 };
 
 export default Index;
-
