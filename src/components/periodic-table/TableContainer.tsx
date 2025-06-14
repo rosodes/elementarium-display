@@ -1,18 +1,9 @@
 
 import React, { useEffect, useRef, memo } from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
-import GroupNumbers from './GroupNumbers';
 import { useLanguage } from '../../context/LanguageContext';
-import {
-  renderPeriod1,
-  renderPeriod2,
-  renderPeriod3,
-  renderPeriod4,
-  renderPeriod5,
-  renderPeriod6,
-  renderPeriod7,
-} from './tableHelpers';
-import { renderLanthanides, renderActinides } from './fBlockRows';
+import TableGrid from './TableGrid';
+import FBlockSection from './FBlockSection';
 
 interface TableContainerProps {
   onElementClick: (element: ElementType) => void;
@@ -58,17 +49,6 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
     };
   }, []);
 
-  // Memoize rendering functions for better performance
-  const memoizedPeriod1 = React.useMemo(() => renderPeriod1(onElementClick), [onElementClick]);
-  const memoizedPeriod2 = React.useMemo(() => renderPeriod2(onElementClick), [onElementClick]);
-  const memoizedPeriod3 = React.useMemo(() => renderPeriod3(onElementClick), [onElementClick]);
-  const memoizedPeriod4 = React.useMemo(() => renderPeriod4(onElementClick), [onElementClick]);
-  const memoizedPeriod5 = React.useMemo(() => renderPeriod5(onElementClick), [onElementClick]);
-  const memoizedPeriod6 = React.useMemo(() => renderPeriod6(onElementClick), [onElementClick]);
-  const memoizedPeriod7 = React.useMemo(() => renderPeriod7(onElementClick), [onElementClick]);
-  const memoizedLanthanides = React.useMemo(() => renderLanthanides(onElementClick, true), [onElementClick]);
-  const memoizedActinides = React.useMemo(() => renderActinides(onElementClick, true), [onElementClick]);
-
   return (
     <div 
       className="periodic-table-wrapper relative overflow-hidden w-full pl-2"
@@ -77,28 +57,12 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
       ref={tableRef}
       aria-label={t.elementDetails.elementTable}
     >
-      <div className="periodic-table mx-auto">
-        <GroupNumbers />
-        {memoizedPeriod1}
-        {memoizedPeriod2}
-        {memoizedPeriod3}
-        {memoizedPeriod4}
-        {memoizedPeriod5}
-        {memoizedPeriod6}
-        {memoizedPeriod7}
-      </div>
-      
-      <div className="lanthanide-actinide-section mt-6">
-        <div className="f-block-container flex flex-col gap-0">
-          {memoizedLanthanides}
-          {memoizedActinides}
-        </div>
-      </div>
+      <TableGrid onElementClick={onElementClick} />
+      <FBlockSection onElementClick={onElementClick} />
     </div>
   );
 });
 
-// Add display name for better debugging
 TableContainer.displayName = 'TableContainer';
 
 export default TableContainer;

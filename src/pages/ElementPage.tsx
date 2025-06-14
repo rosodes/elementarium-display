@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { elements } from '../data/elements';
 import { Element as ElementType } from '../data/elementTypes';
-import { Helmet } from 'react-helmet-async';
 import ElementDetails from '../components/ElementDetails';
+import ElementNavigation from '../components/element-details/ElementNavigation';
+import ElementPageHead from '../components/element-details/ElementPageHead';
 import { useLanguage } from '../context/LanguageContext';
-import { Button } from '@/components/ui/button';
-import { ArrowLeft, ArrowRight, Home, Share, Star } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/components/ui/use-toast';
 
@@ -41,15 +40,30 @@ const ElementPage = () => {
           console.error('Error checking bookmark status:', e);
         }
       } else {
-        // Redirect to 404 if element not found
         navigate(lang ? `/${lang}/404` : '/404', { replace: true });
       }
     }
   }, [elementId, navigate, lang]);
   
-  // Handle bookmark toggle
-  const toggleBookmark = () => {
-    if (!elementId) return;
+  // Navigation handlers
+  const handleHome = () => navigate(lang ? `/${lang}` : '/');
+  
+  const handlePrevious = () => {
+    if (element) {
+      const prevElementId = parseInt(element.atomic) - 1;
+      navigate(lang ? `/${lang}/element/${prevElementId}` : `/element/${prevElementId}`);
+    }
+  };
+  
+  const handleNext = () => {
+    if (element) {
+      const nextElementId = parseInt(element.atomic) + 1;
+      navigate(lang ? `/${lang}/element/${nextElementId}` : `/element/${nextElementId}`);
+    }
+  };
+  
+  const handleToggleBookmark = () => {
+    if (!elementId || !element) return;
     
     try {
       const bookmarks = JSON.parse(localStorage.getItem('bookmarkedElements') || '[]');
@@ -59,14 +73,14 @@ const ElementPage = () => {
         newBookmarks = bookmarks.filter((id: string) => id !== elementId);
         toast({
           title: t.ui?.elementRemoved || "Element removed from bookmarks",
-          description: `${element?.name} (${element?.symbol}) has been removed from your bookmarks`,
+          description: `${element.name} (${element.symbol}) has been removed from your bookmarks`,
           duration: 3000,
         });
       } else {
         newBookmarks = [...bookmarks, elementId];
         toast({
           title: t.ui?.elementBookmarked || "Element bookmarked",
-          description: `${element?.name} (${element?.symbol}) has been added to your bookmarks`,
+          description: `${element.name} (${element.symbol}) has been added to your bookmarks`,
           duration: 3000,
         });
       }
@@ -78,8 +92,7 @@ const ElementPage = () => {
     }
   };
   
-  // Handle share element
-  const shareElement = () => {
+  const handleShare = () => {
     if (!element) return;
     
     const shareData = {
@@ -92,7 +105,6 @@ const ElementPage = () => {
       navigator.share(shareData)
         .catch((error) => console.log('Error sharing:', error));
     } else {
-      // Fallback if Web Share API is not available
       navigator.clipboard.writeText(window.location.href).then(() => {
         toast({
           title: t.ui?.linkCopied || "Link copied",
@@ -104,160 +116,45 @@ const ElementPage = () => {
   };
   
   if (!element) {
-    return <div className="flex justify-center items-center h-screen">
-      <div className="animate-pulse">
-        <p>{t.ui?.loading || 'Loading...'}</p>
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-pulse">
+          <p>{t.ui?.loading || 'Loading...'}</p>
+        </div>
       </div>
-    </div>;
+    );
   }
   
-  // Create canonical URL with proper language prefix
-  const canonicalUrl = `${window.location.origin}${lang ? `/${lang}` : ''}/element/${element.atomic}`;
-  
-  // Navigation to previous and next elements
-  const handleNavigateElement = (direction: 'prev' | 'next') => {
-    const currentAtomicNumber = parseInt(element.atomic);
-    
-    // Convert to number for comparison
-    if (direction === 'prev' && currentAtomicNumber > 1) {
-      const prevElementId = currentAtomicNumber - 1;
-      navigate(lang ? `/${lang}/element/${prevElementId}` : `/element/${prevElementId}`);
-    } else if (direction === 'next' && currentAtomicNumber < elements.length) {
-      const nextElementId = currentAtomicNumber + 1;
-      navigate(lang ? `/${lang}/element/${nextElementId}` : `/element/${nextElementId}`);
-    }
-  };
-  
-  // Create a safer description with fallback for missing properties
-  const elementDescription = `${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails?.notAvailable || 'Information not available'}`;
+  const canGoPrevious = parseInt(element.atomic) > 1;
+  const canGoNext = parseInt(element.atomic) < elements.filter(Boolean).length;
   
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
-      {/* Add SEO metadata using Helmet */}
-      <Helmet>
-        <title>{element ? `${element.name} (${element.symbol}) - ${t.title}` : t.loading}</title>
-        <meta name="description" content={element ? `${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails?.notAvailable || 'Information not available'}` : ''} />
-        {element && (
-          <>
-            <meta property="og:title" content={`${element.name} (${element.symbol}) - ${t.title}`} />
-            <meta property="og:description" content={`${element.name} (${element.symbol}): ${element.category} - ${element.summary || t.elementDetails?.notAvailable || 'Information not available'}`} />
-            <meta property="og:type" content="website" />
-            <link rel="canonical" href={element ? `${window.location.origin}${lang ? `/${lang}` : ''}/element/${element.atomic}` : ''} />
-            <script type="application/ld+json">
-              {JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "ChemicalSubstance",
-                "name": element.name,
-                "alternateName": element.symbol,
-                "description": element.summary || t.elementDetails?.notAvailable || 'Information not available',
-                "url": `${window.location.origin}${lang ? `/${lang}` : ''}/element/${element.atomic}`,
-                "molecularFormula": element.symbol,
-                "atomicNumber": element.atomic
-              })}
-            </script>
-          </>
-        )}
-      </Helmet>
+      <ElementPageHead element={element} lang={lang} />
       
-      {/* Navigation bar with actions */}
-      <div className="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-200 dark:border-gray-800">
-        <div className="container mx-auto py-3 px-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Button 
-                variant="ghost"
-                size="sm"
-                onClick={() => navigate(lang ? `/${lang}` : '/')}
-                aria-label={t.elementDetails?.backToTable || "Back to Periodic Table"}
-              >
-                <Home className="mr-2 h-4 w-4" />
-                <span className="hidden sm:inline">{t.elementDetails?.backToTable || "Back to Table"}</span>
-              </Button>
-              
-              <span className="text-gray-500 dark:text-gray-400 hidden sm:inline">|</span>
-              
-              <div className="font-medium text-sm">
-                {element ? `${element.name} (${element.symbol})` : t.ui?.loading || 'Loading...'}
-              </div>
-            </div>
-            
-            <div className="flex space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={toggleBookmark}
-                aria-label={isBookmarked ? "Remove from favorites" : "Add to favorites"}
-                disabled={!element}
-              >
-                <Star className={`h-4 w-4 ${isBookmarked ? 'fill-yellow-400 text-yellow-400' : ''}`} />
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={shareElement}
-                aria-label="Share"
-                disabled={!element}
-              >
-                <Share className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <ElementNavigation
+        element={element}
+        isBookmarked={isBookmarked}
+        onHome={handleHome}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        onToggleBookmark={handleToggleBookmark}
+        onShare={handleShare}
+        canGoPrevious={canGoPrevious}
+        canGoNext={canGoNext}
+      />
       
-      {/* Element details component with navigation */}
       <div className="container mx-auto py-6 px-4">
-        {element ? (
-          <>
-            <div className="flex items-center mb-4 justify-between">
-              <Button 
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  const prevElement = elements.find(e => e && e.atomic === String(parseInt(element.atomic) - 1));
-                  if (prevElement) navigate(lang ? `/${lang}/element/${prevElement.atomic}` : `/element/${prevElement.atomic}`);
-                }}
-                disabled={parseInt(element.atomic) <= 1}
-                aria-label={t.elementDetails?.previousElement || "Previous element"}
-              >
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                {t.elementDetails?.previous || "Previous"}
-              </Button>
-              
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  const nextElement = elements.find(e => e && e.atomic === String(parseInt(element.atomic) + 1));
-                  if (nextElement) navigate(lang ? `/${lang}/element/${nextElement.atomic}` : `/element/${nextElement.atomic}`);
-                }}
-                disabled={parseInt(element.atomic) >= elements.filter(Boolean).length}
-                aria-label={t.elementDetails?.nextElement || "Next element"}
-              >
-                {t.elementDetails?.next || "Next"}
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
-            
-            <Separator className="my-4" />
-            
-            <ElementDetails 
-              element={element} 
-              onClose={() => navigate(lang ? `/${lang}` : '/')}
-              onNavigate={(newElement) => {
-                navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
-              }}
-              isFullPage={true}
-            />
-          </>
-        ) : (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-pulse">
-              <p>{t.ui?.loading || 'Loading...'}</p>
-            </div>
-          </div>
-        )}
+        <Separator className="my-4" />
+        
+        <ElementDetails 
+          element={element} 
+          onClose={handleHome}
+          onNavigate={(newElement) => {
+            navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
+          }}
+          isFullPage={true}
+        />
       </div>
     </div>
   );
