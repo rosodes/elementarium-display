@@ -1,3 +1,4 @@
+
 export interface ElementRadius {
   readonly calculated?: string;
   readonly empirical?: string;
@@ -98,6 +99,9 @@ export interface Element {
   readonly electrons: readonly number[];
   readonly quantum: ElementQuantum;
   readonly isotopes: number;
+
+  // Новое свойство: радиоактивность
+  readonly radioactive?: boolean;
   
   // For compatibility with existing components - make optional and readonly
   readonly number?: number;
