@@ -3,7 +3,6 @@ import { Element as ElementType } from '../../data/elementTypes';
 import { useLanguage } from '../../context/LanguageContext';
 import TableGrid from './TableGrid';
 import FBlockSection from './FBlockSection';
-import QuickStats from './QuickStats';
 import KeyboardShortcuts from './KeyboardShortcuts';
 import LoadingIndicator from '../ui/loading-indicator';
 
@@ -76,7 +75,6 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
         aria-label={t.elementDetails.elementTable}
       >
         <div className="flex flex-col items-center w-full space-y-6">
-          <QuickStats />
           <div className="w-full flex flex-col items-center justify-center overflow-x-auto">
             <div className="flex flex-col items-center gap-6 min-w-fit">
               <div className="w-full flex justify-center">
