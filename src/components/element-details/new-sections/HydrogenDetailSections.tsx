@@ -1,4 +1,3 @@
-
 import React from "react";
 import HydrogenPhysicalConstantsSection from "./HydrogenPhysicalConstantsSection";
 import HydrogenOxStatesSection from "./HydrogenOxStatesSection";
@@ -16,10 +15,14 @@ import HydrogenComparisonsSection from "./HydrogenComparisonsSection";
 import HydrogenSpectralSeriesSection from "./HydrogenSpectralSeriesSection";
 import HydrogenEnergySection from "./HydrogenEnergySection";
 import HydrogenSafetySection from "./HydrogenSafetySection";
+import Hydrogen3DVisualization from "./Hydrogen3DVisualization";
 
 const HydrogenDetailSections: React.FC = () => {
   return (
     <>
+      {/* 3D molecule visualization at the top */}
+      <Hydrogen3DVisualization />
+      {/* остальные расширенные и визуальные секции */}
       <HydrogenPhysicalConstantsSection />
       <HydrogenOxStatesSection />
       <HydrogenReactivitySection />
@@ -41,4 +44,3 @@ const HydrogenDetailSections: React.FC = () => {
 };
 
 export default HydrogenDetailSections;
-
