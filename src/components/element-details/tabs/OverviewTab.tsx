@@ -1,7 +1,7 @@
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Info, Thermometer, Box, Award, Atom, Hash, Zap, Layers, BookOpen, Sparkles } from 'lucide-react';
+import { Info, Thermometer, Box, Award, Atom, Hash, Zap, Layers, BookOpen, Sparkles, Book } from 'lucide-react';
 import BasicInfo from '../BasicInfo';
 import PhysicalProperties from '../PhysicalProperties';
 import AdditionalInfo from '../AdditionalInfo';
@@ -14,9 +14,8 @@ interface OverviewTabProps {
 const OverviewTab = ({ element }: OverviewTabProps) => {
   const { t } = useLanguage();
 
-  // Карточки с базовыми свойствами элемента для максимального наполнения
+  // Карточки с расширенным набором базовой информации
   const renderElementFacts = () => {
-    // Радиоактивный ли элемент и есть ли информация
     const radioactive =
       typeof element.radioactive !== "undefined"
         ? element.radioactive
@@ -24,26 +23,26 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
           ? ["actinide", "radioactive"].includes(element.category)
           : false;
 
-    // summary или короткое описание элемента, если есть
     const shortDesc =
       element.summary && typeof element.summary === "string"
         ? element.summary
         : undefined;
 
-    // Электронные оболочки строкой
     const electronShellsDisplay =
       Array.isArray(element.electrons) && element.electrons.length
         ? element.electrons.join(", ")
         : null;
 
-    // Температуры в K
     const melt = element.melt ? `${element.melt} K` : t.elementDetails.notAvailable;
     const boil = element.boil ? `${element.boil} K` : t.elementDetails.notAvailable;
 
-    // Изотопы/кол-во, если есть
     const isotopes = element.isotopes
       ? `${element.isotopes}`
       : t.elementDetails.notAvailable;
+
+    const category = element.category ? element.category : t.elementDetails.notAvailable;
+    const density = element?.density?.stp ? `${element.density.stp} g/cm³` : t.elementDetails.notAvailable;
+    const conductivity = element?.conductivity?.thermal ? `${element.conductivity.thermal} W/(m·K)` : t.elementDetails.notAvailable;
 
     return (
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
@@ -54,6 +53,7 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
           </CardHeader>
           <CardContent>
             <p className="text-xs text-center text-gray-600 dark:text-gray-300">{element.series}</p>
+            <p className="text-xs text-center mt-2">{t.categories?.[category.toLowerCase()] || category}</p>
           </CardContent>
         </Card>
         <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
@@ -66,6 +66,9 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
               {electronShellsDisplay
                 ? `${t.elementDetails.shells || 'Shells'}: ${electronShellsDisplay}`
                 : t.elementDetails.notAvailable}
+            </p>
+            <p className="text-xs text-center mt-2">
+              {t.elementDetails.electronConfig}: {element.electronstring || t.elementDetails.notAvailable}
             </p>
           </CardContent>
         </Card>
@@ -125,6 +128,20 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
           <CardContent>
             <p className="text-xs text-center text-gray-600 dark:text-gray-300">
               {isotopes}
+            </p>
+          </CardContent>
+        </Card>
+        <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
+          <CardHeader className="pb-2 pt-4 flex flex-col items-center">
+            <Book className="h-5 w-5 mb-1" />
+            <CardTitle className="text-sm font-medium text-center">{t.elementDetails.density || 'Density'}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-xs text-center text-gray-600 dark:text-gray-300">
+              {density}
+            </p>
+            <p className="text-xs text-center mt-2">
+              {t.elementDetails.conductivity || 'Conductivity'}: {conductivity}
             </p>
           </CardContent>
         </Card>
@@ -215,7 +232,7 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         </Card>
       </div>
 
-      {/* ↪ Новые подробные карточки с дополнительной информацией */}
+      {/* Новые подробные карточки с дополнительной информацией */}
       {renderElementFacts()}
 
       <div className="mt-4">
@@ -229,7 +246,7 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         </Card>
       </div>
       
-      {/* Блок "Applications" остается внизу */}
+      {/* Applications внизу */}
       {renderApplications()}
     </>
   );

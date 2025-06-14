@@ -5,9 +5,8 @@ import { Separator } from '@/components/ui/separator';
 import { useLanguage } from '../../../context/LanguageContext';
 import { Badge } from '@/components/ui/badge';
 
-// Import refactored components
+// Импортируем дополнительные секции
 import UsageDistributionChart from '../visualizations/UsageDistributionChart';
-import HistoricalUsageChart from '../visualizations/HistoricalUsageChart';
 import ElementTimeline from '../visualizations/ElementTimeline';
 import IndustrialUses from '../applications/IndustrialUses';
 import EverydayUses from '../applications/EverydayUses';
@@ -21,18 +20,24 @@ interface ApplicationsTabProps {
 
 const ApplicationsTab = ({ element, categoryColor }: ApplicationsTabProps) => {
   const { t } = useLanguage();
-  
+
+  // Можно дополнительно раскрыть области применения, добавить инфографику, факты
   return (
     <div className="space-y-6 max-w-full">
-      {/* Key Applications Section */}
       <UsageSection element={element} categoryColor={categoryColor} />
-      
       <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
-      
-      {/* Discovery Timeline Section */}
+      <IndustrialUses element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <EverydayUses element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <UsageDistributionChart element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <ElementTimeline element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
       <DiscoverySection element={element} />
     </div>
   );
 };
 
 export default ApplicationsTab;
+
