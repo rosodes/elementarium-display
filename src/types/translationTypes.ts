@@ -184,6 +184,14 @@ export interface ElementDetailsTranslations {
   readonly industrialUses?: string;
   readonly everydayUses?: string;
   readonly funFacts?: string;
+  toxicityInfo?: string;
+  bioRole?: string;
+  precautions?: string;
+  noToxicityInfo?: string;
+  ecologyInfo?: string;
+  ecologicalImpact?: string;
+  reactivity?: string;
+  noEcologyInfo?: string;
   // Required translation properties
   notAvailable: string;
   backToTable: string;

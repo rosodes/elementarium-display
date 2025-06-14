@@ -86,4 +86,8 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   bioRole: "Biological role",
   precautions: "Precautions",
   noToxicityInfo: "No significant toxicity or precaution information.",
+  ecologyInfo: "Ecology & Reactivity",
+  ecologicalImpact: "Ecological impact",
+  reactivity: "Reactivity",
+  noEcologyInfo: "No significant ecological or reactivity information yet.",
 };

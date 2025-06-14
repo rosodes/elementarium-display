@@ -81,6 +81,11 @@ export interface ElementDetailsTranslations {
   bioRole?: string;
   precautions?: string;
   noToxicityInfo?: string;
+  // --- Eco/Reaction keys ---
+  ecologyInfo?: string;
+  ecologicalImpact?: string;
+  reactivity?: string;
+  noEcologyInfo?: string;
   // Required translation properties
   notAvailable: string;
   backToTable: string;
