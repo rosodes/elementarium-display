@@ -3,7 +3,6 @@ import React, { memo } from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
 import GroupNumbers from './GroupNumbers';
 import TablePeriods from './TablePeriods';
-import FBlockSection from './FBlockSection';
 
 interface TableGridProps {
   onElementClick: (element: ElementType) => void;
@@ -11,7 +10,7 @@ interface TableGridProps {
 
 const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   return (
-    <div className="periodic-table mx-auto">
+    <div className="periodic-table">
       <GroupNumbers />
       <TablePeriods onElementClick={onElementClick} />
     </div>

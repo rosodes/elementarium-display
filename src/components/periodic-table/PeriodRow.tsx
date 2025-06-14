@@ -10,30 +10,14 @@ interface PeriodRowProps {
 const PeriodRow = ({ periodLabel, elements }: PeriodRowProps) => {
   const { t } = useLanguage();
 
-  // Формируем правильные CSS классы для периода
-  let rowClass = `period-row period-${periodLabel}`;
-  if (periodLabel === '6*') rowClass += ' lanthanides-row';
-  if (periodLabel === '7*') rowClass += ' actinides-row';
+  // Use display: contents to make period row transparent to CSS Grid
+  const rowClass = `period-row period-${periodLabel}`;
 
   return (
-    <div className={rowClass}>
-      <div
-        className="period-row-label"
-        role="row"
-        aria-label={`${t.ui?.period || "Period"} ${periodLabel}`}
-        style={{
-          gridColumn: 1,
-          display: 'flex',
-          alignItems: 'center',
-          color: '#96a0ae',
-          minHeight: 60,
-          fontWeight: 500,
-          fontSize: '1.05rem'
-        }}
-      >
+    <div className={rowClass} style={{ display: 'contents' }}>
+      <div className="period-row-label">
         {periodLabel}
       </div>
-      {/* Все элементы идут следом без дополнительной обёртки */}
       {elements}
     </div>
   );
