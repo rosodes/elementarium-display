@@ -11,8 +11,7 @@ export function createOptimizationConfig(mode: string) {
         '@radix-ui/react-tooltip'
       ],
       esbuildOptions: {
-        target: 'es2020',
-        treeShaking: true,
+        target: 'es2020' as const,
         define: {
           'global': 'globalThis'
         }
@@ -26,9 +25,8 @@ export function createOptimizationConfig(mode: string) {
     },
     
     esbuild: {
-      target: 'es2020',
-      treeShaking: true,
-      legalComments: 'none'
+      target: 'es2020' as const,
+      legalComments: 'none' as const
     }
   };
 }
