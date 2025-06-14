@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { elements } from '../data/elements';
 import { Element as ElementType } from '../data/elementTypes';
@@ -7,8 +7,8 @@ import ElementDetails from '../components/ElementDetails';
 import ElementNavigation from '../components/element-details/ElementNavigation';
 import ElementPageHead from '../components/element-details/ElementPageHead';
 import { useLanguage } from '../context/LanguageContext';
-import { Separator } from '@/components/ui/separator';
 import { useToast } from '@/components/ui/use-toast';
+import ElementPageFooter from '../components/element-details/ElementPageFooter';
 
 const ElementPage = () => {
   const { elementId, lang } = useParams<{ elementId: string, lang?: string }>();
@@ -17,6 +17,12 @@ const ElementPage = () => {
   const navigate = useNavigate();
   const { t, language, setLanguage } = useLanguage();
   const { toast } = useToast();
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  // Skip link focus method
+  const handleSkipToContent = () => {
+    mainRef.current?.focus();
+  };
 
   // Set language based on URL parameter
   useEffect(() => {
@@ -102,8 +108,7 @@ const ElementPage = () => {
     };
 
     if (navigator.share && navigator.canShare(shareData)) {
-      navigator.share(shareData)
-        .catch((error) => console.log('Error sharing:', error));
+      navigator.share(shareData).catch((error) => console.log('Error sharing:', error));
     } else {
       navigator.clipboard.writeText(window.location.href).then(() => {
         toast({
@@ -129,76 +134,73 @@ const ElementPage = () => {
   const canGoNext = parseInt(element.atomic) < elements.filter(Boolean).length;
 
   return (
-    <div
-      className="min-h-screen w-full bg-white dark:bg-gray-900 transition-colors duration-200"
-      role="main"
-      aria-labelledby={`element-title-${element.atomic}`}
-      tabIndex={-1}
-      id="element-fullpage"
-    >
-      <ElementPageHead element={element} lang={lang} />
-
-      {/* Навигация по элементу */}
-      <nav
-        aria-label={t.elementDetails?.element || "Element Navigation"}
-        role="navigation"
-        className="w-full"
-      >
-        <ElementNavigation
-          element={element}
-          isBookmarked={isBookmarked}
-          onHome={handleHome}
-          onPrevious={handlePrevious}
-          onNext={handleNext}
-          onToggleBookmark={handleToggleBookmark}
-          onShare={handleShare}
-          canGoPrevious={canGoPrevious}
-          canGoNext={canGoNext}
-        />
-      </nav>
-
-      {/* Content full width, semantically sectioned */}
-      <section
-        aria-labelledby={`element-details-title-${element.atomic}`}
-        className="w-full py-8 animate-fade-in"
+    <>
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#element-main-content"
+        className="sr-only focus:not-sr-only absolute top-0 left-0 bg-blue-700 text-white px-4 py-2 z-50 rounded-b-lg transition"
         tabIndex={0}
+        onClick={handleSkipToContent}
       >
-        <h1
-          id={`element-details-title-${element.atomic}`}
-          className="sr-only"
+        {t.ui?.skipToContent || "Skip to main content"}
+      </a>
+
+      <div
+        ref={mainRef}
+        id="element-main-content"
+        tabIndex={-1}
+        className="min-h-screen w-full bg-gradient-to-br from-white via-blue-50 to-gray-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-800 transition-colors duration-200 animate-fade-in focus:outline-none"
+        role="main"
+        aria-labelledby={`element-title-${element.atomic}`}
+        aria-describedby={`element-details-title-${element.atomic}`}
+      >
+        <ElementPageHead element={element} lang={lang} />
+
+        <nav
+          aria-label={t.elementDetails?.element || "Element Navigation"}
+          role="navigation"
+          className="w-full"
         >
-          {element.name} ({element.symbol}) {t.elementDetails?.element}
-        </h1>
-        <div className="w-full max-w-none mx-0">
-          {/* Вставляем ElementDetails, который уже покрывает большую часть информации и хорошо структурирован */}
-          <ElementDetails
+          <ElementNavigation
             element={element}
-            onClose={handleHome}
-            onNavigate={(newElement) => {
-              navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
-            }}
-            isFullPage={true}
+            isBookmarked={isBookmarked}
+            onHome={handleHome}
+            onPrevious={handlePrevious}
+            onNext={handleNext}
+            onToggleBookmark={handleToggleBookmark}
+            onShare={handleShare}
+            canGoPrevious={canGoPrevious}
+            canGoNext={canGoNext}
           />
-        </div>
-      </section>
-      <footer
-        className="w-full py-4 px-6 text-xs text-gray-500 dark:text-gray-400 bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
-        aria-label={t.footer?.credits}
-      >
-        <Separator />
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-          <span>
-            {t.footer.dataNote}
-          </span>
-          <span>
-            {t.footer.credits}
-          </span>
-          <span className="mt-1">
-            {t.footer.version} • {t.footer.license}
-          </span>
-        </div>
-      </footer>
-    </div>
+        </nav>
+
+        {/* Макисмально читаемый и аккуратный блок с деталями элемента */}
+        <section
+          aria-labelledby={`element-details-title-${element.atomic}`}
+          className="w-full max-w-7xl mx-auto py-8 px-4 md:px-12 xl:px-36 animate-fade-in"
+          tabIndex={0}
+        >
+          <h1
+            id={`element-details-title-${element.atomic}`}
+            className="sr-only"
+          >
+            {element.name} ({element.symbol}) {t.elementDetails?.element}
+          </h1>
+          <div className="relative w-full max-w-none mx-0 rounded-2xl bg-white/90 dark:bg-gray-900/85 shadow-xl ring-2 ring-blue-300/10 dark:ring-blue-800/15 p-0 md:p-2 transition">
+            <ElementDetails
+              element={element}
+              onClose={handleHome}
+              onNavigate={(newElement) => {
+                navigate(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
+              }}
+              isFullPage={true}
+            />
+          </div>
+        </section>
+
+        <ElementPageFooter />
+      </div>
+    </>
   );
 };
 
