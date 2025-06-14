@@ -77,19 +77,20 @@ const TableContainer = memo(({ onElementClick, selectedElement }: TableContainer
         ref={tableRef}
         aria-label={t.elementDetails.elementTable}
       >
-        <div className="flex flex-col items-center w-full">
+        <div className="flex flex-col items-center w-full space-y-6">
           <QuickStats />
           <TableLegend />
           
-          <div className="w-full flex justify-center">
-            <TableGrid onElementClick={onElementClick} />
+          <div className="w-full flex justify-center items-center">
+            <div className="flex flex-col items-center gap-6">
+              <TableGrid onElementClick={onElementClick} />
+              <FBlockSection onElementClick={onElementClick} />
+            </div>
           </div>
-          
-          <FBlockSection onElementClick={onElementClick} />
         </div>
         
         {/* Keyboard shortcuts hint */}
-        <div className="mt-4 p-2 text-xs text-gray-500 dark:text-gray-400 text-center">
+        <div className="mt-6 p-2 text-xs text-gray-500 dark:text-gray-400 text-center">
           <div className="flex flex-wrap justify-center gap-4">
             <span><kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">Ctrl+K</kbd> Поиск</span>
             <span><kbd className="px-1 py-0.5 bg-gray-200 dark:bg-gray-700 rounded">H</kbd> На главную</span>
