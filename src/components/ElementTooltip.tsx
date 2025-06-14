@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { useLanguage } from '../context/LanguageContext';
@@ -91,9 +92,12 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
         </div>
 
         {element.electronstring && (
-          <div className="flex flex-col sm:flex-row sm:justify-between">
+          <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">
             <span className="opacity-80">{t.elementDetails?.electronConfig || 'Электронная конфигурация'}:</span>
-            <span className="font-mono text-xs sm:text-sm break-words whitespace-normal text-right sm:text-left">
+            <span
+              className="font-mono text-xs sm:text-sm break-words whitespace-normal text-right sm:text-left w-full sm:w-auto"
+              style={{ wordBreak: 'break-word' }}
+            >
               {element.electronstring}
             </span>
           </div>

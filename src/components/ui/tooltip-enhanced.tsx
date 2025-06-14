@@ -1,4 +1,3 @@
-
 import React from 'react';
 import {
   Tooltip,
@@ -50,16 +49,16 @@ const EnhancedTooltip = ({
           side={side}
           sideOffset={8}
           avoidCollisions={avoidCollisions}
-          // Сделаем компактнее: ужимаем max-width и padding
+          // Аккуратный компактный тултип: максимальная ширина 320px
           className={`
-            max-w-xs w-full min-w-0
+            max-w-[320px] w-full min-w-0
             p-2
             max-h-[65vh] overflow-auto
             bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-200 dark:border-gray-600 shadow-xl rounded-lg z-[100]
           `}
           style={{
             wordBreak: 'break-word',
-            maxWidth: '95vw',
+            maxWidth: '320px',
             minWidth: '0',
           }}
         >
@@ -71,4 +70,3 @@ const EnhancedTooltip = ({
 };
 
 export default EnhancedTooltip;
-
