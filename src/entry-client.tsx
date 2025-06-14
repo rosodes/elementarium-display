@@ -5,26 +5,26 @@ import React from 'react';
 import { createQueryClient, getInitialLanguage, removeLoadingIndicator } from './lib/appInitialization';
 import { renderApp } from './lib/renderApp';
 
-// Performance marker for initial load
-performance.mark('client-entry-start');
+// Performance optimization - defer non-critical operations
+const performanceStart = performance.now();
 
-// Create query client with optimized settings
+// Create optimized query client
 const queryClient = createQueryClient();
 const initialLanguage = getInitialLanguage();
 
-// Prioritize critical path rendering
+// Optimized rendering with minimal blocking
 const renderApplication = () => {
-  // Get React Query state from server if available
+  // Restore React Query state efficiently
   const queryState = window.__REACT_QUERY_STATE__;
   
-  // Optimize query client hydration
-  if (queryState && Array.isArray(queryState.queries)) {
+  if (queryState?.queries) {
+    // Set optimized defaults
     queryClient.setQueryDefaults(['*'], {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      gcTime: 1000 * 60 * 10, // 10 minutes
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      gcTime: 10 * 60 * 1000, // 10 minutes
     });
     
-    // Restore cached queries without additional network requests
+    // Batch restore queries
     queryState.queries.forEach((query) => {
       if (query.queryKey && query.state?.data) {
         queryClient.setQueryData(query.queryKey, query.state.data, {
@@ -34,21 +34,19 @@ const renderApplication = () => {
     });
   }
 
-  // Use requestIdleCallback for non-critical work if supported
-  const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 50));
+  // Render immediately
+  renderApp(queryClient, initialLanguage, performanceStart);
   
-  // Render immediately for better performance
-  renderApp(queryClient, initialLanguage);
-  
-  // Remove loading indicator after a small delay to prevent flash
-  idleCallback(() => {
+  // Defer non-critical cleanup
+  requestIdleCallback?.(() => {
     removeLoadingIndicator();
-    performance.mark('client-entry-end');
-    performance.measure('client-hydration', 'client-entry-start', 'client-entry-end');
-  });
+    console.log(`App rendered in ${(performance.now() - performanceStart).toFixed(1)}ms`);
+  }) || setTimeout(() => {
+    removeLoadingIndicator();
+  }, 100);
 };
 
-// Use modern browser features for performance
+// Optimize initial render timing
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', renderApplication);
 } else {

@@ -1,8 +1,6 @@
 
 import React, { ReactNode } from 'react';
 import ErrorBoundary from './ErrorBoundary';
-import { Alert, AlertDescription } from './ui/alert';
-import { AlertTriangle } from 'lucide-react';
 
 interface SafeComponentProps {
   children: ReactNode;
@@ -16,10 +14,9 @@ const SafeComponent: React.FC<SafeComponentProps> = ({
   minimal = false 
 }) => {
   const defaultFallback = minimal ? (
-    <Alert variant="destructive" className="m-2">
-      <AlertTriangle className="h-4 w-4" />
-      <AlertDescription>Failed to load component</AlertDescription>
-    </Alert>
+    <div className="m-2 p-2 border border-red-300 bg-red-50 text-red-800 rounded text-sm">
+      Failed to load component
+    </div>
   ) : undefined;
 
   return (
