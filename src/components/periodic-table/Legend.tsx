@@ -11,98 +11,134 @@ const getLang = (l: string): Lang => {
 const COLORS = [
   {
     colorClass: "bg-s-block",
-    label: { ru: "s-блок (синий)", en: "s-block (Blue)", uk: "s-блок (синій)" },
+    label: {
+      ru: "Синий — s-блок",
+      en: "Blue — s-block",
+      uk: "Синій — s-блок",
+    },
     description: {
-      ru: "Щелочные и щелочноземельные металлы. Примеры: Li, Na, Mg, Ca",
-      en: "Alkali & alkaline earth metals. Examples: Li, Na, Mg, Ca",
-      uk: "Лужні і лужноземельні метали. Наприклад: Li, Na, Mg, Ca"
-    }
+      ru: "Щелочные и щелочноземельные металлы (например, Li, Na, Mg, Ca)",
+      en: "Alkali & alkaline earth metals (e.g. Li, Na, Mg, Ca)",
+      uk: "Лужні та лужноземельні метали (напр. Li, Na, Mg, Ca)",
+    },
   },
   {
     colorClass: "bg-p-block",
-    label: { ru: "p-блок (красный)", en: "p-block (Red)", uk: "p-блок (червоний)" },
+    label: {
+      ru: "Красный — p-блок",
+      en: "Red — p-block",
+      uk: "Червоний — p-блок",
+    },
     description: {
-      ru: "Неметаллы, галогены, благородные газы и некоторые металлы. Примеры: O, N, F, Cl, Ne",
-      en: "Nonmetals, halogens, noble gases, some metals. Examples: O, N, F, Cl, Ne",
-      uk: "Неметали, галогени, благородні гази, деякі метали. Наприклад: O, N, F, Cl, Ne"
-    }
+      ru: "Неметаллы, галогены, благородные газы и некоторые металлы (например, O, N, F, Cl, Ne)",
+      en: "Nonmetals, halogens, noble gases, some metals (e.g. O, N, F, Cl, Ne)",
+      uk: "Неметали, галогени, благородні гази, деякі метали (напр. O, N, F, Cl, Ne)",
+    },
   },
   {
     colorClass: "bg-d-block",
-    label: { ru: "d-блок (зелёный)", en: "d-block (Green)", uk: "d-блок (зелений)" },
+    label: {
+      ru: "Зелёный — d-блок",
+      en: "Green — d-block",
+      uk: "Зелений — d-блок",
+    },
     description: {
-      ru: "Переходные металлы. Примеры: Fe, Cu, Ni, Zn",
-      en: "Transition metals. Examples: Fe, Cu, Ni, Zn",
-      uk: "Перехідні метали. Наприклад: Fe, Cu, Ni, Zn"
-    }
+      ru: "Переходные металлы (например, Fe, Cu, Ni, Zn)",
+      en: "Transition metals (e.g. Fe, Cu, Ni, Zn)",
+      uk: "Перехідні метали (напр. Fe, Cu, Ni, Zn)",
+    },
   },
   {
     colorClass: "bg-f-block",
-    label: { ru: "f-блок (фиолетовый)", en: "f-block (Purple)", uk: "f-блок (фіолетовий)" },
+    label: {
+      ru: "Фиолетовый — f-блок",
+      en: "Purple — f-block",
+      uk: "Фіолетовий — f-блок",
+    },
     description: {
-      ru: "Лантаноиды и актиноиды. Примеры: La, Ce, U, Pu",
-      en: "Lanthanides & actinides. Examples: La, Ce, U, Pu",
-      uk: "Лантаноїди й актиноїди. Наприклад: La, Ce, U, Pu"
-    }
+      ru: "Лантаноиды и актиноиды (например, La, Ce, U, Pu)",
+      en: "Lanthanides & actinides (e.g. La, Ce, U, Pu)",
+      uk: "Лантаноїди й актиноїди (напр. La, Ce, U, Pu)",
+    },
   },
   {
     colorClass: "bg-alkali",
-    label: { ru: "Щелочные металлы (голубой)", en: "Alkali metals (Light Blue)", uk: "Лужні метали (блакитний)" },
+    label: {
+      ru: "Голубой — щелочные металлы",
+      en: "Light blue — alkali metals",
+      uk: "Блакитний — лужні метали",
+    },
     description: {
-      ru: "Весьма активные металлы s-блока. Примеры: Li, Na, K",
-      en: "Highly reactive s-block metals. Examples: Li, Na, K",
-      uk: "Дуже реактивні s-блок метали. Наприклад: Li, Na, K"
-    }
+      ru: "Например, литий, натрий (Li, Na)",
+      en: "E.g. lithium, sodium (Li, Na)",
+      uk: "Напр. літій, натрій (Li, Na)",
+    },
   },
   {
     colorClass: "bg-post_transition",
-    label: { ru: "Постпереходные металлы (жёлтый)", en: "Post-transition metals (Yellow)", uk: "Постперехідні метали (жовтий)" },
+    label: {
+      ru: "Жёлтый — постпереходные металлы",
+      en: "Yellow — post-transition metals",
+      uk: "Жовтий — постперехідні метали",
+    },
     description: {
-      ru: "Мягкие p-блок металлы. Примеры: Al, In, Sn, Pb",
-      en: "Soft p-block metals. Examples: Al, In, Sn, Pb",
-      uk: "М’які p-блок метали. Наприклад: Al, In, Sn, Pb"
-    }
+      ru: "Например, алюминий, индий (Al, In)",
+      en: "E.g. aluminium, indium (Al, In)",
+      uk: "Напр. алюміній, індій (Al, In)",
+    },
   },
   {
     colorClass: "bg-metalloid",
-    label: { ru: "Металлоиды (оранжевый)", en: "Metalloids (Orange)", uk: "Металоїди (помаранчевий)" },
+    label: {
+      ru: "Оранжевый — металлоиды",
+      en: "Orange — metalloids",
+      uk: "Помаранчевий — металоїди",
+    },
     description: {
-      ru: "Элементы на границе металлов и неметаллов. Примеры: B, Si, Ge",
-      en: "Borderline between metals and nonmetals. Examples: B, Si, Ge",
-      uk: "Межа між металами та неметалами. Наприклад: B, Si, Ge"
-    }
-  },
-  {
-    colorClass: "bg-noble",
-    label: { ru: "Благородные газы (чёрный)", en: "Noble gases (Black)", uk: "Благородні гази (чорний)" },
-    description: {
-      ru: "Химически инертные p-блок элементы. Примеры: He, Ne, Ar",
-      en: "Chemically inert p-block elements. Examples: He, Ne, Ar",
-      uk: "Хімічно інертні p-блок елементи. Наприклад: He, Ne, Ar"
-    }
+      ru: "Например, бор, кремний (B, Si)",
+      en: "E.g. boron, silicon (B, Si)",
+      uk: "Напр. бор, кремній (B, Si)",
+    },
   },
   {
     colorClass: "bg-unknown",
-    label: { ru: "Неизвестные или неполные (серый)", en: "Unknown/incomplete (Gray)", uk: "Невідомі/неповні (сірий)" },
+    label: {
+      ru: "Серый — неизвестные",
+      en: "Gray — unknown/incomplete",
+      uk: "Сірий — невідомі/неповні",
+    },
     description: {
-      ru: "Элементы с неполными или неподтверждёнными свойствами.",
-      en: "Elements with incomplete or unverified properties.",
-      uk: "Елементи з неповними або непідтвердженими властивостями."
-    }
-  }
+      ru: "Элементы с неполными или неподтверждёнными свойствами",
+      en: "Elements with incomplete/unverified properties",
+      uk: "Елементи з неповними або непідтвердженими властивостями",
+    },
+  },
+  {
+    colorClass: "bg-noble",
+    label: {
+      ru: "Чёрный — благородные газы",
+      en: "Black — noble gases",
+      uk: "Чорний — благородні гази",
+    },
+    description: {
+      ru: "Например, гелий, неон, аргон (He, Ne, Ar)",
+      en: "E.g. helium, neon, argon (He, Ne, Ar)",
+      uk: "Напр. гелій, неон, аргон (He, Ne, Ar)",
+    },
+  },
 ];
 
 const RADIOACTIVE = {
   label: {
     ru: "Радиоактивные элементы",
     en: "Radioactive elements",
-    uk: "Радіоактивні елементи"
+    uk: "Радіоактивні елементи",
   },
   description: {
-    ru: "Помечены пульсирующей красной точкой — их ядра нестабильны.",
-    en: "Marked with a pulsating red dot — nuclei are unstable.",
-    uk: "Позначено пульсуючою червоною крапкою — ядра нестабільні."
-  }
+    ru: "Помечены пульсирующей красной точкой или фоном — ядра нестабильны.",
+    en: "Marked with a pulsating red dot or background — nuclei are unstable.",
+    uk: "Позначено пульсуючою червоною крапкою чи фоном — ядра нестабільні.",
+  },
 };
 
 const Legend: React.FC = () => {
@@ -116,6 +152,7 @@ const Legend: React.FC = () => {
         {lang === "en" && "Element colors in the Periodic Table"}
         {lang === "uk" && "Кольори елементів у періодичній таблиці"}
       </h2>
+      {/* MAIN LEGEND GRID ONLY SPECIFIED COLORS */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {COLORS.map((item) => (
           <div key={item.colorClass} className="flex items-start gap-2">
@@ -128,7 +165,7 @@ const Legend: React.FC = () => {
             </div>
           </div>
         ))}
-        {/* Радиоактивные элементы */}
+        {/* Радиоактивные элементы (красная точка или фон) */}
         <div key="radioactive" className="flex items-start gap-2">
           <div className="relative w-5 h-5 rounded border border-red-400 bg-white mt-0.5 flex-shrink-0">
             <span className="absolute inset-0 flex items-center justify-center">
