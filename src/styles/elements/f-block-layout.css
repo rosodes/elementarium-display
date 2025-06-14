@@ -6,17 +6,16 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  width: 100%;
-  max-width: 1400px;
+  width: calc(100vw - 96px);
   margin-left: auto;
   margin-right: auto;
+  padding: 0 48px;
 }
 
 .f-block-container {
   display: grid;
   grid-template-columns: 40px repeat(15, 1fr);
-  gap: 2px;
-  max-width: 1200px;
+  gap: 4px;
   width: 100%;
   margin: 0 auto;
   justify-items: center;
@@ -38,6 +37,13 @@
 
 .dark .f-block-container .period-row > div:first-child {
   color: #ffffff;
+}
+
+/* F-block element cards sizing */
+.f-block-container .element-card {
+  width: 100% !important;
+  height: 70px !important;
+  max-width: 80px !important;
 }
 
 /* Lanthanides positioning (57-71) */

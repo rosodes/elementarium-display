@@ -120,13 +120,15 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   const grid = createGrid();
 
   return (
-    <div className="w-full max-w-6xl mx-auto overflow-x-auto">
+    <div className="w-full">
       <div 
-        className="grid gap-1 p-4"
+        className="periodic-table grid gap-1"
         style={{
-          gridTemplateColumns: '40px repeat(18, 60px)',
+          gridTemplateColumns: '40px repeat(18, 1fr)',
           gridTemplateRows: '35px repeat(7, 70px)',
-          minWidth: '1200px'
+          width: 'calc(100vw - 96px)',
+          margin: '0 auto',
+          padding: '20px 48px'
         }}
       >
         {grid.map((row, rowIndex) =>
@@ -166,7 +168,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
                   element={cell.data} 
                   onClick={() => onElementClick(cell.data)}
                   data-atomic={cell.data.atomic}
-                  className="w-15 h-17"
+                  className="w-full h-17 max-w-20"
                 />
               );
             }

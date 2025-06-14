@@ -2,18 +2,16 @@
 /* Updated grid layout for the periodic table */
 .periodic-table {
   display: grid !important;
-  grid-template-columns: 40px repeat(18, 60px) !important;
+  grid-template-columns: 40px repeat(18, 1fr) !important;
   grid-template-rows: 35px repeat(7, 70px) !important;
   gap: 4px !important;
-  width: 100% !important;
-  max-width: 1400px !important;
+  width: calc(100vw - 96px) !important;
   margin: 0 auto !important;
   background: transparent !important;
   align-items: center !important;
   justify-items: center !important;
-  min-width: 1200px !important;
   min-height: 600px !important;
-  padding: 20px !important;
+  padding: 20px 48px !important;
   box-sizing: border-box !important;
   position: relative !important;
 }
@@ -89,8 +87,9 @@
 
 /* Element card dimensions and grid participation */
 .element-card {
-  width: 60px !important;
+  width: 100% !important;
   height: 70px !important;
+  max-width: 80px !important;
   margin: 0 !important;
   box-sizing: border-box !important;
   display: flex !important;
