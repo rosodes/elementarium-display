@@ -1,44 +1,6 @@
-
 import { Element } from './elementTypes';
 
 export const elements71to80: Element[] = [
-  // Lutetium (71)
-  {
-    atomic: "71",
-    symbol: "Lu",
-    name: "Lutetium",
-    weight: "174.97",
-    electronstring: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d1",
-    series: "Lanthanide",
-    melt: "1925",
-    boil: "3675",
-    electroneg: "1.27",
-    valence: "3",
-    oxidation: "3c",
-    radius: {
-      calculated: "217",
-      empirical: "175",
-      covalent: "156"
-    },
-    discover: "1907",
-    density: {
-      stp: "9.841"
-    },
-    conductivity: {
-      thermal: "16.4"
-    },
-    expandedconfig: "1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 4f14 5d1",
-    electrons: [2, 8, 18, 32, 9, 2],
-    quantum: {
-      l: 3,
-      m: 3,
-      n: 4
-    },
-    isotopes: 22,
-    group: 3,
-    period: 6
-  },
-
   // Hafnium (72)
   {
     atomic: "72",
