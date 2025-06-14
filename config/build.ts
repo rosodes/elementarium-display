@@ -8,7 +8,7 @@ export function createBuildConfig(isProd: boolean) {
     sourcemap: !isProd,
     minify: 'terser' as const,
     terserOptions: {
-      ecma: 2020,
+      ecma: 2020 as const,
       compress: {
         drop_console: isProd,
         dead_code: true,
