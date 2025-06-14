@@ -1,15 +1,80 @@
 
 import React, { memo } from 'react';
+import Element from '../Element';
 import { Element as ElementType } from '../../data/elementTypes';
-import { renderLanthanides, renderActinides } from './fBlockRows';
 import { useLanguage } from '../../context/LanguageContext';
+import { elements } from '../../data/elements';
 
 interface FBlockSectionProps {
   onElementClick: (element: ElementType) => void;
 }
 
+// Helper function to safely find element
+const findElement = (atomicNumber: number | string): ElementType | null => {
+  const element = elements.find(e => e && e.atomic === atomicNumber.toString());
+  if (!element || typeof element !== 'object') return null;
+  if (!('atomic' in element)) return null;
+  return element as ElementType;
+};
+
 const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
   const { t } = useLanguage();
+  
+  // Generate lanthanides (elements 57-71)
+  const renderLanthanides = () => {
+    const lanthanideElements = [];
+    
+    // Add period label
+    lanthanideElements.push(
+      <div key="lanthanide-label" className="period-row-label">
+        6*
+      </div>
+    );
+    
+    // Add elements 57-71
+    for (let i = 57; i <= 71; i++) {
+      const element = findElement(i);
+      if (element) {
+        lanthanideElements.push(
+          <Element 
+            key={`lanthanide-${i}`}
+            element={element}
+            onClick={() => onElementClick(element)}
+          />
+        );
+      }
+    }
+    
+    return lanthanideElements;
+  };
+  
+  // Generate actinides (elements 89-103)
+  const renderActinides = () => {
+    const actinideElements = [];
+    
+    // Add period label
+    actinideElements.push(
+      <div key="actinide-label" className="period-row-label">
+        7*
+      </div>
+    );
+    
+    // Add elements 89-103
+    for (let i = 89; i <= 103; i++) {
+      const element = findElement(i);
+      if (element) {
+        actinideElements.push(
+          <Element 
+            key={`actinide-${i}`}
+            element={element}
+            onClick={() => onElementClick(element)}
+          />
+        );
+      }
+    }
+    
+    return actinideElements;
+  };
   
   return (
     <div className="lanthanide-actinide-section">
@@ -25,8 +90,15 @@ const FBlockSection = memo(({ onElementClick }: FBlockSectionProps) => {
       
       {/* F-block grid container - separate table */}
       <div className="f-block-container">
-        {renderLanthanides(onElementClick, false)}
-        {renderActinides(onElementClick, false)}
+        {/* Lanthanides row */}
+        <div className="lanthanides-row">
+          {renderLanthanides()}
+        </div>
+        
+        {/* Actinides row */}
+        <div className="actinides-row">
+          {renderActinides()}
+        </div>
       </div>
       
       {/* Visual indicators */}

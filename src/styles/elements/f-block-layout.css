@@ -46,7 +46,6 @@
   color: #374151;
   min-height: 70px;
   writing-mode: horizontal-tb;
-  grid-column: 1;
   border-right: 1px solid #e5e7eb;
   margin-right: 4px;
 }
@@ -64,10 +63,9 @@
   font-size: 0.8rem !important;
 }
 
-/* Lanthanides row layout - force horizontal display */
+/* Lanthanides row - direct grid positioning */
 .lanthanides-row {
   display: contents;
-  grid-row: 1;
 }
 
 .lanthanides-row .period-row-label {
@@ -75,7 +73,6 @@
   grid-row: 1;
 }
 
-/* Position lanthanide elements 57-71 in first row horizontally */
 .lanthanides-row .element-card:nth-child(2) { grid-column: 2; grid-row: 1; }   /* La - 57 */
 .lanthanides-row .element-card:nth-child(3) { grid-column: 3; grid-row: 1; }   /* Ce - 58 */
 .lanthanides-row .element-card:nth-child(4) { grid-column: 4; grid-row: 1; }   /* Pr - 59 */
@@ -92,10 +89,9 @@
 .lanthanides-row .element-card:nth-child(15) { grid-column: 15; grid-row: 1; } /* Yb - 70 */
 .lanthanides-row .element-card:nth-child(16) { grid-column: 16; grid-row: 1; } /* Lu - 71 */
 
-/* Actinides row layout - force horizontal display */
+/* Actinides row - direct grid positioning */
 .actinides-row {
   display: contents;
-  grid-row: 2;
 }
 
 .actinides-row .period-row-label {
@@ -103,7 +99,6 @@
   grid-row: 2;
 }
 
-/* Position actinide elements 89-103 in second row horizontally */
 .actinides-row .element-card:nth-child(2) { grid-column: 2; grid-row: 2; }   /* Ac - 89 */
 .actinides-row .element-card:nth-child(3) { grid-column: 3; grid-row: 2; }   /* Th - 90 */
 .actinides-row .element-card:nth-child(4) { grid-column: 4; grid-row: 2; }   /* Pa - 91 */
@@ -119,19 +114,6 @@
 .actinides-row .element-card:nth-child(14) { grid-column: 14; grid-row: 2; } /* Md - 101 */
 .actinides-row .element-card:nth-child(15) { grid-column: 15; grid-row: 2; } /* No - 102 */
 .actinides-row .element-card:nth-child(16) { grid-column: 16; grid-row: 2; } /* Lr - 103 */
-
-/* Override any flex properties that might interfere */
-.lanthanides-row *, .actinides-row * {
-  flex: none !important;
-}
-
-/* Ensure proper grid behavior */
-.f-block-container > * {
-  display: flex !important;
-  flex-direction: column !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
 
 /* Responsive adjustments */
 @media (max-width: 1024px) {
