@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Sparkles } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
@@ -15,6 +14,23 @@ const elementFunFacts: Record<string, string[]> = {
     "Lead was used in Roman water pipes and cosmetics.",
     "The symbol Pb comes from the Latin word 'plumbum.'",
     "Lead is one of the few metals that is not a good electricity conductor."
+  ],
+  "Oxygen": [
+    "Oxygen makes up about 21% of Earth's atmosphere.",
+    "Nearly two-thirds of the mass of the human body is oxygen.",
+    "Liquid and solid oxygen are pale blue in color.",
+    "Oxygen was independently discovered by Carl Scheele and Joseph Priestley."
+  ],
+  "Sodium": [
+    "Sodium was first isolated by Humphry Davy in 1807 using electrolysis.",
+    "The symbol Na comes from the Latin word 'natrium.'",
+    "Sodium is so reactive it must be stored under oil.",
+    "It's a key component in table salt (NaCl)."
+  ],
+  "Mercury": [
+    "Mercury is the only metal that's liquid at room temperature.",
+    "Also called 'quick silver,' it was used in thermometers and barometers.",
+    "Mercury's symbol Hg comes from the Latin name 'hydrargyrum', meaning 'water-silver'."
   ],
 };
 
@@ -58,4 +74,3 @@ const FunFactsSection: React.FC<FunFactsSectionProps> = ({ element }) => {
 };
 
 export default FunFactsSection;
-

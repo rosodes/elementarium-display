@@ -50,6 +50,20 @@ const elementToxicityData: Record<
     ecologicalImpact: "No direct negative ecological impact; important in energy cycles.",
     reactivity: "Highly reactive gas, especially with oxygen; forms water explosively."
   },
+  "Oxygen": {
+    toxicity: "Oxygen is essential for life but can be toxic at high partial pressures.",
+    bioRole: "Crucial for aerobic respiration in most living organisms.",
+    precautions: "Avoid high oxygen concentrations under pressure; can promote combustion.",
+    ecologicalImpact: "Vital for Earth's ecosystems; part of the oxygen cycle.",
+    reactivity: "Highly reactive, supports combustion, forms oxides with most elements."
+  },
+  "Sodium": {
+    toxicity: "Pure sodium is highly reactive and burns on contact with water or moist air.",
+    bioRole: "Essential mineral for nerve and muscle function in animals.",
+    precautions: "Handle in oil or inert atmosphere; never touch with wet hands.",
+    ecologicalImpact: "Not environmentally hazardous as a mineral salt; pure form dangerous to aquatic life.",
+    reactivity: "Reacts explosively with water, forming sodium hydroxide and hydrogen."
+  },
 };
 
 // Секция токсичности
