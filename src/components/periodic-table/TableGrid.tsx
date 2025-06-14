@@ -19,63 +19,6 @@ const findElement = (atomicNumber: number): ElementType | null => {
 const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   console.log('TableGrid rendering...');
   
-  // Container with fixed dimensions and relative positioning
-  const containerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: '1200px',
-    height: '600px',
-    margin: '0 auto',
-    padding: '20px',
-    backgroundColor: '#ffffff',
-    border: '2px solid red',
-    boxSizing: 'border-box'
-  };
-
-  // Calculate absolute positions for each grid cell
-  const cellWidth = 60;
-  const cellHeight = 70;
-  const gap = 4;
-  const headerHeight = 35;
-  const labelWidth = 40;
-
-  const getAbsolutePosition = (row: number, col: number) => ({
-    position: 'absolute' as const,
-    left: labelWidth + (col - 1) * (cellWidth + gap),
-    top: headerHeight + (row - 1) * (cellHeight + gap),
-    width: cellWidth,
-    height: cellHeight
-  });
-
-  const getHeaderPosition = (col: number) => ({
-    position: 'absolute' as const,
-    left: labelWidth + (col - 1) * (cellWidth + gap),
-    top: 0,
-    width: cellWidth,
-    height: headerHeight,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '0.8rem',
-    color: '#6b7280',
-    fontWeight: '600',
-    border: '1px solid blue'
-  });
-
-  const getLabelPosition = (row: number) => ({
-    position: 'absolute' as const,
-    left: 0,
-    top: headerHeight + (row - 1) * (cellHeight + gap),
-    width: labelWidth,
-    height: cellHeight,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '1rem',
-    color: '#6b7280',
-    fontWeight: '600',
-    border: '1px solid green'
-  });
-
   // All element positions with their exact coordinates
   const elementPositions = [
     // Period 1
@@ -150,20 +93,23 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   ];
 
   return (
-    <div style={containerStyle}>
+    <div className="periodic-table">
       {/* Group numbers header */}
-      {Array.from({ length: 18 }, (_, i) => i + 1).map(groupNum => (
-        <div key={`group-${groupNum}`} style={getHeaderPosition(groupNum)}>
-          {groupNum}
-        </div>
-      ))}
+      <div className="group-numbers-row">
+        <div></div> {/* Empty cell for period column */}
+        {Array.from({ length: 18 }, (_, i) => (
+          <div key={`group-${i + 1}`}>{i + 1}</div>
+        ))}
+      </div>
 
       {/* Period labels */}
-      {Array.from({ length: 7 }, (_, i) => i + 1).map(periodNum => (
-        <div key={`period-${periodNum}`} style={getLabelPosition(periodNum)}>
-          {periodNum}
-        </div>
-      ))}
+      <div className="period-1-label">1</div>
+      <div className="period-2-label">2</div>
+      <div className="period-3-label">3</div>
+      <div className="period-4-label">4</div>
+      <div className="period-5-label">5</div>
+      <div className="period-6-label">6</div>
+      <div className="period-7-label">7</div>
 
       {/* Elements */}
       {elementPositions.map(({ atomic, row, col }) => {
@@ -171,27 +117,12 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
         if (!element) return null;
 
         return (
-          <div
+          <Element 
             key={`element-${atomic}`}
-            style={{
-              ...getAbsolutePosition(row, col),
-              border: '1px solid orange',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'
-            }}
-          >
-            <Element 
-              element={element} 
-              onClick={() => onElementClick(element)}
-              style={{
-                width: '100%',
-                height: '100%',
-                margin: '0',
-                boxSizing: 'border-box'
-              }}
-            />
-          </div>
+            element={element} 
+            onClick={() => onElementClick(element)}
+            data-atomic={atomic}
+          />
         );
       })}
     </div>
