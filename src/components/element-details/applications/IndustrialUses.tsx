@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -25,11 +24,11 @@ const IndustrialUses = ({ element }: IndustrialUsesProps) => {
           <li>Manufacturing of {element.series.toLowerCase()} components</li>
           <li>Used in specialized industrial processes</li>
           <li>
-            {(element.category === 'transition' || element.category === 'post-transition' || element.category === 'alkali' || element.category === 'alkaline' || element.category === 'metalloid') 
+            {(element.category === 'transition metal' || element.category === 'post-transition metal' || element.category === 'alkali metal' || element.category === 'alkaline earth metal' || element.category === 'metalloid') 
               ? 'Production of alloys and compounds' 
               : 'Chemical synthesis and reactions'}
           </li>
-          {(element.category === 'transition' || element.category === 'post-transition' || element.category === 'alkali' || element.category === 'alkaline') && <li>Electrical conductors and wiring</li>}
+          {(element.category === 'transition metal' || element.category === 'post-transition metal' || element.category === 'alkali metal' || element.category === 'alkaline earth metal') && <li>Electrical conductors and wiring</li>}
           {element.electroneg && parseFloat(element.electroneg) > 2.5 && 
             <li>Catalysts for chemical reactions</li>}
           {element.melt && parseInt(element.melt) > 1500 && 

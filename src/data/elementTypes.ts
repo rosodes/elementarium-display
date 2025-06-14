@@ -1,4 +1,3 @@
-
 export interface ElementRadius {
   readonly calculated?: string;
   readonly empirical?: string;
@@ -62,13 +61,13 @@ export type ElementSeries =
   | 'Unknown';
 
 export type ElementCategory = 
-  | 'alkali'
-  | 'alkaline'
-  | 'transition'
-  | 'post-transition'
+  | 'alkali metal'
+  | 'alkaline earth metal'
+  | 'transition metal'
+  | 'post-transition metal'
   | 'metalloid'
   | 'nonmetal'
-  | 'noble'
+  | 'noble gas'
   | 'lanthanide'
   | 'actinide'
   | 'unknown';

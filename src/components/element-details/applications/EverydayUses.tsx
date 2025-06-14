@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,7 +21,7 @@ const EverydayUses = ({ element }: EverydayUsesProps) => {
       </CardHeader>
       <CardContent className="pt-4">
         <ul className="list-disc list-inside space-y-2 text-sm text-gray-700 dark:text-gray-300">
-          {(element.category === 'transition' || element.category === 'post-transition' || element.category === 'alkali' || element.category === 'alkaline') && (
+          {(element.category === 'transition metal' || element.category === 'post-transition metal' || element.category === 'alkali metal' || element.category === 'alkaline earth metal') && (
             <>
               <li>Consumer electronics and devices</li>
               <li>Construction materials and tools</li>
@@ -37,7 +36,7 @@ const EverydayUses = ({ element }: EverydayUsesProps) => {
               {element.symbol === 'C' && <li>Basis for organic chemistry and life</li>}
             </>
           )}
-          {element.category === 'noble' && (
+          {element.category === 'noble gas' && (
             <>
               <li>Lighting applications</li>
               <li>Protective atmospheres</li>
@@ -45,7 +44,7 @@ const EverydayUses = ({ element }: EverydayUsesProps) => {
               {element.symbol === 'Ar' && <li>Welding environments</li>}
             </>
           )}
-          {element.category === 'transition' && (
+          {element.category === 'transition metal' && (
             <li>
               Used in {element.melt && parseInt(element.melt) > 1500 ? 'high-temperature' : 'specialized'} manufacturing
             </li>
