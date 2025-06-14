@@ -31,7 +31,8 @@ const ElementPage = () => {
     // Find the correct element from url params
     let id = urlParams.atomic?.toString() || urlParams.id?.toString();
     let atomicNumber = id ? parseInt(id, 10) : NaN;
-    const found = !isNaN(atomicNumber) && elements.find((el) => el.atomic === atomicNumber);
+    // Fix: Ensure both sides are number before comparison
+    const found = !isNaN(atomicNumber) && elements.find((el) => Number(el.atomic) === atomicNumber);
     setElement(found || null);
     setElementId(found ? Number(found.atomic) : null); // ensure number
     // Language
