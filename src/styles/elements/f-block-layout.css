@@ -28,6 +28,7 @@
   align-items: center;
   gap: 4px;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
 /* Period labels for f-block */
@@ -42,6 +43,7 @@
   min-height: 70px;
   min-width: 40px;
   margin-right: 8px;
+  flex-shrink: 0;
 }
 
 .dark .f-block-row > div:first-child {
@@ -54,4 +56,8 @@
   height: 70px !important;
   margin: 0 !important;
   flex-shrink: 0;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
