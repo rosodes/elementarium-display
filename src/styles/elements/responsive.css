@@ -1,4 +1,3 @@
-
 /* Responsive styles */
 @media (max-width: 1400px) {
   .element-card {
@@ -8,7 +7,7 @@
   
   .dashed-connector {
     width: 15px;
-    height: 70px;
+    height: 76px;
   }
   
   .f-block-container {
@@ -29,7 +28,7 @@
   
   .dashed-connector {
     width: 15px;
-    height: 65px;
+    height: 76px;
   }
   
   .f-block-container {
@@ -46,7 +45,7 @@
   
   .dashed-connector {
     width: 12px;
-    height: 60px;
+    height: 76px;
   }
   
   .element-card .text-lg {
@@ -67,7 +66,7 @@
   
   .dashed-connector {
     width: 10px;
-    height: 55px;
+    height: 76px;
   }
   
   .f-block-container {
@@ -89,7 +88,7 @@
   
   .dashed-connector {
     width: 8px;
-    height: 50px;
+    height: 76px;
   }
   
   .element-card .text-lg {
@@ -115,7 +114,7 @@
   
   .dashed-connector {
     width: 7px;
-    height: 45px;
+    height: 76px;
   }
   
   .element-card .text-lg {

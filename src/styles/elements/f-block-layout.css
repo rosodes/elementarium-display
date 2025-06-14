@@ -87,10 +87,10 @@
 }
 
 .f-block-elements-container .element-card {
-  width: unset !important;
-  height: unset !important;
+  width: 76px !important;
+  height: 76px !important;
   font-size: unset !important;
-  /* Подчистим любые локальные override-стили */
+  /* Локальные сбросы overwrite могут быть удалены, теперь всё наследуется из cards.css */
 }
 
 /* Slightly smaller cards in the f-block section */
@@ -182,3 +182,5 @@
 }
 
 /* Дополнительные стили при необходимости */
+
+</initial_code>

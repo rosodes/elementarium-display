@@ -1,8 +1,9 @@
 
 /* Basic element card styling */
 .element-card {
-  width: 70px;
-  height: 70px;
+  width: 76px !important;
+  height: 76px !important;
+  aspect-ratio: 1 / 1;
   position: relative;
   border-radius: 4px;
   padding: 4px;
