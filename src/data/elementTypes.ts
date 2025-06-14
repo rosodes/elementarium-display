@@ -1,4 +1,3 @@
-
 export interface ElementRadius {
   readonly calculated?: string;
   readonly empirical?: string;
@@ -75,6 +74,14 @@ export type ElementCategory =
 
 export type ElementBlock = 's' | 'p' | 'd' | 'f';
 
+// Подробный тип изотопа
+export interface ElementIsotope {
+  symbol: string;          // например, "Ne-20"
+  abundance?: number;      // проценты (например, 90.48)
+  stable: boolean;         // устойчивый или радиоактивный
+  comment?: string;        // короткое примечание
+}
+
 export interface Element {
   readonly atomic: string;
   readonly symbol: string;
@@ -99,7 +106,8 @@ export interface Element {
   readonly electrons: readonly number[];
   readonly quantum: ElementQuantum;
   readonly isotopes: number;
-
+  readonly isotopesDetailed?: ElementIsotope[];
+  
   // Новое свойство: радиоактивность
   readonly radioactive?: boolean;
   

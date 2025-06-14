@@ -1,4 +1,25 @@
-import { Element } from "../elementTypes";
+
+import { Element, ElementIsotope } from "../elementTypes";
+const neonIsotopes: ElementIsotope[] = [
+  {
+    symbol: "Ne-20",
+    abundance: 90.48,
+    stable: true,
+    comment: "Естественный, стабильный изотоп"
+  },
+  {
+    symbol: "Ne-21",
+    abundance: 0.27,
+    stable: true,
+    comment: "Редкий стабильный изотоп"
+  },
+  {
+    symbol: "Ne-22",
+    abundance: 9.25,
+    stable: true,
+    comment: "Стабильный изотоп"
+  }
+];
 const neon: Element = {
   atomic: "10",
   symbol: "Ne",
@@ -53,6 +74,7 @@ const neon: Element = {
     n: 2
   },
   isotopes: 22,
+  isotopesDetailed: neonIsotopes,
   group: 18,
   period: 2,
   category: "noble gas",

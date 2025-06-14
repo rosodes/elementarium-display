@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Element } from '../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
@@ -13,6 +12,7 @@ import OverviewTab from './element-details/tabs/OverviewTab';
 import PropertiesTab from './element-details/tabs/PropertiesTab';
 import StructureTab from './element-details/tabs/StructureTab';
 import ApplicationsTab from './element-details/tabs/ApplicationsTab';
+import ElementIsotopesSection from './element-details/ElementIsotopesSection';
 import { useToast } from "./ui/use-toast";
 
 interface ElementDetailsProps {
@@ -126,6 +126,9 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
           
           <div className={`p-5 sm:p-6 ${tabsContentMaxHeightClass} overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900`}>
             <TabsContent value="overview" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
+              {/* --- ДОБАВЛЕНА СЕКЦИЯ ИЗОТОПОВ --- */}
+              <ElementIsotopesSection element={element} />
+              {/* --- дальше прежний контент --- */}
               <OverviewTab element={element} />
             </TabsContent>
             
