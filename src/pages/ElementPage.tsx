@@ -9,8 +9,8 @@ import ElementPageFooter from '../components/element-details/ElementPageFooter';
 import ElementPageHeader from '../components/element-details/ElementPageHeader';
 // Removed broken imports for useElementLoader, useElementBookmark, useElementNavigation
 
-// Inline logic previously handled by the hooks
-import elements from '../data/elements';
+// Fix import: use named import, not default
+import { elements } from '../data/elements';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Element } from '../data/elementTypes';
@@ -33,7 +33,7 @@ const ElementPage = () => {
     let atomicNumber = id ? parseInt(id, 10) : NaN;
     const found = !isNaN(atomicNumber) && elements.find((el) => el.atomic === atomicNumber);
     setElement(found || null);
-    setElementId(found ? found.atomic : null);
+    setElementId(found ? Number(found.atomic) : null); // ensure number
     // Language
     setLang(language);
     setLanguage(language);
@@ -51,31 +51,35 @@ const ElementPage = () => {
     if (bookmarks.includes(elementId)) {
       bookmarks = bookmarks.filter((id: number) => id !== elementId);
       setIsBookmarked(false);
+      toast({
+        title: t.ui?.elementRemoved || 'Removed from bookmarks',
+        description: t.ui?.elementRemoved || 'Element removed from bookmarks',
+      });
     } else {
       bookmarks.push(elementId);
       setIsBookmarked(true);
+      toast({
+        title: t.ui?.elementBookmarked || 'Bookmarked',
+        description: t.ui?.elementBookmarked || 'Element bookmarked',
+      });
     }
     localStorage.setItem('elementBookmarks', JSON.stringify(bookmarks));
-    toast({
-      title: isBookmarked ? t.ui?.removedFromFavorites : t.ui?.addedToFavorites,
-      description: isBookmarked ? t.ui?.elementRemoved : t.ui?.elementAdded,
-    });
   };
 
   // Navigation logic
   const handleHome = () => navigate(lang ? `/${lang}` : '/');
   const handlePrevious = () => {
-    if (!element || element.atomic <= 1) return;
-    const prev = elements.find((el) => el.atomic === element.atomic - 1);
+    if (!element || Number(element.atomic) <= 1) return;
+    const prev = elements.find((el) => Number(el.atomic) === Number(element.atomic) - 1);
     if (prev) navigate(lang ? `/${lang}/element/${prev.atomic}` : `/element/${prev.atomic}`);
   };
   const handleNext = () => {
-    if (!element || element.atomic >= 118) return;
-    const next = elements.find((el) => el.atomic === element.atomic + 1);
+    if (!element || Number(element.atomic) >= 118) return;
+    const next = elements.find((el) => Number(el.atomic) === Number(element.atomic) + 1);
     if (next) navigate(lang ? `/${lang}/element/${next.atomic}` : `/element/${next.atomic}`);
   };
-  const canGoPrevious = !!(element && element.atomic > 1);
-  const canGoNext = !!(element && element.atomic < 118);
+  const canGoPrevious = !!(element && Number(element.atomic) > 1);
+  const canGoNext = !!(element && Number(element.atomic) < 118);
 
   // Skip link focus method
   const handleSkipToContent = () => {
