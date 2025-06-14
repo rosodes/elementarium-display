@@ -77,5 +77,9 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   notAvailable: "Information not available",
   backToTable: "Back to Periodic Table",
   previous: "Previous",
-  next: "Next"
+  next: "Next",
+  // --- ADDED KEYS ---
+  radioactive: "Radioactive",
+  yes: "Yes",
+  no: "No"
 };

@@ -80,5 +80,9 @@ export interface ElementDetailsTranslations {
   backToTable: string;
   previous: string;
   next: string;
+  // --- ADDED KEYS ---
+  radioactive?: string;
+  yes?: string;
+  no?: string;
 }
 

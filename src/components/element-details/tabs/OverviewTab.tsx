@@ -1,8 +1,7 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Info, Thermometer, Box, Award, Atom, Hash, Radioactive, Layers, BookOpen, Sparkles } from 'lucide-react';
+import { Info, Thermometer, Box, Award, Atom, Hash, Zap, Layers, BookOpen, Sparkles } from 'lucide-react';
 import BasicInfo from '../BasicInfo';
 import PhysicalProperties from '../PhysicalProperties';
 import AdditionalInfo from '../AdditionalInfo';
@@ -109,7 +108,7 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
         </Card>
         <Card className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200 dark:border-gray-700">
           <CardHeader className="pb-2 pt-4 flex flex-col items-center">
-            <Radioactive className="h-5 w-5 mb-1" />
+            <Zap className="h-5 w-5 mb-1" />
             <CardTitle className="text-sm font-medium text-center">{t.elementDetails.radioactive || 'Radioactive'}</CardTitle>
           </CardHeader>
           <CardContent>
