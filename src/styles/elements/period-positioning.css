@@ -72,7 +72,7 @@
 .period-5 .element-card:nth-child(18) { grid-column: 18; grid-row: 6; }
 .period-5 .element-card:nth-child(19) { grid-column: 19; grid-row: 6; }
 
-/* Period 6: Cs-Ba (2-3), La (4), skip lanthanides, Hf-Rn (6-19) */
+/* Period 6: Cs-Ba (2-3), La (4), Hf-Rn (6-19) */
 .period-6 .element-card:nth-child(2) { grid-column: 2; grid-row: 7; }
 .period-6 .element-card:nth-child(3) { grid-column: 3; grid-row: 7; }
 .period-6 .element-card:nth-child(4) { grid-column: 4; grid-row: 7; }
@@ -92,7 +92,7 @@
 .period-6 .element-card:nth-child(19) { grid-column: 19; grid-row: 7; }
 .period-6 .element-card:nth-child(20) { grid-column: 20; grid-row: 7; }
 
-/* Period 7: Fr-Ra (2-3), Ac (4), skip actinides, Rf-Og (6-19) */
+/* Period 7: Fr-Ra (2-3), Ac (4), Rf-Og (6-19) */
 .period-7 .element-card:nth-child(2) { grid-column: 2; grid-row: 8; }
 .period-7 .element-card:nth-child(3) { grid-column: 3; grid-row: 8; }
 .period-7 .element-card:nth-child(4) { grid-column: 4; grid-row: 8; }
