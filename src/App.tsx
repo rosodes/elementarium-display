@@ -1,46 +1,40 @@
 
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useLanguage } from "./context/LanguageContext";
+import { ThemeProvider } from "./context/ThemeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import LoadingSpinner from "./components/ui/loading-spinner";
 import ErrorBoundary from "./components/ErrorBoundary";
 import SafeComponent from "./components/SafeComponent";
-import { setupGlobalErrorHandler } from "./lib/errorHandling";
 
-// Lazy load pages with preloading for better UX
-const Index = lazy(() => 
-  import("./pages/Index").then(module => {
-    // Preload ElementPage when Index loads
-    import("./pages/ElementPage");
-    return module;
-  })
-);
+// Lazy load pages
+const Index = lazy(() => import("./pages/Index"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ElementPage = lazy(() => import("./pages/ElementPage"));
 
-// Optimized loading component
+// Create a query client
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 10, // 10 minutes
+    },
+  },
+});
+
+// Loading component
 const PageLoader = () => (
   <div className="flex justify-center items-center min-h-[80vh]">
     <LoadingSpinner />
   </div>
 );
 
-const App = () => {
+function AppContent() {
   const { t } = useLanguage();
-  const [mounted, setMounted] = useState(false);
-
-  // Setup global error handling and client mounting
-  useEffect(() => {
-    setupGlobalErrorHandler();
-    setMounted(true);
-  }, []);
-
-  // Don't render until mounted to prevent hydration issues
-  if (!mounted) {
-    return <PageLoader />;
-  }
 
   return (
     <ErrorBoundary>
@@ -93,6 +87,20 @@ const App = () => {
         </Suspense>
       </ErrorBoundary>
     </ErrorBoundary>
+  );
+}
+
+const App = () => {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <LanguageProvider initialLanguage="en">
+          <BrowserRouter>
+            <AppContent />
+          </BrowserRouter>
+        </LanguageProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 

@@ -1,33 +1,23 @@
 
 import { defineConfig } from 'vite';
 import path from 'path';
-import type { UserConfig } from 'vite';
-import { createPlugins } from './config/plugins';
-import { createBuildConfig } from './config/build';
-import { createServerConfig } from './config/server';
-import { createOptimizationConfig } from './config/optimization';
+import react from '@vitejs/plugin-react';
+import { componentTagger } from 'lovable-tagger';
 
-export default defineConfig(async ({ mode }) => {
-  const isProd = mode === 'production';
-  
-  const config: UserConfig = {
-    plugins: await createPlugins(mode),
-    
+export default defineConfig(({ mode }) => {
+  return {
+    server: {
+      host: "::",
+      port: 8080,
+    },
+    plugins: [
+      react(),
+      mode === 'development' && componentTagger(),
+    ].filter(Boolean),
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, './src'),
+        "@": path.resolve(__dirname, "./src"),
       },
-      mainFields: ['browser', 'module', 'main'],
-      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json']
     },
-    
-    server: {
-      ...createServerConfig(),
-      port: 8080
-    },
-    build: createBuildConfig(isProd),
-    ...createOptimizationConfig(mode)
   };
-  
-  return config;
 });
