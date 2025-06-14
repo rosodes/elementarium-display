@@ -1,9 +1,9 @@
 
 /* Layout styles for the periodic table */
 .periodic-table {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  display: grid;
+  grid-template-columns: 24px repeat(18, 70px);
+  grid-gap: 2px;
   width: max-content;
   padding: 10px;
   margin: 0 auto;
@@ -43,48 +43,60 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-.period-row {
-  display: flex;
-  gap: 2px;
-  flex-wrap: nowrap;
+/* Group numbers row */
+.group-numbers-row {
+  display: grid;
+  grid-template-columns: 24px repeat(18, 70px);
+  grid-gap: 2px;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 70px;
+  margin-bottom: 4px;
+  width: max-content;
 }
 
-/* Group and period labels */
-.group-label, .period-label {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  color: #666;
+.group-numbers-row > div:first-child {
+  grid-column: 1;
+  width: 24px;
   text-align: center;
-  min-width: 24px;
-  height: 70px;
 }
 
-.dark .group-label, 
-.dark .period-label {
-  color: #fff;
+.group-numbers-row > div:not(:first-child) {
+  width: 70px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.7;
+  color: #374151;
 }
 
-/* Lanthanide and actinide blocks */
-.lanthanide-block, .actinide-block {
-  display: flex;
+.dark .group-numbers-row > div:not(:first-child) {
+  color: #d1d5db;
+}
+
+/* Period rows */
+.period-row {
+  display: grid;
+  grid-template-columns: 24px repeat(18, 70px);
+  grid-gap: 2px;
   align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  color: #666;
-  height: 70px;
+  min-height: 70px;
+  width: max-content;
 }
 
-.dark .lanthanide-block, 
-.dark .actinide-block {
-  color: #fff;
+.period-row > div:first-child {
+  grid-column: 1;
+  width: 24px;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  opacity: 0.7;
+  color: #374151;
 }
 
-/* Element cards base size */
+.dark .period-row > div:first-child {
+  color: #ffffff;
+}
+
+/* Element cards positioning */
 .element-card {
   width: 70px;
   height: 70px;
@@ -97,6 +109,31 @@
   height: 70px;
   flex-shrink: 0;
 }
+
+/* Specific grid positioning for elements */
+/* Period 1 */
+.period-row:nth-child(1) .element-card:nth-child(2) { grid-column: 2; } /* H */
+.period-row:nth-child(1) .element-card:nth-child(18) { grid-column: 19; } /* He */
+
+/* Period 2 */
+.period-row:nth-child(2) .element-card:nth-child(2) { grid-column: 2; } /* Li */
+.period-row:nth-child(2) .element-card:nth-child(3) { grid-column: 3; } /* Be */
+.period-row:nth-child(2) .element-card:nth-child(14) { grid-column: 14; } /* B */
+.period-row:nth-child(2) .element-card:nth-child(15) { grid-column: 15; } /* C */
+.period-row:nth-child(2) .element-card:nth-child(16) { grid-column: 16; } /* N */
+.period-row:nth-child(2) .element-card:nth-child(17) { grid-column: 17; } /* O */
+.period-row:nth-child(2) .element-card:nth-child(18) { grid-column: 18; } /* F */
+.period-row:nth-child(2) .element-card:nth-child(19) { grid-column: 19; } /* Ne */
+
+/* Period 3 */
+.period-row:nth-child(3) .element-card:nth-child(2) { grid-column: 2; } /* Na */
+.period-row:nth-child(3) .element-card:nth-child(3) { grid-column: 3; } /* Mg */
+.period-row:nth-child(3) .element-card:nth-child(14) { grid-column: 14; } /* Al */
+.period-row:nth-child(3) .element-card:nth-child(15) { grid-column: 15; } /* Si */
+.period-row:nth-child(3) .element-card:nth-child(16) { grid-column: 16; } /* P */
+.period-row:nth-child(3) .element-card:nth-child(17) { grid-column: 17; } /* S */
+.period-row:nth-child(3) .element-card:nth-child(18) { grid-column: 18; } /* Cl */
+.period-row:nth-child(3) .element-card:nth-child(19) { grid-column: 19; } /* Ar */
 
 /* Lanthanide/Actinide section layout */
 .lanthanide-actinide-section {
@@ -135,18 +172,4 @@
 /* Improve spacing between periods */
 .period-row + .period-row {
   margin-top: 2px;
-}
-
-/* Center group numbers properly */
-.group-numbers-row {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-  margin-bottom: 4px;
-  justify-content: flex-start;
-}
-
-.group-numbers-row > div:first-child {
-  min-width: 24px;
-  margin-right: 2px;
 }
