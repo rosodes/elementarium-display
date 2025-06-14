@@ -1,0 +1,45 @@
+
+/* Performance optimizations and accessibility */
+
+/* Performance optimizations */
+.element-card,
+.group-label,
+.period-label {
+  will-change: transform;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-pulse-subtle,
+  .animate-float,
+  .animate-glow {
+    animation: none !important;
+  }
+  
+  .element-card {
+    transition: none;
+  }
+  
+  .element-card:hover {
+    transform: none;
+  }
+  
+  .radioactive-indicator {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .element-card:hover,
+  .element-card:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+  }
+}
