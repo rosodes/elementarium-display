@@ -7,25 +7,75 @@ import ElementNavigation from '../components/element-details/ElementNavigation';
 import ElementPageHead from '../components/element-details/ElementPageHead';
 import ElementPageFooter from '../components/element-details/ElementPageFooter';
 import ElementPageHeader from '../components/element-details/ElementPageHeader';
-import { useElementLoader } from '../hooks/useElementLoader';
-import { useElementBookmark } from '../hooks/useElementBookmark';
-import { useElementNavigation } from '../hooks/useElementNavigation';
+// Removed broken imports for useElementLoader, useElementBookmark, useElementNavigation
+
+// Inline logic previously handled by the hooks
+import elements from '../data/elements';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Element } from '../data/elementTypes';
 
 const ElementPage = () => {
   const { t, language, setLanguage } = useLanguage();
   const mainRef = useRef<HTMLDivElement>(null);
-
-  // Custom hooks
-  const { element, elementId, lang } = useElementLoader(language, setLanguage);
-  const { isBookmarked, handleToggleBookmark } = useElementBookmark(element, elementId, t);
-  const {
-    handleHome,
-    handlePrevious,
-    handleNext,
-    canGoPrevious,
-    canGoNext,
-  } = useElementNavigation(lang, element);
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const urlParams = useParams();
+  const [element, setElement] = useState<Element | null>(null);
+  const [elementId, setElementId] = useState<number | null>(null);
+  const [lang, setLang] = useState<string>(language);
+  const [isBookmarked, setIsBookmarked] = useState(false);
+
+  // Load the element and language
+  useEffect(() => {
+    // Find the correct element from url params
+    let id = urlParams.atomic?.toString() || urlParams.id?.toString();
+    let atomicNumber = id ? parseInt(id, 10) : NaN;
+    const found = !isNaN(atomicNumber) && elements.find((el) => el.atomic === atomicNumber);
+    setElement(found || null);
+    setElementId(found ? found.atomic : null);
+    // Language
+    setLang(language);
+    setLanguage(language);
+  }, [urlParams.atomic, urlParams.id, language, setLanguage]);
+
+  // Bookmark logic (localStorage-based)
+  useEffect(() => {
+    if (!elementId) return;
+    const bookmarks = JSON.parse(localStorage.getItem('elementBookmarks') || '[]');
+    setIsBookmarked(bookmarks.includes(elementId));
+  }, [elementId]);
+  const handleToggleBookmark = () => {
+    if (!elementId) return;
+    let bookmarks = JSON.parse(localStorage.getItem('elementBookmarks') || '[]');
+    if (bookmarks.includes(elementId)) {
+      bookmarks = bookmarks.filter((id: number) => id !== elementId);
+      setIsBookmarked(false);
+    } else {
+      bookmarks.push(elementId);
+      setIsBookmarked(true);
+    }
+    localStorage.setItem('elementBookmarks', JSON.stringify(bookmarks));
+    toast({
+      title: isBookmarked ? t.ui?.removedFromFavorites : t.ui?.addedToFavorites,
+      description: isBookmarked ? t.ui?.elementRemoved : t.ui?.elementAdded,
+    });
+  };
+
+  // Navigation logic
+  const handleHome = () => navigate(lang ? `/${lang}` : '/');
+  const handlePrevious = () => {
+    if (!element || element.atomic <= 1) return;
+    const prev = elements.find((el) => el.atomic === element.atomic - 1);
+    if (prev) navigate(lang ? `/${lang}/element/${prev.atomic}` : `/element/${prev.atomic}`);
+  };
+  const handleNext = () => {
+    if (!element || element.atomic >= 118) return;
+    const next = elements.find((el) => el.atomic === element.atomic + 1);
+    if (next) navigate(lang ? `/${lang}/element/${next.atomic}` : `/element/${next.atomic}`);
+  };
+  const canGoPrevious = !!(element && element.atomic > 1);
+  const canGoNext = !!(element && element.atomic < 118);
 
   // Skip link focus method
   const handleSkipToContent = () => {
@@ -75,7 +125,6 @@ const ElementPage = () => {
         {t.ui?.skipToContent || "Skip to main content"}
       </a>
 
-      {/* Мини-шапка для смены языка и темы */}
       <ElementPageHeader />
 
       <div
@@ -125,7 +174,6 @@ const ElementPage = () => {
               onNavigate={(newElement) => {
                 handleHome();
                 setTimeout(() => {
-                  // for correct route update (optional: remove if not needed in your app)
                   window.location.assign(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
                 }, 1);
               }}
