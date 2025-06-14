@@ -62,7 +62,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
           grid[3][i - 10] = { type: 'element', data: element };
         } else {
           // Al to Ar
-          grid[3][i - 12 + 13] = { type: 'element', data: element };
+          grid[3][i] = { type: 'element', data: element };
         }
       }
     }
@@ -128,7 +128,16 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
 
   return (
     <div className="w-full">
-      <div className="periodic-table">
+      <div 
+        className="periodic-table grid gap-1"
+        style={{
+          gridTemplateColumns: '40px repeat(18, 76px)',
+          gridTemplateRows: '35px repeat(7, 76px)',
+          justifyContent: 'center',
+          margin: '0 auto',
+          padding: '20px'
+        }}
+      >
         {grid.map((row, rowIndex) =>
           row.map((cell, colIndex) => {
             const key = `${rowIndex}-${colIndex}`;
@@ -166,7 +175,7 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
                   element={cell.data} 
                   onClick={() => onElementClick(cell.data)}
                   data-atomic={cell.data.atomic}
-                  className="element-card"
+                  className="w-[76px] h-[76px]"
                 />
               );
             }
