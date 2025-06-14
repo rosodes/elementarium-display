@@ -1,4 +1,3 @@
-
 export interface ElementDetailsTranslations {
   showMoreInfo?: string;
   viewOnWikipedia?: string;
@@ -73,6 +72,9 @@ export interface ElementDetailsTranslations {
   // F-block specific translations
   fBlockElements?: string;
   fBlockDescription?: string;
+  // NEW: Add missing oxidation state message keys
+  noOxidationStatesForNobleGases?: string;
+  noOxidationStates?: string;
   // Required translation properties
   notAvailable: string;  // Required
   backToTable: string;   // Required
