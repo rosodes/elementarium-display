@@ -156,6 +156,7 @@ const ElementPage = () => {
         {/* SEO/meta head, НЕ ДУБЛИРУЕТ заголовок */}
         <ElementPageHead element={element} lang={lang} />
 
+        {/* Оставляем ТОЛЬКО эту навигацию! */}
         <nav
           aria-label={t.elementDetails?.element || "Element Navigation"}
           role="navigation"
