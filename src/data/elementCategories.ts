@@ -15,7 +15,11 @@ export const categories = {
   "Unknown": "Unknown"
 };
 
-export const getCategoryColor = (category: string): string => {
+export const getCategoryColor = (category?: string): string => {
+  if (!category) {
+    return "bg-unknown";
+  }
+
   const categoryMap: Record<string, string> = {
     "alkali": "bg-alkali",
     "nonmetal": "bg-nonmetal",

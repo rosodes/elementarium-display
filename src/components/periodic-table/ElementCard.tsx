@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Element as ElementType } from '../../data/elementTypes';
-import { getCategoryColor } from '../../data/elementCategories';
+import { getCategoryColor, getSeriesColor } from '../../data/elementCategories';
 
 interface ElementCardProps {
   element: ElementType;
@@ -10,7 +10,10 @@ interface ElementCardProps {
 }
 
 const ElementCard = ({ element, onClick, className = '' }: ElementCardProps) => {
-  const categoryColor = getCategoryColor(element.category);
+  // Use category if available, otherwise fall back to series
+  const categoryColor = element.category 
+    ? getCategoryColor(element.category) 
+    : getSeriesColor(element.series);
   
   const handleClick = () => {
     onClick(element);
