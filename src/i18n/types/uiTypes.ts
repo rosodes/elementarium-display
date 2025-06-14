@@ -38,4 +38,5 @@ export interface UITranslations {
   hotkeySearch?: string;
   hotkeyHome?: string;
   hotkeyClose?: string;
+  skipToContent?: string;
 }
