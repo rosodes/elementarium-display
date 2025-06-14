@@ -1,9 +1,15 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import ElementOxidationStatesSection from "../ElementOxidationStatesSection";
 import ElementProperties from "../ElementProperties";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 import { useLanguage } from "../../../context/LanguageContext";
+// Добавляем недостающие импорты:
+import HydrogenPhysicalConstantsSection from "../new-sections/HydrogenPhysicalConstantsSection";
+import HydrogenOxStatesSection from "../new-sections/HydrogenOxStatesSection";
+import HydrogenReactivitySection from "../new-sections/HydrogenReactivitySection";
+import HydrogenNaturalOccurrenceSection from "../new-sections/HydrogenNaturalOccurrenceSection";
 
 interface PropertiesTabProps {
   element: Element;
