@@ -19,7 +19,7 @@ const findElement = (atomicNumber: number): ElementType | null => {
 const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   console.log('TableGrid rendering...');
   
-  // Main container with explicit grid styles
+  // Force all styles inline with maximum specificity
   const containerStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: '40px repeat(18, 60px)',
@@ -29,14 +29,20 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
     margin: '0 auto',
     padding: '20px',
     backgroundColor: '#ffffff',
-    border: '3px solid blue', // Debug border
+    border: '2px solid red', // Debug border to see container
     boxSizing: 'border-box',
     position: 'relative',
     minWidth: '1200px',
-    minHeight: '600px'
+    minHeight: '600px',
+    // Force override any conflicting styles
+    flex: 'none',
+    flexDirection: 'unset',
+    flexWrap: 'unset',
+    alignItems: 'unset',
+    justifyContent: 'unset'
   };
 
-  // Define all element positions with their exact grid coordinates
+  // All element positions with their exact grid coordinates
   const elementPositions = [
     // Period 1
     { atomic: 1, row: 2, col: 2 },   // H
@@ -110,7 +116,10 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
   ];
 
   return (
-    <div style={containerStyle}>
+    <div 
+      style={containerStyle}
+      className="force-grid-layout"
+    >
       {/* Group numbers header */}
       {Array.from({ length: 18 }, (_, i) => i + 1).map(groupNum => (
         <div
@@ -124,7 +133,9 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
             fontSize: '0.8rem',
             color: '#6b7280',
             fontWeight: '600',
-            height: '35px'
+            height: '35px',
+            width: '60px',
+            border: '1px solid blue' // Debug border
           }}
         >
           {groupNum}
@@ -144,7 +155,9 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
             fontSize: '1rem',
             color: '#6b7280',
             fontWeight: '600',
-            height: '70px'
+            height: '70px',
+            width: '40px',
+            border: '1px solid green' // Debug border
           }}
         >
           {periodNum}
@@ -166,7 +179,9 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
               height: '70px',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              border: '1px solid orange', // Debug border
+              position: 'relative'
             }}
           >
             <Element 
@@ -176,7 +191,10 @@ const TableGrid = memo(({ onElementClick }: TableGridProps) => {
                 width: '100%',
                 height: '100%',
                 margin: '0',
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                position: 'absolute',
+                top: 0,
+                left: 0
               }}
             />
           </div>

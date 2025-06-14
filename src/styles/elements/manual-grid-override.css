@@ -1,13 +1,15 @@
 
-/* Extremely aggressive grid override to force proper periodic table layout */
-.manual-periodic-table-grid,
-.manual-periodic-table-grid * {
+/* Ultra-aggressive CSS to force grid layout and prevent any flex interference */
+
+/* Force grid on the main container */
+.force-grid-layout,
+.force-grid-layout * {
   display: grid !important;
+  flex: none !important;
   flex-direction: unset !important;
   flex-wrap: unset !important;
   align-items: unset !important;
   justify-content: unset !important;
-  flex: none !important;
   width: auto !important;
   height: auto !important;
   position: static !important;
@@ -15,19 +17,25 @@
   clear: none !important;
 }
 
-/* Force container to be grid */
-div[style*="display: grid"] {
-  display: grid !important;
+/* Specific overrides for element containers */
+.force-grid-layout > div {
+  display: flex !important;
+  flex: none !important;
 }
 
-/* Prevent any flexbox interference */
-.periodic-table,
-.periodic-table *,
+/* Prevent any parent containers from interfering */
 .periodic-table-container,
 .periodic-table-container * {
   flex: none !important;
-  align-self: unset !important;
-  justify-self: unset !important;
+  display: block !important;
+}
+
+/* Force the main grid container to always be grid */
+.force-grid-layout {
+  display: grid !important;
+  grid-template-columns: 40px repeat(18, 60px) !important;
+  grid-template-rows: 35px repeat(7, 70px) !important;
+  gap: 4px !important;
 }
 
 /* Remove any inherited positioning that could interfere */
@@ -38,6 +46,11 @@ div[style*="display: grid"] {
   position: static !important;
   float: none !important;
   clear: none !important;
-  display: flex !important;
-  flex-direction: column !important;
+}
+
+/* Override any flex properties on children */
+.force-grid-layout > * {
+  flex: none !important;
+  align-self: unset !important;
+  justify-self: unset !important;
 }
