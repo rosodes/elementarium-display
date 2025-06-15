@@ -2,24 +2,28 @@
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
-import { Moon, Sun, Globe } from 'lucide-react';
+import { Moon, Sun } from 'lucide-react';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Select,
+  SelectTrigger,
+  SelectContent,
+  SelectItem,
+  SelectValue,
+} from "@/components/ui/select";
 import { useLocation, useNavigate } from 'react-router-dom';
+import React from "react";
 
-// Map of language codes to display names
-const languageNames: Record<string, string> = {
-  en: 'English',
-  ru: 'Русский',
-  uk: 'Українська',
-};
+// Массив поддерживаемых языков: emoji + название + код
+const languageOptions = [
+  { code: "en", name: "English", emoji: "🇺🇸" },
+  { code: "ru", name: "Русский", emoji: "🇷🇺" },
+  { code: "uk", name: "Українська", emoji: "🇺🇦" },
+  // Здесь можно добавить много других языков:
+  // { code: "fr", name: "Français", emoji: "🇫🇷" }, ...
+];
 
 interface LanguageThemeControlsProps {
-  compact?: boolean; // если true — меньше внешних отступов и размер для использования в маленьких заголовках
+  compact?: boolean;
 }
 
 const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) => {
@@ -28,6 +32,10 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Build real supported languages list
+  const bigLanguageList = languageOptions.filter(opt => supportedLanguages.includes(opt.code));
+
+  // URL update логика
   const changeLanguageAndUpdateUrl = (newLang: string) => {
     setLanguage(newLang);
     const pathParts = location.pathname.split('/').filter(Boolean);
@@ -51,29 +59,39 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
 
   return (
     <div className={`flex items-center ${compact ? 'gap-1' : 'gap-3'} ml-auto`}>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size={compact ? "sm" : "icon"}
-            className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700"
-          >
-            <Globe className="h-[1.2rem] w-[1.2rem]" />
-            <span className="sr-only">{t.selectLanguage}</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          {supportedLanguages.map((lang) => (
-            <DropdownMenuItem
-              key={lang}
-              onClick={() => changeLanguageAndUpdateUrl(lang)}
-              className={language === lang ? "bg-accent" : ""}
+      {/* Языковой селект с флагами-эмодзи и поиском */}
+      <Select
+        value={language}
+        onValueChange={changeLanguageAndUpdateUrl}
+      >
+        <SelectTrigger
+          className={`w-[120px] ${compact ? "h-8 text-xs" : "h-10"} border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900`}
+          aria-label={t.selectLanguage}
+        >
+          <span className="flex items-center gap-2">
+            {/* emoji + name */}
+            <span>
+              {bigLanguageList.find(l => l.code === language)?.emoji || "🌐"}
+            </span>
+            <SelectValue>
+              {bigLanguageList.find(l => l.code === language)?.name || language}
+            </SelectValue>
+          </span>
+        </SelectTrigger>
+        <SelectContent align="end" className="z-[200] bg-white dark:bg-gray-900 max-h-72 overflow-y-auto" >
+          {bigLanguageList.map((lang) => (
+            <SelectItem
+              key={lang.code}
+              value={lang.code}
+              className="flex items-center gap-2 cursor-pointer"
             >
-              {languageNames[lang] || lang}
-            </DropdownMenuItem>
+              <span className="mr-2">{lang.emoji}</span>
+              <span>{lang.name}</span>
+            </SelectItem>
           ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </SelectContent>
+      </Select>
+      {/* Кнопка переключения темы */}
       <Button
         variant="outline"
         size={compact ? "sm" : "icon"}
