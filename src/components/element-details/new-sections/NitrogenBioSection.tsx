@@ -9,45 +9,27 @@ const NitrogenBioSection: React.FC = () => (
     </CardHeader>
     <CardContent className="p-4 text-xs space-y-2">
       <div>
-        <strong>Essential for life:</strong> Nitrogen is fundamental to all living organisms, comprising about 3% of human body weight and present in all proteins and nucleic acids.
+        <strong>Essential element:</strong> Nitrogen is vital to all living organisms. It is a key component of amino acids (proteins), nucleic acids (DNA/RNA), ATP and other biomolecules.
       </div>
       <div>
-        <strong>Biological functions:</strong>
+        <strong>Metabolic pathways:</strong> Nitrogen fixation, nitrification, and denitrification in bacteria and plants. Animals obtain nitrogen via diet.
+      </div>
+      <div>
+        <strong>Physiological functions:</strong>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Component of amino acids (building blocks of proteins)</li>
-          <li>Essential part of DNA and RNA bases (purines and pyrimidines)</li>
-          <li>Present in chlorophyll (photosynthesis)</li>
-          <li>Cofactor in many enzymes and vitamins</li>
-          <li>Part of neurotransmitters and hormones</li>
+          <li>Protein and enzyme synthesis</li>
+          <li>Genetic information (nucleic acids)</li>
+          <li>Energy storage and transfer (ATP)</li>
         </ul>
       </div>
       <div>
-        <strong>Nitrogen cycle in biology:</strong>
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Nitrogen fixation by symbiotic bacteria in root nodules</li>
-          <li>Uptake of nitrates and ammonium by plant roots</li>
-          <li>Protein synthesis in plants and animals</li>
-          <li>Decomposition and return to soil</li>
-        </ul>
+        <strong>Toxicity:</strong> Molecular nitrogen (N<sub>2</sub>) is inert and nontoxic, but nitrogen oxides and ammonia are toxic at elevated concentrations.
       </div>
       <div>
-        <strong>Toxicity and safety:</strong>
-        <ul className="list-disc pl-4 space-y-1">
-          <li><strong>Nitrogen gas (N<sub>2</sub>):</strong> Non-toxic but can cause asphyxiation by displacing oxygen</li>
-          <li><strong>Nitrous oxide (N<sub>2</sub>O):</strong> "Laughing gas" - anesthetic at low doses, toxic at high concentrations</li>
-          <li><strong>Nitrogen dioxide (NO<sub>2</sub>):</strong> Toxic brown gas, causes respiratory problems and acid rain</li>
-          <li><strong>Ammonia (NH<sub>3</sub>):</strong> Irritant to eyes, skin, and respiratory system</li>
-          <li><strong>Nitrates/nitrites:</strong> Can form carcinogenic nitrosamines in body</li>
-        </ul>
+        <strong>Decompression sickness ("the bends"):</strong> Rapid reduction in pressure causes dissolved nitrogen to form dangerous bubbles in the body.
       </div>
-      <div>
-        <strong>Environmental impact:</strong> Nitrogen pollution from fertilizers causes eutrophication in water bodies, leading to algal blooms and dead zones.
-      </div>
-      <div>
-        <strong>Deficiency effects:</strong> Nitrogen deficiency in plants causes stunted growth and yellowing of leaves (chlorosis).
-      </div>
-      <div className="mt-2 text-xs text-gray-600 dark:text-gray-300">
-        Nitrogen is both essential for life and potentially harmful depending on the chemical form and concentration.
+      <div className="mt-2 text-[11px] text-gray-500">
+        Sources: WHO, CDC, PubChem
       </div>
     </CardContent>
   </Card>
