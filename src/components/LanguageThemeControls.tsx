@@ -1,4 +1,3 @@
-
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -60,15 +59,9 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
         onChange={changeLanguageAndUpdateUrl}
         t={{
           selectLanguage: t.selectLanguage,
-          // fallback to English strings for optional keys
-          searchLanguage:
-            (t.ui && (t.ui as any).searchLanguage) ||
-            t.searchLanguage ||
-            "Search language…",
-          noLanguagesFound:
-            (t.ui && (t.ui as any).noLanguagesFound) ||
-            t.noResults ||
-            "Nothing found"
+          // Исправили обращения к нужным строкам из t.ui
+          searchLanguage: t.ui?.searchLanguage || "Search language…",
+          noLanguagesFound: t.ui?.noResults || "Nothing found"
         }}
       />
       {/* Theme toggle button */}
