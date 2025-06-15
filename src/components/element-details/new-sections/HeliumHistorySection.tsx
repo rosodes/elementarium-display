@@ -2,35 +2,38 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
-const HeliumHistorySection: React.FC = () => {
-  return (
-    <Card className="my-4 border border-gray-200 dark:border-gray-700">
-      <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">History & Discovery</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 text-xs space-y-2">
-        <ul className="list-disc pl-4 space-y-1">
-          <li>
-            <b>1868, Sun:</b> French astronomer Pierre Janssen and English scientist Joseph Norman Lockyer independently observed a new yellow line ("D₃") in the solar spectrum during a total solar eclipse. Lockyer named the new element “helium” (from Greek <i>helios</i>, "Sun").
-          </li>
-          <li>
-            <b>Helium was the first element discovered extra-terrestrially before being found on Earth!</b>
-          </li>
-          <li>
-            <b>1895, Earth:</b> Sir William Ramsay (UK) isolated helium gas from cleveite, a uranium mineral. Concurrently, Per Teodor Cleve and Abraham Langlet (Sweden) identified it in U ores in Uppsala.
-          </li>
-          <li>
-            <b>1903</b>: Large He concentrations discovered in Kansas natural gas fields; commercial exploitation starts in the U.S.
-          </li>
-          <li>
-            <b>1917:</b> Ernest Rutherford and Thomas Royds showed alpha particles were nuclei of helium.
-          </li>
-        </ul>
-        <div className="mt-2 text-xs text-gray-500">
-          <b>Fun facts:</b> The existence of helium explained why the Sun's observed spectrum could not be matched to Earthly elements; helium quickly became important for airships and scientific technology.
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+const HeliumHistorySection: React.FC = () => (
+  <Card className="my-4 border border-yellow-200 dark:border-yellow-700">
+    <CardHeader className="bg-yellow-50 dark:bg-gray-800 p-4">
+      <CardTitle className="text-lg">Discovery &amp; History</CardTitle>
+    </CardHeader>
+    <CardContent className="p-4 text-xs">
+      <ul className="list-disc pl-4 space-y-1">
+        <li>
+          <strong>Discovery in sun:</strong> Helium was first detected in the solar spectrum in 1868 by French astronomer Pierre Janssen and independently by English astronomer Joseph Norman Lockyer during a solar eclipse, due to a yellow spectral line in sunlight (D3 line).
+        </li>
+        <li>
+          <strong>Lockyer named it “helium”</strong> after the Greek god of the Sun, Helios, believing it was a new solar element.
+        </li>
+        <li>
+          <strong>Found on Earth:</strong> In 1895, Scottish chemist Sir William Ramsay isolated helium on Earth while studying radioactive minerals (cleveite), confirming it was a terrestrial element.
+        </li>
+        <li>
+          <strong>Recognition:</strong> Helium’s identification was confirmed by Per Teodor Cleve and Abraham Langlet in Sweden, also from cleveite.
+        </li>
+        <li>
+          <strong>Commercial use:</strong> First balloon filled with helium: 1921 (U.S. Navy). Helium became significant in airships after Hindenburg disaster (1937), as a safe replacement for hydrogen.
+        </li>
+        <li>
+          <strong>Nobel Prizes:</strong> 1904 (Ramsay) for discoveries in noble gases including helium.
+        </li>
+      </ul>
+      <div className="mt-2 text-[11px] text-gray-500">
+        Sources: Royal Society of Chemistry, Nobel Prize archives, NASA, CRC Handbook, Science History Institute
+      </div>
+    </CardContent>
+  </Card>
+);
+
 export default HeliumHistorySection;
+
