@@ -36,13 +36,17 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
   const [search, setSearch] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Фокус только при открытии списка, не при каждом вводе (устранит исчезновение курсора)
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+  // Только при открытии — фокусируем поле поиска
+  const handleOpenChange = (open: boolean) => {
+    setIsOpen(open);
+    if (open) {
+      setTimeout(() => {
+        inputRef.current?.focus();
+      }, 0);
     }
-  }, []);
+  };
 
   const filteredLanguages = useMemo(() => {
     const text = search.trim().toLowerCase();
@@ -60,6 +64,8 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     <Select
       value={language}
       onValueChange={onChange}
+      open={isOpen}
+      onOpenChange={handleOpenChange}
     >
       <SelectTrigger
         className={`w-[180px] h-10 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900`}
@@ -85,7 +91,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             placeholder={t.searchPlaceholder || "Search…"}
             className="h-8 px-2 text-sm border border-gray-200 dark:border-gray-800 focus:ring-2 focus:ring-blue-400 focus:outline-none"
             onKeyDown={e => e.stopPropagation()}
-            // autoFocus убрано, теперь только через ref
+            // autoFocus убрано, теперь по событию открытия
           />
         </div>
         {filteredLanguages.length > 0 ? (
