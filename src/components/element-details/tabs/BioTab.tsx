@@ -14,6 +14,7 @@ import SodiumBioSection from "../new-sections/SodiumBioSection";
 import MagnesiumBioSection from "../new-sections/MagnesiumBioSection";
 import AluminumBioSection from "../new-sections/AluminumBioSection";
 import SiliconBioSection from "../new-sections/SiliconBioSection";
+import PhosphorusBioSection from "../new-sections/PhosphorusBioSection";
 
 const BioTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -45,6 +46,8 @@ const BioTab = ({ element }: { element: Element }) => (
       <AluminumBioSection />
     ) : element.atomic === "14" ? (
       <SiliconBioSection />
+    ) : element.atomic === "15" ? (
+      <PhosphorusBioSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-rose-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Information about biological role, toxicity, or lack thereof will be displayed here for this element.

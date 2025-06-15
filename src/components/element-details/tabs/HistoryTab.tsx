@@ -11,6 +11,7 @@ import SodiumHistorySection from "../new-sections/SodiumHistorySection";
 import MagnesiumHistorySection from "../new-sections/MagnesiumHistorySection";
 import AluminumHistorySection from "../new-sections/AluminumHistorySection";
 import SiliconHistorySection from "../new-sections/SiliconHistorySection";
+import PhosphorusHistorySection from "../new-sections/PhosphorusHistorySection";
 
 const HistoryTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -36,6 +37,8 @@ const HistoryTab = ({ element }: { element: Element }) => (
       <AluminumHistorySection />
     ) : element.atomic === "14" ? (
       <SiliconHistorySection />
+    ) : element.atomic === "15" ? (
+      <PhosphorusHistorySection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-orange-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Information about discovery, etymology, historical facts and discoverers of this element will be shown here.
