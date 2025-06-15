@@ -7,38 +7,41 @@ const productionContent = {
   en: {
     title: "Production & Synthesis",
     body: [
-      "Hydrogen is mainly produced from natural gas (methane, CH₄) by steam reforming; also by electrolysis of water and via coal gasification. Steam reforming is most common (85–90% of worldwide H₂).",
-      "Electrolysis is cleaner but less common; gaining importance for 'green hydrogen' (renewable energy input).",
-      "Hydrogen can be produced biologically (algae, bacteria) and by chemical reactions (aluminum or zinc with alkalis, acids with metals).",
-      "Nuclear power and solar thermochemical cycles are in development for cleaner large-scale H₂.",
-      "H₂ production is energy intensive, often limited by CO₂ emissions (unless using renewable/nuclear sources).",
-      "Storage and transport are challenging: compressed gas, cryogenic liquid, or metal hydrides.",
+      "Almost 90% of industrial hydrogen is produced from fossil fuels—mainly by steam methane reforming (natural gas: CH₄ + H₂O → CO + 3H₂); also via coal gasification (water-gas shift reaction).",
+      "Electrolysis of water (2H₂O → 2H₂ + O₂) provides high-purity, 'green hydrogen' if renewable energy is used.",
+      "Byproduct hydrogen comes from processes such as chlor-alkali (NaOH, Cl₂ production) and petroleum refining.",
+      "Laboratory synthesis: reaction of active metals (e.g., Zn, Al) with acids or bases liberates H₂.",
+      "Other innovative routes: thermochemical water splitting (solar, nuclear, metal oxide cycles), photocatalytic and biological methods (algae, bacteria).",
+      "'White' hydrogen (naturally generated underground) is a prospective source under active research.",
+      "Storage and transport: compressed gas, liquefied hydrogen, metal hydrides, ammonia as carrier."
     ],
-    sources: "Sources: IEA, CRC Handbook, hydrogen industry reports"
+    sources: "Sources: IEA, CRC Handbook, hydrogen industry reports, Nature Energy"
   },
   ru: {
     title: "Получение и синтез",
     body: [
-      "В промышленности водород получают в основном из природного газа (метана) — паровым реформингом (85–90% мирового H₂).",
-      "Электролиз воды — более экологичный способ, используется для 'зеленого водорода', но доля пока мала.",
-      "Получают также биологически (водоросли, бактерии) и химическими методами (кислоты с металлами, алюминий/цинк с щелочами).",
-      "Разрабатываются ядерные и солнечные высокотемпературные технологии для чистого H₂.",
-      "Производство водорода энергозатратно, часто сопровождается выбросами CO₂ (если не возобновляемые источники).",
-      "Хранение и транспортировка сложны: сжатый газ, жидкий криогенный водород, химические носители."
+      "Почти 90% мирового водорода получают из ископаемого топлива: паровой реформинг метана (CH₄ + H₂O → CO + 3H₂), углефикация (реакция с H₂O).",
+      "Электролиз воды (2H₂O → 2H₂ + O₂) — 'зелёный' и чистый водород при использовании ВИЭ.",
+      "Побочный водород образуется в процессах производства NaOH, Cl₂ (хлор-щелочной электролиз), нефтепереработке.",
+      "В лабораториях H₂ выделяют при реакции активных металлов (Zn, Al) с кислотами/щелочами.",
+      "Научные инновации: терморасщепление (солнечная, ядерная энергетика), фотокатализ, биогенные процессы (водоросли, бактерии).",
+      "'Белый' природный водород (подземный генерация) — перспективное сырьё.",
+      "Хранение и транспорт: газ под давлением, жидкий криогенный H₂, метангидриды, аммиак как носитель."
     ],
-    sources: "Источники: IEA, CRC Handbook, отчёты отрасли"
+    sources: "Источники: IEA, CRC Handbook, отчёты отрасли, Nature Energy"
   },
   uk: {
     title: "Добування і синтез",
     body: [
-      "Основний спосіб отримання водню — парова конверсія метану (CH₄) з природного газу (85–90% H₂).",
-      "Електроліз води — екологічний шлях для 'зеленого водню', але масштаб ще невеликий.",
-      "Можливе біологічне виробництво (водорості, бактерії) і реакції металів з кислотами чи лугами.",
-      "В розробці — ядерні, сонячні, високотемпературні процеси для чистого H₂.",
-      "Виробництво енергоємне, нерідко супроводжується викидами CO₂ (крім 'зеленого водню').",
-      "Зберігання й транспортування водню — складні (газ, рідкий стан, гідриди)."
+      "Близько 90% водню у світі добувають із викопного палива: парова конверсія метану (CH₄ + H₂O → CO + 3H₂), газифікація вугілля.",
+      "Електроліз води (2H₂O → 2H₂ + O₂) дає 'зелений' водень при енергії з ВДЕ.",
+      "Побічний водень отримують на хлор-лужних виробництвах та НПЗ.",
+      "У лабораторії H₂ отримують дією кислот або лугів на активні метали (Zn, Al).",
+      "Нові методи: термохімічне розщеплення води (сонячна/ядерна енергія), фотокаталіз, біологічне виробництво (водорості, бактерії).",
+      "'Білий' водень (природні надра) активно досліджується як ресурс.",
+      "Зберігання, транспортування: газ, рідкий H₂, гідриди металів, аміак."
     ],
-    sources: "Джерела: IEA, CRC Handbook"
+    sources: "Джерела: IEA, CRC Handbook, галузеві звіти, Nature Energy"
   }
 };
 

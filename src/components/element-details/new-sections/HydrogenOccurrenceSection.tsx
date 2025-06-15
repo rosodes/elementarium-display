@@ -9,15 +9,13 @@ const occurrenceContent = {
   en: {
     title: "Occurrence & Abundance",
     facts: [
-      "Hydrogen is the most abundant element in the universe (~75% of normal matter by mass, ~92% by atom count).",
-      "Sun and stars are mostly hydrogen (hydrogen fusion gives their energy).",
-      "Dominates atmospheres of Jupiter/Saturn (H₂ and atomic H).",
-      "In interstellar space: atomic H, H₂, and ionized H⁺.",
-      "Earth’s atmosphere: only trace H₂ (escapes to space).",
-      "Most hydrogen on Earth is in water (H₂O), and in minerals/organics.",
-      "Essential for all living things (proteins, DNA, etc.).",
-      "Found in minerals, volcanic/hydrothermal gases, hydrated salts.",
-      "Subsurface 'white hydrogen' deposits may be a future energy source."
+      "Hydrogen is the single most abundant element in the universe: ≈ 75% of normal matter by mass, >90% of atoms.",
+      "It dominates the composition of stars and gas giants (Jupiter, Saturn), mainly as atomic and molecular hydrogen.",
+      "In interstellar medium, found as atomic H, molecular H₂, and ionized H⁺.",
+      "On Earth, most hydrogen is chemically bound in water (H₂O) and organic molecules; free H₂ is rare due to its tendency to escape gravity.",
+      "Atmospheric H₂ concentration on Earth is extremely low (~0.00005% by volume).",
+      "Hydrogen is present in all living organisms, minerals, petroleum, volcanic and hydrothermal gases.",
+      "Recent discoveries: subsurface ('white') hydrogen deposits could be a new energy resource."
     ],
     table: [
       { env: "Universe", percent: "75% (mass)", comment: "Hydrogen mass share of the universe" },
@@ -32,15 +30,13 @@ const occurrenceContent = {
   ru: {
     title: "Распространённость и встречаемость",
     facts: [
-      "Водород — самый распространённый элемент (~75% массы обычной материи).",
-      "Главное вещество звёзд, основа современных космологических моделей.",
-      "В атмосферах газовых гигантов — преимущественно водород.",
-      "В межзвёздной среде встречается в разных формах: H, H₂, H⁺.",
-      "На Земле молекулярный водород (H₂) — крайне редок в атмосфере (0.00005%), легко уходит в космос.",
-      "Основная часть — связана в воде (11% массы океанов), а также в минералах и органике.",
-      "Входит в состав всех живых существ — белки, ДНК, жиры, углеводы.",
-      "Обнаружен в гидратированных минералах, глинах, вулканических и гидротермальных выбросах.",
-      "Недавно открытые запасы подземного «белого водорода» рассматриваются как перспективный природный источник."
+      "Водород — самый распространённый элемент (~75% массы обычной материи, >90% числа атомов).",
+      "Основная составляющая звёзд, туманностей, газовых гигантов (водород в виде H и H₂).",
+      "В межзвёздной среде — атомарный, молекулярный и ионизированный водород.",
+      "На Земле почти весь водород связан в воде и органике, свободного газа крайне мало (улетучивается из атмосферы).",
+      "Доля H₂ в атмосфере Земли — всего 0,00005%.",
+      "Входит в состав живых организмов, минералов, нефти, газов вулканов и источников.",
+      "Открытия подземных запасов («белый» водород) — перспективное экологичное сырьё для энергетики."
     ],
     table: [
       { env: "Вселенная", percent: "75%", comment: "Доля массы" },
@@ -48,22 +44,20 @@ const occurrenceContent = {
       { env: "Атмосфера Земли", percent: "<0.00005%", comment: "Молекулярный H₂" },
       { env: "Океаны", percent: "11%", comment: "Вода" },
       { env: "Земная кора", percent: "0.15%", comment: "В минералах, воде" },
-      { env: "Организм человека", percent: "10%", comment: "Доля атомов от общего числа" }
+      { env: "Организм человека", percent: "10%", comment: "Доля атомов" }
     ],
     sources: "Источники: CRC Handbook, NASA, WebElements, Nature"
   },
   uk: {
     title: "Поширеність та наявність",
     facts: [
-      "Водень — найпоширеніший у Всесвіті (близько 75% маси).",
-      "Головна складова зір, основа космологічних моделей.",
-      "В атмосфері Юпітера та Сатурна — переважно водень.",
-      "У міжзоряному середовищі трапляється у формах H, H₂, H⁺.",
-      "На Землі H₂ дуже мало в атмосфері (0.00005%), газ легко йде в космос.",
-      "Переважна частка водню в складі води (11% маси океанів), органіці, мінералах.",
-      "Входить в усі органічні молекули, важливий для життя.",
-      "Присутній у гідратованих мінералах, глинах, вулканічних і гідротермальних джерелах.",
-      "Підземний 'білий водень' розглядається як новий енергоджерело."
+      "Водень — найпоширеніший елемент у Всесвіті (~75% маси звичайної матерії, >90% атомів).",
+      "Основна складова зір, туманностей, атмосфер Юпітера й Сатурна (у вигляді H, H₂).",
+      "У міжзоряному середовищі зустрічається як атомарний, молекулярний та іонізований водень.",
+      "На Землі водень переважно у воді та органічних молекулах; у вигляді вільного газу рідкісний (легко йде з атмосфери).",
+      "Концентрація H₂ в атмосфері ~0,00005% (дуже мало).",
+      "Входить до складу живих організмів, мінералів, нафти, вулканічних й гідротермальних газів.",
+      "Підземний 'білий' водень — потенційне нове джерело енергії."
     ],
     table: [
       { env: "Всесвіт", percent: "75%", comment: "Частка маси" },
