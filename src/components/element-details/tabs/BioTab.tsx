@@ -1,10 +1,11 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenBioSection from "../new-sections/HydrogenBioSection";
 import HeliumInterestingFactsSection from "../new-sections/HeliumInterestingFactsSection";
 import LithiumBioSection from "../new-sections/LithiumBioSection";
 import BerylliumBioSection from "../new-sections/BerylliumBioSection";
-import BoronInterestingFactsSection from "../new-sections/BoronInterestingFactsSection";
+import BoronBioSection from "../new-sections/BoronBioSection";
 import CarbonInterestingFactsSection from "../new-sections/CarbonInterestingFactsSection";
 
 const BioTab = ({ element }: { element: Element }) => (
@@ -18,7 +19,7 @@ const BioTab = ({ element }: { element: Element }) => (
     ) : element.atomic === "4" ? (
       <BerylliumBioSection />
     ) : element.atomic === "5" ? (
-      <BoronInterestingFactsSection />
+      <BoronBioSection />
     ) : element.atomic === "6" ? (
       <CarbonInterestingFactsSection />
     ) : (
