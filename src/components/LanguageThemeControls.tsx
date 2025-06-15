@@ -59,8 +59,8 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
         onChange={changeLanguageAndUpdateUrl}
         t={{
           selectLanguage: t.selectLanguage,
-          // Исправили обращения к нужным строкам из t.ui
-          searchLanguage: t.ui?.searchLanguage || "Search language…",
+          // Use correct key from the UITranslations
+          searchLanguage: t.ui?.searchPlaceholder || "Search language…",
           noLanguagesFound: t.ui?.noResults || "Nothing found"
         }}
       />
