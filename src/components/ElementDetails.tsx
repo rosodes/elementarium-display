@@ -91,7 +91,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [element.atomic, onClose, onNavigate, prevElement, nextElement, isFullPage]);
 
-  // Новый стиль: tabs на всю ширину, в одну строку, scrollbar при переполнении
+  // Обновленный стиль: контейнер без горизонтального скролла, обе строки в одной обертке
   const containerClasses = isFullPage
     ? "w-full bg-white dark:bg-gray-800 rounded-lg shadow-2xl overflow-hidden"
     : "fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm";
@@ -119,8 +119,9 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
         />
         
         <Tabs defaultValue="overview" value={tabValue} onValueChange={setTabValue} className="w-full">
-          <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
-            <TabsList className="overflow-x-auto no-scrollbar w-full">
+          {/* Больше не sticky, без скроллинга, обертка для кнопок */}
+          <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+            <TabsList /* убираем overflow-x-auto/no-scrollbar */ >
               <TabsTrigger value="overview">
                 <Info size={18} className="mr-1 shrink-0" />
                 Overview

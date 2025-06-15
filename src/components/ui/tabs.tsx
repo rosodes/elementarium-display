@@ -1,10 +1,9 @@
-
 import * as React from "react"
 import * as TabsPrimitive from "@radix-ui/react-tabs"
 import { cn } from "@/lib/utils"
 
-// Новый стиль для обертки всей панели табов
-const Tabs = TabsPrimitive.Root
+// Новый стиль: табы как кнопки, адаптивная сетка, без горизонтального скролла, wrap на 2+ строки
+const Tabs = TabsPrimitive.Root;
 
 // Список вкладок: скроллится при переполнении, прозрачный фон, разделитель снизу, адаптивные отступы
 const TabsList = React.forwardRef<
@@ -14,9 +13,9 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      // Новый внешний вид: горизонтальный скролл, плавное выделение
-      "flex w-full gap-x-1 px-0 py-0 overflow-x-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-blue-200 dark:scrollbar-thumb-blue-800 bg-transparent border-b border-gray-300 dark:border-gray-700",
-      "backdrop-blur z-10 min-h-[48px]",
+      // Grid, адаптивно минимум две строки, без overflow, gaps для приятного wrap
+      "flex flex-wrap justify-center items-center gap-3 md:gap-4 py-3 px-1 bg-transparent border-b-0",
+      "w-full",
       className
     )}
     {...props}
@@ -24,7 +23,7 @@ const TabsList = React.forwardRef<
 ))
 TabsList.displayName = TabsPrimitive.List.displayName
 
-// Оформление одной вкладки: иконка+текст, выделенный border для активной, фон при hover/focus, плавный переход
+// Кнопка-таба: крупная, нормальное расстояние, плавные активные/hover стили
 const TabsTrigger = React.forwardRef<
   React.ElementRef<typeof TabsPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
@@ -32,18 +31,18 @@ const TabsTrigger = React.forwardRef<
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      `relative flex items-center gap-1 px-3 py-1.5
-      min-w-[100px] max-w-xs
-      font-semibold text-sm leading-5
-      rounded-t-lg
-      transition-all duration-200
-      data-[state=active]:bg-blue-600/10 data-[state=active]:text-blue-700 dark:data-[state=active]:text-blue-200 
-      data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-blue-600 dark:data-[state=active]:border-blue-400 
-      border-b-2 border-transparent
-      hover:bg-blue-500/10 hover:text-blue-700 dark:hover:bg-blue-600/20 dark:hover:text-blue-200
-      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:z-10
-      whitespace-nowrap
-      select-none
+      `inline-flex items-center gap-2 px-3 py-2 md:px-4 md:py-2.5
+      rounded-lg border-2 border-transparent
+      font-semibold text-base md:text-sm transition-all duration-200
+      bg-white dark:bg-gray-800 shadow-sm
+      hover:bg-blue-50 dark:hover:bg-blue-950 hover:text-blue-700 dark:hover:text-blue-300
+      focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:z-20
+      data-[state=active]:bg-blue-100 dark:data-[state=active]:bg-blue-900/70
+      data-[state=active]:text-blue-800 dark:data-[state=active]:text-blue-200
+      data-[state=active]:border-blue-600 dark:data-[state=active]:border-blue-400
+      data-[state=active]:shadow-md
+      whitespace-nowrap select-none
+      transition-colors
       `,
       className
     )}
