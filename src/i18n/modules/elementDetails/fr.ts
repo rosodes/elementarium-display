@@ -1,16 +1,26 @@
+
 import { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
+// Перенос вкладок в объект tabs
 export const elementDetailsFr: ElementDetailsTranslations = {
+  tabs: {
+    overview: "Présentation",
+    properties: "Propriétés",
+    structure: "Structure atomique",
+    applications: "Applications",
+    history: "Histoire",
+    abundance: "Abondance",
+    compounds: "Composés / Chimie",
+    bio: "Rôle biologique / Toxicité",
+    production: "Production / Synthèse",
+    safety: "Précautions / Sécurité"
+  },
   showMoreInfo: "En savoir plus",
   viewOnWikipedia: "Voir sur Wikipedia",
   closeDetails: "Fermer",
-  properties: "Propriétés",
   physicalProperties: "Propriétés physiques",
   atomicProperties: "Propriétés atomiques",
   moreDetails: "Plus de détails",
-  overview: "Présentation",
-  history: "Histoire",
-  applications: "Applications",
   basicInfo: "Informations de base",
   series: "Série",
   atomicWeight: "Masse atomique",
@@ -55,7 +65,6 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   meltingBoilingPoint: "Point de fusion/éb.",
   electronProperties: "Propriétés électroniques",
   electronAffinity: "Affinité électronique",
-  abundance: "Abondance",
   universe: "Univers",
   solar: "Solaire",
   crust: "Croûte",
@@ -87,8 +96,6 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   yes: "Oui",
   no: "Non",
   stability: "Stabilité",
-
-  // Ajouts:
   noOxidationStatesForNobleGases: "Pour les gaz nobles, les états d’oxydation ne sont pas présents dans des conditions normales.",
   noOxidationStates: "Aucune donnée sur les états d’oxydation.",
   selectedIsotope: "Isotope sélectionné",
@@ -108,8 +115,6 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   massNumber: "Nombre de masse",
   protonNumber: "Nombre de protons",
   neutronNumber: "Nombre de neutrons",
-
-  // Дополнительные популярные фразы для детalés элемента:
   relatedElements: "Éléments apparentés",
   seeAlso: "Voir aussi",
   spectralLines: "Raies spectrales",
