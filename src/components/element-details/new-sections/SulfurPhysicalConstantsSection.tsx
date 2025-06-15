@@ -21,7 +21,7 @@ const SulfurPhysicalConstantsSection: React.FC = () => {
           <div><strong>Heat of vaporization:</strong> 45.0 kJ/mol</div>
           <div><strong>Thermal conductivity:</strong> 0.205 W/(m·K)</div>
           <div><strong>Electronegativity:</strong> 2.58</div>
-          <div><strong>Electrical resistivity:</strong> >10¹⁵ Ω·m</div>
+          <div><strong>Electrical resistivity:</strong> &gt;10¹⁵ Ω·m</div>
         </div>
       </CardContent>
     </Card>
