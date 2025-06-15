@@ -1,11 +1,10 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { FlaskConical, Beaker } from "lucide-react";
 
 // Визуальный блок для раздела "Compounds / Chemistry"
 const HydrogenCompoundsVisualBlock: React.FC = () => (
-  <div className="flex flex-wrap gap-4 my-2 text-[13px]">
+  <div className="flex flex-wrap gap-4 my-2 text-[13px] select-text">
     <EnhancedTooltip
       content="Вода — главное соединение водорода (H₂O)."
       side="top"

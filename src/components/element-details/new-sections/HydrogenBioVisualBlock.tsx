@@ -1,11 +1,10 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { HeartHandshake, Activity } from "lucide-react";
 
 // Визуальный блок для раздела "Biological Role / Toxicity"
 const HydrogenBioVisualBlock: React.FC = () => (
-  <div className="flex flex-wrap gap-4 my-2 text-[13px]">
+  <div className="flex flex-wrap gap-4 my-2 text-[13px] select-text">
     <EnhancedTooltip
       content="Входит в состав всех живых организмов, часть воды и органики."
       side="top"

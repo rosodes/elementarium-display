@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link } from "react-router-dom";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
@@ -8,7 +7,7 @@ import { Info } from "lucide-react";
  * Визуальный блок для Overview: иконки, полезные ссылки
  */
 const HydrogenOverviewVisualBlock: React.FC = () => (
-  <div className="flex flex-row flex-wrap mt-2 items-center gap-3">
+  <div className="flex flex-row flex-wrap mt-2 items-center gap-3 select-text">
     <EnhancedTooltip
       content={
         <div className="max-w-xs text-xs">

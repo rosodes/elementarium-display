@@ -1,4 +1,3 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { Info } from "lucide-react";
@@ -7,7 +6,7 @@ import { Info } from "lucide-react";
  * Визуальный блок: атомная структура и изотопы
  */
 const HydrogenAtomicStructureVisualBlock: React.FC = () => (
-  <div className="flex gap-4 flex-wrap my-2 text-[13px]">
+  <div className="flex gap-4 flex-wrap my-2 text-[13px] select-text">
     <EnhancedTooltip
       content="Протий (¹H): 1 протон, 0 нейтронов; Дейтерий (²H): 1 протон, 1 нейтрон; Тритий (³H): 1 протон, 2 нейтрона."
       side="top"

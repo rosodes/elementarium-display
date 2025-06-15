@@ -1,11 +1,10 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { Landmark, BookOpen } from "lucide-react";
 
 // Визуальный блок для раздела "History / Discovery"
 const HydrogenHistoryVisualBlock: React.FC = () => (
-  <div className="flex flex-wrap gap-4 my-2 text-[13px]">
+  <div className="flex flex-wrap gap-4 my-2 text-[13px] select-text">
     <EnhancedTooltip
       content="Henry Cavendish (1766, Англия) впервые выделил и описал водород."
       side="top"

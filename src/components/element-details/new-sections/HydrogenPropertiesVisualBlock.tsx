@@ -1,4 +1,3 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { Info } from "lucide-react";
@@ -7,7 +6,7 @@ import { Info } from "lucide-react";
  * Мини-инфографика для основных физических свойств (Properties)
  */
 const HydrogenPropertiesVisualBlock: React.FC = () => (
-  <div className="my-2 flex flex-row flex-wrap gap-2 text-[13px]">
+  <div className="my-2 flex flex-row flex-wrap gap-2 text-[13px] select-text">
     <EnhancedTooltip content="Гидроген — газ без цвета, вкуса и запаха" side="top">
       <span className="px-3 py-1 bg-blue-100 dark:bg-gray-800 text-blue-700 dark:text-blue-200 rounded-lg">
         Газ (25 °C)

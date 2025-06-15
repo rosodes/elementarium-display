@@ -1,11 +1,10 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { Globe2, Droplets } from "lucide-react";
 
 // Визуальный блок для раздела "Occurrence / Abundance"
 const HydrogenOccurrenceVisualBlock: React.FC = () => (
-  <div className="flex flex-wrap gap-4 my-2 text-[13px]">
+  <div className="flex flex-wrap gap-4 my-2 text-[13px] select-text">
     <EnhancedTooltip
       content="Водород — самый распространённый элемент во Вселенной, основа звёзд."
       side="top"

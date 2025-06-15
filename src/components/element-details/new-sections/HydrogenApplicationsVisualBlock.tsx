@@ -1,4 +1,3 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { Info } from "lucide-react";
@@ -7,7 +6,7 @@ import { Info } from "lucide-react";
  * Визуальный блок: основные виды применения
  */
 const HydrogenApplicationsVisualBlock: React.FC = () => (
-  <div className="flex gap-4 flex-wrap my-2 text-[13px]">
+  <div className="flex gap-4 flex-wrap my-2 text-[13px] select-text">
     <EnhancedTooltip content="Аммиак — удобрения, более 150 млн тонн/год" side="top">
       <span className="bg-blue-100 dark:bg-gray-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-lg">
         NH₃ (Haber-Bosch)

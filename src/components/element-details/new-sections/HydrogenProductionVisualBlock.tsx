@@ -1,11 +1,10 @@
-
 import React from "react";
 import EnhancedTooltip from "../../ui/tooltip-enhanced";
 import { Factory, Repeat2 } from "lucide-react";
 
 // Визуальный блок для раздела "Production / Synthesis"
 const HydrogenProductionVisualBlock: React.FC = () => (
-  <div className="flex flex-wrap gap-4 my-2 text-[13px]">
+  <div className="flex flex-wrap gap-4 my-2 text-[13px] select-text">
     <EnhancedTooltip
       content="Основной мировой способ — паровой реформинг метана (CH₄ + H₂O → CO + 3H₂)."
       side="top"
