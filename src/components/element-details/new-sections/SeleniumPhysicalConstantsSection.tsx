@@ -17,7 +17,7 @@ const SeleniumPhysicalConstantsSection: React.FC = () => {
           <div><strong>Atomic Radius:</strong> 190 pm</div>
           <div><strong>Covalent Radius:</strong> 120 pm</div>
           <div><strong>Thermal Conductivity:</strong> 0.52 W/(m·K)</div>
-          <div><strong>Electrical Resistivity:</strong> >10¹² Ω·m</div>
+          <div><strong>Electrical Resistivity:</strong> &gt;10¹² Ω·m</div>
         </div>
       </CardContent>
     </Card>
