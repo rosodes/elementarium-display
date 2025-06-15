@@ -1,7 +1,7 @@
 
-import { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
+import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
-// Перенос вкладок в объект tabs
+// Централизация вкладок: только в поле tabs
 export const elementDetailsFr: ElementDetailsTranslations = {
   tabs: {
     overview: "Présentation",

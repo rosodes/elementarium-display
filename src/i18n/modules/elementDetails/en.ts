@@ -1,7 +1,7 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
-  // Tabs block centralization
   tabs: {
     overview: "Overview",
     properties: "Properties",
@@ -17,8 +17,7 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   showMoreInfo: "Show more information",
   viewOnWikipedia: "View on Wikipedia",
   closeDetails: "Close",
-  // REMOVE dublicates: properties, overview, structure, applications, history, abundance, compounds, bio, production, safety if present!
-  properties: "Properties",
+  // ... Остальные ключи (кроме вкладок), дублирование убрано!
   physicalProperties: "Physical Properties",
   atomicProperties: "Atomic Properties",
   moreDetails: "More details",
@@ -84,7 +83,6 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   // F-block
   fBlockElements: "F-block Elements",
   fBlockDescription: "F-block elements, including lanthanides and actinides",
-  // New keys
   noOxidationStatesForNobleGases: "Noble gases do not have oxidation states under normal conditions.",
   noOxidationStates: "No oxidation state data available.",
   notAvailable: "Information not available",
@@ -95,8 +93,7 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   radioactive: "Radioactivity",
   yes: "Yes",
   no: "No",
-  // Menu: tab button keys
-  compounds: "Compounds / Chemistry",
+  // Меню: основные кнопки вкладок
   bioRole: "Biological role",
   toxicityInfo: "Toxicity",
   production: "Production / Synthesis",

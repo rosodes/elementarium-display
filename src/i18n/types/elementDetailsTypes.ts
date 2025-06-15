@@ -1,18 +1,20 @@
+export interface ElementDetailsTabs {
+  overview: string;
+  properties: string;
+  structure: string;
+  applications: string;
+  history: string;
+  abundance: string;
+  compounds: string;
+  bio: string;
+  production: string;
+  safety: string;
+  [key: string]: string;
+}
+
+// Обновленный основной тип: tabs теперь обязательный и строгий
 export interface ElementDetailsTranslations {
-  // Новый блок с вкладками:
-  tabs?: {
-    overview: string;
-    properties: string;
-    structure: string;
-    applications: string;
-    history: string;
-    abundance: string;
-    compounds?: string;
-    bio?: string;
-    production?: string;
-    safety?: string;
-    [key: string]: string | undefined; // для возможности расширения
-  };
+  tabs: ElementDetailsTabs;
   showMoreInfo?: string;
   viewOnWikipedia?: string;
   closeDetails?: string;
@@ -20,9 +22,6 @@ export interface ElementDetailsTranslations {
   physicalProperties?: string;
   atomicProperties?: string;
   moreDetails?: string;
-  overview?: string;
-  history?: string;
-  applications?: string;
   basicInfo?: string;
   series?: string;
   atomicWeight?: string;
@@ -85,73 +84,19 @@ export interface ElementDetailsTranslations {
   // F-block specific translations
   fBlockElements?: string;
   fBlockDescription?: string;
-  // Новые ключи для осмысленных сообщений по степеням окисления
   noOxidationStatesForNobleGases?: string;
   noOxidationStates?: string;
-  conductivity?: string;
-  stability?: string; // <-- add this for isotopes table
-  // Новые ключи для toxicity section
-  toxicityInfo?: string;
-  bioRole?: string;
-  precautions?: string;
-  noToxicityInfo?: string;
-  // --- Eco/Reaction keys ---
-  ecologyInfo?: string;
-  ecologicalImpact?: string;
-  reactivity?: string;
-  noEcologyInfo?: string;
-  // Required translation properties
   notAvailable: string;
   backToTable: string;
   previous: string;
   next: string;
-  // --- ADDED KEYS ---
+  conductivity?: string;
   radioactive?: string;
   yes?: string;
   no?: string;
-
-  // New French/extended keys:
-  selectedIsotope?: string;
-  halfLife?: string;
-  decayMode?: string;
-  abundanceInNature?: string;
-  stable?: string;
-  unstable?: string;
-  applicationsBlock?: string;
-  health?: string;
-  warnings?: string;
-  compounds?: string;
+  // Меню: основные кнопки вкладок
+  bioRole?: string;
+  toxicityInfo?: string;
   production?: string;
-  fractionByMass?: string;
-  visualization?: string;
-  notes?: string;
-  massNumber?: string;
-  protonNumber?: string;
-  neutronNumber?: string;
-
-  // --- Extended keys for detailed element views (for fr.ts) ---
-  relatedElements?: string;
-  seeAlso?: string;
-  spectralLines?: string;
-  atomicModel?: string;
-  casNumber?: string;
-  discoverer?: string;
-  dateDiscovered?: string;
-  alternativeNames?: string;
-  namedAfter?: string;
-  mainGroup?: string;
-  electronShells?: string;
-  abundanceInSea?: string;
-  abundanceInAtmosphere?: string;
-  uses?: string;
-  notesBlock?: string;
-  structureImage?: string;
-  spectrum?: string;
-  spectralClass?: string;
-  massSpectra?: string;
-  appearance?: string;
-  naturalSources?: string;
-  artificialProduction?: string;
-  oxidationStateDescription?: string;
-  meltingBoilingDescription?: string;
+  precautions?: string;
 }
