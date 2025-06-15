@@ -94,7 +94,6 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   stability: "Stabilité",
   noOxidationStatesForNobleGases: "Pour les gaz nobles, les états d’oxydation ne sont pas présents dans des conditions normales.",
   noOxidationStates: "Aucune donnée sur les états d’oxydation.",
-  selectedIsotope: "Isotope sélectionné",
   halfLife: "Période",
   decayMode: "Mode de désintégration",
   abundanceInNature: "Abondance dans la nature",
