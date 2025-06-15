@@ -1,3 +1,4 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 // Централизация вкладок: только в поле tabs
@@ -44,7 +45,7 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   covalent: "covalent",
   additionalInfo: "Informations supplémentaires",
   atomicNumber: "Numéro atomique",
-  symbol: "Symbole",
+  // symbol: "Symbole", // дублирующая вкладка, удаляем!
   element: "Élément",
   is: "est",
   inPeriodGroup: "dans la période/groupe",
@@ -61,7 +62,7 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   isotopes: "Isotopes",
   industry: "Industrie",
   discovery: "Découverte",
-  structure: "Structure",
+  // structure: "Structure", // дублирующая вкладка, удаляем!
   shells: "Couches",
   meltingBoilingPoint: "Point de fusion/éb.",
   electronProperties: "Propriétés électroniques",

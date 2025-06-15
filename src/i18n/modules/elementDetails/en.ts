@@ -1,4 +1,3 @@
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -44,7 +43,6 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   covalent: "Covalent",
   additionalInfo: "Additional information",
   atomicNumber: "Atomic Number",
-  symbol: "Symbol",
   element: "Element",
   is: "is",
   inPeriodGroup: " in period {period} and group {group} of the periodic table.",
@@ -61,7 +59,6 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   isotopes: "Isotopes",
   industry: "Industry",
   discovery: "Discovery",
-  structure: "Structure",
   shells: "Shells",
   meltingBoilingPoint: "Melting & Boiling Points",
   electronProperties: "Electron Properties",
