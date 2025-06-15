@@ -11,6 +11,8 @@ import BoronOxStatesSection from "../new-sections/BoronOxStatesSection";
 import BoronReactivitySection from "../new-sections/BoronReactivitySection";
 import CarbonOxStatesSection from "../new-sections/CarbonOxStatesSection";
 import CarbonReactivitySection from "../new-sections/CarbonReactivitySection";
+import FluorineOxStatesSection from "../new-sections/FluorineOxStatesSection";
+import FluorineReactivitySection from "../new-sections/FluorineReactivitySection";
 
 const CompoundsTab = ({ element }: { element: Element }) => (
   <div className="text-base space-y-6">
@@ -40,6 +42,11 @@ const CompoundsTab = ({ element }: { element: Element }) => (
       <>
         <CarbonOxStatesSection />
         <CarbonReactivitySection />
+      </>
+    ) : element.atomic === "9" ? (
+      <>
+        <FluorineOxStatesSection />
+        <FluorineReactivitySection />
       </>
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-emerald-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
