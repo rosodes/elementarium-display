@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenCompoundsSection from "../new-sections/HydrogenCompoundsSection";
