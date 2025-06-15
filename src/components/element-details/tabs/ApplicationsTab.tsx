@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
@@ -19,6 +18,9 @@ import DiscoverySection from '../applications/DiscoverySection';
 import HydrogenCommercialUsesSection from "../new-sections/HydrogenCommercialUsesSection";
 import HydrogenExtractionSection from "../new-sections/HydrogenExtractionSection";
 
+import BerylliumCommercialUsesSection from "../new-sections/BerylliumCommercialUsesSection";
+import BerylliumExtractionSection from "../new-sections/BerylliumExtractionSection";
+
 interface ApplicationsTabProps {
   element: Element;
   categoryColor: string;
@@ -36,6 +38,25 @@ const ApplicationsTab = ({ element, categoryColor }: ApplicationsTabProps) => {
         <UsageDistributionChart element={element} />
         <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
         <LithiumExtractionSection />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <ElementTimeline element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <DiscoverySection element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <IndustrialUses element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <EverydayUses element={element} />
+      </div>
+    );
+  }
+
+  // === Для бериллия ===
+  if (element.atomic === "4") {
+    return (
+      <div className="space-y-6 max-w-full">
+        <BerylliumCommercialUsesSection />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <BerylliumExtractionSection />
         <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
         <ElementTimeline element={element} />
         <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
