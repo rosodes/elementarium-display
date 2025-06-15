@@ -16,6 +16,7 @@ import FluorineDetailSections from "../new-sections/FluorineDetailSections";
 import NeonDetailSections from "../new-sections/NeonDetailSections";
 import SodiumDetailSections from "../new-sections/SodiumDetailSections";
 import MagnesiumDetailSections from "../new-sections/MagnesiumDetailSections";
+import AluminumDetailSections from "../new-sections/AluminumDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -83,6 +84,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "10" && <NeonDetailSections />}
       {element.atomic === "11" && <SodiumDetailSections />}
       {element.atomic === "12" && <MagnesiumDetailSections />}
+      {element.atomic === "13" && <AluminumDetailSections />}
     </div>
   );
 };
