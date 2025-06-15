@@ -1,119 +1,117 @@
 
 import React from 'react';
-import { X } from 'lucide-react';
 import { Element } from '../../data/elementTypes';
-import ElementImage from './ElementImage';
 import { useLanguage } from '../../context/LanguageContext';
+import { Link } from "react-router-dom";
+import { ArrowLeft, ArrowRight, Star, Upload, Home } from "lucide-react";
+import ElementImage from './ElementImage';
 
 interface ElementHeaderProps {
   element: Element;
   categoryColor: string;
-  prevElement: Element | null; // Оставляем в props для совместимости, но не используем
-  nextElement: Element | null; // Оставляем в props для совместимости, но не используем
+  prevElement: Element | null;
+  nextElement: Element | null;
   onClose: () => void;
   onNavigate: (element: Element) => void;
-  isFullPage?: boolean; // Prop to adjust styles for full page
+  isFullPage?: boolean;
 }
 
-const ElementHeader = ({ 
-  element, 
-  categoryColor, 
-  // prevElement, // больше не используем
-  // nextElement, // больше не используем
-  onClose, 
-  // onNavigate, // больше не используем
-  isFullPage = false
-}: ElementHeaderProps) => {
+const ElementHeader: React.FC<ElementHeaderProps> = ({
+  element,
+  categoryColor,
+  prevElement,
+  nextElement,
+  // onClose,
+  onNavigate,
+  isFullPage = false,
+}) => {
   const { t } = useLanguage();
-  
-  // Use semantic heading level based on context
-  const HeadingTag = isFullPage ? 'h1' : 'h2' as keyof JSX.IntrinsicElements;
-  
-  // Расширенные микроданные для SEO
-  const schemaData = {
-    '@context': 'https://schema.org',
-    '@type': 'ChemicalElement',
-    'name': element.name,
-    'alternateName': element.symbol,
-    'atomicNumber': element.atomic,
-    'atomicWeight': element.weight,
-    'description': `${element.name} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}`,
-    'image': `${window.location.origin}/element-images/${element.symbol.toLowerCase()}.svg`,
-    'sameAs': [
-      `https://en.wikipedia.org/wiki/${element.name}`,
-      `https://www.britannica.com/science/${element.name.toLowerCase()}`
-    ]
-  };
-  
+
+  // URL для возврата к таблице (с учётом локали)
+  const tableLink = `/${window.location.pathname.split("/")[1] || "en"}`;
+
+  // Semantic h1 только на странице (не во всплывашке)
+  const HeadingTag = isFullPage ? 'h1' : 'h2';
+
+  // Card-like фон с плавным градиентом и тенью
   return (
-    <header 
-      className={`${isFullPage ? 'bg-gradient-to-r from-opacity-20 to-opacity-10' : 'bg-gradient-to-r from-white/20 to-white/5'} relative p-3 sm:p-5 flex justify-between items-center`}
-      style={{ 
-        backgroundColor: categoryColor.split(' ')[0],
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-      }}
-      itemScope={isFullPage}
-      itemType={isFullPage ? "http://schema.org/ChemicalElement" : undefined}
-      aria-labelledby={`element-${element.atomic}-name`}
-      aria-describedby={isFullPage ? `element-${element.atomic}-description` : undefined}
-    >
-      {/* Структурированные данные для поисковых систем */}
-      {isFullPage && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
-      )}
-
-      {/* Element number badge */}
-      <div className="absolute top-3 left-3 bg-white/30 rounded-full px-2 py-0.5 text-xs font-bold">
-        <meta itemProp="atomicNumber" content={element.atomic.toString()} />
-        {element.atomic}
-      </div>
-
-      {/* Close button - only show in popup mode */}
-      {!isFullPage && (
-        <button 
-          onClick={onClose}
-          className="absolute right-3 top-3 bg-white bg-opacity-30 hover:bg-opacity-50 rounded-full p-1.5 sm:p-2 text-gray-800 dark:text-white transition-colors z-10"
-          aria-label={t.ui?.close}
-        >
-          <X className="h-5 w-5 sm:h-6 sm:w-6" />
-        </button>
-      )}
-      
-      <div className="flex items-center mx-auto">
-        <ElementImage element={element} categoryColor={categoryColor} />
-        <div className="text-center">
-          <div className="text-4xl sm:text-6xl font-bold tracking-tight" itemProp="alternateName">{element.symbol}</div>
-          <HeadingTag 
-            id={`element-${element.atomic}-name`} 
-            className="text-xl sm:text-3xl font-bold mt-1" 
-            itemProp="name"
+    <div className="relative z-10 pb-2 md:pb-0">
+      {/* Навигационная панель */}
+      <div className="flex items-center justify-between px-2 md:px-6 pt-4">
+        {/* Back/Home + Title */}
+        <div className="flex items-center gap-2">
+          <Link to={tableLink} className="hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors flex items-center group">
+            <Home size={20} className="mr-1 opacity-80 group-hover:opacity-100" />
+            <span className="font-medium text-sm md:text-base text-gray-700 dark:text-gray-200 hidden sm:inline">{t.ui.backToTable ?? "Back to Periodic Table"}</span>
+          </Link>
+          <span className="mx-2 text-gray-400">|</span>
+          <span className="font-medium text-sm md:text-base text-gray-700 dark:text-gray-200">{element.name} ({element.symbol})</span>
+        </div>
+        {/* Right-side actions */}
+        <div className="flex items-center gap-2">
+          <button
+            className="rounded-lg p-2 bg-white/80 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all"
+            aria-label={t.ui?.favorite ?? "Favorite"}
+            // TODO: Add favorite logic
           >
-            {element.name}
-          </HeadingTag>
-          <p className="text-xs sm:text-sm opacity-80 mt-1">
-            {t.elementDetails.atomicNumber}: <span itemProp="atomicNumber">{element.atomic}</span> • 
-            {t.elementDetails.atomicWeight}: <span itemProp="atomicWeight">{element.weight}</span>
-          </p>
-          
-          {/* Дополнительная семантическая информация для поисковых систем */}
-          {isFullPage && (
-            <>
-              <meta itemProp="description" content={`${element.name} (${element.symbol}), ${t.elementDetails.atomicNumber}: ${element.atomic}, ${t.elementDetails.atomicWeight}: ${element.weight}`} />
-              <link itemProp="image" href={`/element-images/${element.symbol.toLowerCase()}.svg`} />
-            </>
-          )}
+            <Star size={20} className="text-gray-400" />
+          </button>
+          <button
+            className="rounded-lg p-2 bg-white/80 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all"
+            aria-label={t.ui?.share ?? "Share"}
+            // TODO: Add share logic
+          >
+            <Upload size={20} className="text-gray-400" />
+          </button>
         </div>
       </div>
-      
-      {/* Дополнительный семантический блок для доступности и SEO */}
-      {isFullPage && (
-        <div id={`element-${element.atomic}-description`} className="sr-only">
-          {element.name} ({element.symbol}), {t.elementDetails.atomicNumber}: {element.atomic}, {t.elementDetails.atomicWeight}: {element.weight}. 
-          {element.category && `${t.categories[element.category.toLowerCase() as keyof typeof t.categories]}.`}
+      {/* Основной card-блок */}
+      <div 
+        className="my-3 mx-1 md:mx-6 bg-gradient-to-br from-blue-50/70 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl shadow-lg px-1 py-4 md:py-8 flex flex-col items-center relative transition-all"
+        style={{ border: `1.5px solid ${categoryColor.split(" ")[0]}` }}
+      >
+        {/* Предыдущий элемент */}
+        <button
+          className={`absolute left-2 top-1/2 -translate-y-1/2 flex items-center gap-1 rounded-lg p-1.5 bg-white/60 dark:bg-gray-950/80 border border-gray-200 dark:border-gray-700 shadow-sm hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-all disabled:opacity-30`}
+          style={{ minWidth: 48 }}
+          onClick={() => prevElement && onNavigate(prevElement)}
+          disabled={!prevElement}
+          aria-label={t.ui?.previous ?? "Previous element"}
+        >
+          <ArrowLeft size={22} />
+          <span className="hidden md:inline text-xs">{t.ui?.previous ?? "Previous"}</span>
+        </button>
+        {/* Следующий элемент */}
+        <button
+          className={`absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 rounded-lg p-1.5 bg-white/60 dark:bg-gray-950/80 border border-gray-200 dark:border-gray-700 shadow-sm hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-all disabled:opacity-30`}
+          style={{ minWidth: 48 }}
+          onClick={() => nextElement && onNavigate(nextElement)}
+          disabled={!nextElement}
+          aria-label={t.ui?.next ?? "Next element"}
+        >
+          <span className="hidden md:inline text-xs">{t.ui?.next ?? "Next"}</span>
+          <ArrowRight size={22} />
+        </button>
+        {/* Крупный символ и номер */}
+        <div className="flex flex-col items-center justify-center py-4 px-2 select-none">
+          <div className="text-5xl sm:text-7xl md:text-8xl font-bold text-gray-900 dark:text-gray-50 tracking-tight mb-2">
+            {element.symbol}
+          </div>
+          <HeadingTag className="text-xl sm:text-3xl font-bold text-gray-800 dark:text-blue-50 mb-2">{element.name}</HeadingTag>
+          <div className="flex flex-col md:flex-row gap-1 mb-1 md:mb-0 text-base md:text-lg font-semibold text-gray-500 dark:text-gray-300">
+            <span>
+              {t.elementDetails.atomicNumber}: <b className="font-bold text-gray-950 dark:text-white">{element.atomic}</b>
+            </span>
+            <span className="hidden md:inline mx-1">•</span>
+            <span>
+              {t.elementDetails.atomicWeight}: <b className="font-bold text-gray-950 dark:text-white">{element.weight}</b>
+            </span>
+          </div>
         </div>
-      )}
-    </header>
+      </div>
+    </div>
   );
 };
 
 export default ElementHeader;
+
