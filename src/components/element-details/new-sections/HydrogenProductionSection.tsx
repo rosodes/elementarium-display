@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
@@ -9,25 +8,26 @@ const productionContent = {
   en: {
     title: "Production & Synthesis",
     facts: [
-      "Steam methane reforming (SMR) is the dominant industrial source: ~48% of world H₂ uses this method (CH₄ + H₂O → CO + 3H₂).",
-      "Electrolysis of water is growing rapidly, enabling production of 'green hydrogen' with renewable electricity.",
-      "Coal gasification and partial oxidation of hydrocarbons provide large quantities, though not climate-friendly.",
-      "By-product method: hydrogen is released during chloralkali production (NaCl electrolysis).",
-      "Laboratory H₂ made by reacting metals such as Zn and Fe with acids.",
-      "Annual global H₂ production (2022): ~94 million metric tons (IEA); used mainly for ammonia production (fertilizer), oil refining, and methanol.",
-      "Only ~0.1% of hydrogen is currently made via renewables/electrolysis—decarbonizing the sector is a major focus.",
-      "Tech: Purification can be done by pressure swing adsorption (PSA) or membrane filtration.",
-      "Hydrogen can be liquefied and transported cryogenically or as a compressed gas.",
-      "Fusion (future): hydrogen isotopes (deuterium/tritium) are the fuels in experimental fusion reactors (e.g., ITER)."
+      "Steam methane reforming (SMR) is the primary method for industrial hydrogen, accounting for about 48% of global H₂ output: CH₄ + H₂O → CO + 3H₂.",
+      "Electrolysis of water is expanding as costs fall and renewable energy expands: H₂O + electricity → H₂ + ½O₂ ('green hydrogen').",
+      "Coal gasification and partial oxidation of hydrocarbons contribute significant amounts, mostly in China and elsewhere.",
+      "The chloralkali process (NaCl electrolysis) produces hydrogen as a by-product.",
+      "Hydrogen can also be generated using biomass gasification, photocatalytic water splitting (mimicking photosynthesis), and microbial processes.",
+      "Laboratory methods: metals such as zinc or iron react with acids to release hydrogen (Zn + 2HCl → ZnCl₂ + H₂).",
+      "Annual global hydrogen production (2022) is ~94 million tonnes; >50% is used for ammonia (NH₃) production, ~30% for oil refining, ~8% methanol, rest for electronics, glass, food, etc.",
+      "Only ~0.1% of global hydrogen is made via renewables/electrolysis compared to fossil sources — decarbonizing this is a priority ('hydrogen economy').",
+      "Purification techniques include pressure swing adsorption (PSA), membrane separation, and cryogenic distillation.",
+      "Hydrogen is stored as compressed gas, cryogenic liquid, or chemically in metal hydrides/ammonia.",
+      "Future: nuclear fusion (experimental, with deuterium or tritium) may provide vast amounts of energy using hydrogen isotopes.",
     ],
     table: [
-      { method: "Steam Methane Reforming", share: "48%", note: "Main industrial source, fossil gas" },
-      { method: "Oil / Refineries", share: "30%", note: "By-product of oil refining" },
-      { method: "Coal Gasification", share: "18%", note: "Mainly in China" },
-      { method: "Electrolysis (Green H₂)", share: "0.1%", note: "Growing rapidly, renewable" },
-      { method: "Other / By-products", share: "~4%", note: "Chloralkali process, lab" }
+      { method: "Steam Methane Reforming", share: "48%", note: "Natural gas; produces CO₂ unless captured" },
+      { method: "Oil / Refineries", share: "30%", note: "By-product of hydrocracking and desulfurization" },
+      { method: "Coal Gasification", share: "18%", note: "Main source in China, high CO₂ footprint" },
+      { method: "Electrolysis (Green H₂)", share: "0.1%", note: "Renewable, zero emission, rapidly growing" },
+      { method: "Biomass, photolysis etc.", share: "~4%", note: "Emerging, less common; e.g. microbial" },
     ],
-    sources: "Sources: IEA, DOE Hydrogen Program, WebElements, Wikipedia"
+    sources: "Sources: IEA, DOE Hydrogen Program, WebElements, Wikipedia, Science"
   },
   ru: {
     title: "Производство и синтез",

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
@@ -9,24 +8,26 @@ const bioContent = {
   en: {
     title: "Biological Role & Toxicity",
     facts: [
-      "Hydrogen is indispensable for all known life forms: it constitutes about 63% of human body atoms (by count).",
-      "Component of water, proteins, DNA/RNA, carbohydrates, and fats.",
-      "No toxicity for molecular hydrogen itself, but it can displace oxygen and cause asphyxiation in confined spaces.",
-      "Essential for acid-base balance: protons (H⁺) regulate pH of body fluids.",
-      "Participation in ATP energy transfer via proton gradients (mitochondria, photosynthesis).",
-      "NADH/NADPH hydrogen atoms are key in biochemical redox (energy) reactions.",
-      "Hydrogen breath tests are used for diagnosing gastrointestinal disorders (e.g., lactose intolerance).",
-      "Hydrogen-rich water and H₂ gas are being investigated as antioxidants in medical therapy for ischemia, inflammation, and neurodegeneration.",
-      "Exposure to hydrogen sulfide (H₂S) or phosphine (PH₃) is highly toxic—hydrogen *compounds* may be extremely dangerous.",
-      "Hydrogen metabolism in bacteria: many microbes produce or consume H₂ as part of their energy cycle."
+      "Hydrogen atoms are part of water (H₂O), all proteins, nucleic acids (DNA/RNA), fats, and carbohydrates—essential for all life on Earth.",
+      "The human body is ~63% hydrogen atoms (by count), though only 10% by mass.",
+      "Hydrogen’s protons (H⁺) are fundamental for acid-base (pH) balance in all organisms.",
+      "Hydrogen transfer (redox) via NADH/NADPH moves energy in respiration and photosynthesis.",
+      "Proton gradients across membranes (H⁺ movement) power ATP synthesis, the energy currency of the cell.",
+      "Hydrogen gas (H₂) itself is not toxic, but can cause asphyxia by displacing oxygen when in high concentrations.",
+      "Medical studies suggest hydrogen-rich water and inhaled H₂ may act as antioxidants—being researched for neuroprotection, anti-inflammation, and cardiovascular health.",
+      "Hydrogen breath tests help diagnose lactose intolerance and small intestine bacterial overgrowth (SIBO).",
+      "Some bacteria and archaea metabolize hydrogen: hydrogenases enable life in oxygen-free environments.",
+      "Hydrogen compounds can be dangerous: hydrogen sulfide, hydrogen cyanide, phosphine are highly toxic.",
+      "Tritium (³H) is a radioactive isotope used for tracing molecules in medicine and biology."
     ],
     table: [
-      { effect: "Asphyxiation risk (H₂ gas)", comment: "In high concentrations—displaces oxygen in air" },
+      { effect: "Asphyxiation risk (H₂ gas)", comment: "Colorless, odorless—displaces oxygen" },
       { effect: "Not carcinogenic", comment: "No evidence for mutagenicity or carcinogenicity" },
-      { effect: "Hydrogen therapy", comment: "Possible benefits as antioxidant (research ongoing)" },
-      { effect: "Toxic compounds", comment: "H₂S, PH₃, HF – highly toxic, handle with care!" }
+      { effect: "Hydrogen therapy", comment: "Possible antioxidant/anti-inflammatory effects (in trials)" },
+      { effect: "Toxic compounds", comment: "H₂S, PH₃, HCN—highly toxic and must be handled with care" },
+      { effect: "Hydrogen breath tests", comment: "Non-invasive diagnostic for GI conditions" }
     ],
-    sources: "Sources: CRC Handbook, medical chemistry, scientific articles, WHO"
+    sources: "Sources: CRC Handbook, medical journals, WHO, Nature Reviews Molecular Cell Biology"
   },
   ru: {
     title: "Биологическая роль и токсичность",

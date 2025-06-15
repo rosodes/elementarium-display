@@ -2,7 +2,7 @@
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
-import { Landmark, BookOpen } from "lucide-react"; // Removed Timeline import
+import { Landmark, BookOpen } from "lucide-react";
 import HydrogenHistoryVisualBlock from "./HydrogenHistoryVisualBlock";
 
 const historyContent = {
@@ -12,22 +12,28 @@ const historyContent = {
       {
         title: "Key Milestones in Hydrogen Discovery",
         period: [
-          { year: 1500, event: "Paracelsus observed 'inflammable air' from metals + acid, but did not isolate or identify the element." },
-          { year: 1671, event: "Robert Boyle produced hydrogen by mixing iron filings and dilute acids." },
-          { year: 1766, event: "Henry Cavendish identified hydrogen gas as 'inflammable air' and established its properties (England)." },
-          { year: 1781, event: "Cavendish showed hydrogen forms water upon combustion with oxygen." },
-          { year: 1783, event: "Antoine Lavoisier officially named it 'hydrogène' (water-former), recognizing it as an element." },
-          { year: 1800, event: "William Nicholson and Anthony Carlisle discovered electrolysis, producing hydrogen from water using electricity." },
-          { year: 1937, event: "Hindenburg airship disaster due to hydrogen as a lifting gas brought safety concerns into focus." },
-          { year: 1952, event: "First hydrogen bomb (thermonuclear fusion) test." },
+          { year: 1500, event: "Paracelsus observed 'inflammable air' from metals + acid, laying the groundwork for later discovery." },
+          { year: 1671, event: "Robert Boyle produced hydrogen systematically, but its elemental nature was unclear." },
+          { year: 1766, event: "Henry Cavendish isolated hydrogen as a colorless, 'inflammable air' with unique properties. He realized it was a substance different from air (England)." },
+          { year: 1781, event: "Cavendish demonstrated hydrogen combusts with oxygen to form water, a key discovery for chemistry." },
+          { year: 1783, event: "Antoine Lavoisier, in France, officially named the element 'hydrogène' (water-former), confirming it as fundamental." },
+          { year: 1783, event: "The first hydrogen balloon flight took place in Paris, showing its utility in lifting gases." },
+          { year: 1800, event: "Electrolysis discovered by Nicholson and Carlisle: hydrogen produced from water using electricity, leading to clean methods of generation." },
+          { year: 1869, event: "Dmitri Mendeleev included hydrogen as a prototype of group 1 in his periodic table; H remains exceptional." },
+          { year: 1894, event: "Lord Rayleigh and Sir William Ramsay’s work on atmospheric gases showed hydrogen’s rarity in air, clarifying cosmic abundance." },
+          { year: 1913, event: "Niels Bohr used hydrogen’s atomic spectrum to formulate quantum theory; H is the prototype atom for physics." },
+          { year: 1937, event: "Hindenburg airship disaster vividly demonstrated hydrogen's explosion hazard and changed airship use forever." },
+          { year: 1952, event: "First hydrogen bomb (thermonuclear fusion) detonated, showing H as a potential for immense energy release." },
         ],
         facts: [
-          "Hydrogen played a critical role in the early development of both chemistry and physics: its spectrum provided clues for quantum theory.",
-          "First element to be artificially produced (by electrolysis) and later by nuclear fusion.",
-          "Hydrogen was vital in ballooning and airship history as a lifting gas before helium supplanted it for safety.",
-          "The quantum mechanical model (Bohr, 1913) was based initially on hydrogen atom spectra."
+          "Hydrogen’s simplicity (one proton + one electron) made it the central case for atomic structure and quantum mechanics.",
+          "Hydrogen was the first element ever artificially produced by electrolysis and by nuclear fusion.",
+          "Its chemical properties inspired the development of concepts like acids, bases, and valence.",
+          "Hydrogen’s spectrum established the core rules of quantum theory (Rydberg, Balmer series).",
+          "The element's name is derived from Greek words for 'water' (hydro) and 'forming' (genes).",
+          "Hydrogen-containing balloons ushered in the era of human flight before helium's discovery."
         ],
-        sources: "Sources: IUPAC Gold Book, CRC Handbook, WebElements, Britannica"
+        sources: "Sources: IUPAC Gold Book, CRC Handbook, WebElements, Britannica, F.A. Carey 'Organic Chemistry'"
       }
     ]
   },
@@ -37,22 +43,28 @@ const historyContent = {
       {
         title: "Ключевые этапы в открытии водорода",
         period: [
-          { year: 1500, event: "Парацельс наблюдал «воспламеняемый воздух» при растворении металлов в кислотах, но не выделял элемент." },
-          { year: 1671, event: "Роберт Бойль получил водород смешиванием железа с кислотой." },
-          { year: 1766, event: "Генри Кавендиш выделил и определил свойства газообразного водорода." },
-          { year: 1781, event: "Кавендиш доказал, что водород сгорает с кислородом с образованием воды." },
-          { year: 1783, event: "Антуан Лавуазье назвал элемент 'hydrogène'." },
-          { year: 1800, event: "Николсон и Карлайл открыли электролиз воды с выделением водорода." },
-          { year: 1937, event: "Катастрофа дирижабля Гинденбург — основные вопросы безопасности водорода." },
-          { year: 1952, event: "Первое испытание водородной (термоядерной) бомбы." },
+          { year: 1500, event: "Парацельс заметил выделение «воспламеняемого воздуха» при реакции металлов с кислотами — фундамент для открытия водорода." },
+          { year: 1671, event: "Роберт Бойль первым строго описал выделение этого газа, но не понял его природы." },
+          { year: 1766, event: "Генри Кавендиш выделил водород, обнаружив его необычайную легкость и горючесть." },
+          { year: 1781, event: "Кавендиш показал: при сгорании H образуется вода, чем доказал существование элемента." },
+          { year: 1783, event: "Антуан Лавуазье назвал элемент hydrogène и подтвердил его фундаментальность." },
+          { year: 1783, event: "Первый полет воздушного шара на водороде в Париже — начало эпохи воздухоплавания." },
+          { year: 1800, event: "Николсон и Карлайл открыли электролиз воды — новый химический путь получения H." },
+          { year: 1869, event: "Менделеев включил H как особый элемент вне групп." },
+          { year: 1894, event: "Работа Рамзая и Рэлейя подтверждает редкость H в атмосфере, но его космическое изобилие." },
+          { year: 1913, event: "Спектр H — основа для модели атома Бора, зарождение квантовой теории." },
+          { year: 1937, event: "Катастрофа Гинденбурга показала взрывоопасность газообразного H." },
+          { year: 1952, event: "Испытание первой водородной бомбы — новая эра энергетики и вооружений." },
         ],
         facts: [
-          "Водород был ключом в появлении квантовой механики — спектр атома H стал первым экспериментальным обоснованием модели Бора.",
-          "Первый элемент, полученный электрохимически и затем искусственно путём ядерного синтеза.",
-          "Долгое время водород был основным подъёмным газом для воздушных шаров и дирижаблей.",
-          "Разработка спектроскопии, квантовой механики, ядерной физики тесно связана с H."
+          "Водород — простейший и уникальный элемент: один протон, один электрон.",
+          "Первый искусственно полученный элемент (электролиз, ядерный синтез).",
+          "Роль в развитии представлений о кислотах, валентности и структуре атома.",
+          "Спектр H лег в основу квантовой механики (Ридберг, Бальмер).",
+          "Название от греческого: 'образующий воду'.",
+          "Дирижабли на H — начало эры воздухоплавания."
         ],
-        sources: "Источники: IUPAC Gold Book, CRC Handbook, WebElements, Britannica"
+        sources: "Источники: IUPAC Gold Book, CRC Handbook, WebElements, Britannica, Кэрри 'Органическая химия'"
       }
     ]
   },
@@ -62,25 +74,31 @@ const historyContent = {
       {
         title: "Ключові віхи відкриття водню",
         period: [
-          { year: 1500, event: "Парацельс спостерігав вихід «запального повітря» при розчиненні металів у кислотах." },
-          { year: 1671, event: "Роберт Бойль отримав водень із заліза й кислоти." },
-          { year: 1766, event: "Генрі Кавендіш ідентифікував водень як новий газ." },
-          { year: 1781, event: "Кавендіш показав, що H при згорянні утворює воду." },
-          { year: 1783, event: "Антуан Лавуазьє назвав елемент 'hydrogène'." },
-          { year: 1800, event: "Відкриття електролізу води (Ніколсон, Карлейл)." },
-          { year: 1937, event: "Катастрофа дирижабля Гінденбург." },
-          { year: 1952, event: "Перше випробування термоядерної бомби." },
+          { year: 1500, event: "Парацельс першим помітив виділення «запального повітря» в реакціях металів з кислотами." },
+          { year: 1671, event: "Роберт Бойль систематично отримував газ, але щодо його природи були сумніви." },
+          { year: 1766, event: "Генрі Кавендіш виокремив водень, вивчив його властивості." },
+          { year: 1781, event: "Кавендіш довів утворення води при згорянні H." },
+          { year: 1783, event: "Антуан Лавуазьє дав назву hydrogène (утворюючий воду)." },
+          { year: 1783, event: "Перший політ аеростата на водні — Париж." },
+          { year: 1800, event: "Відкриття електролізу води як шляху отримання H₂." },
+          { year: 1869, event: "Менделєєв підкреслив унікальність H — окремо від груп." },
+          { year: 1894, event: "Дослідження атмосферних газів — роль H у космосі." },
+          { year: 1913, event: "Спектр атома H лежить в основі моделі Бора." },
+          { year: 1937, event: "Аварія «Гінденбурга» підкреслила небезпеку вибухів H₂." },
+          { year: 1952, event: "Випробування термоядерної бомби на водні." },
         ],
         facts: [
-          "Гідроген — ключ до квантової механіки (модель Бора 1913 р.).",
-          "Перший елемент, отриманий шляхом електролізу та синтезу.",
-          "Значення в історії повітроплавання, фізики й хімії.",
-          "Поява спектроскопії, ядерної фізики — завдяки вивченню H."
+          "Гідроген — найпростіший атом, критично важливий для квантової фізики.",
+          "Перший штучно синтезований (електроліз, термоядерний синтез).",
+          "Розвиток концепцій кислот, валентності і атомарної фізики.",
+          "Спектральні серії H — підгрунтя квантової механіки.",
+          "Назва — з грецької («утворює воду»).",
+          "Аеростати на H започаткували епоху авіації."
         ],
-        sources: "Джерела: IUPAC Gold Book, CRC Handbook, WebElements, Britannica"
+        sources: "Джерела: IUPAC Gold Book, CRC Handbook, WebElements, Britannica, Carey 'Organic Chemistry'"
       }
     ]
-  }
+  },
 };
 
 const HydrogenHistorySection: React.FC = () => {
@@ -105,13 +123,13 @@ const HydrogenHistorySection: React.FC = () => {
           <table className="w-full mb-3 text-xs border dark:border-gray-700 bg-white dark:bg-gray-900 rounded-md overflow-x-auto">
             <thead>
               <tr className="bg-orange-100 dark:bg-gray-800 text-orange-900 dark:text-orange-200">
-                <th className="p-1 font-semibold text-left">Year</th>
-                <th className="p-1 font-semibold text-left">Event</th>
+                <th className="p-1 font-semibold text-left">{locale === "en" ? "Year" : "Год"}</th>
+                <th className="p-1 font-semibold text-left">{locale === "en" ? "Event" : "Событие"}</th>
               </tr>
             </thead>
             <tbody>
               {block.period.map((row, idx) => (
-                <tr key={row.year} className={idx % 2 ? "bg-orange-50 dark:bg-gray-900/50" : ""}>
+                <tr key={row.year + row.event} className={idx % 2 ? "bg-orange-50 dark:bg-gray-900/50" : ""}>
                   <td className="p-1 font-medium">{row.year}</td>
                   <td className="p-1">{row.event}</td>
                 </tr>

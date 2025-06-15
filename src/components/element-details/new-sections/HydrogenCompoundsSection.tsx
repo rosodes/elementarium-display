@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
@@ -10,24 +9,25 @@ const compoundsContent = {
   en: {
     title: "Key Hydrogen Compounds",
     compounds: [
-      { name: "Water (H₂O)", desc: "Universal solvent, vital for all life, covers 71% of Earth’s surface." },
-      { name: "Ammonia (NH₃)", desc: "Major fertilizer, essential for agriculture, refrigerant, colorless gas." },
-      { name: "Methane (CH₄)", desc: "Key fuel, major greenhouse gas, primary component of natural gas." },
-      { name: "Hydrochloric acid (HCl)", desc: "Strong acid, widely used in industry and digestion." },
-      { name: "Hydrogen sulfide (H₂S)", desc: "Toxic gas with rotten egg smell, occurs naturally in volcanoes and sewers." },
-      { name: "Hydrogen peroxide (H₂O₂)", desc: "Oxidizing agent, disinfectant, bleaching, rocket propellant." },
-      { name: "Metal hydrides (LiH, NaH, CaH₂)", desc: "Hydrogen storage, desiccants, chemical synthesis." },
-      { name: "Phosphine (PH₃)", desc: "Toxic gas, used as fumigant and in semiconductor industry." },
-      { name: "Hydrides of transition metals", desc: "Catalysts in hydrogenation reactions, e.g., PdH." }
+      { name: "Water (H₂O)", desc: "Covers 71% of Earth's surface; universal solvent, vital for all living systems. Hydrogen bonds make ice less dense than water and drive life’s chemistry." },
+      { name: "Ammonia (NH₃)", desc: "Basis of most fertilizers; colorless, pungent gas, primary use of industrial hydrogen (Haber–Bosch process)." },
+      { name: "Methane (CH₄)", desc: "Main component of natural gas, important energy source and greenhouse gas." },
+      { name: "Hydrochloric acid (HCl)", desc: "Strong acid used in the stomach for digestion and widely in industry." },
+      { name: "Hydrogen sulfide (H₂S)", desc: "Toxic gas with a rotten egg odor, found in volcanic gases, sewers, biological decay." },
+      { name: "Hydrogen peroxide (H₂O₂)", desc: "Antiseptic, oxidizer, rocket propellant; decomposes into H₂O + O₂ with catalyst." },
+      { name: "Metal hydrides (LiH, NaH, CaH₂)", desc: "Reagents in organic syntheses, hydrogen storage, desiccants." },
+      { name: "Phosphine (PH₃)", desc: "Highly toxic gas, used as pesticide for stored grain, and in semiconductors." },
+      { name: "Hydrides of transition metals", desc: "Catalysts in hydrogenation reactions (e.g., PdH, NiH in food industry and organic chemistry)." },
+      { name: "Deuterium oxide (D₂O, heavy water)", desc: "Used as neutron moderator in nuclear reactors, isotopic studies." },
     ],
     facts: [
-      "Hydrogen forms bonds with most elements and exists in countless compounds.",
-      "Many hydrides are used in energy storage (fuel cells, batteries) and as reducing agents.",
-      "H₂ can react explosively with halogens (Cl₂, F₂) to form strong acids.",
-      "Hydrogenation is a critical reaction in fat/oil processing and industrial chemistry.",
-      "Water, ammonia, and methane are among the most abundant molecules in the universe."
+      "Hydrogen forms more compounds than any element except carbon; hydrides range from ionic (e.g., NaH) to covalent (CH₄) to metallic.",
+      "In organic chemistry, hydrogenation (adding H₂ to unsaturated compounds) turns vegetable oils into margarine, plays a key role in producing fuels, and removes sulfur from oil.",
+      "Hydrogen’s unique ability to participate in proton transfer (acid/base chemistry) shapes all biological reactions.",
+      "Hydride ions (H⁻) play vital roles in reduction reactions and in advanced batteries.",
+      "Hydrogen is essential for production of ammonia, methanol, refined fuels, and many pharmaceuticals."
     ],
-    sources: "Sources: CRC Handbook, WebElements, Wikipedia"
+    sources: "Sources: CRC Handbook, WebElements, Wikipedia, Organic Chemistry texts"
   },
   ru: {
     title: "Основные соединения водорода",

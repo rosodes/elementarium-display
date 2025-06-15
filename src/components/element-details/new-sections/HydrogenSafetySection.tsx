@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
@@ -9,24 +8,27 @@ const safetyContent = {
   en: {
     title: "Safety & Precautions",
     facts: [
-      "<b>Extreme flammability:</b> hydrogen forms explosive mixtures with air in a wide range (4–75% H₂).",
-      "Lowest ignition energy of any element: highly prone to sparks, leaks, and even static electricity ignition.",
-      "Hydrogen flame is almost invisible in daylight—this increases accidental exposure hazard.",
-      "Gas leaks rapidly: molecular H₂ is the smallest molecule and seeps through most sealants.",
-      "No odor or color: leaks can go undetected without sensors and cause asphyxiation by displacing oxygen.",
-      "For storage: only use specialized, certified high-pressure cylinders and safety devices.",
-      "Ventilation and leak detection systems are critical in all settings handling hydrogen.",
-      "Cryogenic hydrogen (liquid H₂, ~-253°C) can cause severe cold burns and overpressure accidents.",
-      "Transport: pipelines, trucks, and tanks must be designed to withstand hydrogen embrittlement.",
-      "Hydrogen is not environmentally toxic, but improper handling can cause catastrophic events (e.g., Hindenburg disaster)."
+      "<b>Extremely flammable:</b> hydrogen forms explosive mixtures with air in a broad range (4–75% H₂ in air).",
+      "Hydrogen has the lowest ignition energy of any element, can ignite from static electricity, hot surface, or spark.",
+      "Invisible flame: hydrogen’s flame is nearly invisible in daylight, making burns difficult to detect.",
+      "Hydrogen leaks easily: H₂ molecules are small and can escape through seals/valves undetected without proper sensors.",
+      "Colorless, odorless—no warning signs in the case of gas leak unless detection devices are in place.",
+      "Hydrogen can displace oxygen and cause asphyxiation in confined spaces.",
+      "For storage and transport, only use certified, hydrogen-rated high-pressure cylinders or cryogenic tanks.",
+      "Ventilation, spark-free tools, and leak detection systems are essential in all hydrogen-handling environments.",
+      "Cryogenic hydrogen (liquid, -253°C) can cause frostbite/cold burns and severe overpressure if vaporizes suddenly.",
+      "Hydrogen embrittlement can weaken metal tanks/pipes over time.",
+      "Not environmentally toxic but can cause catastrophic fires/explosions if mishandled (e.g., Hindenburg disaster).",
+      "Regulations: strict codes apply (e.g. OSHA, NFPA, EU-ATEX) for all hydrogen facilities."
     ],
     table: [
-      { hazard: "Flammability", advice: "Keep away from heat/flame, use non-sparking tools", danger: "Explosion risk" },
-      { hazard: "Gas leaks", advice: "Detector and ventilation essential", danger: "Asphyxiation & fire" },
-      { hazard: "Cryogenic injury", advice: "Insulated gloves/equipment", danger: "Cold burns" },
-      { hazard: "Invisible flame", advice: "UV sensors, goggles", danger: "Undetected burns" }
+      { hazard: "Flammability", advice: "Avoid open flames, static, and sparks; ground all equipment", danger: "Explosion/fire" },
+      { hazard: "Leaks", advice: "Install H₂ sensors, ventilation; regular inspection", danger: "Explosion, asphyxia" },
+      { hazard: "Cryogenic injury", advice: "Wear insulated gloves, face protection", danger: "Frostbite/cold burns" },
+      { hazard: "Invisible flame", advice: "UV/IR detectors, warning signs", danger: "Hidden burns" },
+      { hazard: "Pressure", advice: "Use pressure relief valves and burst disks", danger: "Cylinder rupture" },
     ],
-    sources: "Sources: OSHA, NIOSH, IUPAC, CRC Handbook, NFPA"
+    sources: "Sources: OSHA, NIOSH, IUPAC, CRC Handbook, NFPA, Hydrogen Europe"
   },
   ru: {
     title: "Безопасность и меры предосторожности",

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
@@ -10,18 +9,19 @@ const occurrenceContent = {
   en: {
     title: "Occurrence & Abundance",
     facts: [
-      "Hydrogen is the most abundant element in the universe, accounting for about 75% of normal matter by mass.",
-      "It is the primary fuel for stars (stellar nucleosynthesis via proton-proton chain and CNO cycle).",
-      "On Jupiter and Saturn, hydrogen dominates in both atomic and molecular forms.",
-      "On Earth, free molecular hydrogen (H₂) is very rare (~0.00005% of atmosphere), but found in volcanic and hydrothermal sources.",
-      "Virtually all hydrogen on Earth is combined in water (H₂O), making up ~11% by mass of oceans.",
-      "Hydrogen is also present in all living things: roughly 10% of the human body (by atoms) is hydrogen.",
-      "Hydrogen is core to organic molecules (hydrocarbons, proteins, nucleic acids, fats).",
-      "In meteorites and the Sun, the mass fraction of hydrogen closely matches cosmic averages.",
-      "It occurs in many minerals in the Earth's crust (clays, hydrated salts, hydroxides).",
-      "Hydrogen is released naturally by certain types of rocks (serpentinization) and potentially as a deep-Earth gas."
+      "Hydrogen is by far the most abundant element in the universe: composing ~75% of normal matter by mass, ~92% by atoms.",
+      "The Sun and most stars are made mainly from hydrogen; they shine by fusing hydrogen into helium (hydrogen fusion).",
+      "On giant planets like Jupiter and Saturn, hydrogen dominates (both as H₂ and atomic).",
+      "In interstellar space, hydrogen is found as atomic H, molecular H₂, and even as H⁺ ions (plasma).",
+      "Earth's atmosphere contains only trace hydrogen (H₂ ~0.00005%) since the light gas escapes into space.",
+      "Most hydrogen on Earth is chemically locked in water (H₂O), which makes up about 11% hydrogen by mass and covers 71% of Earth's surface.",
+      "Hydrogen is a core component of all living things and organic molecules — present in proteins, DNA, fats, carbohydrates.",
+      "Hydrogen is found in minerals (hydroxides, clays, hydrated salts) in the Earth's crust.",
+      "Volcanic and hydrothermal sources release molecular hydrogen; seeps are found globally.",
+      "On meteorites, the Moon, and in comets/ice, hydrogen mirrors cosmic ratios.",
+      "Natural hydrogen reservoirs underground are an emerging research/investment field ('white hydrogen')."
     ],
-    sources: "Sources: CRC Handbook, NASA, WebElements, Encyclopaedia Britannica"
+    sources: "Sources: CRC Handbook, NASA, ESA, WebElements, Britannica, Nature, Science"
   },
   ru: {
     title: "Распространённость и встречаемость",
