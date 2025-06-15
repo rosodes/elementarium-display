@@ -1,4 +1,3 @@
-
 export interface ElementDetailsTranslations {
   showMoreInfo?: string;
   viewOnWikipedia?: string;
@@ -115,4 +114,30 @@ export interface ElementDetailsTranslations {
   massNumber?: string;
   protonNumber?: string;
   neutronNumber?: string;
+
+  // --- Extended keys for detailed element views (for fr.ts) ---
+  relatedElements?: string;
+  seeAlso?: string;
+  spectralLines?: string;
+  atomicModel?: string;
+  casNumber?: string;
+  discoverer?: string;
+  dateDiscovered?: string;
+  alternativeNames?: string;
+  namedAfter?: string;
+  mainGroup?: string;
+  electronShells?: string;
+  abundanceInSea?: string;
+  abundanceInAtmosphere?: string;
+  uses?: string;
+  notesBlock?: string;
+  structureImage?: string;
+  spectrum?: string;
+  spectralClass?: string;
+  massSpectra?: string;
+  appearance?: string;
+  naturalSources?: string;
+  artificialProduction?: string;
+  oxidationStateDescription?: string;
+  meltingBoilingDescription?: string;
 }

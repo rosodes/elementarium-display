@@ -77,4 +77,39 @@ export interface UITranslations {
   loadingData?: string;
   showMore?: string;
   showLess?: string;
+
+  // --- Additional popular UI phrases, add keys to match fr.ts ---
+  explorer?: string;
+  openInNewTab?: string;
+  confirm?: string;
+  cancel?: string;
+  yes?: string;
+  no?: string;
+  copy?: string;
+  copied?: string;
+  share?: string;
+  error?: string;
+  success?: string;
+  warning?: string;
+  info?: string;
+  closePanel?: string;
+  save?: string;
+  saved?: string;
+  edit?: string;
+  delete?: string;
+  remove?: string;
+  continue?: string;
+  done?: string;
+  next?: string;
+  previous?: string;
+  backToHome?: string;
+  open?: string;
+  closeWindow?: string;
+  homePage?: string;
+  moreOptions?: string;
+  downloadPdf?: string;
+  printPage?: string;
+  shareLink?: string;
+  goToTable?: string;
+  feedbackSent?: string;
 }
