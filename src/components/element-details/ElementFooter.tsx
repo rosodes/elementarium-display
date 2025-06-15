@@ -21,7 +21,7 @@ const ElementFooter = ({ element, prevElement, nextElement, onNavigate }: Elemen
         {prevElement && (
           <button
             onClick={() => onNavigate(prevElement)}
-            className="flex items-center px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-sm transition-colors"
+            className="flex items-center px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-sm transition-colors select-text"
             aria-label={`${t.elementDetails.previousElement}: ${prevElement.name}`}
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
@@ -35,7 +35,7 @@ const ElementFooter = ({ element, prevElement, nextElement, onNavigate }: Elemen
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <div className="flex items-center bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">
+              <div className="flex items-center bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-sm select-text">
                 <Info className="h-4 w-4 mr-1 text-gray-500 dark:text-gray-400" />
                 <span className="text-gray-500 dark:text-gray-400">{element.atomic} / 118</span>
               </div>
@@ -53,7 +53,7 @@ const ElementFooter = ({ element, prevElement, nextElement, onNavigate }: Elemen
         {nextElement && (
           <button
             onClick={() => onNavigate(nextElement)}
-            className="flex items-center px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-sm transition-colors"
+            className="flex items-center px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-sm transition-colors select-text"
             aria-label={`${t.elementDetails.nextElement}: ${nextElement.name}`}
           >
             <span className="hidden sm:inline mr-1">{nextElement.name}</span>
@@ -67,3 +67,4 @@ const ElementFooter = ({ element, prevElement, nextElement, onNavigate }: Elemen
 };
 
 export default ElementFooter;
+
