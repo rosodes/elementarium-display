@@ -1,3 +1,4 @@
+
 // Український переклад elementDetails, повністю синхронізований і без англійських fallbacks
 
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
@@ -86,12 +87,7 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   radioactive: "Радіоактивність",
   yes: "Так",
   no: "Ні",
-  overview: "Огляд",
-  properties: "Властивості",
-  atomicStructure: "Атомна структура",
-  applications: "Застосування",
-  history: "Історія",
-  abundance: "Поширеність",
+  // Меню: основні кнопки вкладок
   compounds: "Сполуки / Хімія",
   bioRole: "Біологічна роль",
   toxicityInfo: "Токсичність",
