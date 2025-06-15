@@ -4,12 +4,8 @@ import HydrogenOverviewSection from "./HydrogenOverviewSection";
 import HydrogenPhysicalConstantsSection from "./HydrogenPhysicalConstantsSection";
 import HydrogenOxStatesSection from "./HydrogenOxStatesSection";
 import HydrogenReactivitySection from "./HydrogenReactivitySection";
-import HydrogenNaturalOccurrenceSection from "./HydrogenNaturalOccurrenceSection";
 import HydrogenIsotopesSection from "./HydrogenIsotopesSection";
 import HydrogenVisualSection from "./HydrogenVisualSection";
-import HydrogenHistorySection from "./HydrogenHistorySection";
-import HydrogenInterestingFactsSection from "./HydrogenInterestingFactsSection";
-import HydrogenExtractionSection from "./HydrogenExtractionSection";
 import HydrogenCrystalStructureSection from "./HydrogenCrystalStructureSection";
 import HydrogenCommercialUsesSection from "./HydrogenCommercialUsesSection";
 import HydrogenComparisonsSection from "./HydrogenComparisonsSection";
@@ -17,7 +13,6 @@ import HydrogenDistributionPieChart from "./HydrogenDistributionPieChart";
 import HydrogenUniverseBarChart from "./HydrogenUniverseBarChart";
 import HydrogenSpectralSeriesSection from "./HydrogenSpectralSeriesSection";
 import HydrogenEnergySection from "./HydrogenEnergySection";
-import HydrogenSafetySection from "./HydrogenSafetySection";
 import HydrogenPropertiesVisualBlock from "./HydrogenPropertiesVisualBlock";
 import HydrogenAtomicStructureVisualBlock from "./HydrogenAtomicStructureVisualBlock";
 import HydrogenApplicationsVisualBlock from "./HydrogenApplicationsVisualBlock";
@@ -27,36 +22,41 @@ import HydrogenCompoundsVisualBlock from "./HydrogenCompoundsVisualBlock";
 import HydrogenBioVisualBlock from "./HydrogenBioVisualBlock";
 import HydrogenProductionVisualBlock from "./HydrogenProductionVisualBlock";
 import HydrogenSafetyVisualBlock from "./HydrogenSafetyVisualBlock";
+
+// Разделённые тематические секции для удобной поддержки и мультиязычности:
+import HydrogenHistorySection from "./HydrogenHistorySection";
+import HydrogenOccurrenceSection from "./HydrogenOccurrenceSection";
+import HydrogenCompoundsSection from "./HydrogenCompoundsSection";
+import HydrogenBioSection from "./HydrogenBioSection";
+import HydrogenProductionSection from "./HydrogenProductionSection";
+import HydrogenSafetySection from "./HydrogenSafetySection";
+import HydrogenNaturalOccurrenceSection from "./HydrogenNaturalOccurrenceSection";
 import SpectralAndIsotopeFacts from "./HydrogenSpectralAndIsotopeSection";
 
-// Секция по деталям водорода с использованием отдельных тематических блоков
 const HydrogenDetailSections: React.FC = () => {
   return (
     <>
       <HydrogenOverviewSection />
-
       <HydrogenPhysicalConstantsSection />
       <HydrogenPropertiesVisualBlock />
 
       <HydrogenOxStatesSection />
       <HydrogenAtomicStructureVisualBlock />
       <HydrogenReactivitySection />
-      <HydrogenNaturalOccurrenceSection />
+
+      <HydrogenOccurrenceSection />
+      <HydrogenCompoundsSection />
+      <HydrogenBioSection />
+      <HydrogenProductionSection />
+      <HydrogenSafetySection />
+      
       <HydrogenIsotopesSection />
       <HydrogenVisualSection />
-      <HydrogenHistorySection />
-      <HydrogenInterestingFactsSection />
-
-      <SpectralAndIsotopeFacts />
-
-      <HydrogenExtractionSection />
-      <HydrogenApplicationsVisualBlock />
       <HydrogenCrystalStructureSection />
       <HydrogenCommercialUsesSection />
       <HydrogenComparisonsSection />
       <HydrogenSpectralSeriesSection />
       <HydrogenEnergySection />
-      <HydrogenSafetySection />
       <HydrogenDistributionPieChart />
       <HydrogenUniverseBarChart />
       <HydrogenHistoryVisualBlock />
@@ -65,6 +65,7 @@ const HydrogenDetailSections: React.FC = () => {
       <HydrogenBioVisualBlock />
       <HydrogenProductionVisualBlock />
       <HydrogenSafetyVisualBlock />
+      <SpectralAndIsotopeFacts />
     </>
   );
 };
