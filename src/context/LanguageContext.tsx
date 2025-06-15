@@ -1,6 +1,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { languages, LanguageKey, TranslationData, addLanguage } from '../i18n';
+import { detectUserLanguage } from '../lib/detectUserLanguage';
 
 interface LanguageContextType {
   language: string;
@@ -12,38 +13,43 @@ interface LanguageContextType {
 
 interface LanguageProviderProps {
   children: React.ReactNode;
-  initialLanguage?: string; // Добавляем возможность задать начальный язык при SSR
+  initialLanguage?: string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, initialLanguage }) => {
-  const [language, setLanguage] = useState<string>(initialLanguage || 'en');
+  // Начальный язык теперь всегда детектится через универсальную функцию (или приходит с SSR)
+  const [language, setLanguage] = useState<string>(
+    initialLanguage || detectUserLanguage()
+  );
   const [supportedLanguages, setSupportedLanguages] = useState<string[]>(Object.keys(languages));
-  
-  // Синхронизируем язык с localStorage при запуске на клиенте
+
+  // Слежение за сменой url — автосмена языка при переходах/обновлении страницы
   useEffect(() => {
-    if (typeof window !== 'undefined') { // Проверяем, что мы на клиенте
-      // Если нет initialLanguage (SSR), получаем из localStorage или по настройкам браузера
-      if (!initialLanguage) {
-        const savedLanguage = localStorage.getItem('preferredLanguage');
-        if (savedLanguage && languages[savedLanguage as keyof typeof languages]) {
-          setLanguage(savedLanguage);
-        } else {
-          // Использовать язык браузера, если он поддерживается
-          const browserLang = navigator.language.split('-')[0];
-          if (languages[browserLang as keyof typeof languages]) {
-            setLanguage(browserLang);
-          }
-        }
+    const updateLangFromUrl = () => {
+      const urlDetected = detectUserLanguage();
+      if (urlDetected && urlDetected !== language) {
+        setLanguage(urlDetected);
       }
-    }
-  }, [initialLanguage]);
-  
+    };
+    window.addEventListener('popstate', updateLangFromUrl); // переходы по истории/строке url
+    window.addEventListener('pushstate', updateLangFromUrl as any); // если используется кастомный pushState
+    window.addEventListener('replacestate', updateLangFromUrl as any);
+    updateLangFromUrl(); // однократно при маунте/переходе
+    return () => {
+      window.removeEventListener('popstate', updateLangFromUrl);
+      window.removeEventListener('pushstate', updateLangFromUrl as any);
+      window.removeEventListener('replacestate', updateLangFromUrl as any);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Сохраняем выбор пользователя (только среди поддерживаемых языков!)
   const changeLanguage = (lang: string) => {
     if (languages[lang as keyof typeof languages]) {
       setLanguage(lang);
-      if (typeof window !== 'undefined') { // Сохраняем только на клиенте
+      if (typeof window !== 'undefined') {
         localStorage.setItem('preferredLanguage', lang);
       }
     } else {
@@ -55,7 +61,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, in
     addLanguage(key, translations);
     setSupportedLanguages((prev) => [...prev, key]);
   };
-  
+
   const value = {
     language,
     t: languages[language as keyof typeof languages] || languages.en,
@@ -63,7 +69,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, in
     supportedLanguages,
     addLanguage: handleAddLanguage
   };
-  
+
   return (
     <LanguageContext.Provider value={value}>
       {children}
