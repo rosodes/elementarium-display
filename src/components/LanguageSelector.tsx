@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect, useMemo } from "react";
 import {
   Select,
@@ -74,7 +73,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   const selected = realLanguages.find((l) => l.code === language);
 
   return (
-    <div className="relative z-[1000]">
+    <div className="relative z-[1000] text-left flex justify-start">
       <Select
         value={language}
         onValueChange={onChange}
@@ -82,17 +81,17 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         onOpenChange={setIsOpen}
       >
         <SelectTrigger
-          className="w-[180px] h-10 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900"
+          className="w-[180px] h-10 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900 justify-start text-left"
           aria-label={t.selectLanguage || "Select language"}
         >
-          <span className="flex items-center gap-2 w-full truncate">
+          <span className="flex items-center gap-2 w-full truncate text-left">
             <span>{selected?.emoji || "🌐"}</span>
             <SelectValue>{selected?.name || language}</SelectValue>
           </span>
         </SelectTrigger>
         <SelectContent
           align="end"
-          className="z-[1000] bg-white dark:bg-gray-900 p-0 border-gray-200 dark:border-gray-800"
+          className="z-[1000] bg-white dark:bg-gray-900 p-0 border-gray-200 dark:border-gray-800 text-left"
           style={{ minWidth: 220, maxWidth: 320 }}
         >
           <div className="p-2 sticky top-0 bg-white dark:bg-gray-900 z-10">
@@ -109,7 +108,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
             />
           </div>
           <ScrollArea
-            className="max-h-[360px] min-h-[40px]"
+            className="max-h-[360px] min-h-[40px] text-left"
             style={{
               maxHeight: `calc(${MAX_VISIBLE} * 36px)`, // up to 10 строк, потом scroll
               minWidth: 200,
@@ -120,7 +119,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                 <SelectItem
                   key={lang.code}
                   value={lang.code}
-                  className="flex items-center gap-2 cursor-pointer py-2 text-sm group"
+                  className="flex items-center gap-2 cursor-pointer py-2 text-sm group text-left"
                 >
                   <span className="text-base mr-2">{lang.emoji}</span>
                   <span className="truncate group-hover:underline">{lang.name}</span>
@@ -138,4 +137,3 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   );
 };
 export default LanguageSelector;
-
