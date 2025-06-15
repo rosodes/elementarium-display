@@ -20,7 +20,7 @@ const OxygenSafetySection: React.FC = () => (
       <div>
         <strong>Health and medical hazards:</strong>
         <ul className="list-disc pl-4 space-y-1">
-          <li><strong>Oxygen toxicity:</strong> >50% O<sub>2</sub> for extended periods damages lungs and eyes</li>
+          <li><strong>Oxygen toxicity:</strong> &gt;50% O<sub>2</sub> for extended periods damages lungs and eyes</li>
           <li><strong>Central nervous system toxicity:</strong> High-pressure oxygen causes seizures and unconsciousness</li>
           <li><strong>Retinopathy of prematurity:</strong> Excess oxygen damages retinas in premature infants</li>
           <li><strong>Absorption atelectasis:</strong> High oxygen concentrations can collapse alveoli</li>
