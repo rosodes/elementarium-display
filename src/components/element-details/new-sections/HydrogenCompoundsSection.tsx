@@ -2,45 +2,76 @@
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
-import { Beaker, FlaskConical } from "lucide-react";
+import { Beaker, FlaskConical, Table } from "lucide-react";
 import HydrogenCompoundsVisualBlock from "./HydrogenCompoundsVisualBlock";
 
+// Expanded compounds data
 const compoundsContent = {
   en: {
-    title: "Key hydrogen compounds",
+    title: "Key Hydrogen Compounds",
     compounds: [
-      { name: "Water (H₂O)", desc: "most important hydrogen compound, universal solvent, vital for life." },
-      { name: "Ammonia (NH₃)", desc: "industrial chemical, fertilizer, refrigerant." },
-      { name: "Methane (CH₄)", desc: "primary component of natural gas, key fuel." },
-      { name: "Hydrochloric acid (HCl)", desc: "strong acid, essential in chemical industry and physiology." },
-      { name: "Hydrogen peroxide (H₂O₂)", desc: "oxidizer and disinfectant." },
-      { name: "Metal hydrides (LiH, NaH, CaH₂)", desc: "used for hydrogen storage, chemical synthesis." }
+      { name: "Water (H₂O)", desc: "Universal solvent, vital for all life, covers 71% of Earth’s surface." },
+      { name: "Ammonia (NH₃)", desc: "Major fertilizer, essential for agriculture, refrigerant, colorless gas." },
+      { name: "Methane (CH₄)", desc: "Key fuel, major greenhouse gas, primary component of natural gas." },
+      { name: "Hydrochloric acid (HCl)", desc: "Strong acid, widely used in industry and digestion." },
+      { name: "Hydrogen sulfide (H₂S)", desc: "Toxic gas with rotten egg smell, occurs naturally in volcanoes and sewers." },
+      { name: "Hydrogen peroxide (H₂O₂)", desc: "Oxidizing agent, disinfectant, bleaching, rocket propellant." },
+      { name: "Metal hydrides (LiH, NaH, CaH₂)", desc: "Hydrogen storage, desiccants, chemical synthesis." },
+      { name: "Phosphine (PH₃)", desc: "Toxic gas, used as fumigant and in semiconductor industry." },
+      { name: "Hydrides of transition metals", desc: "Catalysts in hydrogenation reactions, e.g., PdH." }
     ],
-    sources: "Sources: CRC Handbook, WebElements"
+    facts: [
+      "Hydrogen forms bonds with most elements and exists in countless compounds.",
+      "Many hydrides are used in energy storage (fuel cells, batteries) and as reducing agents.",
+      "H₂ can react explosively with halogens (Cl₂, F₂) to form strong acids.",
+      "Hydrogenation is a critical reaction in fat/oil processing and industrial chemistry.",
+      "Water, ammonia, and methane are among the most abundant molecules in the universe."
+    ],
+    sources: "Sources: CRC Handbook, WebElements, Wikipedia"
   },
   ru: {
     title: "Основные соединения водорода",
     compounds: [
-      { name: "Вода (H₂O)", desc: "важнейшее соединение, универсальный растворитель, необходима для жизни." },
-      { name: "Аммиак (NH₃)", desc: "промышленный химикат, удобрение, хладагент." },
-      { name: "Метан (CH₄)", desc: "главная составляющая природного газа, важное топливо." },
-      { name: "Хлороводород (HCl)", desc: "сильная кислота, нужна в химии и физиологии." },
-      { name: "Перекись водорода (H₂O₂)", desc: "окислитель, антисептик." },
-      { name: "Гидриды металлов (LiH, NaH, CaH₂)", desc: "хранение водорода, химический синтез." }
+      { name: "Вода (H₂O)", desc: "Главный растворитель, необходимость для жизни." },
+      { name: "Аммиак (NH₃)", desc: "Удобрения, хладагент, промышленный продукт." },
+      { name: "Метан (CH₄)", desc: "Топливо, парниковый газ, основная часть природного газа." },
+      { name: "Хлороводород (HCl)", desc: "Кислота, промышленная и физиологическая важность." },
+      { name: "Сероводород (H₂S)", desc: "Токсичный газ с запахом, вулканы, канализация." },
+      { name: "Перекись водорода (H₂O₂)", desc: "Окислитель, антисептик, топливо для ракет." },
+      { name: "Гидриды металлов (LiH, NaH, CaH₂)", desc: "Хранение H, осушители, синтез." },
+      { name: "Фосфин (PH₃)", desc: "Токсичный газ, используется в полупроводниках." },
+      { name: "Гидриды переходных металлов", desc: "Катализаторы гидрирования, напр. PdH." }
     ],
-    sources: "Источники: CRC Handbook, WebElements"
+    facts: [
+      "Водород химически связывается с большинством элементов.",
+      "Гидриды применяются для хранения энергии и как восстановители.",
+      "H₂ реагирует с галогенами с взрывом, образуя сильные кислоты.",
+      "Гидрирование — важный процесс для пищевой и промышленной химии.",
+      "Вода, аммиак и метан — наиболее распространённые молекулы во Вселенной."
+    ],
+    sources: "Источники: CRC Handbook, WebElements, Wikipedia"
   },
   uk: {
     title: "Основні сполуки водню",
     compounds: [
-      { name: "Вода (H₂O)", desc: "універсальна сполука, розчинник, необхідна для життя." },
-      { name: "Амоніак (NH₃)", desc: "промисловий хімікат, добриво, холодоагент." },
-      { name: "Метан (CH₄)", desc: "головний компонент природного газу, паливо." },
-      { name: "Хлороводень (HCl)", desc: "сильна кислота, важлива у промисловості та фізіології." },
-      { name: "Перекис водню (H₂O₂)", desc: "окиснювач, дезінфікуючий засіб." },
-      { name: "Гідриди металів (LiH, NaH, CaH₂)", desc: "для зберігання водню та хімсинтезу." }
+      { name: "Вода (H₂O)", desc: "Головний розчинник, основа життя." },
+      { name: "Амоніак (NH₃)", desc: "Добрива, холодоагент, промисловість." },
+      { name: "Метан (CH₄)", desc: "Паливо, парниковий газ, природний газ." },
+      { name: "Хлороводень (HCl)", desc: "Сильна кислота." },
+      { name: "Сірководень (H₂S)", desc: "Токсичний газ, вулкани." },
+      { name: "Перекис водню (H₂O₂)", desc: "Окисник, антисептик." },
+      { name: "Гідриди металів (LiH, NaH, CaH₂)", desc: "Зберігання, синтез." },
+      { name: "Фосфін (PH₃)", desc: "Токсичний газ." },
+      { name: "Гідриди перехідних металів", desc: "Каталіз у хімії." }
     ],
-    sources: "Джерела: CRC Handbook, WebElements"
+    facts: [
+      "Водень має безліч сполук.",
+      "Гідриди важливі для акумуляції енергії й у реакціях відновлення.",
+      "H₂ вибухово реагує з галогенами.",
+      "Гідрування — головний процес харчової та промислової хімії.",
+      "Вода, амоніак, метан — серед наймасовіших молекул у Всесвіті."
+    ],
+    sources: "Джерела: CRC Handbook, WebElements, Wikipedia"
   }
 };
 
@@ -63,11 +94,25 @@ const HydrogenCompoundsSection: React.FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-4 text-xs">
-          <ul className="list-disc pl-4 space-y-1 marker:text-emerald-500">
-            {data.compounds.map((c, i) => (
-              <li key={i}>
-                <b>{c.name}:</b> {c.desc}
-              </li>
+          <table className="min-w-[340px] border border-emerald-100 dark:border-emerald-800 mx-auto rounded my-2 text-[11px]">
+            <thead>
+              <tr className="bg-emerald-100 dark:bg-gray-800 text-emerald-900 dark:text-emerald-200">
+                <th className="p-1 text-left"><Table size={12} className="inline mr-1" />Compound</th>
+                <th className="p-1 text-left">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.compounds.map((c, i) => (
+                <tr key={c.name} className={i % 2 ? "bg-emerald-50 dark:bg-gray-900/20" : ""}>
+                  <td className="p-1 font-semibold">{c.name}</td>
+                  <td className="p-1">{c.desc}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <ul className="list-disc pl-4 space-y-1 marker:text-emerald-500 my-2">
+            {data.facts.map((fact, idx) => (
+              <li key={idx}>{fact}</li>
             ))}
           </ul>
           <div className="mt-2 text-[11px] text-gray-500">{data.sources}</div>

@@ -2,7 +2,7 @@
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
-import { PieChart, Globe2 } from "lucide-react";
+import { PieChart, Globe2, Table } from "lucide-react";
 import HydrogenOccurrenceVisualBlock from "./HydrogenOccurrenceVisualBlock";
 import HydrogenNaturalOccurrenceSection from "./HydrogenNaturalOccurrenceSection";
 
@@ -10,37 +10,61 @@ const occurrenceContent = {
   en: {
     title: "Occurrence & Abundance",
     facts: [
-      "Most abundant element in the Universe (~75% by mass), forms the bulk of stars and interstellar medium.",
-      "Very rare as H₂ gas on Earth (escapes gravity), but present everywhere as part of water (H₂O) and organics.",
-      "Major component in gas giant planets (Jupiter, Saturn).",
-      "Essential in all biological life: part of water, fats, proteins, nucleic acids.",
-      "Found as a minor component in volcanic and deep-earth gases."
+      "Hydrogen is the most abundant element in the universe, accounting for about 75% of normal matter by mass.",
+      "It is the primary fuel for stars (stellar nucleosynthesis via proton-proton chain and CNO cycle).",
+      "On Jupiter and Saturn, hydrogen dominates in both atomic and molecular forms.",
+      "On Earth, free molecular hydrogen (H₂) is very rare (~0.00005% of atmosphere), but found in volcanic and hydrothermal sources.",
+      "Virtually all hydrogen on Earth is combined in water (H₂O), making up ~11% by mass of oceans.",
+      "Hydrogen is also present in all living things: roughly 10% of the human body (by atoms) is hydrogen.",
+      "Hydrogen is core to organic molecules (hydrocarbons, proteins, nucleic acids, fats).",
+      "In meteorites and the Sun, the mass fraction of hydrogen closely matches cosmic averages.",
+      "It occurs in many minerals in the Earth's crust (clays, hydrated salts, hydroxides).",
+      "Hydrogen is released naturally by certain types of rocks (serpentinization) and potentially as a deep-Earth gas."
     ],
-    sources: "Sources: CRC Handbook, WebElements, NASA, IUPAC"
+    sources: "Sources: CRC Handbook, NASA, WebElements, Encyclopaedia Britannica"
   },
   ru: {
     title: "Распространённость и встречаемость",
     facts: [
-      "Самый распространённый элемент Вселенной (~75% массы), основа звёзд и межзвёздной среды.",
-      "На Земле крайне редок в виде Н₂, но находится повсеместно в составе воды и органики.",
-      "Основная часть газовых гигантов (Юпитер, Сатурн) — водород.",
-      "Ключевой для жизненных процессов: входит в воду, жиры, белки, нуклеиновые кислоты.",
-      "В малых количествах входит в вулканические и глубинные газы."
+      "Водород — самый распространённый элемент во Вселенной (~75% массы обычной материи).",
+      "Основное топливо звёзд (ядерный синтез, цепи pp и CNO).",
+      "Основная составляющая атмосферы газовых гигантов Юпитера и Сатурна.",
+      "На Земле молекулярный водород (H₂) — крайне редок в атмосфере (~0.00005%), выделяется в вулканических дымовых трубах.",
+      "Почти весь водород на Земле связан в воде (~11% массы океанов).",
+      "Около 10% атомов человеческого тела — водород.",
+      "Содержится во всех органических молекулах: белки, жиры, ДНК.",
+      "Сходные доли H и в солнечном составе, и в метеоритах.",
+      "Обильный элемент в гидратированных минералах земной коры.",
+      "Освобождается в процессе серпентинизации горных пород, и как глубинный газ."
     ],
-    sources: "Источники: CRC Handbook, WebElements, NASA, IUPAC"
+    sources: "Источники: CRC Handbook, NASA, WebElements, Энциклопедия Британника"
   },
   uk: {
     title: "Поширеність та наявність",
     facts: [
-      "Найпоширеніший у Всесвіті (~75% маси), основа зір і міжзоряної речовини.",
-      "На Землі як Н₂ трапляється рідко (швидко втрачається атмосферою), але всюди у складі води і органіки.",
-      "Основна складова газових гігантів (Юпітер, Сатурн) — водень.",
-      "Важливий для життя: є у складі води, жирів, білків, нуклеїнових кислот.",
-      "В невеликих кількостях — у вулканічних і глибоких газах."
+      "Водень — найпоширеніший у Всесвіті (~75% маси).",
+      "Головне паливо для зір (термоядерний синтез, ланцюги pp і CNO).",
+      "Складає основну частину Юпітера та Сатурна.",
+      "На Землі молекулярний H₂ трапляється рідко в атмосфері (~0.00005%), але присутній у вулканах і джерелах.",
+      "Переважна частка — у складі води (~11% маси океанів).",
+      "Близько 10% атомів у тілі людини — водень.",
+      "Усі органічні молекули містять водень: білки, жири, нуклеїнові кислоти.",
+      "У Сонці й метеоритах вміст H співставний з космічним.",
+      "Входить до складу гідратованих мінералів, глин.",
+      "Виділяється при серпентинизації порід, може бути глибокоземним газом."
     ],
-    sources: "Джерела: CRC Handbook, WebElements, NASA, IUPAC"
+    sources: "Джерела: CRC Handbook, NASA, WebElements, Британіка"
   }
 };
+
+const occurrenceTableData = [
+  { env: "Universe", percent: "75%", desc: "Hydrogen mass share of universe" },
+  { env: "Sun", percent: "71%", desc: "Hydrogen content in the Sun" },
+  { env: "Earth's Atmosphere", percent: "<0.00005%", desc: "Molecular hydrogen (H₂)" },
+  { env: "Oceans", percent: "11%", desc: "Hydrogen in H₂O by mass" },
+  { env: "Earth's Crust", percent: "0.15%", desc: "Mostly in minerals & water" },
+  { env: "Human body", percent: "10%", desc: "Atom fraction in humans" }
+];
 
 const HydrogenOccurrenceSection: React.FC = () => {
   const { language } = useLanguage();
@@ -61,9 +85,29 @@ const HydrogenOccurrenceSection: React.FC = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="p-4 text-xs">
-          <ul className="list-disc pl-4 space-y-1 marker:text-indigo-500">
+          <ul className="list-disc pl-4 space-y-1 marker:text-indigo-500 mb-2">
             {data.facts.map((f, i) => <li key={i}>{f}</li>)}
           </ul>
+          <div className="overflow-x-auto mt-2 mb-2">
+            <table className="min-w-[350px] border border-indigo-100 dark:border-indigo-800 mx-auto rounded text-[11px]">
+              <thead>
+                <tr className="bg-indigo-100 dark:bg-gray-800 text-indigo-900 dark:text-indigo-200">
+                  <th className="p-1 text-left"><Table size={12} className="inline mr-1" />Environment</th>
+                  <th className="p-1">H fraction</th>
+                  <th className="p-1 text-left">Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                {occurrenceTableData.map((row, i) => (
+                  <tr key={row.env} className={i % 2 ? "bg-indigo-50 dark:bg-gray-900/40" : ""}>
+                    <td className="p-1">{row.env}</td>
+                    <td className="p-1 text-center">{row.percent}</td>
+                    <td className="p-1">{row.desc}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div className="mt-2 text-[11px] text-gray-500">{data.sources}</div>
         </CardContent>
       </Card>
@@ -72,4 +116,5 @@ const HydrogenOccurrenceSection: React.FC = () => {
     </section>
   );
 };
+
 export default HydrogenOccurrenceSection;

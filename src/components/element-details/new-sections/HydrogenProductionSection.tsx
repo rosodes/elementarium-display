@@ -2,45 +2,78 @@
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
-import { Factory, Repeat2 } from "lucide-react";
+import { Factory, Repeat2, Table } from "lucide-react";
 import HydrogenProductionVisualBlock from "./HydrogenProductionVisualBlock";
 
 const productionContent = {
   en: {
     title: "Production & Synthesis",
     facts: [
-      "<b>Steam methane reforming (SMR):</b> primary industrial method (CH₄ + H₂O → CO + 3H₂).",
-      "<b>Electrolysis of water:</b> produces “green hydrogen” from renewable electricity.",
-      "<b>Partial oxidation, thermal cracking of hydrocarbons, and coal gasification:</b> alternative large-scale methods.",
-      "<b>Laboratory:</b> metals + acids (e.g. Zn + HCl).",
-      "Global annual H₂ production &gt; 94 million tons (2022, IEA); mostly for ammonia, refining, and methanol.",
-      "Technology trends: increasing share of green H₂, energy storage, fuel cells."
+      "Steam methane reforming (SMR) is the dominant industrial source: ~48% of world H₂ uses this method (CH₄ + H₂O → CO + 3H₂).",
+      "Electrolysis of water is growing rapidly, enabling production of 'green hydrogen' with renewable electricity.",
+      "Coal gasification and partial oxidation of hydrocarbons provide large quantities, though not climate-friendly.",
+      "By-product method: hydrogen is released during chloralkali production (NaCl electrolysis).",
+      "Laboratory H₂ made by reacting metals such as Zn and Fe with acids.",
+      "Annual global H₂ production (2022): ~94 million metric tons (IEA); used mainly for ammonia production (fertilizer), oil refining, and methanol.",
+      "Only ~0.1% of hydrogen is currently made via renewables/electrolysis—decarbonizing the sector is a major focus.",
+      "Tech: Purification can be done by pressure swing adsorption (PSA) or membrane filtration.",
+      "Hydrogen can be liquefied and transported cryogenically or as a compressed gas.",
+      "Fusion (future): hydrogen isotopes (deuterium/tritium) are the fuels in experimental fusion reactors (e.g., ITER)."
     ],
-    sources: "Sources: IEA, DOE Hydrogen Program, WebElements"
+    table: [
+      { method: "Steam Methane Reforming", share: "48%", note: "Main industrial source, fossil gas" },
+      { method: "Oil / Refineries", share: "30%", note: "By-product of oil refining" },
+      { method: "Coal Gasification", share: "18%", note: "Mainly in China" },
+      { method: "Electrolysis (Green H₂)", share: "0.1%", note: "Growing rapidly, renewable" },
+      { method: "Other / By-products", share: "~4%", note: "Chloralkali process, lab" }
+    ],
+    sources: "Sources: IEA, DOE Hydrogen Program, WebElements, Wikipedia"
   },
   ru: {
     title: "Производство и синтез",
     facts: [
-      "<b>Паровой реформинг метана (SMR):</b> главный промышленный способ (CH₄ + H₂O → CO + 3H₂).",
-      "<b>Электролиз воды:</b> получение «зелёного водорода» из возобновляемой энергии.",
-      "<b>Частичное окисление, термический крекинг, газификация угля:</b> альтернативные крупные процессы.",
-      "<b>Лаборатория:</b> получение из металлов и кислот (например, Zn + HCl).",
-      "Годовое мировое производство H₂ более 94 млн. тонн (2022); используется для аммиака, переработки, метанола.",
-      "Тренды: рост «зелёного» H₂, хранение энергии, топливные элементы."
+      "Паровой риформинг метана (SMR) — основной промышленный способ (~48% мирового H₂, CH₄ + H₂O → CO + 3H₂).",
+      "Электролиз воды набирает обороты, позволяет производить 'зелёный водород' с помощью ВИЭ.",
+      "Газификация угля и частичное окисление также дают H₂ — но они неэкологичны.",
+      "В процессе хлор-щёлочного электролиза выделяется водород как побочный продукт.",
+      "В лабораториях H₂ получают действием кислот на цинк или железо.",
+      "Годовое мировое производство H₂: ~94 млн тонн (2022, IEA), основное применение — NH₃, нефтепереработка, метанол.",
+      "Только 0,1% водорода сейчас производится экологично — декарбонизация отрасли в фокусе.",
+      "Очистка — давление и мембранные методы (PSA, фильтрация).",
+      "Транспортировка: жидкий (крио), сжатый газ.",
+      "Будущее: термоядерная энергетика на изотопах водорода (ITER и др.)."
     ],
-    sources: "Источники: IEA, DOE Hydrogen Program, WebElements"
+    table: [
+      { method: "Паровой риформинг метана", share: "48%", note: "Основной источник, природный газ" },
+      { method: "Нефть / Нефтепереработка", share: "30%", note: "Побочный продукт" },
+      { method: "Газификация угля", share: "18%", note: "Китай, другие регионы" },
+      { method: "Электролиз", share: "0,1%", note: "Рост, экологичный H₂" },
+      { method: "Прочие методы", share: "~4%", note: "Побочн. продукты, лаборатории" }
+    ],
+    sources: "Источники: IEA, DOE Hydrogen Program, WebElements, Wikipedia"
   },
   uk: {
     title: "Виробництво і синтез",
     facts: [
-      "<b>Парова риформінг метану (SMR):</b> основний промисловий метод (CH₄ + H₂O → CO + 3H₂).",
-      "<b>Електроліз води:</b> отримання «зеленого» водню з ВДЕ.",
-      "<b>Часткове окиснення, термокрекінг, газифікація вугілля:</b> альтернативні способи.",
-      "<b>Лабораторія:</b> взаємодія металів з кислотами (напр. Zn + HCl).",
-      "Світове виробництво H₂ &gt; 94 млн т (2022); переважно для аміаку, очищення, метанолу.",
-      "Тренди: зростає частка «зеленого» H₂, зберігання, паливні елементи."
+      "Парова риформінг метану — домінантний промисловий процес (~48% H₂ у світі).",
+      "Електроліз води стрімко розвивається, забезпечує 'зелений водень'.",
+      "Газифікація вугілля й часткове окиснення — також значні джерела.",
+      "Побічний продукт електролізу NaCl (хлор-лугова промисловість).",
+      "Лабораторний H₂ — реакція металу з кислотою.",
+      "Світове виробництво H₂ у 2022 р. — ~94 млн тонн (IEA).",
+      "Зелений H₂ — лише 0,1%, поступово зростає.",
+      "Очищення: PSA, мембранні технології.",
+      "Транспортування: зрідження, стиск.",
+      "У майбутньому — термоядерна енергетика (ізотопи водню)."
     ],
-    sources: "Джерела: IEA, DOE Hydrogen Program, WebElements"
+    table: [
+      { method: "Парова риформінг метану", share: "48%", note: "Головне джерело, природний газ" },
+      { method: "Нафта / Переробка", share: "30%", note: "Побічний продукт" },
+      { method: "Газифікація вугілля", share: "18%", note: "Переважно Китай" },
+      { method: "Електроліз (зелений H₂)", share: "0,1%", note: "Зростаюча частка, екологічний H₂" },
+      { method: "Інші / Побічні", share: "~4%", note: "Лабораторії, побічні процеси" }
+    ],
+    sources: "Джерела: IEA, DOE Hydrogen Program, WebElements, Wikipedia"
   }
 };
 
@@ -69,6 +102,26 @@ const HydrogenProductionSection: React.FC = () => {
               __html: data.facts.map(f => `<li>${f}</li>`).join('')
             }}
           />
+          <div className="overflow-x-auto">
+            <table className="min-w-[320px] border border-lime-100 dark:border-lime-700 mx-auto rounded my-2 text-[11px]">
+              <thead>
+                <tr className="bg-lime-100 dark:bg-gray-800 text-lime-900 dark:text-lime-200">
+                  <th className="p-1 text-left"><Table size={12} className="inline mr-1" />Method</th>
+                  <th className="p-1 text-center">Share</th>
+                  <th className="p-1 text-left">Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.table.map((row, i) => (
+                  <tr key={row.method} className={i % 2 ? "bg-lime-50 dark:bg-gray-900/40" : ""}>
+                    <td className="p-1 font-semibold">{row.method}</td>
+                    <td className="p-1 text-center">{row.share}</td>
+                    <td className="p-1">{row.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           <div className="mt-2 text-[11px] text-gray-500">{data.sources}</div>
         </CardContent>
       </Card>
