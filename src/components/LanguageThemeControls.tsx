@@ -1,4 +1,3 @@
-
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -10,6 +9,8 @@ import LanguageSelector from './LanguageSelector';
 // Массив поддерживаемых языков: emoji + название + код
 const languageOptions = [
   { code: "en", name: "English", emoji: "🇬🇧" },
+  { code: "ru", name: "Русский", emoji: "🇷🇺" },
+  { code: "uk", name: "Українська", emoji: "🇺🇦" },
   { code: "zh-CN", name: "简体中文 (Chinese, Simplified)", emoji: "🇨🇳" },
   { code: "zh-TW", name: "繁體中文 (Chinese, Traditional)", emoji: "🇹🇼" },
   { code: "es", name: "Español (Spanish)", emoji: "🇪🇸" },
@@ -18,7 +19,6 @@ const languageOptions = [
   { code: "pt-BR", name: "Português (Brazilian)", emoji: "🇧🇷" },
   { code: "pt-PT", name: "Português (European)", emoji: "🇵🇹" },
   { code: "bn", name: "বাংলা (Bengali)", emoji: "🇧🇩" },
-  { code: "ru", name: "Русский (Russian)", emoji: "🇷🇺" },
   { code: "ja", name: "日本語 (Japanese)", emoji: "🇯🇵" },
   { code: "pa", name: "ਪੰਜਾਬੀ (Punjabi)", emoji: "🇮🇳" },
   { code: "de", name: "Deutsch (German)", emoji: "🇩🇪" },
@@ -91,4 +91,3 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
 };
 
 export default LanguageThemeControls;
-
