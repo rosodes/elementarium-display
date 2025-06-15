@@ -10,6 +10,7 @@ import HydrogenDetailSections from "../new-sections/HydrogenDetailSections";
 import HeliumDetailSections from "../new-sections/HeliumDetailSections";
 import LithiumDetailSections from "../new-sections/LithiumDetailSections";
 import CarbonDetailSections from "../new-sections/CarbonDetailSections";
+import NitrogenDetailSections from "../new-sections/NitrogenDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -71,6 +72,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "2" && <HeliumDetailSections />}
       {element.atomic === "3" && <LithiumDetailSections />}
       {element.atomic === "6" && <CarbonDetailSections />}
+      {element.atomic === "7" && <NitrogenDetailSections />}
     </div>
   );
 };
