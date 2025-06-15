@@ -44,6 +44,12 @@ const scandium: Element = {
   },
   isotopes: 15,
   group: 3,
-  period: 4
+  period: 4,
+  block: "d",
+  category: "transition metal",
+  atomicMass: "44.955908",
+  electronConfiguration: "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d¹",
+  description: "Scandium is a soft, silvery-white metallic element, classified as a transition metal. Although it's not particularly abundant, it is widely distributed in the Earth's crust and finds uses in aerospace alloys, lighting, and electronics.",
+  summary: "Scandium is the first element of the transition metals group and is noted for being lightweight and having a high melting point. It is used in alloys to strengthen materials, and its compounds are studied in chemistry."
 };
 export default scandium;
