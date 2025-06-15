@@ -8,6 +8,9 @@ import BerylliumOxStatesSection from "../new-sections/BerylliumOxStatesSection";
 import BerylliumReactivitySection from "../new-sections/BerylliumReactivitySection";
 import BoronOxStatesSection from "../new-sections/BoronOxStatesSection";
 import BoronReactivitySection from "../new-sections/BoronReactivitySection";
+import CarbonOxStatesSection from "../new-sections/CarbonOxStatesSection";
+import CarbonReactivitySection from "../new-sections/CarbonReactivitySection";
+
 const CompoundsTab = ({ element }: { element: Element }) => (
   <div className="text-base space-y-6">
     {element.atomic === "1" ? (
@@ -26,6 +29,11 @@ const CompoundsTab = ({ element }: { element: Element }) => (
       <>
         <BoronOxStatesSection />
         <BoronReactivitySection />
+      </>
+    ) : element.atomic === "6" ? (
+      <>
+        <CarbonOxStatesSection />
+        <CarbonReactivitySection />
       </>
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-emerald-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
