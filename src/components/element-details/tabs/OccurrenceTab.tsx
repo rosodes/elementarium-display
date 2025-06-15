@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenOccurrenceSection from "../new-sections/HydrogenOccurrenceSection";
@@ -7,6 +8,7 @@ import BerylliumNaturalOccurrenceSection from "../new-sections/BerylliumNaturalO
 import BoronNaturalOccurrenceSection from "../new-sections/BoronNaturalOccurrenceSection";
 import CarbonNaturalOccurrenceSection from "../new-sections/CarbonNaturalOccurrenceSection";
 import FluorineNaturalOccurrenceSection from "../new-sections/FluorineNaturalOccurrenceSection";
+import NeonNaturalOccurrenceSection from "../new-sections/NeonNaturalOccurrenceSection";
 
 const OccurrenceTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -24,6 +26,8 @@ const OccurrenceTab = ({ element }: { element: Element }) => (
       <CarbonNaturalOccurrenceSection />
     ) : element.atomic === "9" ? (
       <FluorineNaturalOccurrenceSection />
+    ) : element.atomic === "10" ? (
+      <NeonNaturalOccurrenceSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-indigo-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Information about occurrence, major minerals, and main sources of this element will appear here.
