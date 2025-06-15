@@ -72,7 +72,7 @@ const ElementControlBar: React.FC<ElementControlBarProps> = ({
           onClick={onFavorite}
           variant={isBookmarked ? "secondary" : "outline"}
           className={`rounded-lg p-2 ${isBookmarked ? 'text-blue-700 border-blue-400' : ''}`}
-          aria-label={t.elementDetails.favorite ?? "Favorite"}
+          aria-label="Favorite"
         >
           <Bookmark size={20} fill={isBookmarked ? "#2563eb" : "none"} strokeWidth={isBookmarked ? 2.5 : 2} />
         </Button>
@@ -80,7 +80,7 @@ const ElementControlBar: React.FC<ElementControlBarProps> = ({
           onClick={onShare}
           variant="outline"
           className="rounded-lg p-2"
-          aria-label={t.elementDetails.share ?? "Share"}
+          aria-label="Share"
         >
           <Share size={20} />
         </Button>
