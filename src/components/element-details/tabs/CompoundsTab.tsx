@@ -1,44 +1,56 @@
 
 import React from "react";
 import { Element } from "../../../data/elementTypes";
+import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
+import { Beaker, FlaskConical } from "lucide-react";
+import HydrogenCompoundsVisualBlock from "../new-sections/HydrogenCompoundsVisualBlock";
+
 const CompoundsTab = ({ element }: { element: Element }) => (
   <div className="text-base">
-    <h2 className="text-lg font-bold mb-2">Compounds / Chemistry</h2>
-    <div className="text-sm text-gray-700 dark:text-gray-100">
-      {element.atomic === "1" ? (
-        <div>
-          <ul className="list-disc pl-5 text-xs mb-2">
-            <li>
-              <b>Главные соединения:</b> 
-              вода (H₂O), аммиак (NH₃), метан (CH₄), хлорводород (HCl), перекись водорода (H₂O₂), гидриды металлов (LiH, NaH, CaH₂ и др.)
-            </li>
-            <li>
-              <b>Основные химические свойства:</b> 
-              водород проявляет восстановительные свойства, реагирует с неметаллами (O₂, Cl₂, N₂), образует многочисленные гидриды.
-            </li>
-            <li>
-              <b>Характерные реакции:</b> 
-              2H₂ + O₂ → 2H₂O; N₂ + 3H₂ → 2NH₃ (синтез аммиака); H₂ + Cl₂ → 2HCl.
-            </li>
-            <li>
-              <b>Кислотно-основные свойства:</b> 
-              в соединениях с металлами − гидриды (основания/восстановители); с неметаллами — кислоты.
-            </li>
-            <li>
-              <b>Растворимость:</b> 
-              плохо растворяется в воде, хорошо — в палладии (Pd).
-            </li>
-            <li>
-              <b>Схемы превращений:</b> 
-              H₂ ⇄ 2H⁺ + 2e⁻ (электролиз); H₂ + CO₂ → H₂O + CO (реформинг).
-            </li>
-          </ul>
-          <div className="mt-2 text-[11px] text-gray-500">Источник: CRC Handbook, WebElements, Petrov</div>
-        </div>
-      ) : (
-        <p>Здесь будут описаны основные химические соединения и химия элемента.</p>
-      )}
-    </div>
+    <h2 className="text-lg font-bold mb-2 flex items-center gap-2 text-emerald-700 dark:text-emerald-200">
+      <Beaker size={19} className="shrink-0" />
+      Compounds &amp; Chemistry
+    </h2>
+    {element.atomic === "1" ? (
+      <>
+        <Card className="mb-4 border-emerald-200 dark:border-emerald-700">
+          <CardHeader className="bg-emerald-50 dark:bg-gray-800 py-3 px-4">
+            <CardTitle className="text-base flex items-center gap-2 text-emerald-700 dark:text-emerald-200">
+              <FlaskConical size={16} />
+              Key hydrogen compounds
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-4 text-xs">
+            <ul className="list-disc pl-4 space-y-1 marker:text-emerald-500">
+              <li>
+                <b>Water (H₂O):</b> most important hydrogen compound, universal solvent, vital for life.
+              </li>
+              <li>
+                <b>Ammonia (NH₃):</b> industrial chemical, fertilizer, refrigerant.
+              </li>
+              <li>
+                <b>Methane (CH₄):</b> primary component of natural gas, key fuel.
+              </li>
+              <li>
+                <b>Hydrochloric acid (HCl):</b> strong acid, essential in chemical industry and physiology.
+              </li>
+              <li>
+                <b>Hydrogen peroxide (H₂O₂):</b> oxidizer and disinfectant.
+              </li>
+              <li>
+                <b>Metal hydrides (LiH, NaH, CaH₂):</b> used for hydrogen storage, chemical synthesis.
+              </li>
+            </ul>
+            <div className="mt-2 text-[11px] text-gray-500">
+              Sources: CRC Handbook, WebElements
+            </div>
+          </CardContent>
+        </Card>
+        <HydrogenCompoundsVisualBlock />
+      </>
+    ) : (
+      <p>Здесь будут описаны основные химические соединения и химия элемента.</p>
+    )}
   </div>
 );
 export default CompoundsTab;
