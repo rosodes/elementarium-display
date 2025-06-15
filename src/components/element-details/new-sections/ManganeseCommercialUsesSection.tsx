@@ -10,7 +10,7 @@ const ManganeseCommercialUsesSection: React.FC = () => (
     </CardHeader>
     <CardContent className="p-4 text-xs">
       <ul className="list-disc pl-4 space-y-1">
-        <li>Steel production (>90% of use)—improves strength, hardness</li>
+        <li>Steel production (&gt;90% of use)—improves strength, hardness</li>
         <li>Aluminum alloys for beverage cans</li>
         <li>Dry cell batteries (as MnO₂)</li>
         <li>Chemical industry—permanganates, catalysts</li>
