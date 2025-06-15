@@ -3,43 +3,64 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
 const OxygenBioSection: React.FC = () => (
-  <Card className="my-4 border border-blue-200 dark:border-blue-700">
-    <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-      <CardTitle className="text-lg">Биологическая роль и токсичность</CardTitle>
+  <Card className="my-4 border border-green-200 dark:border-green-700">
+    <CardHeader className="bg-green-50 dark:bg-gray-800 p-4">
+      <CardTitle className="text-lg">Biological Role &amp; Toxicity</CardTitle>
     </CardHeader>
-    <CardContent className="p-4 text-xs">
-      <div className="space-y-2">
-        <div>
-          <strong>Биологическая роль:</strong>
-          Кислород — второй по распространённости элемент в биосфере и абсолютно необходимое вещество для жизни подавляющего большинства организмов. 
-          Является финальным акцептором электронов в дыхательной цепи эукариот и аэробных бактерий, обеспечивает энергообеспечение всех сложных форм жизни.
-        </div>
+    <CardContent className="p-4 text-xs space-y-2">
+      <div>
+        <strong>Essential for life:</strong> Oxygen is absolutely essential for most life forms, comprising 65% of human body weight and enabling cellular respiration in aerobic organisms.
+      </div>
+      <div>
+        <strong>Cellular respiration:</strong>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Кислород составляет ~65% массы человеческого тела (входит в состав воды, белков, жиров, углеводов, ДНК и РНК).</li>
-          <li>Является конц. звеном в окислительном фосфорилировании (образование АТФ), принимает участие в метаболизме клеток всех аэробных существ.</li>
-          <li>Продуцируется растениями в результате фотосинтеза; потребляется при дыхании живых существ и процессе гниения.</li>
-          <li>Без кислорода невозможна жизнь подавляющего числа животных, грибов, растений, большинства бактерий.</li>
-          <li>Некоторые организмы (облигатные анаэробы) не выносят кислорода — для них он токсичен!</li>
+          <li>ATP production through oxidative phosphorylation</li>
+          <li>Electron transport chain in mitochondria</li>
+          <li>C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub> → 6CO<sub>2</sub> + 6H<sub>2</sub>O + ATP (glucose oxidation)</li>
+          <li>Oxygen serves as final electron acceptor</li>
         </ul>
-        <div>
-          <strong>Токсичность и влияние на здоровье:</strong>
-        </div>
+      </div>
+      <div>
+        <strong>Biological functions:</strong>
         <ul className="list-disc pl-4 space-y-1">
-          <li>В нормальных концентрациях (21% в атмосфере) не токсичен для людей и большинства животных.</li>
-          <li>Длительное дыхание чистым кислородом (более 50% O₂) вызывает кислородную интоксикацию: судороги, поражение лёгких, нарушение зрения (ретинопатия у новорождённых).</li>
-          <li>Уровень ниже 16% — гипоксия, опасность для жизни.</li>
-          <li>Активные формы кислорода (синглетный O₂*, перекиси, супероксиды) повреждают клетки, ДНК и белки: оксидативный стресс ведёт к старению, воспалению и ряду болезней.</li>
-          <li>Озон (O₃) и оксиды азота — высокотоксичные соединения, поражают дыхательные пути.</li>
+          <li>Component of water (cellular medium)</li>
+          <li>Present in proteins, carbohydrates, lipids, nucleic acids</li>
+          <li>Enzyme cofactor in many biochemical reactions</li>
+          <li>Immune system: oxygen radicals kill pathogens</li>
+          <li>Wound healing and tissue repair</li>
         </ul>
-        <div>
-          <strong>Экологический аспект:</strong>
-          Кислород поддерживает все процессы гниения, дыхания, сгорания. 
-          Его циркуляция в атмосфере и гидросфере поддерживает жизнь на Земле, сформировала современную атмосферу (кислородная революция).
-        </div>
-        <div className="mt-2 text-gray-600 dark:text-gray-300">
-          Кислород — жизненно необходимый элемент для всего сложного живого, важен для медицины. 
-          Однако в высоких концентрациях опасен и приводит к оксидативному стрессу.
-        </div>
+      </div>
+      <div>
+        <strong>Photosynthesis and oxygen production:</strong>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>6CO<sub>2</sub> + 6H<sub>2</sub>O + light → C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> + 6O<sub>2</sub></li>
+          <li>Plants, algae, and cyanobacteria produce atmospheric oxygen</li>
+          <li>Great Oxidation Event (2.4 billion years ago) transformed Earth's atmosphere</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Oxygen toxicity and safety:</strong>
+        <ul className="list-disc pl-4 space-y-1">
+          <li><strong>Oxygen poisoning:</strong> High concentrations damage lungs and central nervous system</li>
+          <li><strong>Reactive oxygen species (ROS):</strong> Can damage cells and DNA (oxidative stress)</li>
+          <li><strong>Hypoxia:</strong> Oxygen deficiency causes cell death and organ failure</li>
+          <li><strong>Fire hazard:</strong> Pure oxygen accelerates combustion dramatically</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Medical applications:</strong>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Respiratory therapy and intensive care</li>
+          <li>Hyperbaric oxygen therapy for wound healing</li>
+          <li>Anesthesia and surgical procedures</li>
+          <li>Treatment of carbon monoxide poisoning</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Environmental impact:</strong> Ozone depletion, ground-level ozone pollution, and oxygen depletion in aquatic ecosystems from eutrophication.
+      </div>
+      <div className="mt-2 text-xs text-gray-600 dark:text-gray-300">
+        Oxygen is both life-sustaining and potentially toxic - balance is essential for health.
       </div>
     </CardContent>
   </Card>

@@ -3,38 +3,51 @@ import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
 const NitrogenBioSection: React.FC = () => (
-  <Card className="my-4 border border-blue-200 dark:border-blue-700">
-    <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-      <CardTitle className="text-lg">Биологическая роль и токсичность</CardTitle>
+  <Card className="my-4 border border-green-200 dark:border-green-700">
+    <CardHeader className="bg-green-50 dark:bg-gray-800 p-4">
+      <CardTitle className="text-lg">Biological Role &amp; Toxicity</CardTitle>
     </CardHeader>
-    <CardContent className="p-4 text-xs">
-      <div className="space-y-2">
-        <div>
-          <strong>Биологическая роль:</strong> 
-          Азот — фундаментальный элемент для всех живых организмов. Входит в состав аминокислот (а значит, всех белков), нуклеиновых кислот (ДНК и РНК), АТФ и других биомолекул.
-        </div>
+    <CardContent className="p-4 text-xs space-y-2">
+      <div>
+        <strong>Essential for life:</strong> Nitrogen is fundamental to all living organisms, comprising about 3% of human body weight and present in all proteins and nucleic acids.
+      </div>
+      <div>
+        <strong>Biological functions:</strong>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Молекулярный азот (N₂) необходим для построения белков, но подавляющее большинство организмов не могут усваивать N₂ из воздуха напрямую.</li>
-          <li>Фиксация азота происходит у некоторых бактерий и цианобактерий — они преобразуют N₂ в аммиак и другие соединения.</li>
-          <li>Круговорот азота — важнейший для почвенного плодородия процесс.</li>
-          <li>Азот — составляющая всех аминокислот, витаминов, ферментов.</li>
+          <li>Component of amino acids (building blocks of proteins)</li>
+          <li>Essential part of DNA and RNA bases (purines and pyrimidines)</li>
+          <li>Present in chlorophyll (photosynthesis)</li>
+          <li>Cofactor in many enzymes and vitamins</li>
+          <li>Part of neurotransmitters and hormones</li>
         </ul>
-        <div>
-          <strong>Токсичность и влияние на здоровье:</strong>
-        </div>
+      </div>
+      <div>
+        <strong>Nitrogen cycle in biology:</strong>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Молекулярный азот (N₂) инертен и нетоксичен, но замещение им кислорода ведет к удушью без внешних симптомов — опасность асфиксии!</li>
-          <li>Ионные и органические соединения азота (нитраты, нитриты) могут вызывать метгемоглобинемию и отравление при избытке, особенно у детей.</li>
-          <li>Сильнейшие яды — некоторые соединения азота: цианиды, нитросоединения, газы (NO, NO₂, N₂O₄ и др.)</li>
-          <li>Слишком высокие дозы азота при дайвинге вызывают эффект "азотного наркоза".</li>
+          <li>Nitrogen fixation by symbiotic bacteria in root nodules</li>
+          <li>Uptake of nitrates and ammonium by plant roots</li>
+          <li>Protein synthesis in plants and animals</li>
+          <li>Decomposition and return to soil</li>
         </ul>
-        <div>
-          <strong>Экологический аспект:</strong> 
-          Чрезмерное поступление соединений азота в воду и почву приводит к "цветению" водоемов и массовой гибели водных организмов (эвтрофикация).
-        </div>
-        <div className="mt-2 text-gray-600 dark:text-gray-300">
-          Сам азот жизненно важен для всего живого, но его соединения могут быть как полезными, так и опасными.
-        </div>
+      </div>
+      <div>
+        <strong>Toxicity and safety:</strong>
+        <ul className="list-disc pl-4 space-y-1">
+          <li><strong>Nitrogen gas (N<sub>2</sub>):</strong> Non-toxic but can cause asphyxiation by displacing oxygen</li>
+          <li><strong>Nitrous oxide (N<sub>2</sub>O):</strong> "Laughing gas" - anesthetic at low doses, toxic at high concentrations</li>
+          <li><strong>Nitrogen dioxide (NO<sub>2</sub>):</strong> Toxic brown gas, causes respiratory problems and acid rain</li>
+          <li><strong>Ammonia (NH<sub>3</sub>):</strong> Irritant to eyes, skin, and respiratory system</li>
+          <li><strong>Nitrates/nitrites:</strong> Can form carcinogenic nitrosamines in body</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Environmental impact:</strong> Nitrogen pollution from fertilizers causes eutrophication in water bodies, leading to algal blooms and dead zones.
+      </div>
+      <div>
+        <strong>Deficiency effects:</strong> Nitrogen deficiency in plants causes stunted growth and yellowing of leaves (chlorosis).
+      </div>
+      <div className="mt-2 text-xs text-gray-600 dark:text-gray-300">
+        Nitrogen is both essential for life and potentially harmful depending on the chemical form and concentration.
       </div>
     </CardContent>
   </Card>
