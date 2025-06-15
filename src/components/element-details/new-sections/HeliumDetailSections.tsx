@@ -3,7 +3,7 @@ import React from "react";
 import HeliumPhysicalConstantsSection from "./HeliumPhysicalConstantsSection";
 import HeliumOxStatesSection from "./HeliumOxStatesSection";
 import HeliumReactivitySection from "./HeliumReactivitySection";
-import HeliumNaturalOccurrenceSection from "./HeliumNaturalOccurrenceSection";
+import HeliumOccurrenceSection from "./HeliumOccurrenceSection";
 import HeliumIsotopesSection from "./HeliumIsotopesSection";
 import HeliumHistorySection from "./HeliumHistorySection";
 import HeliumInterestingFactsSection from "./HeliumInterestingFactsSection";
@@ -17,7 +17,7 @@ const HeliumDetailSections: React.FC = () => {
       <HeliumPhysicalConstantsSection />
       <HeliumOxStatesSection />
       <HeliumReactivitySection />
-      <HeliumNaturalOccurrenceSection />
+      <HeliumOccurrenceSection />
       <HeliumIsotopesSection />
       <HeliumHistorySection />
       <HeliumInterestingFactsSection />
