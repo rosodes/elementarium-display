@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenProductionSection from "../new-sections/HydrogenProductionSection";
@@ -37,11 +38,24 @@ const ProductionTab = ({ element }: { element: Element }) => (
       <FluorineExtractionSection />
     ) : element.atomic === "10" ? (
       <NeonExtractionSection />
+    ) : element.atomic === "11" ? (
+      <SodiumExtractionSection />
+    ) : element.atomic === "12" ? (
+      <MagnesiumExtractionSection />
+    ) : element.atomic === "13" ? (
+      <AluminumExtractionSection />
+    ) : element.atomic === "14" ? (
+      <SiliconExtractionSection />
+    ) : element.atomic === "15" ? (
+      <PhosphorusExtractionSection />
+    ) : element.atomic === "16" ? (
+      <SulfurExtractionSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-purple-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Methods of production, industrial synthesis and relevant data for this element will be shown here.
       </p>
-    }
+    )}
   </div>
 );
 export default ProductionTab;
+
