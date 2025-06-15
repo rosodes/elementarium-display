@@ -5,7 +5,7 @@ import { elements } from '../data/elements';
 import TableContainer from './periodic-table/TableContainer';
 import SearchContainer from './search/SearchContainer';
 import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ElementDetails from './ElementDetails';
 
 interface PeriodicTableProps {
@@ -43,7 +43,6 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
   const { t, language } = useValidatedTranslation('PeriodicTable');
   const navigate = useNavigate();
   const { lang } = useParams<{ lang?: string }>();
-  const location = useLocation();
   
   const filteredElements = useElementSearch(searchQuery, language, t);
   
@@ -86,7 +85,7 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
         />
       </div>
       
-      {selectedElement && location.pathname === '/' && (
+      {selectedElement && (
         <ElementDetails 
           element={selectedElement} 
           onClose={closeDetails} 

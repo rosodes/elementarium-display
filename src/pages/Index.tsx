@@ -80,13 +80,8 @@ const Index = () => {
     }
   };
 
-  // Логируем перед использованием Helmet
-  console.log('Index: before render Helmet');
-  
   return (
     <>
-      {/* SEO: Helmet + расширенные метатеги */}
-      {console.log('Index: just before <Helmet>')}
       <Helmet>
         <title>{t.title} | Менделеевская таблица онлайн</title>
         <meta name="description" content={t.subtitle} />
@@ -105,7 +100,6 @@ const Index = () => {
           } 
         />
         <meta property="og:image" content="/og-image.png" />
-        {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image"/>
         <meta name="twitter:title" content={t.title} />
         <meta name="twitter:description" content={t.subtitle} />
@@ -114,19 +108,16 @@ const Index = () => {
         <link rel="canonical" href={canonicalUrl} />
         <meta name="robots" content="index, follow" />
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        {/* fallback favicon */}
         <link rel="shortcut icon" href="/favicon.ico" />
-        {/* Preconnect to important domains */}
         {preconnectDomains.map(domain => (
           <link key={domain} rel="preconnect" href={domain} crossOrigin="" />
         ))}
-        {/* Structured Data */}
         <script type="application/ld+json">
           {JSON.stringify(organizationStructuredData)}
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 w-full">
         <Header onSearch={handleSearch} />
         <main className="w-full">
           <Suspense fallback={
@@ -141,7 +132,6 @@ const Index = () => {
           </Suspense>
         </main>
         <div className="w-full flex flex-col md:flex-row justify-between items-start gap-6 px-4 pb-4">
-          {/* Левая часть: текст о таблице Менделеева */}
           <div className="flex-1">
             <header>
               <h2 className="text-lg font-bold mb-1">Таблица Менделеева – основы химии</h2>
@@ -154,7 +144,6 @@ const Index = () => {
               <span className="font-bold italic underline">Таблица Менделеева</span> — уникальное научное достижение, служащее <span className="font-bold italic underline">основой всей современной химии</span>. Созданная <span className="font-bold italic underline">Дмитрием Ивановичем Менделеевым</span> в <span className="font-bold italic underline">1869&nbsp;году</span>, она упорядочивает все известные химические элементы по возрастанию их атомных номеров, сочетая их в группы и периоды по похожим свойствам. Такой подход позволяет быстро находить информацию об элементах, <span className="font-bold italic underline">предсказывать характеристики ещё не открытых веществ</span>, а также видеть закономерности в строении вещества. Сегодня таблица стала незаменимым инструментом для <span className="font-bold italic underline">школьников, студентов, преподавателей</span> и учёных во всём мире. С её помощью исследуются свойства новых материалов, развивается <span className="font-bold italic underline">медицина, энергетика, нанотехнологии</span> и многие другие отрасли науки и промышленности. Простота её структуры скрывает глубокую логику природы, помогая <span className="font-bold italic underline">раскрывать тайны окружающего мира</span>. В этом справочнике собраны все элементы, их свойства, история и современные научные данные.
             </p>
           </div>
-          {/* Правая часть: цветовая легенда */}
           <div className="flex-1 max-w-full">
             <section>
               <div className="pb-2 flex items-center">

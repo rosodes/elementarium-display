@@ -2,14 +2,12 @@
 import { useRef, useState, useEffect } from 'react';
 import { elements } from '../data/elements';
 import { Element } from '../data/elementTypes';
-import { useToast } from '@/components/ui/use-toast';
 import { useLanguage } from '../context/LanguageContext';
 import { useNavigate, useParams } from 'react-router-dom';
 
 export function useElementLogic() {
   const { t, language, setLanguage } = useLanguage();
   const mainRef = useRef<HTMLDivElement>(null);
-  const { toast } = useToast();
   const navigate = useNavigate();
   const urlParams = useParams();
   const [element, setElement] = useState<Element | null>(null);
@@ -19,7 +17,7 @@ export function useElementLogic() {
 
   // Load element and language
   useEffect(() => {
-    const idParam = urlParams.elementId?.toString();
+    const idParam = urlParams.atomicNumber?.toString();
     if (!idParam) {
       setElement(null);
       setElementId(null);
@@ -31,7 +29,7 @@ export function useElementLogic() {
     setLang(language);
     setLanguage(language);
     console.log('Loaded element:', found, 'for id:', idParam);
-  }, [urlParams.elementId, language, setLanguage]);
+  }, [urlParams.atomicNumber, language, setLanguage]);
 
   // Bookmark logic (localStorage-based)
   useEffect(() => {
@@ -46,17 +44,9 @@ export function useElementLogic() {
     if (bookmarks.includes(elementId)) {
       bookmarks = bookmarks.filter((id: number) => id !== elementId);
       setIsBookmarked(false);
-      toast({
-        title: t.ui?.elementRemoved || 'Removed from bookmarks',
-        description: t.ui?.elementRemoved || 'Element removed from bookmarks',
-      });
     } else {
       bookmarks.push(elementId);
       setIsBookmarked(true);
-      toast({
-        title: t.ui?.elementBookmarked || 'Bookmarked',
-        description: t.ui?.elementBookmarked || 'Element bookmarked',
-      });
     }
     localStorage.setItem('elementBookmarks', JSON.stringify(bookmarks));
   };
@@ -95,13 +85,7 @@ export function useElementLogic() {
     if (navigator.share && navigator.canShare(shareData)) {
       navigator.share(shareData).catch((error) => console.log('Error sharing:', error));
     } else {
-      navigator.clipboard.writeText(window.location.href).then(() => {
-        toast({
-          title: t.ui?.linkCopied || 'Link copied',
-          description: t.ui?.linkCopiedToClipboard || 'Link has been copied to clipboard',
-          duration: 3000,
-        });
-      });
+      navigator.clipboard.writeText(window.location.href);
     }
   };
 
