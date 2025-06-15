@@ -7,7 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import ElementDetailVisualSections from "./element-details/visualizations/ElementDetailVisualSections";
 
 // Import refactored components
-import ElementHeader from './element-details/ElementHeader';
 import ElementFooter from './element-details/ElementFooter';
 import OverviewTab from './element-details/tabs/OverviewTab';
 import PropertiesTab from './element-details/tabs/PropertiesTab';
@@ -107,15 +106,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
       <div 
         className={`${contentClasses} ${animateEntry && !isFullPage ? 'animate-scale-in' : ''}`}
       >
-        {/* Header section with navigation */}
-        <ElementHeader 
-          element={element}
-          prevElement={prevElement}
-          nextElement={nextElement}
-          onClose={onClose}
-          onNavigate={onNavigate}
-          isFullPage={isFullPage}
-        />
+        {/* Шапка УДАЛЕНА */}
         
         <Tabs defaultValue="overview" value={tabValue} onValueChange={setTabValue} className="w-full">
           {/* Больше не sticky, без скроллинга, обертка для кнопок */}
@@ -176,7 +167,6 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
             <TabsContent value="safety"><SafetyTab element={element} /></TabsContent>
           </div>
         </Tabs>
-        
         <ElementFooter 
           element={element}
           prevElement={prevElement}
