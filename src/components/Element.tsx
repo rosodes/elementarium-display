@@ -5,7 +5,7 @@ import { getCategoryColor } from '../data/elementCategories';
 import ElementTooltip from './ElementTooltip';
 import type { BaseElementProps } from '../types/componentTypes';
 import type { ActionFunction, ClassName } from '../types/utilityTypes';
-import type { ElementSymbolKey } from '../types/translationTypes';
+import type { ElementSymbolKey } from '../i18n/types/languageTypes';
 
 interface ElementProps extends BaseElementProps {
   readonly element: ElementType;

@@ -1,9 +1,8 @@
-
 import React from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { useLanguage } from '../context/LanguageContext';
 import EnhancedTooltip from './ui/tooltip-enhanced';
-import type { ElementSymbolKey } from '../types/translationTypes';
+import type { ElementSymbolKey } from '../i18n/types/languageTypes';
 
 interface ElementTooltipProps {
   element: ElementType;

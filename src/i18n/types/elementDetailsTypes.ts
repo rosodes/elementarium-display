@@ -111,4 +111,34 @@ export interface ElementDetailsTranslations {
   health?: string; // <-- ADDED for proper type checking
   warnings?: string; // <-- ADDED for proper type checking
   compounds?: string; // <-- ADDED for proper type checking
+  fractionByMass?: string; // <-- ADDED for proper type checking
+  visualization?: string;
+  notes?: string;
+  massNumber?: string;
+  protonNumber?: string;
+  neutronNumber?: string;
+  relatedElements?: string;
+  seeAlso?: string;
+  spectralLines?: string;
+  atomicModel?: string;
+  casNumber?: string;
+  discoverer?: string;
+  dateDiscovered?: string;
+  alternativeNames?: string;
+  namedAfter?: string;
+  mainGroup?: string;
+  electronShells?: string;
+  abundanceInSea?: string;
+  abundanceInAtmosphere?: string;
+  uses?: string;
+  notesBlock?: string;
+  structureImage?: string;
+  spectrum?: string;
+  spectralClass?: string;
+  massSpectra?: string;
+  appearance?: string;
+  naturalSources?: string;
+  artificialProduction?: string;
+  oxidationStateDescription?: string;
+  meltingBoilingDescription?: string;
 }
