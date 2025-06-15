@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../data/elementTypes';
 import { useLanguage } from '../../context/LanguageContext';
@@ -42,7 +41,9 @@ const ElementHeader: React.FC<ElementHeaderProps> = ({
         <div className="flex items-center gap-2">
           <Link to={tableLink} className="hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors flex items-center group">
             <Home size={20} className="mr-1 opacity-80 group-hover:opacity-100" />
-            <span className="font-medium text-sm md:text-base text-gray-700 dark:text-gray-200 hidden sm:inline">{t.ui.backToTable ?? "Back to Periodic Table"}</span>
+            <span className="font-medium text-sm md:text-base text-gray-700 dark:text-gray-200 hidden sm:inline">
+              {t.elementDetails.backToTable ?? "Back to Periodic Table"}
+            </span>
           </Link>
           <span className="mx-2 text-gray-400">|</span>
           <span className="font-medium text-sm md:text-base text-gray-700 dark:text-gray-200">{element.name} ({element.symbol})</span>
@@ -51,15 +52,13 @@ const ElementHeader: React.FC<ElementHeaderProps> = ({
         <div className="flex items-center gap-2">
           <button
             className="rounded-lg p-2 bg-white/80 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all"
-            aria-label={t.ui?.favorite ?? "Favorite"}
-            // TODO: Add favorite logic
+            aria-label="Favorite"
           >
             <Star size={20} className="text-gray-400" />
           </button>
           <button
             className="rounded-lg p-2 bg-white/80 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all"
-            aria-label={t.ui?.share ?? "Share"}
-            // TODO: Add share logic
+            aria-label="Share"
           >
             <Upload size={20} className="text-gray-400" />
           </button>
@@ -76,10 +75,10 @@ const ElementHeader: React.FC<ElementHeaderProps> = ({
           style={{ minWidth: 48 }}
           onClick={() => prevElement && onNavigate(prevElement)}
           disabled={!prevElement}
-          aria-label={t.ui?.previous ?? "Previous element"}
+          aria-label={t.elementDetails.previous ?? "Previous element"}
         >
           <ArrowLeft size={22} />
-          <span className="hidden md:inline text-xs">{t.ui?.previous ?? "Previous"}</span>
+          <span className="hidden md:inline text-xs">{t.elementDetails.previous ?? "Previous"}</span>
         </button>
         {/* Следующий элемент */}
         <button
@@ -87,9 +86,9 @@ const ElementHeader: React.FC<ElementHeaderProps> = ({
           style={{ minWidth: 48 }}
           onClick={() => nextElement && onNavigate(nextElement)}
           disabled={!nextElement}
-          aria-label={t.ui?.next ?? "Next element"}
+          aria-label={t.elementDetails.next ?? "Next element"}
         >
-          <span className="hidden md:inline text-xs">{t.ui?.next ?? "Next"}</span>
+          <span className="hidden md:inline text-xs">{t.elementDetails.next ?? "Next"}</span>
           <ArrowRight size={22} />
         </button>
         {/* Крупный символ и номер */}
@@ -114,4 +113,3 @@ const ElementHeader: React.FC<ElementHeaderProps> = ({
 };
 
 export default ElementHeader;
-
