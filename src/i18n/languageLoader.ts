@@ -1,13 +1,14 @@
-
 import { en } from './en';
 import { ru } from './ru';
 import { uk } from './uk';
+import { es } from './es';
 import { addLanguage } from './types';
 
 export function loadLanguages(): void {
   addLanguage('en', en);
   addLanguage('ru', ru);
   addLanguage('uk', uk);
+  addLanguage('es', es);
 
   // Заглушки для новых языков, чтобы не падал сайт при переключении
   const stub = {
@@ -27,7 +28,6 @@ export function loadLanguages(): void {
 
   addLanguage('zh-CN',   { ...stub, title: "尚未翻译", selectLanguage: "选择语言" });
   addLanguage('zh-TW',   { ...stub, title: "尚未翻譯", selectLanguage: "選擇語言" });
-  addLanguage('es',      { ...stub, title: "Aún no traducido", selectLanguage: "Seleccionar idioma" });
   addLanguage('hi',      { ...stub, title: "अभी तक अनुवाद नहीं किया गया", selectLanguage: "भाषा चुनें" });
   addLanguage('ar',      { ...stub, title: "لم تتم الترجمة بعد", selectLanguage: "اختر اللغة" });
   addLanguage('pt-BR',   { ...stub, title: "Ainda não traduzido", selectLanguage: "Selecionar idioma" });
@@ -43,7 +43,7 @@ export function loadLanguages(): void {
   addLanguage('fr-FR',   { ...stub, title: "Pas encore traduit", selectLanguage: "Choisir la langue" });
   addLanguage('fr-CA',   { ...stub, title: "Pas encore traduit", selectLanguage: "Choisir la langue" });
   addLanguage('vi',      { ...stub, title: "Chưa được dịch", selectLanguage: "Chọn ngôn ngữ" });
-  addLanguage('ta',      { ...stub, title: "இன்னும் மொழிபெயர்க்கவில்லை", selectLanguage: "மொழி தேர்ந்தெடுக்கவும்" });
+  addLanguage('ta',      { ...stub, title: "இன்னும் மொழிபெயர்க்கவில்லை", selectLanguage: "மொழி தேர்ந்தெடுക்கவும்" });
   addLanguage('ur',      { ...stub, title: "ابھی تک ترجمہ نہیں ہوا", selectLanguage: "زبان منتخب کریں" });
   addLanguage('fa',      { ...stub, title: "هنوز ترجمه نشده است", selectLanguage: "انتخاب زبان" });
   addLanguage('ml',      { ...stub, title: "ഇനി വിവർത്തനം ചെയ്തിട്ടില്ല", selectLanguage: "ഭാഷ തിരഞ്ഞെടുക്കുക" });
