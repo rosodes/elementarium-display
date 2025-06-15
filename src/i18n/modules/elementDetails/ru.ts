@@ -1,3 +1,4 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsRu: ElementDetailsTranslations = {
@@ -17,13 +18,11 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   showMoreInfo: "Показать больше информации",
   viewOnWikipedia: "Посмотреть в Википедии",
   closeDetails: "Закрыть",
+  // удалены дублирующиеся вкладки
   properties: "Свойства",
   physicalProperties: "Физические свойства",
   atomicProperties: "Атомные свойства",
   moreDetails: "Дополнительные сведения",
-  overview: "Обзор",
-  history: "История",
-  applications: "Применения",
   basicInfo: "Основная информация",
   series: "Серия",
   atomicWeight: "Атомный вес",
@@ -101,3 +100,4 @@ export const elementDetailsRu: ElementDetailsTranslations = {
   production: "Получение / Синтез",
   precautions: "Безопасность / Меры предосторожности",
 };
+

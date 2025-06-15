@@ -1,6 +1,7 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
-// Український переклад elementDetails, вкладки теперь вынесены в tabs
+// Український переклад elementDetails, вкладки вынесены у tabs
 export const elementDetailsUk: ElementDetailsTranslations = {
   tabs: {
     overview: "Огляд",
@@ -17,13 +18,11 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   showMoreInfo: "Показати більше інформації",
   viewOnWikipedia: "Переглянути у Вікіпедії",
   closeDetails: "Закрити",
+  // видалені дублі вкладок
   properties: "Властивості",
   physicalProperties: "Фізичні властивості",
   atomicProperties: "Атомні властивості",
   moreDetails: "Додаткові відомості",
-  overview: "Огляд",
-  history: "Історія",
-  applications: "Застосування",
   basicInfo: "Основна інформація",
   series: "Серія",
   atomicWeight: "Атомна вага",
@@ -104,3 +103,4 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   production: "Отримання / Синтез",
   precautions: "Безпека / Запобіжні заходи",
 };
+
