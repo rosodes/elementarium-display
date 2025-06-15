@@ -41,14 +41,20 @@ const HydrogenHistoryVisualBlock: React.FC = () => (
     >
       <button
         type="button"
-        className="bg-blue-100 dark:bg-gray-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-lg underline cursor-pointer transition hover:bg-blue-200 dark:hover:bg-blue-800 outline-none"
-        onClick={() => window.open("https://www.webelements.com/hydrogen/history.html", "_blank", "noopener,noreferrer")}
+        className="bg-blue-100 dark:bg-gray-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-lg cursor-pointer transition hover:bg-blue-200 dark:hover:bg-blue-800 outline-none flex items-center justify-center"
+        onClick={() =>
+          window.open(
+            "https://www.webelements.com/hydrogen/history.html",
+            "_blank",
+            "noopener,noreferrer"
+          )
+        }
         tabIndex={0}
+        aria-label="Смотреть внешний источник истории водорода"
       >
-        Источник
+        <BookOpen size={14} className="inline align-text-top" />
       </button>
     </EnhancedTooltip>
   </div>
 );
 export default HydrogenHistoryVisualBlock;
-
