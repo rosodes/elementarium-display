@@ -1,4 +1,3 @@
-
 import { TranslationData } from "..";
 
 // English element names
@@ -223,55 +222,7 @@ export const en: TranslationData = {
   },
   
   // Element details translations
-  elementDetails: {
-    showMoreInfo: "Show more information",
-    viewOnWikipedia: "View on Wikipedia",
-    closeDetails: "Close details",
-    properties: "Properties",
-    physicalProperties: "Physical Properties",
-    atomicProperties: "Atomic Properties",
-    moreDetails: "More Details",
-    overview: "Overview",
-    history: "History",
-    applications: "Applications",
-    basicInfo: "Basic Information",
-    series: "Series",
-    atomicWeight: "Atomic Weight",
-    electronConfig: "Electron Configuration",
-    discovered: "Discovered",
-    group: "Group",
-    period: "Period",
-    meltingPoint: "Melting Point",
-    boilingPoint: "Boiling Point",
-    density: "Density",
-    electronegativity: "Electronegativity",
-    valence: "Valence Electrons",
-    oxidationStates: "Oxidation States",
-    atomicStructure: "Atomic Structure",
-    electronDistribution: "Electron Distribution",
-    shell: "Shell",
-    atomicRadius: "Atomic Radius",
-    calculated: "Calculated",
-    empirical: "Empirical",
-    covalent: "Covalent",
-    additionalInfo: "Additional Information",
-    atomicNumber: "Atomic number",
-    symbol: "Symbol",
-    element: "Element",
-    is: "is a",
-    inPeriodGroup: " in period {period} and group {group} of the periodic table.",
-    discoveredIn: "It was discovered in {year}.",
-    knownSinceAncient: "It has been known since ancient times.",
-    meltingBoilingPoints: "It melts at {melt} K and boils at {boil} K.",
-    densityIs: "It has a density of {density} g/cm³.",
-    usedIn: "It is commonly used in {applications}.",
-    commonProperties: "It is known for its {properties}.",
-    // Add the required properties to fix the TypeScript errors
-    notAvailable: "Information not available",
-    backToTable: "Back to Periodic Table",
-    previous: "Previous",
-    next: "Next"
-  },
+  elementDetails: require("./modules/elementDetails/en").elementDetailsEn,
   
   // Footer translations
   footer: {

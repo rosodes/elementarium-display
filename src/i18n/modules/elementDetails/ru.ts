@@ -1,3 +1,4 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsRu: ElementDetailsTranslations = {
@@ -13,11 +14,14 @@ export const elementDetailsRu: ElementDetailsTranslations = {
     production: "Получение / Синтез",
     safety: "Безопасность / Меры предосторожности",
     symbol: "Символ",
-    abundance: "Распространённость",
     stability: "Стабильность"
   },
   showMoreInfo: "Показать больше информации",
   viewOnWikipedia: "Посмотреть в Википедии",
   closeDetails: "Закрыть",
   stability: "Стабильность",
+  notAvailable: "Информация недоступна",
+  backToTable: "Вернуться к таблице",
+  previous: "Предыдущий",
+  next: "Следующий",
 };

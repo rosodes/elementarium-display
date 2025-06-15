@@ -1,3 +1,4 @@
+
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -13,7 +14,6 @@ export const elementDetailsEn: ElementDetailsTranslations = {
     production: "Production / Synthesis",
     safety: "Safety / Precautions",
     symbol: "Symbol",
-    abundance: "Abundance",
     stability: "Stability"
   },
   showMoreInfo: "Show more information",
@@ -94,7 +94,6 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   radioactive: "Radioactivity",
   yes: "Yes",
   no: "No",
-  // Меню: основные кнопки вкладок
   bioRole: "Biological role",
   toxicityInfo: "Toxicity",
   production: "Production / Synthesis",

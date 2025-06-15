@@ -14,7 +14,6 @@ export const elementDetailsFr: ElementDetailsTranslations = {
     production: "Production / Synthèse",
     safety: "Précautions / Sécurité",
     symbol: "Symbole",
-    abundance: "Abondance",
     stability: "Stabilité"
   },
   showMoreInfo: "En savoir plus",
@@ -84,10 +83,6 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   toxicityInfo: "Toxicité",
   bioRole: "Rôle biologique",
   precautions: "Précautions",
-  ecologyInfo: "Écologie",
-  ecologicalImpact: "Impact écologique",
-  reactivity: "Réactivité",
-  noEcologyInfo: "Aucune information sur l’écologie.",
   notAvailable: "Non disponible",
   backToTable: "Retour au tableau",
   previous: "Précédent",
