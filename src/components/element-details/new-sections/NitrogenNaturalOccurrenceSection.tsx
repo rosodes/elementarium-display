@@ -10,21 +10,30 @@ const NitrogenNaturalOccurrenceSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Atmosphere:</strong> 78.09% by volume (most abundant gas)</div>
+          <div><strong>Atmospheric abundance:</strong> 78.1% of Earth's atmosphere</div>
           <div><strong>Abundance in Earth's crust:</strong> 19 ppm</div>
-          <div><strong>Abundance in universe:</strong> 7th most abundant element</div>
           <div><strong>Natural forms:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Diatomic gas (N₂) in atmosphere</li>
-            <li>Nitrates in soil and minerals (Chile saltpeter - NaNO₃)</li>
-            <li>Ammonia in trace amounts</li>
-            <li>Organic nitrogen in all living organisms</li>
-            <li>Protein content in plants and animals</li>
-            <li>DNA and RNA nucleotides</li>
-            <li>Atmospheric nitrogen oxides from lightning</li>
+            <li>Molecular nitrogen (N₂) in atmosphere</li>
+            <li>Sodium nitrate (Chile saltpeter)</li>
+            <li>Potassium nitrate (saltpeter)</li>
+            <li>Organic nitrogen in living organisms</li>
+            <li>Nitrogen compounds in soil</li>
           </ul>
-          <div><strong>Major sources:</strong> Air separation plants, natural gas processing</div>
-          <div><strong>Biological cycle:</strong> Nitrogen fixation by bacteria, plant uptake, decay</div>
+          <div><strong>Biological nitrogen cycle:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Nitrogen fixation by bacteria</li>
+            <li>Nitrification and denitrification</li>
+            <li>Decomposition of organic matter</li>
+            <li>Lightning converts N₂ to nitrates</li>
+          </ul>
+          <div><strong>Biological role:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Essential for all life forms</li>
+            <li>Component of amino acids and proteins</li>
+            <li>Part of DNA and RNA bases</li>
+            <li>3% of human body mass</li>
+          </ul>
         </div>
       </CardContent>
     </Card>

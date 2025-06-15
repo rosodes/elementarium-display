@@ -10,27 +10,27 @@ const NeonNaturalOccurrenceSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Abundance in atmosphere:</strong> 18.2 ppm</div>
-          <div><strong>Universe abundance:</strong> 5th most abundant element</div>
-          <div><strong>Sources:</strong></div>
+          <div><strong>Atmospheric abundance:</strong> 18.2 ppm (0.0018%)</div>
+          <div><strong>Abundance in Earth's crust:</strong> Very rare (5×10⁻³ ppm)</div>
+          <div><strong>Natural sources:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Atmospheric gas (0.0018% by volume)</li>
-            <li>Produced in stars by alpha process</li>
-            <li>Found in stellar spectra</li>
-            <li>Trace amounts in minerals (trapped)</li>
-            <li>Natural gas deposits (very small amounts)</li>
+            <li>Earth's atmosphere - only significant source</li>
+            <li>Trace amounts in some minerals</li>
+            <li>Produced in stars by nuclear fusion</li>
+            <li>Found in small amounts in natural gas</li>
           </ul>
-          <div><strong>Stellar production:</strong></div>
+          <div><strong>Cosmic abundance:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Carbon burning in massive stars</li>
-            <li>Alpha capture on oxygen-16</li>
-            <li>Released during stellar evolution</li>
+            <li>5th most abundant element in the universe</li>
+            <li>Produced in stellar nucleosynthesis</li>
+            <li>Common in stellar atmospheres</li>
+            <li>Found in planetary nebulae</li>
           </ul>
-          <div><strong>Distribution:</strong></div>
+          <div><strong>Atmospheric properties:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Well-mixed in Earth's atmosphere</li>
-            <li>Escapes to space very slowly</li>
-            <li>No terrestrial production</li>
+            <li>Lighter than air (but trapped during formation)</li>
+            <li>Does not escape to space easily</li>
+            <li>Remains constant in atmosphere</li>
           </ul>
         </div>
       </CardContent>

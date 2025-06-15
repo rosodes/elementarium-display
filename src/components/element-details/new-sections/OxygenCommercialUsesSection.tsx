@@ -12,29 +12,31 @@ const OxygenCommercialUsesSection: React.FC = () => {
         <div className="space-y-2">
           <div><strong>Medical applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Medical oxygen for respiratory therapy</li>
-            <li>Emergency and intensive care treatment</li>
-            <li>Anesthesia and surgical procedures</li>
+            <li>Oxygen therapy for respiratory conditions</li>
+            <li>Emergency medical treatment</li>
+            <li>Anesthesia and surgery</li>
             <li>Hyperbaric oxygen therapy</li>
           </ul>
-          <div><strong>Industrial uses:</strong></div>
+          <div><strong>Industrial processes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Steel production (blast furnace enrichment)</li>
-            <li>Metal cutting and welding (oxyacetylene torch)</li>
-            <li>Chemical production (oxidation reactions)</li>
-            <li>Water treatment and purification</li>
+            <li>Steel production and metal cutting</li>
+            <li>Welding and brazing</li>
+            <li>Chemical manufacturing</li>
+            <li>Wastewater treatment</li>
           </ul>
-          <div><strong>Aerospace:</strong></div>
+          <div><strong>Aerospace and transportation:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Rocket fuel oxidizer (liquid oxygen)</li>
-            <li>Life support systems in spacecraft</li>
-            <li>High-altitude aircraft breathing systems</li>
+            <li>Rocket propellant oxidizer</li>
+            <li>Aircraft emergency oxygen systems</li>
+            <li>Submarine and spacecraft life support</li>
+            <li>High-altitude breathing apparatus</li>
           </ul>
           <div><strong>Other applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Aquaculture (fish farming oxygenation)</li>
+            <li>Aquaculture and fish farming</li>
             <li>Glass manufacturing</li>
             <li>Pulp and paper bleaching</li>
+            <li>Fire safety and emergency systems</li>
           </ul>
         </div>
       </CardContent>

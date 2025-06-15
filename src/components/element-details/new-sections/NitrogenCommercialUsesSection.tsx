@@ -10,32 +10,33 @@ const NitrogenCommercialUsesSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Fertilizer industry (80% of production):</strong></div>
+          <div><strong>Agriculture:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Ammonia production for fertilizers</li>
-            <li>Urea synthesis</li>
-            <li>Ammonium nitrate and sulfate</li>
+            <li>Ammonia-based fertilizers</li>
+            <li>Nitrate fertilizers</li>
+            <li>Soil enhancement and crop yields</li>
+            <li>Nitrogen fixation enhancement</li>
           </ul>
           <div><strong>Industrial applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Inert atmosphere for welding and metal processing</li>
-            <li>Food packaging to prevent spoilage</li>
-            <li>Electronics manufacturing (inert atmosphere)</li>
-            <li>Oil and gas industry (pressure maintenance)</li>
+            <li>Inert atmosphere for chemical processes</li>
+            <li>Metal heat treatment and annealing</li>
+            <li>Electronics manufacturing</li>
+            <li>Pharmaceutical production</li>
           </ul>
-          <div><strong>Cryogenic applications:</strong></div>
+          <div><strong>Explosives and propellants:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Food freezing and preservation</li>
-            <li>Medical procedures (cryotherapy)</li>
-            <li>Laboratory coolant</li>
-            <li>Superconducting magnet cooling</li>
+            <li>TNT and other military explosives</li>
+            <li>Mining explosives</li>
+            <li>Rocket propellants</li>
+            <li>Airbag inflators</li>
           </ul>
-          <div><strong>Chemical industry:</strong></div>
+          <div><strong>Everyday applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Synthesis of nitric acid</li>
-            <li>Explosives manufacturing</li>
-            <li>Pharmaceutical intermediates</li>
-            <li>Plastics and synthetic materials</li>
+            <li>Food packaging (inert atmosphere)</li>
+            <li>Tire inflation</li>
+            <li>Liquid nitrogen for food preservation</li>
+            <li>Medical applications (cryotherapy)</li>
           </ul>
         </div>
       </CardContent>

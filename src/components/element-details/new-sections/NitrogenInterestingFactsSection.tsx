@@ -10,18 +10,18 @@ const NitrogenInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Makes up 78% of Earth's atmosphere by volume</li>
-          <li>The N≡N triple bond is one of the strongest chemical bonds</li>
-          <li>Essential for all life - component of amino acids and DNA</li>
-          <li>Liquid nitrogen is used as extreme coolant (-196°C)</li>
-          <li>Pure nitrogen is colorless, odorless, and tasteless</li>
-          <li>Nitrogen narcosis affects deep-sea divers (rapture of the deep)</li>
-          <li>Lightning converts atmospheric nitrogen to nitrates</li>
-          <li>Nitrogen gas is used to preserve food by preventing oxidation</li>
-          <li>Nitrogen deficiency in plants causes yellowing of leaves</li>
-          <li>The Haber process revolutionized agriculture and warfare</li>
-          <li>Nitrogen compounds can be both life-giving (fertilizers) and deadly (explosives)</li>
-          <li>Nitrogen makes up about 3% of human body mass</li>
+          <li>Makes up 78% of Earth's atmosphere</li>
+          <li>Nitrogen gas is odorless, colorless, and tasteless</li>
+          <li>Has the strongest triple bond in nature (N≡N)</li>
+          <li>Essential for all proteins and DNA</li>
+          <li>Liquid nitrogen is extremely cold (-196°C)</li>
+          <li>Lightning helps convert atmospheric nitrogen to nitrates</li>
+          <li>Some bacteria can "fix" nitrogen from the air</li>
+          <li>Nitrogen compounds are used in explosives</li>
+          <li>Nitrous oxide (N₂O) is known as "laughing gas"</li>
+          <li>Nitrogen gas is used to preserve food</li>
+          <li>About 3% of human body weight is nitrogen</li>
+          <li>Nitrogen depletion is a major agricultural concern</li>
         </ul>
       </CardContent>
     </Card>

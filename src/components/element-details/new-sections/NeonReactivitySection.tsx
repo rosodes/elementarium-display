@@ -10,16 +10,16 @@ const NeonReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Completely chemically inert - no reactions known</li>
-          <li>No compounds have ever been synthesized</li>
-          <li>Does not react with any element or compound</li>
-          <li>Highest first ionization energy of any element</li>
-          <li>Complete electron configuration prevents bonding</li>
-          <li>Even theoretical compounds are considered impossible</li>
-          <li>Does not form van der Waals compounds</li>
-          <li>No catalytic activity</li>
-          <li>Remains monatomic under all conditions</li>
-          <li>Most inert of all noble gases</li>
+          <li>Completely chemically inert under normal conditions</li>
+          <li>No known stable chemical compounds</li>
+          <li>Does not react with any elements or compounds</li>
+          <li>Extremely high ionization energy prevents reactions</li>
+          <li>Complete outer electron shell provides stability</li>
+          <li>Cannot form ionic or covalent bonds</li>
+          <li>Exists only as monatomic gas molecules</li>
+          <li>Used as inert atmosphere for sensitive processes</li>
+          <li>No chemical role in biological systems</li>
+          <li>Stable under all environmental conditions</li>
         </ul>
       </CardContent>
     </Card>

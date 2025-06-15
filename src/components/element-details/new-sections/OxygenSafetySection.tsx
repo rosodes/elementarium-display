@@ -6,34 +6,37 @@ const OxygenSafetySection: React.FC = () => {
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">
       <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">Safety Information</CardTitle>
+        <CardTitle className="text-lg">Safety & Health</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>General safety:</strong></div>
+          <div><strong>Safety considerations:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Non-toxic but can be dangerous in high concentrations</li>
-            <li>Strongly supports combustion - fire and explosion hazard</li>
-            <li>Oxygen-enriched atmospheres increase fire risk dramatically</li>
+            <li>Pure oxygen accelerates combustion</li>
+            <li>Fire hazard in oxygen-rich environments</li>
+            <li>High-pressure oxygen systems require special care</li>
+            <li>Oxygen toxicity at high concentrations</li>
           </ul>
-          <div><strong>Health hazards:</strong></div>
+          <div><strong>Health effects:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Oxygen toxicity at high partial pressures</li>
-            <li>Can cause lung damage with prolonged exposure to pure O₂</li>
-            <li>Central nervous system toxicity in hyperbaric conditions</li>
+            <li>Essential for life and cellular respiration</li>
+            <li>Oxygen deficiency causes hypoxia</li>
+            <li>Excess oxygen can damage lungs</li>
+            <li>Ozone is toxic to respiratory system</li>
+          </ul>
+          <div><strong>Environmental impact:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Ozone depletion from CFCs</li>
+            <li>Ground-level ozone as air pollutant</li>
+            <li>Oxygen depletion in water bodies</li>
+            <li>Essential for ecosystem health</li>
           </ul>
           <div><strong>Handling precautions:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Keep away from ignition sources and flammable materials</li>
-            <li>Use oxygen-compatible materials and lubricants</li>
-            <li>Ensure proper ventilation when using</li>
-            <li>Store cylinders upright and secured</li>
-          </ul>
-          <div><strong>Emergency measures:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>In case of oxygen-enriched fire: evacuate area immediately</li>
-            <li>Do not use water on oxygen-fed fires</li>
-            <li>Seek medical attention for oxygen toxicity symptoms</li>
+            <li>Avoid oil and grease near oxygen</li>
+            <li>Use appropriate materials for oxygen service</li>
+            <li>Proper ventilation in confined spaces</li>
+            <li>Monitor oxygen levels in work environments</li>
           </ul>
         </div>
       </CardContent>

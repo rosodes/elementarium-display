@@ -15,17 +15,21 @@ const CarbonIsotopesSection: React.FC = () => {
             <li>¹²C (98.93% abundance) - most common isotope</li>
             <li>¹³C (1.07% abundance) - used in NMR spectroscopy</li>
           </ul>
-          <div><strong>Important radioactive isotope:</strong></div>
+          <div><strong>Important radioactive isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>¹⁴C (half-life: 5,730 years) - radiocarbon dating</li>
-            <li>¹¹C (half-life: 20.3 minutes) - medical imaging (PET)</li>
+            <li>¹¹C (half-life: 20.3 minutes) - PET imaging</li>
           </ul>
           <div><strong>Applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>¹⁴C dating for archaeological specimens</li>
-            <li>¹³C NMR for molecular structure determination</li>
-            <li>¹¹C-labeled compounds in medical diagnostics</li>
+            <li>¹⁴C dating for archaeology and geology</li>
+            <li>¹³C NMR for molecular structure analysis</li>
+            <li>¹¹C tracers in medical imaging</li>
+            <li>¹²C standard for atomic mass units</li>
           </ul>
+          <div className="mt-2 text-gray-600 dark:text-gray-300">
+            Carbon-14 is continuously produced in the atmosphere by cosmic rays.
+          </div>
         </div>
       </CardContent>
     </Card>

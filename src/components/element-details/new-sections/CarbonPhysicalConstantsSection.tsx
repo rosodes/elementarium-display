@@ -11,17 +11,17 @@ const CarbonPhysicalConstantsSection: React.FC = () => {
       <CardContent className="p-4 text-xs">
         <div className="grid grid-cols-2 gap-2">
           <div><strong>Atomic mass:</strong> 12.011 u</div>
-          <div><strong>Density (graphite):</strong> 2.267 g/cm³</div>
           <div><strong>Density (diamond):</strong> 3.515 g/cm³</div>
-          <div><strong>Melting point:</strong> 3915 K (3642°C)</div>
-          <div><strong>Boiling point:</strong> 4300 K (4027°C)</div>
-          <div><strong>Sublimation point:</strong> 3915 K</div>
+          <div><strong>Density (graphite):</strong> 2.267 g/cm³</div>
+          <div><strong>Sublimation point:</strong> 3915 K (3642°C)</div>
+          <div><strong>Triple point:</strong> 4600 K, 10.8 MPa</div>
           <div><strong>Heat of fusion:</strong> 117 kJ/mol</div>
-          <div><strong>Heat of vaporization:</strong> 355 kJ/mol</div>
+          <div><strong>Heat of vaporization:</strong> 715 kJ/mol</div>
           <div><strong>Thermal conductivity:</strong> 119-165 W/(m·K)</div>
-          <div><strong>Electrical resistivity:</strong> Variable</div>
-          <div><strong>Young's modulus:</strong> 1050 GPa (diamond)</div>
+          <div><strong>Electrical resistivity:</strong> 10⁻⁶ Ω·m (graphite)</div>
+          <div><strong>Young's modulus:</strong> 1220 GPa (diamond)</div>
           <div><strong>Hardness (Mohs):</strong> 10 (diamond), 1-2 (graphite)</div>
+          <div><strong>Electronegativity:</strong> 2.55</div>
         </div>
       </CardContent>
     </Card>

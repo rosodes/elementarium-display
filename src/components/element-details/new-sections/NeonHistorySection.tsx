@@ -10,20 +10,28 @@ const NeonHistorySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Discovered:</strong> 1898 by William Ramsay and Morris Travers</div>
+          <div><strong>Discovery:</strong> 1898 by William Ramsay and Morris Travers</div>
           <div><strong>Timeline:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>1898 - Discovered by fractional distillation of air</li>
+            <li>1898 - Discovered through fractional distillation of liquid air</li>
             <li>1902 - First neon sign demonstrated</li>
-            <li>1910 - Commercial neon lighting begins</li>
-            <li>1915 - First neon advertising signs</li>
-            <li>1930s - Widespread use in advertising</li>
-            <li>1960s - Helium-neon lasers developed</li>
+            <li>1910 - First commercial neon lighting</li>
+            <li>1912 - Neon signs introduced to United States</li>
+            <li>1920s - Widespread adoption of neon advertising</li>
           </ul>
-          <div><strong>Etymology:</strong> From Greek "neos" meaning "new"</div>
-          <div><strong>Discovery method:</strong> Cryogenic distillation of liquid air</div>
-          <div><strong>Recognition:</strong> Distinctive red-orange glow identified it</div>
-          <div><strong>Early applications:</strong> Lighting, scientific instruments</div>
+          <div><strong>Etymology:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>From Greek "neos" meaning "new"</li>
+            <li>Named for its novelty when discovered</li>
+            <li>Found as new component in liquid air</li>
+          </ul>
+          <div><strong>Key developments:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Development of neon tube technology</li>
+            <li>Noble gas family identification</li>
+            <li>Industrial gas separation techniques</li>
+            <li>Applications in scientific instruments</li>
+          </ul>
         </div>
       </CardContent>
     </Card>

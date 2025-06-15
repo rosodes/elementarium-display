@@ -6,35 +6,37 @@ const CarbonSafetySection: React.FC = () => {
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">
       <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">Safety Information</CardTitle>
+        <CardTitle className="text-lg">Safety & Health</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
           <div><strong>General safety:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Pure carbon (diamond, graphite) is non-toxic</li>
-            <li>Carbon dust can be a respiratory irritant</li>
-            <li>Fine carbon particles may cause pneumoconiosis</li>
+            <li>Elemental carbon (graphite, diamond) is non-toxic</li>
+            <li>Carbon dust can be respiratory irritant</li>
+            <li>Some carbon compounds are highly toxic</li>
+            <li>Carbon monoxide is deadly poisonous gas</li>
           </ul>
-          <div><strong>Carbon monoxide hazards:</strong></div>
+          <div><strong>Health considerations:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Highly toxic gas - binds to hemoglobin</li>
-            <li>Colorless and odorless - difficult to detect</li>
-            <li>Can cause death by asphyxiation</li>
-            <li>Requires proper ventilation and CO detectors</li>
+            <li>Essential element for all life</li>
+            <li>Carbon black may cause lung irritation</li>
+            <li>Long-term exposure to coal dust causes pneumoconiosis</li>
+            <li>Activated carbon used medically for poisoning treatment</li>
           </ul>
-          <div><strong>Workplace precautions:</strong></div>
+          <div><strong>Environmental concerns:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Use respiratory protection when handling carbon dust</li>
-            <li>Ensure adequate ventilation in carbon processing</li>
-            <li>Monitor for carbon monoxide in combustion areas</li>
-            <li>Follow OSHA guidelines for carbon-based materials</li>
+            <li>CO₂ emissions contribute to climate change</li>
+            <li>Coal burning releases pollutants</li>
+            <li>Proper disposal of carbon materials important</li>
+            <li>Carbon sequestration efforts ongoing</li>
           </ul>
-          <div><strong>Environmental considerations:</strong></div>
+          <div><strong>Handling precautions:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>CO₂ is a major greenhouse gas</li>
-            <li>Coal burning produces air pollution</li>
-            <li>Carbon sequestration important for climate</li>
+            <li>Avoid inhalation of carbon dust</li>
+            <li>Use ventilation when working with carbon materials</li>
+            <li>Proper storage of carbon compounds</li>
+            <li>Fire safety with combustible carbon forms</li>
           </ul>
         </div>
       </CardContent>

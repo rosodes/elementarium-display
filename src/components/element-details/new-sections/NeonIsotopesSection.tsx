@@ -13,23 +13,23 @@ const NeonIsotopesSection: React.FC = () => {
           <div><strong>Stable isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>²⁰Ne (90.48% abundance) - most common isotope</li>
-            <li>²²Ne (9.25% abundance) - stable isotope</li>
+            <li>²²Ne (9.25% abundance) - second most common</li>
             <li>²¹Ne (0.27% abundance) - rare stable isotope</li>
           </ul>
           <div><strong>Important radioactive isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>²³Ne (half-life: 37.2 seconds) - research</li>
-            <li>¹⁹Ne (half-life: 17.2 seconds) - research</li>
+            <li>²⁴Ne (half-life: 3.38 minutes) - research applications</li>
+            <li>¹⁹Ne (half-life: 17.22 seconds) - laboratory studies</li>
           </ul>
           <div><strong>Applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>²⁰Ne/²²Ne ratios in meteorite studies</li>
-            <li>Isotope research in astrophysics</li>
-            <li>Solar wind composition studies</li>
-            <li>Atmospheric evolution research</li>
+            <li>Isotope ratios in cosmology research</li>
+            <li>Solar wind studies using isotope signatures</li>
+            <li>Nuclear physics research</li>
+            <li>Dating of meteorites and lunar samples</li>
           </ul>
           <div className="mt-2 text-gray-600 dark:text-gray-300">
-            Neon isotope ratios help understand solar system formation.
+            Neon isotope ratios provide insights into solar system formation.
           </div>
         </div>
       </CardContent>

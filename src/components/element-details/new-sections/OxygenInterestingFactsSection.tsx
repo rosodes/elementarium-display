@@ -10,18 +10,18 @@ const OxygenInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Essential for all aerobic life - humans can survive only minutes without it</li>
-          <li>Most abundant element in Earth's crust and human body (65% by mass)</li>
-          <li>Liquid oxygen is pale blue and magnetic (paramagnetic)</li>
-          <li>Ozone layer protects Earth from harmful UV radiation</li>
-          <li>Great Oxidation Event 2.4 billion years ago changed Earth's atmosphere</li>
-          <li>Oxygen is produced by photosynthesis in plants and algae</li>
-          <li>Pure oxygen can be toxic at high concentrations (oxygen toxicity)</li>
-          <li>Oxygen-16 is used as the standard for atomic mass units</li>
-          <li>Molecular oxygen (O₂) has a triplet ground state</li>
-          <li>Oxygen supports combustion but is not flammable itself</li>
-          <li>Used in rocket engines as oxidizer for fuel combustion</li>
-          <li>Dissolved oxygen levels indicate water quality in aquatic ecosystems</li>
+          <li>Most abundant element in Earth's crust</li>
+          <li>Essential for nearly all life on Earth</li>
+          <li>Makes up about 65% of human body mass</li>
+          <li>Liquid oxygen is pale blue in color</li>
+          <li>Oxygen is magnetic in its liquid form</li>
+          <li>About 89% of seawater's mass is oxygen</li>
+          <li>Ozone protects Earth from harmful UV radiation</li>
+          <li>Oxygen supports combustion but doesn't burn itself</li>
+          <li>Fish extract dissolved oxygen from water</li>
+          <li>Oxygen was toxic to early life forms</li>
+          <li>Plants produce oxygen through photosynthesis</li>
+          <li>Oxygen tanks are used in space and underwater</li>
         </ul>
       </CardContent>
     </Card>

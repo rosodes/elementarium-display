@@ -12,24 +12,30 @@ const NitrogenExtractionSection: React.FC = () => {
         <div className="space-y-2">
           <div><strong>Industrial production:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Air separation (cryogenic distillation) - most common method</li>
-            <li>Pressure swing adsorption (PSA)</li>
-            <li>Membrane separation</li>
             <li>Fractional distillation of liquid air</li>
+            <li>Air separation plants (cryogenic distillation)</li>
+            <li>Pressure swing adsorption (PSA)</li>
+            <li>Membrane separation technology</li>
           </ul>
           <div><strong>Laboratory methods:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Decomposition of sodium azide: 2NaN₃ → 2Na + 3N₂</li>
-            <li>Thermal decomposition of ammonium nitrite: NH₄NO₂ → N₂ + 2H₂O</li>
-            <li>Reaction of ammonia with copper oxide at high temperature</li>
+            <li>Thermal decomposition of ammonium nitrite</li>
+            <li>Reaction of ammonia with copper oxide</li>
+            <li>Decomposition of sodium azide</li>
+          </ul>
+          <div><strong>Nitrogen compound production:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Haber-Bosch process for ammonia</li>
+            <li>Ostwald process for nitric acid</li>
+            <li>Direct synthesis of nitrogen compounds</li>
           </ul>
           <div><strong>Purification:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Removal of oxygen using hot copper or hydrogen</li>
-            <li>Carbon dioxide removal with alkali solutions</li>
-            <li>Water removal using desiccants</li>
+            <li>Removal of oxygen and moisture</li>
+            <li>Catalytic purification</li>
+            <li>Molecular sieve filtration</li>
+            <li>Ultra-high purity grades available</li>
           </ul>
-          <div><strong>Annual production:</strong> Over 150 million tonnes worldwide</div>
         </div>
       </CardContent>
     </Card>

@@ -10,25 +10,32 @@ const CarbonExtractionSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Diamond mining:</strong></div>
+          <div><strong>Natural extraction:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Open-pit mining of kimberlite pipes</li>
-            <li>Underground mining for deeper deposits</li>
-            <li>Alluvial mining from river deposits</li>
-            <li>Marine mining from ocean floors</li>
+            <li>Mining of coal deposits</li>
+            <li>Diamond mining from kimberlite pipes</li>
+            <li>Graphite mining from metamorphic rocks</li>
+            <li>Petroleum and natural gas extraction</li>
           </ul>
-          <div><strong>Graphite production:</strong></div>
+          <div><strong>Industrial production:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Natural graphite mining from metamorphic rocks</li>
-            <li>Synthetic graphite from petroleum coke</li>
-            <li>High-temperature treatment (2500-3000°C)</li>
+            <li>Charcoal from wood pyrolysis</li>
+            <li>Coke from coal processing</li>
+            <li>Carbon black from incomplete combustion</li>
+            <li>Activated carbon from various sources</li>
           </ul>
-          <div><strong>Industrial carbon:</strong></div>
+          <div><strong>Synthetic carbon materials:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Coal mining for energy and steel production</li>
-            <li>Carbon black from incomplete combustion of hydrocarbons</li>
-            <li>Activated carbon from organic materials</li>
-            <li>Carbon fiber from polyacrylonitrile (PAN)</li>
+            <li>Synthetic diamonds under high pressure</li>
+            <li>Chemical vapor deposition for graphene</li>
+            <li>Carbon nanotube synthesis</li>
+            <li>Fullerene production by arc discharge</li>
+          </ul>
+          <div><strong>Purification methods:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>High-temperature treatment</li>
+            <li>Chemical purification</li>
+            <li>Mechanical separation</li>
           </ul>
         </div>
       </CardContent>

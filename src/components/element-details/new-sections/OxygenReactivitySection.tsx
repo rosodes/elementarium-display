@@ -10,16 +10,16 @@ const OxygenReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Highly reactive gas, supports combustion</li>
-          <li>Forms oxides with almost all elements except noble gases</li>
-          <li>Essential for cellular respiration and metabolism</li>
-          <li>Reacts with metals to form metal oxides: 4Fe + 3O₂ → 2Fe₂O₃</li>
-          <li>Combustion reactions: CH₄ + 2O₂ → CO₂ + 2H₂O</li>
-          <li>Forms ozone (O₃) in upper atmosphere and electrical discharges</li>
-          <li>Reacts with hydrogen to form water: 2H₂ + O₂ → 2H₂O</li>
-          <li>Oxidizes organic compounds, causing aging and decay</li>
-          <li>Forms peroxides with active metals</li>
-          <li>Does not react with noble gases under normal conditions</li>
+          <li>Highly reactive and supports combustion</li>
+          <li>Forms oxides with most elements</li>
+          <li>Essential for cellular respiration</li>
+          <li>Reacts with hydrogen: 2H₂ + O₂ → 2H₂O</li>
+          <li>Combines with metals to form metal oxides</li>
+          <li>Ozone (O₃) is more reactive than O₂</li>
+          <li>Supports all combustion reactions</li>
+          <li>Forms hydrogen bonds in water</li>
+          <li>Participates in redox reactions as oxidizing agent</li>
+          <li>Essential for photosynthesis and respiration</li>
         </ul>
       </CardContent>
     </Card>

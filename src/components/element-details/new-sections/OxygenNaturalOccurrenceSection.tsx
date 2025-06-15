@@ -10,20 +10,29 @@ const OxygenNaturalOccurrenceSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Abundance in Earth's crust:</strong> 46.1% by mass</div>
-          <div><strong>Abundance in atmosphere:</strong> 20.946% by volume</div>
-          <div><strong>Abundance in universe:</strong> 3rd most abundant element</div>
+          <div><strong>Atmospheric abundance:</strong> 20.9% of Earth's atmosphere</div>
+          <div><strong>Abundance in Earth's crust:</strong> 46.1% (most abundant)</div>
           <div><strong>Natural forms:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>Molecular oxygen (O₂) in atmosphere</li>
-            <li>Ozone (O₃) in stratosphere</li>
             <li>Water (H₂O) in oceans, lakes, rivers</li>
-            <li>Metal oxides in minerals and rocks</li>
-            <li>Silicates and carbonates in Earth's crust</li>
-            <li>Organic compounds in all living organisms</li>
-            <li>Carbon dioxide (CO₂) in atmosphere</li>
+            <li>Ozone (O₃) in stratosphere</li>
+            <li>Metal oxides in rocks and minerals</li>
+            <li>Silicates and carbonates</li>
           </ul>
-          <div><strong>Sources:</strong> Atmospheric O₂ produced by photosynthesis in plants and algae</div>
+          <div><strong>Biological role:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Essential for cellular respiration</li>
+            <li>65% of human body mass</li>
+            <li>Component of water and organic molecules</li>
+            <li>Required for aerobic life forms</li>
+          </ul>
+          <div><strong>Atmospheric oxygen cycle:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Produced by photosynthesis</li>
+            <li>Consumed by respiration and combustion</li>
+            <li>Ozone layer protects from UV radiation</li>
+          </ul>
         </div>
       </CardContent>
     </Card>

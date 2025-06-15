@@ -10,18 +10,18 @@ const CarbonInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Diamond is the hardest natural substance (10 on Mohs scale)</li>
-          <li>Graphite is one of the softest minerals (1-2 on Mohs scale)</li>
-          <li>Carbon has more known compounds than any other element</li>
-          <li>Forms the basis of all organic chemistry and life</li>
-          <li>Can exist in multiple allotropes: diamond, graphite, fullerenes, graphene</li>
-          <li>A pencil "lead" is actually graphite mixed with clay</li>
-          <li>Graphene is 200 times stronger than steel</li>
-          <li>Carbon nanotubes can be stronger than diamond</li>
-          <li>Coal formed from ancient plant matter over millions of years</li>
-          <li>Diamonds form 150-200 km below Earth's surface</li>
-          <li>Carbon cycle is essential for life on Earth</li>
-          <li>Fullerene C₆₀ resembles a soccer ball structure</li>
+          <li>Forms more compounds than all other elements combined</li>
+          <li>Diamond is the hardest naturally occurring substance</li>
+          <li>Graphite is one of the softest minerals</li>
+          <li>Can exist in more allotropes than any other element</li>
+          <li>Essential for all known life forms</li>
+          <li>Graphene is stronger than steel but thinner than paper</li>
+          <li>Carbon dating revolutionized archaeology</li>
+          <li>Coal formed from ancient forests millions of years ago</li>
+          <li>Diamonds can be billions of years old</li>
+          <li>Carbon nanotubes are incredibly strong and conductive</li>
+          <li>Fullerenes can trap other atoms inside them</li>
+          <li>Human body is about 18% carbon by mass</li>
         </ul>
       </CardContent>
     </Card>

@@ -10,18 +10,18 @@ const NeonInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Most chemically inert element - no compounds known</li>
-          <li>Produces characteristic red-orange glow in discharge tubes</li>
-          <li>Fifth most abundant element in the universe</li>
-          <li>Used in the first gas laser (helium-neon laser)</li>
-          <li>Neon signs actually use many different gases for colors</li>
-          <li>Has the narrowest liquid range of any element</li>
-          <li>Liquid neon is an excellent cryogenic refrigerant</li>
-          <li>More expensive than liquid helium to produce</li>
-          <li>Named "neon" because it was "new" when discovered</li>
-          <li>Glows when electricity passes through it</li>
-          <li>Used in television tubes and high-voltage indicators</li>
-          <li>Critical component in particle detectors</li>
+          <li>Produces famous orange-red glow in neon signs</li>
+          <li>5th most abundant element in the universe</li>
+          <li>Only about 18 parts per million in Earth's atmosphere</li>
+          <li>Completely chemically inert - forms no compounds</li>
+          <li>Liquid neon is an even more powerful refrigerant than liquid helium</li>
+          <li>Neon gas glows brightly when electricity passes through it</li>
+          <li>Used in vacuum tubes before transistors</li>
+          <li>Has no biological role whatsoever</li>
+          <li>More expensive than liquid helium due to rarity</li>
+          <li>Las Vegas is famous for its neon signs</li>
+          <li>Can be used as cryogenic refrigerant</li>
+          <li>Warning lights often contain neon gas</li>
         </ul>
       </CardContent>
     </Card>

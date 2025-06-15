@@ -10,19 +10,23 @@ const NeonOxStatesSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Oxidation state:</strong> 0 (zero)</div>
-          <div><strong>Chemical inertness:</strong> Complete</div>
-          <div className="space-y-1">
-            <div><strong>Noble gas characteristics:</strong></div>
-            <ul className="list-disc pl-4 space-y-1">
-              <li>Complete outer electron shell (2s² 2p⁶)</li>
-              <li>No known stable compounds</li>
-              <li>Does not form chemical bonds</li>
-              <li>Exists only as monatomic gas</li>
-            </ul>
-          </div>
+          <div><strong>Only oxidation state:</strong> 0</div>
+          <div><strong>Noble gas characteristics:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Complete outer electron shell (2s² 2p⁶)</li>
+            <li>Extremely stable electronic configuration</li>
+            <li>Does not form chemical compounds under normal conditions</li>
+            <li>No known stable compounds of neon</li>
+          </ul>
+          <div><strong>Chemical inertness:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Highest first ionization energy of period 2</li>
+            <li>No electronegativity value assigned</li>
+            <li>Cannot form covalent bonds</li>
+            <li>Only exists as monatomic gas</li>
+          </ul>
           <div className="mt-2 text-gray-600 dark:text-gray-300">
-            Neon is the most chemically inert element - no compounds have ever been synthesized.
+            Neon is chemically inert and forms no known stable compounds.
           </div>
         </div>
       </CardContent>

@@ -10,32 +10,33 @@ const CarbonCommercialUsesSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Diamond applications:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Jewelry and gemstones (60% of market)</li>
-            <li>Industrial cutting tools and drill bits</li>
-            <li>Abrasives and polishing compounds</li>
-            <li>Heat sinks in electronics</li>
-          </ul>
-          <div><strong>Graphite uses:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Lithium-ion battery anodes</li>
-            <li>Steel production (electrodes)</li>
-            <li>Lubricants and pencils</li>
-            <li>Nuclear reactor moderators</li>
-          </ul>
-          <div><strong>Carbon materials:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Carbon fiber in aerospace and automotive</li>
-            <li>Activated carbon for filtration</li>
-            <li>Carbon black in tires and pigments</li>
-            <li>Graphene in electronics research</li>
-          </ul>
-          <div><strong>Energy sector:</strong></div>
+          <div><strong>Energy & Fuels:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>Coal for electricity generation</li>
-            <li>Coke for steel production</li>
-            <li>Carbon capture and storage technologies</li>
+            <li>Petroleum products and gasoline</li>
+            <li>Natural gas for heating and power</li>
+            <li>Charcoal for metallurgy and cooking</li>
+          </ul>
+          <div><strong>Industrial applications:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Steel production (carbon content)</li>
+            <li>Graphite electrodes for electric arc furnaces</li>
+            <li>Carbon black for rubber reinforcement</li>
+            <li>Activated carbon for purification</li>
+          </ul>
+          <div><strong>Advanced materials:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Carbon fiber composites for aerospace</li>
+            <li>Graphene for electronics</li>
+            <li>Carbon nanotubes for various applications</li>
+            <li>Diamond tools and abrasives</li>
+          </ul>
+          <div><strong>Everyday uses:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Pencil graphite for writing</li>
+            <li>Diamond jewelry and cutting tools</li>
+            <li>Carbon filters for water treatment</li>
+            <li>Organic compounds in plastics, medicines</li>
           </ul>
         </div>
       </CardContent>

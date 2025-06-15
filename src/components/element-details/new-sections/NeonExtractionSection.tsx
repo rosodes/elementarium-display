@@ -10,28 +10,34 @@ const NeonExtractionSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Primary source:</strong> Atmospheric air</div>
-          <div><strong>Extraction process:</strong></div>
+          <div><strong>Industrial production:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>Fractional distillation of liquid air</li>
-            <li>Separation at -246°C to -248°C</li>
-            <li>Multiple distillation cycles required</li>
-            <li>Final purification to remove impurities</li>
+            <li>Cryogenic separation processes</li>
+            <li>Multi-stage distillation columns</li>
+            <li>High-purity separation techniques</li>
           </ul>
-          <div><strong>Production facilities:</strong></div>
+          <div><strong>Production process:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Air separation plants</li>
-            <li>Cryogenic distillation columns</li>
-            <li>High-purity gas production</li>
+            <li>Air liquefaction at very low temperatures</li>
+            <li>Separation based on boiling points</li>
+            <li>Removal of oxygen and nitrogen</li>
+            <li>Purification from other noble gases</li>
           </ul>
-          <div><strong>Challenges:</strong></div>
+          <div><strong>Purification methods:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Low atmospheric concentration (18 ppm)</li>
-            <li>Energy-intensive process</li>
-            <li>Expensive compared to other gases</li>
-            <li>Requires specialized equipment</li>
+            <li>Activated carbon adsorption</li>
+            <li>Molecular sieve separation</li>
+            <li>Multiple distillation stages</li>
+            <li>Ultra-high purity grades available</li>
           </ul>
-          <div><strong>Major producers:</strong> Companies with air separation plants</div>
+          <div><strong>Production challenges:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Very low atmospheric concentration</li>
+            <li>High energy requirements for separation</li>
+            <li>Expensive production process</li>
+            <li>Specialized cryogenic equipment needed</li>
+          </ul>
         </div>
       </CardContent>
     </Card>

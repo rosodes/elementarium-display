@@ -10,19 +10,29 @@ const NitrogenHistorySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Discovered:</strong> 1772 by Daniel Rutherford (Scotland)</div>
+          <div><strong>Discovery:</strong> 1772 by Daniel Rutherford</div>
+          <div><strong>Independent discovery:</strong> Carl Wilhelm Scheele, Henry Cavendish</div>
           <div><strong>Timeline:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>1772 - Daniel Rutherford isolated "noxious air" (nitrogen)</li>
-            <li>1772 - Carl Wilhelm Scheele also studied "foul air"</li>
-            <li>1772 - Henry Cavendish and Joseph Priestley conducted similar experiments</li>
-            <li>1790 - Jean-Antoine Chaptal named it "nitrogen" (nitrate former)</li>
-            <li>1908 - Fritz Haber developed ammonia synthesis process</li>
-            <li>1910 - Industrial ammonia production began</li>
-            <li>1917 - Nitrogen fixation became crucial for explosives in WWI</li>
+            <li>1772 - Rutherford isolated "noxious air" (nitrogen)</li>
+            <li>1790 - Jean-Antoine Chaptal named it "nitrogen"</li>
+            <li>1908 - Haber-Bosch process developed for ammonia</li>
+            <li>1909 - Fritz Haber synthesized ammonia from nitrogen</li>
+            <li>1920s - Industrial nitrogen fixation begins</li>
           </ul>
-          <div><strong>Etymology:</strong> From Greek "nitron" (native soda) + "genes" (forming)</div>
-          <div><strong>Alternative names:</strong> Azote (from Greek "a-zoos" - lifeless)</div>
+          <div><strong>Etymology:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>From Greek "nitron" (native soda) + "genes" (forming)</li>
+            <li>Originally called "azote" (without life)</li>
+            <li>German name "Stickstoff" (suffocating substance)</li>
+          </ul>
+          <div><strong>Key discoveries:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Nitrogen cycle understanding</li>
+            <li>Nitrogen fixation by bacteria</li>
+            <li>Industrial ammonia synthesis</li>
+            <li>Role in explosives and fertilizers</li>
+          </ul>
         </div>
       </CardContent>
     </Card>

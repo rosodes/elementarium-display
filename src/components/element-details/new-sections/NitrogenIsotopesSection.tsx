@@ -12,22 +12,24 @@ const NitrogenIsotopesSection: React.FC = () => {
         <div className="space-y-2">
           <div><strong>Stable isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>¹⁴N (99.632% abundance) - most common isotope</li>
-            <li>¹⁵N (0.368% abundance) - used as tracer in research</li>
+            <li>¹⁴N (99.636% abundance) - most common isotope</li>
+            <li>¹⁵N (0.364% abundance) - used in research and NMR</li>
           </ul>
           <div><strong>Important radioactive isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>¹³N (half-life: 9.97 minutes) - PET scan tracer</li>
-            <li>¹⁶N (half-life: 7.13 seconds) - nuclear reactor coolant analysis</li>
-            <li>¹⁷N (half-life: 4.17 seconds) - nuclear physics research</li>
+            <li>¹³N (half-life: 9.97 minutes) - PET imaging</li>
+            <li>¹⁶N (half-life: 7.13 seconds) - nuclear reactors</li>
           </ul>
           <div><strong>Applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>¹⁵N labeling in biochemical research</li>
-            <li>¹³N-ammonia for cardiac PET imaging</li>
-            <li>¹⁵N NMR spectroscopy for protein structure</li>
-            <li>Isotope ratio analysis in environmental studies</li>
+            <li>¹⁵N labeling in biological research</li>
+            <li>¹⁵N NMR spectroscopy</li>
+            <li>¹³N PET tracers for medical imaging</li>
+            <li>Isotope ratio studies in ecology</li>
           </ul>
+          <div className="mt-2 text-gray-600 dark:text-gray-300">
+            Nitrogen-15 is important for studying biological nitrogen cycles.
+          </div>
         </div>
       </CardContent>
     </Card>

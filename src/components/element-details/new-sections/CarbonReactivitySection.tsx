@@ -10,16 +10,16 @@ const CarbonReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Forms covalent bonds with most elements</li>
-          <li>Can form single, double, and triple bonds</li>
-          <li>Creates chains, rings, and complex structures (catenation)</li>
-          <li>Reacts with oxygen to form CO and CO₂</li>
-          <li>Forms hydrocarbons with hydrogen</li>
-          <li>Creates carbides with metals at high temperatures</li>
-          <li>Diamond is chemically inert under normal conditions</li>
-          <li>Graphite can intercalate various compounds</li>
+          <li>Forms more compounds than any other element</li>
+          <li>Catenation - ability to form long carbon chains</li>
           <li>Burns in oxygen: C + O₂ → CO₂</li>
-          <li>Reduces metal oxides at high temperatures</li>
+          <li>Reacts with metals to form carbides</li>
+          <li>Forms single, double, and triple bonds</li>
+          <li>Relatively unreactive at room temperature</li>
+          <li>Diamond is chemically inert under normal conditions</li>
+          <li>Graphite can conduct electricity</li>
+          <li>Forms stable aromatic compounds (benzene rings)</li>
+          <li>Basis of all organic chemistry</li>
         </ul>
       </CardContent>
     </Card>

@@ -10,19 +10,29 @@ const OxygenHistorySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Discovered independently:</strong> 1772-1774</div>
+          <div><strong>Discovery:</strong> 1774 by Joseph Priestley</div>
+          <div><strong>Independent discovery:</strong> Carl Wilhelm Scheele (1772)</div>
           <div><strong>Timeline:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>1772 - Carl Wilhelm Scheele (Sweden) isolated oxygen</li>
-            <li>1774 - Joseph Priestley (England) published first account</li>
-            <li>1777 - Antoine Lavoisier (France) named it "oxygen"</li>
-            <li>1883 - Raoul-Pierre Pictet liquefied oxygen</li>
-            <li>1895 - Carl von Linde produced liquid oxygen commercially</li>
-            <li>1901 - Oxyacetylene welding developed</li>
-            <li>1960s - Liquid oxygen used in rocket propulsion</li>
+            <li>1772 - Scheele isolated "fire air" (oxygen)</li>
+            <li>1774 - Priestley discovered "dephlogisticated air"</li>
+            <li>1777 - Lavoisier named it "oxygen"</li>
+            <li>1883 - Liquid oxygen first produced</li>
+            <li>1895 - Ozone discovered in atmosphere</li>
           </ul>
-          <div><strong>Etymology:</strong> From Greek "oxys" (acid) + "genes" (producer), meaning "acid-former"</div>
-          <div><strong>Early uses:</strong> Medical therapy, steel production, welding</div>
+          <div><strong>Etymology:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>From Greek "oxys" (acid) + "genes" (producer)</li>
+            <li>Named by Antoine Lavoisier</li>
+            <li>Originally thought all acids contained oxygen</li>
+          </ul>
+          <div><strong>Key discoveries:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Role in combustion and respiration</li>
+            <li>Photosynthesis produces oxygen</li>
+            <li>Ozone layer discovery</li>
+            <li>Medical uses of oxygen therapy</li>
+          </ul>
         </div>
       </CardContent>
     </Card>

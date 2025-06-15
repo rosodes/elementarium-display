@@ -11,19 +11,27 @@ const CarbonNaturalOccurrenceSection: React.FC = () => {
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
           <div><strong>Abundance in Earth's crust:</strong> 200 ppm</div>
-          <div><strong>Abundance in universe:</strong> 4th most abundant element</div>
           <div><strong>Natural forms:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Diamond - crystalline form in kimberlite pipes</li>
-            <li>Graphite - metamorphic rocks</li>
-            <li>Coal - fossil fuel deposits</li>
+            <li>Diamond - crystalline form</li>
+            <li>Graphite - layered crystalline form</li>
+            <li>Coal - fossilized organic matter</li>
             <li>Petroleum and natural gas</li>
-            <li>Limestone and carbonates (CaCO₃)</li>
-            <li>Organic matter in all living organisms</li>
-            <li>Carbon dioxide in atmosphere (0.04%)</li>
-            <li>Dissolved CO₂ in oceans</li>
+            <li>Limestone and marble (CaCO₃)</li>
+            <li>Organic matter in all living things</li>
           </ul>
-          <div><strong>Major deposits:</strong> South Africa (diamonds), China (graphite), coal worldwide</div>
+          <div><strong>Atmospheric carbon:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Carbon dioxide (CO₂) - 0.04% of atmosphere</li>
+            <li>Methane (CH₄) - trace amounts</li>
+            <li>Carbon monoxide (CO) - trace amounts</li>
+          </ul>
+          <div><strong>Biological role:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Essential element for all known life</li>
+            <li>18.5% of human body mass</li>
+            <li>Backbone of biomolecules</li>
+          </ul>
         </div>
       </CardContent>
     </Card>
