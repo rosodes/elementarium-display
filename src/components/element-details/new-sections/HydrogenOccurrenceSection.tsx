@@ -144,7 +144,7 @@ const HydrogenOccurrenceSection: React.FC = () => {
       </h2>
       <div className="text-[15px] md:text-base mb-2">{data.intro}</div>
       {/* Основные факты */}
-      <ul className="list-disc pl-5 marker:text-indigo-500 text-[13px] space-y-1 mb-2">
+      <ul className="list-disc pl-5 marker:text-indigo-500 text-[15px] space-y-1 mb-2">
         {data.facts.map((fact, i) => <li key={i}>{fact}</li>)}
       </ul>
       {/* ГРАФИК BAR CHART — наглядный сравнительный */}
@@ -178,3 +178,4 @@ const HydrogenOccurrenceSection: React.FC = () => {
 };
 
 export default HydrogenOccurrenceSection;
+
