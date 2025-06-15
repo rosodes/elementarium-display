@@ -2,31 +2,28 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
-const SodiumNaturalOccurrenceSection: React.FC = () => {
-  return (
-    <Card className="my-4 border border-gray-200 dark:border-gray-700">
-      <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">Natural Occurrence</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 text-xs">
-        <div className="space-y-2">
-          <div><strong>Abundance in Earth's crust:</strong> 2.36% (6th most abundant)</div>
-          <div><strong>Abundance in seawater:</strong> 1.08% by weight</div>
-          <div><strong>Natural sources:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Rock salt (halite) - NaCl deposits</li>
-            <li>Seawater and salt lakes</li>
-            <li>Sodium carbonate (trona) deposits</li>
-            <li>Feldspar minerals (albite - NaAlSi₃O₈)</li>
-            <li>Salt domes and evaporite deposits</li>
-            <li>Brine wells and underground salt formations</li>
+const SodiumNaturalOccurrenceSection: React.FC = () => (
+  <Card className="my-4 border border-gray-200 dark:border-gray-700">
+    <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
+      <CardTitle className="text-lg">Natural Occurrence</CardTitle>
+    </CardHeader>
+    <CardContent className="p-4 text-xs">
+      <div className="space-y-2">
+        <div><strong>Earth’s crust abundance:</strong> 2.36% by weight (6th most abundant element).</div>
+        <div><strong>Major minerals:</strong>
+          <ul className="list-disc pl-4">
+            <li>Halite (rock salt, NaCl)</li>
+            <li>Trona (Na<sub>3</sub>H(CO<sub>3</sub>)<sub>2</sub>·2H<sub>2</sub>O)</li>
+            <li>Albite (NaAlSi<sub>3</sub>O<sub>8</sub>)</li>
+            <li>Natron, cryolite</li>
           </ul>
-          <div><strong>Major deposits:</strong> Great Salt Lake (USA), Dead Sea, Atacama Salt Flat (Chile)</div>
-          <div><strong>Biological role:</strong> Essential electrolyte in all living organisms</div>
         </div>
-      </CardContent>
-    </Card>
-  );
-};
+        <div><strong>Seawater:</strong> ~10.8 g/L as Na<sup>+</sup> ions (most abundant cation in seawater).</div>
+        <div><strong>Biological occurrence:</strong> Essential in all animal tissues, major component of blood plasma, nerve transmission, osmotic regulation.</div>
+        <div><strong>Main deposits:</strong> USA, China, India, Germany</div>
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default SodiumNaturalOccurrenceSection;

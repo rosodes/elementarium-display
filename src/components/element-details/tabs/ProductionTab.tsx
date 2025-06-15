@@ -8,6 +8,7 @@ import BerylliumExtractionSection from "../new-sections/BerylliumExtractionSecti
 import BoronExtractionSection from "../new-sections/BoronExtractionSection";
 import CarbonExtractionSection from "../new-sections/CarbonExtractionSection";
 import NeonExtractionSection from "../new-sections/NeonExtractionSection";
+import SodiumExtractionSection from "../new-sections/SodiumExtractionSection";
 
 const ProductionTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -25,6 +26,8 @@ const ProductionTab = ({ element }: { element: Element }) => (
       <CarbonExtractionSection />
     ) : element.atomic === "10" ? (
       <NeonExtractionSection />
+    ) : element.atomic === "11" ? (
+      <SodiumExtractionSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-lime-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Methods of production, industrial synthesis and relevant data for this element will be shown here.

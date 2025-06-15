@@ -8,6 +8,7 @@ import BerylliumSafetySection from "../new-sections/BerylliumSafetySection";
 import BoronSafetySection from "../new-sections/BoronSafetySection";
 import CarbonSafetySection from "../new-sections/CarbonSafetySection";
 import NeonSafetySection from "../new-sections/NeonSafetySection";
+import SodiumSafetySection from "../new-sections/SodiumSafetySection";
 
 const SafetyTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -25,6 +26,8 @@ const SafetyTab = ({ element }: { element: Element }) => (
       <CarbonSafetySection />
     ) : element.atomic === "10" ? (
       <NeonSafetySection />
+    ) : element.atomic === "11" ? (
+      <SodiumSafetySection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-red-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Safety precautions, hazards, handling and disposal guidelines for this element will be displayed here.

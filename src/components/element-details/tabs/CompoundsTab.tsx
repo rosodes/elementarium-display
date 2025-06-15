@@ -16,6 +16,8 @@ import FluorineOxStatesSection from "../new-sections/FluorineOxStatesSection";
 import FluorineReactivitySection from "../new-sections/FluorineReactivitySection";
 import NeonOxStatesSection from "../new-sections/NeonOxStatesSection";
 import NeonReactivitySection from "../new-sections/NeonReactivitySection";
+import SodiumOxStatesSection from "../new-sections/SodiumOxStatesSection";
+import SodiumReactivitySection from "../new-sections/SodiumReactivitySection";
 
 const CompoundsTab = ({ element }: { element: Element }) => (
   <div className="text-base space-y-6">
@@ -55,6 +57,11 @@ const CompoundsTab = ({ element }: { element: Element }) => (
       <>
         <NeonOxStatesSection />
         <NeonReactivitySection />
+      </>
+    ) : element.atomic === "11" ? (
+      <>
+        <SodiumOxStatesSection />
+        <SodiumReactivitySection />
       </>
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-emerald-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
