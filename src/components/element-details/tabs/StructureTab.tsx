@@ -22,11 +22,32 @@ const StructureTab = ({ element, categoryColor }: StructureTabProps) => {
     <div className="space-y-6">
       {/* --- ДОБАВЛЕННЫЕ СЕКЦИИ ТОЛЬКО ДЛЯ ГИДРОГЕНА --- */}
       {element.atomic === "1" && (
-        <>
-          <HydrogenIsotopesSection />
-          <HydrogenCrystalStructureSection />
-          <HydrogenComparisonsSection />
-        </>
+        <div className="p-4 mb-2 rounded-lg border border-blue-100 bg-blue-50 dark:bg-gray-800">
+          <h3 className="font-semibold text-blue-700 dark:text-blue-200 mb-2 text-base">Атомное строение водорода</h3>
+          <ul className="list-disc pl-4 text-xs marker:text-blue-400">
+            <li>Электронная конфигурация: 1s¹</li>
+            <li>Число протонов: 1; электронов: 1; нейтронов: зависит от изотопа</li>
+            <li>Валентность: 1; степени окисления: –1, +1</li>
+            <li>Основные изотопы:
+              <ul className="ml-4 list-[circle]">
+                <li>Протий (¹H, 99.9885%, стабильный)</li>
+                <li>Дейтерий (²H, D, 0.0115%, стабильный)</li>
+                <li>Тритий (³H, T, радиоактивный, период полураспада ~12.3 лет)</li>
+              </ul>
+            </li>
+            <li>Основные энергетические уровни: 1</li>
+            <li>Классические спектральные серии: Lyman, Balmer, Paschen и др.
+              <ul className="ml-4 list-[circle]">
+                <li>Lyman (УФ): n=1 (121.6 нм и др.)</li>
+                <li>Balmer (видимый): n=2 (656.3, 486.1, 434.0, 410.2 нм)</li>
+                <li>Paschen (ИК): n=3</li>
+              </ul>
+            </li>
+          </ul>
+          <div className="mt-2 text-[11px] text-gray-500">
+            Источники: CRC Handbook, Atkins, IUPAC, physics.nist.gov
+          </div>
+        </div>
       )}
       {/* Расширенная информация по оболочкам и структуре */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">

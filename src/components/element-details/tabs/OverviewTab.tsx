@@ -239,12 +239,30 @@ const OverviewTab = ({ element }: OverviewTabProps) => {
       {element.isotopesDetailed && Array.isArray(element.isotopesDetailed) && element.isotopesDetailed.length > 0 && (
         <ElementIsotopesTable isotopes={element.isotopesDetailed} element={element} />
       )}
-
       {renderElementFacts()}
       <HistoryBlock element={element} />
 
-      {/* ВСТАВКА РАСШИРЕННОЙ ИНФЫ ТОЛЬКО ДЛЯ HYDROGEN */}
-      {element.atomic === "1" && <HydrogenDetailSections />}
+      {/* === СПЕЦИАЛЬНЫЙ КОНТЕНТ ДЛЯ HYDROGEN === */}
+      {element.atomic === "1" && (
+        <div className="my-5 rounded-lg border border-blue-200 bg-blue-50 dark:bg-gray-800 p-4 shadow-lg">
+          <h2 className="text-xl font-bold mb-2">Водород — Hydrogen (H), №1</h2>
+          <p className="mb-2 text-gray-800 dark:text-gray-300 text-sm">
+            Водород — самый легкий и самый распространённый элемент Вселенной, неметалл. Играет ключевую роль в химии, биосфере, энергетике (топливо будущего) и астрофизике.
+          </p>
+          <ul className="list-disc pl-4 marker:text-blue-400 text-xs leading-snug space-y-1">
+            <li>Тип элемента: неметалл, "s-блок". Символ: H.</li>
+            <li>Основная форма при стандартных условиях: двухатомный газ H₂ без цвета, вкуса и запаха.</li>
+            <li>Уникален: иногда проявляет свойства и металлов (под экстремальным давлением).</li>
+            <li>Ключевое участие: вода (H₂O), большинство органических соединений, кислоты.</li>
+            <li>Основной источник энергии для звёзд (термоядерный синтез).</li>
+            <li>Обнаружен в 1766 г. Генри Кавендишем (GB). Название от греч. "порождающий воду".</li>
+          </ul>
+          <div className="mt-2 text-[11px] text-gray-500">
+            Источники: CRC Handbook, IUPAC, WebElements, Atkins, А.М. Петров "Химические элементы".
+          </div>
+        </div>
+      )}
+      {/* ========================== */}
 
       <div className="mt-4">
         <Card className="overflow-hidden border border-gray-200 dark:border-gray-700">

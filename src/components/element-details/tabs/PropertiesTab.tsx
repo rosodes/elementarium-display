@@ -69,6 +69,28 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
 
       {/* --- ДОПОЛНИТЕЛЬНЫЕ СЕКЦИИ ДЛЯ КАЖДОГО ЭЛЕМЕНТА --- */}
       {element.atomic === "1" && <HydrogenDetailSections />}
+      {element.atomic === "1" && (
+        <div className="p-4 rounded-lg border border-blue-100 bg-blue-50 dark:bg-gray-800 my-2">
+          <h3 className="font-semibold text-blue-700 dark:text-blue-200 mb-2 text-base">Физические и химические характеристики (стандартные условия):</h3>
+          <ul className="text-xs pl-4 list-disc marker:text-blue-400">
+            <li>Агрегатное состояние: газ</li>
+            <li>Молекулярная масса (H₂): 2.01588 г/моль; атомная масса: 1.00784 (IUPAC)</li>
+            <li>Цвет: отсутствует; Запах: отсутствует; Вкус: отсутствует</li>
+            <li>Плотность (H₂): 0.08988 г/л при 0 °C и 1 атм</li>
+            <li>Температура плавления: 13.99 K (–259.16 °C)</li>
+            <li>Температура кипения: 20.271 K (–252.88 °C)</li>
+            <li>Теплопроводность: 0.1805 Вт/(м К) (H₂, 27 °C)</li>
+            <li>Электропроводность: не проводит в обычных условиях</li>
+            <li>Электроотрицательность (Полинг): 2.20</li>
+            <li>Энергия ионизации: 1312.0 кДж/моль</li>
+            <li>Атомный радиус: 53 пм (расчётный), ковалентный — 37 пм</li>
+            <li>Магнитные свойства: диамагнетик</li>
+          </ul>
+          <div className="mt-2 text-[11px] text-gray-500">
+            Источники: IUPAC, CRC Handbook, WebElements
+          </div>
+        </div>
+      )}
       {element.atomic === "2" && <HeliumDetailSections />}
       {element.atomic === "3" && <LithiumDetailSections />}
       {element.atomic === "4" && <BerylliumDetailSections />}
