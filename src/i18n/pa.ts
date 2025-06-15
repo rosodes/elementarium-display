@@ -1,6 +1,5 @@
 
 import { TranslationData } from ".";
-import { commonEn } from "./modules/common";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
@@ -11,7 +10,7 @@ import { enElements } from "./modules/elements/en";
 
 const commonPa = {
   title: "ਤੱਤਾਂ ਦੀ ਆਵਰਤੀ ਸਾਰਣੀ",
-  subtitle: "ਆਧੂਨਿਕ ਇੰਟਰੈਕਟਿਵ ਆਵਰਤੀ ਸਾਰਣੀ, ਵਿਗਿਆਨਕ ਡਾਟਾ, ਇਤਿਹਾਸ ਅਤੇ ਉਪਯੋਗਿਤਾਵਾਂ ਸਮੇਤ।",
+  subtitle: "ਆਧੁਨਿਕ ਇੰਟਰਐਕਟਿਵ ਆਵਰਤੀ ਸਾਰਣੀ, ਵਿਗਿਆਨਕ ਡਾਟਾ, ਇਤਿਹਾਸ ਅਤੇ ਉਪਯੋਗਤਾਵਾਂ ਸਮੇਤ।",
   selectLanguage: "ਭਾਸ਼ਾ ਚੁਣੋ",
   search: "ਖੋਜੋ",
   toggleTheme: "ਥੀਮ ਬਦਲੋ"

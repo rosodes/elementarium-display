@@ -1,6 +1,5 @@
 
 import { TranslationData } from ".";
-import { commonEn } from "./modules/common";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
@@ -11,7 +10,7 @@ import { enElements } from "./modules/elements/en";
 
 const commonAr = {
   title: "الجدول الدوري للعناصر",
-  subtitle: "الجدول الدوري التفاعلي الحديث مع البيانات العلمية والتاريخ والتطبيقات.",
+  subtitle: "جدول دوري تفاعلي حديث يشمل بيانات علمية وتاريخًا واستخدامات.",
   selectLanguage: "اختر اللغة",
   search: "بحث",
   toggleTheme: "تغيير النمط"

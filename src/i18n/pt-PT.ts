@@ -1,6 +1,5 @@
 
 import { TranslationData } from ".";
-import { commonEn } from "./modules/common";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
@@ -11,7 +10,7 @@ import { enElements } from "./modules/elements/en";
 
 const commonPtPT = {
   title: "Tabela Periódica dos Elementos",
-  subtitle: "Tabela periódica interativa moderna, com dados científicos, história e aplicações.",
+  subtitle: "Tabela periódica interativa moderna com dados científicos, história e aplicações.",
   selectLanguage: "Selecionar idioma",
   search: "Pesquisar",
   toggleTheme: "Alternar tema"

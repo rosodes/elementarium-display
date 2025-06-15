@@ -1,6 +1,5 @@
 
 import { TranslationData } from ".";
-import { commonEn } from "./modules/common";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
@@ -11,7 +10,7 @@ import { enElements } from "./modules/elements/en";
 
 const commonJa = {
   title: "元素の周期表",
-  subtitle: "科学データ、歴史、応用を備えた現代のインタラクティブな周期表。",
+  subtitle: "現代的なインタラクティブ周期表、科学データ・歴史・応用つき。",
   selectLanguage: "言語を選択",
   search: "検索",
   toggleTheme: "テーマを切り替え"

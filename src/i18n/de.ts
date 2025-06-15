@@ -1,6 +1,5 @@
 
 import { TranslationData } from ".";
-import { commonEn } from "./modules/common";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
@@ -11,7 +10,7 @@ import { enElements } from "./modules/elements/en";
 
 const commonDe = {
   title: "Periodensystem der Elemente",
-  subtitle: "Modernes interaktives Periodensystem mit wissenschaftlichen Daten, Geschichte und Anwendungen.",
+  subtitle: "Modernes, interaktives Periodensystem mit wissenschaftlichen Daten, Geschichte und Anwendungen.",
   selectLanguage: "Sprache wählen",
   search: "Suchen",
   toggleTheme: "Thema wechseln"

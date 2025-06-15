@@ -1,6 +1,5 @@
 
 import { TranslationData } from ".";
-import { commonEn } from "./modules/common";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
@@ -10,8 +9,8 @@ import { footerEn } from "./modules/footer";
 import { enElements } from "./modules/elements/en";
 
 const commonBn = {
-  title: "মৌলিক মৌলসমূহের পর্যায় সারণি",
-  subtitle: "আধুনিক ইন্টারেক্টিভ পর্যায় সারণি, বৈজ্ঞানিক তথ্য, ইতিহাস ও ব্যবহারসহ।",
+  title: "মৌলিক উপাদানের পর্যায় সারণি",
+  subtitle: "আধুনিক ইন্টারেক্টিভ পর্যায় সারণি, বৈজ্ঞানিক তথ্য, ইতিহাস ও ব্যবহার সহ।",
   selectLanguage: "ভাষা নির্বাচন করুন",
   search: "অনুসন্ধান",
   toggleTheme: "থিম পরিবর্তন করুন"

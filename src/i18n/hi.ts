@@ -1,6 +1,5 @@
 
 import { TranslationData } from ".";
-import { commonEn } from "./modules/common";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
@@ -11,7 +10,7 @@ import { enElements } from "./modules/elements/en";
 
 const commonHi = {
   title: "तत्वों की आवर्त सारणी",
-  subtitle: "आधुनिक इंटरैक्टिव आवर्त सारणी, वैज्ञानिक डेटा, इतिहास और अनुप्रयोग सहित।",
+  subtitle: "आधुनिक इंटरएक्टिव आवर्त सारणी, जिसमें वैज्ञानिक डेटा, इतिहास एवं अनुप्रयोग हैं।",
   selectLanguage: "भाषा चुनें",
   search: "खोजें",
   toggleTheme: "थीम बदलें"
