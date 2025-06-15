@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenSafetySection from "../new-sections/HydrogenSafetySection";
@@ -7,6 +6,7 @@ import LithiumSafetySection from "../new-sections/LithiumSafetySection";
 import BerylliumSafetySection from "../new-sections/BerylliumSafetySection";
 import BoronSafetySection from "../new-sections/BoronSafetySection";
 import CarbonSafetySection from "../new-sections/CarbonSafetySection";
+
 const SafetyTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (

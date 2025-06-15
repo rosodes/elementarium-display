@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenOccurrenceSection from "../new-sections/HydrogenOccurrenceSection";
@@ -7,6 +6,7 @@ import LithiumNaturalOccurrenceSection from "../new-sections/LithiumNaturalOccur
 import BerylliumNaturalOccurrenceSection from "../new-sections/BerylliumNaturalOccurrenceSection";
 import BoronNaturalOccurrenceSection from "../new-sections/BoronNaturalOccurrenceSection";
 import CarbonNaturalOccurrenceSection from "../new-sections/CarbonNaturalOccurrenceSection";
+
 const OccurrenceTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (

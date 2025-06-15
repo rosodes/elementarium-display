@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenBioSection from "../new-sections/HydrogenBioSection";
@@ -7,6 +6,7 @@ import LithiumBioSection from "../new-sections/LithiumBioSection";
 import BerylliumBioSection from "../new-sections/BerylliumBioSection";
 import BoronInterestingFactsSection from "../new-sections/BoronInterestingFactsSection";
 import CarbonInterestingFactsSection from "../new-sections/CarbonInterestingFactsSection";
+
 const BioTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (
@@ -29,4 +29,3 @@ const BioTab = ({ element }: { element: Element }) => (
   </div>
 );
 export default BioTab;
-
