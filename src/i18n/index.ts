@@ -6,9 +6,11 @@ import { validateLanguages } from './translationValidator';
 // Load all languages
 loadLanguages();
 
-// Запускаем валидацию переводов только в DEV-режиме
+// Запускаем улучшенную валидацию переводов только в DEV-режиме
 if (typeof window !== 'undefined' && import.meta.env.DEV) {
-  validateLanguages(languages, 'en');
+  import('./enhancedTranslationValidator').then(({ translationValidator }) => {
+    translationValidator.validateAllLanguages('en');
+  });
 }
 
 export type {

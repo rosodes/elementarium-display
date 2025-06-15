@@ -1,4 +1,4 @@
-
+import { useValidatedTranslation } from '@/hooks/useValidatedTranslation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -61,7 +61,7 @@ interface LanguageThemeControlsProps {
 }
 
 const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) => {
-  const { t, language, setLanguage, supportedLanguages } = useLanguage();
+  const { t, rawT } = useValidatedTranslation('LanguageThemeControls');
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
@@ -105,14 +105,14 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
     <div className={`flex items-center ${compact ? 'gap-1' : 'gap-3'} ml-auto`}>
       {/* Language selector с автогенерируемыми языками */}
       <LanguageSelector
-        language={language}
-        supportedLanguages={supportedLanguages}
+        language={rawT.language}
+        supportedLanguages={rawT.supportedLanguages}
         allLanguageOptions={allLanguageOptions}
         onChange={changeLanguageAndUpdateUrl}
         t={{
-          selectLanguage: t.selectLanguage,
-          searchLanguage: t.ui?.searchPlaceholder || "Search language…",
-          noLanguagesFound: t.ui?.noResults || "Nothing found"
+          selectLanguage: t('selectLanguage', 'Select Language'),
+          searchLanguage: t('ui.searchPlaceholder', 'Search language…'),
+          noLanguagesFound: t('ui.noResults', 'Nothing found')
         }}
       />
       {/* Theme toggle button */}
@@ -120,7 +120,7 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
         variant="outline"
         size={compact ? "sm" : "icon"}
         onClick={toggleTheme}
-        aria-label={t.toggleTheme}
+        aria-label={t('toggleTheme', 'Toggle theme')}
         className="text-gray-800 dark:text-gray-200 border-gray-300 dark:border-gray-700"
       >
         {theme === 'light' ? (
@@ -128,11 +128,10 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
         ) : (
           <Sun className="h-[1.2rem] w-[1.2rem]" />
         )}
-        <span className="sr-only">{t.toggleTheme}</span>
+        <span className="sr-only">{t('toggleTheme', 'Toggle theme')}</span>
       </Button>
     </div>
   );
 };
 
 export default LanguageThemeControls;
-

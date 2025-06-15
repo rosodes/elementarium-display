@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
-import { useLanguage } from '../context/LanguageContext';
+import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
 import { getCategoryColor } from '../data/elementCategories';
 import ElementTooltip from './ElementTooltip';
 import type { BaseElementProps } from '../types/componentTypes';
@@ -16,7 +16,7 @@ interface ElementProps extends BaseElementProps {
 
 const Element = ({ element, onClick, className, style, ...props }: ElementProps) => {
   const [isHovering, setIsHovering] = useState<boolean>(false);
-  const { t } = useLanguage();
+  const { t, rawT } = useValidatedTranslation('Element');
   
   // Determine the element color based on electron block with better contrast
   const getElementColor = (): ClassName => {
@@ -57,7 +57,7 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
   // Get translated element name if available
   const getElementName = (): string => {
     const elementKey = element.symbol.toLowerCase() as ElementSymbolKey;
-    return t.ui?.elements?.[elementKey] || element.name || element.symbol;
+    return rawT.ui?.elements?.[elementKey] || element.name || element.symbol;
   };
   
   const handleHoverStart = (): void => setIsHovering(true);
@@ -77,7 +77,7 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
         onMouseLeave={handleHoverEnd}
         onFocus={handleHoverStart}
         onBlur={handleHoverEnd}
-        aria-label={`${getElementName()} (${element.symbol}), ${t.elementDetails.atomicNumber} ${element.atomic}`}
+        aria-label={`${getElementName()} (${element.symbol}), ${t('elementDetails.atomicNumber')} ${element.atomic}`}
         data-atomic={element.atomic}
         tabIndex={0}
         style={style}
@@ -104,17 +104,17 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
           {isRadioactive() && (
             <div 
               className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500 animate-pulse-subtle" 
-              title={t.ui?.radioactive || "Radioactive"} 
-              aria-label={t.ui?.radioactive || "Radioactive element"}
+              title={t('ui.radioactive', 'Radioactive')} 
+              aria-label={t('ui.radioactive', 'Radioactive element')}
             />
           )}
         </div>
         
         {/* Hidden detailed information for screen readers */}
         <span className="sr-only">
-          {t.elementDetails.series}: {element.series}. 
-          {element.discover ? `${t.elementDetails.discovered}: ${element.discover}.` : ''} 
-          {element.electronstring ? `${t.elementDetails.electronConfig}: ${element.electronstring}.` : ''}
+          {t('elementDetails.series')}: {element.series}. 
+          {element.discover ? `${t('elementDetails.discovered')}: ${element.discover}.` : ''} 
+          {element.electronstring ? `${t('elementDetails.electronConfig')}: ${element.electronstring}.` : ''}
         </span>
       </button>
     </ElementTooltip>
