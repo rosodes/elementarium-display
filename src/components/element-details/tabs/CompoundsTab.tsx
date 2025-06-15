@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenCompoundsSection from "../new-sections/HydrogenCompoundsSection";
@@ -22,6 +21,7 @@ import MagnesiumOxStatesSection from "../new-sections/MagnesiumOxStatesSection";
 import MagnesiumReactivitySection from "../new-sections/MagnesiumReactivitySection";
 import AluminumOxStatesSection from "../new-sections/AluminumOxStatesSection";
 import AluminumReactivitySection from "../new-sections/AluminumReactivitySection";
+import SiliconOxStatesSection from "../new-sections/SiliconOxStatesSection";
 
 const CompoundsTab = ({ element }: { element: Element }) => (
   <div className="text-base space-y-6">
@@ -76,6 +76,10 @@ const CompoundsTab = ({ element }: { element: Element }) => (
       <>
         <AluminumOxStatesSection />
         <AluminumReactivitySection />
+      </>
+    ) : element.atomic === "14" ? (
+      <>
+        <SiliconOxStatesSection />
       </>
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-emerald-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">

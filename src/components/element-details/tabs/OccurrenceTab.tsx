@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenOccurrenceSection from "../new-sections/HydrogenOccurrenceSection";
@@ -11,6 +10,7 @@ import NeonNaturalOccurrenceSection from "../new-sections/NeonNaturalOccurrenceS
 import SodiumNaturalOccurrenceSection from "../new-sections/SodiumNaturalOccurrenceSection";
 import MagnesiumNaturalOccurrenceSection from "../new-sections/MagnesiumNaturalOccurrenceSection";
 import AluminumNaturalOccurrenceSection from "../new-sections/AluminumNaturalOccurrenceSection";
+import SiliconNaturalOccurrenceSection from "../new-sections/SiliconNaturalOccurrenceSection";
 
 const OccurrenceTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -34,6 +34,8 @@ const OccurrenceTab = ({ element }: { element: Element }) => (
       <MagnesiumNaturalOccurrenceSection />
     ) : element.atomic === "13" ? (
       <AluminumNaturalOccurrenceSection />
+    ) : element.atomic === "14" ? (
+      <SiliconNaturalOccurrenceSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-lime-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Information about abundance and occurrence of this element in nature will be displayed here.
