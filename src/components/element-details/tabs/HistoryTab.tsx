@@ -1,7 +1,6 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
-import HydrogenHistorySection from "../new-sections/HydrogenHistorySection";
+import HydrogenHistoryCompositeSection from "../new-sections/HydrogenHistoryCompositeSection";
 import HeliumHistorySection from "../new-sections/HeliumHistorySection";
 import LithiumHistorySection from "../new-sections/LithiumHistorySection";
 import BerylliumHistorySection from "../new-sections/BerylliumHistorySection";
@@ -21,7 +20,7 @@ import FluorineHistorySection from "../new-sections/FluorineHistorySection";
 const HistoryTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (
-      <HydrogenHistorySection />
+      <HydrogenHistoryCompositeSection />
     ) : element.atomic === "2" ? (
       <HeliumHistorySection />
     ) : element.atomic === "3" ? (
