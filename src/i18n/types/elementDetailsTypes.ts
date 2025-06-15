@@ -1,3 +1,4 @@
+
 export interface ElementDetailsTabs {
   overview: string;
   properties: string;
@@ -102,4 +103,5 @@ export interface ElementDetailsTranslations {
   precautions?: string;
   stability?: string; // ADDED
   halfLife?: string; // <-- ADDED for proper type checking
+  decayMode?: string; // <-- ADDED for proper type checking
 }
