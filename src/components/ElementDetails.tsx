@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { Element } from '../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
@@ -83,9 +82,9 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
     ? "w-full bg-white dark:bg-gray-800 rounded-lg shadow-2xl overflow-hidden"
     : "fixed inset-0 bg-black/60 dark:bg-black/80 flex items-center justify-center z-50 p-2 sm:p-4 backdrop-blur-sm";
 
-  // Сделаем контент немного уже
+  // Сделаем контент на всю ширину
   const contentClasses = isFullPage
-    ? "max-w-3xl w-full mx-auto" // ! обновлено: ужимаем ширину максимум до 3xl
+    ? "w-full" // вернули обратно полную ширину
     : "bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-[900px] w-full mx-auto overflow-hidden";
 
   const tabsContentMaxHeightClass = isFullPage 
