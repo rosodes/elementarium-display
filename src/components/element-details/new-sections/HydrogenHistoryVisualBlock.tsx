@@ -27,9 +27,14 @@ const HydrogenHistoryVisualBlock: React.FC = () => (
       content={<a href="https://www.webelements.com/hydrogen/history.html" target="_blank" rel="noopener noreferrer" className="underline">WebElements: история H</a>}
       side="top"
     >
-      <span className="bg-blue-100 dark:bg-gray-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-lg underline cursor-pointer">
+      <a
+        href="https://www.webelements.com/hydrogen/history.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-blue-100 dark:bg-gray-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-lg underline cursor-pointer"
+      >
         Источник
-      </span>
+      </a>
     </EnhancedTooltip>
   </div>
 );
