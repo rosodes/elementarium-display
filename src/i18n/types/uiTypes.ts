@@ -39,4 +39,42 @@ export interface UITranslations {
   hotkeyHome?: string;
   hotkeyClose?: string;
   skipToContent?: string;
+
+  // -- Added for extended French UI fields --
+  selectElement?: string;
+  showLegend?: string;
+  closeLegend?: string;
+  showCategories?: string;
+  closeCategories?: string;
+  showBlocks?: string;
+  closeBlocks?: string;
+  openMenu?: string;
+  closeMenu?: string;
+  settings?: string;
+  about?: string;
+  help?: string;
+  home?: string;
+  contribute?: string;
+  download?: string;
+  print?: string;
+  elementInfo?: string;
+  state?: string;
+  stateAtSTP?: string;
+  feedback?: string;
+  languages?: string;
+  userManual?: string;
+  showDetails?: string;
+  minimize?: string;
+  maximize?: string;
+  openFullscreen?: string;
+  closeFullscreen?: string;
+  searchByName?: string;
+  searchBySymbol?: string;
+  searchByNumber?: string;
+  favorite?: string;
+  addFavorite?: string;
+  removeFavorite?: string;
+  loadingData?: string;
+  showMore?: string;
+  showLess?: string;
 }

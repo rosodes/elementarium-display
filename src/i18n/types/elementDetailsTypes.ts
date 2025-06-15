@@ -1,3 +1,4 @@
+
 export interface ElementDetailsTranslations {
   showMoreInfo?: string;
   viewOnWikipedia?: string;
@@ -95,4 +96,23 @@ export interface ElementDetailsTranslations {
   radioactive?: string;
   yes?: string;
   no?: string;
+
+  // New French/extended keys:
+  selectedIsotope?: string;
+  halfLife?: string;
+  decayMode?: string;
+  abundanceInNature?: string;
+  stable?: string;
+  unstable?: string;
+  applicationsBlock?: string;
+  health?: string;
+  warnings?: string;
+  compounds?: string;
+  production?: string;
+  fractionByMass?: string;
+  visualization?: string;
+  notes?: string;
+  massNumber?: string;
+  protonNumber?: string;
+  neutronNumber?: string;
 }
