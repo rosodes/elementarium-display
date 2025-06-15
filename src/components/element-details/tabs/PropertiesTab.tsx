@@ -5,8 +5,10 @@ import ElementOxidationStatesSection from "../ElementOxidationStatesSection";
 import ElementProperties from "../ElementProperties";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 import { useLanguage } from "../../../context/LanguageContext";
-// --- подключаем общую секцию деталей водорода ---
+// --- подключаем общие секции деталей элементов ---
 import HydrogenDetailSections from "../new-sections/HydrogenDetailSections";
+import HeliumDetailSections from "../new-sections/HeliumDetailSections";
+import LithiumDetailSections from "../new-sections/LithiumDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -63,13 +65,12 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
         </CardContent>
       </Card>
 
-      {/* --- Все расширенные карточки водорода (визуальные, анимации и т.д.) централизовано --- */}
-      {element.atomic === "1" && (
-        <HydrogenDetailSections />
-      )}
+      {/* --- Все расширенные карточки элементов централизовано --- */}
+      {element.atomic === "1" && <HydrogenDetailSections />}
+      {element.atomic === "2" && <HeliumDetailSections />}
+      {element.atomic === "3" && <LithiumDetailSections />}
     </div>
   );
 };
 
 export default PropertiesTab;
-
