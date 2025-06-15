@@ -1,5 +1,17 @@
 // Strict translation key types
-export type LanguageKey = 'en' | 'ru' | 'uk';
+export type LanguageKey =
+  | 'en'
+  | 'ru'
+  | 'uk'
+  | 'zh-CN'
+  | 'zh-TW'
+  | 'es'
+  | 'hi'
+  | 'ar'
+  | 'pt-BR'
+  | 'pt-PT'
+  | 'bn'
+  | 'ja';
 
 // Element translation keys (symbols in lowercase)
 export type ElementSymbolKey = 

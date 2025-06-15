@@ -24,6 +24,22 @@ interface LanguageSelectorProps {
 
 const MAX_VISIBLE = 10;
 
+// СПИСОК ЯЗЫКОВ: добавим новые языки для отображения
+const allLanguageOptions: LanguageOption[] = [
+  { code: 'en', name: 'English', emoji: '🇬🇧' },
+  { code: 'zh-CN', name: '简体中文 (Chinese, Simplified)', emoji: '🇨🇳' },
+  { code: 'zh-TW', name: '繁體中文 (Chinese, Traditional)', emoji: '🇹🇼' },
+  { code: 'es', name: 'Español (Spanish)', emoji: '🇪🇸' },
+  { code: 'hi', name: 'हिन्दी (Hindi)', emoji: '🇮🇳' },
+  { code: 'ar', name: 'العربية (Arabic)', emoji: '🇦🇪' },
+  { code: 'pt-BR', name: 'Português (Brazilian)', emoji: '🇧🇷' },
+  { code: 'pt-PT', name: 'Português (European)', emoji: '🇵🇹' },
+  { code: 'bn', name: 'বাংলা (Bengali)', emoji: '🇧🇩' },
+  { code: 'ru', name: 'Русский (Russian)', emoji: '🇷🇺' },
+  { code: 'uk', name: 'Українська (Ukrainian)', emoji: '🇺🇦' },
+  { code: 'ja', name: '日本語 (Japanese)', emoji: '🇯🇵' },
+];
+
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   language,
   supportedLanguages,
