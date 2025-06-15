@@ -1,3 +1,4 @@
+
 import { TranslationData, LanguageKey, languages, addLanguage } from './types';
 import { loadLanguages } from './languageLoader';
 import { validateLanguages } from './translationValidator';
@@ -5,8 +6,7 @@ import { validateLanguages } from './translationValidator';
 // Load all languages
 loadLanguages();
 
-// Запускаем валидацию переводов
-import { languages } from './types';
+// Запускаем валидацию переводов только в DEV-режиме
 if (typeof window !== 'undefined' && import.meta.env.DEV) {
   validateLanguages(languages, 'en');
 }
