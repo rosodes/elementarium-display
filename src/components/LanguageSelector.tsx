@@ -85,14 +85,14 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
 
-  // Оставляем только реальные языки
+  // Оставляем только реальные языки (фильтрация доступных)
   const realLanguages = useMemo(
     () =>
       allLanguageOptions.filter((l) => supportedLanguages.includes(l.code)),
     [allLanguageOptions, supportedLanguages]
   );
 
-  // Фильтрация
+  // Фильтрация по поиску
   const filtered = useMemo(() => {
     if (!search.trim()) return realLanguages;
     const s = search.trim().toLowerCase();
@@ -104,10 +104,8 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     );
   }, [realLanguages, search]);
 
-  // Управление фокусом: автофокус только когда открыли меню
   useEffect(() => {
     if (isOpen && inputRef.current) {
-      // Ждём пока появится поле
       setTimeout(() => {
         inputRef.current?.focus();
         inputRef.current?.setSelectionRange(
@@ -116,10 +114,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         );
       }, 10);
     }
-    if (!isOpen) setSearch(""); // сбрасываем только при закрытии
+    if (!isOpen) setSearch("");
   }, [isOpen]);
 
-  // Выбранный язык
   const selected = realLanguages.find((l) => l.code === language);
 
   return (
@@ -160,7 +157,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           <ScrollArea
             className="max-h-[360px] min-h-[40px] text-left"
             style={{
-              maxHeight: `calc(${MAX_VISIBLE} * 36px)`, // up to 10 строк, потом scroll
+              maxHeight: `calc(${MAX_VISIBLE} * 36px)`,
               minWidth: 200,
             }}
           >
