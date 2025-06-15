@@ -10,16 +10,16 @@ const SulfurReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Burns in air to form sulfur dioxide: S + O₂ → SO₂</li>
-          <li>Reacts with hydrogen to form hydrogen sulfide: H₂ + S → H₂S</li>
-          <li>Forms sulfides with most metals at high temperatures</li>
-          <li>Combines with halogens to form various sulfur halides</li>
-          <li>Dissolves in carbon disulfide but not in water</li>
-          <li>Can form long chains and rings (catenation)</li>
-          <li>Reacts with nitric acid to form sulfuric acid</li>
-          <li>Forms polysulfides with alkali metals</li>
-          <li>Disproportionates in alkaline solutions</li>
-          <li>Shows allotropy with different molecular forms</li>
+          <li>Burns in air with blue flame: S + O₂ → SO₂</li>
+          <li>Reacts with hydrogen: H₂ + S → H₂S (slow at room temp)</li>
+          <li>Forms sulfides with most metals: Fe + S → FeS</li>
+          <li>Reacts with halogens: S + 3F₂ → SF₆</li>
+          <li>Disproportionates in alkaline solution: 3S + 6OH⁻ → 2S²⁻ + SO₃²⁻ + 3H₂O</li>
+          <li>Forms polysulfides and sulfur chains</li>
+          <li>Reacts with carbon: C + 2S → CS₂</li>
+          <li>Combines with phosphorus: P₄ + 3S → P₄S₃</li>
+          <li>Vulcanizes rubber by cross-linking</li>
+          <li>Forms extensive catenation (S-S bonds)</li>
         </ul>
       </CardContent>
     </Card>

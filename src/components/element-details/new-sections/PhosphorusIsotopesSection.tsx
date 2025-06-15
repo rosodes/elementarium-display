@@ -16,15 +16,16 @@ const PhosphorusIsotopesSection: React.FC = () => {
           </ul>
           <div><strong>Important radioactive isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>³²P (half-life: 14.3 days) - medical and research applications</li>
-            <li>³³P (half-life: 25.3 days) - biological research tracer</li>
-            <li>³⁰P (half-life: 2.5 minutes) - very short-lived</li>
+            <li>³²P (half-life: 14.3 days) - medical and research tracer</li>
+            <li>³³P (half-life: 25.3 days) - biochemical research</li>
+            <li>³⁰P (half-life: 2.5 minutes) - short-lived research isotope</li>
           </ul>
           <div><strong>Applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>³²P used in radiotherapy for blood disorders</li>
-            <li>³³P used as tracer in molecular biology</li>
-            <li>³¹P NMR spectroscopy for studying phosphates</li>
+            <li>³²P in cancer therapy and molecular biology</li>
+            <li>³³P for DNA sequencing and protein studies</li>
+            <li>Radiotracer studies in biochemistry</li>
+            <li>Agricultural research applications</li>
           </ul>
         </div>
       </CardContent>

@@ -10,18 +10,18 @@ const PhosphorusInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
+          <li>First element discovered through alchemical experimentation</li>
           <li>White phosphorus glows in the dark (chemiluminescence)</li>
-          <li>The human body contains about 780 grams of phosphorus</li>
-          <li>Essential for all life - no known substitute in biology</li>
+          <li>Essential component of DNA, RNA, and ATP</li>
+          <li>Has four main allotropes: white, red, black, and violet</li>
           <li>White phosphorus ignites spontaneously in air at 30°C</li>
-          <li>Red phosphorus is used on matchbox striking surfaces</li>
-          <li>Black phosphorus is the most stable allotrope</li>
-          <li>Violet phosphorus is the least reactive form</li>
-          <li>Can exist in over 10 different allotropic forms</li>
-          <li>Originally isolated from human urine by medieval alchemists</li>
-          <li>Critical bottleneck element for global food production</li>
-          <li>No economically viable substitute for phosphate fertilizers</li>
-          <li>ATP (energy currency of cells) contains three phosphate groups</li>
+          <li>Used in early matches before safety matches were invented</li>
+          <li>Black phosphorus conducts electricity like graphite</li>
+          <li>Human body contains about 780g of phosphorus</li>
+          <li>Bone and teeth contain 85% of body's phosphorus</li>
+          <li>Critical for all cellular energy processes</li>
+          <li>Limiting nutrient in many ecosystems</li>
+          <li>Used in biological warfare agents (unfortunately)</li>
         </ul>
       </CardContent>
     </Card>

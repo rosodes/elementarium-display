@@ -10,33 +10,31 @@ const SulfurCommercialUsesSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Sulfuric acid production (85% of sulfur):</strong></div>
+          <div><strong>Sulfuric acid production (largest use):</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Fertilizer manufacturing</li>
-            <li>Chemical processing</li>
-            <li>Metal processing and refining</li>
-            <li>Battery acid</li>
+            <li>Most important industrial chemical</li>
+            <li>Used in fertilizer, battery, and chemical production</li>
+            <li>Metal processing and petroleum refining</li>
           </ul>
           <div><strong>Rubber industry:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Vulcanization process</li>
+            <li>Vulcanization of rubber</li>
+            <li>Cross-linking agent for polymers</li>
             <li>Tire manufacturing</li>
-            <li>Rubber goods production</li>
           </ul>
           <div><strong>Agriculture:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>Fungicides and pesticides</li>
-            <li>Soil pH adjustment</li>
-            <li>Fertilizer production</li>
+            <li>Soil amendment for alkaline soils</li>
+            <li>Essential plant nutrient</li>
           </ul>
           <div><strong>Other applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Gunpowder and explosives</li>
-            <li>Matches and fireworks</li>
+            <li>Detergents and surfactants</li>
+            <li>Pharmaceuticals and cosmetics</li>
             <li>Paper and pulp bleaching</li>
-            <li>Petroleum refining</li>
-            <li>Pharmaceuticals</li>
-            <li>Detergents and soaps</li>
+            <li>Gunpowder and fireworks</li>
+            <li>Matches and flame retardants</li>
           </ul>
         </div>
       </CardContent>

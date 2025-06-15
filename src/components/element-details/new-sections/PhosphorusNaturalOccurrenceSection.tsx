@@ -11,22 +11,18 @@ const PhosphorusNaturalOccurrenceSection: React.FC = () => {
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
           <div><strong>Abundance in Earth's crust:</strong> 1050 ppm (11th most abundant)</div>
-          <div><strong>Never found as free element in nature</strong></div>
-          <div><strong>Main phosphate minerals:</strong></div>
+          <div><strong>Never found free in nature due to high reactivity</strong></div>
+          <div><strong>Main minerals:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Apatite - Ca₅(PO₄)₃(F,Cl,OH)</li>
-            <li>Phosphorite rock - sedimentary deposits</li>
-            <li>Wavellite - Al₃(PO₄)₂(OH)₃·5H₂O</li>
-            <li>Turquoise - CuAl₆(PO₄)₄(OH)₈·4H₂O</li>
+            <li>Apatite group: fluorapatite Ca₅(PO₄)₃F</li>
+            <li>Hydroxyapatite Ca₅(PO₄)₃OH - in bones and teeth</li>
+            <li>Chlorapatite Ca₅(PO₄)₃Cl</li>
+            <li>Phosphorite rock - sedimentary phosphate deposits</li>
+            <li>Vivianite Fe₃(PO₄)₂·8H₂O</li>
+            <li>Turquoise CuAl₆(PO₄)₄(OH)₈·4H₂O</li>
           </ul>
-          <div><strong>Biological occurrence:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Essential element in all living organisms</li>
-            <li>Component of DNA, RNA, and ATP</li>
-            <li>Found in bones and teeth as calcium phosphate</li>
-            <li>Critical for cellular energy metabolism</li>
-          </ul>
-          <div><strong>Major deposits:</strong> Morocco, China, Algeria, Syria</div>
+          <div><strong>Biological role:</strong> Essential for all life - DNA, RNA, ATP, cell membranes</div>
+          <div><strong>Major deposits:</strong> Morocco, China, USA, Russia</div>
         </div>
       </CardContent>
     </Card>

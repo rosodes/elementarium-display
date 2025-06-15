@@ -11,22 +11,23 @@ const SulfurNaturalOccurrenceSection: React.FC = () => {
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
           <div><strong>Abundance in Earth's crust:</strong> 350 ppm</div>
-          <div><strong>16th most abundant element in crust</strong></div>
+          <div><strong>Abundance in seawater:</strong> 885 mg/L (as sulfate)</div>
           <div><strong>Natural forms:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>Native sulfur deposits (volcanic regions)</li>
-            <li>Metal sulfides (pyrite FeS₂, galena PbS, sphalerite ZnS)</li>
-            <li>Sulfate minerals (gypsum CaSO₄·2H₂O, barite BaSO₄)</li>
-            <li>Organic sulfur in petroleum and natural gas</li>
-            <li>Hydrogen sulfide in hot springs</li>
+            <li>Pyrite (FeS₂) - "fool's gold"</li>
+            <li>Galena (PbS), sphalerite (ZnS)</li>
+            <li>Gypsum (CaSO₄·2H₂O), anhydrite (CaSO₄)</li>
+            <li>Barite (BaSO₄), celestine (SrSO₄)</li>
+            <li>Hydrogen sulfide in natural gas</li>
           </ul>
           <div><strong>Biological occurrence:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Essential element in proteins (cysteine, methionine)</li>
-            <li>Present in vitamins (biotin, thiamine)</li>
-            <li>Component of many enzymes</li>
+            <li>Essential amino acids (cysteine, methionine)</li>
+            <li>Proteins contain sulfur-sulfur bridges</li>
+            <li>Sulfur cycle in ecosystems</li>
           </ul>
-          <div><strong>Major sources:</strong> USA, Russia, Canada, Poland</div>
+          <div><strong>Major sources:</strong> Salt domes, volcanic regions, petroleum refining</div>
         </div>
       </CardContent>
     </Card>

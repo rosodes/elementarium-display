@@ -10,16 +10,16 @@ const PhosphorusReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>White phosphorus is highly reactive and ignites spontaneously in air</li>
-          <li>Red phosphorus is much more stable and less reactive</li>
-          <li>Reacts vigorously with oxygen to form P₂O₅</li>
-          <li>Forms phosphides with metals at high temperatures</li>
-          <li>Reacts with halogens to form phosphorus halides</li>
-          <li>Can form multiple bonds with carbon and other nonmetals</li>
+          <li>White phosphorus is highly reactive and pyrophoric in air</li>
+          <li>Burns in air: P₄ + 5O₂ → P₄O₁₀</li>
+          <li>Reacts with halogens: P₄ + 6Cl₂ → 4PCl₃</li>
+          <li>Forms phosphine with metals: Ca₃P₂ + 6H₂O → 3Ca(OH)₂ + 2PH₃</li>
+          <li>Red phosphorus is much less reactive than white</li>
+          <li>Reacts with nitric acid: P + 5HNO₃ → H₃PO₄ + 5NO₂ + H₂O</li>
+          <li>Forms phosphides with metals at high temperature</li>
           <li>Does not react with water under normal conditions</li>
-          <li>Forms various oxoacids (H₃PO₄, H₃PO₃, etc.)</li>
-          <li>White P burns: P₄ + 5O₂ → P₄O₁₀</li>
-          <li>Shows both reducing and oxidizing properties</li>
+          <li>Black phosphorus is least reactive allotrope</li>
+          <li>Essential in biological energy transfer (ATP, ADP)</li>
         </ul>
       </CardContent>
     </Card>

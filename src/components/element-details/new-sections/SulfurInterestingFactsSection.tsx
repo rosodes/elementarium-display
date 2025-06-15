@@ -10,18 +10,18 @@ const SulfurInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Forms the famous S₈ crown-shaped molecules</li>
+          <li>Forms rings and chains - most common is S₈ crown shape</li>
           <li>Has more allotropes than any other element</li>
-          <li>Can exist as plastic sulfur when rapidly cooled</li>
           <li>Essential component of gunpowder (with charcoal and saltpeter)</li>
-          <li>Gives onions and garlic their characteristic smell</li>
-          <li>Creates the "rotten egg" smell of hydrogen sulfide</li>
-          <li>Vulcanization of rubber uses sulfur cross-linking</li>
-          <li>Bright yellow crystals are piezoelectric</li>
-          <li>Burns with a distinctive blue flame</li>
-          <li>Some bacteria can "eat" sulfur for energy</li>
-          <li>Jupiter's moon Io has sulfur volcanoes</li>
-          <li>Used in traditional medicine for skin conditions</li>
+          <li>Vulcanization of rubber revolutionized tire industry</li>
+          <li>Characteristic "rotten egg" smell of H₂S</li>
+          <li>Burns with distinctive blue flame</li>
+          <li>Essential for all living organisms</li>
+          <li>Forms acid rain when burned (SO₂ + H₂O → H₂SO₃)</li>
+          <li>Used in traditional medicine as "brimstone"</li>
+          <li>Critical component of many antibiotics</li>
+          <li>Can form spectacular yellow crystals</li>
+          <li>Important in petroleum refining (desulfurization)</li>
         </ul>
       </CardContent>
     </Card>

@@ -10,26 +10,31 @@ const SulfurExtractionSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Frasch process:</strong></div>
+          <div><strong>Frasch process (historical):</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Melts underground sulfur with superheated water</li>
-            <li>Forces molten sulfur to surface with compressed air</li>
-            <li>Produces very pure sulfur (99.5%+)</li>
+            <li>Melt underground sulfur with superheated water</li>
+            <li>Force molten sulfur to surface with compressed air</li>
+            <li>Produces 99.5% pure sulfur</li>
+            <li>Used for salt dome deposits</li>
           </ul>
-          <div><strong>Claus process:</strong></div>
+          <div><strong>Modern methods:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Recovers sulfur from hydrogen sulfide gas</li>
-            <li>2H₂S + SO₂ → 3S + 2H₂O</li>
-            <li>Major source from natural gas processing</li>
+            <li>Recovery from natural gas and petroleum</li>
+            <li>Claus process: H₂S → S + H₂O</li>
+            <li>Roasting sulfide ores</li>
+            <li>Recovery from smelter gases</li>
           </ul>
-          <div><strong>Other sources:</strong></div>
+          <div><strong>Biological production:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Mining native sulfur deposits</li>
-            <li>Roasting metal sulfide ores</li>
-            <li>By-product of petroleum refining</li>
+            <li>Sulfur bacteria in hot springs</li>
+            <li>Biodesulfurization processes</li>
           </ul>
-          <div><strong>Annual production:</strong> ~70 million tons globally</div>
-          <div><strong>Major producers:</strong> China, USA, Russia, Canada</div>
+          <div><strong>Production scale:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Global production: ~70 million tonnes/year</li>
+            <li>Major producers: China, USA, Russia</li>
+            <li>Mainly from petroleum refining</li>
+          </ul>
         </div>
       </CardContent>
     </Card>

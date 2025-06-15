@@ -10,26 +10,31 @@ const PhosphorusCommercialUsesSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Fertilizers (85% of production):</strong></div>
+          <div><strong>Fertilizer industry (largest use):</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Superphosphate and diammonium phosphate</li>
-            <li>Essential nutrient for plant growth</li>
+            <li>Phosphoric acid production for fertilizers</li>
+            <li>Superphosphate and ammonium phosphate</li>
+            <li>Essential plant nutrient</li>
           </ul>
           <div><strong>Industrial chemicals:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Phosphoric acid production</li>
-            <li>Detergent phosphates (being phased out)</li>
+            <li>Detergents and cleaning agents</li>
             <li>Water treatment chemicals</li>
             <li>Food additives and preservatives</li>
+            <li>Flame retardants</li>
           </ul>
           <div><strong>Specialty applications:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Safety matches (red phosphorus)</li>
-            <li>Flame retardants</li>
-            <li>Pesticides and rodenticides</li>
-            <li>Steel production (deoxidizer)</li>
-            <li>Semiconductor dopant</li>
-            <li>Incendiary weapons (white phosphorus)</li>
+            <li>Red phosphorus in safety matches</li>
+            <li>Semiconductor doping agent</li>
+            <li>Steel production (phosphorus removal)</li>
+            <li>Pyrotechnics and fireworks</li>
+          </ul>
+          <div><strong>Biological applications:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Essential dietary supplement</li>
+            <li>Medical isotopes for therapy</li>
+            <li>Biochemical research tracers</li>
           </ul>
         </div>
       </CardContent>

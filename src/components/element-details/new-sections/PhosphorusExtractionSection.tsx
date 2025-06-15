@@ -9,18 +9,31 @@ const PhosphorusExtractionSection: React.FC = () => {
         <CardTitle className="text-lg">Extraction & Production</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Primary source: phosphate rock (mainly apatite)</li>
-          <li>Electric furnace method: heating phosphate rock with coke and silica</li>
-          <li>Reaction: Ca₃(PO₄)₂ + 3SiO₂ + 5C → 3CaSiO₃ + P₄ + 5CO</li>
-          <li>Temperature required: 1200-1500°C</li>
-          <li>Produces white phosphorus which condenses as vapor</li>
-          <li>Red phosphorus made by heating white phosphorus to 250°C</li>
-          <li>Black phosphorus created under high pressure</li>
-          <li>Annual production: about 1 million tons globally</li>
-          <li>Major producers: China, Kazakhstan, Morocco</li>
-          <li>Most goes to phosphoric acid production for fertilizers</li>
-        </ul>
+        <div className="space-y-2">
+          <div><strong>Primary method - Electric furnace process:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Heat phosphate rock with coke and sand at 1500°C</li>
+            <li>Reaction: 2Ca₃(PO₄)₂ + 6SiO₂ + 10C → 6CaSiO₃ + P₄ + 10CO</li>
+            <li>Phosphorus vapor condensed under water</li>
+            <li>Produces white phosphorus directly</li>
+          </ul>
+          <div><strong>Red phosphorus production:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Heat white phosphorus to 250°C without air</li>
+            <li>Converts to more stable red allotrope</li>
+          </ul>
+          <div><strong>Historical methods:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Distillation of urine (original method)</li>
+            <li>Bone ash processing</li>
+          </ul>
+          <div><strong>Production scale:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Global production: ~1 million tonnes/year</li>
+            <li>Major producers: China, USA, Kazakhstan</li>
+            <li>High energy requirements for furnace process</li>
+          </ul>
+        </div>
       </CardContent>
     </Card>
   );
