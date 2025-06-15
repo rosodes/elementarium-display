@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -60,7 +59,7 @@ function App() {
             </LanguageProvider>
           </ThemeProvider>
           {/* DevTools закрыты по умолчанию */}
-          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
+          <ReactQueryDevtools initialIsOpen={false} position="bottom" />
         </QueryClientProvider>
       </HelmetProvider>
     </ErrorBoundary>
