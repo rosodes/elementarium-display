@@ -2,34 +2,31 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
-const BerylliumHistorySection: React.FC = () => {
-  return (
-    <Card className="my-4 border border-gray-200 dark:border-gray-700">
-      <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">Discovery & History</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 text-xs">
-        <div className="space-y-2">
-          <div><strong>Discovery:</strong> 1798 by Louis-Nicolas Vauquelin</div>
-          <div><strong>First isolation:</strong> 1828 by Friedrich Wöhler and Antoine Bussy</div>
-          <div><strong>Timeline:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>1798 - Vauquelin discovered element in beryl and emerald</li>
-            <li>1828 - First isolated by reducing BeCl₂ with potassium</li>
-            <li>1898 - Marie and Pierre Curie used it in radium discovery</li>
-            <li>1932 - Used in discovery of the neutron by Chadwick</li>
-            <li>1940s - Industrial production began</li>
-          </ul>
-          <div><strong>Etymology:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Named from Greek "beryllos" meaning beryl</li>
-            <li>Originally called "glucinium" (sweet-tasting) by Vauquelin</li>
-            <li>Name "beryllium" adopted in 1949</li>
-          </ul>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+/** Discovery and History of Beryllium */
+const BerylliumHistorySection: React.FC = () => (
+  <Card className="my-4 border border-gray-200 dark:border-gray-700">
+    <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
+      <CardTitle className="text-lg">Discovery &amp; History</CardTitle>
+    </CardHeader>
+    <CardContent className="p-4 text-xs space-y-2">
+      <div>
+        <strong>Discovery:</strong> Beryllium was discovered in 1798 by French chemist Louis-Nicolas Vauquelin, who identified a new "sweet-tasting" element in beryl and emerald gemstones, calling its oxide "glucina."
+      </div>
+      <div>
+        <strong>Isolation:</strong> First isolated as a metal in 1828 independently by Friedrich Wöhler (Germany) and Antoine Bussy (France) by reacting potassium with beryllium chloride.
+      </div>
+      <ul className="list-disc pl-4">
+        <li>The name "beryllium" comes from the mineral beryl (from Greek "beryllos"), officially adopted in 1949 by IUPAC, replacing the earlier name "glucinium."</li>
+        <li>Historically used in X-ray tube windows and early fluorescent lighting technologies.</li>
+        <li>Its lightness and stiffness led to increasing use in aerospace and defense applications from the 20th century onward.</li>
+        <li>Beryllium compounds (notably BeO) have been important in electronics, ceramics, and nuclear research since the 1930s.</li>
+        <li>Beryllium was instrumental in the discovery of the neutron (1932, James Chadwick).</li>
+      </ul>
+      <div className="mt-2 text-xs text-gray-500">
+        Sources: Royal Society of Chemistry, CRC Handbook, Science History Institute.
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default BerylliumHistorySection;
