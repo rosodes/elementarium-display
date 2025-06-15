@@ -23,7 +23,13 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, in
   const [language, setLanguage] = useState<string>(
     initialLanguage || detectUserLanguage()
   );
-  const [supportedLanguages, setSupportedLanguages] = useState<string[]>(Object.keys(languages));
+  // Пересчитываем поддерживаемые языки каждый раз при изменении languages (реактивный state)
+  const [supportedLanguages, setSupportedLanguages] = useState<string[]>(() => Object.keys(languages));
+
+  // Автоматически обновляем supportedLanguages, если коллекция languages меняется
+  useEffect(() => {
+    setSupportedLanguages(Object.keys(languages));
+  }, [languages]);
 
   // Слежение за сменой url — автосмена языка при переходах/обновлении страницы
   useEffect(() => {
@@ -57,9 +63,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, in
     }
   };
 
+  // Добавление нового языка и синхронизация поддерживаемых языков
   const handleAddLanguage = (key: string, translations: TranslationData) => {
     addLanguage(key, translations);
-    setSupportedLanguages((prev) => [...prev, key]);
+    setSupportedLanguages(Object.keys(languages));
   };
 
   const value = {
