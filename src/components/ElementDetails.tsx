@@ -13,6 +13,13 @@ import OverviewTab from './element-details/tabs/OverviewTab';
 import PropertiesTab from './element-details/tabs/PropertiesTab';
 import StructureTab from './element-details/tabs/StructureTab';
 import ApplicationsTab from './element-details/tabs/ApplicationsTab';
+// Новые вкладки
+import HistoryTab from './element-details/tabs/HistoryTab';
+import OccurrenceTab from './element-details/tabs/OccurrenceTab';
+import CompoundsTab from './element-details/tabs/CompoundsTab';
+import BioTab from './element-details/tabs/BioTab';
+import ProductionTab from './element-details/tabs/ProductionTab';
+import SafetyTab from './element-details/tabs/SafetyTab';
 import ElementIsotopesSection from './element-details/ElementIsotopesSection';
 import { useToast } from "./ui/use-toast";
 
@@ -102,51 +109,32 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
         <Tabs defaultValue="overview" value={tabValue} onValueChange={setTabValue} className="w-full">
           <div className="sticky top-0 z-10 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm">
             <TabsList className="flex w-full h-auto justify-start p-1 rounded-none overflow-x-auto bg-gray-50 dark:bg-gray-850">
-              <TabsTrigger 
-                value="overview" 
-                className="px-6 py-2 text-sm font-medium transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm rounded-md">
-                {t.elementDetails.overview || "Overview"}
-              </TabsTrigger>
-              <TabsTrigger 
-                value="properties" 
-                className="px-6 py-2 text-sm font-medium transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm rounded-md">
-                {t.elementDetails.properties || "Properties"}
-              </TabsTrigger>
-              <TabsTrigger 
-                value="structure" 
-                className="px-6 py-2 text-sm font-medium transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm rounded-md">
-                {t.elementDetails.atomicStructure || "Structure"}
-              </TabsTrigger>
-              <TabsTrigger 
-                value="applications" 
-                className="px-6 py-2 text-sm font-medium transition-all data-[state=active]:bg-white dark:data-[state=active]:bg-gray-700 data-[state=active]:text-primary dark:data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm rounded-md">
-                {t.elementDetails.applications || "Applications"}
-              </TabsTrigger>
+              <TabsTrigger value="overview" className="px-5 py-2 text-xs sm:text-sm font-medium">Overview</TabsTrigger>
+              <TabsTrigger value="properties" className="px-5 py-2 text-xs sm:text-sm font-medium">Properties</TabsTrigger>
+              <TabsTrigger value="structure" className="px-5 py-2 text-xs sm:text-sm font-medium">Atomic Structure</TabsTrigger>
+              <TabsTrigger value="applications" className="px-5 py-2 text-xs sm:text-sm font-medium">Applications</TabsTrigger>
+              <TabsTrigger value="history" className="px-5 py-2 text-xs sm:text-sm font-medium">History / Discovery</TabsTrigger>
+              <TabsTrigger value="occurrence" className="px-5 py-2 text-xs sm:text-sm font-medium">Occurrence / Abundance</TabsTrigger>
+              <TabsTrigger value="compounds" className="px-5 py-2 text-xs sm:text-sm font-medium">Compounds / Chemistry</TabsTrigger>
+              <TabsTrigger value="bio" className="px-5 py-2 text-xs sm:text-sm font-medium">Biological Role / Toxicity</TabsTrigger>
+              <TabsTrigger value="production" className="px-5 py-2 text-xs sm:text-sm font-medium">Production / Synthesis</TabsTrigger>
+              <TabsTrigger value="safety" className="px-5 py-2 text-xs sm:text-sm font-medium">Safety / Precautions</TabsTrigger>
             </TabsList>
           </div>
-          
           <div className={`p-5 sm:p-6 ${tabsContentMaxHeightClass} overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900`}>
-            <TabsContent value="overview" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
-              <ElementIsotopesSection element={element} />
-              <OverviewTab element={element} />
-              <ElementDetailVisualSections element={element} />
-            </TabsContent>
-            
-            <TabsContent value="properties" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
-              <PropertiesTab element={element} categoryColor={categoryColor} />
-            </TabsContent>
-            
-            <TabsContent value="structure" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
-              <StructureTab element={element} categoryColor={categoryColor} />
-            </TabsContent>
-            
-            <TabsContent value="applications" className="mt-0 animate-fade-in focus-visible:outline-none focus-visible:ring-0">
-              <ApplicationsTab element={element} categoryColor={categoryColor} />
-            </TabsContent>
+            <TabsContent value="overview"><OverviewTab element={element} /></TabsContent>
+            <TabsContent value="properties"><PropertiesTab element={element} categoryColor={categoryColor} /></TabsContent>
+            <TabsContent value="structure"><StructureTab element={element} categoryColor={categoryColor} /></TabsContent>
+            <TabsContent value="applications"><ApplicationsTab element={element} categoryColor={categoryColor} /></TabsContent>
+            <TabsContent value="history"><HistoryTab element={element} /></TabsContent>
+            <TabsContent value="occurrence"><OccurrenceTab element={element} /></TabsContent>
+            <TabsContent value="compounds"><CompoundsTab element={element} /></TabsContent>
+            <TabsContent value="bio"><BioTab element={element} /></TabsContent>
+            <TabsContent value="production"><ProductionTab element={element} /></TabsContent>
+            <TabsContent value="safety"><SafetyTab element={element} /></TabsContent>
           </div>
         </Tabs>
         
-        {/* Footer navigation */}
         <ElementFooter 
           element={element}
           prevElement={prevElement}
