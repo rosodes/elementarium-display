@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
@@ -62,7 +61,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       
       <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
       
-      <AdditionalInfo element={element} categoryColor={categoryColor} />
+      <AdditionalInfo element={element} />
       
       <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
       
