@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Element } from '../../data/elementTypes';
 import { useLanguage } from '../../context/LanguageContext';
@@ -13,6 +12,8 @@ interface ElementHeaderProps {
   onFavorite?: () => void;
   onShare?: () => void;
   isBookmarked?: boolean;
+  onClose?: () => void;
+  isFullPage?: boolean;
 }
 
 const ElementHeader: React.FC<ElementHeaderProps> = ({
@@ -23,6 +24,8 @@ const ElementHeader: React.FC<ElementHeaderProps> = ({
   onFavorite,
   onShare,
   isBookmarked = false,
+  onClose,
+  isFullPage = false,
 }) => {
   const { t } = useLanguage();
 
@@ -70,14 +73,14 @@ const ElementHeader: React.FC<ElementHeaderProps> = ({
         <button
           onClick={onFavorite}
           className={`rounded-lg p-2 border shadow-sm transition-all ${isBookmarked ? 'bg-blue-100 border-blue-400 text-blue-700' : 'bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-950'}`}
-          aria-label={t.elementDetails.favorite || "Favorite"}
+          aria-label={"Favorite"}
         >
           <Star size={20} fill={isBookmarked ? "#2563eb" : "none"} strokeWidth={isBookmarked ? 2.5 : 2} />
         </button>
         <button
           onClick={onShare}
           className="rounded-lg p-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all text-gray-500 dark:text-gray-300"
-          aria-label={t.elementDetails.share || "Share"}
+          aria-label={"Share"}
         >
           <Upload size={20} />
         </button>

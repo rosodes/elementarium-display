@@ -110,7 +110,6 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
         {/* Header section with navigation */}
         <ElementHeader 
           element={element}
-          categoryColor={categoryColor}
           prevElement={prevElement}
           nextElement={nextElement}
           onClose={onClose}
