@@ -9,24 +9,30 @@ const FluorineBioSection: React.FC = () => (
     </CardHeader>
     <CardContent className="p-4 text-xs">
       <div className="space-y-2">
-        <div><strong>Biological Role:</strong> Fluorine is not essential for most life forms, but fluoride ions (in trace amounts) play a beneficial role in vertebrates.</div>
+        <div>
+          <strong>Biological Role:</strong> Fluorine is not essential to most living organisms, but fluoride ions (trace amounts) have important roles for vertebrates.
+        </div>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Strengthens tooth enamel and bones — prevents dental caries (cavities).</li>
-          <li>Optimal intake: 0.05–0.07 mg/kg/day for humans.</li>
-          <li>Main source: drinking water (supplemented in some areas), toothpaste, diet (tea, seafood).</li>
-          <li>Aquatic life: trace levels may benefit fish and some algae.</li>
-          <li>No known biological role for plants or most microorganisms; some bacteria tolerate fluoride but at much lower than toxic levels.</li>
+          <li>Strengthens tooth enamel and bones, prevents dental caries (cavities).</li>
+          <li>Recommended intake: 0.05–0.07 mg/kg/day for humans.</li>
+          <li>Main sources: drinking water (sometimes supplemented), toothpaste, food (tea, seafood).</li>
+          <li>In small concentrations may benefit fish and some algae.</li>
+          <li>No essential role in plants or most microbes; only fluoride-tolerant bacteria survive higher levels.</li>
         </ul>
-        <div><strong>Toxicity:</strong></div>
+        <div>
+          <strong>Toxicity:</strong>
+        </div>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Very toxic in excess &ndash; chronic ingestion (&gt;10 mg/day) can cause skeletal and dental fluorosis.</li>
-          <li>Acute poisoning symptoms: nausea, vomiting, abdominal pain, diarrhea, convulsions, cardiac disturbances.</li>
-          <li>Fluorine gas (F₂) and hydrogen fluoride (HF) are extremely toxic/corrosive — inhalation can cause fatal pulmonary edema and deep tissue burns.</li>
-          <li>Fluoride accumulates in bones and teeth; long-term excess = skeletal deformities, joint stiffness, liver and kidney damage.</li>
+          <li>Very toxic in excess — chronic overexposure (&gt;10 mg/day) can cause skeletal and dental fluorosis.</li>
+          <li>Acute poisoning: nausea, vomiting, abdominal pain, diarrhea, seizures, heart arrhythmia.</li>
+          <li>Fluorine gas (F₂) and hydrogen fluoride (HF) are extremely toxic/corrosive — inhalation can be fatal, with severe pulmonary edema and tissue burns.</li>
+          <li>Fluoride accumulates in bones and teeth; long-term excess causes skeletal deformities, joint stiffness, liver and kidney damage.</li>
         </ul>
-        <div><strong>Environmental Impact:</strong> At industrial levels, fluoride is hazardous and can pollute soil, water, and livestock — emission controls are essential.</div>
+        <div>
+          <strong>Environmental Impact:</strong> At industrial concentrations, fluoride is a pollutant for soil, water and livestock. Strong emission controls are needed.
+        </div>
         <div className="mt-2 text-gray-600 dark:text-gray-300">
-          Fluorides at trace levels are beneficial for teeth, but excess is highly toxic for humans, animals, and the environment.
+          Fluoride at trace levels is beneficial for human dental health, but excess is hazardous to humans, animals, and the environment.
         </div>
       </div>
     </CardContent>
