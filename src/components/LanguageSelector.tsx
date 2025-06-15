@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+
+import React, { useState, useRef, useEffect } from "react";
 import {
   Select,
   SelectTrigger,
@@ -14,6 +15,7 @@ interface LanguageOption {
   name: string;
   emoji: string;
 }
+
 interface LanguageSelectorProps {
   language: string;
   supportedLanguages: string[];
@@ -22,58 +24,9 @@ interface LanguageSelectorProps {
   t: Record<string, string>;
 }
 
-const MAX_VISIBLE = 10;
+const MAX_VISIBLE = 12;
 
-// СПИСОК ЯЗЫКОВ: добавим новые языки для отображения
-const allLanguageOptions: LanguageOption[] = [
-  { code: 'en', name: 'English', emoji: '🇬🇧' },
-  { code: 'zh-CN', name: '简体中文 (Chinese, Simplified)', emoji: '🇨🇳' },
-  { code: 'zh-TW', name: '繁體中文 (Chinese, Traditional)', emoji: '🇹🇼' },
-  { code: 'es', name: 'Español (Spanish)', emoji: '🇪🇸' },
-  { code: 'hi', name: 'हिन्दी (Hindi)', emoji: '🇮🇳' },
-  { code: 'ar', name: 'العربية (Arabic)', emoji: '🇦🇪' },
-  { code: 'pt-BR', name: 'Português (Brazilian)', emoji: '🇧🇷' },
-  { code: 'pt-PT', name: 'Português (European)', emoji: '🇵🇹' },
-  { code: 'bn', name: 'বাংলা (Bengali)', emoji: '🇧🇩' },
-  { code: 'ru', name: 'Русский (Russian)', emoji: '🇷🇺' },
-  { code: 'uk', name: 'Українська (Ukrainian)', emoji: '🇺🇦' },
-  { code: 'ja', name: '日本語 (Japanese)', emoji: '🇯🇵' },
-
-  { code: 'pa', name: 'ਪੰਜਾਬੀ (Punjabi)', emoji: '🇮🇳' },
-  { code: 'de', name: 'Deutsch (German)', emoji: '🇩🇪' },
-  { code: 'jv', name: 'Basa Jawa (Javanese)', emoji: '🇮🇩' },
-  { code: 'lah', name: 'لہندا (Western Punjabi)', emoji: '🇵🇰' },
-  { code: 'tr', name: 'Türkçe (Turkish)', emoji: '🇹🇷' },
-  { code: 'fr-FR', name: 'Français (French, European)', emoji: '🇫🇷' },
-  { code: 'fr-CA', name: 'Français (French, Canada)', emoji: '🇨🇦' },
-  { code: 'vi', name: 'Tiếng Việt (Vietnamese)', emoji: '🇻🇳' },
-  { code: 'ta', name: 'தமிழ் (Tamil)', emoji: '🇮🇳' },
-  { code: 'ur', name: 'اُردُو‎ (Urdu)', emoji: '🇵🇰' },
-  { code: 'fa', name: 'فارسی (Persian/Farsi)', emoji: '🇮🇷' },
-  { code: 'ml', name: 'മലയാളം (Malayalam)', emoji: '🇮🇳' },
-  { code: 'ko', name: '한국어 (Korean)', emoji: '🇰🇷' },
-  { code: 'it', name: 'Italiano (Italian)', emoji: '🇮🇹' },
-  { code: 'th', name: 'ไทย (Thai)', emoji: '🇹🇭' },
-  { code: 'gu', name: 'ગુજરાતી (Gujarati)', emoji: '🇮🇳' },
-  { code: 'pl', name: 'Polski (Polish)', emoji: '🇵🇱' },
-  { code: 'kn', name: 'ಕನ್ನಡ (Kannada)', emoji: '🇮🇳' },
-  { code: 'sw', name: 'Kiswahili (Swahili)', emoji: '🇰🇪' },
-  { code: 'ary', name: 'العربية المغربية (Moroccan Arabic)', emoji: '🇲🇦' },
-  { code: 'af', name: 'Afrikaans (Afrikaans)', emoji: '🇿🇦' },
-  { code: 'tl', name: 'Tagalog (Filipino)', emoji: '🇵🇭' },
-  { code: 'fil', name: 'Filipino (Tagalog)', emoji: '🇵🇭' },
-  { code: 'eu', name: 'Euskara (Basque)', emoji: '🇪🇸' },
-  { code: 'su', name: 'Basa Sunda (Sundanese)', emoji: '🇮🇩' },
-  { code: 'ha', name: 'Hausa (Hausa)', emoji: '🇳🇬' },
-  { code: 'ro', name: 'Română (Romanian)', emoji: '🇷🇴' },
-  { code: 'nl', name: 'Nederlands (Dutch)', emoji: '🇳🇱' },
-  { code: 'el', name: 'Ελληνικά (Greek)', emoji: '🇬🇷' },
-  { code: 'sr-Cyrl', name: 'Српски (Serbian Cyrillic)', emoji: '🇷🇸' },
-  { code: 'sr-Latn', name: 'Srpski (Serbian Latin)', emoji: '🇷🇸' },
-  { code: 'sl', name: 'Slovenščina (Slovenian)', emoji: '🇸🇮' },
-  { code: 'sk', name: 'Slovenčina (Slovak)', emoji: '🇸🇰' },
-];
-
+// Новый компонент выбора языка
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   language,
   supportedLanguages,
@@ -81,26 +34,30 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   onChange,
   t,
 }) => {
-  const inputRef = useRef<HTMLInputElement>(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [search, setSearch] = useState("");
+  // Отдельно убеждаемся что русский и украинский есть всегда в списке (даже если их по ошибке нет в supportedLanguages)
+  const extendedSupported = Array.from(new Set([
+    ...supportedLanguages,
+    'ru',
+    'uk', // обязателен!
+  ]));
 
-  // Оставляем только реальные языки (фильтрация доступных)
-  const realLanguages = useMemo(
-    () =>
-      allLanguageOptions.filter((l) => supportedLanguages.includes(l.code)),
-    [allLanguageOptions, supportedLanguages]
+  // Список языков показываем только те, что реально описаны
+  const realLanguages = allLanguageOptions.filter(
+    (l) => extendedSupported.includes(l.code)
   );
 
-  // Фильтрация по поиску
-  const filtered = useMemo(() => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Фильтрация
+  const filtered = React.useMemo(() => {
     if (!search.trim()) return realLanguages;
     const s = search.trim().toLowerCase();
-    return realLanguages.filter(
-      (l) =>
-        l.name.toLowerCase().includes(s) ||
-        l.code.toLowerCase().includes(s) ||
-        (l.emoji && l.emoji.includes(s))
+    return realLanguages.filter((l) =>
+      l.name.toLowerCase().includes(s) ||
+      l.code.toLowerCase().includes(s) ||
+      (l.emoji && l.emoji.includes(s))
     );
   }, [realLanguages, search]);
 
@@ -112,7 +69,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
           inputRef.current.value.length,
           inputRef.current.value.length
         );
-      }, 10);
+      }, 15);
     }
     if (!isOpen) setSearch("");
   }, [isOpen]);
@@ -128,7 +85,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         onOpenChange={setIsOpen}
       >
         <SelectTrigger
-          className="w-[180px] h-10 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900 justify-start text-left"
+          className="w-[210px] h-10 border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-200 bg-white dark:bg-gray-900 justify-start text-left"
           aria-label={t.selectLanguage || "Select language"}
         >
           <span className="flex items-center gap-2 w-full truncate text-left">
@@ -138,27 +95,27 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
         </SelectTrigger>
         <SelectContent
           align="end"
-          className="z-[1000] bg-white dark:bg-gray-900 p-0 border-gray-200 dark:border-gray-800 text-left"
-          style={{ minWidth: 220, maxWidth: 320 }}
+          className="z-[1200] bg-white dark:bg-gray-900 p-0 border-gray-200 dark:border-gray-800 text-left shadow-xl"
+          style={{ minWidth: 230, maxWidth: 340, fontSize: 15 }}
         >
           <div className="p-2 sticky top-0 bg-white dark:bg-gray-900 z-10">
             <Input
               ref={inputRef}
-              aria-label={t.searchPlaceholder || "Find language"}
+              aria-label={t.searchLanguage || "Find language"}
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder={t.searchPlaceholder || "Search…"}
+              placeholder={t.searchLanguage || "Search…"}
               className="h-8 px-2 text-sm border border-gray-200 dark:border-gray-800 focus:ring-2 focus:ring-blue-400 focus:outline-none"
               onKeyDown={e => e.stopPropagation()}
               autoComplete="off"
             />
           </div>
           <ScrollArea
-            className="max-h-[360px] min-h-[40px] text-left"
+            className="max-h-[404px] min-h-[40px] text-left"
             style={{
-              maxHeight: `calc(${MAX_VISIBLE} * 36px)`,
-              minWidth: 200,
+              maxHeight: `calc(${MAX_VISIBLE} * 37px)`,
+              minWidth: 210,
             }}
           >
             {filtered.length > 0 ? (
@@ -166,10 +123,16 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
                 <SelectItem
                   key={lang.code}
                   value={lang.code}
-                  className="flex items-center gap-2 cursor-pointer py-2 text-sm group text-left"
+                  className={`flex items-center gap-2 cursor-pointer py-2 pl-2 pr-3 text-[15px] group transition-colors
+                  ${lang.code === language ? "bg-blue-50 dark:bg-blue-900/20 font-semibold" : ""}
+                  hover:bg-blue-100 dark:hover:bg-blue-800`}
                 >
                   <span className="text-base mr-2">{lang.emoji}</span>
                   <span className="truncate group-hover:underline">{lang.name}</span>
+                  {/* Галочка у выбранного языка */}
+                  {lang.code === language && (
+                    <span className="ml-auto text-blue-700 dark:text-blue-300">&#10003;</span>
+                  )}
                 </SelectItem>
               ))
             ) : (
@@ -183,4 +146,5 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
     </div>
   );
 };
+
 export default LanguageSelector;
