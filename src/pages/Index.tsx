@@ -80,9 +80,13 @@ const Index = () => {
     }
   };
 
+  // Логируем перед использованием Helmet
+  console.log('Index: before render Helmet');
+  
   return (
     <>
       {/* SEO: Helmet + расширенные метатеги */}
+      {console.log('Index: just before <Helmet>')}
       <Helmet>
         <title>{t.title} | Менделеевская таблица онлайн</title>
         <meta name="description" content={t.subtitle} />
@@ -198,7 +202,7 @@ const Index = () => {
                         <span className="align-middle font-semibold">f-блок</span>
                       </td>
                       <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                        Лантанoиды и актиноиды <span className="text-xs text-gray-600">(Ce, U)</span>
+                        Лантаноиды и актиноиды <span className="text-xs text-gray-600">(Ce, U)</span>
                       </td>
                     </tr>
                     <tr>

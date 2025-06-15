@@ -26,9 +26,13 @@ const queryClient = new QueryClient({
 function App() {
   const initialLanguage = detectUserLanguage();
 
+  // На всякий случай логируем рендер верхнего компонента
+  console.log('App: before render HelmetProvider');
+
   return (
     <ErrorBoundary>
       <HelmetProvider>
+        {console.log('App: inside HelmetProvider')}
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
             <LanguageProvider initialLanguage={initialLanguage}>
