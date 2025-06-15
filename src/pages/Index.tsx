@@ -1,3 +1,4 @@
+
 import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -132,7 +133,7 @@ const Index = () => {
           </Suspense>
         </main>
         <div className="w-full flex flex-col md:flex-row justify-between items-start gap-6 px-4 pb-4">
-          <div className="flex-1">
+          <div className="flex-1 max-w-full">
             <header>
               <h2 className="text-lg font-bold mb-1">Таблица Менделеева – основы химии</h2>
               <h3 className="text-base font-semibold mb-2">Почему <span className="font-bold italic underline">Периодическая система</span> важна?</h3>

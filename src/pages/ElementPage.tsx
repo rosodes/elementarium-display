@@ -1,20 +1,18 @@
 
 import { useElementLogic } from './useElementLogic';
 import ElementMainContent from './ElementMainContent';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ElementPage = () => {
   const logic = useElementLogic();
+  const navigate = useNavigate();
+  const { lang } = useParams<{ lang?: string }>();
 
-  // Handler to navigate to a specific element
+  // Handler to navigate to a specific element using React Router
   const handleNavigate = (element: { atomic: string | number }) => {
-    // By atomic number, navigate using the URL structure
     const atomic = String(element.atomic);
-    // If using language prefix, use logic.lang
-    if (logic.lang && logic.lang !== "en") {
-      window.location.href = `/${logic.lang}/element/${atomic}`;
-    } else {
-      window.location.href = `/element/${atomic}`;
-    }
+    const basePath = lang ? `/${lang}` : '';
+    navigate(`${basePath}/element/${atomic}`);
   };
 
   return (

@@ -1,26 +1,10 @@
 
-import { useLanguage } from '@/context/LanguageContext';
-import { useTheme } from '@/context/ThemeContext';
-import { Button } from '@/components/ui/button';
-import { Moon, Sun, Globe } from 'lucide-react';
-import { 
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { useLanguage } from '../context/LanguageContext';
+import { useTheme } from '../context/ThemeContext';
 import LanguageThemeControls from './LanguageThemeControls';
 import SearchBar from './periodic-table/SearchBar';
 import { Separator } from './ui/separator';
 import { useNavigate, useLocation } from 'react-router-dom';
-
-// Map of language codes to display names
-const languageNames: Record<string, string> = {
-  en: 'English',
-  ru: 'Русский',
-  uk: 'Українська',
-  // Add more languages here as they are supported
-};
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
@@ -29,7 +13,6 @@ interface HeaderProps {
 
 const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
   const { t, language, setLanguage, supportedLanguages } = useLanguage();
-  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
