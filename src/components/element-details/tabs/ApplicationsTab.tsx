@@ -1,10 +1,13 @@
+
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
 import { useLanguage } from '../../../context/LanguageContext';
-import { Badge } from '@/components/ui/badge';
 
-// Импортируем дополнительные секции
+// Секции применения лития
+import LithiumCommercialUsesSection from "../new-sections/LithiumCommercialUsesSection";
+import LithiumExtractionSection from "../new-sections/LithiumExtractionSection";
+
 import UsageDistributionChart from '../visualizations/UsageDistributionChart';
 import ElementTimeline from '../visualizations/ElementTimeline';
 import IndustrialUses from '../applications/IndustrialUses';
@@ -12,7 +15,7 @@ import EverydayUses from '../applications/EverydayUses';
 import UsageSection from '../applications/UsageSection';
 import DiscoverySection from '../applications/DiscoverySection';
 
-// Импорт секций применения для водорода:
+// Водород и др. элементы — импорт дополнительных секций
 import HydrogenCommercialUsesSection from "../new-sections/HydrogenCommercialUsesSection";
 import HydrogenExtractionSection from "../new-sections/HydrogenExtractionSection";
 
@@ -24,22 +27,42 @@ interface ApplicationsTabProps {
 const ApplicationsTab = ({ element, categoryColor }: ApplicationsTabProps) => {
   const { t } = useLanguage();
 
-  return (
-    <div className="space-y-6 max-w-full">
-      <UsageSection element={element} categoryColor={categoryColor} />
-      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
-      <IndustrialUses element={element} />
-      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
-      <EverydayUses element={element} />
-      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
-      <UsageDistributionChart element={element} />
-      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
-      <ElementTimeline element={element} />
-      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
-      <DiscoverySection element={element} />
+  // === Для лития ===
+  if (element.atomic === "3") {
+    return (
+      <div className="space-y-6 max-w-full">
+        <LithiumCommercialUsesSection />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <UsageDistributionChart element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <LithiumExtractionSection />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <ElementTimeline element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <DiscoverySection element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <IndustrialUses element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <EverydayUses element={element} />
+      </div>
+    );
+  }
 
-      {/* --- ДОПОЛНЕНИЯ ДЛЯ HYDROGEN --- */}
-      {element.atomic === "1" && (
+  // === Для водорода ===
+  if (element.atomic === "1") {
+    return (
+      <div className="space-y-6 max-w-full">
+        <UsageSection element={element} categoryColor={categoryColor} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <IndustrialUses element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <EverydayUses element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <UsageDistributionChart element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <ElementTimeline element={element} />
+        <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+        <DiscoverySection element={element} />
         <div className="rounded-lg border border-blue-100 bg-blue-50 dark:bg-gray-800 p-4 text-xs mt-3">
           <h3 className="text-base font-bold mb-2 text-blue-700 dark:text-blue-200">Направления использования водорода</h3>
           <ul className="list-disc pl-4 marker:text-blue-400 space-y-1">
@@ -53,15 +76,28 @@ const ApplicationsTab = ({ element, categoryColor }: ApplicationsTabProps) => {
           </ul>
           <div className="mt-2 text-[11px] text-gray-500">Источник: IEA, CRC Handbook, DOE Hydrogen Program, WebElements</div>
         </div>
-      )}
-      {/* --- ДОПОЛНЕНИЕ ДЛЯ HYDROGEN --- */}
-      {element.atomic === "1" && (
-        <>
-          <HydrogenExtractionSection />
-          <HydrogenCommercialUsesSection />
-        </>
-      )}
+        <HydrogenExtractionSection />
+        <HydrogenCommercialUsesSection />
+      </div>
+    );
+  }
+
+  // === Для остальных элементов ===
+  return (
+    <div className="space-y-6 max-w-full">
+      <UsageSection element={element} categoryColor={categoryColor} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <IndustrialUses element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <EverydayUses element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <UsageDistributionChart element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <ElementTimeline element={element} />
+      <Separator className="my-6 bg-gray-200 dark:bg-gray-700" />
+      <DiscoverySection element={element} />
     </div>
   );
 };
+
 export default ApplicationsTab;
