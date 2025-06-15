@@ -1,4 +1,5 @@
 
+
 export interface ElementDetailsTabs {
   overview: string;
   properties: string;
@@ -108,4 +109,5 @@ export interface ElementDetailsTranslations {
   stable?: string; // <-- ADDED for proper type checking
   unstable?: string; // <-- ADDED for proper type checking
   applicationsBlock?: string; // <-- ADDED for proper type checking
+  health?: string; // <-- ADDED for proper type checking
 }
