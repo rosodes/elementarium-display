@@ -23,7 +23,6 @@ import HydrogenBioVisualBlock from "./HydrogenBioVisualBlock";
 import HydrogenProductionVisualBlock from "./HydrogenProductionVisualBlock";
 import HydrogenSafetyVisualBlock from "./HydrogenSafetyVisualBlock";
 
-// Разделённые тематические секции для удобной поддержки и мультиязычности:
 import HydrogenHistorySection from "./HydrogenHistorySection";
 import HydrogenOccurrenceSection from "./HydrogenOccurrenceSection";
 import HydrogenCompoundsSection from "./HydrogenCompoundsSection";
@@ -66,6 +65,7 @@ const HydrogenDetailSections: React.FC = () => {
       <HydrogenProductionVisualBlock />
       <HydrogenSafetyVisualBlock />
       <SpectralAndIsotopeFacts />
+      <HydrogenHistorySection />
     </>
   );
 };

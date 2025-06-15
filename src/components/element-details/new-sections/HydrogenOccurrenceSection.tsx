@@ -3,21 +3,21 @@ import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import HydrogenOccurrenceVisualBlock from "./HydrogenOccurrenceVisualBlock";
 import HydrogenNaturalOccurrenceSection from "./HydrogenNaturalOccurrenceSection";
-import { PieChart, Globe2, Table } from "lucide-react";
+import { PieChart, Table } from "lucide-react";
 
 const occurrenceContent = {
   en: {
     title: "Occurrence & Abundance",
     facts: [
-      "Hydrogen is by far the most abundant element in the universe: ~75% of normal matter by mass, ~92% by atom count.",
-      "The Sun and most stars are made mainly from hydrogen; they shine by fusing hydrogen into helium (hydrogen fusion).",
-      "Hydrogen dominates the atmospheres of gas giants like Jupiter and Saturn both as H₂ and atomic H.",
-      "Hydrogen occurs in interstellar space as atomic H, molecular H₂, and as H⁺ ions (plasma).",
-      "Earth's atmosphere contains only trace hydrogen — H₂ about 0.00005% — because the gas escapes to space.",
-      "Most hydrogen on Earth is locked in water (H₂O), about 11% of water's mass, covering 71% of Earth's surface.",
-      "Essential in all living things — proteins, DNA, fats, and carbohydrates.",
-      "Hydrogen found in minerals, hydrated salts, clays, volcanic and hydrothermal emissions.",
-      "Underground 'white hydrogen' reservoirs are a potential new energy source.",
+      "Hydrogen is the most abundant element in the universe (~75% of normal matter by mass, ~92% by atom count).",
+      "Sun and stars are mostly hydrogen (hydrogen fusion gives their energy).",
+      "Dominates atmospheres of Jupiter/Saturn (H₂ and atomic H).",
+      "In interstellar space: atomic H, H₂, and ionized H⁺.",
+      "Earth’s atmosphere: only trace H₂ (escapes to space).",
+      "Most hydrogen on Earth is in water (H₂O), and in minerals/organics.",
+      "Essential for all living things (proteins, DNA, etc.).",
+      "Found in minerals, volcanic/hydrothermal gases, hydrated salts.",
+      "Subsurface 'white hydrogen' deposits may be a future energy source."
     ],
     table: [
       { env: "Universe", percent: "75% (mass)", comment: "Hydrogen mass share of the universe" },

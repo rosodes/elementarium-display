@@ -7,15 +7,25 @@ const OverviewTable = () => {
   const { t, language } = useLanguage();
   return (
     <div className="mb-6">
-      <h2 className="text-lg font-bold mb-2">{language === "ru" ? "Обзор" : language === "uk" ? "Огляд" : "Overview"}</h2>
+      <h2 className="text-lg font-bold mb-2">
+        {language === "ru"
+          ? "Обзор"
+          : language === "uk"
+          ? "Огляд"
+          : "Overview"}
+      </h2>
       <div className="overflow-x-auto text-xs sm:text-sm">
         <table className="min-w-[360px] border rounded-lg mb-2 bg-white dark:bg-gray-950 shadow">
           <tbody>
             <tr className="border-b">
-              <td className="font-medium p-2">{language === "ru" ? "Название (лат/рус/укр)" : language === "uk" ? "Назва (лат/рос/укр)" : "Name (lat/ru/uk)"}</td>
-              <td className="p-2">
-                Hydrogen / Водород / Водень
+              <td className="font-medium p-2">
+                {language === "ru"
+                  ? "Название (лат/рус/укр)"
+                  : language === "uk"
+                  ? "Назва (лат/рос/укр)"
+                  : "Name (lat/ru/uk)"}
               </td>
+              <td className="p-2">Hydrogen / Водород / Водень</td>
             </tr>
             <tr className="border-b">
               <td className="font-medium p-2">{t.elementDetails?.symbol ?? "Symbol"}</td>
@@ -33,30 +43,30 @@ const OverviewTable = () => {
               <td className="font-medium p-2">{language === "ru" ? "Краткое описание" : language === "uk" ? "Короткий опис" : "Short description"}</td>
               <td className="p-2">
                 {language === "ru"
-                  ? "Водород — самый лёгкий и распространённый элемент во Вселенной, основной строительный блок звёзд, важен в органике и энергетике"
+                  ? "Водород — самый лёгкий элемент, важнейший компонент воды, органики и топлива будущего."
                   : language === "uk"
-                  ? "Водень — найлегший та найпоширеніший у Всесвіті елемент, основа зір, ключовий для органіки й енергетики"
-                  : "Hydrogen is the lightest and most abundant element in the universe, a key building block of stars, vital in organic chemistry and energy"}
+                  ? "Водень — найлегший елемент, основа води, органіки й перспективного пального."
+                  : "Hydrogen is the lightest element, key component of water, organics, and the fuel of the future."}
               </td>
             </tr>
             <tr className="border-b">
               <td className="font-medium p-2">{language === "ru" ? "Уникальность" : language === "uk" ? "Унікальність" : "Unique features"}</td>
               <td className="p-2">
                 {language === "ru"
-                  ? "Не относится ни к одной группе период. таблицы, образует двуатомные молекулы H₂, ключ для синтеза аммиака, топлива, диамагнетик"
+                  ? "Единственный элемент без нейтрона (¹H), образует двухатомные молекулы H₂, не относится ни к одной группе таблицы."
                   : language === "uk"
-                  ? "Не належить жодній групі таблиці, утворює двоатомні молекули H₂, ключ до синтезу амоніаку, палива, діамагнетик"
-                  : "Not part of any table group, forms diatomic H₂ molecules, key to ammonia/fuel synthesis, diamagnetic"}
+                  ? "Єдиний елемент без нейтрона (¹H), утворює двоатомні молекули H₂, не належить жодній групі таблиці."
+                  : "The only element with a no-neutron isotope (¹H), forms diatomic H₂ molecules, not assigned to any periodic table group."}
               </td>
             </tr>
             <tr>
               <td className="font-medium p-2">{language === "ru" ? "Роль и применение" : language === "uk" ? "Роль та застосування" : "Role & significance"}</td>
               <td className="p-2">
                 {language === "ru"
-                  ? "Топливо будущего, компонент воды и органики, стандарт для атомных масс"
+                  ? "Компонент воды, органики, топливо будущего, стандарт атомных масс."
                   : language === "uk"
-                  ? "Паливо майбутнього, частина води, органіки, стандарт для атомних мас"
-                  : "The fuel of the future, part of water/organics, standard for atomic mass"}
+                  ? "Частина води, органіки, паливо майбутнього, стандарт атомних мас."
+                  : "Part of water/organics, fuel of the future, atomic-mass standard."}
               </td>
             </tr>
           </tbody>
