@@ -1,8 +1,10 @@
+
 import React from 'react';
 import ElementPageHead from '../components/element-details/ElementPageHead';
-import ElementNavigation from '../components/element-details/ElementNavigation';
 import ElementPageFooter from '../components/element-details/ElementPageFooter';
+import ElementHeader from '../components/element-details/ElementHeader';
 import ElementDetails from '../components/ElementDetails';
+import ElementNavigation from '../components/element-details/ElementNavigation';
 
 interface Props {
   t: any;
@@ -46,6 +48,23 @@ const ElementMainContent = ({
       >
         {t.ui?.skipToContent || "Skip to main content"}
       </a>
+      {/* Header only once at the top */}
+      <ElementHeader
+        element={element}
+        prevElement={canGoPrevious ? { ...element, atomic: String(Number(element.atomic) - 1) } : null}
+        nextElement={canGoNext ? { ...element, atomic: String(Number(element.atomic) + 1) } : null}
+        onNavigate={(el) => {
+          // Используем корректные функции навигации:
+          if (Number(el.atomic) < Number(element.atomic)) {
+            handlePrevious();
+          } else {
+            handleNext();
+          }
+        }}
+        onFavorite={handleToggleBookmark}
+        isBookmarked={isBookmarked}
+        onShare={handleShare}
+      />
       <div
         ref={mainRef}
         id="element-main-content"
@@ -62,31 +81,17 @@ const ElementMainContent = ({
           tabIndex={0}
         >
           <div className="relative w-full max-w-8xl mx-0 rounded-2xl bg-white/90 dark:bg-gray-900/95 shadow-xl ring-2 ring-blue-300/10 dark:ring-blue-800/20 p-0 md:p-2 transition border border-gray-200 dark:border-gray-700">
-            <nav
-              aria-label={t.elementDetails?.element || "Element Navigation"}
-              role="navigation"
-              className="w-full"
-            >
-              <ElementNavigation
-                element={element}
-                isBookmarked={isBookmarked}
-                onHome={handleHome}
-                onPrevious={handlePrevious}
-                onNext={handleNext}
-                onToggleBookmark={handleToggleBookmark}
-                onShare={handleShare}
-                canGoPrevious={canGoPrevious}
-                canGoNext={canGoNext}
-              />
-            </nav>
+            {/* Убрали второй header и управляем навигацией только сверху */}
             <ElementDetails
               element={element}
               onClose={handleHome}
               onNavigate={(newElement) => {
-                handleHome();
-                setTimeout(() => {
-                  window.location.assign(lang ? `/${lang}/element/${newElement.atomic}` : `/element/${newElement.atomic}`);
-                }, 1);
+                // управление навигацией теперь только через handleNext/handlePrevious
+                if (Number(newElement.atomic) < Number(element.atomic)) {
+                  handlePrevious();
+                } else {
+                  handleNext();
+                }
               }}
               isFullPage={true}
             />

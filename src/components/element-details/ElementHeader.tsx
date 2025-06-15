@@ -1,114 +1,88 @@
+
 import React from 'react';
 import { Element } from '../../data/elementTypes';
 import { useLanguage } from '../../context/LanguageContext';
 import { Link } from "react-router-dom";
 import { ArrowLeft, ArrowRight, Star, Upload, Home } from "lucide-react";
-import ElementImage from './ElementImage';
 
 interface ElementHeaderProps {
   element: Element;
-  categoryColor: string;
   prevElement: Element | null;
   nextElement: Element | null;
-  onClose: () => void;
   onNavigate: (element: Element) => void;
-  isFullPage?: boolean;
+  onFavorite?: () => void;
+  onShare?: () => void;
+  isBookmarked?: boolean;
 }
 
 const ElementHeader: React.FC<ElementHeaderProps> = ({
   element,
-  categoryColor,
   prevElement,
   nextElement,
-  // onClose,
   onNavigate,
-  isFullPage = false,
+  onFavorite,
+  onShare,
+  isBookmarked = false,
 }) => {
   const { t } = useLanguage();
 
-  // URL для возврата к таблице (с учётом локали)
   const tableLink = `/${window.location.pathname.split("/")[1] || "en"}`;
 
-  // Semantic h1 только на странице (не во всплывашке)
-  const HeadingTag = isFullPage ? 'h1' : 'h2';
-
-  // Card-like фон с плавным градиентом и тенью
   return (
-    <div className="relative z-10 pb-2 md:pb-0">
-      {/* Навигационная панель */}
-      <div className="flex items-center justify-between px-2 md:px-6 pt-4">
-        {/* Back/Home + Title */}
-        <div className="flex items-center gap-2">
-          <Link to={tableLink} className="hover:bg-blue-50 dark:hover:bg-gray-700 rounded-lg p-2 transition-colors flex items-center group">
-            <Home size={20} className="mr-1 opacity-80 group-hover:opacity-100" />
-            <span className="font-medium text-sm md:text-base text-gray-700 dark:text-gray-200 hidden sm:inline">
-              {t.elementDetails.backToTable ?? "Back to Periodic Table"}
-            </span>
-          </Link>
-          <span className="mx-2 text-gray-400">|</span>
-          <span className="font-medium text-sm md:text-base text-gray-700 dark:text-gray-200">{element.name} ({element.symbol})</span>
-        </div>
-        {/* Right-side actions */}
-        <div className="flex items-center gap-2">
-          <button
-            className="rounded-lg p-2 bg-white/80 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all"
-            aria-label="Favorite"
-          >
-            <Star size={20} className="text-gray-400" />
-          </button>
-          <button
-            className="rounded-lg p-2 bg-white/80 dark:bg-gray-900/60 border border-gray-200 dark:border-gray-800 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all"
-            aria-label="Share"
-          >
-            <Upload size={20} className="text-gray-400" />
-          </button>
-        </div>
+    <header className="w-full max-w-8xl mx-auto rounded-t-2xl bg-white/95 dark:bg-gray-900/95 shadow flex flex-wrap justify-between items-center px-4 md:px-10 py-4 md:py-6 border-b border-gray-200 dark:border-gray-800 relative z-20">
+      {/* Левая часть: Назад */}
+      <div className="flex items-center min-w-0">
+        <Link
+          to={tableLink}
+          className="inline-flex items-center gap-1 text-gray-800 dark:text-gray-100 font-medium hover:bg-blue-50 dark:hover:bg-gray-800 rounded-lg px-3 py-2 focus:outline-none transition"
+        >
+          <Home size={20} className="mr-0.5 opacity-80" />
+          <span className="text-sm md:text-base">{t.elementDetails.backToTable ?? "Back to Periodic Table"}</span>
+        </Link>
+        <span className="mx-3 text-gray-300">|</span>
+        <span className="truncate text-gray-700 dark:text-gray-100 font-semibold text-base md:text-lg" title={`${element.name} (${element.symbol})`}>
+          {element.name} ({element.symbol})
+        </span>
       </div>
-      {/* Основной card-блок */}
-      <div 
-        className="my-3 mx-1 md:mx-6 bg-gradient-to-br from-blue-50/70 to-white dark:from-gray-900 dark:to-gray-800 rounded-2xl shadow-lg px-1 py-4 md:py-8 flex flex-col items-center relative transition-all"
-        style={{ border: `1.5px solid ${categoryColor.split(" ")[0]}` }}
-      >
-        {/* Предыдущий элемент */}
+      {/* Центр: Пред. и след. элементы */}
+      <div className="flex-1 flex justify-center items-center min-w-0">
         <button
-          className={`absolute left-2 top-1/2 -translate-y-1/2 flex items-center gap-1 rounded-lg p-1.5 bg-white/60 dark:bg-gray-950/80 border border-gray-200 dark:border-gray-700 shadow-sm hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-all disabled:opacity-30`}
-          style={{ minWidth: 48 }}
+          className="inline-flex items-center gap-1 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-1.5 font-medium text-gray-700 dark:text-gray-200 mr-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition disabled:opacity-40 disabled:cursor-not-allowed"
           onClick={() => prevElement && onNavigate(prevElement)}
           disabled={!prevElement}
           aria-label={t.elementDetails.previous ?? "Previous element"}
         >
-          <ArrowLeft size={22} />
-          <span className="hidden md:inline text-xs">{t.elementDetails.previous ?? "Previous"}</span>
+          <ArrowLeft size={20} className="mr-1" />
+          <span>{t.elementDetails.previous ?? "Previous"}</span>
         </button>
-        {/* Следующий элемент */}
         <button
-          className={`absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1 rounded-lg p-1.5 bg-white/60 dark:bg-gray-950/80 border border-gray-200 dark:border-gray-700 shadow-sm hover:scale-105 hover:bg-blue-100 dark:hover:bg-blue-900/60 transition-all disabled:opacity-30`}
-          style={{ minWidth: 48 }}
+          className="inline-flex items-center gap-1 bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-1.5 font-medium text-gray-700 dark:text-gray-200 ml-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition disabled:opacity-40 disabled:cursor-not-allowed"
           onClick={() => nextElement && onNavigate(nextElement)}
           disabled={!nextElement}
           aria-label={t.elementDetails.next ?? "Next element"}
         >
-          <span className="hidden md:inline text-xs">{t.elementDetails.next ?? "Next"}</span>
-          <ArrowRight size={22} />
+          <span>{t.elementDetails.next ?? "Next"}</span>
+          <ArrowRight size={20} className="ml-1" />
         </button>
-        {/* Крупный символ и номер */}
-        <div className="flex flex-col items-center justify-center py-4 px-2 select-none">
-          <div className="text-5xl sm:text-7xl md:text-8xl font-bold text-gray-900 dark:text-gray-50 tracking-tight mb-2">
-            {element.symbol}
-          </div>
-          <HeadingTag className="text-xl sm:text-3xl font-bold text-gray-800 dark:text-blue-50 mb-2">{element.name}</HeadingTag>
-          <div className="flex flex-col md:flex-row gap-1 mb-1 md:mb-0 text-base md:text-lg font-semibold text-gray-500 dark:text-gray-300">
-            <span>
-              {t.elementDetails.atomicNumber}: <b className="font-bold text-gray-950 dark:text-white">{element.atomic}</b>
-            </span>
-            <span className="hidden md:inline mx-1">•</span>
-            <span>
-              {t.elementDetails.atomicWeight}: <b className="font-bold text-gray-950 dark:text-white">{element.weight}</b>
-            </span>
-          </div>
-        </div>
       </div>
-    </div>
+      {/* Правая часть: Actions */}
+      <div className="flex gap-2">
+        <button
+          onClick={onFavorite}
+          className={`rounded-lg p-2 border shadow-sm transition-all ${isBookmarked ? 'bg-blue-100 border-blue-400 text-blue-700' : 'bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-950'}`}
+          aria-label={t.elementDetails.favorite || "Favorite"}
+        >
+          <Star size={20} fill={isBookmarked ? "#2563eb" : "none"} strokeWidth={isBookmarked ? 2.5 : 2} />
+        </button>
+        <button
+          onClick={onShare}
+          className="rounded-lg p-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-sm hover:bg-blue-50 dark:hover:bg-blue-950 transition-all text-gray-500 dark:text-gray-300"
+          aria-label={t.elementDetails.share || "Share"}
+        >
+          <Upload size={20} />
+        </button>
+      </div>
+    </header>
   );
 };
 
