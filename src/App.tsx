@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -32,7 +31,6 @@ function App() {
   return (
     <ErrorBoundary>
       <HelmetProvider>
-        {console.log('App: inside HelmetProvider')}
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
             <LanguageProvider initialLanguage={initialLanguage}>
