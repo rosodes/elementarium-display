@@ -1,5 +1,3 @@
-
-
 export interface ElementDetailsTabs {
   overview: string;
   properties: string;
@@ -107,5 +105,5 @@ export interface ElementDetailsTranslations {
   decayMode?: string; // <-- ADDED for proper type checking
   abundanceInNature?: string; // <-- ADDED for proper type checking
   stable?: string; // <-- ADDED for proper type checking
+  unstable?: string; // <-- ADDED for proper type checking
 }
-
