@@ -7,6 +7,9 @@ import LithiumExtractionSection from "../new-sections/LithiumExtractionSection";
 import BerylliumExtractionSection from "../new-sections/BerylliumExtractionSection";
 import BoronExtractionSection from "../new-sections/BoronExtractionSection";
 import CarbonExtractionSection from "../new-sections/CarbonExtractionSection";
+import NitrogenExtractionSection from "../new-sections/NitrogenExtractionSection";
+import OxygenExtractionSection from "../new-sections/OxygenExtractionSection";
+import FluorineExtractionSection from "../new-sections/FluorineExtractionSection";
 import NeonExtractionSection from "../new-sections/NeonExtractionSection";
 import SodiumExtractionSection from "../new-sections/SodiumExtractionSection";
 import MagnesiumExtractionSection from "../new-sections/MagnesiumExtractionSection";
@@ -14,7 +17,6 @@ import AluminumExtractionSection from "../new-sections/AluminumExtractionSection
 import SiliconExtractionSection from "../new-sections/SiliconExtractionSection";
 import PhosphorusExtractionSection from "../new-sections/PhosphorusExtractionSection";
 import SulfurExtractionSection from "../new-sections/SulfurExtractionSection";
-import FluorineExtractionSection from "../new-sections/FluorineExtractionSection";
 
 const ProductionTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -58,4 +60,3 @@ const ProductionTab = ({ element }: { element: Element }) => (
   </div>
 );
 export default ProductionTab;
-

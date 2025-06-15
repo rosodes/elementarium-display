@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenNaturalOccurrenceSection from "../new-sections/HydrogenNaturalOccurrenceSection";
@@ -6,6 +7,8 @@ import LithiumNaturalOccurrenceSection from "../new-sections/LithiumNaturalOccur
 import BerylliumNaturalOccurrenceSection from "../new-sections/BerylliumNaturalOccurrenceSection";
 import BoronNaturalOccurrenceSection from "../new-sections/BoronNaturalOccurrenceSection";
 import CarbonNaturalOccurrenceSection from "../new-sections/CarbonNaturalOccurrenceSection";
+import NitrogenNaturalOccurrenceSection from "../new-sections/NitrogenNaturalOccurrenceSection";
+import OxygenNaturalOccurrenceSection from "../new-sections/OxygenNaturalOccurrenceSection";
 import NeonNaturalOccurrenceSection from "../new-sections/NeonNaturalOccurrenceSection";
 import SodiumNaturalOccurrenceSection from "../new-sections/SodiumNaturalOccurrenceSection";
 import MagnesiumNaturalOccurrenceSection from "../new-sections/MagnesiumNaturalOccurrenceSection";

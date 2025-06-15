@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenHistorySection from "../new-sections/HydrogenHistorySection";
@@ -6,6 +7,8 @@ import LithiumHistorySection from "../new-sections/LithiumHistorySection";
 import BerylliumHistorySection from "../new-sections/BerylliumHistorySection";
 import BoronHistorySection from "../new-sections/BoronHistorySection";
 import CarbonHistorySection from "../new-sections/CarbonHistorySection";
+import NitrogenHistorySection from "../new-sections/NitrogenHistorySection";
+import OxygenHistorySection from "../new-sections/OxygenHistorySection";
 import NeonHistorySection from "../new-sections/NeonHistorySection";
 import SodiumHistorySection from "../new-sections/SodiumHistorySection";
 import MagnesiumHistorySection from "../new-sections/MagnesiumHistorySection";
