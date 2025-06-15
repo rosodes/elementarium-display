@@ -7,7 +7,7 @@ const ElementPage = () => {
   const logic = useElementLogic();
   return (
     <>
-      <ElementPageHeader />
+      {/* <ElementPageHeader /> удаляем из ElementPage */}
       <ElementMainContent {...logic} />
     </>
   );

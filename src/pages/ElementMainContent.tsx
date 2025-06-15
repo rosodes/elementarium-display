@@ -2,9 +2,11 @@
 import React from 'react';
 import ElementPageHead from '../components/element-details/ElementPageHead';
 import ElementPageFooter from '../components/element-details/ElementPageFooter';
-import ElementHeader from '../components/element-details/ElementHeader';
+// import ElementHeader from '../components/element-details/ElementHeader'; // Удаляем
+import ElementControlBar from '../components/element-details/ElementControlBar';
 import ElementDetails from '../components/ElementDetails';
 import ElementNavigation from '../components/element-details/ElementNavigation';
+import Header from "../components/Header"; // Берём основной Header
 
 interface Props {
   t: any;
@@ -38,8 +40,25 @@ const ElementMainContent = ({
     );
   }
 
+  const tableLink = `/${window.location.pathname.split("/")[1] || "en"}`;
+
   return (
     <>
+      {/* Top site-wide header */}
+      <Header isElementPage />
+      {/* UNDER header: bar for element navigation/actions */}
+      <ElementControlBar
+        element={{ name: element.name, symbol: element.symbol }}
+        prevEnabled={canGoPrevious}
+        nextEnabled={canGoNext}
+        onPrev={handlePrevious}
+        onNext={handleNext}
+        onFavorite={handleToggleBookmark}
+        onShare={handleShare}
+        isBookmarked={isBookmarked}
+        tableLink={tableLink}
+      />
+
       <a
         href="#element-main-content"
         className="sr-only focus:not-sr-only absolute top-0 left-0 bg-blue-700 text-white px-4 py-2 z-50 rounded-b-lg transition"
@@ -48,23 +67,6 @@ const ElementMainContent = ({
       >
         {t.ui?.skipToContent || "Skip to main content"}
       </a>
-      {/* Header only once at the top */}
-      <ElementHeader
-        element={element}
-        prevElement={canGoPrevious ? { ...element, atomic: String(Number(element.atomic) - 1) } : null}
-        nextElement={canGoNext ? { ...element, atomic: String(Number(element.atomic) + 1) } : null}
-        onNavigate={(el) => {
-          // Используем корректные функции навигации:
-          if (Number(el.atomic) < Number(element.atomic)) {
-            handlePrevious();
-          } else {
-            handleNext();
-          }
-        }}
-        onFavorite={handleToggleBookmark}
-        isBookmarked={isBookmarked}
-        onShare={handleShare}
-      />
       <div
         ref={mainRef}
         id="element-main-content"
@@ -81,12 +83,10 @@ const ElementMainContent = ({
           tabIndex={0}
         >
           <div className="relative w-full max-w-8xl mx-0 rounded-2xl bg-white/90 dark:bg-gray-900/95 shadow-xl ring-2 ring-blue-300/10 dark:ring-blue-800/20 p-0 md:p-2 transition border border-gray-200 dark:border-gray-700">
-            {/* Убрали второй header и управляем навигацией только сверху */}
             <ElementDetails
               element={element}
               onClose={handleHome}
               onNavigate={(newElement) => {
-                // управление навигацией теперь только через handleNext/handlePrevious
                 if (Number(newElement.atomic) < Number(element.atomic)) {
                   handlePrevious();
                 } else {
