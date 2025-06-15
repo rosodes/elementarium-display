@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import {
   Select,
   SelectTrigger,
@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface LanguageOption {
   code: string;
@@ -29,29 +30,48 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   onChange,
   t,
 }) => {
-  const bigLanguageList = useMemo(
-    () => allLanguageOptions.filter((opt) => supportedLanguages.includes(opt.code)),
-    [allLanguageOptions, supportedLanguages]
-  );
+  // Для теста создаём длинный список языков
+  const bigLanguageList = useMemo(() => {
+    if (allLanguageOptions.length >= 20) {
+      return allLanguageOptions.filter(opt => supportedLanguages.includes(opt.code));
+    }
+    // Добавляем 20 фиктивных языков для теста скролла
+    const extraLanguages = Array.from({ length: 20 }, (_, i) => ({
+      code: `test${i+1}`,
+      name: `Test Language ${i+1}`,
+      emoji: "🌐"
+    })).map((lang, idx) => ({
+      ...lang,
+      code: lang.code,
+    }));
+    return [
+      ...allLanguageOptions.filter(opt => supportedLanguages.includes(opt.code)),
+      ...extraLanguages
+    ];
+  }, [allLanguageOptions, supportedLanguages]);
 
   const [search, setSearch] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  // focus only when dropdown is opened
+  // Фокусируем только при открытии dropdown (текущий обработчик фокуса)
   useEffect(() => {
     if (isOpen && inputRef.current) {
-      inputRef.current.focus();
+      // Используем setTimeout чтобы дать времени DOM обновиться
+      setTimeout(() => {
+        inputRef.current?.focus();
+        inputRef.current?.setSelectionRange(inputRef.current.value.length, inputRef.current.value.length);
+      }, 10);
     }
   }, [isOpen]);
 
+  // Не сбрасывать фокус при каждом фильтре, только при закрытии
   const handleOpenChange = (open: boolean) => {
     setIsOpen(open);
-    if (!open) {
-      setSearch("");
-    }
+    if (!open) setSearch("");
   };
 
+  // Поиск по языкам
   const filteredLanguages = useMemo(() => {
     const text = search.trim().toLowerCase();
     if (!text) return bigLanguageList;
@@ -63,6 +83,13 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   }, [search, bigLanguageList]);
 
   const selectedLanguage = bigLanguageList.find(l => l.code === language);
+
+  // Клик по языку возвращает фокус в поле ввода поиска
+  const handleSelectItemClick = useCallback(() => {
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 0);
+  }, []);
 
   return (
     <div className="relative">
@@ -88,10 +115,10 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 
         <SelectContent
           align="end"
-          className="z-[200] bg-white dark:bg-gray-900 max-h-80 min-w-[200px] overflow-y-auto p-0"
-          style={{ minWidth: 220 }}
+          className="z-[200] bg-white dark:bg-gray-900 p-0"
+          style={{ minWidth: 220, maxWidth: 320 }}
         >
-          {/* Поле поиска — всегда в DOM, не исчезает при фильтрации */}
+          {/* sticky поиск */}
           <div className="p-2 sticky top-0 bg-white dark:bg-gray-900 z-10">
             <Input
               ref={inputRef}
@@ -106,22 +133,29 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
               autoComplete="off"
             />
           </div>
-          {filteredLanguages.length > 0 ? (
-            filteredLanguages.map((lang) => (
-              <SelectItem
-                key={lang.code}
-                value={lang.code}
-                className="flex items-center gap-2 cursor-pointer py-2 text-sm group"
-              >
-                <span className="text-base mr-2">{lang.emoji}</span>
-                <span className="truncate group-hover:underline">{lang.name}</span>
-              </SelectItem>
-            ))
-          ) : (
-            <div className="px-4 py-2 text-gray-500 text-xs min-h-[48px] flex items-center justify-center">
-              {t.noLanguagesFound || "Nothing found"}
-            </div>
-          )}
+          {/* Ограничение по высоте и скролл внутри - выводим только если есть языки */}
+          <ScrollArea
+            className="max-h-80 min-h-[40px]"
+            style={{ maxHeight: 320, minWidth: 200 }}
+          >
+            {filteredLanguages.length > 0 ? (
+              filteredLanguages.map((lang) => (
+                <SelectItem
+                  key={lang.code}
+                  value={lang.code}
+                  className="flex items-center gap-2 cursor-pointer py-2 text-sm group"
+                  onClick={handleSelectItemClick}
+                >
+                  <span className="text-base mr-2">{lang.emoji}</span>
+                  <span className="truncate group-hover:underline">{lang.name}</span>
+                </SelectItem>
+              ))
+            ) : (
+              <div className="px-4 py-2 text-gray-500 text-xs min-h-[48px] flex items-center justify-center">
+                {t.noLanguagesFound || "Nothing found"}
+              </div>
+            )}
+          </ScrollArea>
         </SelectContent>
       </Select>
     </div>
