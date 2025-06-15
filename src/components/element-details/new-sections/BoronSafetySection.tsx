@@ -45,3 +45,4 @@ const BoronSafetySection: React.FC = () => {
 };
 
 export default BoronSafetySection;
+

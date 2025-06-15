@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
@@ -10,27 +9,19 @@ const BoronHistorySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Discovery:</strong> 1808 by Joseph Louis Gay-Lussac and Louis Jacques Thénard</div>
-          <div><strong>Independent discovery:</strong> Same year by Humphry Davy</div>
-          <div><strong>Timeline:</strong></div>
+          <div><strong>Discovery:</strong> Isolated as an element in 1808 by Sir Humphry Davy (UK) and independently, by Joseph Louis Gay-Lussac & Louis Jacques Thénard (France).</div>
+          <div><strong>History:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Ancient times - Borax used in metallurgy and glass making</li>
-            <li>1808 - Element isolated by reduction of boric acid</li>
-            <li>1909 - Pure crystalline boron produced</li>
-            <li>1958 - Boron fibers developed for composites</li>
-            <li>1970s - Boron neutron capture therapy research</li>
+            <li>Ancient: borax known in Egypt, Persia, China for glassmaking and metallurgy</li>
+            <li>Middle Ages: boron compounds (borax) used as fluxes for soldering/goldsmithing</li>
+            <li>19th century: boron studied for unique chemistry—electron deficiency, cluster compounds</li>
+            <li>20th century: boron chemistry explodes—boranes, superhard ceramics, nuclear uses</li>
           </ul>
-          <div><strong>Etymology:</strong></div>
+          <div><strong>Etymology:</strong> Name from Arabic "buraq" (borax); symbol "B" from Latin boracium.</div>
+          <div><strong>Modern advances:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Named from Arabic "buraq" and Persian "burah"</li>
-            <li>Refers to borax mineral</li>
-            <li>Chemical symbol "B" from Latin "boracium"</li>
-          </ul>
-          <div><strong>Early uses:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Ancient Egyptians used borax in mummification</li>
-            <li>Medieval alchemists knew boric compounds</li>
-            <li>Glass making in Venice and China</li>
+            <li>Boron fibers and ceramics in aerospace (since 1950s)</li>
+            <li>Boron neutron capture therapy for cancer (since 1970s)</li>
           </ul>
         </div>
       </CardContent>
