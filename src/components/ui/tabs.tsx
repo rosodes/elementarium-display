@@ -41,8 +41,7 @@ const TabsTrigger = React.forwardRef<
       data-[state=active]:text-blue-800 dark:data-[state=active]:text-blue-200
       data-[state=active]:border-blue-600 dark:data-[state=active]:border-blue-400
       data-[state=active]:shadow-md
-      whitespace-nowrap select-none
-      transition-colors
+      whitespace-nowrap select-none transition-colors select-text
       `,
       className
     )}
