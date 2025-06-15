@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import ElementOxidationStatesSection from "../ElementOxidationStatesSection";
@@ -30,6 +31,7 @@ import ScandiumDetailSections from "../new-sections/ScandiumDetailSections";
 import TitaniumDetailSections from "../new-sections/TitaniumDetailSections";
 import VanadiumDetailSections from "../new-sections/VanadiumDetailSections";
 import ChromiumDetailSections from "../new-sections/ChromiumDetailSections";
+import ManganeseDetailSections from "../new-sections/ManganeseDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -111,6 +113,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "22" && <TitaniumDetailSections />}
       {element.atomic === "23" && <VanadiumDetailSections />}
       {element.atomic === "24" && <ChromiumDetailSections />}
+      {element.atomic === "25" && <ManganeseDetailSections />}
     </div>
   );
 };
