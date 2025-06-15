@@ -33,6 +33,7 @@ import VanadiumDetailSections from "../new-sections/VanadiumDetailSections";
 import ChromiumDetailSections from "../new-sections/ChromiumDetailSections";
 import ManganeseDetailSections from "../new-sections/ManganeseDetailSections";
 import IronDetailSections from "../new-sections/IronDetailSections";
+import CobaltDetailSections from "../new-sections/CobaltDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -116,6 +117,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "24" && <ChromiumDetailSections />}
       {element.atomic === "25" && <ManganeseDetailSections />}
       {element.atomic === "26" && <IronDetailSections />}
+      {element.atomic === "27" && <CobaltDetailSections />}
     </div>
   );
 };
