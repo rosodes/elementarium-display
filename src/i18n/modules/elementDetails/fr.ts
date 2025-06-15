@@ -88,4 +88,25 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   yes: "Oui",
   no: "Non",
   stability: "Stabilité",
+
+  // Ajouts:
+  noOxidationStatesForNobleGases: "Pour les gaz nobles, les états d’oxydation ne sont pas présents dans des conditions normales.",
+  noOxidationStates: "Aucune donnée sur les états d’oxydation.",
+  selectedIsotope: "Isotope sélectionné",
+  halfLife: "Période",
+  decayMode: "Mode de désintégration",
+  abundanceInNature: "Abondance dans la nature",
+  stable: "Stable",
+  unstable: "Instable",
+  applicationsBlock: "Bloc des applications",
+  health: "Santé",
+  warnings: "Avertissements",
+  compounds: "Composés",
+  production: "Production",
+  fractionByMass: "Fraction massique",
+  visualization: "Visualisation",
+  notes: "Notes",
+  massNumber: "Nombre de masse",
+  protonNumber: "Nombre de protons",
+  neutronNumber: "Nombre de neutrons"
 };
