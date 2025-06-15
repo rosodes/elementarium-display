@@ -17,7 +17,7 @@ import { HelmetProvider } from "react-helmet-async";
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
+      staleTime: 1000 * 60 * 5,
       refetchOnWindowFocus: false,
     },
   },
@@ -34,7 +34,18 @@ function App() {
             <LanguageProvider initialLanguage={initialLanguage}>
               <Router>
                 <AppTranslationValidator>
-                  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+                  <div
+                    className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300"
+                    style={{
+                      // Убираем любые неявные внешние рамки/тени и разрешаем широкий layout
+                      margin: 0,
+                      padding: 0,
+                      border: 'none',
+                      boxShadow: 'none',
+                      minHeight: '100vh',
+                      width: '100%',
+                    }}
+                  >
                     <Routes>
                       <Route path="/" element={<HomePage />} />
                       <Route path="/:lang" element={<HomePage />} />
@@ -48,7 +59,8 @@ function App() {
               </Router>
             </LanguageProvider>
           </ThemeProvider>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* DevTools закрыты по умолчанию */}
+          <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
         </QueryClientProvider>
       </HelmetProvider>
     </ErrorBoundary>
