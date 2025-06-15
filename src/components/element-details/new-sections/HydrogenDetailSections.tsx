@@ -21,6 +21,12 @@ import HydrogenOverviewVisualBlock from "./HydrogenOverviewVisualBlock";
 import HydrogenPropertiesVisualBlock from "./HydrogenPropertiesVisualBlock";
 import HydrogenAtomicStructureVisualBlock from "./HydrogenAtomicStructureVisualBlock";
 import HydrogenApplicationsVisualBlock from "./HydrogenApplicationsVisualBlock";
+import HydrogenHistoryVisualBlock from "./HydrogenHistoryVisualBlock";
+import HydrogenOccurrenceVisualBlock from "./HydrogenOccurrenceVisualBlock";
+import HydrogenCompoundsVisualBlock from "./HydrogenCompoundsVisualBlock";
+import HydrogenBioVisualBlock from "./HydrogenBioVisualBlock";
+import HydrogenProductionVisualBlock from "./HydrogenProductionVisualBlock";
+import HydrogenSafetyVisualBlock from "./HydrogenSafetyVisualBlock";
 import { useLanguage } from "../../../context/LanguageContext";
 
 /**
@@ -193,6 +199,20 @@ const HydrogenDetailSections: React.FC = () => {
       <HydrogenSafetySection />
       <HydrogenDistributionPieChart />
       <HydrogenUniverseBarChart />
+
+      {/* Новые визуальные блоки для каждого тематического раздела */}
+      {/* После History / Discovery */}
+      <HydrogenHistoryVisualBlock />
+      {/* После Occurrence / Abundance */}
+      <HydrogenOccurrenceVisualBlock />
+      {/* После Compounds / Chemistry */}
+      <HydrogenCompoundsVisualBlock />
+      {/* После Biological Role / Toxicity */}
+      <HydrogenBioVisualBlock />
+      {/* После Production / Synthesis */}
+      <HydrogenProductionVisualBlock />
+      {/* После Safety / Precautions */}
+      <HydrogenSafetyVisualBlock />
     </>
   );
 };
