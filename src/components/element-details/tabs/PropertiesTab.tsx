@@ -25,6 +25,8 @@ import PhosphorusDetailSections from "../new-sections/PhosphorusDetailSections";
 import SulfurDetailSections from "../new-sections/SulfurDetailSections";
 import ChlorineDetailSections from "../new-sections/ChlorineDetailSections";
 import ArgonDetailSections from "../new-sections/ArgonDetailSections";
+import PotassiumDetailSections from "../new-sections/PotassiumDetailSections";
+import CalciumDetailSections from "../new-sections/CalciumDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -100,6 +102,8 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "16" && <SulfurDetailSections />}
       {element.atomic === "17" && <ChlorineDetailSections />}
       {element.atomic === "18" && <ArgonDetailSections />}
+      {element.atomic === "19" && <PotassiumDetailSections />}
+      {element.atomic === "20" && <CalciumDetailSections />}
     </div>
   );
 };
