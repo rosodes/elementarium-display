@@ -2,6 +2,16 @@ import { en } from './en';
 import { ru } from './ru';
 import { uk } from './uk';
 import { es } from './es';
+import { zhCN } from './zh-CN';
+import { zhTW } from './zh-TW';
+import { hi } from './hi';
+import { ar } from './ar';
+import { ptBR } from './pt-BR';
+import { ptPT } from './pt-PT';
+import { bn } from './bn';
+import { ja } from './ja';
+import { pa } from './pa';
+import { de } from './de';
 import { addLanguage } from './types';
 
 export function loadLanguages(): void {
@@ -9,6 +19,16 @@ export function loadLanguages(): void {
   addLanguage('ru', ru);
   addLanguage('uk', uk);
   addLanguage('es', es);
+  addLanguage('zh-CN', zhCN);
+  addLanguage('zh-TW', zhTW);
+  addLanguage('hi', hi);
+  addLanguage('ar', ar);
+  addLanguage('pt-BR', ptBR);
+  addLanguage('pt-PT', ptPT);
+  addLanguage('bn', bn);
+  addLanguage('ja', ja);
+  addLanguage('pa', pa);
+  addLanguage('de', de);
 
   // Заглушки для новых языков, чтобы не падал сайт при переключении
   const stub = {
