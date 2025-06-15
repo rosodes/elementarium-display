@@ -1,0 +1,35 @@
+
+import React from "react";
+import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
+
+const CarbonIsotopesSection: React.FC = () => {
+  return (
+    <Card className="my-4 border border-gray-200 dark:border-gray-700">
+      <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
+        <CardTitle className="text-lg">Isotopes</CardTitle>
+      </CardHeader>
+      <CardContent className="p-4 text-xs">
+        <div className="space-y-2">
+          <div><strong>Stable isotopes:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>¹²C (98.93% abundance) - most common isotope</li>
+            <li>¹³C (1.07% abundance) - used in NMR spectroscopy</li>
+          </ul>
+          <div><strong>Important radioactive isotope:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>¹⁴C (half-life: 5,730 years) - radiocarbon dating</li>
+            <li>¹¹C (half-life: 20.3 minutes) - medical imaging (PET)</li>
+          </ul>
+          <div><strong>Applications:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>¹⁴C dating for archaeological specimens</li>
+            <li>¹³C NMR for molecular structure determination</li>
+            <li>¹¹C-labeled compounds in medical diagnostics</li>
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default CarbonIsotopesSection;
