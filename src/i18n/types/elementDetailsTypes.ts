@@ -106,5 +106,6 @@ export interface ElementDetailsTranslations {
   halfLife?: string; // <-- ADDED for proper type checking
   decayMode?: string; // <-- ADDED for proper type checking
   abundanceInNature?: string; // <-- ADDED for proper type checking
+  stable?: string; // <-- ADDED for proper type checking
 }
 
