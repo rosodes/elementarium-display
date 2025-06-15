@@ -8,7 +8,7 @@ const SafetyTab = ({ element }: { element: Element }) => (
       <HydrogenSafetySection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-red-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
-        Данные о мерах безопасности, утилизации, опасностях и нормах для этого элемента будут показаны здесь.
+        Safety precautions, hazards, handling and disposal guidelines for this element will be displayed here.
       </p>
     )}
   </div>

@@ -8,7 +8,7 @@ const HistoryTab = ({ element }: { element: Element }) => (
       <HydrogenHistorySection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-orange-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
-        Информация об открытии, этимологии, исторических фактах и первооткрывателях элемента появится здесь.
+        Information about discovery, etymology, historical facts and discoverers of this element will be shown here.
       </p>
     )}
   </div>

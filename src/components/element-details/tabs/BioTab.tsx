@@ -8,7 +8,7 @@ const BioTab = ({ element }: { element: Element }) => (
       <HydrogenBioSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-rose-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
-        Информация о биологической роли, токсичности или отсутствии таковых для элемента будет отображаться здесь.
+        Information about biological role, toxicity, or lack thereof will be displayed here for this element.
       </p>
     )}
   </div>

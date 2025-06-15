@@ -8,7 +8,7 @@ const CompoundsTab = ({ element }: { element: Element }) => (
       <HydrogenCompoundsSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-emerald-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
-        Здесь будут описаны основные химические соединения и химия элемента.
+        Here you will find essential information about key compounds and chemistry of this element.
       </p>
     )}
   </div>

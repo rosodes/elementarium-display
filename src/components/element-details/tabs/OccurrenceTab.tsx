@@ -8,7 +8,7 @@ const OccurrenceTab = ({ element }: { element: Element }) => (
       <HydrogenOccurrenceSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-indigo-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
-        Здесь будет расписана распространённость, основные минералы и источники элемента.
+        Information about occurrence, major minerals, and main sources of this element will appear here.
       </p>
     )}
   </div>
