@@ -19,6 +19,7 @@ import MagnesiumDetailSections from "../new-sections/MagnesiumDetailSections";
 import AluminumDetailSections from "../new-sections/AluminumDetailSections";
 import SiliconDetailSections from "../new-sections/SiliconDetailSections";
 import PhosphorusDetailSections from "../new-sections/PhosphorusDetailSections";
+import SulfurDetailSections from "../new-sections/SulfurDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -89,6 +90,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "13" && <AluminumDetailSections />}
       {element.atomic === "14" && <SiliconDetailSections />}
       {element.atomic === "15" && <PhosphorusDetailSections />}
+      {element.atomic === "16" && <SulfurDetailSections />}
     </div>
   );
 };
