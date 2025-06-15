@@ -2,7 +2,7 @@
 import React from "react";
 import { useLanguage } from "../../../context/LanguageContext";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
-import { Landmark, BookOpen, Timeline } from "lucide-react";
+import { Landmark, BookOpen } from "lucide-react"; // Removed Timeline import
 import HydrogenHistoryVisualBlock from "./HydrogenHistoryVisualBlock";
 
 const historyContent = {
