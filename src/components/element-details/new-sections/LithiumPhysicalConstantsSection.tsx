@@ -10,12 +10,14 @@ const LithiumPhysicalConstantsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="grid grid-cols-2 gap-2">
-          <div><strong>Melting Point:</strong> 453.69 K (180.5°C)</div>
-          <div><strong>Boiling Point:</strong> 1615 K (1342°C)</div>
+          <div><strong>Melting Point:</strong> 453.7 K (180.6°C)</div>
+          <div><strong>Boiling Point:</strong> 1603 K (1330°C)</div>
           <div><strong>Density:</strong> 0.534 g/cm³</div>
           <div><strong>Hardness (Mohs):</strong> 0.6</div>
           <div><strong>Atomic Radius:</strong> 167 pm</div>
-          <div><strong>Thermal Conductivity:</strong> 84.8 W/(m·K)</div>
+          <div><strong>Thermal Conductivity:</strong> 85 W/(m·K)</div>
+          <div><strong>Electrical Resistivity:</strong> 92.8 nΩ·m</div>
+          <div><strong>Heat Capacity:</strong> 24.9 J/(mol·K)</div>
         </div>
       </CardContent>
     </Card>

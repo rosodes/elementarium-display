@@ -10,16 +10,12 @@ const LithiumInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Lightest metal and lightest solid element under standard conditions</li>
-          <li>Can float on water but reacts violently with it</li>
-          <li>Used in mood-stabilizing medications for bipolar disorder</li>
-          <li>Essential component in rechargeable lithium-ion batteries</li>
-          <li>Burns with a brilliant crimson flame</li>
-          <li>Can be cut with a knife due to its softness</li>
-          <li>One of only three elements created in the Big Bang (along with hydrogen and helium)</li>
-          <li>Chile produces about 40% of the world's lithium</li>
-          <li>Demand has skyrocketed due to electric vehicle batteries</li>
-          <li>Sometimes called "white gold" due to its value</li>
+          <li>Lightest metal and least dense solid element</li>
+          <li>Critical for rechargeable lithium-ion batteries</li>
+          <li>Used to treat bipolar disorder as lithium carbonate</li>
+          <li>Burns with a bright red flame</li>
+          <li>Was used in early nuclear fusion experiments</li>
+          <li>Liquefied can be magnetic at very high pressure</li>
         </ul>
       </CardContent>
     </Card>

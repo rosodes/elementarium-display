@@ -8,12 +8,19 @@ const LithiumOxStatesSection: React.FC = () => {
       <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
         <CardTitle className="text-lg">Oxidation States</CardTitle>
       </CardHeader>
-      <CardContent className="p-4">
-        <ul className="pl-4 list-disc text-xs space-y-1">
-          <li>Main: +1 (most common, e.g., LiCl, Li₂O, LiOH)</li>
-          <li>Lithium readily loses its outer electron to achieve noble gas configuration</li>
-          <li>Forms ionic compounds with non-metals</li>
-        </ul>
+      <CardContent className="p-4 text-xs">
+        <div className="space-y-2">
+          <div><strong>Primary oxidation state:</strong> +1 (only common state)</div>
+          <div><strong>Common compounds:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>+1: LiCl, LiOH, Li₂CO₃ (all stable)</li>
+            <li>Lithium forms ionic compounds</li>
+            <li>Does not exhibit other stable oxidation states</li>
+          </ul>
+          <div className="mt-2 text-gray-600 dark:text-gray-300">
+            Lithium easily loses its outer electron, behaving as a strong reducer.
+          </div>
+        </div>
       </CardContent>
     </Card>
   );

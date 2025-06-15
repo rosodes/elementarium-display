@@ -10,16 +10,15 @@ const LithiumNaturalOccurrenceSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Abundance in Earth's crust:</strong> 20 ppm</div>
+          <div><strong>Abundance in Earth's crust:</strong> ~20 ppm</div>
           <div><strong>Main sources:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>Spodumene (LiAlSi₂O₆) - most important ore</li>
-            <li>Petalite (LiAlSi₄O₁₀)</li>
-            <li>Lepidolite (mica mineral)</li>
-            <li>Salt brines (Chile, Argentina, Bolivia)</li>
-            <li>Seawater (very low concentration: 0.17 ppm)</li>
+            <li>Spodumene (LiAlSi₂O₆), lepidolite, petalite minerals</li>
+            <li>Brines from salt lakes, seawater</li>
+            <li>Trace amounts in nearly all igneous rocks</li>
           </ul>
-          <div><strong>Major deposits:</strong> Chile, Australia, Argentina, China</div>
+          <div><strong>Major producers:</strong> Australia, Chile, China, Argentina</div>
+          <div><strong>Not found as free metal</strong> — only in compounds</div>
         </div>
       </CardContent>
     </Card>

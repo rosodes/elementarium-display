@@ -10,12 +10,13 @@ const LithiumReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Extremely reactive alkali metal</li>
-          <li>Reacts violently with water to produce hydrogen gas and lithium hydroxide</li>
-          <li>Burns in air with a brilliant white flame</li>
-          <li>Forms ionic compounds with halogens and other non-metals</li>
-          <li>Must be stored under mineral oil or inert gas to prevent oxidation</li>
-          <li>Lower reactivity than other alkali metals due to small size</li>
+          <li>Reacts with water, producing LiOH and H₂ (less violently than Na/K)</li>
+          <li>Burns with crimson flame to form Li₂O</li>
+          <li>Oxidizes in air, must be stored under oil</li>
+          <li>Reacts with halogens to form ionic salts</li>
+          <li>Forms alloys with several metals</li>
+          <li>Does not react with nitrogen at room temperature (unlike Na/K)</li>
+          <li>Soft, but harder than other alkali metals</li>
         </ul>
       </CardContent>
     </Card>

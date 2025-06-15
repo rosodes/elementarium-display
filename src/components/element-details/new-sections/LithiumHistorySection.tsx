@@ -10,17 +10,10 @@ const LithiumHistorySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Discovery:</strong> 1817 by Johan August Arfwedson</div>
-          <div><strong>Location:</strong> Stockholm, Sweden</div>
-          <div><strong>Timeline:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>1817 - Discovered in petalite mineral by Arfwedson</li>
-            <li>1818 - Named "lithium" from Greek "lithos" (stone)</li>
-            <li>1821 - First isolated by William Thomas Brande</li>
-            <li>1855 - Large-scale production by electrolysis</li>
-            <li>1991 - First commercial lithium-ion battery by Sony</li>
-          </ul>
-          <div><strong>Etymology:</strong> From Greek "lithos" meaning stone, as it was first found in a mineral</div>
+          <div><strong>Discovery:</strong> 1817 by Johan August Arfvedson</div>
+          <div><strong>First isolated:</strong> 1821 by William Brande and Humphry Davy</div>
+          <div><strong>Name origin:</strong> From Greek "lithos" (stone)</div>
+          <div className="text-xs text-gray-500">First element discovered from a mineral (not plant/animal material).</div>
         </div>
       </CardContent>
     </Card>

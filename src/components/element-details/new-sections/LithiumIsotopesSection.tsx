@@ -12,16 +12,10 @@ const LithiumIsotopesSection: React.FC = () => {
         <div className="space-y-2">
           <div><strong>Stable isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>⁶Li (7.59% abundance) - used in nuclear applications</li>
-            <li>⁷Li (92.41% abundance) - most common isotope</li>
+            <li>⁶Li (7.5% abundance)</li>
+            <li>⁷Li (92.5% abundance) — most common</li>
           </ul>
-          <div><strong>Notable properties:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>⁶Li has high neutron absorption cross-section</li>
-            <li>⁷Li is used in lithium-ion batteries</li>
-            <li>Radioactive isotopes range from ³Li to ¹²Li</li>
-            <li>All radioactive isotopes have very short half-lives</li>
-          </ul>
+          <div><strong>Radioactive isotopes:</strong> All others are very short-lived.</div>
         </div>
       </CardContent>
     </Card>
