@@ -110,4 +110,5 @@ export interface ElementDetailsTranslations {
   unstable?: string; // <-- ADDED for proper type checking
   applicationsBlock?: string; // <-- ADDED for proper type checking
   health?: string; // <-- ADDED for proper type checking
+  warnings?: string; // <-- ADDED for proper type checking
 }
