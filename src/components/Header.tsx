@@ -1,3 +1,4 @@
+
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -36,64 +37,55 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
   const changeLanguageAndUpdateUrl = (newLang: string) => {
     setLanguage(newLang);
     
-    // Получаем текущий путь и обновляем языковой сегмент при необходимости
     const pathParts = location.pathname.split('/').filter(Boolean);
     let newPathParts: string[] = [];
     
     // Проверяем, является ли первый сегмент кодом языка
     if (pathParts.length > 0 && supportedLanguages.includes(pathParts[0])) {
       if (newLang === 'en') {
-        // Если переключаемся на английский, убираем языковой сегмент
         newPathParts = pathParts.slice(1);
       } else {
-        // Заменяем языковой сегмент
         newPathParts = [newLang, ...pathParts.slice(1)];
       }
     } else {
-      // Если первый сегмент не является языковым, добавляем языковой сегмент
-      // только если язык не английский
       if (newLang !== 'en') {
         newPathParts = [newLang, ...pathParts];
       } else {
         newPathParts = [...pathParts];
       }
     }
-    
-    // Навигация на новый URL
     const newPath = newPathParts.length === 0 ? '/' : `/${newPathParts.join('/')}`;
     navigate(newPath);
   };
 
   return (
-    <header className={`py-6 w-full ${isElementPage ? 'bg-transparent' : ''}`}>
+    <header className={`py-6 w-full bg-white dark:bg-gray-900`}>
       <div className="px-4 md:px-12">
         <div className="flex flex-col">
           {/* Top bar with title and controls */}
           <div className="flex justify-between items-center mb-4">
-            <div className="flex-1">
-              {!isElementPage && (
-                <>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100">{t.title}</h1>
-                  <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>
-                </>
-              )}
+            {/* Название сайта и подзаголовок — всегда слева */}
+            <div className="flex-1 min-w-0">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-gray-100 truncate">{t.title}</h1>
+              {/* Можно не показывать подзаголовок на странице элемента, если нужно компактнее */}
+              {!isElementPage && <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mt-2">{t.subtitle}</p>}
             </div>
 
+            {/* Поиск и Language/Theme Controls справа */}
             <div className="flex items-center space-x-6">
-              {/* Search bar positioned right */}
-              {onSearch && !isElementPage && <SearchBar onSearch={onSearch} />}
-              
+              {/* Поиск должен отображаться на всех страницах */}
+              <div className="hidden md:block">
+                <SearchBar onSearch={onSearch ?? (() => {})} />
+              </div>
               <LanguageThemeControls />
             </div>
           </div>
 
+          {/* Для главной страницы разделитель и (ранее тут была легенда) */}
           {!isElementPage && (
             <>
               <Separator className="my-4" />
-              {/* Legend component removed */}
-              {/* <div className="max-w-md">
-                <Legend />
-              </div> */}
+              {/* Legend компонент был удалён ранее */}
             </>
           )}
         </div>
