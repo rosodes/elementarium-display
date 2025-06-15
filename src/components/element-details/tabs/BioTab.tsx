@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenBioSection from "../new-sections/HydrogenBioSection";
@@ -6,6 +7,7 @@ import LithiumBioSection from "../new-sections/LithiumBioSection";
 import BerylliumBioSection from "../new-sections/BerylliumBioSection";
 import BoronBioSection from "../new-sections/BoronBioSection";
 import CarbonBioSection from "../new-sections/CarbonBioSection";
+import NitrogenBioSection from "../new-sections/NitrogenBioSection";
 
 const BioTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -21,6 +23,8 @@ const BioTab = ({ element }: { element: Element }) => (
       <BoronBioSection />
     ) : element.atomic === "6" ? (
       <CarbonBioSection />
+    ) : element.atomic === "7" ? (
+      <NitrogenBioSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-rose-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Information about biological role, toxicity, or lack thereof will be displayed here for this element.
