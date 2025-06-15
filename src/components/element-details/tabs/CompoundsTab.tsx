@@ -20,6 +20,8 @@ import SodiumOxStatesSection from "../new-sections/SodiumOxStatesSection";
 import SodiumReactivitySection from "../new-sections/SodiumReactivitySection";
 import MagnesiumOxStatesSection from "../new-sections/MagnesiumOxStatesSection";
 import MagnesiumReactivitySection from "../new-sections/MagnesiumReactivitySection";
+import AluminumOxStatesSection from "../new-sections/AluminumOxStatesSection";
+import AluminumReactivitySection from "../new-sections/AluminumReactivitySection";
 
 const CompoundsTab = ({ element }: { element: Element }) => (
   <div className="text-base space-y-6">
@@ -69,6 +71,11 @@ const CompoundsTab = ({ element }: { element: Element }) => (
       <>
         <MagnesiumOxStatesSection />
         <MagnesiumReactivitySection />
+      </>
+    ) : element.atomic === "13" ? (
+      <>
+        <AluminumOxStatesSection />
+        <AluminumReactivitySection />
       </>
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-emerald-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">

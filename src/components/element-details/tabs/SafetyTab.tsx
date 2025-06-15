@@ -10,6 +10,7 @@ import CarbonSafetySection from "../new-sections/CarbonSafetySection";
 import NeonSafetySection from "../new-sections/NeonSafetySection";
 import SodiumSafetySection from "../new-sections/SodiumSafetySection";
 import MagnesiumSafetySection from "../new-sections/MagnesiumSafetySection";
+import AluminumSafetySection from "../new-sections/AluminumSafetySection";
 
 const SafetyTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -31,6 +32,8 @@ const SafetyTab = ({ element }: { element: Element }) => (
       <SodiumSafetySection />
     ) : element.atomic === "12" ? (
       <MagnesiumSafetySection />
+    ) : element.atomic === "13" ? (
+      <AluminumSafetySection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-red-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Safety precautions, hazards, handling and disposal guidelines for this element will be displayed here.
