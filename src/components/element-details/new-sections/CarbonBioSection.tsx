@@ -10,28 +10,16 @@ const CarbonBioSection: React.FC = () => (
     <CardContent className="p-4 text-xs">
       <div className="space-y-2">
         <div>
-          <strong>Biological Role:</strong> Carbon is the backbone of all known life, vital for complex biomolecules and as a component of all living cells.
+          <strong>Essential for all life:</strong> Carbon is the backbone of all known biological molecules—proteins, DNA, carbohydrates, lipids. Central to biochemistry and metabolism (e.g. respiration, photosynthesis).
         </div>
         <ul className="list-disc pl-4 space-y-1">
-          <li>Basis of carbohydrates, lipids, proteins, nucleic acids (DNA/RNA).</li>
-          <li>Essential for metabolism, cell structure, energy storage and transfer.</li>
-          <li>Enables formation of millions of organic molecules via catenation and versatile bonding.</li>
-          <li>Plays a critical role in the global carbon cycle (respiration, photosynthesis, decomposition).</li>
-          <li>Human body mass: ~18% carbon.</li>
+          <li>Inhalation of high concentrations of carbon dioxide (CO<sub>2</sub>) can cause suffocation.</li>
+          <li>Carbon monoxide (CO) is highly toxic—binds hemoglobin and prevents oxygen transport.</li>
         </ul>
         <div>
-          <strong>Toxicity:</strong>
-        </div>
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Elemental forms (diamond, graphite): non-toxic to humans and animals.</li>
-          <li>Carbon dust (graphite/coal dust) may cause lung irritation with chronic exposure.</li>
-          <li>Some carbon compounds are extremely toxic: carbon monoxide (CO), cyanides, phosgene.</li>
-        </ul>
+          <strong>Natural forms:</strong> Diamond and graphite are non-toxic; activated carbon is used as medicine (antidote for poisoning).</div>
         <div>
-          <strong>Environmental & Health Impact:</strong> Carbon dioxide (CO₂) is a potent greenhouse gas; excessive levels cause respiratory issues or death in confined spaces.
-        </div>
-        <div className="mt-2 text-gray-600 dark:text-gray-300">
-          Carbon is indispensable for all life — but some compounds (like CO) are hazardous.
+          <strong>Health precautions:</strong> Coal dust and soot may cause lung disease in occupational settings. Micro- and nanocarbon (e.g. nanotubes) under study for possible toxicity.
         </div>
       </div>
     </CardContent>
