@@ -2,150 +2,154 @@
 import React from "react";
 import HydrogenHistoryVisualBlock from "./HydrogenHistoryVisualBlock";
 import { useLanguage } from "../../../context/LanguageContext";
-import { BookOpen } from "lucide-react";
+import { BookOpen, Landmark, Trophy, FlaskConical, Atom, Sun, ArrowUpRight } from "lucide-react";
 
 const detailedSummary = {
-  en: "Hydrogen was the first element isolated as a pure substance, fundamentally changing our understanding of chemistry and the structure of matter. From ballooning and airships to quantum theory, nuclear fusion, and the hydrogen economy, the story of hydrogen interweaves with milestones of science and technology.",
-  ru: "Водород стал первым элементом, выделенным как индивидуальное вещество, что перевернуло представления о строении материи. Его история — это путь от дирижаблей к квантовой механике, управляемому термояду и будущей водородной энергетике.",
-  uk: "Водень — перший ізольований хімічний елемент, який змінив розуміння природи речовини. Його історія пов'язана з дирижаблями, квантовою теорією, термоядерним синтезом і майбутньою енергетикою."
+  en: (
+    <>
+      <strong>Hydrogen</strong> holds a special place: the first element isolated as a pure substance and the key to understanding the building blocks of matter.
+      <br />
+      Its story stretches from the <b>Age of Enlightenment</b> to today’s <span className="font-semibold text-green-600 dark:text-green-300">hydrogen economy</span>.
+      <ul className="list-disc pl-5 mt-2 space-y-1">
+        <li><b>1766:</b> <span className="text-orange-700 dark:text-orange-300">Henry Cavendish</span> first isolated hydrogen, noticing it was a distinct, "inflammable air". Later, he found it combined with oxygen to form water.</li>
+        <li><b>1783:</b> <span className="text-cyan-700 dark:text-cyan-300">Antoine Lavoisier</span> proved water was not an element, but a compound of hydrogen and oxygen, and gave the element its lasting name.</li>
+        <li><b>19th c.:</b> Balloons and early airships symbolized flight’s new age but also dangerous accidents (as in the Hindenburg disaster, 1937).</li>
+        <li><b>1920s–30s:</b> Quantum theory leapt forward as the hydrogen atom revealed key features of atomic structure (Bohr’s model), and new isotopes, deuterium and tritium, were discovered, laying the foundation for controlled nuclear fusion.</li>
+        <li><b>1952:</b> The first hydrogen bomb—an epoch-making (if tragic) demonstration of nuclear fusion’s power.</li>
+        <li><b>21st c.:</b> Hydrogen emerges at the heart of green energy proposals, seen as a future clean fuel.</li>
+      </ul>
+      <div className="italic pt-2 text-sm text-sky-800 dark:text-sky-100">Hydrogen’s journey reads like the story of chemistry itself: tinkering, discovery, and hope for solutions to tomorrow’s challenges.</div>
+    </>
+  ),
+  ru: (
+    <>
+      <strong>Водород</strong> — первый выделенный элемент, ключ к пониманию материи.
+      <br />
+      Его путь: от эпохи Просвещения до идеи <span className="font-semibold text-green-700 dark:text-green-300">водородной энергетики</span> XXI века.
+      <ul className="list-disc pl-5 mt-2 space-y-1">
+        <li><b>1766:</b> <span className="text-orange-700 dark:text-orange-300">Генри Кавендиш</span> выделяет водород («горючий воздух») и доказывает его уникальные свойства. При сгорании превращается в воду.</li>
+        <li><b>1783:</b> <span className="text-cyan-700 dark:text-cyan-300">Антуан Лавуазье</span> доказывает, что вода — не стихия, а соединение водорода с кислородом, и даёт новую терминологию.</li>
+        <li><b>XIX век:</b> Воздушные шары, дирижабли, а также опасности (Гинденбург, 1937).</li>
+        <li><b>1920-е — 30-е:</b> Исследования спектра водорода и открытие дейтерия, трития вносят вклад в атомную модель, фундамент холодного и термоядерного синтеза.</li>
+        <li><b>1952:</b> Первый термоядерный взрыв — яркая, но трагическая иллюстрация силы водорода.</li>
+        <li><b>XXI век:</b> Ключевая надежда «зелёной» энергетики и будущего планеты.</li>
+      </ul>
+      <div className="italic pt-2 text-sm text-sky-800 dark:text-sky-100">История водорода — история самой химии: от подвижного эксперимента до решения проблем будущего.</div>
+    </>
+  ),
+  uk: (
+    <>
+      <strong>Водень</strong> — перший ідентифікований елемент та ключ до будови речовини.
+      <br />
+      Його шлях &mdash; від часів Просвітництва до <span className="font-semibold text-green-700 dark:text-green-300">зеленої водневої енергетики</span> сучасності.
+      <ul className="list-disc pl-5 mt-2 space-y-1">
+        <li><b>1766:</b> <span className="text-orange-700 dark:text-orange-300">Генрі Кавендіш</span> виділяє водень, доводить його унікальність; під час згоряння утворює воду.</li>
+        <li><b>1783:</b> <span className="text-cyan-700 dark:text-cyan-300">Антуан Лавуазьє</span> показує, що вода — це сполука, а не елемент, дає ім’я «hydrogène».</li>
+        <li><b>XIX ст.:</b> Дирижаблі, повітряні кулі і трагедії аеронавтики (Гінденбург, 1937).</li>
+        <li><b>1920–30-ті:</b> Дослідження атомної будови, відкриття ізотопів (дейтерій, тритій) — фундамент термоядерної енергетики.</li>
+        <li><b>1952:</b> Перша воднева бомба — технологічний і трагічний рубіж.</li>
+        <li><b>XXI століття:</b> Водень розглядають як паливо чистого майбутнього.</li>
+      </ul>
+      <div className="italic pt-2 text-sm text-sky-800 dark:text-sky-100">Історія водню — історія хімії, відкриттів і сподівань на майбутнє.</div>
+    </>
+  ),
 };
 
 const sources = {
-  en: "Sources: WebElements, CRC Handbook, Nature, Royal Society of Chemistry, Encyclopedia Britannica",
-  ru: "Источники: WebElements, CRC Handbook, Nature, Royal Society of Chemistry, Britannica",
-  uk: "Джерела: WebElements, CRC Handbook, Nature, Royal Society of Chemistry, Britannica"
-};
-
-const stepHeaders = {
-  en: [
-    "Discovery and Isolation",
-    "Naming and Early Studies",
-    "Milestone Experiments",
-    "Role in Physical Sciences",
-    "Modern Developments"
-  ],
-  ru: [
-    "Открытие и выделение",
-    "Название и ранние исследования",
-    "Важнейшие эксперименты",
-    "Роль в физических науках",
-    "Современные этапы"
-  ],
-  uk: [
-    "Відкриття й виділення",
-    "Назва й ранні дослідження",
-    "Ключові експерименти",
-    "Роль у фізичних науках",
-    "Сучасні досягнення"
-  ]
-};
-
-const factsByStep = {
-  en: [
-    [
-      "Henry Cavendish isolated and described hydrogen gas in 1766, identifying it as an inflammable air distinct from others.",
-      "Cavendish realized hydrogen produced water upon combustion, suggesting its chemical nature."
-    ],
-    [
-      "In 1783, Antoine Lavoisier demonstrated that water is a compound of hydrogen and oxygen, coining the name 'hydrogène' (Greek for 'water-former').",
-      "The term became universal in science; 'hydrogen' is still the root of its modern name."
-    ],
-    [
-      "Hydrogen was used in balloons and airships (notably the Hindenburg disaster in 1937).",
-      "20th-century astrophysics discovered hydrogen’s role in stellar fusion (the Sun’s energy)."
-    ],
-    [
-      "Hydrogen’s spectral lines shaped quantum theory (Bohr model).",
-      "Deuterium and tritium (heavy isotopes) were isolated in the 1930s, leading to advances in nuclear fusion."
-    ],
-    [
-      "First hydrogen bomb was detonated in 1952 via fusion of deuterium and tritium.",
-      "Hydrogen is central to proposals for a 'green hydrogen economy'."
-    ]
-  ],
-  ru: [
-    [
-      "Генри Кавендиш выделил водород в 1766 году, описав его как «горючий воздух».",
-      "Кавендиш установил, что при сгорании водорода образуется вода."
-    ],
-    [
-      "В 1783 году Лавуазье доказал, что вода — это соединение водорода и кислорода, дал название «hydrogène».",
-      "Этот термин стал международным стандартом."
-    ],
-    [
-      "Водород широко применялся в воздухоплавании и дирижаблях (катастрофа Гинденбурга, 1937).",
-      "В XX веке учёные открыли термоядерную роль водорода в звёздах."
-    ],
-    [
-      "Изучение спектров водорода привело к созданию квантовой механики (модель Бора).",
-      "Дейтерий и тритий были выделены в 1930-х — основа термоядерной энергетики."
-    ],
-    [
-      "Первая термоядерная бомба испытана в 1952 году.",
-      "Современные перспективы — развитие «зелёной» водородной энергетики."
-    ]
-  ],
-  uk: [
-    [
-      "Генрі Кавендіш у 1766 р. виділив водень як окремий газ ('горюче повітря').",
-      "Він встановив, що спалювання водню дає воду."
-    ],
-    [
-      "У 1783 р. Лавуазьє довів, що вода — це сполука водню й кисню, і ввів ім'я 'hydrogène'.",
-      "Назва закріпилася у світовій науці."
-    ],
-    [
-      "Водень використовувався у повітроплаванні та дирижаблях (Гінденбург, 1937).",
-      "XX століття — відкриття термоядерної ролі водню у зорях."
-    ],
-    [
-      "Спектри водню дали старт квантовій теорії (Борівська модель).",
-      "Дейтерій і тритій відкрили у 1930-х; це база для ядерного синтезу."
-    ],
-    [
-      "Першу водневу бомбу підірвали у 1952 році.",
-      "Сучасна наука — розвиток ринку «зеленого» водню."
-    ]
-  ]
+  en: (
+    <span>
+      Sources:&nbsp;
+      <a
+        href="https://www.webelements.com/hydrogen/history.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline text-blue-700 hover:text-blue-900 dark:text-blue-300"
+      >
+        WebElements: Hydrogen History
+        <ArrowUpRight size={13} className="inline ml-1 -mt-0.5" />
+      </a>
+      , CRC Handbook, Nature, Royal Society of Chemistry, Encyclopedia Britannica
+    </span>
+  ),
+  ru: (
+    <span>
+      Источники:&nbsp;
+      <a
+        href="https://www.webelements.com/hydrogen/history.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline text-blue-700 hover:text-blue-900 dark:text-blue-300"
+      >
+        WebElements: история H
+        <ArrowUpRight size={13} className="inline ml-1 -mt-0.5" />
+      </a>
+      , CRC Handbook, Nature, RSC, Britannica
+    </span>
+  ),
+  uk: (
+    <span>
+      Джерела:&nbsp;
+      <a
+        href="https://www.webelements.com/hydrogen/history.html"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="underline text-blue-700 hover:text-blue-900 dark:text-blue-300"
+      >
+        WebElements: історія водню
+        <ArrowUpRight size={13} className="inline ml-1 -mt-0.5" />
+      </a>
+      , CRC Handbook, Nature, RSC, Britannica
+    </span>
+  ),
 };
 
 const HydrogenHistoryCompositeSection: React.FC = () => {
   const { language } = useLanguage();
-  const t = { ...stepHeaders, en: stepHeaders.en }[language] || stepHeaders.en;
-  const facts = factsByStep[language] || factsByStep.en;
-  const summary = detailedSummary[language] || detailedSummary.en;
-  const src = sources[language] || sources.en;
+  // Титул основной секции — адаптируется под язык
+  const sectionTitle =
+    language === "ru"
+      ? "История открытия и изучения"
+      : language === "uk"
+      ? "Історія відкриття і досліджень"
+      : "History & Discovery";
 
   return (
-    <section className="space-y-4">
+    <section className="space-y-5">
+      {/* Визуальный таймлайн */}
       <HydrogenHistoryVisualBlock />
-      
-      <div className="mt-2">
-        <h2 className="text-lg font-bold mb-2 text-sky-700 dark:text-sky-200 flex items-center gap-2">
-          <BookOpen size={20} className="inline mb-1" />
-          {language === "ru"
-            ? "История открытия и изучения"
-            : language === "uk"
-            ? "Історія відкриття і досліджень"
-            : "History & Discovery"}
-        </h2>
-        <div className="space-y-3 ml-1">
-          {t.map((header, idx) => (
-            <div key={idx}>
-              <div className="font-semibold text-sky-800 dark:text-sky-300 mb-1">{`${idx + 1}. ${header}`}</div>
-              <ul className="list-disc pl-6 space-y-1 marker:text-sky-400">
-                {facts[idx].map((line, j) => (
-                  <li key={j}>{line}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="mt-3 bg-blue-50 dark:bg-gray-900 rounded p-3 text-[13px] text-blue-900 dark:text-blue-200 shadow border border-blue-100 dark:border-gray-700">
-          {summary}
-        </div>
-        <div className="mt-2 text-[11px] text-gray-500">{src}</div>
+
+      {/* Титул секции */}
+      <h2 className="text-lg font-bold mb-1 text-sky-700 dark:text-sky-200 flex items-center gap-2 mt-1">
+        <BookOpen size={20} className="inline mb-1" />
+        {sectionTitle}
+      </h2>
+
+      {/* Новая визуальная шкала: основные эпохи */}
+      <div className="flex flex-wrap gap-1 mt-1 text-[13px] font-medium">
+        <span className="px-2 py-1 rounded bg-orange-50 dark:bg-orange-900/30 text-orange-800 dark:text-orange-100 flex items-center gap-1">
+          <Landmark size={15} /> 18th c: Isolation & Naming
+        </span>
+        <span className="px-2 py-1 rounded bg-cyan-50 dark:bg-cyan-900/40 text-cyan-900 dark:text-cyan-100 flex items-center gap-1">
+          <Trophy size={15} /> Balloons & Airships
+        </span>
+        <span className="px-2 py-1 rounded bg-yellow-50 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-100 flex items-center gap-1">
+          <Atom size={15} /> Atomic Theory & Quantum
+        </span>
+        <span className="px-2 py-1 rounded bg-red-50 dark:bg-red-900/30 text-red-700 dark:text-red-100 flex items-center gap-1">
+          <FlaskConical size={15} /> Fusion & Bombs
+        </span>
+        <span className="px-2 py-1 rounded bg-green-50 dark:bg-green-900/30 text-green-800 dark:text-green-100 flex items-center gap-1">
+          <Sun size={15} /> Energy of the Future
+        </span>
       </div>
+
+      {/* Подробное содержательное summary */}
+      <div className="mt-2 rounded bg-blue-50 dark:bg-gray-900 border border-blue-100 dark:border-gray-700 shadow px-3 py-3 text-[14px] text-blue-900 dark:text-blue-200">
+        {detailedSummary[language] || detailedSummary.en}
+      </div>
+
+      {/* Список источников */}
+      <div className="mt-3 text-[12px] text-gray-600 dark:text-gray-400">{sources[language] || sources.en}</div>
     </section>
   );
 };
