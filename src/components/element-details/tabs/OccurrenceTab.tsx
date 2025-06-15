@@ -1,6 +1,6 @@
 import React from "react";
 import { Element } from "../../../data/elementTypes";
-import HydrogenOccurrenceSection from "../new-sections/HydrogenOccurrenceSection";
+import HydrogenNaturalOccurrenceSection from "../new-sections/HydrogenNaturalOccurrenceSection";
 import HeliumNaturalOccurrenceSection from "../new-sections/HeliumNaturalOccurrenceSection";
 import LithiumNaturalOccurrenceSection from "../new-sections/LithiumNaturalOccurrenceSection";
 import BerylliumNaturalOccurrenceSection from "../new-sections/BerylliumNaturalOccurrenceSection";
@@ -13,11 +13,12 @@ import AluminumNaturalOccurrenceSection from "../new-sections/AluminumNaturalOcc
 import SiliconNaturalOccurrenceSection from "../new-sections/SiliconNaturalOccurrenceSection";
 import PhosphorusNaturalOccurrenceSection from "../new-sections/PhosphorusNaturalOccurrenceSection";
 import SulfurNaturalOccurrenceSection from "../new-sections/SulfurNaturalOccurrenceSection";
+import FluorineNaturalOccurrenceSection from "../new-sections/FluorineNaturalOccurrenceSection";
 
 const OccurrenceTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (
-      <HydrogenOccurrenceSection />
+      <HydrogenNaturalOccurrenceSection />
     ) : element.atomic === "2" ? (
       <HeliumNaturalOccurrenceSection />
     ) : element.atomic === "3" ? (
@@ -28,22 +29,16 @@ const OccurrenceTab = ({ element }: { element: Element }) => (
       <BoronNaturalOccurrenceSection />
     ) : element.atomic === "6" ? (
       <CarbonNaturalOccurrenceSection />
+    ) : element.atomic === "7" ? (
+      <NitrogenNaturalOccurrenceSection />
+    ) : element.atomic === "8" ? (
+      <OxygenNaturalOccurrenceSection />
+    ) : element.atomic === "9" ? (
+      <FluorineNaturalOccurrenceSection />
     ) : element.atomic === "10" ? (
       <NeonNaturalOccurrenceSection />
-    ) : element.atomic === "11" ? (
-      <SodiumNaturalOccurrenceSection />
-    ) : element.atomic === "12" ? (
-      <MagnesiumNaturalOccurrenceSection />
-    ) : element.atomic === "13" ? (
-      <AluminumNaturalOccurrenceSection />
-    ) : element.atomic === "14" ? (
-      <SiliconNaturalOccurrenceSection />
-    ) : element.atomic === "15" ? (
-      <PhosphorusNaturalOccurrenceSection />
-    ) : element.atomic === "16" ? (
-      <SulfurNaturalOccurrenceSection />
     ) : (
-      <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-lime-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
+      <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-green-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Information about abundance and occurrence of this element in nature will be displayed here.
       </p>
     )}

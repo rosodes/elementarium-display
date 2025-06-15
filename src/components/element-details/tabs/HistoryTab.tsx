@@ -13,6 +13,7 @@ import AluminumHistorySection from "../new-sections/AluminumHistorySection";
 import SiliconHistorySection from "../new-sections/SiliconHistorySection";
 import PhosphorusHistorySection from "../new-sections/PhosphorusHistorySection";
 import SulfurHistorySection from "../new-sections/SulfurHistorySection";
+import FluorineHistorySection from "../new-sections/FluorineHistorySection";
 
 const HistoryTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -28,6 +29,12 @@ const HistoryTab = ({ element }: { element: Element }) => (
       <BoronHistorySection />
     ) : element.atomic === "6" ? (
       <CarbonHistorySection />
+    ) : element.atomic === "7" ? (
+      <NitrogenHistorySection />
+    ) : element.atomic === "8" ? (
+      <OxygenHistorySection />
+    ) : element.atomic === "9" ? (
+      <FluorineHistorySection />
     ) : element.atomic === "10" ? (
       <NeonHistorySection />
     ) : element.atomic === "11" ? (

@@ -13,6 +13,7 @@ import AluminumExtractionSection from "../new-sections/AluminumExtractionSection
 import SiliconExtractionSection from "../new-sections/SiliconExtractionSection";
 import PhosphorusExtractionSection from "../new-sections/PhosphorusExtractionSection";
 import SulfurExtractionSection from "../new-sections/SulfurExtractionSection";
+import FluorineExtractionSection from "../new-sections/FluorineExtractionSection";
 
 const ProductionTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -28,25 +29,19 @@ const ProductionTab = ({ element }: { element: Element }) => (
       <BoronExtractionSection />
     ) : element.atomic === "6" ? (
       <CarbonExtractionSection />
+    ) : element.atomic === "7" ? (
+      <NitrogenExtractionSection />
+    ) : element.atomic === "8" ? (
+      <OxygenExtractionSection />
+    ) : element.atomic === "9" ? (
+      <FluorineExtractionSection />
     ) : element.atomic === "10" ? (
       <NeonExtractionSection />
-    ) : element.atomic === "11" ? (
-      <SodiumExtractionSection />
-    ) : element.atomic === "12" ? (
-      <MagnesiumExtractionSection />
-    ) : element.atomic === "13" ? (
-      <AluminumExtractionSection />
-    ) : element.atomic === "14" ? (
-      <SiliconExtractionSection />
-    ) : element.atomic === "15" ? (
-      <PhosphorusExtractionSection />
-    ) : element.atomic === "16" ? (
-      <SulfurExtractionSection />
     ) : (
-      <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-lime-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
+      <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-purple-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Methods of production, industrial synthesis and relevant data for this element will be shown here.
       </p>
-    )}
+    }
   </div>
 );
 export default ProductionTab;

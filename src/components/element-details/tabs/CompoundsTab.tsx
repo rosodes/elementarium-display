@@ -1,99 +1,59 @@
 import React from "react";
 import { Element } from "../../../data/elementTypes";
-import HydrogenCompoundsSection from "../new-sections/HydrogenCompoundsSection";
+import HydrogenOxStatesSection from "../new-sections/HydrogenOxStatesSection";
 import HeliumOxStatesSection from "../new-sections/HeliumOxStatesSection";
-import HeliumReactivitySection from "../new-sections/HeliumReactivitySection";
 import LithiumOxStatesSection from "../new-sections/LithiumOxStatesSection";
-import LithiumReactivitySection from "../new-sections/LithiumReactivitySection";
 import BerylliumOxStatesSection from "../new-sections/BerylliumOxStatesSection";
-import BerylliumReactivitySection from "../new-sections/BerylliumReactivitySection";
 import BoronOxStatesSection from "../new-sections/BoronOxStatesSection";
-import BoronReactivitySection from "../new-sections/BoronReactivitySection";
 import CarbonOxStatesSection from "../new-sections/CarbonOxStatesSection";
-import CarbonReactivitySection from "../new-sections/CarbonReactivitySection";
+import NitrogenOxStatesSection from "../new-sections/NitrogenOxStatesSection";
+import OxygenOxStatesSection from "../new-sections/OxygenOxStatesSection";
 import FluorineOxStatesSection from "../new-sections/FluorineOxStatesSection";
-import FluorineReactivitySection from "../new-sections/FluorineReactivitySection";
 import NeonOxStatesSection from "../new-sections/NeonOxStatesSection";
-import NeonReactivitySection from "../new-sections/NeonReactivitySection";
 import SodiumOxStatesSection from "../new-sections/SodiumOxStatesSection";
-import SodiumReactivitySection from "../new-sections/SodiumReactivitySection";
 import MagnesiumOxStatesSection from "../new-sections/MagnesiumOxStatesSection";
-import MagnesiumReactivitySection from "../new-sections/MagnesiumReactivitySection";
 import AluminumOxStatesSection from "../new-sections/AluminumOxStatesSection";
-import AluminumReactivitySection from "../new-sections/AluminumReactivitySection";
 import SiliconOxStatesSection from "../new-sections/SiliconOxStatesSection";
 import PhosphorusOxStatesSection from "../new-sections/PhosphorusOxStatesSection";
 import SulfurOxStatesSection from "../new-sections/SulfurOxStatesSection";
 
 const CompoundsTab = ({ element }: { element: Element }) => (
-  <div className="text-base space-y-6">
+  <div className="text-base">
     {element.atomic === "1" ? (
-      <HydrogenCompoundsSection />
+      <HydrogenOxStatesSection />
     ) : element.atomic === "2" ? (
-      <>
-        <HeliumOxStatesSection />
-        <HeliumReactivitySection />
-      </>
+      <HeliumOxStatesSection />
     ) : element.atomic === "3" ? (
-      <>
-        <LithiumOxStatesSection />
-        <LithiumReactivitySection />
-      </>
+      <LithiumOxStatesSection />
     ) : element.atomic === "4" ? (
-      <>
-        <BerylliumOxStatesSection />
-        <BerylliumReactivitySection />
-      </>
+      <BerylliumOxStatesSection />
     ) : element.atomic === "5" ? (
-      <>
-        <BoronOxStatesSection />
-        <BoronReactivitySection />
-      </>
+      <BoronOxStatesSection />
     ) : element.atomic === "6" ? (
-      <>
-        <CarbonOxStatesSection />
-        <CarbonReactivitySection />
-      </>
+      <CarbonOxStatesSection />
+    ) : element.atomic === "7" ? (
+      <NitrogenOxStatesSection />
+    ) : element.atomic === "8" ? (
+      <OxygenOxStatesSection />
     ) : element.atomic === "9" ? (
-      <>
-        <FluorineOxStatesSection />
-        <FluorineReactivitySection />
-      </>
+      <FluorineOxStatesSection />
     ) : element.atomic === "10" ? (
-      <>
-        <NeonOxStatesSection />
-        <NeonReactivitySection />
-      </>
+      <NeonOxStatesSection />
     ) : element.atomic === "11" ? (
-      <>
-        <SodiumOxStatesSection />
-        <SodiumReactivitySection />
-      </>
+      <SodiumOxStatesSection />
     ) : element.atomic === "12" ? (
-      <>
-        <MagnesiumOxStatesSection />
-        <MagnesiumReactivitySection />
-      </>
+      <MagnesiumOxStatesSection />
     ) : element.atomic === "13" ? (
-      <>
-        <AluminumOxStatesSection />
-        <AluminumReactivitySection />
-      </>
+      <AluminumOxStatesSection />
     ) : element.atomic === "14" ? (
-      <>
-        <SiliconOxStatesSection />
-      </>
+      <SiliconOxStatesSection />
     ) : element.atomic === "15" ? (
-      <>
-        <PhosphorusOxStatesSection />
-      </>
+      <PhosphorusOxStatesSection />
     ) : element.atomic === "16" ? (
-      <>
-        <SulfurOxStatesSection />
-      </>
+      <SulfurOxStatesSection />
     ) : (
-      <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-emerald-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
-        Here you will find essential information about key compounds and chemistry of this element.
+      <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-purple-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
+        Information about compounds, chemical properties, and typical reactions of this element will be displayed here.
       </p>
     )}
   </div>
