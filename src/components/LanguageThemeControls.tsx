@@ -1,3 +1,4 @@
+
 import { useValidatedTranslation } from '@/hooks/useValidatedTranslation';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
@@ -61,7 +62,8 @@ interface LanguageThemeControlsProps {
 }
 
 const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) => {
-  const { t, rawT } = useValidatedTranslation('LanguageThemeControls');
+  const { t } = useValidatedTranslation('LanguageThemeControls');
+  const { language, setLanguage, supportedLanguages } = useLanguage();
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
@@ -105,8 +107,8 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
     <div className={`flex items-center ${compact ? 'gap-1' : 'gap-3'} ml-auto`}>
       {/* Language selector с автогенерируемыми языками */}
       <LanguageSelector
-        language={rawT.language}
-        supportedLanguages={rawT.supportedLanguages}
+        language={language}
+        supportedLanguages={supportedLanguages}
         allLanguageOptions={allLanguageOptions}
         onChange={changeLanguageAndUpdateUrl}
         t={{

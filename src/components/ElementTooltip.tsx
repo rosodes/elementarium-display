@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
@@ -28,15 +29,15 @@ const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
   const getCategoryName = (): string => {
     if (!element.series) return '';
     const seriesMap: Record<string, string> = {
-      'Alkali': t.categories?.alkali || 'Щелочные металлы',
-      'Alkaline': t.categories?.alkaline || 'Щелочноземельные металлы',
-      'Transition': t.categories?.transition || 'Переходные металлы',
-      'Post-transition': t.categories?.postTransition || 'Постпереходные металлы',
-      'Metalloid': t.categories?.metalloid || 'Металлоиды',
-      'Nonmetal': t.categories?.nonmetal || 'Неметаллы',
-      'Noble': t.categories?.noble || 'Благородные газы',
-      'Lanthanide': t.categories?.lanthanide || 'Лантаноиды',
-      'Actinide': t.categories?.actinide || 'Актиноиды'
+      'Alkali': t('categories.alkali', 'Щелочные металлы'),
+      'Alkaline': t('categories.alkaline', 'Щелочноземельные металлы'),
+      'Transition': t('categories.transition', 'Переходные металлы'),
+      'Post-transition': t('categories.postTransition', 'Постпереходные металлы'),
+      'Metalloid': t('categories.metalloid', 'Металлоиды'),
+      'Nonmetal': t('categories.nonmetal', 'Неметаллы'),
+      'Noble': t('categories.noble', 'Благородные газы'),
+      'Lanthanide': t('categories.lanthanide', 'Лантаноиды'),
+      'Actinide': t('categories.actinide', 'Актиноиды')
     };
     return seriesMap[element.series] || element.series;
   };
