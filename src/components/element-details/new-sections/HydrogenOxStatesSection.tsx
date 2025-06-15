@@ -12,12 +12,12 @@ const HydrogenOxStatesSection: React.FC = () => {
         <CardTitle className="text-lg">Oxidation States</CardTitle>
       </CardHeader>
       <CardContent className="p-4">
-        <ul className="pl-4 list-disc text-xs space-y-1">
+        <ul className="pl-4 list-disc text-sm space-y-1">
           <li>Main: +1 (most common in compounds, e.g., H₂O, HCl)</li>
           <li>Also: -1 (in metal hydrides, e.g., NaH, LiH)</li>
           <li>Hydrogen does not form other stable oxidation states.</li>
         </ul>
-        <p className="text-xs mt-2 text-gray-600 dark:text-gray-300">
+        <p className="text-sm mt-2 text-gray-600 dark:text-gray-300">
           In molecular form (H₂), oxidation state is 0.
         </p>
       </CardContent>

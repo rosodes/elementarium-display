@@ -11,7 +11,7 @@ const HydrogenCommercialUsesSection: React.FC = () => {
       <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
         <CardTitle className="text-lg">Industrial & Everyday Uses</CardTitle>
       </CardHeader>
-      <CardContent className="p-4 text-xs">
+      <CardContent className="p-4 text-sm">
         <ul className="list-disc pl-4 space-y-1">
           <li>Fuel for rockets and space vehicles (liquid hydrogen/oxygen engines)</li>
           <li>Production of ammonia (NH₃) via the Haber-Bosch process (fertilizer industry)</li>

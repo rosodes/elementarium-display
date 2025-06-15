@@ -11,7 +11,7 @@ const HydrogenNaturalOccurrenceSection: React.FC = () => {
       <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
         <CardTitle className="text-lg">Natural Occurrence</CardTitle>
       </CardHeader>
-      <CardContent className="p-4 text-xs">
+      <CardContent className="p-4 text-sm">
         <ul className="list-disc pl-4 space-y-1">
           <li>Mainly as diatomic gas (H₂) in atmosphere (trace amounts on Earth; most escapes to space)</li>
           <li>Found in water (H₂O), all organic compounds</li>
