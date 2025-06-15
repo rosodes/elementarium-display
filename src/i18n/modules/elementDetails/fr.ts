@@ -1,4 +1,3 @@
-
 import { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsFr: ElementDetailsTranslations = {
@@ -108,5 +107,31 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   notes: "Notes",
   massNumber: "Nombre de masse",
   protonNumber: "Nombre de protons",
-  neutronNumber: "Nombre de neutrons"
+  neutronNumber: "Nombre de neutrons",
+
+  // Дополнительные популярные фразы для детalés элемента:
+  relatedElements: "Éléments apparentés",
+  seeAlso: "Voir aussi",
+  spectralLines: "Raies spectrales",
+  atomicModel: "Modèle atomique",
+  casNumber: "Numéro CAS",
+  discoverer: "Découvreur",
+  dateDiscovered: "Date de découverte",
+  alternativeNames: "Noms alternatifs",
+  namedAfter: "Nommé d’après",
+  mainGroup: "Groupe principal",
+  electronShells: "Couches électroniques",
+  abundanceInSea: "Abondance dans la mer",
+  abundanceInAtmosphere: "Abondance dans l’atmosphère",
+  uses: "Utilisations",
+  notesBlock: "Bloc de notes",
+  structureImage: "Image de la structure",
+  spectrum: "Spectre",
+  spectralClass: "Classe spectrale",
+  massSpectra: "Spectre de masse",
+  appearance: "Apparence",
+  naturalSources: "Sources naturelles",
+  artificialProduction: "Production artificielle",
+  oxidationStateDescription: "Description des états d’oxydation",
+  meltingBoilingDescription: "Description des points de fusion et d’ébullition"
 };
