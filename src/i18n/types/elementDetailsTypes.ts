@@ -1,4 +1,18 @@
 export interface ElementDetailsTranslations {
+  // Новый блок с вкладками:
+  tabs?: {
+    overview: string;
+    properties: string;
+    structure: string;
+    applications: string;
+    history: string;
+    abundance: string;
+    compounds?: string;
+    bio?: string;
+    production?: string;
+    safety?: string;
+    [key: string]: string | undefined; // для возможности расширения
+  };
   showMoreInfo?: string;
   viewOnWikipedia?: string;
   closeDetails?: string;

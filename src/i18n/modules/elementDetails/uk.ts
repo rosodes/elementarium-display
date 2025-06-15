@@ -1,9 +1,19 @@
-
-// Український переклад elementDetails, повністю синхронізований і без англійських fallbacks
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
+// Український переклад elementDetails, вкладки теперь вынесены в tabs
 export const elementDetailsUk: ElementDetailsTranslations = {
+  tabs: {
+    overview: "Огляд",
+    properties: "Властивості",
+    structure: "Атомна структура",
+    applications: "Застосування",
+    history: "Історія",
+    abundance: "Поширеність",
+    compounds: "Сполуки / Хімія",
+    bio: "Біологічна роль / Токсичність",
+    production: "Отримання / Синтез",
+    safety: "Безпека / Запобіжні заходи",
+  },
   showMoreInfo: "Показати більше інформації",
   viewOnWikipedia: "Переглянути у Вікіпедії",
   closeDetails: "Закрити",
