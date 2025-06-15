@@ -1,4 +1,3 @@
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 // Централизация вкладок: только в поле tabs
@@ -13,7 +12,10 @@ export const elementDetailsFr: ElementDetailsTranslations = {
     compounds: "Composés / Chimie",
     bio: "Rôle biologique / Toxicité",
     production: "Production / Synthèse",
-    safety: "Précautions / Sécurité"
+    safety: "Précautions / Sécurité",
+    symbol: "Symbole",
+    abundance: "Abondance",
+    stability: "Stabilité"
   },
   showMoreInfo: "En savoir plus",
   viewOnWikipedia: "Voir sur Wikipedia",
@@ -82,7 +84,6 @@ export const elementDetailsFr: ElementDetailsTranslations = {
   toxicityInfo: "Toxicité",
   bioRole: "Rôle biologique",
   precautions: "Précautions",
-  noToxicityInfo: "Aucune information sur la toxicité.",
   ecologyInfo: "Écologie",
   ecologicalImpact: "Impact écologique",
   reactivity: "Réactivité",

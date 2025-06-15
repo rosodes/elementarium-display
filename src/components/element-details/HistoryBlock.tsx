@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../data/elementTypes";
 import { useLanguage } from "../../context/LanguageContext";
@@ -29,7 +28,7 @@ const HistoryBlock = ({ element }: Props) => {
     <Card className="border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm my-4">
       <CardHeader className="flex flex-col items-center pb-2 pt-4">
         <BookOpen className="h-5 w-5 mb-1" />
-        <CardTitle className="text-sm font-medium text-center">{t.elementDetails.history || "History"}</CardTitle>
+        <CardTitle className="text-sm font-medium text-center">{t.elementDetails.tabs.history || "History"}</CardTitle>
       </CardHeader>
       <CardContent>
         <p className="text-xs text-center text-gray-600 dark:text-gray-300 mb-2">

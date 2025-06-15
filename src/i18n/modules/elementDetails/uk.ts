@@ -1,4 +1,3 @@
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 // Український переклад elementDetails, вкладки вынесены у tabs
@@ -14,12 +13,13 @@ export const elementDetailsUk: ElementDetailsTranslations = {
     bio: "Біологічна роль / Токсичність",
     production: "Отримання / Синтез",
     safety: "Безпека / Запобіжні заходи",
+    symbol: "Символ",
+    abundance: "Поширеність",
+    stability: "Стабільність"
   },
   showMoreInfo: "Показати більше інформації",
   viewOnWikipedia: "Переглянути у Вікіпедії",
   closeDetails: "Закрити",
-  // видалені дублі вкладок
-  properties: "Властивості",
   physicalProperties: "Фізичні властивості",
   atomicProperties: "Атомні властивості",
   moreDetails: "Додаткові відомості",
@@ -97,10 +97,9 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   yes: "Так",
   no: "Ні",
   // Меню: основні кнопки вкладок
-  compounds: "Сполуки / Хімія",
   bioRole: "Біологічна роль",
   toxicityInfo: "Токсичність",
   production: "Отримання / Синтез",
   precautions: "Безпека / Запобіжні заходи",
+  stability: "Стабільність",
 };
-

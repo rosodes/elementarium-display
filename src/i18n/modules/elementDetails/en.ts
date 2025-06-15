@@ -1,4 +1,3 @@
-
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
 export const elementDetailsEn: ElementDetailsTranslations = {
@@ -13,11 +12,13 @@ export const elementDetailsEn: ElementDetailsTranslations = {
     bio: "Biological Role / Toxicity",
     production: "Production / Synthesis",
     safety: "Safety / Precautions",
+    symbol: "Symbol",
+    abundance: "Abundance",
+    stability: "Stability"
   },
   showMoreInfo: "Show more information",
   viewOnWikipedia: "View on Wikipedia",
   closeDetails: "Close",
-  // ... Остальные ключи (кроме вкладок), дублирование убрано!
   physicalProperties: "Physical Properties",
   atomicProperties: "Atomic Properties",
   moreDetails: "More details",
@@ -98,4 +99,5 @@ export const elementDetailsEn: ElementDetailsTranslations = {
   toxicityInfo: "Toxicity",
   production: "Production / Synthesis",
   precautions: "Safety / Precautions",
+  stability: "Stability",
 };

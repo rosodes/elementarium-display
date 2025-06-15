@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element, ElementIsotope } from "../../data/elementTypes";
 import { useLanguage } from "../../context/LanguageContext";
@@ -30,16 +29,16 @@ const ElementIsotopesTable: React.FC<Props> = ({ isotopes, element }) => {
         <TableHeader>
           <TableRow>
             <TableHead>
-              {t.elementDetails?.symbol || "Symbol"}
+              {t.elementDetails.tabs.symbol || "Symbol"}
             </TableHead>
             <TableHead>
-              {t.elementDetails?.abundance || "Natural abundance, %"}
+              {t.elementDetails.tabs.abundance || "Natural abundance, %"}
             </TableHead>
             <TableHead>
-              {t.elementDetails?.stability || "Stability"}
+              {t.elementDetails.stability || "Stability"}
             </TableHead>
             <TableHead>
-              {t.elementDetails?.funFacts || "Details"}
+              {t.elementDetails.funFacts || "Details"}
             </TableHead>
           </TableRow>
         </TableHeader>

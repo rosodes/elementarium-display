@@ -1,3 +1,4 @@
+
 export interface ElementDetailsTabs {
   overview: string;
   properties: string;
@@ -9,10 +10,11 @@ export interface ElementDetailsTabs {
   bio: string;
   production: string;
   safety: string;
-  [key: string]: string;
+  symbol?: string;
+  stability?: string;
+  [key: string]: string | undefined;
 }
 
-// Обновленный основной тип: tabs теперь обязательный и строгий
 export interface ElementDetailsTranslations {
   tabs: ElementDetailsTabs;
   showMoreInfo?: string;
@@ -99,4 +101,5 @@ export interface ElementDetailsTranslations {
   toxicityInfo?: string;
   production?: string;
   precautions?: string;
+  stability?: string; // ADDED
 }
