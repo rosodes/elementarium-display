@@ -1,4 +1,3 @@
-
 import { Suspense, lazy } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -13,9 +12,9 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import SafeComponent from "./components/SafeComponent";
 
 // Lazy load pages
-const Index = lazy(() => import("./pages/Index"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-const ElementPage = lazy(() => import("./pages/ElementPage"));
+import Index from "./pages/Index";
+import NotFound from "./pages/NotFound";
+import ElementPage from "./pages/ElementPage";
 
 // Create a query client
 const queryClient = new QueryClient({
@@ -44,48 +43,47 @@ function AppContent() {
           <Toaster />
         </SafeComponent>
       </TooltipProvider>
-      
+
       <ErrorBoundary>
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
-            <Route path="/" element={
-              <SafeComponent>
-                <Index />
-              </SafeComponent>
-            } />
-            <Route path="/:lang" element={
-              <SafeComponent>
-                <Index />
-              </SafeComponent>
-            } />
-            
-            <Route path="/element/:elementId" element={
-              <SafeComponent>
-                <ElementPage />
-              </SafeComponent>
-            } />
-            <Route path="/:lang/element/:elementId" element={
-              <SafeComponent>
-                <ElementPage />
-              </SafeComponent>
-            } />
-            
-            <Route path="/index.html" element={<Navigate to="/" replace />} />
-            <Route path="/index" element={<Navigate to="/" replace />} />
-            
-            <Route path="/404" element={
-              <SafeComponent>
-                <NotFound />
-              </SafeComponent>
-            } />
-            
-            <Route path="*" element={
-              <SafeComponent>
-                <NotFound />
-              </SafeComponent>
-            } />
-          </Routes>
-        </Suspense>
+        {/* Больше не оборачиваем в Suspense — instant routing */}
+        <Routes>
+          <Route path="/" element={
+            <SafeComponent>
+              <Index />
+            </SafeComponent>
+          } />
+          <Route path="/:lang" element={
+            <SafeComponent>
+              <Index />
+            </SafeComponent>
+          } />
+
+          <Route path="/element/:elementId" element={
+            <SafeComponent>
+              <ElementPage />
+            </SafeComponent>
+          } />
+          <Route path="/:lang/element/:elementId" element={
+            <SafeComponent>
+              <ElementPage />
+            </SafeComponent>
+          } />
+
+          <Route path="/index.html" element={<Navigate to="/" replace />} />
+          <Route path="/index" element={<Navigate to="/" replace />} />
+
+          <Route path="/404" element={
+            <SafeComponent>
+              <NotFound />
+            </SafeComponent>
+          } />
+
+          <Route path="*" element={
+            <SafeComponent>
+              <NotFound />
+            </SafeComponent>
+          } />
+        </Routes>
       </ErrorBoundary>
     </ErrorBoundary>
   );
