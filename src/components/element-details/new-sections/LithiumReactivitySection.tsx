@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
+/** Химическая активность */
 const LithiumReactivitySection: React.FC = () => {
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">
@@ -10,14 +11,31 @@ const LithiumReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Reacts with water, producing LiOH and H₂ (less violently than Na/K)</li>
-          <li>Burns with crimson flame to form Li₂O</li>
-          <li>Oxidizes in air, must be stored under oil</li>
-          <li>Reacts with halogens to form ionic salts</li>
-          <li>Forms alloys with several metals</li>
-          <li>Does not react with nitrogen at room temperature (unlike Na/K)</li>
-          <li>Soft, but harder than other alkali metals</li>
+          <li>
+            Reacts <strong>slowly with water</strong> (slower than sodium/potassium), liberating hydrogen gas and forming lithium hydroxide: <span className="text-blue-700">2Li + 2H₂O → 2LiOH + H₂↑</span>
+          </li>
+          <li>
+            Burns with a distinctive <span className="text-red-600">crimson flame</span>, forming predominantly lithium oxide (Li₂O).
+          </li>
+          <li>
+            <strong>Oxidizes quickly in air,</strong> forming white coating of oxides and carbonates; must be kept under oil or inert atmosphere.
+          </li>
+          <li>
+            Reacts with halogens (Cl₂, Br₂, etc.) to form white crystalline salts (LiCl, LiBr...).
+          </li>
+          <li>
+            Forms alloys with magnesium, aluminum, and other light metals.
+          </li>
+          <li>
+            Unusually, lithium reacts with nitrogen at room temperature to form lithium nitride (Li₃N)—unique among alkali metals!
+          </li>
+          <li>
+            <strong>Harder</strong> than other alkali metals, can be cut with a knife.
+          </li>
         </ul>
+        <div className="mt-2 text-xs text-gray-500">
+          Sample must not contact water—fire risk!
+        </div>
       </CardContent>
     </Card>
   );

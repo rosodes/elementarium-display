@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
+/** Природное распространение */
 const LithiumNaturalOccurrenceSection: React.FC = () => {
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">
@@ -10,19 +11,29 @@ const LithiumNaturalOccurrenceSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Abundance in Earth's crust:</strong> ~20 ppm</div>
-          <div><strong>Main sources:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Spodumene (LiAlSi₂O₆), lepidolite, petalite minerals</li>
-            <li>Brines from salt lakes, seawater</li>
-            <li>Trace amounts in nearly all igneous rocks</li>
-          </ul>
-          <div><strong>Major producers:</strong> Australia, Chile, China, Argentina</div>
-          <div><strong>Not found as free metal</strong> — only in compounds</div>
+          <div>
+            <strong>Abundance in crust:</strong> ~20 ppm (parts per million), moderately rare.
+          </div>
+          <div>
+            <strong>Main minerals:</strong>
+            <ul className="list-disc pl-4">
+              <li>Spodumene (LiAlSi₂O₆) — key economic source</li>
+              <li>Lepidolite (a lithium mica, KLi₂Al(Al,Si)₃O₁₀(F,OH)₂)</li>
+              <li>Petalite (LiAlSi₄O₁₀)</li>
+            </ul>
+          </div>
+          <div>
+            <strong>In brines:</strong> Found in salt lakes, some groundwaters, and seawater (trace).
+          </div>
+          <div>
+            <strong>Major producers:</strong> Australia (hard rock), Chile & Argentina (brines), China, Zimbabwe.
+          </div>
+          <div>
+            <strong>Free lithium metal:</strong> Not found in nature—highly reactive; only occurs in compounds.
+          </div>
         </div>
       </CardContent>
     </Card>
   );
 };
-
 export default LithiumNaturalOccurrenceSection;
