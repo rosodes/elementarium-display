@@ -1,10 +1,11 @@
+
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { Separator } from '@/components/ui/separator';
 import { useLanguage } from '../../../context/LanguageContext';
-import PhysicalProperties from '../properties/PhysicalProperties';
-import ElementProperties from '../properties/ElementProperties';
-import AdditionalInfo from '../properties/AdditionalInfo';
+import PhysicalProperties from '../PhysicalProperties';
+import ElementProperties from '../ElementProperties';
+import AdditionalInfo from '../AdditionalInfo';
 import ElementOxidationStatesSection from '../ElementOxidationStatesSection';
 
 // Import detail sections for each element
