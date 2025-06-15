@@ -18,6 +18,8 @@ import NeonOxStatesSection from "../new-sections/NeonOxStatesSection";
 import NeonReactivitySection from "../new-sections/NeonReactivitySection";
 import SodiumOxStatesSection from "../new-sections/SodiumOxStatesSection";
 import SodiumReactivitySection from "../new-sections/SodiumReactivitySection";
+import MagnesiumOxStatesSection from "../new-sections/MagnesiumOxStatesSection";
+import MagnesiumReactivitySection from "../new-sections/MagnesiumReactivitySection";
 
 const CompoundsTab = ({ element }: { element: Element }) => (
   <div className="text-base space-y-6">

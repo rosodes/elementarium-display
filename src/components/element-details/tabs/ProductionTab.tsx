@@ -9,6 +9,7 @@ import BoronExtractionSection from "../new-sections/BoronExtractionSection";
 import CarbonExtractionSection from "../new-sections/CarbonExtractionSection";
 import NeonExtractionSection from "../new-sections/NeonExtractionSection";
 import SodiumExtractionSection from "../new-sections/SodiumExtractionSection";
+import MagnesiumExtractionSection from "../new-sections/MagnesiumExtractionSection";
 
 const ProductionTab = ({ element }: { element: Element }) => (
   <div className="text-base">

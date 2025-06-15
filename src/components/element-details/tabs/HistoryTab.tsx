@@ -9,6 +9,7 @@ import BoronHistorySection from "../new-sections/BoronHistorySection";
 import CarbonHistorySection from "../new-sections/CarbonHistorySection";
 import NeonHistorySection from "../new-sections/NeonHistorySection";
 import SodiumHistorySection from "../new-sections/SodiumHistorySection";
+import MagnesiumHistorySection from "../new-sections/MagnesiumHistorySection";
 
 const HistoryTab = ({ element }: { element: Element }) => (
   <div className="text-base">

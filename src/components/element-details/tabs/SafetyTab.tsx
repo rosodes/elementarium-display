@@ -9,6 +9,7 @@ import BoronSafetySection from "../new-sections/BoronSafetySection";
 import CarbonSafetySection from "../new-sections/CarbonSafetySection";
 import NeonSafetySection from "../new-sections/NeonSafetySection";
 import SodiumSafetySection from "../new-sections/SodiumSafetySection";
+import MagnesiumSafetySection from "../new-sections/MagnesiumSafetySection";
 
 const SafetyTab = ({ element }: { element: Element }) => (
   <div className="text-base">
