@@ -9,13 +9,13 @@ const ZincInterestingFactsSection: React.FC = () => (
     </CardHeader>
     <CardContent className="p-4 text-xs">
       <ul className="list-disc pl-4 space-y-1">
-        <li>Essential for over 300 enzymes in human body</li>
-        <li>Zinc deficiency affects growth and immunity</li>
-        <li>Galvanized steel prevents rusting</li>
-        <li>Zinc oxide used in sunscreens</li>
-        <li>Brass is copper-zinc alloy</li>
-        <li>Zinc supplements can shorten cold duration</li>
-        <li>Second most abundant trace metal in humans</li>
+        <li>Second most abundant trace metal in human body</li>
+        <li>Essential for over 300 enzymes</li>
+        <li>Zinc deficiency affects taste and smell</li>
+        <li>Used in pennies (1982-present) as core material</li>
+        <li>Zinc-air batteries have very high energy density</li>
+        <li>Calamine lotion contains zinc oxide</li>
+        <li>Dies casting industry uses ~17% of zinc production</li>
       </ul>
     </CardContent>
   </Card>

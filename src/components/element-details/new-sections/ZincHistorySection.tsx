@@ -9,13 +9,12 @@ const ZincHistorySection: React.FC = () => (
     </CardHeader>
     <CardContent className="p-4 text-xs">
       <ul className="list-disc pl-4 space-y-1">
-        <li>Used in alloys since ancient times (brass)</li>
-        <li>Pure zinc isolated by Andreas Marggraf (1746, Germany)</li>
-        <li>Name from German "Zink" (pointed, referring to crystal shape)</li>
-        <li>Ancient Greeks and Romans knew zinc alloys</li>
+        <li>Known to ancient civilizations (brass making)</li>
+        <li>Isolated as pure metal by Andreas Marggraf (1746, Germany)</li>
+        <li>Name from German "zink" meaning "pointed" (crystal shape)</li>
         <li>Industrial production began in 18th century</li>
         <li>Galvanization process developed in 1830s</li>
-        <li>Essential element role discovered in 20th century</li>
+        <li>Essential trace element discovered in 1960s</li>
       </ul>
     </CardContent>
   </Card>
