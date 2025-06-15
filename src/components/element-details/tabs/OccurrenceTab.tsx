@@ -12,6 +12,7 @@ import MagnesiumNaturalOccurrenceSection from "../new-sections/MagnesiumNaturalO
 import AluminumNaturalOccurrenceSection from "../new-sections/AluminumNaturalOccurrenceSection";
 import SiliconNaturalOccurrenceSection from "../new-sections/SiliconNaturalOccurrenceSection";
 import PhosphorusNaturalOccurrenceSection from "../new-sections/PhosphorusNaturalOccurrenceSection";
+import SulfurNaturalOccurrenceSection from "../new-sections/SulfurNaturalOccurrenceSection";
 
 const OccurrenceTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -39,6 +40,8 @@ const OccurrenceTab = ({ element }: { element: Element }) => (
       <SiliconNaturalOccurrenceSection />
     ) : element.atomic === "15" ? (
       <PhosphorusNaturalOccurrenceSection />
+    ) : element.atomic === "16" ? (
+      <SulfurNaturalOccurrenceSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-lime-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Information about abundance and occurrence of this element in nature will be displayed here.

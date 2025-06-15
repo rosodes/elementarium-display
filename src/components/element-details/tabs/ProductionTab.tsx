@@ -12,6 +12,7 @@ import MagnesiumExtractionSection from "../new-sections/MagnesiumExtractionSecti
 import AluminumExtractionSection from "../new-sections/AluminumExtractionSection";
 import SiliconExtractionSection from "../new-sections/SiliconExtractionSection";
 import PhosphorusExtractionSection from "../new-sections/PhosphorusExtractionSection";
+import SulfurExtractionSection from "../new-sections/SulfurExtractionSection";
 
 const ProductionTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -39,6 +40,8 @@ const ProductionTab = ({ element }: { element: Element }) => (
       <SiliconExtractionSection />
     ) : element.atomic === "15" ? (
       <PhosphorusExtractionSection />
+    ) : element.atomic === "16" ? (
+      <SulfurExtractionSection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-lime-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Methods of production, industrial synthesis and relevant data for this element will be shown here.

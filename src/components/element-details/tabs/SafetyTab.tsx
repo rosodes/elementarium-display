@@ -12,6 +12,7 @@ import MagnesiumSafetySection from "../new-sections/MagnesiumSafetySection";
 import AluminumSafetySection from "../new-sections/AluminumSafetySection";
 import SiliconSafetySection from "../new-sections/SiliconSafetySection";
 import PhosphorusSafetySection from "../new-sections/PhosphorusSafetySection";
+import SulfurSafetySection from "../new-sections/SulfurSafetySection";
 
 const SafetyTab = ({ element }: { element: Element }) => (
   <div className="text-base">
@@ -39,6 +40,8 @@ const SafetyTab = ({ element }: { element: Element }) => (
       <SiliconSafetySection />
     ) : element.atomic === "15" ? (
       <PhosphorusSafetySection />
+    ) : element.atomic === "16" ? (
+      <SulfurSafetySection />
     ) : (
       <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-red-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
         Safety precautions, hazards, handling and disposal guidelines for this element will be displayed here.
