@@ -1,24 +1,30 @@
 
-import ElementPageHeader from '../components/element-details/ElementPageHeader';
 import { useElementLogic } from './useElementLogic';
 import ElementMainContent from './ElementMainContent';
 
-/*
- * Fixes: 
- * - Only pass the required props to ElementMainContent as described by ElementMainContentProps.
- */
 const ElementPage = () => {
   const logic = useElementLogic();
 
-  // Map props as required by ElementMainContent
+  // Handler to navigate to a specific element
+  const handleNavigate = (element: { atomic: string | number }) => {
+    // By atomic number, navigate using the URL structure
+    const atomic = String(element.atomic);
+    // If using language prefix, use logic.lang
+    if (logic.lang && logic.lang !== "en") {
+      window.location.href = `/${logic.lang}/element/${atomic}`;
+    } else {
+      window.location.href = `/element/${atomic}`;
+    }
+  };
+
   return (
     <>
       <ElementMainContent
         element={logic.element ?? null}
-        loading={!!logic.isLoading}
-        error={logic.error ?? null}
-        onNavigate={logic.handleNavigateElement}
-        onClose={logic.handleClose}
+        loading={false}
+        error={null}
+        onNavigate={handleNavigate}
+        onClose={logic.handleHome}
       />
     </>
   );
