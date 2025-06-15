@@ -2,6 +2,7 @@
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenSafetySection from "../new-sections/HydrogenSafetySection";
+import HeliumSafetySection from "../new-sections/HeliumSafetySection";
 import LithiumSafetySection from "../new-sections/LithiumSafetySection";
 import BerylliumSafetySection from "../new-sections/BerylliumSafetySection";
 import BoronSafetySection from "../new-sections/BoronSafetySection";
@@ -10,6 +11,8 @@ const SafetyTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (
       <HydrogenSafetySection />
+    ) : element.atomic === "2" ? (
+      <HeliumSafetySection />
     ) : element.atomic === "3" ? (
       <LithiumSafetySection />
     ) : element.atomic === "4" ? (

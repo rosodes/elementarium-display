@@ -2,6 +2,7 @@
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import HydrogenProductionSection from "../new-sections/HydrogenProductionSection";
+import HeliumExtractionSection from "../new-sections/HeliumExtractionSection";
 import LithiumExtractionSection from "../new-sections/LithiumExtractionSection";
 import BerylliumExtractionSection from "../new-sections/BerylliumExtractionSection";
 import BoronExtractionSection from "../new-sections/BoronExtractionSection";
@@ -10,6 +11,8 @@ const ProductionTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (
       <HydrogenProductionSection />
+    ) : element.atomic === "2" ? (
+      <HeliumExtractionSection />
     ) : element.atomic === "3" ? (
       <LithiumExtractionSection />
     ) : element.atomic === "4" ? (
