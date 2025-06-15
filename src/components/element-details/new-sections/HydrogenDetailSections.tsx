@@ -1,4 +1,3 @@
-
 import React from "react";
 // ... импорт текущих секций как раньше
 import HydrogenPhysicalConstantsSection from "./HydrogenPhysicalConstantsSection";
@@ -18,6 +17,10 @@ import HydrogenUniverseBarChart from "./HydrogenUniverseBarChart";
 import HydrogenSpectralSeriesSection from "./HydrogenSpectralSeriesSection";
 import HydrogenEnergySection from "./HydrogenEnergySection";
 import HydrogenSafetySection from "./HydrogenSafetySection";
+import HydrogenOverviewVisualBlock from "./HydrogenOverviewVisualBlock";
+import HydrogenPropertiesVisualBlock from "./HydrogenPropertiesVisualBlock";
+import HydrogenAtomicStructureVisualBlock from "./HydrogenAtomicStructureVisualBlock";
+import HydrogenApplicationsVisualBlock from "./HydrogenApplicationsVisualBlock";
 import { useLanguage } from "../../../context/LanguageContext";
 
 /**
@@ -149,28 +152,45 @@ const SpectralAndIsotopeFacts = () => {
   );
 };
 
+/**
+ * Обновлённые секции для HydrogenDetailSections:
+ * - Для каждого блока — визуальный инфоблок, ссылками или инфографикой, tooltips, icons.
+ */
 const HydrogenDetailSections: React.FC = () => {
   return (
     <>
+      {/* Overview + визуальный блок-ссылки */}
       <OverviewTable />
+      <HydrogenOverviewVisualBlock />
+
+      {/* Properties/Physical Constants */}
       <HydrogenPhysicalConstantsSection />
+      <HydrogenPropertiesVisualBlock />
+
+      {/* Atomic structure, isotopes, уровни */}
       <HydrogenOxStatesSection />
+      <HydrogenAtomicStructureVisualBlock />
       <HydrogenReactivitySection />
       <HydrogenNaturalOccurrenceSection />
       <HydrogenIsotopesSection />
       <HydrogenVisualSection />
       <HydrogenHistorySection />
       <HydrogenInterestingFactsSection />
+
+      {/* Spectral series, isotopic facts */}
       <SpectralAndIsotopeFacts />
+
+      {/* Applications/Uses: визуальный блок */}
       <HydrogenExtractionSection />
+      <HydrogenApplicationsVisualBlock />
       <HydrogenCrystalStructureSection />
       <HydrogenCommercialUsesSection />
       <HydrogenComparisonsSection />
-      {/* добавлены новые расширенные секции */}
+
+      {/* New extended/visual blocks */}
       <HydrogenSpectralSeriesSection />
       <HydrogenEnergySection />
       <HydrogenSafetySection />
-      {/* Новые визуальные секции для школы/понятного изучения */}
       <HydrogenDistributionPieChart />
       <HydrogenUniverseBarChart />
     </>
