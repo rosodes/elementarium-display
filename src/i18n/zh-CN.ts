@@ -1,6 +1,4 @@
-
 import { TranslationData } from ".";
-import { commonZhCN } from "./modules/common/zh-CN"; // предположим, что добавлен новый модуль, если нет, оставим объект здесь
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
 import { categoriesEn } from "./modules/categories";
