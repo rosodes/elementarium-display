@@ -9,18 +9,27 @@ const ChlorineNaturalOccurrenceSection: React.FC = () => {
         <CardTitle className="text-lg">Natural Occurrence</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Never found as free element in nature due to high reactivity</li>
-          <li>Most abundant as chloride ion in seawater (1.9% by mass)</li>
-          <li>Major mineral: Halite (rock salt, NaCl)</li>
-          <li>Found in evaporite deposits and salt lakes</li>
-          <li>Present in many silicate minerals as trace element</li>
-          <li>Concentrated in salt domes and salt flats</li>
-          <li>Essential for life - major electrolyte in body fluids</li>
-          <li>Found in volcanic gases as HCl</li>
-          <li>Present in groundwater and brine deposits</li>
-          <li>20th most abundant element in Earth's crust</li>
-        </ul>
+        <div className="space-y-2">
+          <div><strong>Abundance in Earth's crust:</strong> 145 ppm</div>
+          <div><strong>19th most abundant element in crust</strong></div>
+          <div><strong>Natural sources:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Seawater (1.9% by weight as Cl⁻)</li>
+            <li>Rock salt deposits (halite - NaCl)</li>
+            <li>Brine wells and salt lakes</li>
+            <li>Evaporite minerals (sylvite KCl, carnallite KMgCl₃·6H₂O)</li>
+            <li>Volcanic gases (as HCl)</li>
+          </ul>
+          <div><strong>Biological occurrence:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Essential electrolyte in animal fluids</li>
+            <li>Component of stomach acid (HCl)</li>
+            <li>Maintains osmotic balance in cells</li>
+            <li>Critical for nerve function</li>
+          </ul>
+          <div><strong>Never found as free element in nature</strong></div>
+          <div><strong>Major sources:</strong> Dead Sea, Great Salt Lake, underground deposits</div>
+        </div>
       </CardContent>
     </Card>
   );

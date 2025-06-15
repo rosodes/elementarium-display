@@ -13,14 +13,20 @@ const SiliconIsotopesSection: React.FC = () => {
           <div><strong>Stable isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
             <li>²⁸Si (92.23% abundance) - most common isotope</li>
-            <li>²⁹Si (4.67% abundance) - used in NMR studies</li>
-            <li>³⁰Si (3.10% abundance) - used in isotope studies</li>
+            <li>²⁹Si (4.67% abundance)</li>
+            <li>³⁰Si (3.10% abundance)</li>
           </ul>
-          <div><strong>Notable radioactive isotopes:</strong></div>
+          <div><strong>Important radioactive isotopes:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>³²Si (half-life: 153 years) - cosmogenic isotope</li>
-            <li>³¹Si (half-life: 2.62 hours) - medical applications</li>
-            <li>All other isotopes have very short half-lives</li>
+            <li>³¹Si (half-life: 157.3 minutes) - medical tracers</li>
+            <li>³²Si (half-life: 153 years) - cosmogenic nuclide</li>
+          </ul>
+          <div><strong>Applications:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>²⁸Si for ultra-pure semiconductor applications</li>
+            <li>²⁹Si for NMR studies of silicates</li>
+            <li>³¹Si as radiotracer in biological research</li>
+            <li>Isotope studies in geochemistry</li>
           </ul>
         </div>
       </CardContent>

@@ -10,16 +10,16 @@ const SiliconReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Relatively unreactive at room temperature due to oxide layer</li>
-          <li>Reacts with oxygen at high temperatures: Si + O₂ → SiO₂</li>
-          <li>Reacts with halogens: Si + 2Cl₂ → SiCl₄</li>
-          <li>Dissolves in hydrofluoric acid: Si + 6HF → H₂SiF₆ + 2H₂</li>
-          <li>Reacts with strong bases: Si + 4OH⁻ + 2H₂O → SiO₄⁴⁻ + 2H₂</li>
-          <li>Forms silicides with metals at high temperatures</li>
+          <li>Relatively unreactive at room temperature</li>
+          <li>Forms protective oxide layer: Si + O₂ → SiO₂</li>
+          <li>Reacts with halogens at elevated temperatures</li>
+          <li>Dissolves in hot alkali: Si + 4NaOH → Na₄SiO₄ + 2H₂</li>
+          <li>Reacts with hydrofluoric acid: Si + 6HF → H₂SiF₆ + 2H₂</li>
+          <li>Forms carbide at high temperature: Si + C → SiC</li>
           <li>Does not react with most acids except HF</li>
-          <li>Can form silicon hydrides (silanes): SiH₄, Si₂H₆, etc.</li>
-          <li>Reacts with carbon at high temperatures to form silicon carbide</li>
-          <li>Forms organosilicon compounds with organic groups</li>
+          <li>Can form silanes (SiₙH₂ₙ₊₂) similar to alkanes</li>
+          <li>Burns in air at high temperature to form SiO₂</li>
+          <li>Forms extensive covalent network structures</li>
         </ul>
       </CardContent>
     </Card>

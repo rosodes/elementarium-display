@@ -9,18 +9,22 @@ const SiliconHistorySection: React.FC = () => {
         <CardTitle className="text-lg">Discovery & History</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Identified as element by Jöns Jacob Berzelius in 1824</li>
-          <li>First isolated by heating potassium fluorosilicate with potassium</li>
-          <li>Named from Latin "silex" meaning flint or hard stone</li>
-          <li>Antoine Lavoisier suspected silicon compounds were elements (1787)</li>
-          <li>Early confusion with carbon compounds due to similar properties</li>
-          <li>Pure silicon first produced in 1854 by Henri Deville</li>
-          <li>Industrial production began in early 1900s for steel making</li>
-          <li>Electronic grade silicon developed in 1950s for semiconductors</li>
-          <li>Silicon transistor invented at Bell Labs (1947-1954)</li>
-          <li>Led to the Silicon Valley technology revolution</li>
-        </ul>
+        <div className="space-y-2">
+          <div><strong>Discovery:</strong> 1824 by Jöns Jacob Berzelius (Sweden)</div>
+          <div><strong>Timeline:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>1787 - Antoine Lavoisier suspected silicon existence</li>
+            <li>1808 - Humphry Davy attempted isolation</li>
+            <li>1824 - Berzelius isolated impure silicon</li>
+            <li>1854 - Henri Sainte-Claire Deville purified silicon</li>
+            <li>1918 - Czochralski process for crystal growth</li>
+            <li>1940s - Beginning of semiconductor applications</li>
+            <li>1954 - First silicon solar cell</li>
+            <li>1958 - First integrated circuit</li>
+          </ul>
+          <div><strong>Etymology:</strong> From Latin "silex" (flint) + suffix "-on"</div>
+          <div><strong>Alternative names:</strong> Called "silicium" in many languages</div>
+        </div>
       </CardContent>
     </Card>
   );

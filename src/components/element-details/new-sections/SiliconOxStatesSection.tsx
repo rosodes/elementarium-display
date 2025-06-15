@@ -10,17 +10,18 @@ const SiliconOxStatesSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Primary oxidation states:</strong> +4, -4</div>
-          <div><strong>Most common compounds:</strong></div>
+          <div><strong>Common oxidation states:</strong> -4, +2, +4</div>
+          <div><strong>Most stable:</strong> +4</div>
+          <div><strong>Examples by oxidation state:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>+4: Silicon dioxide (SiO₂), silicon tetrachloride (SiCl₄)</li>
-            <li>+4: Silicates (various structures), silicic acid (H₄SiO₄)</li>
-            <li>+2: Silicon monoxide (SiO) - rare, unstable</li>
-            <li>-4: Silicides (e.g., Mg₂Si, CaSi₂)</li>
+            <li>-4: Silicides (Mg₂Si, Ca₂Si)</li>
+            <li>+2: Silicon monoxide (SiO)</li>
+            <li>+4: Silicon dioxide (SiO₂), silicates (SiO₄⁴⁻)</li>
+            <li>+4: Silicon tetrachloride (SiCl₄), silicic acid (H₄SiO₄)</li>
             <li>0: Elemental silicon (Si)</li>
           </ul>
           <div className="mt-2 text-gray-600 dark:text-gray-300">
-            Silicon forms covalent bonds in most compounds, rarely ionic.
+            Silicon preferentially forms covalent bonds due to its intermediate electronegativity.
           </div>
         </div>
       </CardContent>

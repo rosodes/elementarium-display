@@ -9,18 +9,21 @@ const AluminumNaturalOccurrenceSection: React.FC = () => {
         <CardTitle className="text-lg">Natural Occurrence</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Third most abundant element in Earth's crust (8.1%)</li>
-          <li>Most abundant metal in Earth's crust</li>
-          <li>Never found as pure metal in nature due to high reactivity</li>
-          <li>Main ore: Bauxite (Al₂O₃·nH₂O)</li>
-          <li>Other minerals: Corundum (Al₂O₃), Cryolite (Na₃AlF₆)</li>
-          <li>Found in clay minerals and feldspars</li>
-          <li>Present in gemstones: Ruby and sapphire (Al₂O₃ with impurities)</li>
-          <li>Widely distributed in igneous rocks</li>
-          <li>Major bauxite deposits in Australia, Guinea, Brazil, Jamaica</li>
-          <li>Recycling provides significant portion of commercial aluminum</li>
-        </ul>
+        <div className="space-y-2">
+          <div><strong>Abundance in Earth's crust:</strong> 8.23% (3rd most abundant element)</div>
+          <div><strong>Most abundant metal in Earth's crust</strong></div>
+          <div><strong>Main minerals:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Bauxite (Al₂O₃·nH₂O) - primary ore</li>
+            <li>Corundum (Al₂O₃) - including ruby and sapphire</li>
+            <li>Feldspar (KAlSi₃O₈, NaAlSi₃O₈)</li>
+            <li>Mica (complex aluminosilicates)</li>
+            <li>Clay minerals (kaolinite Al₂Si₂O₅(OH)₄)</li>
+            <li>Cryolite (Na₃AlF₆) - rare but important for extraction</li>
+          </ul>
+          <div><strong>Major deposits:</strong> Australia, Guinea, Brazil, Jamaica</div>
+          <div><strong>Never found free in nature due to high reactivity</strong></div>
+        </div>
       </CardContent>
     </Card>
   );

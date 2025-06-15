@@ -17,7 +17,7 @@ const AluminumPhysicalConstantsSection: React.FC = () => {
           <div><strong>Heat of fusion:</strong> 10.71 kJ/mol</div>
           <div><strong>Heat of vaporization:</strong> 294.0 kJ/mol</div>
           <div><strong>Thermal conductivity:</strong> 237 W/(m·K)</div>
-          <div><strong>Electrical resistivity:</strong> 26.50 nΩ·m</div>
+          <div><strong>Electrical resistivity:</strong> 26.5 nΩ·m</div>
           <div><strong>Young's modulus:</strong> 70 GPa</div>
           <div><strong>Shear modulus:</strong> 26 GPa</div>
           <div><strong>Bulk modulus:</strong> 76 GPa</div>

@@ -10,16 +10,16 @@ const ChlorineReactivitySection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>Highly reactive halogen, second only to fluorine</li>
-          <li>Reacts explosively with hydrogen: H₂ + Cl₂ → 2HCl</li>
+          <li>Highly reactive halogen gas</li>
+          <li>Reacts with hydrogen: H₂ + Cl₂ → 2HCl (explosive in sunlight)</li>
           <li>Forms chlorides with most metals</li>
-          <li>Disproportionates in water: Cl₂ + H₂O → HCl + HClO</li>
-          <li>Reacts with alkenes and alkynes (addition reactions)</li>
-          <li>Strong oxidizing agent in aqueous solution</li>
+          <li>Reacts with water: Cl₂ + H₂O → HCl + HClO</li>
+          <li>Disproportionates in alkaline solution: 3Cl₂ + 6OH⁻ → 5Cl⁻ + ClO₃⁻ + 3H₂O</li>
+          <li>Strong oxidizing agent</li>
           <li>Bleaches organic materials by oxidation</li>
-          <li>Reacts with ammonia to form nitrogen trichloride</li>
-          <li>Forms interhalogen compounds with other halogens</li>
-          <li>Corrodes many metals in presence of moisture</li>
+          <li>Reacts with hydrocarbons via substitution</li>
+          <li>Forms addition compounds with alkenes</li>
+          <li>Displaces bromine and iodine from their compounds</li>
         </ul>
       </CardContent>
     </Card>

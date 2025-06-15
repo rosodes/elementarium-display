@@ -6,26 +6,24 @@ const AluminumHistorySection: React.FC = () => {
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">
       <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">History & Discovery</CardTitle>
+        <CardTitle className="text-lg">Discovery & History</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <div className="space-y-2">
-          <div><strong>Discovery timeline:</strong></div>
+          <div><strong>Discovery:</strong> 1825 by Hans Christian Ørsted (Denmark)</div>
+          <div><strong>First isolation:</strong> 1827 by Friedrich Wöhler (Germany)</div>
+          <div><strong>Timeline:</strong></div>
           <ul className="list-disc pl-4 space-y-1">
-            <li>1754: Andreas Marggraf isolated alumina (Al₂O₃) from clay</li>
-            <li>1807: Sir Humphry Davy named the metal "aluminum"</li>
-            <li>1825: Hans Christian Ørsted first isolated metallic aluminum</li>
-            <li>1827: Friedrich Wöhler improved isolation method</li>
-            <li>1854: Henri Étienne Sainte-Claire Deville developed sodium reduction process</li>
-            <li>1886: Charles Martin Hall and Paul Héroult independently developed electrolytic process</li>
-            <li>1888: First commercial aluminum production began</li>
+            <li>1761 - Guyton de Morveau proposed "alumine" for alumina</li>
+            <li>1807 - Humphry Davy attempted isolation</li>
+            <li>1825 - Ørsted first produced aluminum metal</li>
+            <li>1845 - Wöhler improved production method</li>
+            <li>1854 - Henri Sainte-Claire Deville scaled up production</li>
+            <li>1886 - Hall-Héroult process developed</li>
+            <li>1889 - First commercial aluminum production</li>
           </ul>
-          <div><strong>Etymology:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>From Latin "alumen" meaning bitter salt</li>
-            <li>Originally called "alumium" by Davy, later "aluminum"</li>
-            <li>British prefer "aluminium" while Americans use "aluminum"</li>
-          </ul>
+          <div><strong>Etymology:</strong> From Latin "alumen" (alum)</div>
+          <div><strong>Early value:</strong> More precious than gold until mass production</div>
         </div>
       </CardContent>
     </Card>

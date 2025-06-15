@@ -6,23 +6,38 @@ const ChlorineCommercialUsesSection: React.FC = () => {
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">
       <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">Industrial & Everyday Uses</CardTitle>
+        <CardTitle className="text-lg">Commercial Uses</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Water treatment and disinfection (municipal and pools)</li>
-          <li>Production of PVC plastic and synthetic rubber</li>
-          <li>Pharmaceutical manufacturing (85% of medicines)</li>
-          <li>Paper and pulp bleaching</li>
-          <li>Pesticide and herbicide production</li>
-          <li>Metal processing and purification</li>
-          <li>Textile bleaching and processing</li>
-          <li>Food industry sanitation</li>
-          <li>Semiconductor manufacturing</li>
-          <li>Chemical intermediate for thousands of compounds</li>
-          <li>Medical disinfection and sterilization</li>
-          <li>Swimming pool and spa maintenance</li>
-        </ul>
+        <div className="space-y-2">
+          <div><strong>Water treatment:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Municipal water disinfection</li>
+            <li>Swimming pool sanitization</li>
+            <li>Wastewater treatment</li>
+            <li>Industrial water systems</li>
+          </ul>
+          <div><strong>Chemical industry:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>PVC plastic production (largest use)</li>
+            <li>Chlorinated solvents (methylene chloride)</li>
+            <li>Hydrochloric acid production</li>
+            <li>Phosgene and other intermediates</li>
+          </ul>
+          <div><strong>Pharmaceuticals:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Many drugs contain chlorine atoms</li>
+            <li>Antiseptics and disinfectants</li>
+            <li>Anesthetics</li>
+          </ul>
+          <div><strong>Other applications:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Paper and pulp bleaching</li>
+            <li>Textile processing</li>
+            <li>Metal extraction and refining</li>
+            <li>Pesticides and herbicides</li>
+          </ul>
+        </div>
       </CardContent>
     </Card>
   );

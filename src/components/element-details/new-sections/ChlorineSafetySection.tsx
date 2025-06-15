@@ -9,18 +9,35 @@ const ChlorineSafetySection: React.FC = () => {
         <CardTitle className="text-lg">Safety & Health</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
-        <ul className="list-disc pl-4 space-y-1">
-          <li><strong>Highly toxic:</strong> Severe respiratory irritant</li>
-          <li>Can cause chemical burns to skin and eyes</li>
-          <li>Pulmonary edema at high concentrations</li>
-          <li>Forms phosgene when mixed with organic compounds</li>
-          <li>Never mix with ammonia - produces toxic chloramine gas</li>
-          <li>Store in cool, dry, well-ventilated areas</li>
-          <li>Use appropriate PPE when handling</li>
-          <li>Emergency procedures required for leaks</li>
-          <li>Chronic exposure can cause respiratory problems</li>
-          <li>Regulated as hazardous material for transport</li>
-        </ul>
+        <div className="space-y-2">
+          <div><strong>Health hazards:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Highly toxic gas - causes severe respiratory irritation</li>
+            <li>Corrosive to eyes, skin, and mucous membranes</li>
+            <li>Can cause chemical burns and lung damage</li>
+            <li>Potentially fatal in high concentrations</li>
+          </ul>
+          <div><strong>Exposure limits:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>OSHA PEL: 1 ppm (ceiling limit)</li>
+            <li>NIOSH REL: 0.5 ppm (15-minute ceiling)</li>
+            <li>Immediately dangerous: 10 ppm</li>
+          </ul>
+          <div><strong>Safety measures:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Use in well-ventilated areas only</li>
+            <li>Proper respiratory protection required</li>
+            <li>Emergency shower and eyewash stations</li>
+            <li>Gas detection and alarm systems</li>
+            <li>Never mix with ammonia or hydrogen peroxide</li>
+          </ul>
+          <div><strong>Environmental concerns:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Chlorinated compounds can persist in environment</li>
+            <li>Some chlorine compounds deplete ozone layer</li>
+            <li>Chlorinated water produces trihalomethanes</li>
+          </ul>
+        </div>
       </CardContent>
     </Card>
   );

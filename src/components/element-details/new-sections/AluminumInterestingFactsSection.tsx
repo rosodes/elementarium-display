@@ -10,36 +10,18 @@ const AluminumInterestingFactsSection: React.FC = () => {
       </CardHeader>
       <CardContent className="p-4 text-xs">
         <ul className="list-disc pl-4 space-y-1">
-          <li>
-            Once more valuable than gold - Napoleon III used aluminum cutlery for special guests
-          </li>
-          <li>
-            The top of the Washington Monument is capped with aluminum (1884)
-          </li>
-          <li>
-            Infinitely recyclable - recycling uses 95% less energy than primary production
-          </li>
-          <li>
-            Forms protective oxide layer in 0.001 seconds when exposed to air
-          </li>
-          <li>
-            Used in thermite welding - can reach temperatures of 2500°C
-          </li>
-          <li>
-            Excellent electrical conductor (61% conductivity of copper) but lighter
-          </li>
-          <li>
-            Reflects 92% of visible light, making it ideal for mirrors and reflectors
-          </li>
-          <li>
-            Non-magnetic and non-sparking, important for safety applications
-          </li>
-          <li>
-            Can be made stronger than steel through alloying
-          </li>
-          <li>
-            The human body contains about 60-70 mg of aluminum
-          </li>
+          <li>Most abundant metal in Earth's crust (8.23%)</li>
+          <li>Lighter than steel but can be stronger when alloyed</li>
+          <li>100% recyclable without loss of properties</li>
+          <li>Conducts electricity and heat very well</li>
+          <li>Napoleon III served his most honored guests with aluminum utensils</li>
+          <li>Washington Monument's cap is made of aluminum</li>
+          <li>Reflects 92% of visible light</li>
+          <li>Forms protective oxide layer in 1/100th of a second</li>
+          <li>Used in space industry due to light weight</li>
+          <li>Aluminum foil was once called "tin foil"</li>
+          <li>Takes 95% less energy to recycle than to produce new aluminum</li>
+          <li>Can be welded, but requires special techniques</li>
         </ul>
       </CardContent>
     </Card>

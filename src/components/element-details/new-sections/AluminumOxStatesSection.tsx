@@ -15,7 +15,7 @@ const AluminumOxStatesSection: React.FC = () => {
           <ul className="list-disc pl-4 space-y-1">
             <li>+3: Aluminum oxide (Al₂O₃), aluminum chloride (AlCl₃)</li>
             <li>+3: Aluminum sulfate (Al₂(SO₄)₃), aluminum hydroxide (Al(OH)₃)</li>
-            <li>+3: Aluminum nitrate (Al(NO₃)₃), aluminum phosphate (AlPO₄)</li>
+            <li>+3: Aluminum nitrate (Al(NO₃)₃), aluminum fluoride (AlF₃)</li>
             <li>0: Metallic aluminum (Al)</li>
           </ul>
           <div className="mt-2 text-gray-600 dark:text-gray-300">

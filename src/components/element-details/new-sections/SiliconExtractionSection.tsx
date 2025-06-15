@@ -9,18 +9,28 @@ const SiliconExtractionSection: React.FC = () => {
         <CardTitle className="text-lg">Extraction & Production</CardTitle>
       </CardHeader>
       <CardContent className="p-4 text-xs">
-        <ul className="list-disc pl-4 space-y-1">
-          <li>Industrial: reduction of silica with carbon in electric furnace</li>
-          <li>Reaction: SiO₂ + 2C → Si + 2CO (at 2000°C)</li>
-          <li>Produces metallurgical grade silicon (98-99% pure)</li>
-          <li>Electronic grade: further purified by Siemens process</li>
-          <li>Siemens process: thermal decomposition of trichlorosilane</li>
-          <li>SiHCl₃ → Si + HCl (on heated silicon rods)</li>
-          <li>Zone refining used to achieve ultra-high purity</li>
-          <li>Major producers: China, Norway, Brazil, United States</li>
-          <li>Annual production: over 8 million tons globally</li>
-          <li>Electronic grade silicon much more expensive than metallurgical</li>
-        </ul>
+        <div className="space-y-2">
+          <div><strong>Industrial silicon production:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Carbothermic reduction of silica: SiO₂ + 2C → Si + 2CO</li>
+            <li>Electric arc furnace at 1900-2000°C</li>
+            <li>Produces metallurgical grade silicon (98-99% pure)</li>
+          </ul>
+          <div><strong>Electronic grade silicon:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Siemens process: SiHCl₃ → Si + HCl</li>
+            <li>Chemical vapor deposition on heated silicon rods</li>
+            <li>Produces 99.9999999% pure silicon</li>
+            <li>Zone refining for final purification</li>
+          </ul>
+          <div><strong>Crystal growth:</strong></div>
+          <ul className="list-disc pl-4 space-y-1">
+            <li>Czochralski process for single crystals</li>
+            <li>Float zone method for ultra-pure crystals</li>
+            <li>Creates silicon ingots up to 300mm diameter</li>
+          </ul>
+          <div><strong>Production scale:</strong> ~8 million tonnes/year globally</div>
+        </div>
       </CardContent>
     </Card>
   );
