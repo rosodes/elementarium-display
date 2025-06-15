@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Element } from "../../../data/elementTypes";
 import ElementOxidationStatesSection from "../ElementOxidationStatesSection";
@@ -10,6 +9,8 @@ import { useLanguage } from "../../../context/LanguageContext";
 import HydrogenDetailSections from "../new-sections/HydrogenDetailSections";
 import HeliumDetailSections from "../new-sections/HeliumDetailSections";
 import LithiumDetailSections from "../new-sections/LithiumDetailSections";
+import BerylliumDetailSections from "../new-sections/BerylliumDetailSections";
+import BoronDetailSections from "../new-sections/BoronDetailSections";
 import CarbonDetailSections from "../new-sections/CarbonDetailSections";
 import NitrogenDetailSections from "../new-sections/NitrogenDetailSections";
 import OxygenDetailSections from "../new-sections/OxygenDetailSections";
@@ -82,6 +83,8 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "1" && <HydrogenDetailSections />}
       {element.atomic === "2" && <HeliumDetailSections />}
       {element.atomic === "3" && <LithiumDetailSections />}
+      {element.atomic === "4" && <BerylliumDetailSections />}
+      {element.atomic === "5" && <BoronDetailSections />}
       {element.atomic === "6" && <CarbonDetailSections />}
       {element.atomic === "7" && <NitrogenDetailSections />}
       {element.atomic === "8" && <OxygenDetailSections />}
