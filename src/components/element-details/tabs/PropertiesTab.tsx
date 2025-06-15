@@ -29,6 +29,7 @@ import CalciumDetailSections from "../new-sections/CalciumDetailSections";
 import ScandiumDetailSections from "../new-sections/ScandiumDetailSections";
 import TitaniumDetailSections from "../new-sections/TitaniumDetailSections";
 import VanadiumDetailSections from "../new-sections/VanadiumDetailSections";
+import ChromiumDetailSections from "../new-sections/ChromiumDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -109,6 +110,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "21" && <ScandiumDetailSections />}
       {element.atomic === "22" && <TitaniumDetailSections />}
       {element.atomic === "23" && <VanadiumDetailSections />}
+      {element.atomic === "24" && <ChromiumDetailSections />}
     </div>
   );
 };
