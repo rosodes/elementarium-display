@@ -39,6 +39,12 @@ const titanium: Element = {
   },
   isotopes: 17,
   group: 4,
-  period: 4
+  period: 4,
+  block: "d",
+  category: "transition metal",
+  atomicMass: "47.867",
+  electronConfiguration: "1s² 2s² 2p⁶ 3s² 3p⁶ 4s² 3d²",
+  description: "Titanium is a strong, lightweight transition metal known for its high strength-to-weight ratio and resistance to corrosion. It is widely used in aerospace, medical implants, and sporting equipment.",
+  summary: "Titanium is often used for high-performance alloys, medical devices, and as a pigment in paints. It is distinguished by its low density, durability, and resistance to extreme environments."
 };
 export default titanium;
