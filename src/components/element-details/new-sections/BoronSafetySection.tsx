@@ -2,47 +2,34 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
-const BoronSafetySection: React.FC = () => {
-  return (
-    <Card className="my-4 border border-gray-200 dark:border-gray-700">
-      <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">Safety & Health</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 text-xs">
-        <div className="space-y-2">
-          <div><strong>General safety:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Elemental boron is relatively non-toxic</li>
-            <li>Some boron compounds can be harmful</li>
-            <li>Avoid inhalation of boron dust</li>
-            <li>Use proper ventilation when handling</li>
-          </ul>
-          <div><strong>Health effects:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Essential for plants in small amounts</li>
-            <li>May be beneficial for humans in trace amounts</li>
-            <li>Large doses can cause boric acid poisoning</li>
-            <li>Skin and eye irritation possible</li>
-          </ul>
-          <div><strong>Compound-specific hazards:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Boric acid: mild irritant, avoid ingestion</li>
-            <li>Borax: eye and respiratory irritant</li>
-            <li>Boron trifluoride: highly toxic and corrosive</li>
-            <li>Diborane: extremely toxic and flammable</li>
-          </ul>
-          <div><strong>Handling precautions:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Wear protective equipment when needed</li>
-            <li>Proper storage of reactive compounds</li>
-            <li>Emergency eye wash stations</li>
-            <li>Material safety data sheets consultation</li>
-          </ul>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+const BoronSafetySection: React.FC = () => (
+  <Card className="my-4 border border-blue-200 dark:border-blue-700">
+    <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
+      <CardTitle className="text-lg">Safety &amp; Precautions</CardTitle>
+    </CardHeader>
+    <CardContent className="p-4 text-xs space-y-2">
+      <div><strong>Elemental boron:</strong> Non-toxic and safe to handle.</div>
+      <div>
+        <strong>Major hazards:</strong>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Boric acid and borax: Mildly toxic if ingested, particularly dangerous for infants. May cause skin or eye irritation. Avoid inhalation of powders.</li>
+          <li>Boron dust (industrial): Respiratory tract irritation if inhaled. Use respiratory and dust protection where appropriate.</li>
+          <li>High borate exposure in water/soil: Toxic to aquatic life and harmful to many plants.</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Safety tips:</strong>
+        <ul className="list-disc pl-4 space-y-1">
+          <li>Avoid ingestion and prolonged contact with boron compounds.</li>
+          <li>Wear masks if handling boron dust or large quantities.</li>
+          <li>Use gloves and eye protection when working with concentrated products.</li>
+        </ul>
+      </div>
+      <div>
+        <strong>Regulatory:</strong> Boron compounds are regulated for use as food additives, and pesticide restrictions apply in agriculture (maximum residue levels).
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default BoronSafetySection;
-

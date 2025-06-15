@@ -1,32 +1,30 @@
+
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 
-const BoronHistorySection: React.FC = () => {
-  return (
-    <Card className="my-4 border border-gray-200 dark:border-gray-700">
-      <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
-        <CardTitle className="text-lg">Discovery & History</CardTitle>
-      </CardHeader>
-      <CardContent className="p-4 text-xs">
-        <div className="space-y-2">
-          <div><strong>Discovery:</strong> Isolated as an element in 1808 by Sir Humphry Davy (UK) and independently, by Joseph Louis Gay-Lussac & Louis Jacques Thénard (France).</div>
-          <div><strong>History:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Ancient: borax known in Egypt, Persia, China for glassmaking and metallurgy</li>
-            <li>Middle Ages: boron compounds (borax) used as fluxes for soldering/goldsmithing</li>
-            <li>19th century: boron studied for unique chemistry—electron deficiency, cluster compounds</li>
-            <li>20th century: boron chemistry explodes—boranes, superhard ceramics, nuclear uses</li>
-          </ul>
-          <div><strong>Etymology:</strong> Name from Arabic "buraq" (borax); symbol "B" from Latin boracium.</div>
-          <div><strong>Modern advances:</strong></div>
-          <ul className="list-disc pl-4 space-y-1">
-            <li>Boron fibers and ceramics in aerospace (since 1950s)</li>
-            <li>Boron neutron capture therapy for cancer (since 1970s)</li>
-          </ul>
-        </div>
-      </CardContent>
-    </Card>
-  );
-};
+const BoronHistorySection: React.FC = () => (
+  <Card className="my-4 border border-blue-200 dark:border-blue-700">
+    <CardHeader className="bg-blue-50 dark:bg-gray-800 p-4">
+      <CardTitle className="text-lg">History &amp; Discovery</CardTitle>
+    </CardHeader>
+    <CardContent className="p-4 text-xs space-y-2">
+      <div>
+        <strong>Early use:</strong> Boron compounds such as borax (Na<sub>2</sub>B<sub>4</sub>O<sub>7</sub>) and boric acid (H<sub>3</sub>BO<sub>3</sub>) were known and utilized since ancient times in glassmaking, metalworking flux, pottery, and medicine. Borax was traded along the Silk Road from Tibet and Persia.
+      </div>
+      <div>
+        <strong>Discovery:</strong> Although compounds were known, pure elemental boron wasn’t isolated until 1808. Sir Humphry Davy in England used electrolysis of borates; almost simultaneously, French chemists Joseph-Louis Gay-Lussac and Louis Jacques Thénard reduced boric acid with potassium. Both only obtained impure (non-metallic) samples.
+      </div>
+      <div>
+        <strong>Isolation of pure boron:</strong> Pure crystalline boron was not obtained until Moissan (1895, France), and fully pure boron forms are difficult to achieve even today.
+      </div>
+      <div>
+        <strong>Etymology:</strong> “Boron” comes from “borax”, which ultimately traces to the Arabic "bauraq".
+      </div>
+      <div>
+        <strong>Modern research:</strong> Boron science advanced in the 20th century, especially in chemistry (boranes, cluster chemistry), semiconductors, and nuclear technology.
+      </div>
+    </CardContent>
+  </Card>
+);
 
 export default BoronHistorySection;
