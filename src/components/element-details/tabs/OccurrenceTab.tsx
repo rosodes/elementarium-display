@@ -1,7 +1,7 @@
 
 import React from "react";
 import { Element } from "../../../data/elementTypes";
-import HydrogenNaturalOccurrenceSection from "../new-sections/HydrogenNaturalOccurrenceSection";
+import HydrogenOccurrenceSection from "../new-sections/HydrogenOccurrenceSection";
 import HeliumNaturalOccurrenceSection from "../new-sections/HeliumNaturalOccurrenceSection";
 import LithiumNaturalOccurrenceSection from "../new-sections/LithiumNaturalOccurrenceSection";
 import BerylliumNaturalOccurrenceSection from "../new-sections/BerylliumNaturalOccurrenceSection";
@@ -21,7 +21,7 @@ import FluorineNaturalOccurrenceSection from "../new-sections/FluorineNaturalOcc
 const OccurrenceTab = ({ element }: { element: Element }) => (
   <div className="text-base">
     {element.atomic === "1" ? (
-      <HydrogenNaturalOccurrenceSection />
+      <HydrogenOccurrenceSection />
     ) : element.atomic === "2" ? (
       <HeliumNaturalOccurrenceSection />
     ) : element.atomic === "3" ? (
@@ -47,4 +47,5 @@ const OccurrenceTab = ({ element }: { element: Element }) => (
     )}
   </div>
 );
+
 export default OccurrenceTab;
