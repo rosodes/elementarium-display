@@ -1,3 +1,4 @@
+
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
 import { Button } from '@/components/ui/button';
@@ -6,54 +7,54 @@ import React from "react";
 import { useLocation, useNavigate } from 'react-router-dom';
 import LanguageSelector from './LanguageSelector';
 
-// Массив языков теперь соответствует вашему списку полностью:
-const languageOptions = [
-  { code: "en",      name: "English", emoji: "🇬🇧" },
-  { code: "zh-CN",   name: "简体中文 (Chinese, Simplified)", emoji: "🇨🇳" },
-  { code: "zh-TW",   name: "繁體中文 (Chinese, Traditional)", emoji: "🇹🇼" },
-  { code: "es",      name: "Español (Spanish)", emoji: "🇪🇸" },
-  { code: "hi",      name: "हिन्दी (Hindi)", emoji: "🇮🇳" },
-  { code: "ar",      name: "العربية (Arabic)", emoji: "🇦🇪" },
-  { code: "pt-BR",   name: "Português (Brazilian)", emoji: "🇧🇷" },
-  { code: "pt-PT",   name: "Português (European)", emoji: "🇵🇹" },
-  { code: "bn",      name: "বাংলা (Bengali)", emoji: "🇧🇩" },
-  { code: "ru",      name: "Русский", emoji: "🇷🇺" },
-  { code: "ja",      name: "日本語 (Japanese)", emoji: "🇯🇵" },
-  { code: "pa",      name: "ਪੰਜਾਬੀ (Punjabi)", emoji: "🇮🇳" },
-  { code: "de",      name: "Deutsch (German)", emoji: "🇩🇪" },
-  { code: "jv",      name: "Basa Jawa (Javanese)", emoji: "🇮🇩" },
-  { code: "lah",     name: "لہندا (Western Punjabi)", emoji: "🇵🇰" },
-  { code: "tr",      name: "Türkçe (Turkish)", emoji: "🇹🇷" },
-  { code: "fr-FR",   name: "Français (French, European)", emoji: "🇫🇷" },
-  { code: "fr-CA",   name: "Français (French, Canada)", emoji: "🇨🇦" },
-  { code: "vi",      name: "Tiếng Việt (Vietnamese)", emoji: "🇻🇳" },
-  { code: "ta",      name: "தமிழ் (Tamil)", emoji: "🇮🇳" },
-  { code: "ur",      name: "اُردُو‎ (Urdu)", emoji: "🇵🇰" },
-  { code: "fa",      name: "فارسی (Persian/Farsi)", emoji: "🇮🇷" },
-  { code: "ml",      name: "മലയാളം (Malayalam)", emoji: "🇮🇳" },
-  { code: "ko",      name: "한국어 (Korean)", emoji: "🇰🇷" },
-  { code: "it",      name: "Italiano (Italian)", emoji: "🇮🇹" },
-  { code: "th",      name: "ไทย (Thai)", emoji: "🇹🇭" },
-  { code: "gu",      name: "ગુજરાતી (Gujarati)", emoji: "🇮🇳" },
-  { code: "pl",      name: "Polski (Polish)", emoji: "🇵🇱" },
-  { code: "uk",      name: "Українська (Ukrainian)", emoji: "🇺🇦" },
-  { code: "kn",      name: "ಕನ್ನಡ (Kannada)", emoji: "🇮🇳" },
-  { code: "sw",      name: "Kiswahili (Swahili)", emoji: "🇰🇪" },
-  { code: "ary",     name: "العربية المغربية (Moroccan Arabic)", emoji: "🇲🇦" },
-  { code: "af",      name: "Afrikaans (Afrikaans)", emoji: "🇿🇦" },
-  { code: "tl",      name: "Tagalog (Filipino)", emoji: "🇵🇭" },
-  { code: "fil",     name: "Filipino (Tagalog)", emoji: "🇵🇭" },
-  { code: "eu",      name: "Euskara (Basque)", emoji: "🇪🇸" },
-  { code: "su",      name: "Basa Sunda (Sundanese)", emoji: "🇮🇩" },
-  { code: "ha",      name: "Hausa (Hausa)", emoji: "🇳🇬" },
-  { code: "ro",      name: "Română (Romanian)", emoji: "🇷🇴" },
-  { code: "nl",      name: "Nederlands (Dutch)", emoji: "🇳🇱" },
-  { code: "el",      name: "Ελληνικά (Greek)", emoji: "🇬🇷" },
-  { code: "sr-Cyrl", name: "Српски (Serbian Cyrillic)", emoji: "🇷🇸" },
-  { code: "sr-Latn", name: "Srpski (Serbian Latin)", emoji: "🇷🇸" },
-  { code: "sl",      name: "Slovenščina (Slovenian)", emoji: "🇸🇮" },
-  { code: "sk",      name: "Slovenčina (Slovak)", emoji: "🇸🇰" },
-];
+// Универсальный справочник: emoji и локальное описание для всех языков, даже если их не загрузили
+const languageMeta: Record<string, { name: string; emoji: string }> = {
+  en:      { name: "English", emoji: "🇬🇧" },
+  "zh-CN": { name: "简体中文 (Chinese, Simplified)", emoji: "🇨🇳" },
+  "zh-TW": { name: "繁體中文 (Chinese, Traditional)", emoji: "🇹🇼" },
+  es:      { name: "Español (Spanish)", emoji: "🇪🇸" },
+  hi:      { name: "हिन्दी (Hindi)", emoji: "🇮🇳" },
+  ar:      { name: "العربية (Arabic)", emoji: "🇦🇪" },
+  "pt-BR": { name: "Português (Brazilian)", emoji: "🇧🇷" },
+  "pt-PT": { name: "Português (European)", emoji: "🇵🇹" },
+  bn:      { name: "বাংলা (Bengali)", emoji: "🇧🇩" },
+  ru:      { name: "Русский", emoji: "🇷🇺" },
+  ja:      { name: "日本語 (Japanese)", emoji: "🇯🇵" },
+  pa:      { name: "ਪੰਜਾਬੀ (Punjabi)", emoji: "🇮🇳" },
+  de:      { name: "Deutsch (German)", emoji: "🇩🇪" },
+  jv:      { name: "Basa Jawa (Javanese)", emoji: "🇮🇩" },
+  lah:     { name: "لہندا (Western Punjabi)", emoji: "🇵🇰" },
+  tr:      { name: "Türkçe (Turkish)", emoji: "🇹🇷" },
+  "fr-FR": { name: "Français (French, European)", emoji: "🇫🇷" },
+  "fr-CA": { name: "Français (French, Canada)", emoji: "🇨🇦" },
+  vi:      { name: "Tiếng Việt (Vietnamese)", emoji: "🇻🇳" },
+  ta:      { name: "தமிழ் (Tamil)", emoji: "🇮🇳" },
+  ur:      { name: "اُردُو‎ (Urdu)", emoji: "🇵🇰" },
+  fa:      { name: "فارسی (Persian/Farsi)", emoji: "🇮🇷" },
+  ml:      { name: "മലയാളം (Malayalam)", emoji: "🇮🇳" },
+  ko:      { name: "한국어 (Korean)", emoji: "🇰🇷" },
+  it:      { name: "Italiano (Italian)", emoji: "🇮🇹" },
+  th:      { name: "ไทย (Thai)", emoji: "🇹🇭" },
+  gu:      { name: "ગુજરાતી (Gujarati)", emoji: "🇮🇳" },
+  pl:      { name: "Polski (Polish)", emoji: "🇵🇱" },
+  uk:      { name: "Українська (Ukrainian)", emoji: "🇺🇦" },
+  kn:      { name: "ಕನ್ನಡ (Kannada)", emoji: "🇮🇳" },
+  sw:      { name: "Kiswahili (Swahili)", emoji: "🇰🇪" },
+  ary:     { name: "العربية المغربية (Moroccan Arabic)", emoji: "🇲🇦" },
+  af:      { name: "Afrikaans (Afrikaans)", emoji: "🇿🇦" },
+  tl:      { name: "Tagalog (Filipino)", emoji: "🇵🇭" },
+  fil:     { name: "Filipino (Tagalog)", emoji: "🇵🇭" },
+  eu:      { name: "Euskara (Basque)", emoji: "🇪🇸" },
+  su:      { name: "Basa Sunda (Sundanese)", emoji: "🇮🇩" },
+  ha:      { name: "Hausa (Hausa)", emoji: "🇳🇬" },
+  ro:      { name: "Română (Romanian)", emoji: "🇷🇴" },
+  nl:      { name: "Nederlands (Dutch)", emoji: "🇳🇱" },
+  el:      { name: "Ελληνικά (Greek)", emoji: "🇬🇷" },
+  "sr-Cyrl": { name: "Српски (Serbian Cyrillic)", emoji: "🇷🇸" },
+  "sr-Latn": { name: "Srpski (Serbian Latin)", emoji: "🇷🇸" },
+  sl:      { name: "Slovenščina (Slovenian)", emoji: "🇸🇮" },
+  sk:      { name: "Slovenčina (Slovak)", emoji: "🇸🇰" },
+};
 
 interface LanguageThemeControlsProps {
   compact?: boolean;
@@ -64,6 +65,19 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Формируем динамический массив для LanguageSelector:
+  const allLanguageOptions = React.useMemo(() => {
+    // Ключи только из реально поддерживаемых языков (из контекста)
+    return supportedLanguages.map((code) => {
+      const meta = languageMeta[code];
+      return {
+        code,
+        name: meta?.name || code,
+        emoji: meta?.emoji || "🌐"
+      }
+    });
+  }, [supportedLanguages]);
 
   // URL update logic when changing language
   const changeLanguageAndUpdateUrl = (newLang: string) => {
@@ -89,15 +103,14 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
 
   return (
     <div className={`flex items-center ${compact ? 'gap-1' : 'gap-3'} ml-auto`}>
-      {/* Language selector with emoji and search */}
+      {/* Language selector с автогенерируемыми языками */}
       <LanguageSelector
         language={language}
         supportedLanguages={supportedLanguages}
-        allLanguageOptions={languageOptions}
+        allLanguageOptions={allLanguageOptions}
         onChange={changeLanguageAndUpdateUrl}
         t={{
           selectLanguage: t.selectLanguage,
-          // Use correct key from the UITranslations
           searchLanguage: t.ui?.searchPlaceholder || "Search language…",
           noLanguagesFound: t.ui?.noResults || "Nothing found"
         }}
@@ -122,3 +135,4 @@ const LanguageThemeControls = ({ compact = false }: LanguageThemeControlsProps) 
 };
 
 export default LanguageThemeControls;
+
