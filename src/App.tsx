@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -25,17 +26,14 @@ const queryClient = new QueryClient({
 function App() {
   const initialLanguage = detectUserLanguage();
 
-  // На всякий случай логируем рендер верхнего компонента
-  console.log('App: before render HelmetProvider');
-
   return (
     <ErrorBoundary>
       <HelmetProvider>
         <QueryClientProvider client={queryClient}>
           <ThemeProvider>
             <LanguageProvider initialLanguage={initialLanguage}>
-              <AppTranslationValidator>
-                <Router>
+              <Router>
+                <AppTranslationValidator>
                   <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
                     <Routes>
                       <Route path="/" element={<HomePage />} />
@@ -46,8 +44,8 @@ function App() {
                     </Routes>
                     <Toaster />
                   </div>
-                </Router>
-              </AppTranslationValidator>
+                </AppTranslationValidator>
+              </Router>
             </LanguageProvider>
           </ThemeProvider>
           <ReactQueryDevtools initialIsOpen={false} />
