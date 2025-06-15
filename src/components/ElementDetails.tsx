@@ -111,46 +111,48 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
         <Tabs defaultValue="overview" value={tabValue} onValueChange={setTabValue} className="w-full">
           {/* Больше не sticky, без скроллинга, обертка для кнопок */}
           <div className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-            <TabsList /* убираем overflow-x-auto/no-scrollbar */ >
+            <TabsList>
               <TabsTrigger value="overview">
                 <Info size={18} className="mr-1 shrink-0" />
-                Overview
+                {t.elementDetails.overview || "Overview"}
               </TabsTrigger>
               <TabsTrigger value="properties">
                 <Droplets size={18} className="mr-1 shrink-0" />
-                Properties
+                {t.elementDetails.properties || "Properties"}
               </TabsTrigger>
               <TabsTrigger value="structure">
                 <Atom size={18} className="mr-1 shrink-0" />
-                Atomic Structure
+                {t.elementDetails.atomicStructure || "Atomic Structure"}
               </TabsTrigger>
               <TabsTrigger value="applications">
                 <FlaskConical size={18} className="mr-1 shrink-0" />
-                Applications
+                {t.elementDetails.applications || "Applications"}
               </TabsTrigger>
               <TabsTrigger value="history">
                 <BookOpen size={18} className="mr-1 shrink-0" />
-                History / Discovery
+                {t.elementDetails.history || "History / Discovery"}
               </TabsTrigger>
               <TabsTrigger value="occurrence">
                 <PieChart size={18} className="mr-1 shrink-0" />
-                Occurrence / Abundance
+                {t.elementDetails.abundance || "Occurrence / Abundance"}
               </TabsTrigger>
               <TabsTrigger value="compounds">
                 <Beaker size={18} className="mr-1 shrink-0" />
-                Compounds / Chemistry
+                {t.elementDetails.compounds || "Compounds / Chemistry"}
               </TabsTrigger>
               <TabsTrigger value="bio">
                 <ActivitySquare size={18} className="mr-1 shrink-0" />
-                Biological Role / Toxicity
+                {(t.elementDetails.bioRole && t.elementDetails.toxicityInfo)
+                  ? `${t.elementDetails.bioRole} / ${t.elementDetails.toxicityInfo}`
+                  : (t.elementDetails.bioRole || t.elementDetails.toxicityInfo || "Biological Role / Toxicity")}
               </TabsTrigger>
               <TabsTrigger value="production">
                 <Landmark size={18} className="mr-1 shrink-0" />
-                Production / Synthesis
+                {t.elementDetails.production || "Production / Synthesis"}
               </TabsTrigger>
               <TabsTrigger value="safety">
                 <Shield size={18} className="mr-1 shrink-0" />
-                Safety / Precautions
+                {t.elementDetails.precautions || "Safety / Precautions"}
               </TabsTrigger>
             </TabsList>
           </div>
