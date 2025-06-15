@@ -85,5 +85,16 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   conductivity: "Провідність",
   radioactive: "Радіоактивність",
   yes: "Так",
-  no: "Ні"
+  no: "Ні",
+  overview: "Огляд",
+  properties: "Властивості",
+  atomicStructure: "Атомна структура",
+  applications: "Застосування",
+  history: "Історія",
+  abundance: "Поширеність",
+  compounds: "Сполуки / Хімія",
+  bioRole: "Біологічна роль",
+  toxicityInfo: "Токсичність",
+  production: "Отримання / Синтез",
+  precautions: "Безпека / Запобіжні заходи",
 };
