@@ -4,7 +4,7 @@ import { Element as ElementType } from '../data/elementTypes';
 import { elements } from '../data/elements';
 import TableContainer from './periodic-table/TableContainer';
 import SearchContainer from './search/SearchContainer';
-import { useLanguage } from '../context/LanguageContext';
+import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import ElementDetails from './ElementDetails';
 
@@ -26,7 +26,7 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
       .filter((element): element is ElementType => {
         if (!element) return false;
         
-        const translatedName = t.ui?.elements?.[element.symbol.toLowerCase()] || element.name;
+        const translatedName = t('ui.elements.' + element.symbol.toLowerCase(), element.name);
         
         const matchesName = translatedName.toLowerCase().includes(query) || 
                            element.name.toLowerCase().includes(query);
@@ -35,12 +35,12 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
         
         return matchesName || matchesSymbol || matchesAtomic;
       });
-  }, [searchQuery, t.ui?.elements, language]);
+  }, [searchQuery, language]);
 };
 
 const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps) => {
   const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
-  const { t, language } = useLanguage();
+  const { t, language } = useValidatedTranslation('PeriodicTable');
   const navigate = useNavigate();
   const { lang } = useParams<{ lang?: string }>();
   const location = useLocation();
@@ -71,7 +71,7 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
     <section 
       className="w-full mx-auto"
       role="region"
-      aria-label={t.elementDetails?.elementTable || "Periodic Table"}
+      aria-label={t('ui.elementTable', "Periodic Table")}
     >
       <SearchContainer 
         searchQuery={searchQuery}

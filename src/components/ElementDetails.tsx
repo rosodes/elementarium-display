@@ -1,7 +1,8 @@
+
 import React, { useEffect, useState } from 'react';
 import { Element } from '../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../data/elements';
-import { useLanguage } from '../context/LanguageContext';
+import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
 import { getElement } from '../data/elements';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import ElementDetailVisualSections from "./element-details/visualizations/ElementDetailVisualSections";
@@ -44,7 +45,7 @@ interface ElementDetailsProps {
 }
 
 const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: ElementDetailsProps) => {
-  const { t } = useLanguage();
+  const { t } = useValidatedTranslation('ElementDetails');
   const { toast } = useToast();
   const categoryColor = element.category 
     ? getCategoryColor(element.category) 
@@ -62,7 +63,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
     if (!isFullPage) {
       toast({
         title: `${element.name} (${element.symbol})`,
-        description: `${t.elementDetails.atomicNumber}: ${element.atomic}`,
+        description: `${t('elementDetails.atomicNumber', 'Atomic Number')}: ${element.atomic}`,
         duration: 3000,
       });
     }
@@ -72,7 +73,7 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
     const timer = setTimeout(() => setAnimateEntry(false), 500);
     
     return () => clearTimeout(timer);
-  }, [element.atomic, toast, element.name, element.symbol, isFullPage, t.elementDetails.atomicNumber]);
+  }, [element.atomic, toast, element.name, element.symbol, isFullPage, t]);
   
   // Handle keyboard navigation
   useEffect(() => {
@@ -114,45 +115,43 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
             <TabsList>
               <TabsTrigger value="overview">
                 <Info size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.overview || "Overview"}
+                {t('elementDetails.tabs.overview', "Overview")}
               </TabsTrigger>
               <TabsTrigger value="properties">
                 <Droplets size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.properties || "Properties"}
+                {t('elementDetails.tabs.properties', "Properties")}
               </TabsTrigger>
               <TabsTrigger value="structure">
                 <Atom size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.structure || "Atomic Structure"}
+                {t('elementDetails.tabs.structure', "Atomic Structure")}
               </TabsTrigger>
               <TabsTrigger value="applications">
                 <FlaskConical size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.applications || "Applications"}
+                {t('elementDetails.tabs.applications', "Applications")}
               </TabsTrigger>
               <TabsTrigger value="history">
                 <BookOpen size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.history || "History / Discovery"}
+                {t('elementDetails.tabs.history', "History / Discovery")}
               </TabsTrigger>
               <TabsTrigger value="occurrence">
                 <PieChart size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.abundance || "Occurrence / Abundance"}
+                {t('elementDetails.tabs.abundance', "Occurrence / Abundance")}
               </TabsTrigger>
               <TabsTrigger value="compounds">
                 <Beaker size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.compounds || "Compounds / Chemistry"}
+                {t('elementDetails.tabs.compounds', "Compounds / Chemistry")}
               </TabsTrigger>
               <TabsTrigger value="bio">
                 <ActivitySquare size={18} className="mr-1 shrink-0" />
-                {(t.elementDetails.bioRole && t.elementDetails.toxicityInfo)
-                  ? `${t.elementDetails.bioRole} / ${t.elementDetails.toxicityInfo}`
-                  : (t.elementDetails.bioRole || t.elementDetails.toxicityInfo || "Biological Role / Toxicity")}
+                {t('elementDetails.tabs.bio', "Biological Role / Toxicity")}
               </TabsTrigger>
               <TabsTrigger value="production">
                 <Landmark size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.production || "Production / Synthesis"}
+                {t('elementDetails.tabs.production', "Production / Synthesis")}
               </TabsTrigger>
               <TabsTrigger value="safety">
                 <Shield size={18} className="mr-1 shrink-0" />
-                {t.elementDetails.tabs.safety || "Safety / Precautions"}
+                {t('elementDetails.tabs.safety', "Safety / Precautions")}
               </TabsTrigger>
             </TabsList>
           </div>

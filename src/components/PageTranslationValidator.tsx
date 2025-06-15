@@ -26,7 +26,17 @@ export const PageTranslationValidator: React.FC = () => {
             'elementDetails.atomicNumber',
             'elementDetails.showMoreInfo',
             'elementDetails.viewOnWikipedia',
-            'elementDetails.closeDetails'
+            'elementDetails.closeDetails',
+            'elementDetails.series',
+            'elementDetails.atomicWeight',
+            'elementDetails.electronConfig',
+            'elementDetails.discovered',
+            'elementDetails.meltingPoint',
+            'elementDetails.boilingPoint',
+            'elementDetails.density',
+            'elementDetails.electronegativity',
+            'elementDetails.valence',
+            'elementDetails.oxidationStates'
           ];
         }
         
@@ -40,10 +50,18 @@ export const PageTranslationValidator: React.FC = () => {
             'selectLanguage',
             'ui.loading',
             'ui.radioactive',
+            'ui.searchPlaceholder',
+            'ui.noResults',
             'legend.title',
             'categories.alkali',
             'categories.alkaline',
-            'categories.transition'
+            'categories.transition',
+            'categories.postTransition',
+            'categories.metalloid',
+            'categories.nonmetal',
+            'categories.noble',
+            'categories.lanthanide',
+            'categories.actinide'
           ];
         }
         
