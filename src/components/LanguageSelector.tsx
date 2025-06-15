@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import {
   Select,
   SelectTrigger,
@@ -35,20 +35,23 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
   );
 
   const [search, setSearch] = useState("");
-  // Lazy search if >40 langs, for really big lists
-  const [isSearching, setIsSearching] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Фокус только при открытии списка, не при каждом вводе (устранит исчезновение курсора)
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const filteredLanguages = useMemo(() => {
     const text = search.trim().toLowerCase();
     if (!text) return bigLanguageList;
-    if (bigLanguageList.length > 40) setIsSearching(true);
-    const result = bigLanguageList.filter((l) =>
+    return bigLanguageList.filter((l) =>
       l.name.toLowerCase().includes(text) ||
       l.code.toLowerCase().includes(text) ||
       (l.emoji && l.emoji.includes(text))
     );
-    setIsSearching(false);
-    return result;
   }, [search, bigLanguageList]);
 
   const selectedLanguage = bigLanguageList.find(l => l.code === language);
@@ -74,22 +77,17 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
       <SelectContent align="end" className="z-[200] bg-white dark:bg-gray-900 max-h-80 min-w-[200px] overflow-y-auto p-0" style={{ minWidth: 220 }}>
         <div className="p-2 sticky top-0 bg-white dark:bg-gray-900 z-10">
           <Input
-            aria-label={t.searchLanguage || "Find language"}
+            ref={inputRef}
+            aria-label={t.searchPlaceholder || "Find language"}
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder={t.searchLanguage || "Search…"}
+            placeholder={t.searchPlaceholder || "Search…"}
             className="h-8 px-2 text-sm border border-gray-200 dark:border-gray-800 focus:ring-2 focus:ring-blue-400 focus:outline-none"
-            autoFocus
             onKeyDown={e => e.stopPropagation()}
+            // autoFocus убрано, теперь только через ref
           />
         </div>
-        {/* Spinner-preview when searching REALLY many */}
-        {isSearching && (
-          <div className="flex justify-center py-3">
-            <span className="animate-spin w-5 h-5 border-2 border-gray-300 border-t-blue-600 rounded-full" />
-          </div>
-        )}
         {filteredLanguages.length > 0 ? (
           filteredLanguages.map((lang) => (
             <SelectItem
@@ -110,3 +108,4 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({
 };
 
 export default LanguageSelector;
+
