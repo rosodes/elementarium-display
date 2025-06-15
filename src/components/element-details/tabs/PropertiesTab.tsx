@@ -38,6 +38,7 @@ import NickelDetailSections from "../new-sections/NickelDetailSections";
 import CopperDetailSections from "../new-sections/CopperDetailSections";
 import ZincDetailSections from "../new-sections/ZincDetailSections";
 import GalliumDetailSections from "../new-sections/GalliumDetailSections";
+import GermaniumDetailSections from "../new-sections/GermaniumDetailSections";
 
 interface PropertiesTabProps {
   element: Element;
@@ -126,6 +127,7 @@ const PropertiesTab = ({ element, categoryColor }: PropertiesTabProps) => {
       {element.atomic === "29" && <CopperDetailSections />}
       {element.atomic === "30" && <ZincDetailSections />}
       {element.atomic === "31" && <GalliumDetailSections />}
+      {element.atomic === "32" && <GermaniumDetailSections />}
     </div>
   );
 };
