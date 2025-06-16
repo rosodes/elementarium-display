@@ -120,7 +120,7 @@ const Index = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+      <div className="min-h-screen">
         <Header onSearch={handleSearch} />
         <main>
           <Suspense fallback={

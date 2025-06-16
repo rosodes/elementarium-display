@@ -42,7 +42,7 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
   console.log('Header: About to return JSX');
 
   return (
-    <header className="w-full bg-white dark:bg-gray-900 py-3 md:py-3">
+    <header className="w-full bg-white dark:bg-gray-900 py-3 md:py-3 border-b border-gray-200 dark:border-gray-700 relative z-10">
       <div className="px-4 md:px-12">
         <div className="flex flex-col">
           {/* Top bar with site title (not h1!) and controls */}

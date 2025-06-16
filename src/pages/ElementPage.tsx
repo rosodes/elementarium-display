@@ -20,7 +20,7 @@ const ElementPage = () => {
   console.log('ElementPage: About to render with Header');
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
+    <div className="min-h-screen">
       <Header isElementPage={true} />
       <ElementMainContent
         element={logic.element ?? null}
