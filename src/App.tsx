@@ -20,7 +20,7 @@ function App() {
         <ThemeProvider>
           <LanguageProvider initialLanguage={initialLanguage}>
             <Router>
-              <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+              <div className="min-h-screen">
                 <Routes>
                   <Route path="/" element={<Index />} />
                   <Route path="/:lang" element={<Index />} />

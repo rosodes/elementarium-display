@@ -12,7 +12,6 @@ interface HeaderProps {
 }
 
 const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
-  console.log('Header component rendering, isElementPage:', isElementPage);
   const { t, language, setLanguage, supportedLanguages } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
@@ -39,15 +38,13 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
     navigate(newPath);
   };
 
-  console.log('Header: About to return JSX');
-
   return (
-    <header className="w-full bg-white dark:bg-gray-900 py-3 md:py-3 border-b border-gray-200 dark:border-gray-700 relative z-10">
-      <div className="px-4 md:px-12">
-        <div className="flex flex-col">
-          {/* Top bar with site title (not h1!) and controls */}
-          <div className="flex justify-between items-center mb-3">
-            {/* Site name always left, not h1 */}
+    <header className="w-full bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 z-50 relative">
+      <div className="container mx-auto px-4 py-3">
+        <div className="flex flex-col space-y-3">
+          {/* Top bar with site title and controls */}
+          <div className="flex justify-between items-center">
+            {/* Site name always left */}
             <div className="flex-1 min-w-0 flex items-center">
               <span className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 dark:text-gray-100 whitespace-nowrap">
                 {t.title}
@@ -60,7 +57,7 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
               )}
             </div>
             {/* Search & Lang/Theme controls right */}
-            <div className="flex items-center space-x-6">
+            <div className="flex items-center space-x-4">
               <div className="hidden md:block">
                 <SearchBar onSearch={onSearch ?? (() => {})} />
               </div>
@@ -69,7 +66,7 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
           </div>
           {/* Divider only on main page */}
           {!isElementPage && (
-            <Separator className="my-4" />
+            <Separator className="bg-gray-200 dark:bg-gray-700" />
           )}
         </div>
       </div>

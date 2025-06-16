@@ -9,11 +9,6 @@
   .f-block-container {
     margin-left: 2px;
   }
-
-  .periodic-table-container {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
 }
 
 @media (max-width: 1200px) {

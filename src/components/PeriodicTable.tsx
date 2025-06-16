@@ -68,7 +68,7 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
   
   return (
     <section 
-      className="w-full mx-auto"
+      className="w-full max-w-7xl mx-auto px-4"
       role="region"
       aria-label={t('ui.elementTable', "Periodic Table")}
     >
