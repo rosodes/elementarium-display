@@ -1,4 +1,3 @@
-
 import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
@@ -118,9 +117,9 @@ const Index = () => {
         </script>
       </Helmet>
 
-      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 w-full">
+      <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
         <Header onSearch={handleSearch} />
-        <main className="w-full">
+        <main>
           <Suspense fallback={
             <div className="flex justify-center items-center h-64">
               <LoadingSpinner size="lg" />
@@ -132,8 +131,8 @@ const Index = () => {
             />
           </Suspense>
         </main>
-        <div className="w-full flex flex-col md:flex-row justify-between items-start gap-6 px-4 pb-4">
-          <div className="flex-1 max-w-full">
+        <div className="flex flex-col md:flex-row justify-between items-start gap-6 px-4 pb-4">
+          <div className="flex-1">
             <header>
               <h2 className="text-lg font-bold mb-1">Таблица Менделеева – основы химии</h2>
               <h3 className="text-base font-semibold mb-2">Почему <span className="font-bold italic underline">Периодическая система</span> важна?</h3>
@@ -145,7 +144,7 @@ const Index = () => {
               <span className="font-bold italic underline">Таблица Менделеева</span> — уникальное научное достижение, служащее <span className="font-bold italic underline">основой всей современной химии</span>. Созданная <span className="font-bold italic underline">Дмитрием Ивановичем Менделеевым</span> в <span className="font-bold italic underline">1869&nbsp;году</span>, она упорядочивает все известные химические элементы по возрастанию их атомных номеров, сочетая их в группы и периоды по похожим свойствам. Такой подход позволяет быстро находить информацию об элементах, <span className="font-bold italic underline">предсказывать характеристики ещё не открытых веществ</span>, а также видеть закономерности в строении вещества. Сегодня таблица стала незаменимым инструментом для <span className="font-bold italic underline">школьников, студентов, преподавателей</span> и учёных во всём мире. С её помощью исследуются свойства новых материалов, развивается <span className="font-bold italic underline">медицина, энергетика, нанотехнологии</span> и многие другие отрасли науки и промышленности. Простота её структуры скрывает глубокую логику природы, помогая <span className="font-bold italic underline">раскрывать тайны окружающего мира</span>. В этом справочнике собраны все элементы, их свойства, история и современные научные данные.
             </p>
           </div>
-          <div className="flex-1 max-w-full">
+          <div className="flex-1">
             <section>
               <div className="pb-2 flex items-center">
                 <h2 className="text-base font-semibold">Цветовая легенда по блокам и категориям элементов</h2>

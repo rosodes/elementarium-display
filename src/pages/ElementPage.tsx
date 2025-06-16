@@ -1,6 +1,7 @@
 
 import { useElementLogic } from './useElementLogic';
 import ElementMainContent from './ElementMainContent';
+import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ElementPage = () => {
@@ -16,7 +17,8 @@ const ElementPage = () => {
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 w-full">
+      <Header isElementPage={true} />
       <ElementMainContent
         element={logic.element ?? null}
         loading={false}
@@ -24,7 +26,7 @@ const ElementPage = () => {
         onNavigate={handleNavigate}
         onClose={logic.handleHome}
       />
-    </>
+    </div>
   );
 };
 

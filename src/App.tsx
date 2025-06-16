@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { Toaster } from './components/ui/toaster';
-import HomePage from './pages/HomePage';
+import Index from './pages/Index';
 import ElementPage from './pages/ElementPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import { detectUserLanguage } from './lib/detectUserLanguage';
@@ -32,8 +32,8 @@ function App() {
                 }}
               >
                 <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/:lang" element={<HomePage />} />
+                  <Route path="/" element={<Index />} />
+                  <Route path="/:lang" element={<Index />} />
                   <Route path="/element/:atomicNumber" element={<ElementPage />} />
                   <Route path="/:lang/element/:atomicNumber" element={<ElementPage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
