@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ElementPage = () => {
+  console.log('ElementPage component rendering');
   const logic = useElementLogic();
   const navigate = useNavigate();
   const { lang } = useParams<{ lang?: string }>();
@@ -16,8 +17,10 @@ const ElementPage = () => {
     navigate(`${basePath}/element/${atomic}`);
   };
 
+  console.log('ElementPage: About to render with Header');
+
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200 w-full">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-200">
       <Header isElementPage={true} />
       <ElementMainContent
         element={logic.element ?? null}

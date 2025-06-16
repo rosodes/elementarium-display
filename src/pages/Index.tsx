@@ -10,6 +10,7 @@ import LoadingSpinner from '../components/ui/loading-spinner';
 const PeriodicTable = lazy(() => import('../components/PeriodicTable'));
 
 const Index = () => {
+  console.log('Index component rendering');
   const { t, setLanguage, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
   const { lang } = useParams<{ lang?: string }>();
@@ -79,6 +80,8 @@ const Index = () => {
       }
     }
   };
+
+  console.log('Index: About to render with Header');
 
   return (
     <>

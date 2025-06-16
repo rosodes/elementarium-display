@@ -12,6 +12,7 @@ interface HeaderProps {
 }
 
 const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
+  console.log('Header component rendering, isElementPage:', isElementPage);
   const { t, language, setLanguage, supportedLanguages } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
@@ -37,6 +38,8 @@ const Header = ({ onSearch, isElementPage = false }: HeaderProps) => {
     const newPath = newPathParts.length === 0 ? '/' : `/${newPathParts.join('/')}`;
     navigate(newPath);
   };
+
+  console.log('Header: About to return JSX');
 
   return (
     <header className="w-full bg-white dark:bg-gray-900 py-3 md:py-3">
