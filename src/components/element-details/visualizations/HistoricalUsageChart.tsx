@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Element } from '../../../data/elementTypes';
 import { useLanguage } from '../../../context/LanguageContext';
@@ -10,24 +10,30 @@ interface HistoricalUsageChartProps {
   categoryColor: string;
 }
 
-// Generate mock historical usage data
-const getHistoricalUsageData = (element: Element) => {
+// Generate stable historical usage data using element's atomic number as seed
+const generateStableHistoricalData = (atomicNumber: number) => {
+  const seed = atomicNumber;
+  const random = (index: number) => {
+    const x = Math.sin(seed * 12.9898 + index * 78.233) * 43758.5453;
+    return x - Math.floor(x);
+  };
+
   const years = [1980, 1990, 2000, 2010, 2020];
   const result = [];
   
-  // Base value that depends on atomic number for some variety
-  const baseValue = (parseInt(element.atomic) % 10) + 1;
+  // Base value that depends on atomic number for variety
+  const baseValue = (atomicNumber % 10) + 1;
   
-  // Generate increasing usage trend with some randomness
+  // Generate increasing usage trend with stable randomness
   let prevValue = baseValue;
-  for (const year of years) {
-    // Increase by 10-30% from previous + add some randomness
-    const growthFactor = 1 + (Math.random() * 0.2 + 0.1);
+  for (let i = 0; i < years.length; i++) {
+    // Stable growth factor based on atomic number and year index
+    const growthFactor = 1 + (random(i * 10) * 0.2 + 0.1);
     const value = Math.round(prevValue * growthFactor);
     prevValue = value;
     
     result.push({
-      year: year.toString(),
+      year: years[i].toString(),
       usage: value
     });
   }
@@ -84,7 +90,12 @@ const extractColor = (categoryColor: string, theme: string) => {
 const HistoricalUsageChart = ({ element, categoryColor }: HistoricalUsageChartProps) => {
   const { t } = useLanguage();
   const { theme } = useTheme();
-  const historicalData = getHistoricalUsageData(element);
+  
+  // Use memoized stable data based on atomic number
+  const historicalData = useMemo(() => {
+    return generateStableHistoricalData(parseInt(element.atomic));
+  }, [element.atomic]);
+  
   const barColor = extractColor(categoryColor, theme);
   
   return (

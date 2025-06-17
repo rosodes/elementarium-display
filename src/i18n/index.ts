@@ -6,6 +6,13 @@ import { validateLanguages } from './translationValidator';
 // Load all languages
 loadLanguages();
 
+// Build-time validation for production builds
+if (import.meta.env.NODE_ENV !== 'development') {
+  import('./buildTimeValidator').then(({ validateTranslationsAtBuildTime }) => {
+    validateTranslationsAtBuildTime();
+  });
+}
+
 // Запускаем улучшенную валидацию переводов только в DEV-режиме
 if (typeof window !== 'undefined' && import.meta.env.DEV) {
   import('./enhancedTranslationValidator').then(({ translationValidator }) => {
