@@ -1,17 +1,39 @@
 
-/* Строгая сетка для таблицы Менделеева */
+/* Адаптивная сетка для таблицы Менделеева */
 .periodic-table {
   display: grid;
-  grid-template-columns: 40px repeat(18, 76px);
-  grid-template-rows: 35px repeat(7, 76px);
-  gap: 4px;
+  grid-template-columns: minmax(30px, 40px) repeat(18, minmax(50px, 1fr));
+  grid-template-rows: minmax(25px, 35px) repeat(7, minmax(60px, 76px));
+  gap: 2px;
   justify-content: center;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 0;
   box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  overflow-x: visible;
 }
-/* Заголовки групп/столбцов — 1-я строка: precise header placement */
-.periodic-table > div:nth-child(n+1):nth-child(-n+19) {
-  grid-row: 1;
+
+@media (min-width: 1200px) {
+  .periodic-table {
+    grid-template-columns: 40px repeat(18, 76px);
+    grid-template-rows: 35px repeat(7, 76px);
+    gap: 4px;
+  }
 }
-/* Элементы всегда используют .element-card size, поэтому спец. позиционирование больше не нужно */
+
+@media (max-width: 1199px) {
+  .periodic-table {
+    grid-template-columns: 35px repeat(18, minmax(45px, 65px));
+    grid-template-rows: 30px repeat(7, minmax(55px, 65px));
+    gap: 2px;
+  }
+}
+
+@media (max-width: 768px) {
+  .periodic-table {
+    grid-template-columns: 25px repeat(18, minmax(35px, 45px));
+    grid-template-rows: 25px repeat(7, minmax(45px, 55px));
+    gap: 1px;
+  }
+}

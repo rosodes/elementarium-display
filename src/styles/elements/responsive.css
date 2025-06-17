@@ -26,9 +26,6 @@
     width: 12px;
     height: 76px;
   }
-  .element-card .text-lg {
-    font-size: 0.9rem;
-  }
   .f-block-container {
     margin-left: 2px;
   }
@@ -53,9 +50,6 @@
     width: 8px;
     height: 76px;
   }
-  .element-card .text-lg {
-    font-size: 0.75rem;
-  }
   .f-block-container {
     margin-left: 2px;
   }
@@ -70,10 +64,7 @@
     width: 7px;
     height: 76px;
   }
-  .element-card .text-lg {
-    font-size: 0.7rem;
-  }
-  .element-card .text-xs {
-    font-size: 0.65rem;
+  .f-block-container {
+    margin-left: 2px;
   }
 }
