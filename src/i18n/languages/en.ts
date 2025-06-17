@@ -233,6 +233,25 @@ export const en: TranslationData = {
     version: "Version 1.0.0",
     copyright: "© 2023 Periodic Table",
     license: "Open source under MIT license",
-    contributors: "Thanks to all contributors"
+    contributors: "Thanks to all contributors",
+    // Main page content
+    mainTitle: "Periodic Table of Elements – Chemistry Fundamentals",
+    mainSubtitle: "Why is the Periodic System important?",
+    whyImportant: "Why is the Periodic System important?",
+    mainDescription1: "The Periodic Table of Elements, created by Dmitri Mendeleev, is the foundation of modern chemistry. It helps understand the properties of elements, their structure and interactions. Thanks to it, scientists predicted the existence of new elements and explained natural patterns. Today the Periodic Table is used worldwide — in science, education and industry.",
+    mainDescription2: "The Periodic Table is a unique scientific achievement serving as the basis of all modern chemistry. Created by Dmitri Ivanovich Mendeleev in 1869, it organizes all known chemical elements by their atomic numbers, combining them into groups and periods with similar properties. This approach allows quick access to element information, predicting characteristics of yet undiscovered substances, and seeing patterns in matter structure. Today the table has become an indispensable tool for students, teachers and scientists worldwide.",
+    colorLegendTitle: "Color Legend by Blocks and Element Categories",
+    colorCategoryColumn: "Color / Category",
+    descriptionColumn: "Description",
+    sBlockDescription: "Alkali and alkaline earth metals (Na, Ca)",
+    pBlockDescription: "Nonmetals, halogens, noble gases, some metals (C, O, F, Ne)",
+    dBlockDescription: "Transition metals (Fe, Cu, Zn)",
+    fBlockDescription: "Lanthanides and actinides (Ce, U)",
+    alkaliMetalsDescription: "Example: lithium, sodium (Li, Na)",
+    postTransitionDescription: "Example: aluminum, indium (Al, In)",
+    metalloidsDescription: "Example: boron, silicon (B, Si)",
+    unknownPropertiesDescription: "Elements with unknown or incomplete characteristics",
+    nobleGasesDescription: "Example: helium, neon, argon (He, Ne, Ar)",
+    radioactiveDescription: "Marked with pulsing indicator/background, easily noticeable in the table"
   }
 };

@@ -1,3 +1,4 @@
+
 import { ElementTranslations } from './elementTypes';
 
 export interface UITranslations {
@@ -39,6 +40,10 @@ export interface UITranslations {
   hotkeyHome?: string;
   hotkeyClose?: string;
   skipToContent?: string;
+  // Navigation buttons
+  backToHome?: string;
+  previousElement?: string;
+  nextElement?: string;
 
   // -- Added for extended French UI fields --
   selectElement?: string;
@@ -102,7 +107,6 @@ export interface UITranslations {
   done?: string;
   next?: string;
   previous?: string;
-  backToHome?: string;
   open?: string;
   closeWindow?: string;
   homePage?: string;
