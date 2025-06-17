@@ -1,30 +1,31 @@
 
-export interface ElementDetailsTabs {
-  overview: string;
-  properties: string;
-  structure: string;
-  applications: string;
-  history: string;
-  abundance: string;
-  compounds: string;
-  bio: string;
-  production: string;
-  safety: string;
-  symbol?: string;
-  stability?: string;
-  [key: string]: string | undefined;
-}
-
 export interface ElementDetailsTranslations {
-  tabs: ElementDetailsTabs;
-  showMoreInfo?: string;
-  viewOnWikipedia?: string;
-  closeDetails?: string;
-  properties?: string;
-  physicalProperties?: string;
-  atomicProperties?: string;
-  moreDetails?: string;
+  tabs: {
+    overview: string;
+    properties: string;
+    structure: string;
+    applications: string;
+    history: string;
+    abundance: string;
+    compounds: string;
+    bio: string;
+    production: string;
+    safety: string;
+    symbol: string;
+    stability: string;
+  };
+  showMoreInfo: string;
+  viewOnWikipedia: string;
+  closeDetails: string;
+  stability: string;
+  notAvailable: string;
+  backToTable: string;
+  previous: string;
+  next: string;
+  // Additional comprehensive translations
   basicInfo?: string;
+  physicalProperties?: string;
+  atomicStructure?: string;
   series?: string;
   atomicWeight?: string;
   electronConfig?: string;
@@ -37,108 +38,25 @@ export interface ElementDetailsTranslations {
   electronegativity?: string;
   valence?: string;
   oxidationStates?: string;
-  atomicStructure?: string;
   electronDistribution?: string;
-  shell?: string;
   atomicRadius?: string;
+  shell?: string;
   calculated?: string;
   empirical?: string;
   covalent?: string;
-  additionalInfo?: string;
-  atomicNumber?: string;
-  symbol?: string;
-  element?: string;
-  is?: string;
-  inPeriodGroup?: string;
-  discoveredIn?: string;
-  knownSinceAncient?: string;
-  meltingBoilingPoints?: string;
-  densityIs?: string;
-  usedIn?: string;
-  commonProperties?: string;
-  elementTable?: string;
-  electronShellVisualization?: string;
-  previousElement?: string;
-  nextElement?: string;
+  properties?: string;
   isotopes?: string;
-  industry?: string;
-  discovery?: string;
-  structure?: string;
-  shells?: string;
-  meltingBoilingPoint?: string;
-  electronProperties?: string;
-  electronAffinity?: string;
   abundance?: string;
-  universe?: string;
-  solar?: string;
-  crust?: string;
-  atomicRadii?: string;
-  vanDerWaals?: string;
-  quantumNumbers?: string;
-  principal?: string;
-  azimuthal?: string;
-  magnetic?: string;
-  orbitalDiagram?: string;
-  keyApplications?: string;
-  industrialUses?: string;
-  everydayUses?: string;
+  additionalInfo?: string;
   funFacts?: string;
-  // F-block specific translations
-  fBlockElements?: string;
-  fBlockDescription?: string;
+  toxicityInfo?: string;
+  bioRole?: string;
+  precautions?: string;
+  ecologyInfo?: string;
+  ecologicalImpact?: string;
+  reactivity?: string;
+  noToxicityInfo?: string;
+  noEcologyInfo?: string;
   noOxidationStatesForNobleGases?: string;
   noOxidationStates?: string;
-  notAvailable: string;
-  backToTable: string;
-  previous: string;
-  next: string;
-  conductivity?: string;
-  radioactive?: string;
-  yes?: string;
-  no?: string;
-  // Меню: основные кнопки вкладок
-  bioRole?: string;
-  toxicityInfo?: string;
-  production?: string;
-  precautions?: string;
-  stability?: string; // ADDED
-  halfLife?: string; // <-- ADDED for proper type checking
-  decayMode?: string; // <-- ADDED for proper type checking
-  abundanceInNature?: string; // <-- ADDED for proper type checking
-  stable?: string; // <-- ADDED for proper type checking
-  unstable?: string; // <-- ADDED for proper type checking
-  applicationsBlock?: string; // <-- ADDED for proper type checking
-  health?: string; // <-- ADDED for proper type checking
-  warnings?: string; // <-- ADDED for proper type checking
-  compounds?: string; // <-- ADDED for proper type checking
-  fractionByMass?: string; // <-- ADDED for proper type checking
-  visualization?: string;
-  notes?: string;
-  massNumber?: string;
-  protonNumber?: string;
-  neutronNumber?: string;
-  relatedElements?: string;
-  seeAlso?: string;
-  spectralLines?: string;
-  atomicModel?: string;
-  casNumber?: string;
-  discoverer?: string;
-  dateDiscovered?: string;
-  alternativeNames?: string;
-  namedAfter?: string;
-  mainGroup?: string;
-  electronShells?: string;
-  abundanceInSea?: string;
-  abundanceInAtmosphere?: string;
-  uses?: string;
-  notesBlock?: string;
-  structureImage?: string;
-  spectrum?: string;
-  spectralClass?: string;
-  massSpectra?: string;
-  appearance?: string;
-  naturalSources?: string;
-  artificialProduction?: string;
-  oxidationStateDescription?: string;
-  meltingBoilingDescription?: string;
 }

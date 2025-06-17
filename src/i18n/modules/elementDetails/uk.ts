@@ -1,7 +1,6 @@
 
 import type { ElementDetailsTranslations } from "../../types/elementDetailsTypes";
 
-// Український переклад elementDetails, вкладки вынесены у tabs
 export const elementDetailsUk: ElementDetailsTranslations = {
   tabs: {
     overview: "Огляд",
@@ -20,8 +19,46 @@ export const elementDetailsUk: ElementDetailsTranslations = {
   showMoreInfo: "Показати більше інформації",
   viewOnWikipedia: "Переглянути у Вікіпедії",
   closeDetails: "Закрити",
+  stability: "Стабільність",
   notAvailable: "Інформація недоступна",
   backToTable: "Повернутися до таблиці",
   previous: "Попередній",
   next: "Наступний",
+  // Additional comprehensive translations
+  basicInfo: "Основна інформація",
+  physicalProperties: "Фізичні властивості",
+  atomicStructure: "Атомна структура",
+  series: "Серія",
+  atomicWeight: "Атомна маса",
+  electronConfig: "Електронна конфігурація",
+  discovered: "Відкритий",
+  group: "Група",
+  period: "Період",
+  meltingPoint: "Температура плавлення",
+  boilingPoint: "Температура кипіння",
+  density: "Щільність",
+  electronegativity: "Електронегативність",
+  valence: "Валентність",
+  oxidationStates: "Ступені окиснення",
+  electronDistribution: "Розподіл електронів",
+  atomicRadius: "Атомний радіус",
+  shell: "Оболонка",
+  calculated: "Розрахунковий",
+  empirical: "Емпіричний",
+  covalent: "Ковалентний",
+  properties: "Властивості",
+  isotopes: "Ізотопи",
+  abundance: "Поширеність (%)",
+  additionalInfo: "Додаткова інформація",
+  funFacts: "Цікаві факти",
+  toxicityInfo: "Токсичність та безпека",
+  bioRole: "Біологічна роль",
+  precautions: "Запобіжні заходи",
+  ecologyInfo: "Екологія та реакційність",
+  ecologicalImpact: "Екологічний вплив",
+  reactivity: "Реакційна здатність",
+  noToxicityInfo: "Немає значущої інформації про токсичність або запобіжні заходи.",
+  noEcologyInfo: "Поки немає значущої екологічної інформації або даних про реакційність.",
+  noOxidationStatesForNobleGases: "Для благородних газів ступені окиснення за нормальних умов відсутні.",
+  noOxidationStates: "Дані про ступені окиснення відсутні."
 };

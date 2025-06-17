@@ -33,12 +33,14 @@ export const uiUk: UITranslations = {
   elementBookmarked: "Елемент додано до закладок",
   linkCopied: "Посилання скопійовано",
   linkCopiedToClipboard: "Посилання скопійовано до буфера обміну",
-  // --- NEW KEYS ---
   naturalElements: "Природні",
   syntheticElements: "Синтетичні",
   hotkeySearch: "Пошук",
   hotkeyHome: "На головну",
   hotkeyClose: "Закрити",
-  // Add skipToContent key
-  skipToContent: "Перейти до головного контенту"
+  skipToContent: "Перейти до головного контенту",
+  // Navigation buttons
+  backToHome: "Повернутися на головну",
+  previousElement: "Попередній елемент",
+  nextElement: "Наступний елемент"
 };
