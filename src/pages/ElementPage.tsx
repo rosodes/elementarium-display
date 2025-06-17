@@ -65,7 +65,7 @@ const ElementPage = () => {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            {t.ui.backToHome}
+            {t.ui?.backToHome || 'Back to Home'}
           </Button>
           
           {/* Previous/Next Element Buttons */}
@@ -77,7 +77,7 @@ const ElementPage = () => {
               className="flex items-center gap-2"
             >
               <ChevronLeft className="h-4 w-4" />
-              {t.ui.previousElement}
+              {t.ui?.previousElement || 'Previous Element'}
             </Button>
             
             <Button
@@ -86,7 +86,7 @@ const ElementPage = () => {
               disabled={!canGoNext}
               className="flex items-center gap-2"
             >
-              {t.ui.nextElement}
+              {t.ui?.nextElement || 'Next Element'}
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
@@ -98,7 +98,7 @@ const ElementPage = () => {
         loading={false}
         error={null}
         onNavigate={handleNavigate}
-        onClose={logic.handleHome}
+        onClose={handleBackToHome}
       />
     </div>
   );
