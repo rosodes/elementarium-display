@@ -59,4 +59,33 @@ export interface ElementDetailsTranslations {
   noEcologyInfo?: string;
   noOxidationStatesForNobleGases?: string;
   noOxidationStates?: string;
+  // Missing properties from errors
+  electronShellVisualization?: string;
+  previousElement?: string;
+  nextElement?: string;
+  atomicNumber?: string;
+  symbol?: string;
+  yes?: string;
+  no?: string;
+  is?: string;
+  discovery?: string;
+  everydayUses?: string;
+  industrialUses?: string;
+  keyApplications?: string;
+  shells?: string;
+  meltingBoilingPoint?: string;
+  radioactive?: string;
+  conductivity?: string;
+  industry?: string;
+  knownSinceAncient?: string;
+  discoveredIn?: string;
+  structure?: string;
+  quantumNumbers?: string;
+  principal?: string;
+  azimuthal?: string;
+  magnetic?: string;
+  atomicRadii?: string;
+  vanDerWaals?: string;
+  orbitalDiagram?: string;
+  elementTable?: string;
 }
