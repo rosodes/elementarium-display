@@ -1,29 +1,21 @@
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { Element } from "../../../data/elementTypes";
+import { generateStablePieChartData } from "../../../utils/chartDataGenerator";
 
 interface ElementPieChartSectionProps {
   element: Element;
 }
 
-const getPieChartData = (element: Element) => {
-  // Унифицированные mock-данные — можно расширять, если появятся реальные данные из element.abundance
-  if (!element.abundance || !element.abundance.human) return null;
-  // Пример: строим диаграмму по распространённости элемента в теле человека в % и "Other"
-  const value = typeof element.abundance.human === "number" ? element.abundance.human : parseFloat(element.abundance.human);
-  if (isNaN(value) || value <= 0) return null;
-  return [
-    { name: `${element.name} (${element.symbol})`, value: value, color: "#60a5fa" },
-    { name: "Other", value: 100 - value, color: "#a1a1aa" }
-  ];
-};
-
 const COLORS = ["#60a5fa", "#a1a1aa"];
 
 const ElementPieChartSection: React.FC<ElementPieChartSectionProps> = ({ element }) => {
-  const data = getPieChartData(element);
+  // Use memoized stable data
+  const data = useMemo(() => {
+    return generateStablePieChartData(element);
+  }, [element.atomic, element.abundance]);
 
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">

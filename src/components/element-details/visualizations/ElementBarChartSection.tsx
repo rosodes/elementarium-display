@@ -1,46 +1,19 @@
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "../../ui/card";
 import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { Element } from "../../../data/elementTypes";
+import { generateStableAbundanceData } from "../../../utils/chartDataGenerator";
 
 interface ElementBarChartSectionProps {
   element: Element;
 }
 
-// Функция-демо – берём распространённость элемента во Вселенной, в земной коре, в океане, в человеке (если есть)
-function getBarChartData(element: Element) {
-  if (!element.abundance)
-    return null;
-  const sources = [
-    { label: "Universe", value: element.abundance.universe },
-    { label: "Earth's Crust", value: element.abundance.crust },
-    { label: "Oceans", value: element.abundance.ocean },
-    { label: "Human Body", value: element.abundance.human }
-  ];
-  // Фильтруем только определённые значения (числовые и > 0)
-  const barData = sources
-    .map((src, idx) => {
-      let v: number;
-      if (typeof src.value === "string") {
-        v = parseFloat(src.value);
-      } else if (typeof src.value === "number") {
-        v = src.value;
-      } else {
-        return null;
-      }
-      if (isNaN(v) || v <= 0) return null;
-      // Цвета для наглядности
-      const COLORS = ["#818cf8", "#a3e635", "#38bdf8", "#60a5fa"];
-      return { env: src.label, percent: v, color: COLORS[idx % COLORS.length] };
-    })
-    .filter(Boolean);
-
-  return barData.length ? barData : null;
-}
-
 const ElementBarChartSection: React.FC<ElementBarChartSectionProps> = ({ element }) => {
-  const data = getBarChartData(element);
+  // Use memoized stable data
+  const data = useMemo(() => {
+    return generateStableAbundanceData(element);
+  }, [element.atomic, element.abundance]);
 
   return (
     <Card className="my-4 border border-gray-200 dark:border-gray-700">
