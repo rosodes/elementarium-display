@@ -167,9 +167,9 @@ const ElementDetails = ({ element, onClose, onNavigate, isFullPage = false }: El
           </div>
           <div className={`p-5 sm:p-6 ${tabsContentMaxHeightClass} overflow-y-auto dark:text-gray-200 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900`}>
             <TabsContent value="overview"><OverviewTab element={element} /></TabsContent>
-            <TabsContent value="properties"><PropertiesTab element={element} categoryColor={categoryColor} /></TabsContent>
-            <TabsContent value="structure"><StructureTab element={element} categoryColor={categoryColor} /></TabsContent>
-            <TabsContent value="applications"><ApplicationsTab element={element} categoryColor={categoryColor} /></TabsContent>
+            <TabsContent value="properties"><PropertiesTab element={element} categoryColor={categoryColor.bg} /></TabsContent>
+            <TabsContent value="structure"><StructureTab element={element} categoryColor={categoryColor.bg} /></TabsContent>
+            <TabsContent value="applications"><ApplicationsTab element={element} categoryColor={categoryColor.bg} /></TabsContent>
             <TabsContent value="history"><HistoryTab element={element} /></TabsContent>
             <TabsContent value="occurrence"><OccurrenceTab element={element} /></TabsContent>
             <TabsContent value="compounds"><CompoundsTab element={element} /></TabsContent>

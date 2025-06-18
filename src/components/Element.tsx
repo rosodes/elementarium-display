@@ -1,10 +1,11 @@
+
 import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
 import { getCategoryColor } from '../data/elementCategories';
 import ElementTooltip from './ElementTooltip';
 import type { BaseElementProps } from '../types/componentTypes';
-import type { ActionFunction, ClassName } from '../types/utilityTypes';
+import type { ActionFunction, ClassName } from '../types/componentTypes';
 import type { ElementSymbolKey } from '../i18n/types/languageTypes';
 
 interface ElementProps extends BaseElementProps {
@@ -28,8 +29,9 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
       if (element.expandedconfig.includes(' f')) return 'bg-f-block';
     }
     
-    // If electronic configuration isn't defined, use category or series
-    return getCategoryColor(element.category || element.series);
+    // If electronic configuration isn't defined, use category or series colors as CSS classes
+    const categoryColor = getCategoryColor(element.category || element.series);
+    return `bg-gray-100 border-gray-300`; // fallback to neutral colors
   };
 
   // Check if element is radioactive
@@ -60,6 +62,16 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
     return rawT.ui?.elements?.[elementKey] || element.name || element.symbol;
   };
   
+  // Get category color as inline styles
+  const getCategoryStyles = () => {
+    const categoryColor = getCategoryColor(element.category || element.series);
+    return {
+      backgroundColor: categoryColor.bg,
+      borderColor: categoryColor.border,
+      color: categoryColor.text
+    };
+  };
+  
   const handleHoverStart = (): void => setIsHovering(true);
   const handleHoverEnd = (): void => setIsHovering(false);
   const handleClick = (): void => onClick(element);
@@ -67,9 +79,8 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
   return (
     <ElementTooltip element={element}>
       <button 
-        className={`element-card ${getElementColor()}
-                  transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
-                  hover:shadow-lg hover:scale-105 flex-shrink-0 relative
+        className={`element-card transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-primary
+                  hover:shadow-lg hover:scale-105 flex-shrink-0 relative border-2
                   dark:shadow-black/30 flex flex-col justify-between p-1 sm:p-1.5
                   ${isHovering ? 'z-10 shadow-xl' : ''} ${className || ''}`}
         onClick={handleClick}
@@ -80,7 +91,7 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
         aria-label={`${getElementName()} (${element.symbol}), ${t('elementDetails.atomicNumber')} ${element.atomic}`}
         data-atomic={element.atomic}
         tabIndex={0}
-        style={style}
+        style={{...getCategoryStyles(), ...style}}
         {...props}
       >
         <div className="flex justify-between items-start w-full">

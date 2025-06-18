@@ -29,10 +29,10 @@ const ElementBasicInfo: React.FC<ElementBasicInfoProps> = ({ element }) => {
         
         <div className="element-basic-info__name-group">
           <h3 className="element-basic-info__name">
-            {t(`ui.elements.${element.symbol.toLowerCase()}`) || element.name}
+            {t(`ui.elements.${element.symbol.toLowerCase()}`, element.name)}
           </h3>
           <p className="element-basic-info__category">
-            {t(`categories.${element.series.toLowerCase()}`)}
+            {t(`categories.${element.series.toLowerCase()}`, element.series)}
           </p>
         </div>
       </div>
