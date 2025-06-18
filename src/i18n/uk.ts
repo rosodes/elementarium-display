@@ -1,24 +1,24 @@
 
 import { TranslationData } from "./types";
-import { commonUk } from "./modules/common/uk";
+import { commonEn } from "./modules/common";
 import { legendUk } from "./modules/legend/uk";
-import { detailsUk } from "./modules/details/uk";
-import { categoriesUk } from "./modules/categories/uk";
+import { detailsEn } from "./modules/details";
+import { categoriesEn } from "./modules/categories";
 import { uiUk } from "./modules/ui/uk";
-import { elementDetailsUk } from "./modules/elementDetails/uk";
+import { elementDetailsEn } from "./modules/elementDetails";
 import { footerUk } from "./modules/footer/uk";
 import { ukElements } from "./modules/elements/uk";
 
 export const uk: TranslationData = {
-  title: commonUk.title,
-  subtitle: commonUk.subtitle,
-  selectLanguage: commonUk.selectLanguage,
-  search: commonUk.search,
-  toggleTheme: commonUk.toggleTheme,
+  title: "Періодична таблиця елементів",
+  subtitle: "Інтерактивна періодична таблиця з детальною інформацією про елементи",
+  selectLanguage: "Оберіть мову",
+  search: "Пошук",
+  toggleTheme: "Переключити тему",
   legend: legendUk,
-  details: detailsUk,
-  categories: categoriesUk,
+  details: detailsEn,
+  categories: categoriesEn,
   ui: { ...uiUk, elements: ukElements },
-  elementDetails: elementDetailsUk,
+  elementDetails: elementDetailsEn,
   footer: footerUk
 };

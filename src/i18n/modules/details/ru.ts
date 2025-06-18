@@ -3,7 +3,7 @@ import type { DetailsTranslations } from "../../types/translationInterfaceTypes"
 
 export const detailsRu: DetailsTranslations = {
   properties: "Свойства",
-  atomicNumber: "Атомный номер",
+  atomicNumber: "Атомный номер", 
   symbol: "Символ",
   name: "Название",
   atomicWeight: "Атомная масса",
@@ -17,7 +17,7 @@ export const detailsRu: DetailsTranslations = {
   atomicRadius: "Атомный радиус",
   ionizationEnergy: "Энергия ионизации",
   meltingPoint: "Температура плавления",
-  boilingPoint: "Температура кипения",
+  boilingPoint: "Температура кипения", 
   density: "Плотность",
   yearDiscovered: "Год открытия",
   naturalState: "Природное состояние",

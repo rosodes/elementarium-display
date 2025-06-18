@@ -1,10 +1,8 @@
 
-import type { CommonTranslations } from "../../types/commonTypes";
-
-export const commonRu: CommonTranslations = {
-  title: "Интерактивная Периодическая Таблица",
-  subtitle: "Исследуйте химические элементы",
-  selectLanguage: "Выберите язык",
-  search: "Поиск",
-  toggleTheme: "Сменить тему"
+export const commonRu = {
+  title: "Периодическая Таблица Элементов",
+  subtitle: "Интерактивная периодическая таблица с подробной информацией об элементах",
+  selectLanguage: "Выбрать язык",
+  search: "Поиск", 
+  toggleTheme: "Переключить тему"
 };

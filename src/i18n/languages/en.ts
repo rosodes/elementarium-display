@@ -122,7 +122,7 @@ const elements: Record<string, string> = {
   og: "Oganesson"
 };
 
-// Complete English translation
+// Complete English translation using modular structure
 export const en: TranslationData = {
   // Common translations
   title: "Periodic Table of Elements",
@@ -131,137 +131,11 @@ export const en: TranslationData = {
   search: "Search",
   toggleTheme: "Toggle Theme",
   
-  // Legend translations
-  legend: {
-    metals: "Metals",
-    nonmetals: "Nonmetals",
-    metalloids: "Metalloids",
-    alkali: "Alkali Metals",
-    alkaline: "Alkaline Earth Metals",
-    transition: "Transition Metals",
-    postTransition: "Post-transition Metals",
-    lanthanides: "Lanthanides",
-    actinides: "Actinides",
-    noble: "Noble Gases",
-    sBlock: "s-block Elements",
-    pBlock: "p-block Elements",
-    dBlock: "d-block Elements",
-    fBlock: "f-block Elements",
-    radioactive: "Radioactive Elements",
-    title: "Legend",
-    categoriesTitle: "Element Categories",
-    blocksTitle: "Electron Blocks",
-    otherTitle: "Other Properties"
-  },
-  
-  // Details translations
-  details: {
-    properties: "Properties",
-    atomicNumber: "Atomic Number",
-    symbol: "Symbol",
-    name: "Name",
-    atomicWeight: "Atomic Weight",
-    category: "Category",
-    group: "Group",
-    period: "Period",
-    block: "Block",
-    electronConfiguration: "Electron Configuration",
-    oxidationStates: "Oxidation States",
-    electronegativity: "Electronegativity",
-    atomicRadius: "Atomic Radius",
-    ionizationEnergy: "Ionization Energy",
-    meltingPoint: "Melting Point",
-    boilingPoint: "Boiling Point",
-    density: "Density",
-    yearDiscovered: "Year Discovered",
-    naturalState: "Natural State",
-    description: "Description"
-  },
-  
-  // Categories translations
-  categories: {
-    alkali: "Alkali Metal",
-    alkaline: "Alkaline Earth Metal",
-    transition: "Transition Metal",
-    postTransition: "Post-Transition Metal",
-    metalloid: "Metalloid",
-    nonmetal: "Nonmetal",
-    noble: "Noble Gas",
-    lanthanide: "Lanthanide",
-    actinide: "Actinide",
-    unknown: "Unknown"
-  },
-  
-  // UI translations
-  ui: {
-    close: "Close",
-    back: "Back",
-    more: "Show more",
-    view: "View details",
-    loading: "Loading...",
-    radioactive: "Radioactive",
-    themeToggle: "Toggle theme",
-    language: "Change language",
-    elements: elements,
-    search: "Search elements",
-    filter: "Filter elements",
-    reset: "Reset filters",
-    noResults: "No results found",
-    period: "Period",
-    group: "Group",
-    periodNumbersLabel: "Period numbers",
-    groupNumbersLabel: "Group numbers",
-    searchPlaceholder: "Search by name, symbol or atomic number...",
-    searchResults: "Search results",
-    searchNoResults: "No elements found matching your search",
-    clearSearch: "Clear search",
-    searchShortcut: "Keyboard shortcut",
-    accessibilityLabel: "Periodic Table of Elements",
-    elementTable: "Periodic Table of Elements",
-    focusMode: "Focus mode",
-    backToHome: "Back to home",
-    previousElement: "Previous element",
-    nextElement: "Next element"
-  },
-  
-  // Element details translations
-  elementDetails: require("./modules/elementDetails/en").elementDetailsEn,
-  
-  // Footer translations
-  footer: {
-    madeWith: "Made with",
-    by: "by React team",
-    version: "Version 1.0.0",
-    copyright: "© 2023 Periodic Table",
-    github: "Source code",
-    license: "Open source under MIT license",
-    privacy: "Privacy",
-    terms: "Terms of use",
-    contact: "Contact",
-    about: "About",
-    support: "Support",
-    documentation: "Documentation",
-    contributors: "Thanks to all contributors",
-    credits: "Based on the latest IUPAC recommendations",
-    dataNote: "Data sourced from various scientific databases and publications",
-    // Main page content
-    mainTitle: "Periodic Table of Elements – Chemistry Fundamentals",
-    mainSubtitle: "Why is the Periodic System important?",
-    whyImportant: "Why is the Periodic System important?",
-    mainDescription1: "The Periodic Table of Elements, created by Dmitri Mendeleev, is the foundation of modern chemistry. It helps understand the properties of elements, their structure and interactions. Thanks to it, scientists predicted the existence of new elements and explained natural patterns. Today the Periodic Table is used worldwide — in science, education and industry.",
-    mainDescription2: "The Periodic Table is a unique scientific achievement serving as the basis of all modern chemistry. Created by Dmitri Ivanovich Mendeleev in 1869, it organizes all known chemical elements by their atomic numbers, combining them into groups and periods with similar properties. This approach allows quick access to element information, predicting characteristics of yet undiscovered substances, and seeing patterns in matter structure. Today the table has become an indispensable tool for students, teachers and scientists worldwide.",
-    colorLegendTitle: "Color Legend by Blocks and Element Categories",
-    colorCategoryColumn: "Color / Category",
-    descriptionColumn: "Description",
-    sBlockDescription: "Alkali and alkaline earth metals (Na, Ca)",
-    pBlockDescription: "Nonmetals, halogens, noble gases, some metals (C, O, F, Ne)",
-    dBlockDescription: "Transition metals (Fe, Cu, Zn)",
-    fBlockDescription: "Lanthanides and actinides (Ce, U)",
-    alkaliMetalsDescription: "Example: lithium, sodium (Li, Na)",
-    postTransitionDescription: "Example: aluminum, indium (Al, In)",
-    metalloidsDescription: "Example: boron, silicon (B, Si)",
-    unknownPropertiesDescription: "Elements with unknown or incomplete characteristics",
-    nobleGasesDescription: "Example: helium, neon, argon (He, Ne, Ar)",
-    radioactiveDescription: "Marked with pulsing indicator/background, easily noticeable in the table"
-  }
+  // Import from modules
+  legend: require("../modules/legend/en").legendEn,
+  details: require("../modules/details/en").detailsEn,
+  categories: require("../modules/categories/en").categoriesEn,
+  ui: { ...require("../modules/ui/en").uiEn, elements: elements },
+  elementDetails: require("../modules/elementDetails/en").elementDetailsEn,
+  footer: require("../modules/footer/en").footerEn
 };

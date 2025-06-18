@@ -2,132 +2,63 @@
 import { TranslationData } from '../types';
 import { languageManager } from '../core/LanguageManager';
 
-export interface LoaderConfig {
-  validateOnLoad?: boolean;
-  throwOnMissing?: boolean;
-  enableHotReload?: boolean;
-}
-
-export class LanguageLoader {
-  private config: LoaderConfig;
-  private loadedLanguages = new Set<string>();
-
-  constructor(config: LoaderConfig = {}) {
-    this.config = {
-      validateOnLoad: true,
-      throwOnMissing: import.meta.env.NODE_ENV === 'production',
-      enableHotReload: import.meta.env.DEV,
-      ...config
-    };
-  }
-
-  async loadLanguage(languageCode: string): Promise<boolean> {
-    if (this.loadedLanguages.has(languageCode)) {
-      return true;
-    }
-
+class LanguageLoader {
+  async loadLanguage(languageKey: string): Promise<TranslationData | null> {
     try {
-      const translation = await this.importLanguage(languageCode);
-      if (translation) {
-        languageManager.addLanguage(languageCode, translation);
-        this.loadedLanguages.add(languageCode);
-        
-        if (this.config.validateOnLoad) {
-          this.validateLanguage(languageCode);
-        }
-        
-        return true;
+      // Check if already loaded
+      if (languageManager.hasLanguage(languageKey)) {
+        return languageManager.getLanguage(languageKey) || null;
       }
+      
+      // Dynamic import based on language key
+      const module = await this.getLanguageModule(languageKey);
+      if (module && module[languageKey]) {
+        languageManager.addLanguage(languageKey, module[languageKey]);
+        return module[languageKey];
+      }
+      
+      return null;
     } catch (error) {
-      console.error(`Failed to load language ${languageCode}:`, error);
-      if (this.config.throwOnMissing) {
-        throw error;
-      }
-    }
-    
-    return false;
-  }
-
-  async loadAllLanguages(): Promise<void> {
-    const languagesToLoad = ['en', 'ru', 'uk', 'fr']; // Основные языки
-    
-    const loadPromises = languagesToLoad.map(lang => this.loadLanguage(lang));
-    const results = await Promise.allSettled(loadPromises);
-    
-    // Проверяем результаты загрузки
-    results.forEach((result, index) => {
-      if (result.status === 'rejected') {
-        const langCode = languagesToLoad[index];
-        console.error(`Failed to load language ${langCode}:`, result.reason);
-      }
-    });
-
-    // Валидируем все загруженные переводы
-    if (this.config.validateOnLoad) {
-      try {
-        languageManager.validateAllTranslations();
-      } catch (error) {
-        if (this.config.throwOnMissing) {
-          throw error;
-        }
-        console.warn('Translation validation failed:', error);
-      }
-    }
-  }
-
-  private async importLanguage(languageCode: string): Promise<TranslationData | null> {
-    try {
-      switch (languageCode) {
-        case 'en':
-          const { en } = await import('../en');
-          return en;
-        case 'ru':
-          const { ru } = await import('../ru');
-          return ru;
-        case 'uk':
-          const { uk } = await import('../uk');
-          return uk;
-        case 'fr':
-          const { fr } = await import('../fr');
-          return fr;
-        default:
-          // Динамическая загрузка для других языков
-          try {
-            const module = await import(`../${languageCode}`);
-            return module[languageCode] || module.default;
-          } catch {
-            console.warn(`Language file for ${languageCode} not found`);
-            return null;
-          }
-      }
-    } catch (error) {
-      console.error(`Error importing language ${languageCode}:`, error);
+      console.error(`Failed to load language: ${languageKey}`, error);
       return null;
     }
   }
-
-  private validateLanguage(languageCode: string): void {
-    const translation = languageManager.getTranslation(languageCode);
-    if (!translation) return;
-
-    // Дополнительная валидация для конкретного языка
-    if (this.config.validateOnLoad) {
-      console.log(`✅ Language ${languageCode} loaded and validated successfully`);
+  
+  private async getLanguageModule(languageKey: string) {
+    switch (languageKey) {
+      case 'en':
+        return import('../en');
+      case 'ru':
+        return import('../ru');
+      case 'uk':
+        return import('../uk');
+      case 'fr':
+        return import('../fr');
+      case 'es':
+        return import('../es');
+      case 'de':
+        return import('../de');
+      case 'zh-CN':
+        return import('../zh-CN');
+      case 'zh-TW':
+        return import('../zh-TW');
+      case 'ja':
+        return import('../ja');
+      case 'hi':
+        return import('../hi');
+      case 'ar':
+        return import('../ar');
+      case 'bn':
+        return import('../bn');
+      case 'pt-BR':
+        return import('../pt-BR');
+      case 'pt-PT':
+        return import('../pt-PT');
+      case 'pa':
+        return import('../pa');
+      default:
+        return null;
     }
-  }
-
-  // Метод для получения информации о загруженных языках
-  getLoadedLanguages(): string[] {
-    return Array.from(this.loadedLanguages);
-  }
-
-  // Метод для перезагрузки языка (полезно для разработки)
-  async reloadLanguage(languageCode: string): Promise<boolean> {
-    if (this.config.enableHotReload) {
-      this.loadedLanguages.delete(languageCode);
-      return this.loadLanguage(languageCode);
-    }
-    return false;
   }
 }
 
