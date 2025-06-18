@@ -1,5 +1,5 @@
 
-import { LegendTranslations } from "../../types/legendTypes";
+import type { LegendTranslations } from "../../types/translationInterfaceTypes";
 
 export const legendFr: LegendTranslations = {
   metals: "Métaux",
@@ -8,7 +8,7 @@ export const legendFr: LegendTranslations = {
   alkali: "Métaux alcalins",
   alkaline: "Métaux alcalino-terreux",
   transition: "Métaux de transition",
-  postTransition: "Métaux pauvres",
+  postTransition: "Métaux post-transition",
   lanthanides: "Lanthanides",
   actinides: "Actinides",
   noble: "Gaz nobles",
@@ -20,5 +20,5 @@ export const legendFr: LegendTranslations = {
   title: "Légende",
   categoriesTitle: "Catégories",
   blocksTitle: "Blocs",
-  otherTitle: "Autres",
+  otherTitle: "Autres propriétés"
 };

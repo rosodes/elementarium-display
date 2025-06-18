@@ -1,5 +1,5 @@
 
-import { DetailsTranslations } from "../../types/detailsTypes";
+import type { DetailsTranslations } from "../../types/translationInterfaceTypes";
 
 export const detailsFr: DetailsTranslations = {
   properties: "Propriétés",
@@ -21,5 +21,5 @@ export const detailsFr: DetailsTranslations = {
   density: "Densité",
   yearDiscovered: "Année de découverte",
   naturalState: "État naturel",
-  description: "Description",
+  description: "Description"
 };

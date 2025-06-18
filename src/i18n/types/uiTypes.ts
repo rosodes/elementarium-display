@@ -40,12 +40,12 @@ export interface UITranslations {
   hotkeyHome?: string;
   hotkeyClose?: string;
   skipToContent?: string;
-  // Navigation buttons
+  // Navigation buttons - добавляем недостающие свойства
   backToHome?: string;
   previousElement?: string;
   nextElement?: string;
 
-  // -- Added for extended French UI fields --
+  // Extended UI fields
   selectElement?: string;
   showLegend?: string;
   closeLegend?: string;
@@ -82,8 +82,6 @@ export interface UITranslations {
   loadingData?: string;
   showMore?: string;
   showLess?: string;
-
-  // --- Additional popular UI phrases, add keys to match fr.ts ---
   explorer?: string;
   openInNewTab?: string;
   confirm?: string;

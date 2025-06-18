@@ -1,15 +1,14 @@
 
-import { TranslationData } from ".";
-import { commonRu } from "./modules/common";
-import { legendRu } from "./modules/legend";
-import { detailsRu } from "./modules/details";
-import { categoriesRu } from "./modules/categories";
-import { uiRu } from "./modules/ui";
-import { elementDetailsRu } from "./modules/elementDetails";
-import { footerRu } from "./modules/footer";
+import { TranslationData } from "./types";
+import { commonRu } from "./modules/common/ru";
+import { legendRu } from "./modules/legend/ru";
+import { detailsRu } from "./modules/details/ru";
+import { categoriesRu } from "./modules/categories/ru";
+import { uiRu } from "./modules/ui/ru";
+import { elementDetailsRu } from "./modules/elementDetails/ru";
+import { footerRu } from "./modules/footer/ru";
 import { ruElements } from "./modules/elements/ru";
 
-// Create a complete Russian translation by combining all modules
 export const ru: TranslationData = {
   title: commonRu.title,
   subtitle: commonRu.subtitle,

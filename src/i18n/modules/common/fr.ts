@@ -1,10 +1,10 @@
 
-import { CommonTranslations } from "../../types/commonTypes";
+import type { CommonTranslations } from "../../types/commonTypes";
 
 export const commonFr: CommonTranslations = {
-  title: "Tableau périodique des éléments",
-  subtitle: "Tableau périodique moderne et interactif, avec données scientifiques, histoire et applications.",
+  title: "Tableau Périodique Interactif",
+  subtitle: "Explorez les éléments chimiques",
   selectLanguage: "Choisir la langue",
-  search: "Recherche",
-  toggleTheme: "Changer de thème"
+  search: "Rechercher",
+  toggleTheme: "Changer le thème"
 };

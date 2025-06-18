@@ -1,15 +1,16 @@
 
-import { CategoriesTranslations } from "../../types/categoriesTypes";
+import type { CategoriesTranslations } from "../../types/translationInterfaceTypes";
 
 export const categoriesFr: CategoriesTranslations = {
-  alkali: "Alcalins",
-  alkaline: "Alcalino-terreux",
-  transition: "Transition",
-  postTransition: "Métaux pauvres",
-  metalloid: "Métalloïdes",
-  nonmetal: "Non-métaux",
+  alkali: "Métaux alcalins",
+  alkaline: "Métaux alcalino-terreux",
+  transition: "Métaux de transition",
+  postTransition: "Métaux post-transition",
+  metalloids: "Métalloïdes",
+  nonmetals: "Non-métaux",
+  halogens: "Halogènes",
   noble: "Gaz nobles",
-  lanthanide: "Lanthanides",
-  actinide: "Actinides",
-  unknown: "Inconnu",
+  lanthanides: "Lanthanides",
+  actinides: "Actinides",
+  unknown: "Propriétés inconnues"
 };

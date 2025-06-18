@@ -1,31 +1,39 @@
 
 import { TranslationData, LanguageKey, languages, addLanguage } from './types';
-import { loadLanguages } from './languageLoader';
-import { validateLanguages } from './translationValidator';
+import { languageLoader } from './loaders/LanguageLoader';
+import { languageManager } from './core/LanguageManager';
 
-// Load all languages
-loadLanguages();
+// Загружаем базовые языки синхронно для избежания ошибок
+import { en } from './en';
+import { ru } from './ru'; 
+import { uk } from './uk';
 
-// Build-time validation for production builds
-if (import.meta.env.NODE_ENV !== 'development') {
-  import('./buildTimeValidator').then(({ validateTranslationsAtBuildTime, validateComponentContent }) => {
+// Добавляем базовые языки в менеджер
+languageManager.addLanguage('en', en);
+languageManager.addLanguage('ru', ru);
+languageManager.addLanguage('uk', uk);
+
+// Валидация только в продакшене
+if (import.meta.env.NODE_ENV === 'production') {
+  import('./validation/TranslationValidator').then(({ translationValidator }) => {
     try {
       console.log('🔍 Running build-time translation validation...');
-      validateTranslationsAtBuildTime();
-      validateComponentContent();
+      translationValidator.throwIfInvalid(languageManager.getAllTranslations());
       console.log('✅ Build validation passed');
     } catch (error) {
       console.error('❌ Build validation failed:', error);
-      // Force build failure
       process.exit(1);
     }
   });
 }
 
-// Запускаем улучшенную валидацию переводов только в DEV-режиме
+// Enhanced validation for development
 if (typeof window !== 'undefined' && import.meta.env.DEV) {
-  import('./enhancedTranslationValidator').then(({ translationValidator }) => {
-    translationValidator.validateAllLanguages('en');
+  import('./validation/TranslationValidator').then(({ translationValidator }) => {
+    const result = translationValidator.validateTranslations(languageManager.getAllTranslations());
+    if (!result.isValid) {
+      console.warn('⚠️ Translation validation warnings:', result);
+    }
   });
 }
 
@@ -42,4 +50,6 @@ export type {
   LanguageKey
 } from './types';
 
-export { languages, addLanguage };
+export { languageManager, languageLoader };
+export const languages = languageManager.getAllTranslations();
+export { addLanguage };
