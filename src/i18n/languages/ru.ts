@@ -124,14 +124,12 @@ const elements: Record<string, string> = {
 
 // Complete Russian translation
 export const ru: TranslationData = {
-  // Common translations
   title: "Периодическая Таблица Элементов",
   subtitle: "Интерактивная периодическая таблица с подробной информацией об элементах",
   selectLanguage: "Выбрать язык",
   search: "Поиск",
   toggleTheme: "Переключить тему",
   
-  // Legend translations
   legend: {
     metals: "Металлы",
     nonmetals: "Неметаллы",
@@ -154,7 +152,6 @@ export const ru: TranslationData = {
     otherTitle: "Другие свойства"
   },
   
-  // Details translations
   details: {
     properties: "Свойства",
     atomicNumber: "Атомный номер",
@@ -178,7 +175,6 @@ export const ru: TranslationData = {
     description: "Описание"
   },
   
-  // Categories translations
   categories: {
     alkali: "Щелочной металл",
     alkaline: "Щелочноземельный металл",
@@ -192,7 +188,6 @@ export const ru: TranslationData = {
     unknown: "Неизвестно"
   },
   
-  // UI translations
   ui: {
     close: "Закрыть",
     back: "Назад",
@@ -222,7 +217,6 @@ export const ru: TranslationData = {
     usageDistribution: "Распределение использования",
     simulatedData: "Это симулированные данные для демонстрационных целей",
     note: "Примечание",
-    // Новые ключи по аналогии с англ. вариантом:
     elementRemoved: "Элемент удален из закладок",
     elementBookmarked: "Элемент добавлен в закладки",
     linkCopied: "Ссылка скопирована",
@@ -232,19 +226,24 @@ export const ru: TranslationData = {
     nextElement: "Следующий элемент"
   },
   
-  // Element details translations
   elementDetails: require("./modules/elementDetails/ru").elementDetailsRu,
   
-  // Footer translations
   footer: {
     madeWith: "Сделано с",
     by: "командой React",
-    dataNote: "Данные взяты из различных научных баз данных и публикаций",
-    credits: "На основе последних рекомендаций ИЮПАК",
     version: "Версия 1.0.0",
     copyright: "© 2023 Периодическая таблица",
+    github: "Исходный код",
     license: "Открытый исходный код под лицензией MIT",
+    privacy: "Конфиденциальность",
+    terms: "Условия использования",
+    contact: "Контакты",
+    about: "О проекте",
+    support: "Поддержка",
+    documentation: "Документация",
     contributors: "Благодарность всем участникам",
+    credits: "На основе последних рекомендаций ИЮПАК",
+    dataNote: "Данные взяты из различных научных баз данных и публикаций",
     // Main page content
     mainTitle: "Периодическая Таблица Элементов – основы химии",
     mainSubtitle: "Почему Периодическая система важна?",

@@ -14,6 +14,7 @@ export const footerEn: FooterTranslations = {
   about: "About",
   support: "Support",
   documentation: "Documentation",
+  contributors: "Thanks to all contributors",
   credits: "Based on the latest IUPAC recommendations",
   dataNote: "Data sourced from various scientific databases and publications",
   // Main page content

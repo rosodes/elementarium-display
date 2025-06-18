@@ -14,6 +14,7 @@ export const footerRu: FooterTranslations = {
   about: "О проекте",
   support: "Поддержка",
   documentation: "Документация",
+  contributors: "Благодарность всем участникам",
   credits: "На основе последних рекомендаций IUPAC",
   dataNote: "Данные взяты из различных научных баз данных и публикаций",
   // Main page content
