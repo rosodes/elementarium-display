@@ -1,7 +1,6 @@
 
 import { ElementTranslations } from './elementTypes';
-import { LegendTranslations, DetailsTranslations, CategoriesTranslations } from './translationInterfaceTypes';
-import { UITranslations } from '../modules/ui';
+import { LegendTranslations, DetailsTranslations, CategoriesTranslations, UITranslations } from './translationInterfaceTypes';
 import { ElementDetailsTranslations } from './elementDetailsTypes';
 import { FooterTranslations } from './footerTypes';
 import { CommonTranslations } from './commonTypes';
@@ -31,7 +30,5 @@ export type {
   UITranslations,
   ElementDetailsTranslations,
   FooterTranslations,
-  CommonTranslations,
-  TranslationData,
-  LanguageKey
+  CommonTranslations
 };
