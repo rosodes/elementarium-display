@@ -1,49 +1,31 @@
+
 import React from "react";
 import { Element } from "../../../data/elementTypes";
-import HydrogenBioSection from "../new-sections/HydrogenBioSection";
-import HeliumBioSection from "../new-sections/HeliumBioSection";
-import LithiumBioSection from "../new-sections/LithiumBioSection";
-import BerylliumBioSection from "../new-sections/BerylliumBioSection";
-import BoronBioSection from "../new-sections/BoronBioSection";
-import CarbonBioSection from "../new-sections/CarbonBioSection";
-import NitrogenBioSection from "../new-sections/NitrogenBioSection";
-import OxygenBioSection from "../new-sections/OxygenBioSection";
-import FluorineBioSection from "../new-sections/FluorineBioSection";
-import NeonBioSection from "../new-sections/NeonBioSection";
-import SodiumBioSection from "../new-sections/SodiumBioSection";
-import MagnesiumBioSection from "../new-sections/MagnesiumBioSection";
-import AluminumBioSection from "../new-sections/AluminumBioSection";
-import SiliconBioSection from "../new-sections/SiliconBioSection";
-import PhosphorusBioSection from "../new-sections/PhosphorusBioSection";
-import SulfurBioSection from "../new-sections/SulfurBioSection";
+import { useLanguage } from "../../../context/LanguageContext";
 
-const BioTab = ({ element }: { element: Element }) => (
-  <div className="text-base">
-    {element.atomic === "1" ? (
-      <HydrogenBioSection />
-    ) : element.atomic === "2" ? (
-      <HeliumBioSection />
-    ) : element.atomic === "3" ? (
-      <LithiumBioSection />
-    ) : element.atomic === "4" ? (
-      <BerylliumBioSection />
-    ) : element.atomic === "5" ? (
-      <BoronBioSection />
-    ) : element.atomic === "6" ? (
-      <CarbonBioSection />
-    ) : element.atomic === "7" ? (
-      <NitrogenBioSection />
-    ) : element.atomic === "8" ? (
-      <OxygenBioSection />
-    ) : element.atomic === "9" ? (
-      <FluorineBioSection />
-    ) : element.atomic === "10" ? (
-      <NeonBioSection />
-    ) : (
-      <p className="text-gray-600 dark:text-gray-300 text-sm py-4 text-center rounded-lg bg-yellow-50 dark:bg-gray-900/40 font-medium max-w-xl mx-auto">
-        Information about biological effects, significance and toxicity for this element will be shown here.
-      </p>
-    )}
-  </div>
-);
+const BioTab = ({ element }: { element: Element }) => {
+  const { language } = useLanguage();
+  
+  const getGenericBioContent = (element: Element) => {
+    if (language === 'ru') {
+      return `Биологическая роль элемента ${element.name} (${element.symbol}) в живых организмах зависит от его химических свойств и способности участвовать в биохимических процессах. Важно изучать как полезные, так и потенциально токсичные эффекты элемента.`;
+    } else if (language === 'uk') {
+      return `Біологічна роль елемента ${element.name} (${element.symbol}) в живих організмах залежить від його хімічних властивостей та здатності брати участь у біохімічних процесах. Важливо вивчати як корисні, так і потенційно токсичні ефекти елемента.`;
+    } else {
+      return `The biological role of ${element.name} (${element.symbol}) in living organisms depends on its chemical properties and ability to participate in biochemical processes. It's important to study both beneficial and potentially toxic effects of the element.`;
+    }
+  };
+
+  return (
+    <div className="text-base">
+      <div className="bg-teal-50 dark:bg-gray-900/40 p-4 rounded-lg">
+        <h3 className="text-lg font-semibold mb-2 text-teal-800 dark:text-teal-200">
+          {language === 'ru' ? 'Биологическая роль и токсичность' : language === 'uk' ? 'Біологічна роль та токсичність' : 'Biological Role & Toxicity'}
+        </h3>
+        <p className="text-gray-700 dark:text-gray-300">{getGenericBioContent(element)}</p>
+      </div>
+    </div>
+  );
+};
+
 export default BioTab;

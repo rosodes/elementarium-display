@@ -8,12 +8,16 @@ loadLanguages();
 
 // Build-time validation for production builds
 if (import.meta.env.NODE_ENV !== 'development') {
-  import('./buildTimeValidator').then(({ validateTranslationsAtBuildTime }) => {
+  import('./buildTimeValidator').then(({ validateTranslationsAtBuildTime, validateComponentContent }) => {
     try {
+      console.log('🔍 Running build-time translation validation...');
       validateTranslationsAtBuildTime();
+      validateComponentContent();
+      console.log('✅ Build validation passed');
     } catch (error) {
       console.error('❌ Build validation failed:', error);
-      throw error; // This will cause the build to fail
+      // Force build failure
+      process.exit(1);
     }
   });
 }

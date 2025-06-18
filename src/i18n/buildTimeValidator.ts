@@ -1,5 +1,7 @@
 
 import { languages } from './types';
+import fs from 'fs';
+import path from 'path';
 
 // Build-time validator that throws errors for missing translations and placeholder content
 export function validateTranslationsAtBuildTime() {
@@ -27,7 +29,7 @@ export function validateTranslationsAtBuildTime() {
     return path.split('.').reduce((acc, k) => (acc ? acc[k] : undefined), obj);
   };
   
-  // Placeholder texts that should cause build failure
+  // Enhanced placeholder texts that should cause build failure
   const placeholderTexts = [
     'Information about discovery, etymology, historical facts and discoverers of this element will be shown here.',
     'Information about abundance and occurrence of this element in nature will be displayed here.',
@@ -37,12 +39,17 @@ export function validateTranslationsAtBuildTime() {
     'Safety precautions, hazards, handling and disposal guidelines for this element will be displayed here.',
     'Information about',
     'will be displayed here',
-    'will be shown here'
+    'will be shown here',
+    '[MISSING PATH]',
+    '[MISSING ru]',
+    '[MISSING uk]'
   ];
   
   const allPaths = getAllPaths(languages[baseLanguage]);
   
   // Check for missing translations
+  const missingTranslations: Record<string, string[]> = {};
+  
   for (const lang of requiredLanguages) {
     if (!languages[lang]) {
       throw new Error(`Required language "${lang}" not found!`);
@@ -58,10 +65,18 @@ export function validateTranslationsAtBuildTime() {
     }
     
     if (missingPaths.length > 0) {
-      throw new Error(
-        `Build failed: Missing translations for language "${lang}":\n${missingPaths.map(p => `  - ${p}`).join('\n')}\n\nPlease add all missing translations before building.`
-      );
+      missingTranslations[lang] = missingPaths;
     }
+  }
+  
+  // Report missing translations
+  if (Object.keys(missingTranslations).length > 0) {
+    let errorMessage = 'Build failed: Missing translations found:\n';
+    for (const [lang, paths] of Object.entries(missingTranslations)) {
+      errorMessage += `\n${lang.toUpperCase()}:\n${paths.map(p => `  - ${p}`).join('\n')}\n`;
+    }
+    errorMessage += '\nPlease add all missing translations before building.';
+    throw new Error(errorMessage);
   }
   
   // Check for placeholder content in all languages
@@ -91,20 +106,57 @@ export function validateTranslationsAtBuildTime() {
 
 // Check for placeholder content in component files
 export function validateComponentContent() {
-  // This will be called by build script to check component files for placeholders
-  const placeholderPatterns = [
-    /Information about.*will be (shown|displayed) here/i,
-    /Methods of production.*will be shown here/i,
-    /Safety precautions.*will be displayed here/i,
-    /text-gray-600.*text-center.*placeholder/i
+  const componentPaths = [
+    'src/components/element-details/tabs',
+    'src/components/element-details/new-sections'
   ];
   
-  // This validation should be done at build time by scanning actual component files
-  // For now, we'll log a warning that manual check is needed
-  console.warn('⚠️  Manual check needed: Please verify no placeholder content exists in component files');
+  const placeholderPatterns = [
+    /Information about.*will be (shown|displayed) here/gi,
+    /Methods of production.*will be shown here/gi,
+    /Safety precautions.*will be displayed here/gi,
+    /text-gray-600.*text-center.*placeholder/gi
+  ];
+  
+  const errors: string[] = [];
+  
+  for (const dirPath of componentPaths) {
+    try {
+      const fullPath = path.resolve(process.cwd(), dirPath);
+      if (fs.existsSync(fullPath)) {
+        const files = fs.readdirSync(fullPath);
+        
+        for (const file of files) {
+          if (file.endsWith('.tsx') || file.endsWith('.ts')) {
+            const filePath = path.join(fullPath, file);
+            const content = fs.readFileSync(filePath, 'utf-8');
+            
+            for (const pattern of placeholderPatterns) {
+              const matches = content.match(pattern);
+              if (matches) {
+                matches.forEach(match => {
+                  errors.push(`${filePath}: "${match}"`);
+                });
+              }
+            }
+          }
+        }
+      }
+    } catch (error) {
+      console.warn(`Warning: Could not scan directory ${dirPath}`);
+    }
+  }
+  
+  if (errors.length > 0) {
+    throw new Error(
+      `Build failed: Placeholder content found in component files:\n${errors.map(e => `  - ${e}`).join('\n')}\n\nPlease replace all placeholder texts with actual content.`
+    );
+  }
+  
+  console.log('✅ No placeholder content found in component files');
 }
 
-// Run validation immediately when this module is imported
+// Run validation immediately when this module is imported in production
 if (import.meta.env.NODE_ENV !== 'development') {
   validateTranslationsAtBuildTime();
   validateComponentContent();

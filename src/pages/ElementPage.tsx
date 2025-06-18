@@ -21,10 +21,10 @@ const ElementPage = () => {
     navigate(`${basePath}/element/${atomic}`);
   };
 
-  // Handler to go back to home page
+  // Handler to go back to home page - FIXED
   const handleBackToHome = () => {
     const basePath = lang ? `/${lang}` : '';
-    navigate(basePath);
+    navigate(basePath, { replace: true });
   };
 
   // Navigation handlers for previous/next element
@@ -58,7 +58,7 @@ const ElementPage = () => {
       {/* Navigation Buttons */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between mb-4">
-          {/* Back to Home Button */}
+          {/* Back to Home Button - FIXED */}
           <Button
             onClick={handleBackToHome}
             variant="outline"
@@ -68,7 +68,7 @@ const ElementPage = () => {
             {t.ui?.backToHome || 'Back to Home'}
           </Button>
           
-          {/* Previous/Next Element Buttons */}
+          {/* Previous/Next Element Buttons - FIXED */}
           <div className="flex items-center gap-2">
             <Button
               onClick={handlePrevious}
