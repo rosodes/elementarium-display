@@ -1,14 +1,14 @@
 
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { useValidatedTranslation } from '../../../hooks/useValidatedTranslation';
 
 interface ElementPhysicalPropertiesProps {
   element: Element;
 }
 
 const ElementPhysicalProperties: React.FC<ElementPhysicalPropertiesProps> = ({ element }) => {
-  const { t } = useTranslation();
+  const { t } = useValidatedTranslation('ElementPhysicalProperties');
 
   const formatTemperature = (temp: string | undefined) => {
     if (!temp) return 'N/A';

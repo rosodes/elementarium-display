@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { useValidatedTranslation } from '../../../hooks/useValidatedTranslation';
 import { getCategoryColor, getSeriesColor } from '../../../data/elementCategories';
 
 interface ElementBasicInfoProps {
@@ -9,7 +9,7 @@ interface ElementBasicInfoProps {
 }
 
 const ElementBasicInfo: React.FC<ElementBasicInfoProps> = ({ element }) => {
-  const { t } = useTranslation();
+  const { t } = useValidatedTranslation('ElementBasicInfo');
   const categoryColor = element.category 
     ? getCategoryColor(element.category) 
     : getSeriesColor(element.series);

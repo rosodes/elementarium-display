@@ -1,19 +1,19 @@
 
 import React from 'react';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useValidatedTranslation } from '../../hooks/useValidatedTranslation';
 
 interface GroupLabelProps {
   number: number;
 }
 
 const GroupLabel: React.FC<GroupLabelProps> = ({ number }) => {
-  const { t } = useTranslation();
+  const { t } = useValidatedTranslation('GroupLabel');
   
   return (
     <div className="group-label">
       <span className="group-label__number">{number}</span>
       <span className="group-label__text sr-only">
-        {t('ui.group')} {number}
+        {t('ui.group', `Group ${number}`)} {number}
       </span>
     </div>
   );

@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
 import { Element } from '../../data/elementTypes';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useValidatedTranslation } from '../../hooks/useValidatedTranslation';
 import ElementDetailsContent from './ElementDetailsContent';
 import ElementNavigation from './ElementNavigation';
 
@@ -19,7 +19,7 @@ const ElementDetailsModal: React.FC<ElementDetailsModalProps> = ({
   onNavigate,
   isOpen
 }) => {
-  const { t } = useTranslation();
+  const { t } = useValidatedTranslation('ElementDetailsModal');
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

@@ -1,14 +1,14 @@
 
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
-import { useTranslation } from '../../../hooks/useTranslation';
+import { useValidatedTranslation } from '../../../hooks/useValidatedTranslation';
 
 interface ElementElectronicStructureProps {
   element: Element;
 }
 
 const ElementElectronicStructure: React.FC<ElementElectronicStructureProps> = ({ element }) => {
-  const { t } = useTranslation();
+  const { t } = useValidatedTranslation('ElementElectronicStructure');
 
   return (
     <div className="element-electronic-structure">

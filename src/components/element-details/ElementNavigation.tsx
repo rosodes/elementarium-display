@@ -2,7 +2,7 @@
 import React from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Element } from '../../data/elementTypes';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useValidatedTranslation } from '../../hooks/useValidatedTranslation';
 
 interface ElementNavigationProps {
   element: Element;
@@ -10,7 +10,7 @@ interface ElementNavigationProps {
 }
 
 const ElementNavigation: React.FC<ElementNavigationProps> = ({ element, onNavigate }) => {
-  const { t } = useTranslation();
+  const { t } = useValidatedTranslation('ElementNavigation');
 
   return (
     <div className="element-navigation flex justify-between items-center p-4 border-t">

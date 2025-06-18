@@ -2,7 +2,7 @@
 import React from 'react';
 import { Element } from '../../data/elementTypes';
 import { getCategoryColor, getSeriesColor } from '../../data/elementCategories';
-import { useTranslation } from '../../hooks/useTranslation';
+import { useValidatedTranslation } from '../../hooks/useValidatedTranslation';
 
 interface ElementCardProps {
   element: Element;
@@ -19,7 +19,7 @@ const ElementCard: React.FC<ElementCardProps> = ({
   compact = false,
   showDetails = false
 }) => {
-  const { t } = useTranslation();
+  const { t } = useValidatedTranslation('ElementCard');
   const categoryColor = element.category 
     ? getCategoryColor(element.category) 
     : getSeriesColor(element.series);
@@ -58,7 +58,7 @@ const ElementCard: React.FC<ElementCardProps> = ({
       </div>
       
       <div className="element-card__name">
-        {t(`ui.elements.${element.symbol.toLowerCase()}`) || element.name}
+        {t(`ui.elements.${element.symbol.toLowerCase()}`, element.name) || element.name}
       </div>
       
       {showDetails && (
@@ -67,7 +67,7 @@ const ElementCard: React.FC<ElementCardProps> = ({
             {element.weight}
           </div>
           <div className="element-card__category">
-            {t(`categories.${element.series.toLowerCase()}`)}
+            {t(`categories.${element.series.toLowerCase()}`, element.series)}
           </div>
         </div>
       )}
