@@ -6,11 +6,10 @@ export const categoriesFr: CategoriesTranslations = {
   alkaline: "Métaux alcalino-terreux",
   transition: "Métaux de transition",
   postTransition: "Métaux post-transition",
-  metalloids: "Métalloïdes",
-  nonmetals: "Non-métaux",
-  halogens: "Halogènes",
+  metalloid: "Métalloïdes",
+  nonmetal: "Non-métaux",
   noble: "Gaz nobles",
-  lanthanides: "Lanthanides",
-  actinides: "Actinides",
+  lanthanide: "Lanthanides",
+  actinide: "Actinides",
   unknown: "Propriétés inconnues"
 };

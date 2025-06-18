@@ -159,6 +159,8 @@ export interface UITranslations {
   readonly next?: string;
   readonly previous?: string;
   readonly backToHome?: string;
+  readonly previousElement?: string;
+  readonly nextElement?: string;
   readonly open?: string;
   readonly closeWindow?: string;
   readonly homePage?: string;

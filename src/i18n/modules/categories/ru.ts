@@ -6,11 +6,10 @@ export const categoriesRu: CategoriesTranslations = {
   alkaline: "Щелочноземельные металлы",
   transition: "Переходные металлы",
   postTransition: "Постпереходные металлы",
-  metalloids: "Металлоиды",
-  nonmetals: "Неметаллы",
-  halogens: "Галогены",
+  metalloid: "Металлоиды",
+  nonmetal: "Неметаллы",
   noble: "Благородные газы",
-  lanthanides: "Лантаноиды",
-  actinides: "Актиноиды",
+  lanthanide: "Лантаноиды",
+  actinide: "Актиноиды",
   unknown: "Неизвестные свойства"
 };

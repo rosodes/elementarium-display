@@ -39,7 +39,6 @@ export const uiRu: UITranslations = {
   hotkeyHome: "На главную",
   hotkeyClose: "Закрыть",
   skipToContent: "Перейти к главному контенту",
-  // Navigation buttons
   backToHome: "Вернуться на главную",
   previousElement: "Предыдущий элемент",
   nextElement: "Следующий элемент"

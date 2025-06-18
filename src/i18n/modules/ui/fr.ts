@@ -39,7 +39,6 @@ export const uiFr: UITranslations = {
   hotkeyHome: "Accueil",
   hotkeyClose: "Fermer",
   skipToContent: "Passer au contenu principal",
-  // Navigation buttons
   backToHome: "Retour à l'accueil",
   previousElement: "Élément précédent",
   nextElement: "Élément suivant"
