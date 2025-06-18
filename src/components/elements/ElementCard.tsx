@@ -20,9 +20,16 @@ const ElementCard: React.FC<ElementCardProps> = ({
   showDetails = false
 }) => {
   const { t } = useValidatedTranslation('ElementCard');
-  const categoryColor = element.category 
-    ? getCategoryColor(element.category) 
-    : getSeriesColor(element.series);
+  
+  // Get the correct color object based on category or series
+  const getElementColors = () => {
+    if (element.category) {
+      return getCategoryColor(element.category);
+    }
+    return getSeriesColor(element.series);
+  };
+
+  const colors = getElementColors();
   
   return (
     <div
@@ -34,9 +41,9 @@ const ElementCard: React.FC<ElementCardProps> = ({
         hover:scale-105 hover:shadow-lg
       `}
       style={{
-        backgroundColor: categoryColor.bg,
-        borderColor: categoryColor.border,
-        color: categoryColor.text
+        backgroundColor: colors.bg,
+        borderColor: colors.border,
+        color: colors.text
       }}
       onClick={onClick}
       data-element={element.symbol}

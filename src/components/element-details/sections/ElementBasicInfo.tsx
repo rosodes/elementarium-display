@@ -10,16 +10,27 @@ interface ElementBasicInfoProps {
 
 const ElementBasicInfo: React.FC<ElementBasicInfoProps> = ({ element }) => {
   const { t } = useValidatedTranslation('ElementBasicInfo');
-  const categoryColor = element.category 
-    ? getCategoryColor(element.category) 
-    : getSeriesColor(element.series);
+  
+  // Get the correct color object
+  const getElementColors = () => {
+    if (element.category) {
+      return getCategoryColor(element.category);
+    }
+    return getSeriesColor(element.series);
+  };
+
+  const categoryColor = getElementColors();
 
   return (
     <div className="element-basic-info">
       <div className="element-basic-info__header">
         <div 
           className="element-basic-info__symbol"
-          style={{ backgroundColor: categoryColor.bg, color: categoryColor.text }}
+          style={{ 
+            backgroundColor: categoryColor.bg, 
+            color: categoryColor.text,
+            borderColor: categoryColor.border
+          }}
         >
           {element.symbol}
           <span className="element-basic-info__atomic">

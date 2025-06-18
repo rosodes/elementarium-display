@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Element as ElementType } from '../data/elements';
 import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
-import { getCategoryColor } from '../data/elementCategories';
+import { getCategoryColor, getSeriesColor } from '../data/elementCategories';
 import ElementTooltip from './ElementTooltip';
 import type { BaseElementProps } from '../types/componentTypes';
 import type { ActionFunction, ClassName } from '../types/componentTypes';
@@ -19,19 +19,20 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
   const [isHovering, setIsHovering] = useState<boolean>(false);
   const { t, rawT } = useValidatedTranslation('Element');
   
-  // Determine the element color based on electron block with better contrast
-  const getElementColor = (): ClassName => {
-    // Determine block (s, p, d, f) based on electronic configuration
-    if (element.expandedconfig) {
-      if (element.expandedconfig.includes(' s')) return 'bg-s-block';
-      if (element.expandedconfig.includes(' p')) return 'bg-p-block';
-      if (element.expandedconfig.includes(' d')) return 'bg-d-block';
-      if (element.expandedconfig.includes(' f')) return 'bg-f-block';
+  // Get category color as inline styles
+  const getCategoryStyles = () => {
+    let categoryColor;
+    if (element.category) {
+      categoryColor = getCategoryColor(element.category);
+    } else {
+      categoryColor = getSeriesColor(element.series);
     }
     
-    // If electronic configuration isn't defined, use category or series colors as CSS classes
-    const categoryColor = getCategoryColor(element.category || element.series);
-    return `bg-gray-100 border-gray-300`; // fallback to neutral colors
+    return {
+      backgroundColor: categoryColor.bg,
+      borderColor: categoryColor.border,
+      color: categoryColor.text
+    };
   };
 
   // Check if element is radioactive
@@ -60,16 +61,6 @@ const Element = ({ element, onClick, className, style, ...props }: ElementProps)
   const getElementName = (): string => {
     const elementKey = element.symbol.toLowerCase() as ElementSymbolKey;
     return rawT.ui?.elements?.[elementKey] || element.name || element.symbol;
-  };
-  
-  // Get category color as inline styles
-  const getCategoryStyles = () => {
-    const categoryColor = getCategoryColor(element.category || element.series);
-    return {
-      backgroundColor: categoryColor.bg,
-      borderColor: categoryColor.border,
-      color: categoryColor.text
-    };
   };
   
   const handleHoverStart = (): void => setIsHovering(true);
