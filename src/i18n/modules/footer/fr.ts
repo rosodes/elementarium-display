@@ -6,7 +6,6 @@ export const footerFr: FooterTranslations = {
   madeWith: "Fait avec",
   by: "par",
   version: "Version",
-  lastUpdated: "Dernière mise à jour",
   github: "Code source",
   license: "Licence",
   privacy: "Confidentialité",

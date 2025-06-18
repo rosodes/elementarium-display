@@ -49,3 +49,4 @@ export interface UITranslations {
 export { uiEn } from './ui/en';
 export { uiRu } from './ui/ru';
 export { uiUk } from './ui/uk';
+export { uiFr } from './ui/fr';

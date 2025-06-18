@@ -1,5 +1,5 @@
 
-import { TranslationData, LanguageKey, languages, addLanguage } from './types';
+import { TranslationData, LanguageKey, addLanguage } from './types';
 import { languageLoader } from './loaders/LanguageLoader';
 import { languageManager } from './core/LanguageManager';
 
@@ -7,11 +7,13 @@ import { languageManager } from './core/LanguageManager';
 import { en } from './en';
 import { ru } from './ru'; 
 import { uk } from './uk';
+import { fr } from './fr';
 
 // Добавляем базовые языки в менеджер
 languageManager.addLanguage('en', en);
 languageManager.addLanguage('ru', ru);
 languageManager.addLanguage('uk', uk);
+languageManager.addLanguage('fr', fr);
 
 // Валидация только в продакшене
 if (import.meta.env.NODE_ENV === 'production') {
