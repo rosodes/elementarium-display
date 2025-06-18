@@ -98,4 +98,5 @@ export interface UITranslations {
   backToHome?: string;
   previousElement?: string;
   nextElement?: string;
+  elements?: Record<string, string>;
 }
