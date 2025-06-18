@@ -12,6 +12,7 @@ export interface FooterTranslations {
   about: string;
   support: string;
   documentation: string;
+  contributors: string;
   // Properties used by ElementPageFooter
   credits: string;
   dataNote: string;

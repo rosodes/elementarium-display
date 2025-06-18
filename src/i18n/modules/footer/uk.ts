@@ -1,5 +1,5 @@
 
-import type { FooterTranslations } from "./en";
+import type { FooterTranslations } from "../../types/footerTypes";
 
 export const footerUk: FooterTranslations = {
   madeWith: "Зроблено з",
@@ -10,6 +10,13 @@ export const footerUk: FooterTranslations = {
   copyright: "© 2023 Періодична таблиця",
   license: "Відкритий вихідний код під ліцензією MIT",
   contributors: "Подяка всім учасникам",
+  github: "Вихідний код",
+  privacy: "Конфіденційність",
+  terms: "Умови використання",
+  contact: "Контакти",
+  about: "Про проект",
+  support: "Підтримка",
+  documentation: "Документація",
   // Main page content
   mainTitle: "Таблиця Менделєєва – основи хімії",
   mainSubtitle: "Чому Періодична система важлива?",
