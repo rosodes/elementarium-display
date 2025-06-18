@@ -218,7 +218,10 @@ export const en: TranslationData = {
     searchShortcut: "Keyboard shortcut",
     accessibilityLabel: "Periodic Table of Elements",
     elementTable: "Periodic Table of Elements",
-    focusMode: "Focus mode"
+    focusMode: "Focus mode",
+    backToHome: "Back to home",
+    previousElement: "Previous element",
+    nextElement: "Next element"
   },
   
   // Element details translations

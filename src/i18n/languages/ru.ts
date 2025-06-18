@@ -226,7 +226,10 @@ export const ru: TranslationData = {
     elementRemoved: "Элемент удален из закладок",
     elementBookmarked: "Элемент добавлен в закладки",
     linkCopied: "Ссылка скопирована",
-    linkCopiedToClipboard: "Ссылка скопирована в буфер обмена"
+    linkCopiedToClipboard: "Ссылка скопирована в буфер обмена",
+    backToHome: "Вернуться на главную",
+    previousElement: "Предыдущий элемент",
+    nextElement: "Следующий элемент"
   },
   
   // Element details translations

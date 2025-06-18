@@ -1,43 +1,21 @@
 
-export interface FooterTranslations {
-  madeWith: string;
-  by: string;
-  dataNote: string;
-  credits: string;
-  version: string;
-  copyright: string;
-  license: string;
-  contributors: string;
-  // Main page content
-  mainTitle: string;
-  mainSubtitle: string;
-  whyImportant: string;
-  mainDescription1: string;
-  mainDescription2: string;
-  colorLegendTitle: string;
-  colorCategoryColumn: string;
-  descriptionColumn: string;
-  sBlockDescription: string;
-  pBlockDescription: string;
-  dBlockDescription: string;
-  fBlockDescription: string;
-  alkaliMetalsDescription: string;
-  postTransitionDescription: string;
-  metalloidsDescription: string;
-  unknownPropertiesDescription: string;
-  nobleGasesDescription: string;
-  radioactiveDescription: string;
-}
+import type { FooterTranslations } from "../../types/footerTypes";
 
 export const footerEn: FooterTranslations = {
   madeWith: "Made with",
-  by: "by React team",
-  dataNote: "Data sourced from various scientific databases and publications",
-  credits: "Based on the latest IUPAC recommendations",
+  by: "by",
   version: "Version 1.0.0",
-  copyright: "© 2023 Periodic Table",
-  license: "Open source under MIT license",
-  contributors: "Thanks to all contributors",
+  copyright: "All rights reserved",
+  github: "Source code",
+  license: "License",
+  privacy: "Privacy",
+  terms: "Terms of use",
+  contact: "Contact",
+  about: "About",
+  support: "Support",
+  documentation: "Documentation",
+  credits: "Based on the latest IUPAC recommendations",
+  dataNote: "Data sourced from various scientific databases and publications",
   // Main page content
   mainTitle: "Periodic Table of Elements – Chemistry Fundamentals",
   mainSubtitle: "Why is the Periodic System important?",

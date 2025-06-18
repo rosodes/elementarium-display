@@ -1,3 +1,4 @@
+
 import { TranslationData } from ".";
 import { legendEn } from "./modules/legend";
 import { detailsEn } from "./modules/details";
