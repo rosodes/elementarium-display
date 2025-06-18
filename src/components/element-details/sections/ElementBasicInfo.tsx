@@ -1,0 +1,84 @@
+
+import React from 'react';
+import { Element } from '../../../data/elementTypes';
+import { useTranslation } from '../../../hooks/useTranslation';
+import { getCategoryColor } from '../../../data/elementCategories';
+
+interface ElementBasicInfoProps {
+  element: Element;
+}
+
+const ElementBasicInfo: React.FC<ElementBasicInfoProps> = ({ element }) => {
+  const { t } = useTranslation();
+  const categoryColor = getCategoryColor(element.series);
+
+  return (
+    <div className="element-basic-info">
+      <div className="element-basic-info__header">
+        <div 
+          className="element-basic-info__symbol"
+          style={{ backgroundColor: categoryColor.bg, color: categoryColor.text }}
+        >
+          {element.symbol}
+          <span className="element-basic-info__atomic">
+            {element.atomic}
+          </span>
+        </div>
+        
+        <div className="element-basic-info__name-group">
+          <h3 className="element-basic-info__name">
+            {t(`ui.elements.${element.symbol.toLowerCase()}`) || element.name}
+          </h3>
+          <p className="element-basic-info__category">
+            {t(`categories.${element.series.toLowerCase()}`)}
+          </p>
+        </div>
+      </div>
+
+      <div className="element-basic-info__properties">
+        <div className="property-item">
+          <span className="property-label">{t('details.atomicNumber')}</span>
+          <span className="property-value">{element.atomic}</span>
+        </div>
+        
+        <div className="property-item">
+          <span className="property-label">{t('details.atomicWeight')}</span>
+          <span className="property-value">{element.weight}</span>
+        </div>
+        
+        <div className="property-item">
+          <span className="property-label">{t('details.group')}</span>
+          <span className="property-value">{element.group}</span>
+        </div>
+        
+        <div className="property-item">
+          <span className="property-label">{t('details.period')}</span>
+          <span className="property-value">{element.period}</span>
+        </div>
+        
+        {element.block && (
+          <div className="property-item">
+            <span className="property-label">{t('details.block')}</span>
+            <span className="property-value">{element.block}-block</span>
+          </div>
+        )}
+        
+        {element.discover && (
+          <div className="property-item">
+            <span className="property-label">{t('details.yearDiscovered')}</span>
+            <span className="property-value">{element.discover}</span>
+          </div>
+        )}
+      </div>
+
+      {element.description && (
+        <div className="element-basic-info__description">
+          <h4>{t('details.description')}</h4>
+          <p>{element.description}</p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ElementBasicInfo;

@@ -1,149 +1,162 @@
+
+// Enhanced element type definitions with better structure and validation
+
 export interface ElementRadius {
-  readonly calculated?: string;
-  readonly empirical?: string;
-  readonly covalent?: string;
-  readonly vanderwaals?: string;
+  calculated?: string;
+  empirical?: string;
+  covalent?: string;
+  vanderwaals?: string;
 }
 
 export interface ElementDensity {
-  readonly stp?: string;
+  stp?: string;
+  liquid?: string;
 }
 
 export interface ElementConductivity {
-  readonly thermal?: string;
+  thermal?: string;
+  electrical?: string;
 }
 
 export interface ElementAbundance {
-  readonly universe?: string;
-  readonly solar?: string;
-  readonly meteor?: string;
-  readonly crust?: string;
-  readonly ocean?: string;
-  readonly human?: string;
+  universe?: string;
+  solar?: string;
+  meteor?: string;
+  crust?: string;
+  ocean?: string;
+  human?: string;
 }
 
 export interface ElementHeat {
-  readonly specific?: string;
-  readonly vaporization?: string;
-  readonly fusion?: string;
+  specific?: string;
+  vaporization?: string;
+  fusion?: string;
 }
 
-export interface ElementIonize {
-  readonly 1?: string;
-  readonly 2?: string;
-  readonly 3?: string;
-  readonly 4?: string;
-  readonly 5?: string;
-  readonly 6?: string;
-  readonly 7?: string;
-  readonly 8?: string;
-  readonly 9?: string;
-  readonly 10?: string;
+export interface ElementIonization {
+  [key: string]: string;
 }
 
 export interface ElementQuantum {
-  readonly l: number;
-  readonly m: number;
-  readonly n: number;
+  l: number;
+  m: number;
+  n: number;
 }
 
-// Define specific literal types for better type safety
-export type ElementSeries = 
-  | 'Alkali'
-  | 'Alkaline'
-  | 'Transition'
-  | 'Post-transition'
-  | 'Metalloid'
-  | 'Nonmetal'
-  | 'Noble'
-  | 'Lanthanide'
-  | 'Actinide'
-  | 'Unknown';
-
-export type ElementCategory = 
-  | 'alkali metal'
-  | 'alkaline earth metal'
-  | 'transition metal'
-  | 'post-transition metal'
-  | 'metalloid'
-  | 'nonmetal'
-  | 'noble gas'
-  | 'lanthanide'
-  | 'actinide'
-  | 'unknown';
-
-export type ElementBlock = 's' | 'p' | 'd' | 'f';
-
-// Подробный тип изотопа
 export interface ElementIsotope {
-  symbol: string;          // например, "Ne-20"
-  abundance?: number;      // проценты (например, 90.48)
-  stable: boolean;         // устойчивый или радиоактивный
-  comment?: string;        // короткое примечание
+  symbol: string;
+  abundance?: number;
+  stable: boolean;
+  halfLife?: string;
+  comment?: string;
+}
+
+export interface ElementPhysicalProperties {
+  melt?: string;
+  boil?: string;
+  electroneg?: string;
+  density?: ElementDensity;
+  conductivity?: ElementConductivity;
+  abundance?: ElementAbundance;
+  heat?: ElementHeat;
+  affinity?: string;
+  ionize?: ElementIonization;
+}
+
+export interface ElementConfiguration {
+  electronstring: string;
+  expandedconfig: string;
+  electrons: number[];
+  quantum: ElementQuantum;
 }
 
 export interface Element {
-  readonly atomic: string;
-  readonly symbol: string;
-  readonly name?: string;
-  readonly weight: string;
-  readonly electronstring: string;
-  readonly series: ElementSeries;
-  readonly melt?: string;
-  readonly boil?: string;
-  readonly electroneg?: string;
-  readonly valence: string;
-  readonly oxidation?: string;
-  readonly radius: ElementRadius;
-  readonly discover?: string;
-  readonly density?: ElementDensity;
-  readonly affinity?: string;
-  readonly conductivity?: ElementConductivity;
-  readonly abundance?: ElementAbundance;
-  readonly heat?: ElementHeat;
-  readonly ionize?: ElementIonize;
-  readonly expandedconfig: string;
-  readonly electrons: readonly number[];
-  readonly quantum: ElementQuantum;
-  readonly isotopes: number;
-  readonly isotopesDetailed?: ElementIsotope[];
-  
-  // Новое свойство: радиоактивность
-  readonly radioactive?: boolean;
-  
-  // For compatibility with existing components - make optional and readonly
-  readonly number?: number;
-  readonly atomicMass?: string;
-  readonly category?: ElementCategory;
-  readonly group?: number;
-  readonly period?: number;
-  readonly block?: ElementBlock;
-  readonly electronConfiguration?: string;
-  readonly atomicRadius?: number;
-  readonly ionizationEnergy?: number;
-  readonly meltingPoint?: number;
-  readonly boilingPoint?: number;
-  readonly discoveredBy?: string;
-  readonly namedAfter?: string;
-  readonly description?: string;
-  readonly summary?: string;
+  atomic: string;
+  symbol: string;
+  name: string;
+  weight: string;
+  series: ElementSeries;
+  valence: string;
+  oxidation: string;
+  radius: ElementRadius;
+  discover?: string;
+  isotopes: number;
+  isotopesDetailed?: ElementIsotope[];
+  group: number;
+  period: number;
+  block?: ElementBlock;
+  category?: string;
+  atomicMass?: string;
+  electronConfiguration?: string;
+  description?: string;
+  summary?: string;
+  radioactive?: boolean;
+  // Physical properties
+  melt?: string;
+  boil?: string;
+  electroneg?: string;
+  density?: ElementDensity;
+  conductivity?: ElementConductivity;
+  abundance?: ElementAbundance;
+  heat?: ElementHeat;
+  affinity?: string;
+  ionize?: ElementIonization;
+  // Electronic configuration
+  electronstring: string;
+  expandedconfig: string;
+  electrons: number[];
+  quantum: ElementQuantum;
 }
 
-// Better type for elements array with proper null handling
-export type ElementsArray = readonly [null, ...Element[]];
+export type ElementSeries = 
+  | "Alkali" 
+  | "Alkaline" 
+  | "Transition" 
+  | "Post-transition" 
+  | "Metalloid" 
+  | "Nonmetal" 
+  | "Noble" 
+  | "Lanthanide" 
+  | "Actinide";
 
-// Helper type for safely accessing elements
-export type SafeElement = Element | null;
+export type ElementBlock = "s" | "p" | "d" | "f";
 
-// Type guards for better type safety
-export const isElement = (element: unknown): element is Element => {
-  return typeof element === 'object' && 
-         element !== null && 
-         'atomic' in element && 
-         'symbol' in element &&
-         'electronstring' in element;
+export type ElementCategory = 
+  | "alkali metal"
+  | "alkaline earth metal"
+  | "transition metal"
+  | "post-transition metal"
+  | "metalloid"
+  | "nonmetal"
+  | "noble gas"
+  | "lanthanide"
+  | "actinide";
+
+export type ElementsArray = (Element | null)[];
+
+// Validation utilities
+export const validateElement = (element: Partial<Element>): element is Element => {
+  return !!(
+    element.atomic &&
+    element.symbol &&
+    element.name &&
+    element.weight &&
+    element.series &&
+    element.group &&
+    element.period &&
+    element.electronstring &&
+    element.expandedconfig &&
+    element.electrons &&
+    element.quantum
+  );
 };
 
-export const isValidAtomicNumber = (num: unknown): num is number => {
-  return typeof num === 'number' && num >= 1 && num <= 118 && Number.isInteger(num);
+export const isRadioactiveElement = (element: Element): boolean => {
+  return element.radioactive === true || parseInt(element.atomic) > 83;
+};
+
+export const getElementMass = (element: Element): number => {
+  const mass = element.atomicMass || element.weight;
+  const numericMatch = mass.match(/[\d.]+/);
+  return numericMatch ? parseFloat(numericMatch[0]) : 0;
 };
