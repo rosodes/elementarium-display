@@ -22,40 +22,40 @@ const ElementPhysicalProperties: React.FC<ElementPhysicalPropertiesProps> = ({ e
 
   return (
     <div className="element-physical-properties">
-      <h4 className="section-title">{t('details.properties')}</h4>
+      <h4 className="section-title">{t('details.properties', 'Properties')}</h4>
       
       <div className="properties-grid">
         {element.melt && (
           <div className="property-item">
-            <span className="property-label">{t('details.meltingPoint')}</span>
+            <span className="property-label">{t('details.meltingPoint', 'Melting Point')}</span>
             <span className="property-value">{formatTemperature(element.melt)}</span>
           </div>
         )}
         
         {element.boil && (
           <div className="property-item">
-            <span className="property-label">{t('details.boilingPoint')}</span>
+            <span className="property-label">{t('details.boilingPoint', 'Boiling Point')}</span>
             <span className="property-value">{formatTemperature(element.boil)}</span>
           </div>
         )}
         
         {element.density?.stp && (
           <div className="property-item">
-            <span className="property-label">{t('details.density')}</span>
+            <span className="property-label">{t('details.density', 'Density')}</span>
             <span className="property-value">{element.density.stp} g/cm³</span>
           </div>
         )}
         
         {element.electroneg && (
           <div className="property-item">
-            <span className="property-label">{t('details.electronegativity')}</span>
+            <span className="property-label">{t('details.electronegativity', 'Electronegativity')}</span>
             <span className="property-value">{element.electroneg}</span>
           </div>
         )}
         
-        {element.radius.atomic && (
+        {element.radius.calculated && (
           <div className="property-item">
-            <span className="property-label">{t('details.atomicRadius')}</span>
+            <span className="property-label">{t('details.atomicRadius', 'Atomic Radius')}</span>
             <span className="property-value">{formatRadius(element.radius.calculated)}</span>
           </div>
         )}
@@ -76,7 +76,7 @@ const ElementPhysicalProperties: React.FC<ElementPhysicalPropertiesProps> = ({ e
         
         {element.oxidation && (
           <div className="property-item">
-            <span className="property-label">{t('details.oxidationStates')}</span>
+            <span className="property-label">{t('details.oxidationStates', 'Oxidation States')}</span>
             <span className="property-value">{element.oxidation}</span>
           </div>
         )}

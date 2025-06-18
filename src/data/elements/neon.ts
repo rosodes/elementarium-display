@@ -1,4 +1,3 @@
-
 import { Element, ElementIsotope } from "../elementTypes";
 const neonIsotopes: ElementIsotope[] = [
   {
@@ -30,6 +29,7 @@ const neon: Element = {
   melt: "24.56",
   boil: "27.07",
   valence: "0",
+  oxidation: "0", // Added missing oxidation
   radius: {
     calculated: "38",
     covalent: "69",

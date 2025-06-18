@@ -9,6 +9,7 @@ const helium: Element = {
   series: "Noble",
   boil: "4.222",
   valence: "0",
+  oxidation: "0",
   radius: {
     calculated: "31",
     covalent: "32",
@@ -41,7 +42,6 @@ const helium: Element = {
   electrons: [2],
   quantum: { l: 0, m: 0, n: 1 },
   isotopes: 9,
-  number: 2,
   atomicMass: "4.002602",
   category: "noble gas",
   group: 18,

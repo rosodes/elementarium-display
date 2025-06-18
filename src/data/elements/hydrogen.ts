@@ -46,7 +46,6 @@ const hydrogen: Element = {
   electrons: [1],
   quantum: { l: 0, m: 0, n: 1 },
   isotopes: 7,
-  number: 1,
   atomicMass: "1.008",
   category: "nonmetal",
   group: 1,

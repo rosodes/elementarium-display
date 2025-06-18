@@ -1,59 +1,75 @@
 
-import { Element } from './elementTypes';
-import { useTheme } from '../context/ThemeContext';
+export interface CategoryColor {
+  bg: string;
+  border: string;
+  text: string;
+}
 
-export const categories = {
-  "Alkali": "Alkali Metal",
-  "Alkaline": "Alkaline Earth Metal",
-  "Transition": "Transition Metal",
-  "Post-transition": "Post-Transition Metal",
-  "Metalloid": "Metalloid",
-  "Nonmetal": "Nonmetal",
-  "Noble": "Noble Gas",
-  "Lanthanide": "Lanthanide",
-  "Actinide": "Actinide",
-  "Unknown": "Unknown"
+export const categories: Record<string, CategoryColor> = {
+  'alkali metal': {
+    bg: '#ff6b6b',
+    border: '#e55656',
+    text: '#ffffff'
+  },
+  'alkaline earth metal': {
+    bg: '#ffa726',
+    border: '#fb8c00',
+    text: '#ffffff'
+  },
+  'transition metal': {
+    bg: '#42a5f5',
+    border: '#1e88e5',
+    text: '#ffffff'
+  },
+  'post-transition metal': {
+    bg: '#66bb6a',
+    border: '#43a047',
+    text: '#ffffff'
+  },
+  'metalloid': {
+    bg: '#ab47bc',
+    border: '#8e24aa',
+    text: '#ffffff'
+  },
+  'nonmetal': {
+    bg: '#26c6da',
+    border: '#00acc1',
+    text: '#ffffff'
+  },
+  'noble gas': {
+    bg: '#ec407a',
+    border: '#d81b60',
+    text: '#ffffff'
+  },
+  'lanthanide': {
+    bg: '#ffa726',
+    border: '#fb8c00',
+    text: '#ffffff'
+  },
+  'actinide': {
+    bg: '#ff7043',
+    border: '#f4511e',
+    text: '#ffffff'
+  }
 };
 
-export const getCategoryColor = (category: string): string => {
-  const categoryMap: Record<string, string> = {
-    "alkali": "bg-alkali",
-    "nonmetal": "bg-nonmetal",
-    "noble": "bg-noble",
-    "alkaline": "bg-alkaline",
-    "metalloid": "bg-metalloid",
-    "post-transition": "bg-post_transition",
-    "transition": "bg-transition",
-    "lanthanide": "bg-lanthanide",
-    "actinide": "bg-actinide",
-    "unknown": "bg-unknown"
-  };
-  
-  const key = category.toLowerCase();
-  return categoryMap[key] || "bg-unknown";
+const seriesMapping: Record<string, string> = {
+  'Alkali': 'alkali metal',
+  'Alkaline': 'alkaline earth metal',
+  'Transition': 'transition metal',
+  'Post-transition': 'post-transition metal',
+  'Metalloid': 'metalloid',
+  'Nonmetal': 'nonmetal',
+  'Noble': 'noble gas',
+  'Lanthanide': 'lanthanide',
+  'Actinide': 'actinide'
 };
 
-export const getSeriesColor = (series: string): string => {
-  const seriesMap: Record<string, string> = {
-    "Alkali": "bg-alkali",
-    "Nonmetal": "bg-nonmetal",
-    "Noble": "bg-noble",
-    "Alkaline": "bg-alkaline",
-    "Metalloid": "bg-metalloid",
-    "Post-transition": "bg-post_transition",
-    "Transition": "bg-transition",
-    "Lanthanide": "bg-lanthanide",
-    "Actinide": "bg-actinide",
-    "Unknown": "bg-unknown"
-  };
-  
-  return seriesMap[series] || "bg-unknown";
-};
+export function getCategoryColor(category: string): CategoryColor {
+  return categories[category] || categories['nonmetal'];
+}
 
-// This function helps determine if text should be dark or light based on the background
-export const getTextColorForCategory = (category: string): string => {
-  const darkTextCategories = ["alkaline", "nonmetal", "noble", "unknown"];
-  const key = category.toLowerCase();
-  
-  return darkTextCategories.includes(key) ? "text-gray-800" : "text-gray-100";
-};
+export function getSeriesColor(series: string): CategoryColor {
+  const category = seriesMapping[series];
+  return getCategoryColor(category);
+}

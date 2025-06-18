@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Element } from '../../data/elementTypes';
-import { getCategoryColor } from '../../data/elementCategories';
+import { getCategoryColor, getSeriesColor } from '../../data/elementCategories';
 import { useTranslation } from '../../hooks/useTranslation';
 
 interface ElementCardProps {
@@ -20,7 +20,9 @@ const ElementCard: React.FC<ElementCardProps> = ({
   showDetails = false
 }) => {
   const { t } = useTranslation();
-  const categoryColor = getCategoryColor(element.series);
+  const categoryColor = element.category 
+    ? getCategoryColor(element.category) 
+    : getSeriesColor(element.series);
   
   return (
     <div

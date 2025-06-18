@@ -77,7 +77,7 @@ export interface Element {
   weight: string;
   series: ElementSeries;
   valence: string;
-  oxidation: string;
+  oxidation?: string; // Made optional
   radius: ElementRadius;
   discover?: string;
   isotopes: number;
@@ -117,7 +117,8 @@ export type ElementSeries =
   | "Nonmetal" 
   | "Noble" 
   | "Lanthanide" 
-  | "Actinide";
+  | "Actinide"
+  | "Unknown"; // Added Unknown
 
 export type ElementBlock = "s" | "p" | "d" | "f";
 

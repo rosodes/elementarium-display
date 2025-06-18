@@ -2,7 +2,7 @@
 import React from 'react';
 import { Element } from '../../../data/elementTypes';
 import { useTranslation } from '../../../hooks/useTranslation';
-import { getCategoryColor } from '../../../data/elementCategories';
+import { getCategoryColor, getSeriesColor } from '../../../data/elementCategories';
 
 interface ElementBasicInfoProps {
   element: Element;
@@ -10,7 +10,9 @@ interface ElementBasicInfoProps {
 
 const ElementBasicInfo: React.FC<ElementBasicInfoProps> = ({ element }) => {
   const { t } = useTranslation();
-  const categoryColor = getCategoryColor(element.series);
+  const categoryColor = element.category 
+    ? getCategoryColor(element.category) 
+    : getSeriesColor(element.series);
 
   return (
     <div className="element-basic-info">
@@ -37,35 +39,35 @@ const ElementBasicInfo: React.FC<ElementBasicInfoProps> = ({ element }) => {
 
       <div className="element-basic-info__properties">
         <div className="property-item">
-          <span className="property-label">{t('details.atomicNumber')}</span>
+          <span className="property-label">{t('details.atomicNumber', 'Atomic Number')}</span>
           <span className="property-value">{element.atomic}</span>
         </div>
         
         <div className="property-item">
-          <span className="property-label">{t('details.atomicWeight')}</span>
+          <span className="property-label">{t('details.atomicWeight', 'Atomic Weight')}</span>
           <span className="property-value">{element.weight}</span>
         </div>
         
         <div className="property-item">
-          <span className="property-label">{t('details.group')}</span>
+          <span className="property-label">{t('details.group', 'Group')}</span>
           <span className="property-value">{element.group}</span>
         </div>
         
         <div className="property-item">
-          <span className="property-label">{t('details.period')}</span>
+          <span className="property-label">{t('details.period', 'Period')}</span>
           <span className="property-value">{element.period}</span>
         </div>
         
         {element.block && (
           <div className="property-item">
-            <span className="property-label">{t('details.block')}</span>
+            <span className="property-label">{t('details.block', 'Block')}</span>
             <span className="property-value">{element.block}-block</span>
           </div>
         )}
         
         {element.discover && (
           <div className="property-item">
-            <span className="property-label">{t('details.yearDiscovered')}</span>
+            <span className="property-label">{t('details.yearDiscovered', 'Year Discovered')}</span>
             <span className="property-value">{element.discover}</span>
           </div>
         )}
@@ -73,7 +75,7 @@ const ElementBasicInfo: React.FC<ElementBasicInfoProps> = ({ element }) => {
 
       {element.description && (
         <div className="element-basic-info__description">
-          <h4>{t('details.description')}</h4>
+          <h4>{t('details.description', 'Description')}</h4>
           <p>{element.description}</p>
         </div>
       )}

@@ -9,6 +9,7 @@ const argon: Element = {
   melt: "83.8",
   boil: "87.3",
   valence: "0",
+  oxidation: "0", // Added missing oxidation
   radius: {
     calculated: "71",
     covalent: "97",

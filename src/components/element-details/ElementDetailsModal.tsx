@@ -69,7 +69,7 @@ const ElementDetailsModal: React.FC<ElementDetailsModalProps> = ({
           <button
             className="element-modal__close"
             onClick={onClose}
-            aria-label={t('ui.close')}
+            aria-label={t('ui.close', 'Close')}
           >
             <X size={24} />
           </button>
@@ -81,7 +81,7 @@ const ElementDetailsModal: React.FC<ElementDetailsModalProps> = ({
 
         <div className="element-modal__footer">
           <ElementNavigation
-            currentElement={element}
+            element={element}
             onNavigate={onNavigate}
           />
         </div>
