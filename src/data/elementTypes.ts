@@ -127,6 +127,9 @@ export interface Element {
   };
 }
 
+// Add the missing ElementsArray type export
+export type ElementsArray = (Element | null)[];
+
 export type ElementSeries = 
   | 'Alkali' 
   | 'Alkaline' 
