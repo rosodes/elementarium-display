@@ -10,12 +10,14 @@
 }
 
 .periodic-table {
-  display: grid;
-  grid-template-columns: 40px repeat(18, 1fr);
-  grid-template-rows: auto;
-  gap: 2px;
+  display: grid !important;
+  grid-template-columns: 40px repeat(18, 1fr) !important;
+  grid-template-rows: 40px repeat(7, 76px) !important;
+  gap: 2px !important;
   margin-bottom: 30px;
   min-height: 500px;
+  justify-content: center;
+  align-content: start;
 }
 
 .corner-cell {
@@ -52,7 +54,8 @@
 .element-card {
   width: 100%;
   height: 100%;
-  min-height: 60px;
+  min-height: 76px;
+  min-width: 76px;
   border-radius: 6px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -63,6 +66,7 @@
   align-items: center;
   cursor: pointer;
   border: 2px solid transparent;
+  box-sizing: border-box;
 }
 
 .element-card:hover {
@@ -114,28 +118,32 @@
 }
 
 .f-block-elements .element-card {
-  width: 60px;
-  height: 60px;
+  width: 76px;
+  height: 76px;
   flex-shrink: 0;
-  min-height: 60px;
+  min-height: 76px;
+  min-width: 76px;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
   .periodic-table {
-    grid-template-columns: 30px repeat(18, minmax(45px, 1fr));
-    gap: 1px;
+    grid-template-columns: 30px repeat(18, minmax(45px, 1fr)) !important;
+    grid-template-rows: 30px repeat(7, 65px) !important;
+    gap: 1px !important;
   }
   
   .element-card {
-    min-height: 50px;
+    min-height: 65px;
+    min-width: 45px;
     font-size: 0.8em;
   }
   
   .f-block-elements .element-card {
-    width: 45px;
-    height: 45px;
-    min-height: 45px;
+    width: 65px;
+    height: 65px;
+    min-height: 65px;
+    min-width: 45px;
   }
   
   .f-block-label {
@@ -150,19 +158,22 @@
   }
   
   .periodic-table {
-    grid-template-columns: 25px repeat(18, minmax(35px, 1fr));
-    gap: 1px;
+    grid-template-columns: 25px repeat(18, minmax(35px, 1fr)) !important;
+    grid-template-rows: 25px repeat(7, 55px) !important;
+    gap: 1px !important;
   }
   
   .element-card {
-    min-height: 40px;
+    min-height: 55px;
+    min-width: 35px;
     font-size: 0.7em;
   }
   
   .f-block-elements .element-card {
-    width: 35px;
-    height: 35px;
-    min-height: 35px;
+    width: 55px;
+    height: 55px;
+    min-height: 55px;
+    min-width: 35px;
   }
   
   .f-block-label {
