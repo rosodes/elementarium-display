@@ -1,8 +1,6 @@
 
-import React from 'react';
 import { Element } from '../data/elementTypes';
 import ElementDetails from '../components/ElementDetails';
-import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
 
 interface ElementMainContentProps {
   element: Element | null;
@@ -12,43 +10,41 @@ interface ElementMainContentProps {
   onClose: () => void;
 }
 
-const ElementMainContent: React.FC<ElementMainContentProps> = ({
-  element,
-  loading,
-  error,
-  onNavigate,
-  onClose
-}) => {
-  const { t } = useValidatedTranslation('ElementMainContent');
-
+const ElementMainContent = ({ element, loading, error, onNavigate, onClose }: ElementMainContentProps) => {
   if (loading) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-lg">{t('ui.loading', 'Loading...')}</div>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary"></div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-lg text-red-600">{error}</div>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-red-600 mb-4">Ошибка</h2>
+          <p className="text-gray-600">{error}</p>
+        </div>
       </div>
     );
   }
 
   if (!element) {
     return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-lg">{t('ui.noResults', 'Element not found')}</div>
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-gray-600 mb-4">Элемент не найден</h2>
+          <p className="text-gray-500">Попробуйте выбрать другой элемент.</p>
+        </div>
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <ElementDetails
-        element={element}
+      <ElementDetails 
+        element={element} 
         onClose={onClose}
         onNavigate={onNavigate}
         isFullPage={true}

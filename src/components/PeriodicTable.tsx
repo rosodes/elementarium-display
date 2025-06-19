@@ -26,7 +26,7 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
       .filter((element): element is ElementType => {
         if (!element) return false;
         
-        const translatedName = t('ui.elements.' + element.symbol.toLowerCase(), element.name);
+        const translatedName = t(`ui.elements.${element.symbol.toLowerCase()}`, element.name);
         
         const matchesName = translatedName.toLowerCase().includes(query) || 
                            element.name.toLowerCase().includes(query);
@@ -35,7 +35,7 @@ const useElementSearch = (searchQuery: string, language: string, t: any) => {
         
         return matchesName || matchesSymbol || matchesAtomic;
       });
-  }, [searchQuery, language]);
+  }, [searchQuery, language, t]);
 };
 
 const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps) => {
@@ -82,6 +82,7 @@ const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps)
         <TableContainer 
           onElementClick={handleElementClick} 
           selectedElement={selectedElement}
+          searchQuery={searchQuery}
         />
       </div>
       

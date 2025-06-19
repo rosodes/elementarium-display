@@ -1,0 +1,221 @@
+
+/* Современные стили для периодической таблицы */
+
+.periodic-table-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.periodic-table-main {
+  display: grid;
+  grid-template-columns: 40px repeat(18, 1fr);
+  grid-template-rows: 40px repeat(7, 1fr);
+  gap: 2px;
+  margin-bottom: 30px;
+  min-height: 500px;
+}
+
+.periodic-table-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.periodic-table-cell.empty {
+  background: transparent;
+}
+
+.periodic-table-element {
+  width: 100%;
+  height: 100%;
+  min-height: 60px;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.periodic-table-element:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.periodic-table-element.selected {
+  ring: 3px;
+  ring-color: #3b82f6;
+  ring-offset: 2px;
+  transform: scale(1.05);
+  z-index: 20;
+}
+
+.periodic-table-element.dimmed {
+  opacity: 0.3;
+  filter: grayscale(50%);
+}
+
+/* F-блок (лантаноиды и актиноиды) */
+.periodic-table-f-block {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #e5e7eb;
+}
+
+.f-block-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.f-block-label {
+  width: 120px;
+  text-align: right;
+  font-weight: 600;
+  color: #6b7280;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.f-block-element {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.f-block-element:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .periodic-table-main {
+    grid-template-columns: 30px repeat(18, minmax(45px, 1fr));
+    grid-template-rows: 30px repeat(7, minmax(50px, 1fr));
+    gap: 1px;
+  }
+  
+  .f-block-element {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .f-block-label {
+    width: 100px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .periodic-table-container {
+    padding: 10px;
+  }
+  
+  .periodic-table-main {
+    grid-template-columns: 25px repeat(18, minmax(35px, 1fr));
+    grid-template-rows: 25px repeat(7, minmax(40px, 1fr));
+    gap: 1px;
+  }
+  
+  .f-block-element {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .f-block-label {
+    width: 80px;
+    font-size: 10px;
+  }
+  
+  .f-block-row {
+    gap: 1px;
+  }
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .periodic-table-f-block {
+    border-top-color: #374151;
+  }
+  
+  .f-block-label {
+    color: #9ca3af;
+  }
+  
+  .periodic-table-cell {
+    color: #f3f4f6;
+  }
+}
+
+/* Анимации */
+.periodic-table-element {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Улучшенные цвета для категорий */
+.element-alkali {
+  background: linear-gradient(135deg, #ff6b6b, #ff5252);
+  color: white;
+}
+
+.element-alkaline {
+  background: linear-gradient(135deg, #ffa726, #ff9800);
+  color: white;
+}
+
+.element-transition {
+  background: linear-gradient(135deg, #42a5f5, #2196f3);
+  color: white;
+}
+
+.element-post-transition {
+  background: linear-gradient(135deg, #66bb6a, #4caf50);
+  color: white;
+}
+
+.element-metalloid {
+  background: linear-gradient(135deg, #ab47bc, #9c27b0);
+  color: white;
+}
+
+.element-nonmetal {
+  background: linear-gradient(135deg, #26c6da, #00bcd4);
+  color: white;
+}
+
+.element-noble {
+  background: linear-gradient(135deg, #ec407a, #e91e63);
+  color: white;
+}
+
+.element-lanthanide {
+  background: linear-gradient(135deg, #ffb74d, #ff9800);
+  color: white;
+}
+
+.element-actinide {
+  background: linear-gradient(135deg, #ff7043, #ff5722);
+  color: white;
+}

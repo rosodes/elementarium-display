@@ -5,14 +5,14 @@ import Header from '../components/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { useLanguage } from '../context/LanguageContext';
+import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
 import { elements } from '../data/elements';
 
 const ElementPage = () => {
   const logic = useElementLogic();
   const navigate = useNavigate();
   const { lang } = useParams<{ lang?: string }>();
-  const { t } = useLanguage();
+  const { t } = useValidatedTranslation('ElementPage');
 
   // Handler to navigate to a specific element using React Router
   const handleNavigate = (element: { atomic: string | number }) => {
@@ -21,10 +21,13 @@ const ElementPage = () => {
     navigate(`${basePath}/element/${atomic}`);
   };
 
-  // Handler to go back to home page - FIXED
+  // Handler to go back to home page - ИСПРАВЛЕНО
   const handleBackToHome = () => {
-    const basePath = lang ? `/${lang}` : '';
-    navigate(basePath, { replace: true });
+    if (lang) {
+      navigate(`/${lang}`, { replace: true });
+    } else {
+      navigate('/', { replace: true });
+    }
   };
 
   // Navigation handlers for previous/next element
@@ -58,17 +61,17 @@ const ElementPage = () => {
       {/* Navigation Buttons */}
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between mb-4">
-          {/* Back to Home Button - FIXED */}
+          {/* Back to Home Button - ИСПРАВЛЕНО */}
           <Button
             onClick={handleBackToHome}
             variant="outline"
             className="flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            {t.ui?.backToHome || 'Back to Home'}
+            {t('ui.backToHome', 'Back to Home')}
           </Button>
           
-          {/* Previous/Next Element Buttons - FIXED */}
+          {/* Previous/Next Element Buttons */}
           <div className="flex items-center gap-2">
             <Button
               onClick={handlePrevious}
@@ -77,7 +80,7 @@ const ElementPage = () => {
               className="flex items-center gap-2"
             >
               <ChevronLeft className="h-4 w-4" />
-              {t.ui?.previousElement || 'Previous Element'}
+              {t('ui.previousElement', 'Previous Element')}
             </Button>
             
             <Button
@@ -86,7 +89,7 @@ const ElementPage = () => {
               disabled={!canGoNext}
               className="flex items-center gap-2"
             >
-              {t.ui?.nextElement || 'Next Element'}
+              {t('ui.nextElement', 'Next Element')}
               <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
