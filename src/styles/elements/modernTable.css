@@ -9,31 +9,47 @@
   box-sizing: border-box;
 }
 
-.periodic-table-main {
+.periodic-table {
   display: grid;
   grid-template-columns: 40px repeat(18, 1fr);
-  grid-template-rows: 40px repeat(7, 1fr);
+  grid-template-rows: auto;
   gap: 2px;
   margin-bottom: 30px;
   min-height: 500px;
 }
 
-.periodic-table-cell {
+.corner-cell {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.group-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
   color: #374151;
-  transition: all 0.2s ease;
+  padding: 4px;
+  text-align: center;
 }
 
-.periodic-table-cell.empty {
+.period-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  padding: 4px;
+  text-align: center;
+}
+
+.empty-cell {
   background: transparent;
 }
 
-.periodic-table-element {
+.element-card {
   width: 100%;
   height: 100%;
   min-height: 60px;
@@ -41,15 +57,21 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
-.periodic-table-element:hover {
+.element-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   z-index: 10;
 }
 
-.periodic-table-element.selected {
+.element-card.selected {
   ring: 3px;
   ring-color: #3b82f6;
   ring-offset: 2px;
@@ -57,13 +79,13 @@
   z-index: 20;
 }
 
-.periodic-table-element.dimmed {
+.element-card.dimmed {
   opacity: 0.3;
   filter: grayscale(50%);
 }
 
 /* F-блок (лантаноиды и актиноиды) */
-.periodic-table-f-block {
+.f-block-section {
   margin-top: 20px;
   padding-top: 20px;
   border-top: 2px solid #e5e7eb;
@@ -72,7 +94,7 @@
 .f-block-row {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 10px;
   margin-bottom: 10px;
 }
 
@@ -82,33 +104,38 @@
   font-weight: 600;
   color: #6b7280;
   font-size: 14px;
-  margin-right: 10px;
+  flex-shrink: 0;
 }
 
-.f-block-element {
+.f-block-elements {
+  display: flex;
+  gap: 2px;
+  flex-wrap: wrap;
+}
+
+.f-block-elements .element-card {
   width: 60px;
   height: 60px;
   flex-shrink: 0;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.f-block-element:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-height: 60px;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .periodic-table-main {
+  .periodic-table {
     grid-template-columns: 30px repeat(18, minmax(45px, 1fr));
-    grid-template-rows: 30px repeat(7, minmax(50px, 1fr));
     gap: 1px;
   }
   
-  .f-block-element {
+  .element-card {
+    min-height: 50px;
+    font-size: 0.8em;
+  }
+  
+  .f-block-elements .element-card {
     width: 45px;
     height: 45px;
+    min-height: 45px;
   }
   
   .f-block-label {
@@ -122,15 +149,20 @@
     padding: 10px;
   }
   
-  .periodic-table-main {
+  .periodic-table {
     grid-template-columns: 25px repeat(18, minmax(35px, 1fr));
-    grid-template-rows: 25px repeat(7, minmax(40px, 1fr));
     gap: 1px;
   }
   
-  .f-block-element {
+  .element-card {
+    min-height: 40px;
+    font-size: 0.7em;
+  }
+  
+  .f-block-elements .element-card {
     width: 35px;
     height: 35px;
+    min-height: 35px;
   }
   
   .f-block-label {
@@ -139,13 +171,13 @@
   }
   
   .f-block-row {
-    gap: 1px;
+    gap: 5px;
   }
 }
 
 /* Темная тема */
 @media (prefers-color-scheme: dark) {
-  .periodic-table-f-block {
+  .f-block-section {
     border-top-color: #374151;
   }
   
@@ -153,13 +185,14 @@
     color: #9ca3af;
   }
   
-  .periodic-table-cell {
+  .group-header,
+  .period-number {
     color: #f3f4f6;
   }
 }
 
 /* Анимации */
-.periodic-table-element {
+.element-card {
   animation: fadeIn 0.5s ease-out;
 }
 

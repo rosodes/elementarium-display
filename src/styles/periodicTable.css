@@ -7,3 +7,25 @@
 @import './elements/animations.css';
 @import './elements/responsive.css';
 @import './elements/modernTable.css';
+
+/* Override any conflicting styles to ensure proper grid layout */
+.periodic-table-container .periodic-table {
+  display: grid !important;
+  grid-template-columns: 40px repeat(18, 1fr) !important;
+  grid-auto-rows: minmax(60px, auto) !important;
+  gap: 2px !important;
+}
+
+@media (max-width: 1200px) {
+  .periodic-table-container .periodic-table {
+    grid-template-columns: 30px repeat(18, minmax(45px, 1fr)) !important;
+    grid-auto-rows: minmax(50px, auto) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .periodic-table-container .periodic-table {
+    grid-template-columns: 25px repeat(18, minmax(35px, 1fr)) !important;
+    grid-auto-rows: minmax(40px, auto) !important;
+  }
+}
