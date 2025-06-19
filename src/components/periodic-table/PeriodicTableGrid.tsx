@@ -11,7 +11,7 @@ interface PeriodicTableGridProps {
 }
 
 const PeriodicTableGrid = memo(({ onElementClick, selectedElement, searchQuery }: PeriodicTableGridProps) => {
-  // Проверка, должен ли элемент быть выделен при поиске
+  // Check if element should be highlighted during search
   const isHighlighted = (element: ElementType) => {
     if (!searchQuery) return true;
     
@@ -23,155 +23,172 @@ const PeriodicTableGrid = memo(({ onElementClick, selectedElement, searchQuery }
     );
   };
 
-  // Получение лантаноидов и актиноидов для отдельного отображения
-  const getLanthanoids = () => {
-    return elements.filter(el => 
-      el && parseInt(el.atomic) >= 57 && parseInt(el.atomic) <= 71
-    ).sort((a, b) => parseInt(a.atomic) - parseInt(b.atomic));
-  };
-  
-  const getActinoids = () => {
-    return elements.filter(el => 
-      el && parseInt(el.atomic) >= 89 && parseInt(el.atomic) <= 103
-    ).sort((a, b) => parseInt(a.atomic) - parseInt(b.atomic));
+  // Get element by atomic number
+  const getElement = (atomicNumber: number): ElementType | null => {
+    return elements.find(el => el && parseInt(el.atomic) === atomicNumber) || null;
   };
 
-  const lanthanoids = getLanthanoids();
-  const actinoids = getActinoids();
-
-  // Рендер элемента
-  const renderElement = (element: ElementType) => {
+  // Render element with proper positioning
+  const renderElement = (atomicNumber: number, gridRow: number, gridCol: number) => {
+    const element = getElement(atomicNumber);
+    if (!element) return <div key={`empty-${gridRow}-${gridCol}`} className="empty-cell" />;
+    
     return (
-      <Element
+      <div
         key={element.atomic}
-        element={element}
-        onClick={onElementClick}
-        className={`element-card ${
-          selectedElement?.atomic === element.atomic ? 'selected' : ''
-        } ${!isHighlighted(element) ? 'dimmed' : ''}`}
-        data-atomic={element.atomic}
-      />
-    );
-  };
-
-  // Рендер пустой ячейки
-  const renderEmptyCell = (key: string) => {
-    return <div key={key} className="empty-cell" />;
-  };
-
-  // Рендер заголовка группы
-  const renderGroupHeader = (group: number) => {
-    return (
-      <div key={`group-${group}`} className="group-header">
-        {group}
+        style={{
+          gridRow: gridRow,
+          gridColumn: gridCol
+        }}
+        className="element-position"
+      >
+        <Element
+          element={element}
+          onClick={onElementClick}
+          className={`element-card ${
+            selectedElement?.atomic === element.atomic ? 'selected' : ''
+          } ${!isHighlighted(element) ? 'dimmed' : ''}`}
+          data-atomic={element.atomic}
+        />
       </div>
     );
   };
 
-  // Рендер номера периода
-  const renderPeriodNumber = (period: number) => {
-    return (
-      <div key={`period-${period}`} className="period-number">
-        {period}
-      </div>
-    );
-  };
+  // Render empty cell
+  const renderEmpty = (row: number, col: number) => (
+    <div
+      key={`empty-${row}-${col}`}
+      style={{
+        gridRow: row,
+        gridColumn: col
+      }}
+      className="empty-cell"
+    />
+  );
+
+  // Render group header
+  const renderGroupHeader = (group: number) => (
+    <div
+      key={`group-${group}`}
+      style={{
+        gridRow: 1,
+        gridColumn: group + 1
+      }}
+      className="group-header"
+    >
+      {group}
+    </div>
+  );
+
+  // Render period number
+  const renderPeriodNumber = (period: number) => (
+    <div
+      key={`period-${period}`}
+      style={{
+        gridRow: period + 1,
+        gridColumn: 1
+      }}
+      className="period-number"
+    >
+      {period}
+    </div>
+  );
+
+  // Get lanthanoids and actinoids for separate display
+  const lanthanoids = elements.filter(el => 
+    el && parseInt(el.atomic) >= 58 && parseInt(el.atomic) <= 71
+  ).sort((a, b) => parseInt(a.atomic) - parseInt(b.atomic));
+  
+  const actinoids = elements.filter(el => 
+    el && parseInt(el.atomic) >= 90 && parseInt(el.atomic) <= 103
+  ).sort((a, b) => parseInt(a.atomic) - parseInt(b.atomic));
 
   return (
     <div className="periodic-table-container">
-      {/* Основная таблица */}
+      {/* Main periodic table grid */}
       <div className="periodic-table">
-        {/* Пустая ячейка в левом верхнем углу */}
-        <div className="corner-cell"></div>
-        
-        {/* Заголовки групп 1-18 */}
+        {/* Group headers */}
         {Array.from({length: 18}, (_, i) => renderGroupHeader(i + 1))}
         
-        {/* Период 1 */}
-        {renderPeriodNumber(1)}
-        {elements.find(el => el && el.atomic === '1') && renderElement(elements.find(el => el && el.atomic === '1')!)}
-        {Array.from({length: 16}, (_, i) => renderEmptyCell(`p1-empty-${i}`))}
-        {elements.find(el => el && el.atomic === '2') && renderElement(elements.find(el => el && el.atomic === '2')!)}
+        {/* Period numbers */}
+        {Array.from({length: 7}, (_, i) => renderPeriodNumber(i + 1))}
         
-        {/* Период 2 */}
-        {renderPeriodNumber(2)}
-        {['3', '4'].map(atomic => {
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p2-${atomic}`);
-        })}
-        {Array.from({length: 10}, (_, i) => renderEmptyCell(`p2-empty-${i}`))}
-        {['5', '6', '7', '8', '9', '10'].map(atomic => {
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p2-${atomic}`);
-        })}
+        {/* Period 1: H and He */}
+        {renderElement(1, 2, 2)}  {/* H at row 2, col 2 */}
+        {renderElement(2, 2, 19)} {/* He at row 2, col 19 */}
         
-        {/* Период 3 */}
-        {renderPeriodNumber(3)}
-        {['11', '12'].map(atomic => {
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p3-${atomic}`);
-        })}
-        {Array.from({length: 10}, (_, i) => renderEmptyCell(`p3-empty-${i}`))}
-        {['13', '14', '15', '16', '17', '18'].map(atomic => {
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p3-${atomic}`);
-        })}
+        {/* Period 2: Li to Ne */}
+        {renderElement(3, 3, 2)}   {/* Li */}
+        {renderElement(4, 3, 3)}   {/* Be */}
+        {renderElement(5, 3, 14)}  {/* B */}
+        {renderElement(6, 3, 15)}  {/* C */}
+        {renderElement(7, 3, 16)}  {/* N */}
+        {renderElement(8, 3, 17)}  {/* O */}
+        {renderElement(9, 3, 18)}  {/* F */}
+        {renderElement(10, 3, 19)} {/* Ne */}
         
-        {/* Период 4 */}
-        {renderPeriodNumber(4)}
-        {Array.from({length: 18}, (_, i) => {
-          const atomic = String(19 + i);
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p4-${atomic}`);
-        })}
+        {/* Period 3: Na to Ar */}
+        {renderElement(11, 4, 2)}  {/* Na */}
+        {renderElement(12, 4, 3)}  {/* Mg */}
+        {renderElement(13, 4, 14)} {/* Al */}
+        {renderElement(14, 4, 15)} {/* Si */}
+        {renderElement(15, 4, 16)} {/* P */}
+        {renderElement(16, 4, 17)} {/* S */}
+        {renderElement(17, 4, 18)} {/* Cl */}
+        {renderElement(18, 4, 19)} {/* Ar */}
         
-        {/* Период 5 */}
-        {renderPeriodNumber(5)}
-        {Array.from({length: 18}, (_, i) => {
-          const atomic = String(37 + i);
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p5-${atomic}`);
-        })}
+        {/* Period 4: K to Kr */}
+        {Array.from({length: 18}, (_, i) => renderElement(19 + i, 5, 2 + i))}
         
-        {/* Период 6 */}
-        {renderPeriodNumber(6)}
-        {['55', '56', '57'].map(atomic => {
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p6-${atomic}`);
-        })}
-        {Array.from({length: 72}, (_, i) => {
-          const atomic = String(72 + i);
-          if (parseInt(atomic) > 86) return null;
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p6-${atomic}`);
-        }).filter(Boolean)}
+        {/* Period 5: Rb to Xe */}
+        {Array.from({length: 18}, (_, i) => renderElement(37 + i, 6, 2 + i))}
         
-        {/* Период 7 */}
-        {renderPeriodNumber(7)}
-        {['87', '88', '89'].map(atomic => {
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p7-${atomic}`);
-        })}
-        {Array.from({length: 15}, (_, i) => {
-          const atomic = String(104 + i);
-          const element = elements.find(el => el && el.atomic === atomic);
-          return element ? renderElement(element) : renderEmptyCell(`p7-${atomic}`);
-        })}
+        {/* Period 6: Cs to Rn (with lanthanoid gap) */}
+        {renderElement(55, 7, 2)}  {/* Cs */}
+        {renderElement(56, 7, 3)}  {/* Ba */}
+        {renderElement(57, 7, 4)}  {/* La */}
+        {Array.from({length: 15}, (_, i) => renderElement(72 + i, 7, 5 + i))} {/* Hf to Rn */}
+        
+        {/* Period 7: Fr to Og (with actinoid gap) */}
+        {renderElement(87, 8, 2)}  {/* Fr */}
+        {renderElement(88, 8, 3)}  {/* Ra */}
+        {renderElement(89, 8, 4)}  {/* Ac */}
+        {Array.from({length: 15}, (_, i) => renderElement(104 + i, 8, 5 + i))} {/* Rf to Og */}
       </div>
       
-      {/* Лантаноиды и актиноиды */}
+      {/* F-block section */}
       <div className="f-block-section">
         <div className="f-block-row">
           <div className="f-block-label">Лантаноиды:</div>
           <div className="f-block-elements">
-            {lanthanoids.map(element => renderElement(element))}
+            {lanthanoids.map(element => (
+              <Element
+                key={element.atomic}
+                element={element}
+                onClick={onElementClick}
+                className={`element-card ${
+                  selectedElement?.atomic === element.atomic ? 'selected' : ''
+                } ${!isHighlighted(element) ? 'dimmed' : ''}`}
+                data-atomic={element.atomic}
+              />
+            ))}
           </div>
         </div>
         
         <div className="f-block-row">
           <div className="f-block-label">Актиноиды:</div>
           <div className="f-block-elements">
-            {actinoids.map(element => renderElement(element))}
+            {actinoids.map(element => (
+              <Element
+                key={element.atomic}
+                element={element}
+                onClick={onElementClick}
+                className={`element-card ${
+                  selectedElement?.atomic === element.atomic ? 'selected' : ''
+                } ${!isHighlighted(element) ? 'dimmed' : ''}`}
+                data-atomic={element.atomic}
+              />
+            ))}
           </div>
         </div>
       </div>
