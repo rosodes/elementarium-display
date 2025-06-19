@@ -1,9 +1,10 @@
+
 import { type Element, type ElementsArray } from './elementTypes';
 import { categories, getCategoryColor, getSeriesColor } from './elementCategories';
 
 import { elements1to10 } from './elements1-10';
 import { elements11to20 } from './elements11-20';
-import { elements21to30 from './elements21-30';
+import { elements21to30 } from './elements21-30';
 import { elements31to40 } from './elements31-40';
 import { elements41to51 } from './elements41-51';
 import { elements51to60 } from './elements51-60';
@@ -13,9 +14,9 @@ import { elements58to71 } from './elements58-71'; // Ce–Lu (lanthanoids, 58–
 import { elements90to103 } from './elements90-103'; // Th–Lr (actinoids, 90–103)
 
 import { elements61to70 } from './elements61-70'; // now empty, for compatibility
-import { elements71to80 from './elements71-80'; // 72–80 only
-import { elements81to90 from './elements81-90'; // 81–89 only
-import { elements91to100 from './elements91-100'; // now empty, for compatibility
+import { elements71to80 } from './elements71-80'; // 72–80 only
+import { elements81to90 } from './elements81-90'; // 81–89 only
+import { elements91to100 } from './elements91-100'; // now empty, for compatibility
 import { elements101to110 } from './elements101-110'; // 104–110 only
 import { elements111to118 } from './elements111-118';
 
