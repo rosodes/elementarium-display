@@ -1,50 +1,37 @@
-
 import { QueryClient } from '@tanstack/react-query';
+import { detectUserLanguage } from './languageUtils';
 
-// Мемоизированный QueryClient для лучшего управления состоянием
-let queryClientInstance: QueryClient | null = null;
-
-// Инициализация React Query client с оптимизированными настройками
+// Создание React Query клиента
 export const createQueryClient = () => {
-  if (!queryClientInstance) {
-    queryClientInstance = new QueryClient({
-      defaultOptions: {
-        queries: {
-          retry: false, // Отключаем повторные попытки для ускорения
-          refetchOnWindowFocus: false,
-          staleTime: 5 * 60 * 1000, // 5 минут
-          gcTime: 10 * 60 * 1000, // 10 минут для сборки мусора
-        },
+  return new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5 * 60 * 1000, // 5 минут
+        gcTime: 10 * 60 * 1000, // 10 минут
+        retry: (failureCount, error) => {
+          // Не повторяем при ошибках 404 или других клиентских ошибках
+          if (error instanceof Error && 'status' in error) {
+            const status = (error as any).status;
+            if (status >= 400 && status < 500) {
+              return false;
+            }
+          }
+          return failureCount < 3;
+        }
       },
-    });
-  }
-  
-  return queryClientInstance;
+    },
+  });
 };
 
-// Определяем начальный язык с оптимизацией
+// Определяем начальный язык согласно best practices
 export const getInitialLanguage = (): string => {
-  // Обрабатываем случай SSR
-  if (typeof window === 'undefined') return 'en';
+  // Используем новую систему с правильными приоритетами:
+  // 1. Explicit selection in URL
+  // 2. Cookie with saved preference
+  // 3. Accept-Language header
+  // 4. Fallback to English (canonical)
   
-  // Кэшируем значение URL для предотвращения повторных вычислений
-  const pathName = window.location.pathname;
-  
-  // Быстрая проверка языка из URL
-  if (pathName.startsWith('/ru/') || pathName === '/ru') return 'ru';
-  if (pathName.startsWith('/uk/') || pathName === '/uk') return 'uk';
-  
-  // Проверяем localStorage только если не нашли в URL
-  try {
-    const savedLang = localStorage.getItem('language');
-    if (savedLang && ['en', 'ru', 'uk'].includes(savedLang)) return savedLang;
-  } catch {
-    // Молча игнорируем, если localStorage недоступен
-  }
-  
-  // Затем проверяем язык браузера
-  const browserLang = navigator.language.split('-')[0];
-  return ['en', 'ru', 'uk'].includes(browserLang) ? browserLang : 'en';
+  return detectUserLanguage();
 };
 
 // Удаляем индикатор загрузки с улучшенным таймингом

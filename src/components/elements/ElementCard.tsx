@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { Element } from '../../data/elementTypes';
-import { getCategoryColor, getSeriesColor } from '../../data/elementCategories';
+import { getCategoryColor } from '../../data/elementCategories';
 import { useValidatedTranslation } from '../../hooks/useValidatedTranslation';
 
 interface ElementCardProps {
@@ -26,7 +25,8 @@ const ElementCard: React.FC<ElementCardProps> = ({
     if (element.category) {
       return getCategoryColor(element.category);
     }
-    return getSeriesColor(element.series);
+    // Fallback на unknown если нет category
+    return getCategoryColor('unknown');
   };
 
   const colors = getElementColors();
@@ -42,7 +42,7 @@ const ElementCard: React.FC<ElementCardProps> = ({
       `}
       style={{
         backgroundColor: colors.bg,
-        borderColor: colors.border,
+        borderColor: colors.border || colors.bg,
         color: colors.text
       }}
       onClick={onClick}

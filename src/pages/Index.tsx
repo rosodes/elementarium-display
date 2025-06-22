@@ -1,11 +1,13 @@
-
-import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState, useCallback, lazy, Suspense, useRef } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { Element } from '../data/elementTypes';
 import { Helmet } from 'react-helmet-async';
 import Header from '../components/Header';
 import LoadingSpinner from '../components/ui/loading-spinner';
+import QuickStats from '../components/periodic-table/QuickStats';
+import TableLegend from '../components/periodic-table/TableLegend';
+import { isSupportedLanguage, getCanonicalUrl } from '../lib/languageUtils';
 
 // Lazy load the heavy PeriodicTable component
 const PeriodicTable = lazy(() => import('../components/PeriodicTable'));
@@ -14,28 +16,56 @@ const Index = () => {
   console.log('Index component rendering');
   const { t, setLanguage, language } = useLanguage();
   const [searchQuery, setSearchQuery] = useState('');
+  const [showLegend, setShowLegend] = useState(false);
   const { lang } = useParams<{ lang?: string }>();
   const navigate = useNavigate();
-  
-  // Set language based on URL path if it's different from current language
+  const location = useLocation();
+  const hasRedirected = useRef(false);
+
+  // Упрощенная логика языковых редиректов БЕЗ бесконечного цикла
   useEffect(() => {
-    if (lang && ['en', 'ru', 'uk'].includes(lang) && lang !== language) {
-      setLanguage(lang as 'en' | 'ru' | 'uk');
+    // Предотвращаем повторные редиректы
+    if (hasRedirected.current) return;
+
+    const currentPath = location.pathname;
+    
+    // Если в URL есть языковой префикс
+    if (lang) {
+      if (isSupportedLanguage(lang)) {
+        // Устанавливаем язык, если он отличается от текущего
+        if (lang !== language) {
+          setLanguage(lang);
+        }
+      } else {
+        // Если языковой префикс некорректный, перенаправляем на английский
+        hasRedirected.current = true;
+        navigate(currentPath.replace(`/${lang}`, '') || '/', { replace: true });
+      }
+    } else {
+      // Если нет языкового префикса, устанавливаем английский
+      if (language !== 'en') {
+        setLanguage('en');
+      }
     }
-  }, [lang, setLanguage, language]);
+  }, [lang, setLanguage, navigate, location.pathname]); // Убрали language из зависимостей!
   
   // Handle element click to navigate to element page with proper language support
   const handleElementClick = useCallback((element: Element) => {
-    const baseUrl = lang ? `/${lang}` : '';
-    navigate(`${baseUrl}/element/${element.atomic}`);
-  }, [lang, navigate]);
-  
+    if (language === 'en') {
+      // Для английского используем канонический URL без префикса
+      navigate(`/element/${element.atomic}`);
+    } else {
+      // Для других языков добавляем префикс
+      navigate(`/${language}/element/${element.atomic}`);
+    }
+  }, [language, navigate]);
+
   const handleSearch = useCallback((query: string) => {
     setSearchQuery(query);
   }, []);
 
-  // Canonical URL with language prefix if needed
-  const canonicalUrl = `${typeof window !== 'undefined' ? window.location.origin : ''}${lang ? `/${lang}` : '/'}`;
+  // Canonical URL согласно языку
+  const canonicalUrl = getCanonicalUrl(language as any, location.pathname.replace(`/${lang}`, '') || '/');
   
   // Preconnect to important domains
   const preconnectDomains = [
@@ -53,7 +83,8 @@ const Index = () => {
     t.title,
     t.subtitle,
     language === "ru" ? "Периодическая таблица" : "",
-    language === "uk" ? "Періодична таблиця" : ""
+    language === "uk" ? "Періодична таблиця" : "",
+    language === "fr" ? "Tableau périodique" : ""
   ].filter(Boolean).join(", ");
 
   // SEO: автор
@@ -82,7 +113,7 @@ const Index = () => {
     }
   };
 
-  console.log('Index: About to render with Header');
+  console.log('Index: About to render with Header and PeriodicTable');
 
   return (
     <>
@@ -100,7 +131,9 @@ const Index = () => {
             ? "ru_RU"
             : language === "uk"
               ? "uk_UA"
-              : "en_US"
+              : language === "fr"
+                ? "fr_FR"
+                : "en_US"
           } 
         />
         <meta property="og:image" content="/og-image.png" />
@@ -122,8 +155,10 @@ const Index = () => {
       </Helmet>
 
       <div className="min-h-screen bg-white dark:bg-gray-900">
-        <Header onSearch={handleSearch} />
+        {/* Шапка сайта */}
+        <Header onSearch={handleSearch} searchQuery={searchQuery} />
         
+        {/* Основная периодическая таблица - СРАЗУ ПОД ШАПКОЙ */}
         <main className="w-full">
           <Suspense fallback={
             <div className="flex justify-center items-center h-64">
@@ -131,136 +166,74 @@ const Index = () => {
             </div>
           }>
             <PeriodicTable 
-              searchQuery={searchQuery} 
+              searchQuery={searchQuery}
               onElementClick={handleElementClick} 
             />
           </Suspense>
         </main>
-        
+
+        {/* Переключатель легенды - ПОД ТАБЛИЦЕЙ */}
+        <div className="max-w-7xl mx-auto px-4 py-4 text-center">
+          <button
+            onClick={() => setShowLegend(!showLegend)}
+            className="legend-toggle px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all duration-300 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+            aria-label={showLegend ? t.MainPageInstructions.legendToggle.hide : t.MainPageInstructions.legendToggle.show}
+            aria-pressed={showLegend}
+          >
+            {showLegend ? t.MainPageInstructions.legendToggle.hide : t.MainPageInstructions.legendToggle.show}
+          </button>
+        </div>
+
+        {/* Легенда цветов */}
+        {showLegend && (
+          <div className="max-w-7xl mx-auto px-4 pb-6">
+            <TableLegend />
+          </div>
+        )}
+
+        {/* Инструкции по использованию - НАД СТАТИСТИКОЙ */}
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-8">
-            <div className="flex-1">
-              <header>
-                <h2 className="text-lg font-bold mb-1">{t.footer.mainTitle}</h2>
-                <h3 className="text-base font-semibold mb-2">{t.footer.whyImportant}</h3>
-              </header>
-              <p className="text-sm text-left text-gray-800 dark:text-gray-200 mb-2">
-                {t.footer.mainDescription1}
-              </p>
-              <p className="text-sm text-left text-gray-800 dark:text-gray-200">
-                {t.footer.mainDescription2}
-              </p>
-            </div>
-            <div className="flex-1">
-              <section>
-                <div className="pb-2 flex items-center">
-                  <h2 className="text-base font-semibold">{t.footer.colorLegendTitle}</h2>
+          <div className="instructions-section bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-xl border-2 border-gray-800 dark:border-gray-200 mb-8">
+            <div className="text-center space-y-4">
+              <h3 className="text-2xl font-black text-gray-900 dark:text-gray-100">
+                {t.MainPageInstructions.title}
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div className="instruction-item">
+                  <div className="text-4xl mb-2" role="img" aria-label="Клик">🖱️</div>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">
+                    {t.MainPageInstructions.clickElement.title}
+                  </h4>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {t.MainPageInstructions.clickElement.description}
+                  </p>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg shadow-sm text-sm">
-                    <thead>
-                      <tr className="bg-gray-50 dark:bg-gray-800">
-                        <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">{t.footer.colorCategoryColumn}</td>
-                        <td className="font-bold p-2 border-b border-gray-200 dark:border-gray-700">{t.footer.descriptionColumn}</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-s-block border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">s-блок</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.sBlockDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-p-block border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">p-блок</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.pBlockDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-d-block border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">d-блок</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.dBlockDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-f-block border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">f-блок</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.fBlockDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-alkali border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">{t.legend.alkali}</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.alkaliMetalsDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-post_transition border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">{t.legend.postTransition}</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.postTransitionDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-metalloid border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">{t.legend.metalloids}</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.metalloidsDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-unknown border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">{t.categories.unknown}</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.unknownPropertiesDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          <span className="inline-block w-5 h-5 rounded bg-noble border mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">{t.legend.noble}</span>
-                        </td>
-                        <td className="p-2 border-b border-gray-100 dark:border-gray-700">
-                          {t.footer.nobleGasesDescription}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td className="p-2">
-                          <span className="inline-block w-3 h-3 rounded-full bg-red-500 animate-pulse mr-2 align-middle" /> 
-                          <span className="align-middle font-semibold">{t.legend.radioactive}</span>
-                        </td>
-                        <td className="p-2">
-                          {t.footer.radioactiveDescription}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div className="instruction-item">
+                  <div className="text-4xl mb-2" role="img" aria-label="Поиск">🔍</div>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">
+                    {t.MainPageInstructions.useSearch.title}
+                  </h4>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {t.MainPageInstructions.useSearch.description}
+                  </p>
                 </div>
-              </section>
+                <div className="instruction-item">
+                  <div className="text-4xl mb-2" role="img" aria-label="Цвета">🎨</div>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-gray-100 mb-2">
+                    {t.MainPageInstructions.studyColors.title}
+                  </h4>
+                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {t.MainPageInstructions.studyColors.description}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+
+        {/* Статистика внизу */}
+        <div className="w-full">
+          <QuickStats />
         </div>
         
         <footer className="py-4 sm:py-6 px-4 text-xs text-gray-500 dark:text-gray-400 text-center">

@@ -1,7 +1,7 @@
-
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
-export default {
+const config: Config = {
 	darkMode: ["class"],
 	content: [
 		"./pages/**/*.{ts,tsx}",
@@ -19,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			gridTemplateColumns: {
+				'18': 'repeat(18, minmax(0, 1fr))',
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -52,6 +55,20 @@ export default {
 				card: {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
+				},
+				'element': {
+					'hydrogen': '#06b6d4',
+					'alkali': '#dc2626',
+					'alkaline-earth': '#ea580c',
+					'transition': '#2563eb',
+					'post-transition': '#059669',
+					'metalloid': '#7c3aed',
+					'nonmetal': '#0891b2',
+					'halogen': '#16a34a',
+					'noble-gas': '#e11d48',
+					'lanthanide': '#f97316',
+					'actinide': '#dc2626',
+					'unknown': '#6b7280',
 				},
 				// Element category colors - light mode
 				alkali: '#ff6e6c',
@@ -110,7 +127,17 @@ export default {
 				'fade-in': {
 					'0%': { opacity: '0' },
 					'100%': { opacity: '1' }
-				}
+				},
+				'radioactive-pulse': {
+					'0%, 100%': {
+						transform: 'scale(1)',
+						opacity: '1',
+					},
+					'50%': {
+						transform: 'scale(1.1)',
+						opacity: '0.8',
+					},
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -119,9 +146,12 @@ export default {
 				'pulse-subtle': 'pulse-subtle 3s ease-in-out infinite',
 				'scale-in': 'scale-in 0.2s ease-out',
 				'slide-up': 'slide-up 0.3s ease-out',
-				'fade-in': 'fade-in 0.5s ease-out'
+				'fade-in': 'fade-in 0.5s ease-out',
+				'radioactive': 'radioactive-pulse 2s infinite',
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [tailwindcssAnimate],
 } satisfies Config;
+
+export default config;

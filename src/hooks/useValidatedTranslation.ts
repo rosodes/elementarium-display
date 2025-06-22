@@ -1,4 +1,3 @@
-
 import { useLanguage } from '../context/LanguageContext';
 import { translationValidator } from '../i18n/enhancedTranslationValidator';
 
@@ -8,19 +7,22 @@ export function useValidatedTranslation(componentName: string) {
   
   // Функция для получения перевода с валидацией
   const getValidatedTranslation = (path: string, fallback?: string) => {
+    // Добавляем префикс componentName к пути
+    const fullPath = `${componentName}.${path}`;
+    
     if (import.meta.env.DEV) {
-      const value = translationValidator.getTranslation(t, path, componentName);
-      return value !== `[MISSING PATH]: ${path}` ? value : (fallback || value);
+      const value = translationValidator.getTranslation(t, fullPath, componentName);
+      return value !== `[MISSING PATH]: ${fullPath}` ? value : (fallback || value);
     }
     
     // В продакшене просто получаем значение
-    const keys = path.split('.');
+    const keys = fullPath.split('.');
     let current = t;
     for (const key of keys) {
       if (current && typeof current === 'object' && key in current) {
         current = (current as any)[key];
       } else {
-        return fallback || `Missing: ${path}`;
+        return fallback || `Missing: ${fullPath}`;
       }
     }
     return current;

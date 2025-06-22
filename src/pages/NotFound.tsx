@@ -25,6 +25,7 @@ const NotFound = () => {
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
           {language === 'ru' ? 'Упс! Страница не найдена' : 
            language === 'uk' ? 'Ой! Сторінку не знайдено' : 
+           language === 'fr' ? 'Oups ! Page non trouvée' :
            'Oops! Page not found'}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -34,6 +35,7 @@ const NotFound = () => {
           >
             {language === 'ru' ? 'На главную' : 
              language === 'uk' ? 'На головну' : 
+             language === 'fr' ? 'Retour à l\'accueil' :
              'Return to Home'}
           </Link>
           <button 
@@ -42,6 +44,7 @@ const NotFound = () => {
           >
             {language === 'ru' ? 'Назад' : 
              language === 'uk' ? 'Назад' : 
+             language === 'fr' ? 'Retour' :
              'Go Back'}
           </button>
         </div>

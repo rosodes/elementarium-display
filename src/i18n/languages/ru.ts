@@ -136,5 +136,28 @@ export const ru: TranslationData = {
   categories: require("../modules/categories/ru").categoriesRu,
   ui: { ...require("../modules/ui/ru").uiRu, elements: elements },
   elementDetails: require("../modules/elementDetails/ru").elementDetailsRu,
-  footer: require("../modules/footer/ru").footerRu
+  footer: require("../modules/footer/ru").footerRu,
+  
+  // New clean periodic table translations
+  CleanPeriodicTable: {
+    lanthanides: 'Лантаноиды',
+    actinides: 'Актиноиды',
+  },
+  PeriodicTable: {
+    title: 'Периодическая таблица элементов',
+    subtitle: 'Интерактивная таблица Менделеева с подробной информацией о каждом элементе',
+    searchPlaceholder: 'Поиск элементов по названию, символу или атомному номеру...',
+    showAdvanced: 'Расширенный поиск',
+    hideAdvanced: 'Скрыть расширенный поиск',
+    elementsFound: 'Найдено',
+    filtersActive: 'Фильтры применены',
+    searching: 'Поиск...',
+    noResults: 'Результаты не найдены',
+    noResultsDescription: 'Попробуйте изменить поисковый запрос или убрать некоторые фильтры',
+    clearSearch: 'Очистить поиск',
+    viewMode: 'Режим просмотра',
+    table: 'Таблица',
+    cards: 'Карточки',
+    compact: 'Компактно',
+  },
 };

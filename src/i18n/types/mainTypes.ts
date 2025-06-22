@@ -17,7 +17,7 @@ export interface TranslationData extends CommonTranslations {
   loading?: string;
 }
 
-export type LanguageKey = 'en' | 'ru' | 'uk';
+export type LanguageKey = 'en' | 'ru' | 'uk' | 'fr';
 
 export const languages: Record<LanguageKey, TranslationData> = {} as Record<LanguageKey, TranslationData>;
 

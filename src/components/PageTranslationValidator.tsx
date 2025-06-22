@@ -41,7 +41,7 @@ export const PageTranslationValidator: React.FC = () => {
         }
         
         // Главная страница
-        if (pathname === '/' || pathname.startsWith('/en') || pathname.startsWith('/ru') || pathname.startsWith('/uk')) {
+        if (pathname === '/' || pathname.startsWith('/en') || pathname.startsWith('/ru') || pathname.startsWith('/uk') || pathname.startsWith('/fr')) {
           return [
             'title',
             'subtitle',

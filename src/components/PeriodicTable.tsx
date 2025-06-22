@@ -1,100 +1,75 @@
-
-import { useState, useCallback, useMemo, memo } from 'react';
-import { Element as ElementType } from '../data/elementTypes';
+import React, { useState } from 'react';
+import { Element } from '../data/elementTypes';
 import { elements } from '../data/elements';
-import TableContainer from './periodic-table/TableContainer';
-import SearchContainer from './search/SearchContainer';
-import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
-import { useNavigate, useParams } from 'react-router-dom';
-import ElementDetails from './ElementDetails';
+import CleanPeriodicTable from './periodic-table/CleanPeriodicTable';
+import ElementDetailsModal from './element-details/ElementDetailsModal';
 
 interface PeriodicTableProps {
   searchQuery?: string;
-  onElementClick?: (element: ElementType) => void;
+  onElementClick?: (element: Element) => void;
 }
 
-// Custom hook for element searching with memoization
-const useElementSearch = (searchQuery: string, language: string, t: any) => {
-  return useMemo(() => {
-    if (!searchQuery?.trim()) {
-      return [];
-    }
-    
-    const query = searchQuery.toLowerCase().trim();
-    
-    return elements
-      .filter((element): element is ElementType => {
-        if (!element) return false;
-        
-        const translatedName = t(`ui.elements.${element.symbol.toLowerCase()}`, element.name);
-        
-        const matchesName = translatedName.toLowerCase().includes(query) || 
-                           element.name.toLowerCase().includes(query);
-        const matchesSymbol = element.symbol.toLowerCase().includes(query);
-        const matchesAtomic = element.atomic.toString().includes(query);
-        
-        return matchesName || matchesSymbol || matchesAtomic;
-      });
-  }, [searchQuery, language, t]);
-};
+const PeriodicTable: React.FC<PeriodicTableProps> = ({ 
+  searchQuery = '', 
+  onElementClick 
+}) => {
+  const [selectedElement, setSelectedElement] = useState<Element | null>(null);
 
-const PeriodicTable = ({ searchQuery = '', onElementClick }: PeriodicTableProps) => {
-  const [selectedElement, setSelectedElement] = useState<ElementType | null>(null);
-  const { t, language } = useValidatedTranslation('PeriodicTable');
-  const navigate = useNavigate();
-  const { lang } = useParams<{ lang?: string }>();
-  
-  const filteredElements = useElementSearch(searchQuery, language, t);
-  
-  const handleElementClick = useCallback((element: ElementType) => {
+  const handleElementClick = (element: Element) => {
     if (onElementClick) {
       onElementClick(element);
-      return;
+    } else {
+      setSelectedElement(element);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setSelectedElement(null);
+  };
+
+  const handleNavigate = (direction: 'prev' | 'next') => {
+    if (!selectedElement) return;
+    
+    const currentIndex = elements.findIndex(el => el?.atomic === selectedElement.atomic);
+    if (currentIndex === -1) return;
+    
+    let nextIndex: number;
+    if (direction === 'next') {
+      nextIndex = currentIndex + 1;
+      if (nextIndex >= elements.length) nextIndex = 0;
+    } else {
+      nextIndex = currentIndex - 1;
+      if (nextIndex < 0) nextIndex = elements.length - 1;
     }
     
-    const basePath = lang ? `/${lang}` : '';
-    navigate(`${basePath}/element/${element.atomic}`);
-  }, [onElementClick, lang, navigate]);
-  
-  const closeDetails = useCallback(() => {
-    const basePath = lang ? `/${lang}` : '/';
-    navigate(basePath);
-  }, [lang, navigate]);
-  
-  const handleNavigateElement = useCallback((element: ElementType) => {
-    const basePath = lang ? `/${lang}` : '';
-    navigate(`${basePath}/element/${element.atomic}`);
-  }, [lang, navigate]);
-  
+    const nextElement = elements[nextIndex];
+    if (nextElement) {
+      setSelectedElement(nextElement);
+    }
+  };
+
   return (
-    <section 
-      className="w-full"
-      role="region"
-      aria-label={t('ui.elementTable', "Periodic Table")}
-    >
-      <SearchContainer 
-        searchQuery={searchQuery}
-        filteredElements={filteredElements}
-        onElementSelect={handleElementClick}
-      />
-      
-      <div className="periodic-table-container">
-        <TableContainer 
-          onElementClick={handleElementClick} 
+    <>
+      {/* Чистая таблица Менделеева на белом фоне */}
+      <div style={{ backgroundColor: 'white', padding: '20px 0' }}>
+        <CleanPeriodicTable
+          onElementClick={handleElementClick}
           selectedElement={selectedElement}
           searchQuery={searchQuery}
         />
       </div>
-      
-      {selectedElement && (
-        <ElementDetails 
-          element={selectedElement} 
-          onClose={closeDetails} 
-          onNavigate={handleNavigateElement}
+
+      {/* Модальное окно с деталями элемента */}
+      {selectedElement && !onElementClick && (
+        <ElementDetailsModal
+          element={selectedElement}
+          isOpen={!!selectedElement}
+          onClose={handleCloseModal}
+          onNavigate={handleNavigate}
         />
       )}
-    </section>
+    </>
   );
 };
 
-export default memo(PeriodicTable);
+export default PeriodicTable;

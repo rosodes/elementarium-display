@@ -1,24 +1,29 @@
-
 import { TranslationData } from "./types";
-import { commonEn } from "./modules/common";
+import { commonUk } from "./modules/common/uk";
 import { legendUk } from "./modules/legend/uk";
-import { detailsEn } from "./modules/details";
-import { categoriesEn } from "./modules/categories";
-import { uiUk } from "./modules/ui/uk";
-import { elementDetailsEn } from "./modules/elementDetails";
+import { detailsEn } from "./modules/details/en";
+import { categoriesEn } from "./modules/categories/en";
+import { uiUk } from "./modules/ui";
+import { elementDetailsEn } from "./modules/elementDetails/en";
 import { footerUk } from "./modules/footer/uk";
 import { ukElements } from "./modules/elements/uk";
+import { quickStatsUk } from "./modules/quickStats/uk";
 
 export const uk: TranslationData = {
-  title: "Періодична таблиця елементів",
-  subtitle: "Інтерактивна періодична таблиця з детальною інформацією про елементи",
-  selectLanguage: "Оберіть мову",
-  search: "Пошук",
-  toggleTheme: "Переключити тему",
+  title: commonUk.title,
+  subtitle: commonUk.subtitle,
+  selectLanguage: commonUk.selectLanguage,
+  search: commonUk.search,
+  toggleTheme: commonUk.toggleTheme,
+  CleanPeriodicTable: commonUk.CleanPeriodicTable,
+  QuickStats: commonUk.QuickStats,
+  MainPageInstructions: commonUk.MainPageInstructions,
+  common: commonUk,
   legend: legendUk,
   details: detailsEn,
   categories: categoriesEn,
   ui: { ...uiUk, elements: ukElements },
   elementDetails: elementDetailsEn,
-  footer: footerUk
+  footer: footerUk,
+  quickStats: quickStatsUk
 };

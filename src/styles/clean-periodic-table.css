@@ -1,0 +1,419 @@
+/* Периодическая таблица Менделеева - WCAG AAA стили */
+
+/* Контейнер таблицы */
+.periodic-table-container {
+  max-width: 1520px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: visible;
+}
+
+.dark .periodic-table-container {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Заголовки групп */
+.group-numbers {
+  display: grid;
+  grid-template-columns: repeat(18, 70px);
+  gap: 4px;
+  margin-bottom: 12px;
+  padding: 0 44px; /* Учитываем ширину номеров периодов */
+  justify-content: center;
+}
+
+.group-numbers > div {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: #111827;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border: 3px solid #374151;
+  border-radius: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.dark .group-numbers > div {
+  color: #f9fafb;
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  border-color: #d1d5db;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.group-numbers > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Основная таблица */
+.main-periodic-table {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Номера периодов */
+.period-numbers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-right: 8px;
+}
+
+.period-numbers > div {
+  width: 32px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: #111827;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border: 3px solid #374151;
+  border-radius: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+.dark .period-numbers > div {
+  color: #f9fafb;
+  background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+  border-color: #d1d5db;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.period-numbers > div:hover {
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Сетка элементов */
+.elements-grid {
+  display: grid;
+  grid-template-columns: repeat(18, 70px);
+  grid-template-rows: repeat(7, 70px);
+  gap: 4px;
+  padding: 0;
+}
+
+/* Позиция элемента в сетке */
+.grid-position {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Карточка элемента */
+.element-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border: 3px solid #111827;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-clip: padding-box;
+  overflow: hidden;
+}
+
+.dark .element-card {
+  border-color: #f9fafb;
+}
+
+/* Состояния элементов */
+.element-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-width: 4px;
+  z-index: 10;
+}
+
+.element-card:focus {
+  outline: none;
+  ring: 4px;
+  ring-color: #2563eb;
+  ring-offset: 2px;
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.element-card.selected {
+  transform: scale(1.1);
+  box-shadow: 0 25px 50px rgba(37, 99, 235, 0.4);
+  border-color: #2563eb;
+  border-width: 4px;
+  z-index: 20;
+}
+
+.element-card.dimmed {
+  opacity: 0.3;
+  filter: grayscale(100%);
+}
+
+.element-card.dimmed:hover {
+  opacity: 0.6;
+  filter: grayscale(0%);
+}
+
+/* Содержимое элемента */
+.element-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Атомный номер */
+.element-atomic-number {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  font-size: 10px;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Символ элемента */
+.element-symbol {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.5px;
+}
+
+/* Название элемента */
+.element-name {
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 2px;
+  margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Атомная масса */
+.element-atomic-mass {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Индикатор радиоактивности */
+.element-radioactive-indicator {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 2px solid #ffffff;
+  animation: pulse 2s infinite;
+  box-shadow: 0 0 8px rgba(220, 38, 38, 0.6);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* F-блок секция */
+.f-block-section {
+  margin-top: 3rem;
+  padding: 0 2rem;
+}
+
+.f-block-group {
+  margin-bottom: 2rem;
+}
+
+.f-block-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.period-indicator {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 900;
+  color: #ffffff;
+  border: 3px solid #111827;
+  border-radius: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.dark .period-indicator {
+  border-color: #f9fafb;
+}
+
+.block-name {
+  font-size: 24px;
+  font-weight: 900;
+  color: #111827;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dark .block-name {
+  color: #f9fafb;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.f-block-grid {
+  display: grid;
+  grid-template-columns: repeat(14, 70px);
+  gap: 4px;
+  justify-content: center;
+}
+
+.f-block-cell {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1600px) {
+  .periodic-table-container {
+    max-width: 1300px;
+    transform: scale(0.9);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 1200px) {
+  .periodic-table-container {
+    max-width: 1000px;
+    transform: scale(0.75);
+    padding: 1rem 0.5rem;
+  }
+  
+  .group-numbers {
+    padding: 0 30px;
+  }
+  
+  .f-block-section {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .periodic-table-container {
+    max-width: 600px;
+    transform: scale(0.55);
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .group-numbers {
+    padding: 0 20px;
+  }
+  
+  .f-block-section {
+    padding: 0 0.5rem;
+  }
+}
+
+/* Печать */
+@media print {
+  .periodic-table-container {
+    background: white;
+    box-shadow: none;
+    max-width: 100%;
+    transform: scale(0.8);
+  }
+  
+  .element-card {
+    border-color: #000000 !important;
+    box-shadow: none !important;
+  }
+  
+  .element-card:hover {
+    transform: none !important;
+  }
+  
+  .group-numbers > div,
+  .period-numbers > div {
+    background: #f3f4f6 !important;
+    border-color: #000000 !important;
+    color: #000000 !important;
+  }
+}
+
+/* Высококонтрастный режим */
+@media (prefers-contrast: high) {
+  .element-card {
+    border-width: 4px;
+    border-color: #000000;
+  }
+  
+  .dark .element-card {
+    border-color: #ffffff;
+  }
+  
+  .element-symbol {
+    font-weight: 900;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  .dark .element-symbol {
+    text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Уменьшенная анимация */
+@media (prefers-reduced-motion: reduce) {
+  .element-card,
+  .group-numbers > div,
+  .period-numbers > div {
+    transition: none;
+  }
+  
+  .element-card:hover {
+    transform: none;
+  }
+  
+  .element-radioactive-indicator {
+    animation: none;
+  }
+} 

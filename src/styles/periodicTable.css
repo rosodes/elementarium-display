@@ -1,4 +1,3 @@
-
 /* Import all modularized CSS files */
 @import './elements/colors.css';
 @import './elements/cards.css';
@@ -8,24 +7,241 @@
 @import './elements/responsive.css';
 @import './elements/modernTable.css';
 
-/* Override any conflicting styles to ensure proper grid layout */
-.periodic-table-container .periodic-table {
-  display: grid !important;
-  grid-template-columns: 40px repeat(18, 1fr) !important;
-  grid-auto-rows: minmax(60px, auto) !important;
-  gap: 2px !important;
+/* Main periodic table grid layout */
+.periodic-table-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem;
 }
 
-@media (max-width: 1200px) {
+.periodic-table-container .periodic-table {
+  display: grid !important;
+  grid-template-columns: repeat(18, minmax(60px, 1fr)) !important;
+  grid-template-rows: repeat(10, minmax(60px, auto)) !important;
+  gap: 2px !important;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Element positioning within grid */
+.element-position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Empty cells */
+.empty-cell {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+/* F-block section (lanthanides and actinides) */
+.f-block-section {
+  margin-top: 2rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.f-block-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.f-block-label {
+  min-width: 120px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  text-align: right;
+}
+
+.f-block-elements {
+  display: grid;
+  grid-template-columns: repeat(15, minmax(50px, 1fr));
+  gap: 2px;
+  flex: 1;
+}
+
+/* Element cards styling */
+.element-card {
+  width: 100%;
+  height: 100%;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  font-size: 0.75rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.element-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-color: #3b82f6;
+  z-index: 10;
+}
+
+.element-card:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.element-card.selected {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.element-card.dimmed {
+  opacity: 0.3;
+  transform: scale(0.95);
+}
+
+/* Responsive design */
+@media (max-width: 1400px) {
   .periodic-table-container .periodic-table {
-    grid-template-columns: 30px repeat(18, minmax(45px, 1fr)) !important;
-    grid-auto-rows: minmax(50px, auto) !important;
+    grid-template-columns: repeat(18, minmax(50px, 1fr)) !important;
+    grid-template-rows: repeat(10, minmax(50px, auto)) !important;
+  }
+  
+  .element-card {
+    min-height: 50px;
+    font-size: 0.7rem;
+  }
+  
+  .f-block-elements {
+    grid-template-columns: repeat(15, minmax(40px, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .periodic-table-container .periodic-table {
+    grid-template-columns: repeat(18, minmax(40px, 1fr)) !important;
+    grid-template-rows: repeat(10, minmax(40px, auto)) !important;
+  }
+  
+  .element-card {
+    min-height: 40px;
+    font-size: 0.65rem;
+    padding: 0.125rem;
+  }
+  
+  .f-block-elements {
+    grid-template-columns: repeat(15, minmax(35px, 1fr));
+  }
+  
+  .f-block-label {
+    min-width: 100px;
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 768px) {
+  .periodic-table-container {
+    padding: 0.5rem;
+  }
+  
   .periodic-table-container .periodic-table {
-    grid-template-columns: 25px repeat(18, minmax(35px, 1fr)) !important;
-    grid-auto-rows: minmax(40px, auto) !important;
+    grid-template-columns: repeat(18, minmax(35px, 1fr)) !important;
+    grid-template-rows: repeat(10, minmax(35px, auto)) !important;
+    gap: 1px !important;
+  }
+  
+  .element-card {
+    min-height: 35px;
+    font-size: 0.6rem;
+    padding: 0.1rem;
+    border-radius: 0.25rem;
+  }
+  
+  .f-block-elements {
+    grid-template-columns: repeat(15, minmax(30px, 1fr));
+  }
+  
+  .f-block-label {
+    min-width: 80px;
+    font-size: 0.7rem;
+  }
+  
+  .f-block-section {
+    margin-top: 1rem;
+  }
+}
+
+/* Cards view mode */
+.view-mode-cards .periodic-table-container .periodic-table {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)) !important;
+  grid-template-rows: auto !important;
+}
+
+.view-mode-cards .element-card {
+  min-height: 120px;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Compact view mode */
+.view-mode-compact .periodic-table-container .periodic-table {
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)) !important;
+  grid-template-rows: auto !important;
+}
+
+.view-mode-compact .element-card {
+  min-height: 60px;
+  padding: 0.5rem;
+  font-size: 0.75rem;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .element-card {
+    border-width: 3px;
+  }
+  
+  .element-card:hover {
+    border-width: 4px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .element-card {
+    transition: none;
+  }
+  
+  .element-card:hover {
+    transform: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .periodic-table-container .periodic-table {
+    grid-template-columns: repeat(18, 1fr) !important;
+    gap: 1px !important;
+  }
+  
+  .element-card {
+    min-height: 30px;
+    font-size: 0.6rem;
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  .element-card:hover {
+    transform: none;
+    box-shadow: none !important;
   }
 }

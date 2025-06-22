@@ -2,6 +2,7 @@
 @import './styles/base/variables.css';
 @import './styles/base/typography.css';
 @import './styles/utilities.css';
+@import './styles/clean-periodic-table.css';
 
 @tailwind base;
 @tailwind components;

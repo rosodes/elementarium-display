@@ -1,147 +1,155 @@
-
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Element as ElementType } from '../data/elementTypes';
 import { useValidatedTranslation } from '../hooks/useValidatedTranslation';
-import EnhancedTooltip from './ui/tooltip-enhanced';
-import type { ElementSymbolKey } from '../i18n/types/languageTypes';
+import { getCategoryColor } from '../data/elementCategories';
 
 interface ElementTooltipProps {
   element: ElementType;
   children: React.ReactNode;
+  showOnHover?: boolean;
+  position?: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  delay?: number;
 }
 
-const ElementTooltip = ({ element, children }: ElementTooltipProps) => {
-  const { t, rawT } = useValidatedTranslation('ElementTooltip');
+const ElementTooltip: React.FC<ElementTooltipProps> = ({
+  element,
+  children,
+  showOnHover = true,
+  position = 'auto',
+  delay = 300
+}) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [actualPosition, setActualPosition] = useState<'top' | 'bottom' | 'left' | 'right'>(position === 'auto' ? 'top' : position);
+  const timeoutRef = useRef<NodeJS.Timeout>();
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
+  const { t } = useValidatedTranslation('ElementTooltip');
 
-  // Get translated element name
-  const getElementName = (): string => {
-    const elementKey = element.symbol.toLowerCase() as ElementSymbolKey;
-    return rawT.ui?.elements?.[elementKey] || element.name || element.symbol;
+  const showTooltip = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => setIsVisible(true), delay);
   };
 
-  // Format atomic weight for display
-  const formatWeight = (weight: string): string => {
-    const num = parseFloat(weight);
-    return !isNaN(num) ? num.toFixed(3) : weight;
+  const hideTooltip = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setIsVisible(false);
   };
 
-  // Get category display name
-  const getCategoryName = (): string => {
-    if (!element.series) return '';
-    const seriesMap: Record<string, string> = {
-      'Alkali': t('categories.alkali', 'Щелочные металлы'),
-      'Alkaline': t('categories.alkaline', 'Щелочноземельные металлы'),
-      'Transition': t('categories.transition', 'Переходные металлы'),
-      'Post-transition': t('categories.postTransition', 'Постпереходные металлы'),
-      'Metalloid': t('categories.metalloid', 'Металлоиды'),
-      'Nonmetal': t('categories.nonmetal', 'Неметаллы'),
-      'Noble': t('categories.noble', 'Благородные газы'),
-      'Lanthanide': t('categories.lanthanide', 'Лантаноиды'),
-      'Actinide': t('categories.actinide', 'Актиноиды')
-    };
-    return seriesMap[element.series] || element.series;
+  useEffect(() => {
+    if (isVisible && position === 'auto' && tooltipRef.current && triggerRef.current) {
+      const triggerRect = triggerRef.current.getBoundingClientRect();
+      const tooltipRect = tooltipRef.current.getBoundingClientRect();
+      const viewport = {
+        width: window.innerWidth,
+        height: window.innerHeight
+      };
+
+      let newPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
+      
+      // Определяем оптимальную позицию
+      if (triggerRect.top > tooltipRect.height + 10) {
+        newPosition = 'top';
+      } else if (viewport.height - triggerRect.bottom > tooltipRect.height + 10) {
+        newPosition = 'bottom';
+      } else if (triggerRect.left > tooltipRect.width + 10) {
+        newPosition = 'left';
+      } else if (viewport.width - triggerRect.right > tooltipRect.width + 10) {
+        newPosition = 'right';
+      }
+
+      setActualPosition(newPosition);
+    }
+  }, [isVisible, position]);
+
+  const getPositionClasses = () => {
+    const base = 'absolute z-50 transition-all duration-200 ease-out';
+    switch (actualPosition) {
+      case 'top':
+        return `${base} bottom-full left-1/2 transform -translate-x-1/2 mb-2`;
+      case 'bottom':
+        return `${base} top-full left-1/2 transform -translate-x-1/2 mt-2`;
+      case 'left':
+        return `${base} right-full top-1/2 transform -translate-y-1/2 mr-2`;
+      case 'right':
+        return `${base} left-full top-1/2 transform -translate-y-1/2 ml-2`;
+      default:
+        return `${base} bottom-full left-1/2 transform -translate-x-1/2 mb-2`;
+    }
   };
 
-  // Check if element is radioactive
-  const isRadioactive = (): boolean => {
-    const radioactiveElements = new Set([
-      43, 61, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 
-      101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118
-    ]);
-    return radioactiveElements.has(Number(element.atomic));
+  const getArrowClasses = () => {
+    const arrowBase = 'absolute w-0 h-0 border-solid';
+    switch (actualPosition) {
+      case 'top':
+        return `${arrowBase} top-full left-1/2 transform -translate-x-1/2 border-l-transparent border-r-transparent border-t-gray-800 border-l-4 border-r-4 border-t-4 dark:border-t-gray-200`;
+      case 'bottom':
+        return `${arrowBase} bottom-full left-1/2 transform -translate-x-1/2 border-l-transparent border-r-transparent border-b-gray-800 border-l-4 border-r-4 border-b-4 dark:border-b-gray-200`;
+      case 'left':
+        return `${arrowBase} left-full top-1/2 transform -translate-y-1/2 border-t-transparent border-b-transparent border-l-gray-800 border-t-4 border-b-4 border-l-4 dark:border-l-gray-200`;
+      case 'right':
+        return `${arrowBase} right-full top-1/2 transform -translate-y-1/2 border-t-transparent border-b-transparent border-r-gray-800 border-t-4 border-b-4 border-r-4 dark:border-r-gray-200`;
+      default:
+        return `${arrowBase} top-full left-1/2 transform -translate-x-1/2 border-l-transparent border-r-transparent border-t-gray-800 border-l-4 border-r-4 border-t-4 dark:border-t-gray-200`;
+    }
   };
-
-  // Жёстко задаём сторону и запрещаем авто-флип тултипа
-  const atomicNumber = Number(element.atomic);
-  const isFBlock = atomicNumber >= 90 && atomicNumber <= 103;
-  const tooltipSide: 'top' | 'bottom' = isFBlock ? 'bottom' : 'top';
-  const avoidCollisions = false; // категорически запрещаем flip Radix'у
-
-  // Debug
-  if (process.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line no-console
-    console.log(`[TOOLTIP FIX] Element ${element.symbol} (${element.atomic}): side=${tooltipSide}, avoidCollisions=${avoidCollisions}`);
-  }
-
-  const tooltipContent = (
-    <div className="space-y-2 min-w-0 w-full">
-      {/* Element header */}
-      <div className="border-b border-gray-200 dark:border-gray-600 pb-2">
-        <div className="flex items-center justify-between">
-          <h4 className="font-bold text-base">{getElementName()}</h4>
-          {isRadioactive() && (
-            <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" 
-                 title={t('ui.radioactive', 'Radioactive element')} />
-          )}
-        </div>
-        <div className="text-sm opacity-80">
-          {element.symbol} • {t('elementDetails.atomicNumber', 'Atomic Number')}: {element.atomic}
-        </div>
-      </div>
-
-      {/* Key properties */}
-      <div className="space-y-1 text-sm">
-        <div className="flex justify-between">
-          <span className="opacity-80">{t('elementDetails.atomicWeight', 'Atomic Weight')}:</span>
-          <span className="font-medium">{formatWeight(element.weight)}</span>
-        </div>
-
-        <div className="flex justify-between">
-          <span className="opacity-80">{t('elementDetails.series', 'Category')}:</span>
-          <span className="font-medium text-xs">{getCategoryName()}</span>
-        </div>
-
-        {element.electronstring && (
-          <div className="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">
-            <span className="opacity-80">{t('elementDetails.electronConfig', 'Electron Configuration')}:</span>
-            <span
-              className="font-mono text-xs sm:text-sm break-words whitespace-normal text-right sm:text-left w-full sm:w-auto"
-              style={{ wordBreak: 'break-word' }}
-            >
-              {element.electronstring}
-            </span>
-          </div>
-        )}
-
-        {element.melt && (
-          <div className="flex justify-between">
-            <span className="opacity-80">{t('elementDetails.meltingPoint', 'Melting Point')}:</span>
-            <span className="font-medium">{element.melt}°C</span>
-          </div>
-        )}
-
-        {element.boil && (
-          <div className="flex justify-between">
-            <span className="opacity-80">{t('elementDetails.boilingPoint', 'Boiling Point')}:</span>
-            <span className="font-medium">{element.boil}°C</span>
-          </div>
-        )}
-
-        {element.discover && (
-          <div className="flex justify-between">
-            <span className="opacity-80">{t('elementDetails.discovered', 'Discovered')}:</span>
-            <span className="font-medium">{element.discover}</span>
-          </div>
-        )}
-      </div>
-
-      {/* Quick tip */}
-      <div className="text-xs opacity-60 pt-1 border-t border-gray-200 dark:border-gray-600">
-        {t('elementDetails.showMoreInfo', 'Click for detailed information')}
-      </div>
-    </div>
-  );
 
   return (
-    <EnhancedTooltip
-      content={tooltipContent}
-      side={tooltipSide}
-      delay={200}
-      portalled={true}
-      avoidCollisions={avoidCollisions}
+    <div 
+      className="relative inline-block"
+      ref={triggerRef}
+      onMouseEnter={showOnHover ? showTooltip : undefined}
+      onMouseLeave={showOnHover ? hideTooltip : undefined}
+      onFocus={showTooltip}
+      onBlur={hideTooltip}
     >
       {children}
-    </EnhancedTooltip>
+      
+      {isVisible && (
+        <div
+          ref={tooltipRef}
+          className={`${getPositionClasses()} ${
+            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}
+          role="tooltip"
+          aria-label={t('elementTooltip', `Краткая информация о ${element.name}`)}
+        >
+          <div className="bg-gray-800 dark:bg-gray-200 text-white dark:text-gray-800 px-4 py-3 rounded-lg shadow-lg max-w-xs w-max border border-gray-700 dark:border-gray-300">
+                         <div className="flex items-center gap-3 mb-2">
+               <div 
+                 className="w-8 h-8 rounded flex items-center justify-center text-sm font-bold text-white shadow-sm"
+                 style={{ backgroundColor: getCategoryColor(element.category || 'nonmetal').bg }}
+               >
+                 {element.symbol}
+               </div>
+               <div>
+                 <div className="font-semibold text-sm">{element.name}</div>
+                 <div className="text-xs opacity-75">{t('atomicNumber', 'Атомный номер')}: {element.atomic}</div>
+               </div>
+             </div>
+             
+             <div className="space-y-1 text-xs">
+               <div className="flex justify-between">
+                 <span className="opacity-75">{t('mass', 'Масса')}:</span>
+                 <span>{element.weight}</span>
+               </div>
+              <div className="flex justify-between">
+                <span className="opacity-75">{t('category', 'Категория')}:</span>
+                <span className="capitalize">{t(`categories.${element.category}`, element.category)}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="opacity-75">{t('period', 'Период')}:</span>
+                <span>{element.period}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="opacity-75">{t('group', 'Группа')}:</span>
+                <span>{element.group || '-'}</span>
+              </div>
+            </div>
+          </div>
+          <div className={getArrowClasses()} />
+        </div>
+      )}
+    </div>
   );
 };
 

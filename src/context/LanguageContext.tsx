@@ -1,7 +1,10 @@
-
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { languages, LanguageKey, TranslationData, addLanguage } from '../i18n';
-import { detectUserLanguage } from '../lib/detectUserLanguage';
+import { languages, LanguageKey, addLanguage, TranslationData } from '../i18n';
+import { 
+  detectUserLanguage, 
+  saveLanguagePreference, 
+  SupportedLanguage
+} from '../lib/languageUtils';
 
 interface LanguageContextType {
   language: string;
@@ -19,11 +22,13 @@ interface LanguageProviderProps {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, initialLanguage }) => {
-  // Начальный язык теперь всегда детектится через универсальную функцию (или приходит с SSR)
-  const [language, setLanguage] = useState<string>(
-    initialLanguage || detectUserLanguage()
-  );
-  // Пересчитываем поддерживаемые языки каждый раз при изменении languages (реактивный state)
+  // Используем переданный язык или определяем автоматически ТОЛЬКО РАЗ
+  const [language, setLanguage] = useState<string>(() => {
+    if (initialLanguage) return initialLanguage;
+    return detectUserLanguage();
+  });
+
+  // Пересчитываем поддерживаемые языки каждый раз при изменении languages
   const [supportedLanguages, setSupportedLanguages] = useState<string[]>(() => Object.keys(languages));
 
   // Автоматически обновляем supportedLanguages, если коллекция languages меняется
@@ -31,32 +36,17 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children, in
     setSupportedLanguages(Object.keys(languages));
   }, [languages]);
 
-  // Слежение за сменой url — автосмена языка при переходах/обновлении страницы
-  useEffect(() => {
-    const updateLangFromUrl = () => {
-      const urlDetected = detectUserLanguage();
-      if (urlDetected && urlDetected !== language) {
-        setLanguage(urlDetected);
-      }
-    };
-    window.addEventListener('popstate', updateLangFromUrl); // переходы по истории/строке url
-    window.addEventListener('pushstate', updateLangFromUrl as any); // если используется кастомный pushState
-    window.addEventListener('replacestate', updateLangFromUrl as any);
-    updateLangFromUrl(); // однократно при маунте/переходе
-    return () => {
-      window.removeEventListener('popstate', updateLangFromUrl);
-      window.removeEventListener('pushstate', updateLangFromUrl as any);
-      window.removeEventListener('replacestate', updateLangFromUrl as any);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Сохраняем выбор пользователя (только среди поддерживаемых языков!)
+  // Сохраняем выбор пользователя в cookies и localStorage согласно best practices
   const changeLanguage = (lang: string) => {
     if (languages[lang as keyof typeof languages]) {
       setLanguage(lang);
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('preferredLanguage', lang);
+      
+      // Сохраняем предпочтение пользователя в cookies и localStorage
+      saveLanguagePreference(lang as SupportedLanguage);
+      
+      // Обновляем язык HTML документа
+      if (typeof document !== 'undefined') {
+        document.documentElement.lang = lang;
       }
     } else {
       console.error(`Language "${lang}" is not supported`);

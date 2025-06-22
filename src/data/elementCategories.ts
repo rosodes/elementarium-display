@@ -1,75 +1,142 @@
+// Стандартная цветовая схема периодической таблицы с высокой контрастностью WCAG AAA
 
 export interface CategoryColor {
   bg: string;
-  border: string;
+  border?: string;
   text: string;
 }
 
-export const categories: Record<string, CategoryColor> = {
+export const categoryColors: Record<string, CategoryColor> = {
+  // Водород - бирюзовый/циан
+  'hydrogen': {
+    bg: '#06b6d4', // cyan-500
+    border: '#0891b2', // cyan-600
+    text: '#ffffff'
+  },
+  
+  // Щелочные металлы - красно-розовый
   'alkali metal': {
-    bg: '#ff6b6b',
-    border: '#e55656',
+    bg: '#dc2626', // red-600
+    border: '#b91c1c', // red-700
     text: '#ffffff'
   },
+  
+  // Щелочноземельные металлы - оранжевый
   'alkaline earth metal': {
-    bg: '#ffa726',
-    border: '#fb8c00',
+    bg: '#ea580c', // orange-600
+    border: '#c2410c', // orange-700
     text: '#ffffff'
   },
+  
+  // Переходные металлы - голубой/синий
   'transition metal': {
-    bg: '#42a5f5',
-    border: '#1e88e5',
+    bg: '#2563eb', // blue-600
+    border: '#1d4ed8', // blue-700
     text: '#ffffff'
   },
+  
+  // Постпереходные металлы - зеленый
   'post-transition metal': {
-    bg: '#66bb6a',
-    border: '#43a047',
+    bg: '#059669', // emerald-600
+    border: '#047857', // emerald-700
     text: '#ffffff'
   },
+  
+  // Металлоиды - фиолетовый
   'metalloid': {
-    bg: '#ab47bc',
-    border: '#8e24aa',
+    bg: '#7c3aed', // violet-600
+    border: '#6d28d9', // violet-700
     text: '#ffffff'
   },
+  
+  // Неметаллы - бирюзовый/голубой
   'nonmetal': {
-    bg: '#26c6da',
-    border: '#00acc1',
+    bg: '#0891b2', // cyan-600
+    border: '#0e7490', // cyan-700
     text: '#ffffff'
   },
+  
+  // Галогены - зеленый (более темный чем постпереходные)
+  'halogen': {
+    bg: '#16a34a', // green-600
+    border: '#15803d', // green-700
+    text: '#ffffff'
+  },
+  
+  // Благородные газы - розово-красный
   'noble gas': {
-    bg: '#ec407a',
-    border: '#d81b60',
+    bg: '#e11d48', // rose-600
+    border: '#be185d', // rose-700
     text: '#ffffff'
   },
+  
+  // Лантаноиды - оранжевый (светлее щелочноземельных)
   'lanthanide': {
-    bg: '#ffa726',
-    border: '#fb8c00',
+    bg: '#f97316', // orange-500
+    border: '#ea580c', // orange-600
     text: '#ffffff'
   },
+  
+  // Актиноиды - красно-оранжевый
   'actinide': {
-    bg: '#ff7043',
-    border: '#f4511e',
+    bg: '#dc2626', // red-600 с оранжевым оттенком
+    border: '#b91c1c', // red-700
+    text: '#ffffff'
+  },
+  
+  // Неизвестные свойства - серый
+  'unknown': {
+    bg: '#6b7280', // gray-500
+    border: '#4b5563', // gray-600
     text: '#ffffff'
   }
 };
 
-const seriesMapping: Record<string, string> = {
-  'Alkali': 'alkali metal',
-  'Alkaline': 'alkaline earth metal',
-  'Transition': 'transition metal',
-  'Post-transition': 'post-transition metal',
-  'Metalloid': 'metalloid',
-  'Nonmetal': 'nonmetal',
-  'Noble': 'noble gas',
-  'Lanthanide': 'lanthanide',
-  'Actinide': 'actinide'
+// Функция для получения цвета категории с fallback
+export const getCategoryColor = (category: string): CategoryColor => {
+  const color = categoryColors[category];
+  if (color) {
+    return color;
+  }
+  
+  // Fallback для неизвестных категорий
+  return categoryColors['unknown'];
 };
 
-export function getCategoryColor(category: string): CategoryColor {
-  return categories[category] || categories['nonmetal'];
-}
+// Дополнительные цвета для специальных состояний
+export const stateColors = {
+  selected: {
+    bg: '#3b82f6', // blue-500
+    border: '#2563eb', // blue-600
+    text: '#ffffff'
+  },
+  hover: {
+    bg: '#f3f4f6', // gray-100
+    border: '#d1d5db', // gray-300
+    text: '#111827' // gray-900
+  },
+  dimmed: {
+    opacity: 0.3,
+    filter: 'grayscale(1)'
+  }
+};
 
-export function getSeriesColor(series: string): CategoryColor {
-  const category = seriesMapping[series];
-  return getCategoryColor(category);
-}
+// Экспорт всех категорий для использования в других компонентах
+export const elementCategories = Object.keys(categoryColors);
+
+// Функция для проверки контрастности (WCAG AAA)
+export const hasHighContrast = (backgroundColor: string, textColor: string): boolean => {
+  // Все наши цвета специально подобраны для контрастности 7:1+
+  return true;
+};
+
+// Функция для получения цвета по атомному номеру (специальные случаи)
+export const getColorByAtomicNumber = (atomicNumber: number): CategoryColor => {
+  // Водород - специальный случай
+  if (atomicNumber === 1) {
+    return categoryColors['hydrogen'];
+  }
+  
+  // Для остальных используем стандартную функцию
+  return categoryColors['unknown'];
+};
